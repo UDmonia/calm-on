@@ -1,7 +1,8 @@
 import  React , {useState} from 'react';
-import {DatePickerIOS,ImageBackground,Image, Text, View, StyleSheet,TextInput, TouchableOpacity } from 'react-native';
+import {ImageBackground,Image, Text, View, StyleSheet,TextInput, TouchableOpacity } from 'react-native';
 //import { LinearGradient } from 'expo-linear-gradient'
 import styles from './loginSignup.styles'
+import DatePicker from 'react-native-datepicker';
 
 
 export default function LoginSignup() {
@@ -9,7 +10,7 @@ export default function LoginSignup() {
   const [login,setLogin] = useState(true) 
 
   //state for birthdate... not workin
-  const [chosenDate, setChosenDate] = useState(new Date()); 
+  const [chosenDate, setChosenDate] = useState(''); 
   
 
   return (
@@ -57,7 +58,7 @@ export default function LoginSignup() {
 
           <Text style = {styles.description} >Password*</Text>
           <View style = {styles.inputAndIcon}>
-            <Image  styles = {styles.icon} source = {require('./images/password.png')}/>
+            <Image  style = {styles.icon} source = {require('./images/password.png')}/>
             <TextInput secureTextEntry = {true} clearButtonMode = {'while-editing'}placeholder = 'Password...' style = {styles.input} />
           </View>
 
@@ -65,7 +66,7 @@ export default function LoginSignup() {
 
         <View>
           <TouchableOpacity title = 'Log in' style = {styles.bottomButton} >
-          <Text>Log In</Text>
+          <Image style = {{width:80,height:40,borderRadius: 5}} source = {require('./images/logIn.png')}></Image>
           </TouchableOpacity>
         </View>
 
@@ -100,13 +101,46 @@ export default function LoginSignup() {
           <View style = {styles.inputAndIcon}>
             <Image  styles = {styles.icon} source = {require('./images/date.png')}/>
             {/*Datepicker not working*/}
-            <TextInput  dataDetectorTypes = {'calendarEvent'} placeholder = 'mm/dd/yyyy' style = {styles.input} />
+            <DatePicker
+                style={styles.input}
+                date={chosenDate} //initial date from state
+                mode="date" //The enum of date, datetime and time
+                placeholder="Select Date..."
+                format="DD-MM-YYYY"
+                customStyles ={{
+                  dateInput: {
+                    borderWidth: 0,
+                    marginBottom: '7%',
+                    marginRight: '65%',
+                  },
+                  placeholderText: {
+                    fontSize: 18
+                  },
+                  dateText: {
+                    fontSize: 18
+                  },
+                  btnTextConfirm: {
+                    color: 'blue'
+                  },
+                  btnTextCancel: {
+                    color: 'blue'
+                  }
+                }}
+                
+              confirmBtnText="Confirm"
+               cancelBtnText="Cancel"
+               showIcon = {false}
+        
+          onDateChange={date => {
+            setChosenDate(date);
+          }}
+        />
           </View>
         </View>
 
           <View>
               <TouchableOpacity  style = {{...styles.bottomButton,width: 155}} >
-              <Text>Create Account</Text>
+              <Image style = {{width:150,height:40,borderRadius: 5}} source = {require('./images/createAcc.png')}></Image>
               </TouchableOpacity>
           </View>
 
