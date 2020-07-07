@@ -10,7 +10,9 @@ const Homescreen = props => {
       
       <View style={styles.main}>
         <View style={styles.topBox}>
-
+          {/* CHANGE NAME TO USERNAME OR NAME????? */}
+          <Text style={styles.topBoxTextName}>Hi Joe!</Text>
+          <Text style={styles.topBoxText}>Scroll through your three fairy friends and pick one to learn more about them.</Text>
         </View>
         <Text>Homescreen</Text>
 

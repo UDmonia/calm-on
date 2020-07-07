@@ -35,6 +35,19 @@ const styles = StyleSheet.create({
     marginTop: 106,
     width: 348,
   },
+  topBoxTextName: {
+    color: '#000000',
+    fontSize: 24,
+    fontFamily: 'Avenir',
+    marginTop: 16,
+    marginHorizontal: 16,
+  },
+  topBoxText: {
+    color: '#000000',
+    fontSize: 14,
+    fontFamily: 'Avenir',
+    marginHorizontal: 16,
+  },
   nav: {
     backgroundColor: '#8AABFF',
     height: 77,
