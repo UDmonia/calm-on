@@ -48,6 +48,34 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     marginHorizontal: 16,
   },
+  spiritLeft: {
+    height: 160,
+    width: 90,
+    position: 'absolute',
+    left: 20,
+    top: 280,
+  },
+  spiritCenterView: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 280,
+    width: '100%',
+  },
+  spiritCenter: {
+    position: 'relative',
+    width: 150,
+    height: 260,
+    left: 10,
+  },
+  spiritRight: {
+    height: 160,
+    width: 90,
+    position: 'absolute',
+    right: 20,
+    top: 280,
+
+  },
   nav: {
     backgroundColor: '#8AABFF',
     height: 77,
