@@ -1,30 +1,46 @@
-import React from 'react';
-import { Text, View, Button, ImageBackground, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, Button, ImageBackground, TouchableOpacity, Image, ScrollView } from 'react-native';
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+import { Dimensions } from 'react-native';
 
 import styles from '../stylesheets/homescreenStyles';
 
+
+const sprite = {
+  img: require('../../assets/sprite.gif'),
+  name: 'Sprite',
+  description: 'Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!'
+}
+
+const flynn = {
+  img: require('../../assets/flynn.gif'),
+  name: 'Flynn',
+  description: 'Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!'
+}
+
+const aurora = {
+  img: require('../../assets/aurora.gif'),
+  name: 'Aurora',
+  description: 'Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!'
+};
+
 const Homescreen = props => {
 
-  const sprite = {
-    img: require('../../assets/sprite.gif'),
-    name: 'Sprite',
-    description: 'Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!'
-  }
-  
-  const flynn = {
-    img: require('../../assets/flynn.gif'),
-    name: 'Flynn',
-    description: 'Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!'
-  }
-  
-  const aurora = {
-    img: require('../../assets/aurora.gif'),
-    name: 'Aurora',
-    description: 'Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!'
-  };
+  let [spirits, setSpirits] = useState([aurora, sprite, flynn]);
 
-  let spirits = [aurora, sprite, flynn];
+  function handleSwipeLeft() {
+    // let spirit = spirits[0];
+    
+    spirits = [spirits[1], spirits[2], spirits[0]];
+    console.log(spirits);
+    // spirits = spirits.push(spirit);
+  }
+  
+  function handleSwipeRight() {
+    console.log(spirits);
+    // let spirit = spirits.pop();
+    // spirits = spirits.unshift(spirit);
+  }
 
   return (
     <View style={styles.format}>
@@ -37,7 +53,27 @@ const Homescreen = props => {
           <Text style={styles.topBoxTextName}>Hi Joe!</Text>
           <Text style={styles.topBoxText}>Scroll through your three fairy friends and pick one to learn more about them.</Text>
         </View>
+    <View style={styles.scroll}>
+      <ScrollView snapToInterval={Dimensions.get('window').width} 
+        decelerationRate='fast' 
+        horizontal 
+        pagingEnabled='true' 
+        showsHorizontalScrollIndicator={false}
+        >
+          {spirits.map(spirit => {
 
+            return (
+            <View key ={spirit.name}
+              style={styles.scroll}
+            >
+              <Image 
+                style={styles.spirit}
+                source={spirit.img} />
+            </View>
+            )
+          })}
+      </ScrollView>
+    </View>
         {/* COMMENT OUT LATER ON */}
         {/* <Button
           title='Home'
@@ -46,7 +82,11 @@ const Homescreen = props => {
           }
         /> */}
         {/* BEEPBOOP */}
-        {/* <GestureRecognizer style={styles.spirits}> */}
+        
+        {/* <GestureRecognizer style={styles.spirits}
+          onSwipeLeft={() => handleSwipeLeft()}
+          onSwipeRight={() => handleSwipeRight()}
+          >
           <Image style={styles.spiritLeft}
             source={spirits[0].img} />
           
@@ -57,9 +97,8 @@ const Homescreen = props => {
 
           <Image style={styles.spiritRight}
             source={spirits[2].img} />
-        {/* </GestureRecognizer> */}
+        </GestureRecognizer> */}
 
-        
         <TouchableOpacity>
           <Image style={styles.btn}
             source={require('../../assets/homescreen_btn.png')} />
