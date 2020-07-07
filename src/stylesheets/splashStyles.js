@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
         // justifyContent: "center",
         width: '100%',
         height: '100%',
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-end",
       },
       text: {
         color: "grey",
@@ -18,8 +22,20 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
       },
       format: {
-        padding: 0
-      }
+        padding: 0,
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center",
+      },
+      btn: {
+        borderRadius: 6,
+        marginBottom: 80,
+
+        // position: 'relative',
+        width: 104,
+        height: 40,
+        // top: 321,
+      },
 })
 
 export default styles;
