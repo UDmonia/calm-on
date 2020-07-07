@@ -1,22 +1,30 @@
 import React from 'react';
 import { Text, View, Button, ImageBackground, TouchableOpacity, Image } from 'react-native';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+
 import styles from '../stylesheets/homescreenStyles';
 
 const Homescreen = props => {
 
   const sprite = {
     img: require('../../assets/sprite.gif'),
+    name: 'Sprite',
+    description: 'Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!'
   }
   
   const flynn = {
     img: require('../../assets/flynn.gif'),
+    name: 'Flynn',
+    description: 'Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!'
   }
   
   const aurora = {
     img: require('../../assets/aurora.gif'),
+    name: 'Aurora',
+    description: 'Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!'
   };
 
-  let spirits = [aurora.img, sprite.img, flynn.img];
+  let spirits = [aurora, sprite, flynn];
 
   return (
     <View style={styles.format}>
@@ -38,16 +46,30 @@ const Homescreen = props => {
           }
         /> */}
         {/* BEEPBOOP */}
+        {/* <GestureRecognizer style={styles.spirits}> */}
+          <Image style={styles.spiritLeft}
+            source={spirits[0].img} />
+          
+          <View style={styles.spiritCenterView}>
+            <Image style={styles.spiritCenter}
+              source={spirits[1].img} />
+          </View>
 
-        <Image style={styles.spiritLeft}
-          source={spirits[0]} />
+          <Image style={styles.spiritRight}
+            source={spirits[2].img} />
+        {/* </GestureRecognizer> */}
+
         
-        <View style={styles.spiritCenterView}>
-          <Image style={styles.spiritCenter}
-            source={spirits[1]} />
+        <TouchableOpacity>
+          <Image style={styles.btn}
+            source={require('../../assets/homescreen_btn.png')} />
+        </TouchableOpacity>
+
+        <View style={styles.bottomBox}>
+          <Text style={styles.bottomBoxTextName}>{spirits[1].name}</Text>
+          <Text style={styles.bottomBoxTextDescription}>{spirits[1].description}</Text>
         </View>
-        <Image style={styles.spiritRight}
-          source={spirits[2]} />
+
       </View>
 
       <View style={styles.nav}>
