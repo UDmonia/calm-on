@@ -11,8 +11,6 @@ export default LoginSignup =() => {
   //state for switching between login and signup page
   const [login,isLogin] = useState(true) 
 
-  //state for birthdate... not workin
-  
   const [signup,setSignup] = useState({
     email:'',
     password: '',
@@ -48,11 +46,11 @@ export default LoginSignup =() => {
       <ImageBackground style={styles.background} source={require('./images/backgroundImage.png')}>
 
         {/*inner container for adjusting the background image rgb*/}
-        <View style={styles.innerContainer}>
+        <View style = {styles.innerContainer}>
 
           {/*logo*/}
-          <View style={styles.logo}>
-            <Image style={styles.image} source={require('./images/logo.png')} />
+          <View style = {styles.logo}>
+            <Image style = {styles.image} source = {require('./images/logo.png')}/>
           </View>
 
           {/*Login page button*/}
@@ -62,7 +60,6 @@ export default LoginSignup =() => {
               style = {login? {...styles.topButtons,borderBottomWidth:5,}:null}>
               <Text style = {login?{...styles.topButtonText,fontWeight: 'bold'}:{...styles.topButtonText}}>Login</Text>
             </TouchableOpacity>
-
             {/*Signup page button*/}
             <TouchableOpacity onPress = {()=>isLogin(false)} 
               style = {!login?{...styles.topButtons,marginLeft: 50,borderBottomWidth:5,}:{marginLeft: 50}}>
@@ -127,7 +124,7 @@ export default LoginSignup =() => {
           <Text style = {styles.description} >Birthday</Text>
           <View style = {styles.inputAndIcon}>
             <Image  styles = {styles.icon} source = {require('./images/date.png')}/>
-            {/*Datepicker not working*/}
+            
             <DatePicker
                 style={styles.input}
                 date={signup.birthday} //initial date from state
@@ -166,7 +163,19 @@ export default LoginSignup =() => {
         </View>
         </View>
 
+          <View>
+              <TouchableOpacity  style = {{...styles.bottomButton,width: 155}} >
+              <Image style = {{width:150,height:40,borderRadius: 5}} source = {require('./images/createAcc.png')}></Image>
+              </TouchableOpacity>
+          </View>
+
+        </View>
+        //***********************************end of sign up form*****************************************
+
+        }
+          </View>
       </ImageBackground>
     </View>
   );
 }
+
