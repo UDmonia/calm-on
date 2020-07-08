@@ -1,7 +1,10 @@
+
 import React, { useState } from 'react';
 import { DatePickerIOS, ImageBackground, Image, Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+
 //import { LinearGradient } from 'expo-linear-gradient'
 import styles from './loginSignup.styles'
+import DatePicker from 'react-native-datepicker';
 
 
 
@@ -11,7 +14,6 @@ export default function LoginSignup() {
 
   //state for birthdate... not workin
   const [chosenDate, setChosenDate] = useState(new Date());
-
 
   return (
 
@@ -42,6 +44,7 @@ export default function LoginSignup() {
               <Text style={!login ? { ...styles.topButtonText, fontWeight: 'bold' } : { ...styles.topButtonText }}>Sign Up</Text>
             </TouchableOpacity>
           </View>
+
 
           {/*Switch between signup and login, if login is true, switch to login, if signup is true, switch to signup*/}
           {login ?
@@ -115,6 +118,7 @@ export default function LoginSignup() {
 
           }
         </View>
+
       </ImageBackground>
     </View>
   );

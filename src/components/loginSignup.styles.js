@@ -13,18 +13,18 @@ export default  StyleSheet.create({
       backgroundColor: 'rgba(0,0,0,0.60)'
     },
     logo: {
-      marginTop: 40,
+      marginTop: '10%',
       alignItems: 'center',
-      height: 210,
+      height: '23%',
       //borderWidth:2
     },
     buttonGroup: {
       flexDirection: 'row',
       //borderWidth:1,
-      height: 60,
+      height: '7%',
       alignContent: 'center',
       justifyContent: 'center',
-      padding: 10
+      padding: '3%'
     },
     topButtons: {
       borderColor: '#8161B2',
@@ -36,47 +36,43 @@ export default  StyleSheet.create({
     bottomButton: {
       alignItems: 'center',
       justifyContent: 'center',
-      height:40,
-      width: 80,
       marginLeft: 'auto',
-      marginRight: 'auto',
-      borderRadius: 5,
-      backgroundColor: '#E1EAFF'
+      marginRight: 'auto'
     },
     form: {
       //borderWidth: 2,
-      padding: 10,
-      paddingBottom: 50,
-      paddingTop: 40
+      padding: '1.8%',
+      paddingBottom: '11%',
+      paddingTop: '10%'
     },
     input: {
-      borderColor: 'grey',
+      //borderColor: 'grey',
       backgroundColor: 'white',
       height: 40,
       borderRadius: 5,
       fontSize: 18,
-      padding: 10,
-      width: 345
+      padding: '3%',
+      width: '90%'
     },
     inputAndIcon: {
+      //borderWidth: 2,
       flexDirection:'row', 
       justifyContent:'space-between', 
       alignItems:'center',
-      marginBottom: 14,
-      paddingLeft: 7,
-      paddingRight: 10
+      marginBottom: '4%',
+      paddingLeft: '2%',
+      paddingRight: '3%',
+      width: '100%'
     },
     description: {
       fontSize: 18,
       color:'white',
-      marginLeft: 45,
-      marginBottom: 2
+      marginLeft: '12%',
+      marginBottom: '1%'
     },
     image: {
-      width: 275,
-      height:172
+      width: '70%',
+      height:'90%'
     },
-    icons: {
-    }
   });
   
