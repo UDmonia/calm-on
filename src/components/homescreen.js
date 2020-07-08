@@ -27,7 +27,8 @@ const aurora = {
 const Homescreen = props => {
 
   let [spirits, setSpirits] = useState([aurora, sprite, flynn]);
-  let [currentSpirit, setCurrentSpirit] = useState(aurora);
+  let spirit = spirit || aurora;
+  let [currentSpirit, setCurrentSpirit] = useState(spirit);
   // let [currentSwipe, setCurrentSwipe] = useState(0);
   
   // function handleSwipeLeft() {
@@ -50,30 +51,27 @@ const Homescreen = props => {
   //   console.log(event.nativeEvent.contentOffset.y);
   // }
 
-  // updateDescription();
   let xOffset;
+  let screenWidth = Dimensions.get('window').width;
 
   function handleScroll(e) {
     xOffset = e.nativeEvent.contentOffset.x;
-    console.log(xOffset);
-
     updateSpirit(xOffset);
-    // console.log(Dimensions.get('window').width)     //= 375
   }
 
   function updateSpirit(x = 0) {
-    if (x < 375) {
-      currentSpirit = spirits[0];
-    } else if (x >= 375 && x < 750) {
-      currentSpirit = spirits[1];
+    if (x < screenWidth/2) {
+      spirit = spirits[0];
+    } else if (x < screenWidth*1.5) {
+      spirit = spirits[1];
     } else {
-      currentSpirit = spirits[2];
+      spirit = spirits[2];
     }
 
-    console.log(currentSpirit.name);
+    if (currentSpirit !== spirit) {
+      setCurrentSpirit(spirit);
+    }
   }
-
-  
 
   return (
     <View style={styles.format}>
