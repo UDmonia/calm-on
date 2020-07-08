@@ -159,7 +159,8 @@ export default LoginSignup =() => {
             setSignup({...signup,birthday:date});
           }}
         />
-          </View>
+        
+        </View>
         </View>
 
           <View>
