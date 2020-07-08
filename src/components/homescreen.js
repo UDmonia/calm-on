@@ -26,7 +26,7 @@ const aurora = {
 
 const Homescreen = props => {
 
-  let [spirits, setSpirits] = useState([aurora, sprite, flynn]);
+  let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
   let spirit = spirit || aurora;
   let [currentSpirit, setCurrentSpirit] = useState(spirit);
 
