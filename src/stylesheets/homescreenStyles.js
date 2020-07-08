@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,39 +49,23 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     marginHorizontal: 16,
   },
-  spiritLeft: {
-    position: 'absolute',
-    width: 84.39,
-    height: 150,
-    left: 15,
-    top: 270,
-  },
-  spiritCenterView: {
+  scroll: {
     display: 'flex',
     alignItems: 'center',
-    position: 'absolute',
-    top: 280,
-    width: '100%',
+    width: Dimensions.get('window').width,
+    marginTop: 20,
   },
-  spiritCenter: {
-    position: 'relative',
-    width: 130,
-    height: 240,
-    left: 10,
-  },
-  spiritRight: {
-    position: 'absolute',
-    width: 84.39,
-    height: 150,
-    right: 15,
-    top: 270,
+  spirit: {
+    width: 140,
+    height: 250,
   },
   btn: {
     borderRadius: 6,
     position: 'relative',
     width: 104,
     height: 40,
-    top: 321,
+    // top: 321,
+    top: 20,
   },
   bottomBox: {
     backgroundColor: '#FFFFFF',
@@ -89,7 +74,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 2,
     height: 112,
-    marginTop: '90%',
+    marginTop: '10%',
     width: 348,
   },
   bottomBoxTextName: {
