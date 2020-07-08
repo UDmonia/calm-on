@@ -7,6 +7,15 @@ const Splash = props => {
         <View style={styles.format}>
             <ImageBackground source={require('../../assets/image73.png')} style={styles.image}>
 
+
+{/* COMMENT OUT LATER */}
+    <Button
+        title='Homescreen'
+        onPress={() =>
+            props.navigation.navigate('homescreen')
+        }
+    />
+{/* COMMENT OUT LATER */}
             <TouchableOpacity onPress={() => props.navigation.navigate('loginSignup') }>
                 <Image style={styles.btn}
                     source={require('../../assets/start_btn.png')}

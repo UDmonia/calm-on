@@ -1,5 +1,7 @@
-import  React , {useState} from 'react';
-import {ImageBackground,Image, Text, View, StyleSheet,TextInput, TouchableOpacity } from 'react-native';
+
+import React, { useState } from 'react';
+import { DatePickerIOS, ImageBackground, Image, Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+
 //import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../stylesheets/loginSignup.styles'
 import DatePicker from 'react-native-datepicker';
@@ -39,21 +41,22 @@ export default LoginSignup =() => {
 
   return (
 
-  //Outer most container
+    //Outer most container
     <View style={styles.container}>
 
       {/*background image*/}
-      <ImageBackground style = {styles.background} source = {require('./images/backgroundImage.png')}>
+      <ImageBackground style={styles.background} source={require('./images/backgroundImage.png')}>
 
         {/*inner container for adjusting the background image rgb*/}
-        <View style = {styles.innerContainer}>
+        <View style={styles.innerContainer}>
 
           {/*logo*/}
-          <View style = {styles.logo}>
-            <Image style = {styles.image} source = {require('./images/logo.png')}/>
+          <View style={styles.logo}>
+            <Image style={styles.image} source={require('./images/logo.png')} />
           </View>
 
           {/*Login page button*/}
+
           <View style = {styles.buttonGroup}>
             <TouchableOpacity onPress = {()=>isLogin(true)} 
               style = {login? {...styles.topButtons,borderBottomWidth:5,}:null}>
@@ -163,19 +166,7 @@ export default LoginSignup =() => {
         </View>
         </View>
 
-          <View>
-              <TouchableOpacity  style = {{...styles.bottomButton,width: 155}} >
-              <Image style = {{width:150,height:40,borderRadius: 5}} source = {require('./images/createAcc.png')}></Image>
-              </TouchableOpacity>
-          </View>
-
-        </View>
-        //***********************************end of sign up form*****************************************
-
-        }
-          </View>
       </ImageBackground>
     </View>
   );
 }
-
