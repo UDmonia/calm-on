@@ -59,36 +59,6 @@ const styles = StyleSheet.create({
     width: 140,
     height: 250,
   },
-  // spirits: {
-  //   width: '100%',
-  // },
-  // spiritLeft: {
-  //   position: 'absolute',
-  //   width: 84.39,
-  //   height: 150,
-  //   left: 15,
-  //   top: 50,
-  // },
-  // spiritCenterView: {
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   position: 'absolute',
-  //   top: 50,
-  //   width: '100%',
-  // },
-  // spiritCenter: {
-  //   position: 'relative',
-  //   width: 130,
-  //   height: 240,
-  //   left: 10,
-  // },
-  // spiritRight: {
-  //   position: 'absolute',
-  //   width: 84.39,
-  //   height: 150,
-  //   right: 15,
-  //   top: 50,
-  // },
   btn: {
     borderRadius: 6,
     position: 'relative',
