@@ -27,25 +27,57 @@ const aurora = {
 const Homescreen = props => {
 
   let [spirits, setSpirits] = useState([aurora, sprite, flynn]);
-
-  function handleSwipeLeft() {
-    // let spirit = spirits[0];
-    
-    spirits = [spirits[1], spirits[2], spirits[0]];
-    console.log(spirits);
-    // spirits = spirits.push(spirit);
-  }
+  let [currentSpirit, setCurrentSpirit] = useState(aurora);
+  // let [currentSwipe, setCurrentSwipe] = useState(0);
   
-  function handleSwipeRight() {
-    console.log(spirits);
-    // let spirit = spirits.pop();
-    // spirits = spirits.unshift(spirit);
+  // function handleSwipeLeft() {
+  //   if(currentSwipe < 2){
+  //     setCurrentSwipe += 1;
+  //   }
+  //   setCurrentSpirit = spirits[currentSwipe]
+  // }
+  
+  // function handleSwipeRight() {
+  //   if(currentSwipe > 0){
+  //     setCurrentSwipe -= 1;
+  //   }
+  //   setCurrentSpirit = spirits[currentSwipe]
+  // }
+
+  // function updateDescription(event) {
+  //   // let scrollX = scrollView.getScrollX();
+  //   // console.log(scrollX);
+  //   console.log(event.nativeEvent.contentOffset.y);
+  // }
+
+  // updateDescription();
+  let xOffset;
+
+  function handleScroll(e) {
+    xOffset = e.nativeEvent.contentOffset.x;
+    console.log(xOffset);
+
+    updateSpirit(xOffset);
+    // console.log(Dimensions.get('window').width)     //= 375
   }
+
+  function updateSpirit(x = 0) {
+    if (x < 375) {
+      currentSpirit = spirits[0];
+    } else if (x >= 375 && x < 750) {
+      currentSpirit = spirits[1];
+    } else {
+      currentSpirit = spirits[2];
+    }
+
+    console.log(currentSpirit.name);
+  }
+
+  
 
   return (
     <View style={styles.format}>
       <ImageBackground source={require('../../assets/splash_panel.png')} style={styles.image}>
-        {/* <Text style={styles.text}>Inside</Text> */}
       
       <View style={styles.main}>
         <View style={styles.topBox}>
@@ -59,6 +91,8 @@ const Homescreen = props => {
         horizontal 
         pagingEnabled='true' 
         showsHorizontalScrollIndicator={false}
+        onScroll={event => handleScroll(event)}
+        scrollEventThrottle={100}
         >
           {spirits.map(spirit => {
 
@@ -105,8 +139,9 @@ const Homescreen = props => {
         </TouchableOpacity>
 
         <View style={styles.bottomBox}>
-          <Text style={styles.bottomBoxTextName}>{spirits[1].name}</Text>
-          <Text style={styles.bottomBoxTextDescription}>{spirits[1].description}</Text>
+          <Text style={styles.bottomBoxTextName}>{currentSpirit.name}</Text>
+          <Text style={styles.bottomBoxTextDescription}>{currentSpirit.description}</Text>
+          {/* <Text style={styles.bottomBoxTextDescription}>{currentSpirit.description}</Text> */}
         </View>
 
       </View>
