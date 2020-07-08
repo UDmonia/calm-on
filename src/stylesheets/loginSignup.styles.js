@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 export default  StyleSheet.create({
+  
     background:{
       resizeMode:'cover',
       tintColor: 'cyan',
@@ -18,6 +19,7 @@ export default  StyleSheet.create({
       height: '23%',
       //borderWidth:2
     },
+
     buttonGroup: {
       flexDirection: 'row',
       //borderWidth:1,
@@ -26,6 +28,7 @@ export default  StyleSheet.create({
       justifyContent: 'center',
       padding: '3%'
     },
+
     topButtons: {
       borderColor: '#8161B2',
     },

@@ -1,17 +1,41 @@
 import  React , {useState} from 'react';
 import {ImageBackground,Image, Text, View, StyleSheet,TextInput, TouchableOpacity } from 'react-native';
 //import { LinearGradient } from 'expo-linear-gradient'
-import styles from './loginSignup.styles'
+import styles from '../stylesheets/loginSignup.styles'
 import DatePicker from 'react-native-datepicker';
 
 
-export default function LoginSignup() {
+export default LoginSignup =() => {
   //state for switching between login and signup page
-  const [login,setLogin] = useState(true) 
+  const [login,isLogin] = useState(true) 
 
   //state for birthdate... not workin
-  const [chosenDate, setChosenDate] = useState(''); 
   
+  const [signup,setSignup] = useState({
+    email:'',
+    password: '',
+    confirmPassword: '',
+    birthday: '',
+    name: ''
+  })
+
+  const [signin,setSignin] = useState({
+    email:'',
+    password: '',
+
+  })
+
+  const handleSignup = () => {
+    //send user info to backend
+
+    //input validation:
+    
+  }
+
+  const handleLogin = ()=> {
+    //get user from backend and go to user homepage
+  }
+
 
   return (
 
@@ -31,13 +55,13 @@ export default function LoginSignup() {
 
           {/*Login page button*/}
           <View style = {styles.buttonGroup}>
-            <TouchableOpacity onPress = {()=>setLogin(true)} 
+            <TouchableOpacity onPress = {()=>isLogin(true)} 
               style = {login? {...styles.topButtons,borderBottomWidth:5,}:null}>
               <Text style = {login?{...styles.topButtonText,fontWeight: 'bold'}:{...styles.topButtonText}}>Login</Text>
             </TouchableOpacity>
 
             {/*Signup page button*/}
-            <TouchableOpacity onPress = {()=>setLogin(false)} 
+            <TouchableOpacity onPress = {()=>isLogin(false)} 
               style = {!login?{...styles.topButtons,marginLeft: 50,borderBottomWidth:5,}:{marginLeft: 50}}>
               <Text style = {!login?{...styles.topButtonText,fontWeight: 'bold'}:{...styles.topButtonText}}>Sign Up</Text>
             </TouchableOpacity>
@@ -53,13 +77,13 @@ export default function LoginSignup() {
         <Text style = {styles.description} >Email*</Text>
           <View style = {styles.inputAndIcon}>
           <Image  styles = {styles.icon} source = {require('./images/mail.png')}/>
-          <TextInput clearButtonMode = {'while-editing'} placeholder = 'Email...' style = {styles.input} />
+          <TextInput onChangeText = {text => setSignin({...signin,email:text})} clearButtonMode = {'while-editing'} placeholder = 'Email...' style = {styles.input} />
           </View>
 
           <Text style = {styles.description} >Password*</Text>
           <View style = {styles.inputAndIcon}>
             <Image  style = {styles.icon} source = {require('./images/password.png')}/>
-            <TextInput secureTextEntry = {true} clearButtonMode = {'while-editing'}placeholder = 'Password...' style = {styles.input} />
+            <TextInput onChangeText = {text => setSignin({...signin,password:text})} secureTextEntry = {true} clearButtonMode = {'while-editing'}placeholder = 'Password...' style = {styles.input} />
           </View>
 
         </View>
@@ -82,19 +106,19 @@ export default function LoginSignup() {
           <Text style = {styles.description} >Email*</Text>
           <View style = {styles.inputAndIcon}>
             <Image  styles = {styles.icon} source = {require('./images/mail.png')}/>
-            <TextInput clearButtonMode = {'while-editing'} placeholder = 'Email...' style = {styles.input} />
+            <TextInput onChangeText = {text => setSignup({...signup,email:text})} clearButtonMode = {'while-editing'} placeholder = 'Email...' style = {styles.input} />
           </View>
 
           <Text style = {styles.description} >Password*</Text>
           <View style = {styles.inputAndIcon}>
             <Image  styles = {styles.icon} source = {require('./images/password.png')}/>
-            <TextInput clearButtonMode = {'while-editing'} placeholder = 'Password...' style = {styles.input} />
+            <TextInput textContentType = {'newPassword'} onChangeText = {text => setSignup({...signup,password:text})} clearButtonMode = {'while-editing'} placeholder = 'Password...' style = {styles.input} />
           </View>
 
           <Text style = {styles.description} >Confirm Password*</Text>
           <View style = {styles.inputAndIcon}>
             <Image  styles = {styles.icon} source = {require('./images/passwordConfirmed.png')}/>
-            <TextInput secureTextEntry = {true} clearButtonMode = {'while-editing'} placeholder = 'Confirm Password...' style = {styles.input} />
+            <TextInput onChangeText = {text => setSignup({...signup,confirmPassword:text})} secureTextEntry = {true} clearButtonMode = {'while-editing'} placeholder = 'Confirm Password...' style = {styles.input} />
           </View>
 
           <Text style = {styles.description} >Birthday</Text>
@@ -103,7 +127,7 @@ export default function LoginSignup() {
             {/*Datepicker not working*/}
             <DatePicker
                 style={styles.input}
-                date={chosenDate} //initial date from state
+                date={signup.birthday} //initial date from state
                 mode="date" //The enum of date, datetime and time
                 placeholder="Select Date..."
                 format="DD-MM-YYYY"
@@ -132,7 +156,7 @@ export default function LoginSignup() {
                showIcon = {false}
         
           onDateChange={date => {
-            setChosenDate(date);
+            setSignup({...signup,birthday:date});
           }}
         />
           </View>
