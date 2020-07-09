@@ -9,7 +9,11 @@ class IntroVideo extends React.Component {
   constructor(props) {
     super(props);
     this.vid = require('../../assets/opening_video.mov');
-    this.pressed = false;
+    this.play = true;
+
+    this.state = {
+      play: true,
+    }
   }
 
   _handleVideoRef = component => {
@@ -47,7 +51,8 @@ class IntroVideo extends React.Component {
   };
 
   handlePress() {
-    this.pressed = true;
+    this.setState({ play: false });
+    this.props.navigation.navigate('Splash');
   }
   
   render() {
@@ -68,7 +73,7 @@ class IntroVideo extends React.Component {
           volume={1.0}
           isMuted={false}
           resizeMode="stretch"
-          shouldPlay
+          shouldPlay={this.state.play}
           style={{ 
             width: '100%', 
             height: '100%',
