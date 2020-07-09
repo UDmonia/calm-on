@@ -10,8 +10,8 @@ import logo from "../images/logo.png";
 import SessionForm from "./session_form";
 import LoginToggle from "./login_toggle";
 
-const LoginSignup = () => {
-  //state for switching between login and signup page
+const LoginSignup = ({ navigation: { navigate } }) => {
+  // state for switching between login and signup page
   const [login, isLogin] = useState(true);
 
   const setLogin = (bool) => () => isLogin(bool);
@@ -28,7 +28,7 @@ const LoginSignup = () => {
             <Image style={styles.image} source={logo} />
           </View>
           <LoginToggle login={login} setLogin={setLogin} />
-          <SessionForm login={login} />
+          <SessionForm login={login} navigate={navigate} />
         </View>
       </ImageBackground>
     </View>

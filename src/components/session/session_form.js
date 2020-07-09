@@ -1,20 +1,17 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React, { useState, useEffect } from "react";
-import {
-  Image,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import styles from "../../stylesheets/loginSignup.styles";
 
-import { login as loginUser, register } from "../../actions/session_actions";
+import {
+  login as loginUser,
+  register,
+  RECEIVE_USER,
+} from "../../actions/session_actions";
 
 // assets
 import mail from "../images/mail.png";
@@ -36,7 +33,7 @@ const initialSignUp = {
   birthday: "",
 };
 
-const SessionForm = ({ login }) => {
+const SessionForm = ({ login, navigate }) => {
   const dispatch = useDispatch();
   const dbErrors = useSelector((store) => store.errors.session);
 
@@ -78,9 +75,12 @@ const SessionForm = ({ login }) => {
   const handleSubmit = () => {
     setLocalErrors([]);
     if (isValid()) {
-      return login
+      return (login
         ? dispatch(loginUser(user))
-        : dispatch(register({ ...user, birthday: new Date(user.birthday) }));
+        : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
+      ).then((action) => {
+        if (action.type === RECEIVE_USER) navigate("homescreen");
+      });
     }
   };
 

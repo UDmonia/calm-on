@@ -21,8 +21,7 @@ const receiveSessionErrors = (errors) => ({
   errors,
 });
 
-const getUser = (res) => {
-  const { token } = res;
+const getUser = (token) => {
   SessionAPI.setAuthToken(token);
   deviceStorage.save("jwt", token);
   return jwtDecode(token);
@@ -30,12 +29,12 @@ const getUser = (res) => {
 
 export const register = (user) => (dispatch) =>
   SessionAPI.register(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data))))
+    .then((res) => dispatch(receiveUser(getUser(res.data.token))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 
 export const login = (user) => (dispatch) => {
   return SessionAPI.login(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data))))
+    .then((res) => dispatch(receiveUser(getUser(res.data.token))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 };
 
@@ -44,3 +43,11 @@ export const logout = () => (dispatch) => {
   SessionAPI.setAuthToken(false);
   return dispatch(logoutUser());
 };
+
+export const getUserFromJWT = () => (dispatch) =>
+  deviceStorage
+    .get("jwt")
+    .then((token) => {
+      if (token) return dispatch(receiveUser(getUser(token)));
+    })
+    .catch((e) => console.log(e));
