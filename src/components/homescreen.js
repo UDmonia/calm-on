@@ -54,7 +54,7 @@ const Homescreen = props => {
 
   function handleBtnPress() {
     if (currentSpirit === sprite) {
-      props.navigation.navigate('Sprite');
+      props.navigation.navigate('Stories');
     }
   }
 

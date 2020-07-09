@@ -13,7 +13,7 @@ const Splash = props => {
         <Button
             title='Homescreen'
             onPress={() =>
-                props.navigation.navigate('homescreen')
+                props.navigation.navigate('Homescreen')
             }
         />
     {/* COMMENT OUT LATER */}
