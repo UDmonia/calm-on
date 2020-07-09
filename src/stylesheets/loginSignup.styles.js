@@ -53,7 +53,7 @@ export default StyleSheet.create({
     height: 40,
     borderRadius: 5,
     fontSize: 18,
-    padding: "3%",
+    padding: "2%",
     width: "90%",
   },
   inputAndIcon: {

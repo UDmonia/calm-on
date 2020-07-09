@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React, { useState, useEffect } from "react";
-import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
-// import DateTimePicker from "@react-native-community/datetimepicker";
+import {Image, Text, View, TextInput, TouchableOpacity, Button } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+//import moment from 'moment'
 
 import styles from "../../stylesheets/loginSignup.styles";
 
@@ -35,8 +37,8 @@ const SessionForm = ({ login }) => {
 
   const [user, setUser] = useState(initialLogin);
   const [localErrors, setLocalErrors] = useState([]);
-  // const [show, setShow] = useState(false);
-
+  const [show, setShow] = useState(false);
+  const [bday,setDate] = useState('')
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
   useEffect(() => {
@@ -86,6 +88,7 @@ const SessionForm = ({ login }) => {
   //   setShow(false);
   //   handleChange("birthday")(currentDate);
   // };
+
 
   return (
     <View>
@@ -147,36 +150,15 @@ const SessionForm = ({ login }) => {
             <View style={styles.inputAndIcon}>
               <Image styles={styles.icon} source={date} />
 
-              {/* <DateTimePicker
-                testID="dateTimePicker"
-                style={{ height: "100%" }}
-                // value={birthday} // initial date from state
-                mode="date" // The enum of date, datetime and time
-                // format="DD-MM-YYYY"
-                // customStyles={{
-                //   dateInput: {
-                //     borderWidth: 0,
-                //     marginBottom: "7%",
-                //     marginRight: "65%",
-                //   },
-                //   placeholderText: {
-                //     fontSize: 18,
-                //   },
-                //   dateText: {
-                //     fontSize: 18,
-                //   },
-                //   btnTextConfirm: {
-                //     color: "blue",
-                //   },
-                //   btnTextCancel: {
-                //     color: "blue",
-                //   },
-                // }}
-                // confirmBtnText="Confirm"
-                // cancelBtnText="Cancel"
-                // showIcon={false}
-                onChange={onChange}
-              /> */}
+              <TextInput value = {bday.toString().slice(4,13)} placeholder = 'Select Date...' style = {styles.input} onFocus = {()=>setShow(!show)}></TextInput>
+
+             <DateTimePickerModal
+              date = {new Date()}
+              isVisible = {show}
+              mode = 'date'
+              onCancel = {()=>setShow(false)}
+              onConfirm = {date=>{setDate(date),setShow(false)}}
+             />
             </View>
           </View>
         )}
