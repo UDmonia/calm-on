@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ImageBackground, TouchableOpacity, Image } from 'react-native';
 import styles from '../stylesheets/splashStyles';
+import Video from 'react-native-video';
 
 const Splash = props => {
     return (
@@ -8,19 +9,19 @@ const Splash = props => {
             <ImageBackground source={require('../../assets/image73.png')} style={styles.image}>
 
 
-{/* COMMENT OUT LATER */}
-    <Button
-        title='Homescreen'
-        onPress={() =>
-            props.navigation.navigate('homescreen')
-        }
-    />
-{/* COMMENT OUT LATER */}
-            <TouchableOpacity onPress={() => props.navigation.navigate('loginSignup') }>
-                <Image style={styles.btn}
-                    source={require('../../assets/start_btn.png')}
-                />
-            </TouchableOpacity>
+    {/* COMMENT OUT LATER */}
+        <Button
+            title='Homescreen'
+            onPress={() =>
+                props.navigation.navigate('homescreen')
+            }
+        />
+    {/* COMMENT OUT LATER */}
+                <TouchableOpacity onPress={() => props.navigation.navigate('loginSignup') }>
+                    <Image style={styles.btn}
+                        source={require('../../assets/start_btn.png')}
+                    />
+                </TouchableOpacity>
 
 
             </ImageBackground>

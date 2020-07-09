@@ -52,6 +52,12 @@ const Homescreen = props => {
     }
   }
 
+  function handleBtnPress() {
+    if (currentSpirit === sprite) {
+      props.navigation.navigate('Sprite');
+    }
+  }
+
   return (
     <View style={styles.format}>
       <ImageBackground source={require('../../assets/splash_panel.png')} style={styles.image}>
@@ -110,9 +116,10 @@ const Homescreen = props => {
             source={spirits[2].img} />
         </GestureRecognizer> */}
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleBtnPress()}>
           <Image style={styles.btn}
-            source={require('../../assets/homescreen_btn.png')} />
+            source={require('../../assets/homescreen_btn.png')} 
+            />
         </TouchableOpacity>
 
         <View style={styles.bottomBox}>
