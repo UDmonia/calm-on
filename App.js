@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { Provider } from "react-redux";
-import { StyleSheet, Text, View } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Splash from "./src/components/splash.js";
-import LoginSignup from "./src/components/loginSignup.js";
-import Homescreen from "./src/components/homescreen.js";
+
+import Splash from "./src/components/splash";
+import LoginSignup from "./src/components/session/loginSignup";
+import Homescreen from "./src/components/homescreen";
 
 import configureStore from "./src/store/store";
 
@@ -26,7 +26,6 @@ export default function App() {
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
-    //{" "}
   );
 }
 
