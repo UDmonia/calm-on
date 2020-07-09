@@ -2,6 +2,7 @@ import React from 'react';
 import { Video } from 'expo-av';
 import Splash from './splash.js';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Dimensions } from 'react-native';
 
 
 class IntroVideo extends React.Component {
@@ -50,8 +51,16 @@ class IntroVideo extends React.Component {
   }
   
   render() {
+    const screenHeight = Dimensions.get('window').height;
+    const screenWidth = Dimensions.get('window').width;
+
+    const videoHeight = screenHeight;
+    const videoWidth = 1080 * videoHeight / 1920;
+
     return (
-      <TouchableOpacity onPress={() => this.handlePress()}>
+      <TouchableOpacity onPress={() => this.handlePress()}
+        style={{ width: videoWidth, height: videoHeight }}
+        >
         <Video
           ref={this._handleVideoRef}
           source={this.vid}
@@ -60,8 +69,12 @@ class IntroVideo extends React.Component {
           isMuted={false}
           resizeMode="stretch"
           shouldPlay
-          style={{ width: '100%', height: '100%' }}
-          
+          style={{ 
+            width: '100%', 
+            height: '100%',
+            position: 'relative',
+            left: -((videoWidth - screenWidth) / 2),
+          }}
         />  
       </TouchableOpacity>
     )
