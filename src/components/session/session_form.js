@@ -1,11 +1,16 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React, { useState, useEffect } from "react";
-import {Image, Text, View, TextInput, TouchableOpacity, Button } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Button,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import DateTimePicker from '@react-native-community/datetimepicker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-//import moment from 'moment'
 
 import styles from "../../stylesheets/loginSignup.styles";
 
@@ -38,7 +43,9 @@ const SessionForm = ({ login }) => {
   const [user, setUser] = useState(initialLogin);
   const [localErrors, setLocalErrors] = useState([]);
   const [show, setShow] = useState(false);
-  const [bday,setDate] = useState('')
+
+  const toggleShow = () => setShow(!show);
+
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
   useEffect(() => {
@@ -60,7 +67,8 @@ const SessionForm = ({ login }) => {
           : `${key} is required`;
       if (!user[key].trim().length) err.push(msg);
     });
-    if (!validateEmail(user.email)) err.push("Please enter a valid email");
+    if (!validateEmail(user.email)) err.push("please enter a valid email");
+    if (user.password.trim().length < 7) err.push("password is too short");
     if (!login && user.password !== user.confirmPassword)
       err.push("does not match");
     setLocalErrors(err);
@@ -68,8 +76,11 @@ const SessionForm = ({ login }) => {
   };
 
   const handleSubmit = () => {
+    setLocalErrors([]);
     if (isValid()) {
-      dispatch(login ? loginUser(user) : register(user));
+      return login
+        ? dispatch(loginUser(user))
+        : dispatch(register({ ...user, birthday: new Date(user.birthday) }));
     }
   };
 
@@ -82,13 +93,19 @@ const SessionForm = ({ login }) => {
   const passwordError =
     localErrors.find((e) => e.match(/password [^c]/)) || dbErrors.password;
   const confirmPasswordError = localErrors.find((e) => e.match(/match/));
+  const birthdayError =
+    localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
 
-  // const onChange = (event, selectedDate) => {
-  //   const currentDate = selectedDate || birthday;
-  //   setShow(false);
-  //   handleChange("birthday")(currentDate);
-  // };
+  const formatDate = (d) => {
+    const iso = d.toISOString().split("-");
+    iso[2] = iso[2].slice(0, 2);
+    return iso.join("-");
+  };
 
+  const handleConfirm = (d) => {
+    handleChange("birthday")(formatDate(d));
+    toggleShow();
+  };
 
   return (
     <View>
@@ -146,19 +163,29 @@ const SessionForm = ({ login }) => {
               />
             </View>
 
-            <Text style={styles.description}>Birthday</Text>
+            <View style={styles.label}>
+              <Text style={styles.description}>Birthday</Text>
+              {birthdayError && (
+                <Text style={styles.error}>{birthdayError}</Text>
+              )}
+            </View>
             <View style={styles.inputAndIcon}>
               <Image styles={styles.icon} source={date} />
 
-              <TextInput value = {bday.toString().slice(4,13)} placeholder = 'Select Date...' style = {styles.input} onFocus = {()=>setShow(!show)}></TextInput>
+              <TextInput
+                value={birthday}
+                placeholder="Select Date..."
+                style={styles.input}
+                onFocus={toggleShow}
+              />
 
-             <DateTimePickerModal
-              date = {new Date()}
-              isVisible = {show}
-              mode = 'date'
-              onCancel = {()=>setShow(false)}
-              onConfirm = {date=>{setDate(date),setShow(false)}}
-             />
+              <DateTimePickerModal
+                date={new Date()}
+                isVisible={show}
+                mode="date"
+                onCancel={toggleShow}
+                onConfirm={handleConfirm}
+              />
             </View>
           </View>
         )}
