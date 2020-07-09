@@ -33,15 +33,15 @@ class IntroVideo extends React.Component {
     } else {
       // Update your UI for the loaded state
   
-      if (playbackStatus.isPlaying) {
-        // console.log('this is playing')
-      } else {
-        // console.log('not playing')
-      }
+      // if (playbackStatus.isPlaying) {
+      //   // console.log('this is playing')
+      // } else {
+      //   // console.log('not playing')
+      // }
 
-      if (playbackStatus.isBuffering) {
-        // Update your UI for the buffering state
-      }
+      // if (playbackStatus.isBuffering) {
+      //   // Update your UI for the buffering state
+      // }
   
       if (playbackStatus.didJustFinish && !playbackStatus.isLooping) {
         // The player has just finished playing and will stop. Maybe you want to play something else?
