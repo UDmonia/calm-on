@@ -10,7 +10,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
 
-export default function mindfulnessStack(props) {
+export default  mindfulnessStack = props => {
   const headerOptions1 ={
     headerBackTitleVisible: false,
     headerTitle: 'Mindfulness',
@@ -29,7 +29,7 @@ export default function mindfulnessStack(props) {
   }
 
   const homeButton = (
-    <TouchableOpacity onPress = {()=>props.navigation.navigate('homescreen')}>
+    <TouchableOpacity onPress = {()=>props.navigation.navigate('Homescreen')}>
       <Image source = {require('./images/MindfulnessNav/home.png')}/>
     </TouchableOpacity>
   )
