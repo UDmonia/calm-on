@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { DatePickerIOS, ImageBackground, Image, Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {ImageBackground, Image, Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 //import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../stylesheets/loginSignup.styles'

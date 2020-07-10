@@ -15,6 +15,16 @@ const Splash = props => {
             props.navigation.navigate('homescreen')
         }
     />
+
+
+{/* COMMENT OUT LATER */}
+                <Button
+                    title='Mindfulness Stack'
+                    onPress={() =>
+                        props.navigation.navigate('mindfulness')
+                    }
+                />
+
 {/* COMMENT OUT LATER */}
             <TouchableOpacity onPress={() => props.navigation.navigate('loginSignup') }>
                 <Image style={styles.btn}
