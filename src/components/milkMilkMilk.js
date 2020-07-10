@@ -9,6 +9,7 @@ class milkMilkMilk extends React.Component {
 
     this.questions = [
       'Hey [insert name], would you like to hear something really cool?',
+      'Great! You will love it! Could you say the world "milk" once?',
       'Alright, what came to mind when you said it? You can choose one of the options above:',
       'Do any of these pop up in your mind when we say milk? You can choose one of the options above:',
       'Great, what else do you think of when we say milk?',
@@ -18,6 +19,10 @@ class milkMilkMilk extends React.Component {
     ]
 
     this.answers = [
+      [
+        'Yes, please!',
+        'Maybe later'
+      ],
       [
         'I said it!',
         'I thought it!'
@@ -50,6 +55,11 @@ class milkMilkMilk extends React.Component {
         'Maybe later!'
       ],
     ]
+
+    this.state = {
+      question: this.questions[0],
+      answers: this.answers[0],
+    }
   }
 
   render() {
@@ -66,11 +76,26 @@ class milkMilkMilk extends React.Component {
   
           <View style={styles.box}>
             <View style={styles.top}>
-              <Text style={styles.question}></Text>
+              <Text style={styles.question}>{this.state.question}</Text>
             </View>
   
             <View style={styles.bottom}>
-  
+              {this.state.answers.map((a, i) => {
+                if (i === 0) {
+                  return (
+                    <TouchableOpacity key={i} style={styles.answer1}>
+                      <Text style={styles.a}>{a}</Text>
+                    </TouchableOpacity>
+                  )
+                } else {
+                  return (
+                    <TouchableOpacity key={i} style={styles.answer}>
+                      <Text key={i} style={styles.a}>{a}</Text>
+                    </TouchableOpacity>
+                  )
+                }
+              }
+              )}
             </View>
           </View>
         </ImageBackground>

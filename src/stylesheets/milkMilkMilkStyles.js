@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: '#FBBDB4',
     borderRadius: 10,
-    height: 213,
+    // height: 213,
+    minHeight: 200,
     width: 330,
     position: 'absolute',
     marginHorizontal: (screenWidth - 330) / 2,
@@ -42,6 +43,8 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 10,
     height: '100%',
     width: '100%',
+    display: 'flex',
+    alignItems: 'center',
   },
   question: {
     color: '#FFFFFF',
@@ -51,6 +54,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 17,
   },
+  answer1: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    height: 35,
+    width: 284,
+    textAlign: 'center',
+    marginVertical: '5%',
+  },
+  answer: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    fontSize: 14,
+    height: 35,
+    width: 284,
+    textAlign: 'center',
+    marginBottom: '5%',
+  },
+  a: {
+    fontFamily: 'Avenir',
+    fontWeight: '800',
+    textAlign: 'center',
+    lineHeight: 34,
+  }
 })
 
 export default styles;
