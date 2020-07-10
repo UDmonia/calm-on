@@ -12,10 +12,8 @@ import {
   Image,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 
-import styles from "../stylesheets/splashStyles";
 import bg from "../../assets/image73.png";
 import startBtn from "../../assets/start_btn.png";
 
@@ -47,7 +45,7 @@ const Splash = ({ navigation: { navigate } }) => {
     <View style={styles.format}>
       <ImageBackground source={bg} style={styles.image}>
         {/* COMMENT OUT LATER */}
-        {/* <Button title="Homescreen" onPress={() => navigate("homescreen")} /> */}
+        <Button title="Homescreen" onPress={() => navigate("Homescreen")} />
         {/* COMMENT OUT LATER */}
         {!loggedIn && (
           <TouchableOpacity onPress={() => navigate("loginSignup")}>

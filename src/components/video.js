@@ -18,7 +18,7 @@ class IntroVideo extends React.Component {
 
   _handleVideoRef = component => {
     this.playbackObject = component;
-    this.playbackObject.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
+    // this.playbackObject.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
   }
   
   _onPlaybackStatusUpdate = playbackStatus => {
