@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 
-import { View, Button, TouchableOpacity, Image, Text, ImageBackground } from 'react-native';
+import { View, Button, TouchableOpacity, TouchableWithoutFeedback, Image, Text, ImageBackground, Animated } from 'react-native';
 import styles from '../stylesheets/milkMilkMilkStyles';
 
 class milkMilkMilk extends React.Component {
   constructor(props) {
     super(props);
 
+    this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 })
+    this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320})
+    this.fadeValueSprite = new Animated.Value(1)
+    this.fadeValueCrystalBall = new Animated.Value(0)
+
     this.questions = [
       'Hey [insert name], would you like to hear something really cool?',
-      'Great! You will love it! Could you say the world "milk" once?',
+      'Great! You will love it! Could you say the word "milk" once?',
       'Alright, what came to mind when you said it? You can choose one of the options above:',
       'Do any of these pop up in your mind when we say milk? You can choose one of the options above:',
       'Great, what else do you think of when we say milk?',
@@ -20,49 +25,120 @@ class milkMilkMilk extends React.Component {
 
     this.answers = [
       [
-        'Yes, please!',
-        'Maybe later'
+        { option: 'Yes, please!', func: () => this._fade()},
+        { option: 'Maybe later' }
       ],
       [
-        'I said it!',
-        'I thought it!'
+        { option: 'I said it!', func: () => this._moveMilk() },
+        { option: 'I thought it!', func: () => this._moveMilk() }
       ],
       [
-        'refrigerator',
-        'I like milk',
-        'I have some at home'
+        { option: 'refrigerator' },
+        { option: 'I like milk' },
+        { option: 'I have some at home' }
       ],
       [
-        'it\'s in a glass',
-        'cows',
-        'ice cream'
+        { option: 'it\'s in a glass' },
+        { option: 'cows' },
+        { option: 'ice cream' }
       ],
       [
-        'I can taste it',
-        'it tastes cold',
-        'it\'s refreshing'
+        { option: 'I can taste it' },
+        { option: 'it tastes cold' },
+        { option: 'it\'s refreshing' }
       ],
       [
-        'A bit',
-        'Exactly',
-        'I guess'
+        { option: 'A bit' },
+        { option: 'Exactly' },
+        { option: 'I guess' }
       ],
       [
-        'Next'
+        { option: 'Next' }
       ],
       [
-        'Yes!',
-        'Maybe later!'
+        { option: 'Yes!' },
+        { option: 'Maybe later!' }
       ],
     ]
 
     this.state = {
-      question: this.questions[0],
-      answers: this.answers[0],
+      question: 0,
+      answers: 0,
+      show: 'sprite',
+      exit: false,
     }
+
+    this.exit = this.exit.bind(this);
+    this.exitOut = this.exitOut.bind(this);
+  }
+
+  exit() {
+    this.setState({ exit: true });
+  }
+
+  exitOut() {
+    this.props.navigation.navigate('Storytime');
+  }
+
+  _moveMilk = () => {
+    Animated.timing(this.moveAnimationMilk, {
+      toValue: {x: 200, y: 320},
+      duration: 1000,
+    }).start();
+
+    setTimeout(Animated.timing(this.moveAnimationFridge, {
+      toValue: {x: 100, y: 320}  
+    }))
+    
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    });
+  }
+  
+  _fade = () => {
+    this._fadeSprite();
+    setTimeout(() => {
+      this.setState({ 
+        show: 'ball',  
+        question: this.state.question + 1,
+        answers: this.state.answers + 1,
+      });
+      this._fadeCrystalBall();
+    }, 1000);
+  }
+
+  _fadeCrystalBall = () => {
+    Animated.timing(this.fadeValueCrystalBall, {
+      toValue: 1,
+      duration: 1000,
+    }).start();
+  }
+
+  _fadeSprite = () => {
+    Animated.timing(this.fadeValueSprite, {
+      toValue: 0,
+      duration: 1000,
+    }).start();
   }
 
   render() {
+    let spriteOrBall;
+    if (this.state.show === 'sprite') {
+      spriteOrBall = 
+      <Animated.View style={{opacity: this.fadeValueSprite, position: 'absolute', top:'34%', right: 0}}>
+        <Image source={require('../../assets/sprite_still.png')}
+          style={styles.sprite} />
+      </Animated.View>
+    } else if (this.state.show === 'ball') {
+      spriteOrBall =
+      <Animated.View style={{opacity: this.fadeValueCrystalBall}}>
+        <View style={styles.circle}>
+          <Image source={require('../../assets/crystal_ball.png')}
+            style={styles.ball} />
+        </View>
+      </Animated.View>
+    }
 
     return (
       <View>
@@ -70,27 +146,70 @@ class milkMilkMilk extends React.Component {
         style={styles.image}>
   
           <View style={styles.main}>
-            <Image source={require('../../assets/sprite_still.png')}
-            style={styles.sprite}/>
+            {spriteOrBall}
           </View>
-  
+          
+          <TouchableOpacity style={styles.exit}
+            onPress={() => this.exit()}>
+            <Image source={require('../../assets/exit_storytime.png')}
+            style={styles.exit}/>
+          </TouchableOpacity>
+
+          {this.state.exit ? 
+            (
+              <View style={styles.exitBox}>
+                <View style={styles.exitTop}>
+                  <Text style={styles.exitText}>Are you sure you want to quit storytime?</Text>
+                </View>
+                <View style={styles.exitBottom}>
+                  <TouchableOpacity style={styles.yesNo}
+                    onPress={() => this.exitOut()}>
+                    <Text style={styles.exitYNText}>Yes</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.no}>
+                    <Text style={styles.exitYNText}>No</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : null
+          }
+
+          <Animated.View  style={[styles.milk, this.moveAnimationMilk.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.milk} >
+              <Image source={require('../../assets/milk2.png')} style={styles.milkImage} />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+
+          <Animated.View  style={[styles.fridge, this.moveAnimationFridge.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.fridge} >
+              <Image source={require('../../assets/fridge.png')} style={styles.fridgeImage} />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+
+          {/* <Animated.View  style={[styles.milk, this.moveAnimationHouse.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.milk} >
+              <Image source={require('../../assets/house.png')} style={styles.houseImage} />
+            </TouchableWithoutFeedback>
+          </Animated.View> */}
+
           <View style={styles.box}>
             <View style={styles.top}>
-              <Text style={styles.question}>{this.state.question}</Text>
+              <Text style={styles.question}>{this.questions[this.state.question]}</Text>
             </View>
   
             <View style={styles.bottom}>
-              {this.state.answers.map((a, i) => {
+              {this.answers[this.state.answers].map((a, i) => {
                 if (i === 0) {
                   return (
-                    <TouchableOpacity key={i} style={styles.answer1}>
-                      <Text style={styles.a}>{a}</Text>
+                    <TouchableOpacity key={i} style={styles.answer1} onPress={a.func}>
+                      <Text style={styles.a}>{a.option}</Text>
                     </TouchableOpacity>
                   )
                 } else {
                   return (
-                    <TouchableOpacity key={i} style={styles.answer}>
-                      <Text key={i} style={styles.a}>{a}</Text>
+                    <TouchableOpacity key={i} style={styles.answer} >
+                      <Text key={i} style={styles.a}>{a.option}</Text>
                     </TouchableOpacity>
                   )
                 }
