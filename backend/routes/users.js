@@ -44,15 +44,15 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const { email, password, dateOfBirth } = req.body;
+  const { email, password, birthday } = req.body;
 
   if (
     !email ||
     !valid(email) ||
     !password ||
     !valid(password) ||
-    !dateOfBirth ||
-    !valid(dateOfBirth)
+    !birthday ||
+    !valid(birthday)
   )
     return res.status(422).json({
       error: "You need to enter an email, password, and date of birth",
@@ -60,7 +60,7 @@ router.post("/register", async (req, res) => {
 
   const userData = {
     email,
-    dateOfBirth,
+    birthday,
   };
 
   const newUser = new User(userData);

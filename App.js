@@ -10,8 +10,12 @@ import IntroVideo from './src/components/video.js';
 import Sprite from './src/components/tempSpriteChatbox.js';
 import Storytime from './src/components/storytime.js';
 import MilkMilkMilk from './src/components/milkMilkMilk';
+/* eslint-disable react/jsx-filename-extension */
+import { Provider } from "react-redux";
+import configureStore from "./src/store/store";
 
 const Stack = createStackNavigator();
+const store = configureStore();
 
 export default function App() {
   return (
