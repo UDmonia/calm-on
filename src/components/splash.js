@@ -1,5 +1,6 @@
 import styles from '../stylesheets/splashStyles';
 import Video from 'react-native-video';
+
 /* eslint-disable react/jsx-filename-extension */
 import React, { useEffect } from "react";
 import {
@@ -47,6 +48,10 @@ const Splash = ({ navigation: { navigate } }) => {
         {/* COMMENT OUT LATER */}
         <Button title="Homescreen" onPress={() => navigate("Homescreen")} />
         {/* COMMENT OUT LATER */}
+
+        <Button title="Mindfulness" onPress={() => navigate("mindfulnessStack")} />
+        {/* COMMENT OUT LATER */}
+        
         {!loggedIn && (
           <TouchableOpacity onPress={() => navigate("loginSignup")}>
             <Image style={styles.btn} source={startBtn} />
