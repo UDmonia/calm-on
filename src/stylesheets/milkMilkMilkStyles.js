@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: '#FBBDB4',
     borderRadius: 10,
-    minHeight: 200,
+    minHeight: 100,
     width: 330,
     position: 'absolute',
     marginHorizontal: (screenWidth - 330) / 2,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DD6755',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    height: 71,
+    minHeight: 50,
     width: '100%',
   },
   bottom: {
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '800',
     textAlign: 'center',
-    marginTop: 17,
-    marginHorizontal: 10,
+    marginVertical: 17,
+    marginHorizontal: 14,
   },
   answer1: {
     backgroundColor: '#FFFFFF',

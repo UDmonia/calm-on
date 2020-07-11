@@ -7,12 +7,14 @@ class milkMilkMilk extends React.Component {
   constructor(props) {
     super(props);
 
-    this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 })
-    this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320})
-    this.moveAnimationHouse = new Animated.ValueXY({ x: 400, y: 190 })
+    this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 });
+    this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320});
+    this.moveAnimationHouse = new Animated.ValueXY({ x: 400, y: 190 });
+    this.moveAnimationIcecream = new Animated.ValueXY({ x: 400, y: 320});
+    this.moveAnimationCow = new Animated.ValueXY({ x: 400, y: 190 });
 
-    this.fadeValueSprite = new Animated.Value(1)
-    this.fadeValueCrystalBall = new Animated.Value(0)
+    this.fadeValueSprite = new Animated.Value(1);
+    this.fadeValueCrystalBall = new Animated.Value(0);
 
     this.questions = [
       'Hey [insert name], would you like to hear something really cool?',
@@ -21,8 +23,16 @@ class milkMilkMilk extends React.Component {
       'Do any of these pop up in your mind when we say milk? You can choose one of the options above:',
       'Great, what else do you think of when we say milk?',
       'You can imagine what it feels like to drink a glass of milk, right? It is cold, creamy, and coats your mouth!',
-      'You were thinking about actual milk and your past experiences with milk. Together, we made a sound--milk, but do you realie there is no milk physically?',
+      'You were thinking about actual milk and your past experiences with milk. Together, we made a sound--milk, but do you realie there is no milk, physically?',
       'Yet it felt very present. We were seeing milk and tasting it, but it was only present in our minds. If you want, we can try an exercise together!',
+      'It is a bit silly, but we will do it together. If you are embarrassed, just know that I am embarrassed too!',
+      'What I am going to ask you to do is say the word "milk" outloud, quickly, over and over again for about 10 seconds and see what happens. Are you willing to try it?',
+      'OK. Let\'s do it. Say "milk" over and over for about 10 seconds.',
+      'Okay, you can stop! Where is the milk?',
+      'After saying the word several times, didn\'t the cold and creamy imagery disappear? When you first said it, it felt like the milk was actually in the room.',
+      'But in reality, what really happened was that you simply spoke a word out loud. When you first said it, the word felt very real and meaningful. Then, you repeated it over and over until it lost its meaning. It became only a sound because that\'s all it is.',
+      'Because the word "milk", when you say or think negative things, those words are also words. Thoughts do not make things real. There is nothing real about them! Did that help?',
+      'You can check out some of our other story times.',
     ]
 
     this.answers = [
@@ -35,9 +45,9 @@ class milkMilkMilk extends React.Component {
         { option: 'I thought it!', func: () => this._moveMilk() }
       ],
       [
-        { option: 'refrigerator' },
-        { option: 'I like milk' },
-        { option: 'I have some at home' }
+        { option: 'refrigerator', func: () => this._moveMilk2() },
+        { option: 'I like milk', func: () => this._moveMilk2() },
+        { option: 'I have some at home', func: () => this._moveMilk2()  }
       ],
       [
         { option: 'it\'s in a glass' },
@@ -60,6 +70,35 @@ class milkMilkMilk extends React.Component {
       [
         { option: 'Yes!' },
         { option: 'Maybe later!' }
+      ],
+      [
+        { option: 'Next' },
+      ],
+      [
+        { option: 'Yes!' },
+        { option: 'Maybe later!' }
+      ],
+      [
+        { option: 'Next' },
+      ],
+      [
+        { option: 'I\'m not sure' },
+        { option: 'Gone!' },
+        { option: 'Where is the milkd?' },
+      ],
+      [
+        { option: 'Next' },
+      ],
+      [
+        { option: 'Yes, that\'s what happened.' },
+        { option: 'I guess' },
+      ],
+      [
+        { option: 'Yes' },
+        { option: 'Not really' },
+      ],
+      [
+        { option: 'Done' },
       ],
     ]
 
@@ -99,6 +138,33 @@ class milkMilkMilk extends React.Component {
       // duration:1000,  
       }).start()
       setTimeout(() => {Animated.timing(this.moveAnimationHouse, {
+        toValue: {x: 140, y: 160},
+        // duration:1000,  
+      }).start()}, 1000)
+  }, 1000)
+    
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    });
+  }
+
+  _moveMilk2 = () => {
+    this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 });
+    this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320 });
+    this.moveAnimationHouse = new Animated.ValueXY({ x: 400, y: 190 });
+
+    Animated.timing(this.moveAnimationMilk, {
+      toValue: {x: 240, y: 300},
+      // duration: 1000,
+    }).start();
+
+    setTimeout(() => {
+      Animated.timing(this.moveAnimationIcecream, {
+      toValue: {x: 60, y: 300},
+      // duration:1000,  
+      }).start()
+      setTimeout(() => {Animated.timing(this.moveAnimationCow, {
         toValue: {x: 140, y: 160},
         // duration:1000,  
       }).start()}, 1000)
@@ -193,21 +259,33 @@ class milkMilkMilk extends React.Component {
             ) : null
           }
 
-          <Animated.View  style={[styles.milk, this.moveAnimationMilk.getLayout()]}>
+          <Animated.View style={[styles.milk, this.moveAnimationMilk.getLayout()]}>
             <TouchableWithoutFeedback style={styles.milk} >
               <Image source={require('../../assets/milk2.png')} style={styles.milkImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
 
-          <Animated.View  style={[styles.fridge, this.moveAnimationFridge.getLayout()]}>
+          <Animated.View style={[styles.fridge, this.moveAnimationFridge.getLayout()]}>
             <TouchableWithoutFeedback style={styles.fridge} >
               <Image source={require('../../assets/fridge.png')} style={styles.fridgeImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
 
-          <Animated.View  style={[styles.house, this.moveAnimationHouse.getLayout()]}>
+          <Animated.View style={[styles.house, this.moveAnimationHouse.getLayout()]}>
             <TouchableWithoutFeedback style={styles.house} >
               <Image source={require('../../assets/house.png')} style={styles.houseImage} />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+
+          <Animated.View style={[styles.fridge, this.moveAnimationIcecream.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.fridge} >
+              <Image source={require('../../assets/icecream.png')} style={styles.fridgeImage} />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+
+          <Animated.View style={[styles.house, this.moveAnimationCow.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image source={require('../../assets/cow.png')} style={styles.houseImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
 
@@ -220,7 +298,8 @@ class milkMilkMilk extends React.Component {
               {this.answers[this.state.answers].map((a, i) => {
                 if (i === 0) {
                   return (
-                    <TouchableOpacity key={i} style={styles.answer1} onPress={a.func}>
+                    <TouchableOpacity key={i} style={styles.answer1} 
+                      onPress={a.func}>
                       <Text style={styles.a}>{a.option}</Text>
                     </TouchableOpacity>
                   )
