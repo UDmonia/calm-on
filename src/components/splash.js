@@ -20,9 +20,9 @@ import startBtn from "../../assets/start_btn.png";
 
     {/* COMMENT OUT LATER */}
         <Button
-            title='Homescreen'
+            title='Home'
             onPress={() =>
-                props.navigation.navigate('Homescreen')
+                props.navigation.navigate('Home')
             }
         />
     {/* COMMENT OUT LATER */}
@@ -38,17 +38,15 @@ const Splash = ({ navigation: { navigate } }) => {
   useEffect(() => {
     dispatch(getUserFromJWT()).then((action) => {
       if (!action) return;
-      if (action.type === RECEIVE_USER) navigate("homescreen");
+      if (action.type === RECEIVE_USER) navigate("Home");
     });
   }, []);
 
   return (
     <View style={styles.format}>
       <ImageBackground source={bg} style={styles.image}>
-        {/* COMMENT OUT LATER */}
-        <Button title="Homescreen" onPress={() => navigate("Homescreen")} />
-        {/* COMMENT OUT LATER */}
 
+        {/* COMMENT OUT LATER */}
         <Button title="Mindfulness" onPress={() => navigate("mindfulnessStack")} />
         {/* COMMENT OUT LATER */}
         

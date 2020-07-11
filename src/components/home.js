@@ -3,7 +3,7 @@ import { Text, View, Button, ImageBackground, TouchableOpacity, Image, ScrollVie
 import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { Dimensions } from 'react-native';
 
-import styles from '../stylesheets/homescreenStyles';
+import styles from '../stylesheets/homeStyles';
 
 
 const sprite = {
@@ -24,7 +24,7 @@ const aurora = {
   description: 'Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!'
 };
 
-const Homescreen = props => {
+const Home = props => {
 
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
   let spirit = spirit || sprite;
@@ -141,7 +141,7 @@ const Homescreen = props => {
               source={require('../../assets/icon_achievements.png')} />
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
             <Image style={styles.profileIcon}
               source={require('../../assets/icon_profile.png')} />
           </TouchableOpacity>
@@ -153,4 +153,4 @@ const Homescreen = props => {
   );
 }
 
-export default Homescreen;
+export default Home;

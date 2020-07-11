@@ -79,7 +79,7 @@ const SessionForm = ({ login, navigate }) => {
         ? dispatch(loginUser(user))
         : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
       ).then((action) => {
-        if (action.type === RECEIVE_USER) navigate("homescreen");
+        if (action.type === RECEIVE_USER) navigate("Home");
       });
     }
   };
