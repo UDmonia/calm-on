@@ -9,6 +9,8 @@ class milkMilkMilk extends React.Component {
 
     this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 })
     this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320})
+    this.moveAnimationHouse = new Animated.ValueXY({ x: 400, y: 190 })
+
     this.fadeValueSprite = new Animated.Value(1)
     this.fadeValueCrystalBall = new Animated.Value(0)
 
@@ -70,6 +72,7 @@ class milkMilkMilk extends React.Component {
 
     this.exit = this.exit.bind(this);
     this.exitOut = this.exitOut.bind(this);
+    this.dontExitOut = this.dontExitOut.bind(this);
   }
 
   exit() {
@@ -80,15 +83,26 @@ class milkMilkMilk extends React.Component {
     this.props.navigation.navigate('Storytime');
   }
 
+  dontExitOut() {
+    this.setState({ exit: false });
+  }
+
   _moveMilk = () => {
     Animated.timing(this.moveAnimationMilk, {
-      toValue: {x: 200, y: 320},
-      duration: 1000,
+      toValue: {x: 240, y: 300},
+      // duration: 1000,
     }).start();
 
-    setTimeout(Animated.timing(this.moveAnimationFridge, {
-      toValue: {x: 100, y: 320}  
-    }))
+    setTimeout(() => {
+      Animated.timing(this.moveAnimationFridge, {
+      toValue: {x: 60, y: 300},
+      // duration:1000,  
+      }).start()
+      setTimeout(() => {Animated.timing(this.moveAnimationHouse, {
+        toValue: {x: 140, y: 160},
+        // duration:1000,  
+      }).start()}, 1000)
+  }, 1000)
     
     this.setState({
       question: this.state.question + 1,
@@ -150,7 +164,8 @@ class milkMilkMilk extends React.Component {
           </View>
           
           <TouchableOpacity style={styles.exit}
-            onPress={() => this.exit()}>
+            onPress={() => this.exit()}
+            >
             <Image source={require('../../assets/exit_storytime.png')}
             style={styles.exit}/>
           </TouchableOpacity>
@@ -163,11 +178,14 @@ class milkMilkMilk extends React.Component {
                 </View>
                 <View style={styles.exitBottom}>
                   <TouchableOpacity style={styles.yesNo}
-                    onPress={() => this.exitOut()}>
+                    onPress={() => this.exitOut()}
+                    >
                     <Text style={styles.exitYNText}>Yes</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.no}>
+                  <TouchableOpacity style={styles.no}
+                    onPress={() => this.dontExitOut()}
+                    >
                     <Text style={styles.exitYNText}>No</Text>
                   </TouchableOpacity>
                 </View>
@@ -187,11 +205,11 @@ class milkMilkMilk extends React.Component {
             </TouchableWithoutFeedback>
           </Animated.View>
 
-          {/* <Animated.View  style={[styles.milk, this.moveAnimationHouse.getLayout()]}>
-            <TouchableWithoutFeedback style={styles.milk} >
+          <Animated.View  style={[styles.house, this.moveAnimationHouse.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
               <Image source={require('../../assets/house.png')} style={styles.houseImage} />
             </TouchableWithoutFeedback>
-          </Animated.View> */}
+          </Animated.View>
 
           <View style={styles.box}>
             <View style={styles.top}>
@@ -208,7 +226,8 @@ class milkMilkMilk extends React.Component {
                   )
                 } else {
                   return (
-                    <TouchableOpacity key={i} style={styles.answer} >
+                    <TouchableOpacity key={i} style={styles.answer} 
+                      onPress={a.func}>
                       <Text key={i} style={styles.a}>{a.option}</Text>
                     </TouchableOpacity>
                   )

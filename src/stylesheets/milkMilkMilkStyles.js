@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textAlign: 'center',
     marginTop: 17,
+    marginHorizontal: 10,
   },
   answer1: {
     backgroundColor: '#FFFFFF',
@@ -167,8 +168,16 @@ const styles = StyleSheet.create({
   },
   fridgeImage: {
     height:100,
-    width80,
-  }
+    width: 80,
+  },
+  house: {
+    position: 'absolute',
+    zIndex: 998,
+  },
+  houseImage: {
+    height: 100,
+    width: 100,
+  },
 })
 
 export default styles;
