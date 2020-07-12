@@ -51,3 +51,8 @@ export const getUserFromJWT = () => (dispatch) =>
       if (token) return dispatch(receiveUser(getUser(token)));
     })
     .catch((e) => console.log(e));
+
+export const addName = (user) => (dispatch) =>
+  SessionAPI.addName(user)
+    .then((res) => dispatch(receiveUser(getUser(res.data.token))))
+    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));

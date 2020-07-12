@@ -36,9 +36,11 @@ const initialSignUp = {
 const SessionForm = ({ login, navigate }) => {
   const dispatch = useDispatch();
   const dbErrors = useSelector((store) => store.errors.session);
+  const { error } = dbErrors;
 
   const [user, setUser] = useState(initialLogin);
   const [localErrors, setLocalErrors] = useState([]);
+  const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
 
   const toggleShow = () => setShow(!show);
@@ -48,7 +50,12 @@ const SessionForm = ({ login, navigate }) => {
   useEffect(() => {
     toggleInfo(login);
     setLocalErrors([]);
+    setError(false);
   }, [login]);
+
+  useEffect(() => {
+    if (error) setError(true);
+  }, [error]);
 
   const validateEmail = (email) =>
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
@@ -79,7 +86,11 @@ const SessionForm = ({ login, navigate }) => {
         ? dispatch(loginUser(user))
         : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
       ).then((action) => {
-        if (action.type === RECEIVE_USER) navigate("Home");
+        if (action.type === RECEIVE_USER) {
+          navigate("Home");
+        } else {
+          setError(true);
+        }
       });
     }
   };
@@ -142,6 +153,12 @@ const SessionForm = ({ login, navigate }) => {
             value={password}
           />
         </View>
+
+        {showError && (
+          <View style={{ alignSelf: "center" }}>
+            <Text style={styles.error}>{error}</Text>
+          </View>
+        )}
 
         {!login && (
           <View>

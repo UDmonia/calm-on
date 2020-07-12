@@ -18,6 +18,9 @@ const UserSchema = new Schema(
       type: Date,
       required: true,
     },
+    name: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
 
 const User = require("../models/user");
 const { formatErrors, valid } = require("../util/validations");
@@ -98,5 +99,36 @@ router.post("/register", async (req, res) => {
     });
   });
 });
+
+router.put(
+  "/name",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const currUser = req.user;
+    const { name } = req.body;
+
+    if (!name || !name.trim().length) {
+      res.status(422).json({ name: "Please enter your name to continue" });
+    }
+
+    try {
+      currUser.name = name;
+      const savedUser = await currUser.save();
+      const user = savedUser.toJSON();
+      delete user.password;
+      jwt.sign(user, secret, (err, token) => {
+        if (token) {
+          res.status(200).json({
+            token: `Bearer ${token}`,
+          });
+        } else {
+          res.status(500).json(err);
+        }
+      });
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+);
 
 module.exports = router;
