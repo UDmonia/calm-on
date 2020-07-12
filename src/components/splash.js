@@ -46,9 +46,6 @@ const Splash = ({ navigation: { navigate } }) => {
     <View style={styles.format}>
       <ImageBackground source={bg} style={styles.image}>
 
-        {/* COMMENT OUT LATER */}
-        <Button title="Mindfulness" onPress={() => navigate("mindfulnessStack")} />
-        {/* COMMENT OUT LATER */}
         
         {!loggedIn && (
           <TouchableOpacity onPress={() => navigate("loginSignup")}>

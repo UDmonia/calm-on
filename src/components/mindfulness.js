@@ -16,11 +16,11 @@ export default mindfulness =props=> {
             </TouchableOpacity>
             
             <TouchableOpacity onPress = {()=>props.navigation.navigate('MonsterHug')}>
-            <Image style = {styles.image} source = {require('./images//MindfulnessNav/3.png')}/>
+            <Image style = {styles.image} source = {require('./images/MindfulnessNav/3.png')}/>
             </TouchableOpacity>
 
             <TouchableOpacity>
-            <Image style = {styles.image} source = {require('./images//MindfulnessNav/4.png')}/>
+            <Image style = {styles.image} source = {require('./images/MindfulnessNav/4.png')}/>
             </TouchableOpacity>
 
         </View>
