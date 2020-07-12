@@ -17,7 +17,6 @@ export default  mindfulnessStack = props => {
     headerRight: ()=>homeButton,
     headerRightContainerStyle:{marginRight: '80%'},
     headerTitleStyle: {fontSize: 24},
-
   }
 
   const headerOptions2 ={
@@ -29,7 +28,7 @@ export default  mindfulnessStack = props => {
   }
 
   const homeButton = (
-    <TouchableOpacity onPress = {()=>props.navigation.navigate('Homescreen')}>
+    <TouchableOpacity onPress = {()=>props.navigation.navigate('Home')}>
       <Image source = {require('./images/MindfulnessNav/home.png')}/>
     </TouchableOpacity>
   )

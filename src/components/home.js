@@ -54,7 +54,7 @@ const Home = props => {
 
   function handleBtnPress() {
     if (currentSpirit === sprite) {
-      props.navigation.navigate('Stories');
+      props.navigation.navigate('spiritChat');
     }
   }
 
