@@ -101,7 +101,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.put(
-  "/",
+  "/name",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const currUser = req.user;
