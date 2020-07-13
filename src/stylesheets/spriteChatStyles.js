@@ -27,6 +27,35 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     right: 8,
   },
+  sendMessage: { 
+    height: 55, 
+    backgroundColor: '#C4C4C4', 
+    justifyContent: "center", 
+    alignItems: 'center', 
+    flexDirection: 'row',
+  },
+  sendMessageBox: { 
+    width: '80%', 
+    height: 33, 
+    backgroundColor: 'white', 
+    borderRadius: 20, 
+    paddingLeft: '5%', 
+    fontSize: 16, 
+    marginRight: '7%',
+    position: 'relative',
+    left: 10, 
+  },
+  sendMessageBtn: {
+    position: 'absolute', 
+    top: 1,
+    right: 24,
+    height: 24,
+    width: 24,
+  },
+  downBtn: {
+    height: 28,
+    width: 28,
+  },
 })
 
 export default styles;
