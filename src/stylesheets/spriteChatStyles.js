@@ -56,6 +56,32 @@ const styles = StyleSheet.create({
     height: 28,
     width: 28,
   },
+  optionBox: { 
+    height: 200, 
+    backgroundColor: '#E5F2D8', 
+  },
+  optionBoxItems: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-evenly', 
+    alignItems: 'center', 
+    marginTop: 10,
+    // padding: '8%' 
+  },
+  storytimeBtn: { 
+    marginTop: '10%',
+    height: 109,
+    width: 106,
+  },
+  mindfulnessBtn: {
+    height: 122,
+    width: 118,
+  },
+  achievementBtn: { 
+    marginHorizontal: (screenWidth - 192) / 2, 
+    marginTop: 14,
+    height: 30,
+    width: 192,
+  }
 })
 
 export default styles;

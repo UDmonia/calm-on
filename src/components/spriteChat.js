@@ -34,17 +34,17 @@ export default spriteChat =props=> {
                 
 
                 {showOptions ?
-                <View style = {{height: '42.5%', backgroundColor: '#E5F2D8',}}>
-                    <View style = {{flexDirection:'row', justifyContent:'space-evenly', alignItems:'center',padding:'8%'}}>
-                    <TouchableOpacity onPress = {()=>props.navigation.navigate('mindfulnessStack')}>
-                        <Image source = {require('./images/spriteChat/Mindfullness.png')} />
-                    </TouchableOpacity>
+                <View style={styles.optionBox}>
+                    <View style={styles.optionBoxItems}>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate('Storytime')}>
+                            <Image style={styles.storytimeBtn} source={require('./images/spriteChat/StoryTime.png')} />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate('mindfulnessStack')}>
+                            <Image style={styles.mindfulnessBtn} source={require('./images/spriteChat/Mindfullness.png')} />
+                        </TouchableOpacity>
 
-                    <TouchableOpacity onPress = {()=>props.navigation.navigate('Storytime')}>
-                        <Image style = {{marginTop:'10%'}} source = {require('./images/spriteChat/StoryTime.png')} />
-                    </TouchableOpacity>
                     </View>
-                        <Image style = {{marginLeft: '28%',marginTop: '3%'}} source = {require('./images/spriteChat/achievement.png')}></Image>
+                    <Image style={styles.achievementBtn} source={require('./images/spriteChat/achievement.png')}></Image>
                 </View>
                     :null}
             </ImageBackground>
