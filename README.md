@@ -3,7 +3,7 @@
 Calm On! aims to create a fun and interactive experience that can educate youths (ages 6-11) to learn more about their feelings and mental health techniques. 
 The Calm On app will provide users with fun emotion coaches in the form of our characters, Sprite, Aurora, and Flynn. Each coach has their own theme, personality, and activities that children can interact with to help them deal with the difficulties of living in quarantine.
 
-![splash](readme_assets/splash.png)
+![splash](readme_assets/splash.png) 
 
 ## Background and Overview 
 
@@ -15,3 +15,15 @@ Calm On! aims to create a fun and interactive experience that can help youths (a
 ## Functionality and MVP List
 
 **1. User Authentication**
+- Users must login or signup in order to use Lookbook's features.
+
+![login](readme_assets/login.gif)
+
+**2. Spirit Selection**
+- Users can select a spirit or life coach.
+  - Each spirit has different features, such as storytelling, mindfulness techniques, exercise, etc.
+
+![spirits](readme_assets/spirits.gif)
+
+**3. Sprite**
+- Users can 

@@ -22,6 +22,8 @@ const Stack = createStackNavigator();
 const store = configureStore();
 
 export default function App(props) {
+  
+  console.disableYellowBox = true; 
 
   return (
     <NavigationContainer>

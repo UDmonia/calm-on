@@ -17,7 +17,7 @@ class milkMilkMilk extends React.Component {
     this.fadeValueCrystalBall = new Animated.Value(0);
 
     this.questions = [
-      'Hey [insert name], would you like to hear something really cool?',
+      'Hey Joe, would you like to hear something really cool?',
       'Great! You will love it! Could you say the word "milk" once?',
       'Alright, what came to mind when you said it? You can choose one of the options above:',
       'Do any of these pop up in your mind when we say milk? You can choose one of the options above:',
