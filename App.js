@@ -7,7 +7,6 @@ import Splash from './src/components/splash.js';
 import LoginSignup from './src/components/session/loginSignup.js';
 import Home from './src/components/home.js';
 import IntroVideo from './src/components/video.js';
-import Sprite from './src/components/tempSpriteChatbox.js';
 import Storytime from './src/components/storytime.js';
 import MilkMilkMilk from './src/components/milkMilkMilk';
 import Profile from './src/components/profile.js';
@@ -33,7 +32,6 @@ export default function App(props) {
           <Stack.Screen name='Splash' component={Splash} />
           <Stack.Screen name='loginSignup' component={LoginSignup} />
           <Stack.Screen name='Home' component={Home} />
-          <Stack.Screen name='Stories' component={Sprite} options={{headerShown: true}} />
           <Stack.Screen name='Storytime' component={Storytime} options={{headerShown: true}}/>
           <Stack.Screen name='milkMilkMilk' component={MilkMilkMilk} />
           <Stack.Screen name='Profile' component={Profile} />

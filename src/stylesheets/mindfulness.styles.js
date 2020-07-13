@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-export default  StyleSheet.create({
+
+export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#5EB262',
@@ -16,7 +17,7 @@ export default  StyleSheet.create({
         lineHeight: 20,
         width: '65%',
         fontWeight: 'normal',
-        marginTop: '-20%'
+        marginTop: '-10%'
     },
     image: {
         marginTop: '8%'

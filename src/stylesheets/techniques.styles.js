@@ -8,7 +8,7 @@ export default  StyleSheet.create({
     },
     text: {
         textAlign: 'center',
-        marginTop: '-20%',
+        marginTop: '-10%',
         marginBottom: '5%',
         fontFamily: 'Avenir',
         fontSize: 18,
@@ -28,12 +28,12 @@ export default  StyleSheet.create({
     leftArrow: {
         position: 'absolute', 
         top: '62%', 
-        left: '18%'
+        left: '15%'
 
     },
     rightArrow: {
         position: 'absolute', 
         top: '62%', 
-        right: '20%'
+        right: '15%'
     }
 })

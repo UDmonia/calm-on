@@ -27,3 +27,5 @@ Calm On! aims to create a fun and interactive experience that can help youths (a
 
 **3. Sprite**
 - Users can 
+
+![storytime](readme_assets/storytime.gif)
