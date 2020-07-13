@@ -12,7 +12,7 @@ import Storytime from './src/components/storytime.js';
 import MilkMilkMilk from './src/components/milkMilkMilk';
 import Profile from './src/components/profile.js';
 import mindfulnessStack from './src/components/mindfulnessStack';
-import spiritChat from './src/components/spiritChat'
+import spriteChat from './src/components/spriteChat';
 /* eslint-disable react/jsx-filename-extension */
 import { Provider } from "react-redux";
 import configureStore from "./src/store/store";
@@ -36,9 +36,9 @@ export default function App(props) {
           <Stack.Screen name='milkMilkMilk' component={MilkMilkMilk} />
           <Stack.Screen name='Profile' component={Profile} />
           <Stack.Screen name= 'mindfulnessStack' component = {mindfulnessStack}/>
-          <Stack.Screen name = 'spiritChat' component = {spiritChat} options = {{
+          <Stack.Screen name = 'spriteChat' component = {spriteChat} options = {{
             headerShown:true, 
-            headerTitle: 'Spirit',
+            headerTitle: 'Sprite',
             headerTitleStyle: {fontSize: 24},
             }}/>
         </Stack.Navigator>
