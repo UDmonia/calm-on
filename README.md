@@ -15,7 +15,7 @@ Calm On! aims to create a fun and interactive experience that can help youths (a
 ## Functionality and MVP List
 
 **1. User Authentication**
-- Users must login or signup in order to use Lookbook's features.
+- Users must login or signup in order to use Calm On!'s features.
 
 ![login](readme_assets/login.gif)
 
