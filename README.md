@@ -42,7 +42,7 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 
 ## Dev Team Group Members and Work Breakdown
 
-* Clifford Yan - team lead
+* Clifford Yan - back end
 * Akif Saifi - back end
 * Tiffany Chin - front end
 * Jack Zhen - front end
