@@ -15,28 +15,29 @@ export default BigSqueeze =() => {
     const [current,setCurrent] = useState(0)
         
     return (
-        <View style = {styles.container}>
-        <Text style = {styles.text} >The Big Squeeze</Text>
-        <Image  source = {require('./images/BigSqueeze/background.png')}/>
-        <Image style = {styles.image} source = {screens[current].image}/>
+        <View style={styles.container}>
+        <Text style={styles.text} >The Big Squeeze</Text>
+        <Image source={require('./images/BigSqueeze/background.png')}/>
+        <Text style={styles.bigSqueezeAngry}>Are you feeling angry?</Text>
+        <Image style={styles[`imageBigSqueeze${current}`]} source={screens[current].image}/>
          
-        {current !== 1? 
-            <TouchableOpacity onPress = {()=>setCurrent(current+1)} style = {styles.rightArrow} >
-                <Image source = {require('./images/misc/rightArrow.png')}/>
+        {current !== 1 ? 
+            <TouchableOpacity onPress={()=>setCurrent(current+1)} style={styles.rightArrow} >
+                <Image source={require('./images/misc/rightArrow.png')}/>
             </TouchableOpacity>
          :
-            <View style = {styles.rightArrow}>
-                <Image source = {require('./images/misc/disabledRight.png')}/>
+            <View style={styles.rightArrow}>
+                <Image source={require('./images/misc/disabledRight.png')}/>
             </View>
          }
 
-         {current !==0?
-            <TouchableOpacity onPress = {()=>setCurrent(current-1)} style = {styles.leftArrow}>
-                <Image  source = {require('./images/misc/leftArrow.png')}/>
+         {current !==0 ?
+            <TouchableOpacity onPress={()=>setCurrent(current-1)} style={styles.leftArrow}>
+                <Image  source={require('./images/misc/leftArrow.png')}/>
             </TouchableOpacity>
          :
-            <View style = {styles.leftArrow} >
-                <Image  source = {require('./images/misc/disabledLeft.png')}/>
+            <View style={styles.leftArrow} >
+                <Image  source={require('./images/misc/disabledLeft.png')}/>
             </View>
          }
 

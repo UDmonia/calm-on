@@ -13,12 +13,12 @@ const storytime = props => {
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Image style={styles.btn}
-            source={require('../../assets/feelings.png')} />
+          <Image style={styles.btn2}
+            source={require('../../assets/anger.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Image style={styles.btn}
+          <Image style={styles.btn2}
             source={require('../../assets/fears.png')} />
         </TouchableOpacity>
 

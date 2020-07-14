@@ -9,8 +9,15 @@ const styles = StyleSheet.create({
   },
   btn: {
     position: 'relative',
-    left: -6,
-    width: 332,
+    left: -2,
+    width: 320,
+    height: 114,
+    marginVertical: '5%',
+  },
+  btn2: {
+    position: 'relative',
+    left: -2,
+    width: 320,
     height: 120,
     marginVertical: '5%',
   },
