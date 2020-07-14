@@ -30,10 +30,10 @@ export default Techniques =()=> {
             <Image style={styles[`image${current}`]} source={techniques[current].image} />
             { current === 2 ? 
                 <> 
-                 <Text>What do you call a bear without an ear? A bee!</Text>
+                 <Text style={styles.text1}>What do you call a bear without an ear? A bee!</Text>
 
                 <Image style={styles.ear} source={require('./images/Technique/ear.png')}/> 
-                <Text>Acknowledge THREE things you hear.</Text>
+                 <Text style={styles.text2}>Acknowledge THREE things you hear.</Text>
                 </>
 
                 : null

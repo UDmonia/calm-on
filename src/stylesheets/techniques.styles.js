@@ -24,22 +24,39 @@ export default  StyleSheet.create({
         position: 'absolute',
         top: '10%',
     },
-    // image:{
-    //     position: 'relative',
-    //     top:'22%', 
-    //     left: '22.2%',
-    // },
-    image0:{
+    text1: {
+        color: 'white',
+        fontFamily: 'Avenir',
+        fontSize: 16,
         position: 'absolute',
-        top:'22%', 
+        width: 150,
+        top: 170,
+        left: 184,
+    },
+    text2: {
+        fontFamily: 'Avenir',
+        fontSize: 18,
+        position: 'absolute',
+        width: 150,
+        textAlign: 'center',
+        fontWeight: '800',
+        top: 490,
+    },
+    image0: {
+        height: 371,
+        width: 260,
+        position: 'absolute',
+        top:'24%', 
         left: '22.2%',
     },
-    image1:{
+    image1: {
+        height: 371,
+        width: 260,
         position: 'absolute',
-        top:'22%', 
+        top:'24%', 
         left: '22.2%',
     },
-    image2:{
+    image2: {
         height: 400,
         width: 316,
         position: 'absolute',
@@ -53,18 +70,18 @@ export default  StyleSheet.create({
         top: '40%',
         left: '54.2%',
     },
-    image3:{
+    image3: {
         height: 370,
         width: 258,
         position: 'absolute',
         top:'24%', 
         left: '21.2%',
     },
-    image4:{
+    image4: {
         height: 371,
-        width: 276,
+        width: 260,
         position: 'absolute',
-        top:'24%', 
+        top: '24%', 
         left: '18.2%',
     },
     leftArrow: {
