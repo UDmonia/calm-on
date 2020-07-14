@@ -38,7 +38,7 @@ Calm On! aims to create a fun and interactive experience that can help youths (a
 
 Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 
-## Group Members and Work Breakdown
+## Dev Team Group Members and Work Breakdown
 
 * Clifford Yan - team lead
 * Akif Saifi - back end
