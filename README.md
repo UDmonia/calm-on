@@ -1,5 +1,7 @@
 # Calm On!
 
+![logo](readme_assets/logo.png) 
+
 Calm On! aims to create a fun and interactive experience that can educate youths (ages 6-11) to learn more about their feelings and mental health techniques. 
 The Calm On app will provide users with fun emotion coaches in the form of our characters, Sprite, Aurora, and Flynn. Each coach has their own theme, personality, and activities that children can interact with to help them deal with the difficulties of living in quarantine.
 
