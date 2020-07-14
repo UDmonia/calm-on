@@ -26,6 +26,21 @@ Calm On! aims to create a fun and interactive experience that can help youths (a
 ![spirits](readme_assets/spirits.gif)
 
 **3. Sprite**
-- Users can 
+- Users can access Sprite's storytime feature.
 
 ![storytime](readme_assets/storytime.gif)
+
+- Users can access Sprite's mindfulness feature.
+
+![mindfulness](readme_assets/mindfulness.gif)
+
+## Technologies
+
+Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
+
+## Group Members and Work Breakdown
+
+* Clifford Yan - team lead
+* Akif Saifi - back end
+* Tiffany Chin - front end
+* Jack Zhen - front end
