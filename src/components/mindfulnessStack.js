@@ -14,7 +14,7 @@ export default  mindfulnessStack = props => {
   const headerOptions1 ={
     headerBackTitleVisible: false,
     headerTitle: 'Mindfulness',
-    headerRight: ()=>homeButton,
+    headerRight: homeButton,
     headerRightContainerStyle:{marginRight: '80%'},
     headerTitleStyle: {fontSize: 24},
   }
@@ -23,7 +23,7 @@ export default  mindfulnessStack = props => {
     headerBackTitleVisible: false,
     headerTitle: 'Mindfulness',
     headerTitleStyle: {fontSize: 24},
-    headerRight:()=>level,
+    headerRight:level,
     headerRightContainerStyle:{marginRight: '8%'},
   }
 
