@@ -8,7 +8,7 @@ import IntroVideo from './src/components/video.js';
 import Storytime from './src/components/storytime.js';
 import MilkMilkMilk from './src/components/milkMilkMilk';
 import Profile from './src/components/profile.js';
-import Mindfulness from './src/components/mindfulness';
+import Mindfulness from './src/components/mindfulnessStack';
 import spriteChat from './src/components/spriteChat';
 /* eslint-disable react/jsx-filename-extension */
 import { Provider } from "react-redux";
