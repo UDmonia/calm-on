@@ -21,8 +21,9 @@ app.use(passport.initialize());
 initPassportStrategy(passport);
 
 const db = process.env.MONGO_URI;
+const db_connect = process.env.DB_CONNECT;
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db_connect, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("DB is connected.");
   })
