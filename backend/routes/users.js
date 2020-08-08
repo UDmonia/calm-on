@@ -105,6 +105,7 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const currUser = req.user;
+    console.log(currUser);
     const { name } = req.body;
 
     if (!name || !name.trim().length) {
@@ -130,5 +131,53 @@ router.put(
     }
   }
 );
+
+router.put(
+  "/checkin",
+  passport.authenticate('jwt',{session:false}),
+  async (req, res) => {
+    const currUser = req.user;
+    var {mood, journal} = req.body;
+    const moods = ["happy", "excited", "scared", "worried", "sad", "angry"];
+    mood = mood.toLowerCase();
+    if (!moods.includes(mood)) {
+      res.status(422).json({"error": "mood is not one of the six."})
+    }
+    try {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
+
+      currUser.checkIns.push({mood: mood, journal: journal, date: today})
+      const savedUser = await currUser.save();
+      res.status(200).json({"message" : "success"});
+      
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+)
+router.get(
+  "/checkedInToday",
+  passport.authenticate('jwt',{session:false}),
+  async (req, res) => {
+    const currUser = req.user;
+    if (currUser.checkIns.length == 0) {
+      res.json({"message" : "has not checked in yet"});
+      return
+    }
+    const lastCheckIn = currUser.checkIns[currUser.checkIns.length - 1].date
+    var today = new Date();
+    if (today.toDateString() == lastCheckIn.toDateString()) {
+      res.json({"message" : "already checked in"});
+    }
+    else {
+      res.json({"message" : "has not checked in yet"});
+    }
+  }
+)
 
 module.exports = router;
