@@ -247,17 +247,13 @@ const SessionForm = ({ login, navigate }) => {
               It’s so nice to finally meet you!{"\n"} What should we call you?
               {"\n"}
             </Text>
-            <View style={styles.userNameInputContainer}>
-              <TextInput
-                style={styles.userNameInput}
-                placeholder={""}
-                onChangeText={(text) => setText(text)}
-                defaultValue={text}
-              ></TextInput>
-              <TouchableOpacity onPress={() => setText("")}>
-                <Image source={require("../../../assets/clear_text.png")} />
-              </TouchableOpacity>
-            </View>
+            <TextInput
+              style={styles.userNameInput}
+              placeholder={""}
+              onChangeText={(text) => setText(text)}
+              defaultValue={text}
+              clearButtonMode="while-editing"
+            />
           </View>
           <TouchableOpacity
             onPress={() => navigate("Home")}
