@@ -15,8 +15,8 @@ const HomeStack =props=>{
     const icons = 
     [
         {name: 'Home',active: false,comp:Home, icon: require('../../assets/home.png')},
-        {name: 'Achievement', comp:Achievement,icon:require('../../assets/achievement.png')},
-        {name: 'Check-In',comp:Calendar, icon:require('../../assets/calendar.png')},
+        {name: 'Achievements', comp:Achievement,icon:require('../../assets/achievement.png')},
+        {name: 'Check-in',comp:Calendar, icon:require('../../assets/calendar.png')},
         //{name: 'Newsfeed', comp:Newsfeed,icon:require('../../assets/newsfeed.png')},
         {name: 'Profile',comp:Profile, icon:require('../../assets/account.png')},
 
@@ -25,7 +25,7 @@ const HomeStack =props=>{
     const style = {
         backgroundColor: '#E2E8F8',
         height: 90,
-        paddingTop: 10
+        paddingTop: 10,
     }
 
     //const calendarStyle = {
@@ -34,9 +34,10 @@ const HomeStack =props=>{
 
     const buttonStyle = {
         height:50,
-        wdith:55,
-        paddingTop:8,
-        marginBottom:4
+        width:80,
+        paddingTop:'7%',
+        paddingLeft: '22.5%',
+        marginBottom:'4%',
     }
 
 
