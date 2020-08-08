@@ -88,4 +88,39 @@ export default StyleSheet.create({
     marginLeft: "2%",
     marginBottom: "1%",
   },
+  titleText: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  bodyText: {
+    fontSize: 18,
+    textAlign: "center",
+  },
+  userNameDialog: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 40,
+    marginBottom: 30,
+  },
+  nextButton: {
+    marginTop: "15%",
+  },
+  userNameCard: {
+    height: 166,
+    width: 300,
+    backgroundColor: "white",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  userNameInput: {
+    padding: 10,
+    backgroundColor: "#E7E7E7",
+    borderRadius: 5,
+    width: 219,
+    textAlign: "center",
+    height: 45,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

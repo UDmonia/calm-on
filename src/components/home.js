@@ -129,7 +129,7 @@ const Home = props => {
 
       </View>
 
-      <View style={styles.nav}>
+      {/*<View style={styles.nav}>
         <View style={styles.navIcons}>
           <TouchableOpacity>
               <Image style={styles.homeIcon}
@@ -146,7 +146,7 @@ const Home = props => {
               source={require('../../assets/icon_profile.png')} />
           </TouchableOpacity>
         </View>
-      </View>
+      </View>*/}
       </ImageBackground>
 
     </View>

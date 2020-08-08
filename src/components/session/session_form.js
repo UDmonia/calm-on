@@ -42,6 +42,8 @@ const SessionForm = ({ login, navigate }) => {
   const [localErrors, setLocalErrors] = useState([]);
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
+  const [showUserDialog, setShowUserDialog] = useState(false);
+  const [text, setText] = useState("");
 
   const toggleShow = () => setShow(!show);
 
@@ -87,7 +89,7 @@ const SessionForm = ({ login, navigate }) => {
         : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          navigate("Home");
+          setShowUserDialog(true);
         } else {
           setError(true);
         }
@@ -120,95 +122,97 @@ const SessionForm = ({ login, navigate }) => {
 
   return (
     <View>
-      <View style={styles.form}>
-        <View style={styles.label}>
-          <Text style={styles.description}>Email</Text>
-          {emailError && <Text style={styles.error}>{emailError}</Text>}
-        </View>
-        <View style={styles.inputAndIcon}>
-          <Image styles={styles.icon} source={mail} />
-          <TextInput
-            onChangeText={handleChange("email")}
-            clearButtonMode="while-editing"
-            autoCapitalize="none"
-            placeholder="Email..."
-            style={styles.input}
-            value={email}
-          />
-        </View>
-
-        <View style={styles.label}>
-          <Text style={styles.description}>Password</Text>
-          {passwordError && <Text style={styles.error}>{passwordError}</Text>}
-        </View>
-        <View style={styles.inputAndIcon}>
-          <Image style={styles.icon} source={lock} />
-          <TextInput
-            onChangeText={handleChange("password")}
-            autoCapitalize="none"
-            secureTextEntry
-            clearButtonMode="while-editing"
-            placeholder="Password..."
-            style={styles.input}
-            value={password}
-          />
-        </View>
-
-        {showError && (
-          <View style={{ alignSelf: "center" }}>
-            <Text style={styles.error}>{error}</Text>
+      {!showUserDialog && (
+        <View style={styles.form}>
+          <View style={styles.label}>
+            <Text style={styles.description}>Email</Text>
+            {emailError && <Text style={styles.error}>{emailError}</Text>}
           </View>
-        )}
-
-        {!login && (
-          <View>
-            <View style={styles.label}>
-              <Text style={styles.description}>Confirm Password</Text>
-              {confirmPasswordError && (
-                <Text style={styles.error}>{confirmPasswordError}</Text>
-              )}
-            </View>
-            <View style={styles.inputAndIcon}>
-              <Image styles={styles.icon} source={pwConfirm} />
-              <TextInput
-                onChangeText={handleChange("confirmPassword")}
-                secureTextEntry
-                clearButtonMode="while-editing"
-                placeholder="Confirm Password..."
-                style={styles.input}
-                value={confirmPassword}
-              />
-            </View>
-
-            <View style={styles.label}>
-              <Text style={styles.description}>Birthday</Text>
-              {birthdayError && (
-                <Text style={styles.error}>{birthdayError}</Text>
-              )}
-            </View>
-            <View style={styles.inputAndIcon}>
-              <Image styles={styles.icon} source={date} />
-
-              <TextInput
-                value={birthday}
-                placeholder="Select Date..."
-                style={styles.input}
-                onFocus={toggleShow}
-              />
-
-              <DateTimePickerModal
-                date={new Date()}
-                isVisible={show}
-                mode="date"
-                onCancel={toggleShow}
-                onConfirm={handleConfirm}
-              />
-            </View>
+          <View style={styles.inputAndIcon}>
+            <Image styles={styles.icon} source={mail} />
+            <TextInput
+              onChangeText={handleChange("email")}
+              clearButtonMode="while-editing"
+              autoCapitalize="none"
+              placeholder="Email..."
+              style={styles.input}
+              value={email}
+            />
           </View>
-        )}
-      </View>
 
-      {login ? (
+          <View style={styles.label}>
+            <Text style={styles.description}>Password</Text>
+            {passwordError && <Text style={styles.error}>{passwordError}</Text>}
+          </View>
+          <View style={styles.inputAndIcon}>
+            <Image style={styles.icon} source={lock} />
+            <TextInput
+              onChangeText={handleChange("password")}
+              autoCapitalize="none"
+              secureTextEntry
+              clearButtonMode="while-editing"
+              placeholder="Password..."
+              style={styles.input}
+              value={password}
+            />
+          </View>
+
+          {showError && (
+            <View style={{ alignSelf: "center" }}>
+              <Text style={styles.error}>{error}</Text>
+            </View>
+          )}
+
+          {!login && (
+            <View>
+              <View style={styles.label}>
+                <Text style={styles.description}>Confirm Password</Text>
+                {confirmPasswordError && (
+                  <Text style={styles.error}>{confirmPasswordError}</Text>
+                )}
+              </View>
+              <View style={styles.inputAndIcon}>
+                <Image styles={styles.icon} source={pwConfirm} />
+                <TextInput
+                  onChangeText={handleChange("confirmPassword")}
+                  secureTextEntry
+                  clearButtonMode="while-editing"
+                  placeholder="Confirm Password..."
+                  style={styles.input}
+                  value={confirmPassword}
+                />
+              </View>
+
+              <View style={styles.label}>
+                <Text style={styles.description}>Birthday</Text>
+                {birthdayError && (
+                  <Text style={styles.error}>{birthdayError}</Text>
+                )}
+              </View>
+              <View style={styles.inputAndIcon}>
+                <Image styles={styles.icon} source={date} />
+
+                <TextInput
+                  value={birthday}
+                  placeholder="Select Date..."
+                  style={styles.input}
+                  onFocus={toggleShow}
+                />
+
+                <DateTimePickerModal
+                  date={new Date()}
+                  isVisible={show}
+                  mode="date"
+                  onCancel={toggleShow}
+                  onConfirm={handleConfirm}
+                />
+              </View>
+            </View>
+          )}
+        </View>
+      )}
+
+      {showUserDialog ? null : login ? (
         <View>
           <TouchableOpacity
             title="Log in"
@@ -231,6 +235,31 @@ const SessionForm = ({ login, navigate }) => {
               style={{ width: 150, height: 40, borderRadius: 5 }}
               source={registerBtn}
             />
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {showUserDialog && (
+        <View style={styles.userNameDialog}>
+          <View style={styles.userNameCard}>
+            <Text style={styles.titleText}>Welcome!</Text>
+            <Text style={styles.bodyText}>
+              It’s so nice to finally meet you!{"\n"} What should we call you?
+              {"\n"}
+            </Text>
+            <TextInput
+              style={styles.userNameInput}
+              placeholder={""}
+              onChangeText={(text) => setText(text)}
+              defaultValue={text}
+              clearButtonMode="while-editing"
+            />
+          </View>
+          <TouchableOpacity
+            onPress={() => navigate("Home")}
+            style={styles.nextButton}
+          >
+            <Image source={require("../../../assets/next_button.png")} />
           </TouchableOpacity>
         </View>
       )}

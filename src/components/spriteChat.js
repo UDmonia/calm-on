@@ -39,7 +39,7 @@ export default spriteChat =props=> {
                         <TouchableOpacity onPress={()=>props.navigation.navigate('Storytime')}>
                             <Image style={styles.storytimeBtn} source={require('./images/spriteChat/StoryTime.png')} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>props.navigation.navigate('mindfulnessStack')}>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate('Mindfulness')}>
                             <Image style={styles.mindfulnessBtn} source={require('./images/spriteChat/Mindfullness.png')} />
                         </TouchableOpacity>
 
