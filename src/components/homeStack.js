@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './home'
-import Calendar from './Calendar'
+import Calendar from './checkInStack'
 import Achievement from './Achievement'
 import Newsfeed from './Newsfeed'
 import Profile from './profile'
@@ -44,7 +44,8 @@ const HomeStack =props=>{
 
     const screens = icons.map((icon,index)=>(
         <Tab.Screen key = {index} name = {icon.name} component = {icon.comp} 
-                    options = {()=>({
+                    options = {
+                        ()=>({
                         tabBarIcon: ({focused})=>
                         <TouchableOpacity style = {focused?{...buttonStyle,borderTopColor:'#4E80FF',borderTopWidth: 5}:{...buttonStyle}}>
                             <Image  source = {icon.icon}/>
