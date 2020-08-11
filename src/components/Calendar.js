@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {Button,Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-native';
+import {Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-native';
 import Preview from './previewEntries'
 import {useSelector} from 'react-redux'
 import PreviewMonth from './monthlyPreview'
@@ -39,7 +39,7 @@ export default Calendar =({ navigation: { navigate} })=>{
 
     const [viewByDay,changeView] = useState(true)
 
-
+    
     return (
         <View style = {style.format}>
             <ImageBackground source={require('../../assets/splash_panel.png')} style = {style.background}>
@@ -48,7 +48,7 @@ export default Calendar =({ navigation: { navigate} })=>{
                         <View style = {style.toggle}>
                             {/*<Button onPress = {()=>switchToDetailed(false)} title = 'back'/>*/}
 
-                            {viewByDay? <Text style = {style.text}>View by Day</Text> 
+                            {viewByDay? <Text style = {style.text}>View By Day</Text> 
                             :<Text style = {style.text}>View By Month</Text> }
 
                             <TouchableOpacity onPress = {()=>changeView(!viewByDay)}>
@@ -59,7 +59,11 @@ export default Calendar =({ navigation: { navigate} })=>{
 
                         {viewByDay?
                         <ScrollView style = {style.dates}>
+
                             {/*render dates here*/}
+
+                            {/*Only shows up when the user have not submitted an entry for today*/}
+                            <Preview date = {'Today'} journal = {"Tell me how you're feeling"} image ={require('../../assets/addJournal.png')} />
                             {previewJournals}
                         </ScrollView>
                         :

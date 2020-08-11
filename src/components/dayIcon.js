@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
         borderRadius:6,
     },
     header: {
-        height:20,
+        height:22,
         width: '100%',
+        paddingTop:'3%',
         textAlign:'center',
         borderRadius:6,
         fontWeight: '800'

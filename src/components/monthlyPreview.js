@@ -1,5 +1,5 @@
-import React, {useState,useEffect} from 'react';
-import {FlatList,Button,Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {FlatList,Image,StyleSheet, View,Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DayIcon from './dayIcon'
 import {useSelector} from 'react-redux'
@@ -11,7 +11,6 @@ var year = date.getFullYear()
 export default MonthlyPreview =()=>{
     const navigation = useNavigation()
     const journals = useSelector(state=>state.session.user.checkIns)
-    const [id,setId] = useState()
 
 
     const renderItem = (({item})=>{
@@ -27,9 +26,6 @@ export default MonthlyPreview =()=>{
     })
     const [index,setIndex] = useState(0)
 
-    useEffect(()=>{
-        console.log(id)
-    })
 
     const numDays = new Date(year,index+1,0).getDate()
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -74,18 +70,18 @@ export default MonthlyPreview =()=>{
 
 
     return(
-        <View style = {{flex:1,justifyContent:'center', alignItems:'center'}}>
+        <View style = {styles.container}>
 
-            <View style = {{width: '100%',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+            <View style = {styles.header}>
                 {index > 0?
-                <TouchableOpacity onPress = {()=>setIndex(index-1)} style = {{marginRight:20}}>
+                <TouchableOpacity onPress = {()=>setIndex(index-1)} style = {styles.decrement}>
                     <Image source = {require('../../assets/prevMonth.png')}/>
                 </TouchableOpacity>
                 :null}
 
-    <Text style = {{fontSize:20,marginTop:30,marginBottom:30,width:'50%',textAlign:'center'}}>{months[index]} {year}</Text>
+    <Text style = {styles.date}>{months[index]} {year}</Text>
                 {index < 11?
-                <TouchableOpacity onPress = {()=>setIndex(index+1)} style = {{marginLeft:20}}>
+                <TouchableOpacity onPress = {()=>setIndex(index+1)} style = {styles.increment}>
                     <Image source = {require('../../assets/nextMonth.png')}/>
                 </TouchableOpacity>
                 :null}
@@ -105,3 +101,31 @@ export default MonthlyPreview =()=>{
     //    theme = {theme} hideExtraDays = {true} firstDay = {1}/>
     //)
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    header:{
+        width: '100%',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    date:{
+        fontSize:20,
+        marginTop:'8%',
+        marginBottom:'8%',
+        width:'65%',
+        textAlign:'center'
+    },
+    //increment:{
+    //    marginLeft:'20%'
+    //},
+    //decrement:{
+    //    marginLeft: '21%'
+    //}
+
+})

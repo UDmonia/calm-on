@@ -1,5 +1,5 @@
 import React from 'react'
-import {ScrollView,ImageBackground,Text, View, Image , StyleSheet} from 'react-native';
+import {ImageBackground,Text, View, Image , StyleSheet} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
 
 
@@ -58,26 +58,26 @@ const styles = StyleSheet.create({
         width:320,
         height:180,
         borderWidth:1,
-        marginTop:20,
+        marginTop:'8%',
         fontSize:14,
         borderColor:'#C5C5C5',
         borderRadius: 6,
-        padding: 10,
+        padding: '4%',
         fontWeight:'500',
 
     },
     title: {
         fontSize:18,
         fontWeight:'500',
-        marginBottom:20
+        marginBottom:'8%'
     },
     lower:{
         //borderWidth:1,
-        marginTop:30,
+        marginTop:'10%',
         width:'100%'
     },
     activities:{
-        marginTop:20,
+        marginTop:'5.5%',
         //borderWidth:1,
         display:'flex',
         flexDirection:'row',
