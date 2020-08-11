@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
 import styles from "../../stylesheets/loginSignup.styles";
 
 import {
@@ -48,7 +47,6 @@ const SessionForm = ({ login, navigate }) => {
   const [showNameError, setNameError] = useState(false);
 
   const toggleShow = () => setShow(!show);
-
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
   useEffect(() => {
@@ -123,11 +121,17 @@ const SessionForm = ({ login, navigate }) => {
   };
 
   const handleAddName = () => {
+    var Filter = require("bad-words");
+    var filter = new Filter();
     return dispatch(
-      // TODO: Does there need to be a
-      addName({ name: user.name ? user.name : setNameError(true) })
+      addName({
+        name:
+          user.name && !filter.isProfane(user.name)
+            ? user.name
+            : setNameError(true),
+      })
     ).then((action) => {
-      if (user.name) {
+      if (user.name && !filter.isProfane(user.name)) {
         navigate("Home");
       }
     });
