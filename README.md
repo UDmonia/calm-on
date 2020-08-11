@@ -48,4 +48,4 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 * Jack Zhen - front end
 * Moksh Nirvann - AI Chatbot
 * Joseph Zhao - back end
-* Luis Trujilo - front end
+* Luis Trujillo - front end
