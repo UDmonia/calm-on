@@ -92,9 +92,10 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  bodyText: {
+  userNameBodyText: {
     fontSize: 18,
     textAlign: "center",
+    marginBottom: 5,
   },
   userNameDialog: {
     justifyContent: "center",
