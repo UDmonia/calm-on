@@ -87,7 +87,7 @@ export default MonthlyPreview =()=>{
                 :null}
             </View>
 
-            <FlatList  horizontal = {false} data = {data} renderItem = {renderItem} numColumns ={5} />
+            <FlatList horizontal = {false} data = {data} renderItem = {renderItem} numColumns ={5} />
         </View>
     )
     //    <Calendar 
