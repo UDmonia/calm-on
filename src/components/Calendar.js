@@ -3,6 +3,7 @@ import {Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-nat
 import Preview from './previewEntries'
 import {useSelector} from 'react-redux'
 import PreviewMonth from './monthlyPreview'
+import moment from 'moment'
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -27,17 +28,23 @@ export default Calendar =({ navigation: { navigate} })=>{
     //{mood: 'angry', journal: 'i am angry today', date: 'Friday, August 07, 2020'},
     //{mood: 'hungry', journal: 'i am hungry today', date: 'Friday, August 07, 2020'},]
 
-    const previewJournals = journals.map((entry,key)=>(
+    const previewJournals = journals.map((entry,key)=>{
+        return(
         <Preview  
         showJournal = {
             ()=>navigate('CheckinDetail', {
             entry: journals[key]
          })
         } 
-         key = {key} journal = {entry.journal} date = {entry.date}/>
-    ))
+         key = {key} journal = {entry.journal} date = {moment(entry.date).format('dddd, LL')}/>
+        )
+    })
 
     const [viewByDay,changeView] = useState(true)
+
+    //useEffect(()=>{
+    //    console.log('Date is: ', moment(journals[0].date).format('dddd LL'))
+    //},[])
 
     
     return (
@@ -46,6 +53,10 @@ export default Calendar =({ navigation: { navigate} })=>{
                 <View style = {style.main}>
                     <View style = {style.calendar}>
                         <View style = {style.toggle}>
+
+                        <Image style = {style.hangerLeft} source = {require('../../assets/hanger.png')}/>
+                        <Image style = {style.hangerRight} source = {require('../../assets/hanger.png')}/>
+
                             {/*<Button onPress = {()=>switchToDetailed(false)} title = 'back'/>*/}
 
                             {viewByDay? <Text style = {style.text}>View By Day</Text> 
@@ -114,8 +125,17 @@ const style = StyleSheet.create({
         color: 'white'
     },
     dates:{
-        marginTop: 30,
+        marginTop: '5%',
         height: '100%'
+    },
+    hangerLeft:{
+        position:'absolute',
+        left: '12%',
+        top: '-20%'
+    },
+    hangerRight:{
+        position:'absolute',
+        right: '12%',
+        top: '-20%'
     }
-    
 })

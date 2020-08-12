@@ -1,16 +1,24 @@
 import React from 'react'
 import {ImageBackground,Text, View, Image , StyleSheet} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
-
+import moment from 'moment'
+import { useNavigation } from '@react-navigation/native';
 
 export default checkinDetails =({route})=>{
+    const navigation = useNavigation()
     const {entry} = route.params
     return(
 <View style = {styles.format}>
     <ImageBackground source={require('../../assets/splash_panel.png')} style = {styles.background}>
     <View style = {styles.main}>
         <View style = {styles.calendar}>
-            <View style = {styles.toggle}><Text style = {styles.text}>{entry.date}</Text></View>
+            <View style = {styles.toggle}>
+
+                <Image style = {styles.hangerLeft} source = {require('../../assets/hanger.png')}/>
+                <Image style = {styles.hangerRight} source = {require('../../assets/hanger.png')}/>
+
+                <Text style = {styles.text}>{moment(entry.date).format('dddd, LL')}</Text>
+                </View>
             <View style = {styles.container}>
                 <View style = {styles.upper}>
                     <Text style = {styles.title}>Today I'm Feeling {entry.mood}</Text>
@@ -22,10 +30,13 @@ export default checkinDetails =({route})=>{
                     <Image source = {require('../../assets/banner.png')}/>
                     <View style = {styles.activities}>
                         <TouchableOpacity style = {styles.option}>
-                            <Text>Activity 1</Text>
+                            <TouchableOpacity  >
+                                <Text>Milk Milk Milk</Text>
+                        </TouchableOpacity>
+
                         </TouchableOpacity>
                         <TouchableOpacity style = {styles.option}>
-                            <Text>Activity 2</Text>
+                            <Text>Some other activities</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -35,8 +46,6 @@ export default checkinDetails =({route})=>{
     </View>
     </ImageBackground>
 </View>
-
-
     )
 }
 
@@ -52,7 +61,7 @@ const styles = StyleSheet.create({
         //borderWidth: 1,
         justifyContent:'center',
         alignItems:'center',
-        marginTop:30
+        marginTop:'8%'
     },
     journal:{
         width:320,
@@ -124,5 +133,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white'
     },
+    hangerLeft:{
+        position:'absolute',
+        left: '12%',
+        top: '-20%'
+    },
+    hangerRight:{
+        position:'absolute',
+        right: '12%',
+        top: '-20%'
+    }
+
 
 })
