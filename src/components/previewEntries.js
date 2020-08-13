@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         marginBottom: '2.5%'
     },
     date:{
+        fontFamily: 'Avenir',
         fontWeight:'800',
         fontSize: 20,
     },

@@ -31,7 +31,10 @@ export default DayIcon =({item,showJournal})=>{
 
 const styles = StyleSheet.create({
     container:{
-        margin:4,
+        marginLeft:'1.2%',
+        marginRight:'1.2%',
+        marginTop: '5%',
+        marginBottom: '5%',
         height:62,
         width:62,
         backgroundColor:'#FFC10E',

@@ -25,7 +25,7 @@ const HomeStack =props=>{
     const style = {
         backgroundColor: '#E2E8F8',
         height: 90,
-        paddingTop: 10,
+        paddingTop: '2%',
     }
 
     //const calendarStyle = {
@@ -33,15 +33,15 @@ const HomeStack =props=>{
     //}
 
     const buttonStyle = {
-        //height:50,
-        height:110,
+        height:50,
+        //height:110,
         width:80,
-        //marginTop: '0%',
-        marginTop:'14%',
-        //paddingTop: '7%',
-        paddingTop:'30%',
+        marginTop: '0%',
+        //marginTop:'14%',
+        paddingTop: '7%',
+        //paddingTop:'30%',
         paddingLeft: '22.5%',
-        //marginBottom:'4%',
+        marginBottom:'4%',
     }
 
 
@@ -51,7 +51,7 @@ const HomeStack =props=>{
                     options = {
                         ()=>({
                         tabBarIcon: ({focused})=>
-                        <TouchableOpacity style = {focused?{...buttonStyle,borderBottomColor:'#4E80FF',borderBottomWidth: 5}:{...buttonStyle}}>
+                        <TouchableOpacity style = {focused?{...buttonStyle,borderTopColor:'#4E80FF',borderTopWidth: 5}:{...buttonStyle}}>
                             <Image  source = {icon.icon}/>
                         </TouchableOpacity> 
                         ,
