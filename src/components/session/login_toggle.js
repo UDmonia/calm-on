@@ -1,13 +1,16 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-
 import styles from "../../stylesheets/loginSignup.styles";
 
-const LoginToggle = ({ login, setLogin }) => (
+const LoginToggle = ({
+  login,
+  setLogin,
+  showUserDialog,
+  setShowUserDialog,
+}) => (
   <View style={styles.buttonGroup}>
     <TouchableOpacity
-      onPress={setLogin(true)}
+      onPress={setLogin(showUserDialog ? false : true)}
       style={login ? { ...styles.topButtons, borderBottomWidth: 5 } : null}
     >
       <Text
@@ -22,7 +25,6 @@ const LoginToggle = ({ login, setLogin }) => (
     </TouchableOpacity>
 
     {/* Signup page button */}
-
     <TouchableOpacity
       onPress={setLogin(false)}
       style={
