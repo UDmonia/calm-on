@@ -48,7 +48,8 @@ export const getUserFromJWT = () => (dispatch) =>
   deviceStorage
     .get("jwt")
     .then((token) => {
-      if (token) return dispatch(receiveUser(getUser(token)));
+      const decodedJwt = jwtDecode(token);
+      if (token) return dispatch(receiveUser(getUser(token,decodedJwt)));
     })
     .catch((e) => console.log(e));
 
