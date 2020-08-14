@@ -33,19 +33,20 @@ const initialSignUp = {
   birthday: "",
 };
 
-const SessionForm = ({ login, navigate }) => {
+const SessionForm = ({
+  login,
+  navigate,
+  showUserDialog,
+  setShowUserDialog,
+}) => {
   const dispatch = useDispatch();
   const dbErrors = useSelector((store) => store.errors.session);
   const { error } = dbErrors;
-
   const [user, setUser] = useState(initialLogin);
   const [localErrors, setLocalErrors] = useState([]);
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
-  const [showUserDialog, setShowUserDialog] = useState(false);
-  const [text, setText] = useState("");
   const [showNameError, setNameError] = useState(false);
-
   const toggleShow = () => setShow(!show);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
