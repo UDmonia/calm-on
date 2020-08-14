@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 
 const User = require("../models/user");
+const CheckIn = require("../models/checkin")
 const { formatErrors, valid } = require("../util/validations");
 
 const secret = process.env.SECRET;
@@ -27,10 +28,16 @@ router.post("/login", async (req, res) => {
     if (match) {
       const user = found.toJSON();
       delete user.password;
+      const checkins = await CheckIn.find({author:user._id})
+      const userCopy = new User(user);
+      const userCopyJson = userCopy.toJSON();
+      userCopyJson.checkIns = checkins;
+      
       jwt.sign(user, secret, (err, token) => {
         if (token) {
           res.status(201).json({
             token: `Bearer ${token}`,
+            user: userCopyJson
           });
         } else {
           res.status(500).json(err);
@@ -87,10 +94,14 @@ router.post("/register", async (req, res) => {
 
       const user = savedUser.toJSON();
       delete user.password;
+      const userCopy = new User(user);
+      const userCopyJson = userCopy.toJSON();
+      userCopyJson.checkIns = [];
       jwt.sign(user, secret, (err, token) => {
         if (token) {
           res.status(201).json({
             token: `Bearer ${token}`,
+            user: userCopyJson
           });
         } else {
           res.status(500).json(err);
@@ -117,10 +128,15 @@ router.put(
       const savedUser = await currUser.save();
       const user = savedUser.toJSON();
       delete user.password;
+      const checkins = await CheckIn.find({author:user._id})
+      const userCopy = new User(user);
+      const userCopyJson = userCopy.toJSON();
+      userCopyJson.checkIns = checkins;
       jwt.sign(user, secret, (err, token) => {
         if (token) {
           res.status(200).json({
             token: `Bearer ${token}`,
+            user: userCopyJson
           });
         } else {
           res.status(500).json(err);
@@ -149,12 +165,22 @@ router.put(
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
       today = mm + '/' + dd + '/' + yyyy;
-
-      currUser.checkIns.push({mood: mood, journal: journal, date: today})
-      const savedUser = await currUser.save();
-      res.status(200).json({"message" : "success"});
-      
+      console.log(currUser)
+      const userid = currUser._id
+      const checkInData = {
+        mood: mood,
+        journal: journal,
+        date: today,
+        author: userid
+      }
+      const newCheckIn = new CheckIn(checkInData)
+      const savedCheckIn = await newCheckIn.save();
+      const checkins = await CheckIn.find({author:userid})
+      userJson = currUser.toJSON();
+      userJson.checkIns = checkins;
+      res.status(200).json(userJson)
     } catch (e) {
+      console.log(e)
       res.status(500).json(e);
     }
   }

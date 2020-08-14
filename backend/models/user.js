@@ -3,25 +3,6 @@ const uniqueValidator = require("mongoose-unique-validator");
 
 const { Schema } = mongoose;
 
-const CheckInSchema = new Schema(
-  {
-    mood: {
-    type: String,
-    },
-    journal: {
-    type: String,
-    },
-    date: {
-      type: Date,
-    }
-  },
-  {
-    timestamps: true,
-    toJSON: {
-      virtuals: true,
-    },
-  }
-);
 const UserSchema = new Schema(
   {
     email: {
@@ -39,8 +20,7 @@ const UserSchema = new Schema(
     },
     name: {
       type: String,
-    },
-    checkIns: [CheckInSchema]
+    }
   },
   {
     timestamps: true,
