@@ -21,20 +21,20 @@ const receiveSessionErrors = (errors) => ({
   errors,
 });
 
-const getUser = (token) => {
+const getUser = (token, user) => {
   SessionAPI.setAuthToken(token);
   deviceStorage.save("jwt", token);
-  return jwtDecode(token);
+  return user;
 };
 
 export const register = (user) => (dispatch) =>
   SessionAPI.register(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token))))
+    .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 
 export const login = (user) => (dispatch) => {
   return SessionAPI.login(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token))))
+    .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 };
 
@@ -48,11 +48,17 @@ export const getUserFromJWT = () => (dispatch) =>
   deviceStorage
     .get("jwt")
     .then((token) => {
-      if (token) return dispatch(receiveUser(getUser(token)));
+      const decodedJwt = jwtDecode(token);
+      if (token) return dispatch(receiveUser(getUser(token,decodedJwt)));
     })
     .catch((e) => console.log(e));
 
 export const addName = (user) => (dispatch) =>
   SessionAPI.addName(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token))))
+    .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+
+export const checkin = (checkinDTO) => (dispatch) => 
+  SessionAPI.checkin(checkinDTO)
+  .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))
+  .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
