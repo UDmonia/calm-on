@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
 import styles from "../../stylesheets/loginSignup.styles";
 
 import {
   login as loginUser,
   register,
   RECEIVE_USER,
+  addName,
 } from "../../actions/session_actions";
 
 // assets
@@ -33,20 +33,21 @@ const initialSignUp = {
   birthday: "",
 };
 
-const SessionForm = ({ login, navigate }) => {
+const SessionForm = ({
+  login,
+  navigate,
+  showUserDialog,
+  setShowUserDialog,
+}) => {
   const dispatch = useDispatch();
   const dbErrors = useSelector((store) => store.errors.session);
   const { error } = dbErrors;
-
   const [user, setUser] = useState(initialLogin);
   const [localErrors, setLocalErrors] = useState([]);
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
-  const [showUserDialog, setShowUserDialog] = useState(false);
-  const [text, setText] = useState("");
-
+  const [showNameError, setNameError] = useState(false);
   const toggleShow = () => setShow(!show);
-
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
   useEffect(() => {
@@ -89,7 +90,7 @@ const SessionForm = ({ login, navigate }) => {
         : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          setShowUserDialog(true);
+          !login ? setShowUserDialog(true) : navigate("Home");
         } else {
           setError(true);
         }
@@ -99,7 +100,7 @@ const SessionForm = ({ login, navigate }) => {
 
   const handleChange = (field) => (text) => setUser({ ...user, [field]: text });
 
-  const { email, password, confirmPassword, birthday } = user;
+  const { email, password, confirmPassword, birthday, name } = user;
 
   const emailError =
     localErrors.find((e) => e.match(/email/)) || dbErrors.email;
@@ -118,6 +119,23 @@ const SessionForm = ({ login, navigate }) => {
   const handleConfirm = (d) => {
     handleChange("birthday")(formatDate(d));
     toggleShow();
+  };
+
+  const handleAddName = () => {
+    var Filter = require("bad-words");
+    var filter = new Filter();
+    return dispatch(
+      addName({
+        name:
+          user.name && !filter.isProfane(user.name)
+            ? user.name
+            : setNameError(true),
+      })
+    ).then((action) => {
+      if (user.name && !filter.isProfane(user.name)) {
+        navigate("Home");
+      }
+    });
   };
 
   return (
@@ -243,20 +261,22 @@ const SessionForm = ({ login, navigate }) => {
         <View style={styles.userNameDialog}>
           <View style={styles.userNameCard}>
             <Text style={styles.titleText}>Welcome!</Text>
-            <Text style={styles.bodyText}>
+            <Text style={styles.userNameBodyText}>
               It’s so nice to finally meet you!{"\n"} What should we call you?
-              {"\n"}
             </Text>
+            {showNameError && (
+              <Text style={styles.error}>username is required</Text>
+            )}
             <TextInput
               style={styles.userNameInput}
               placeholder={""}
-              onChangeText={(text) => setText(text)}
-              defaultValue={text}
+              onChangeText={handleChange("name")}
               clearButtonMode="while-editing"
+              value={name}
             />
           </View>
           <TouchableOpacity
-            onPress={() => navigate("Home")}
+            onPress={() => handleAddName()}
             style={styles.nextButton}
           >
             <Image source={require("../../../assets/next_button.png")} />
