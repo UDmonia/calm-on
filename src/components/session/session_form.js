@@ -90,7 +90,7 @@ const SessionForm = ({
         : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          !login ? setShowUserDialog(true) : navigate("Home");
+          !login ? setShowUserDialog(true) : navigate("CheckIn");
         } else {
           setError(true);
         }
@@ -133,7 +133,7 @@ const SessionForm = ({
       })
     ).then((action) => {
       if (user.name && !filter.isProfane(user.name)) {
-        navigate("Home");
+        navigate("CheckIn");
       }
     });
   };
