@@ -14,7 +14,7 @@ import spriteChat from "./src/components/spriteChat";
 import { Provider } from "react-redux";
 import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
-import CheckIn from "./src/components/CheckIn";
+import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
 
 const Stack = createStackNavigator();
@@ -33,8 +33,8 @@ export default function App() {
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
           <Stack.Screen
-            name="CheckIn"
-            component={CheckIn}
+            name="DailyCheckIn"
+            component={DailyCheckIn}
             options={{
               headerShown: true,
               headerBackTitleVisible: false,
