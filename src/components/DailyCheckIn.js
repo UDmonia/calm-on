@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -7,15 +7,15 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-
+import { useSelector } from "react-redux";
 /** TODO:
  * - make feelingContainers a single component and pass in props
  * - note: require cannot recieve variables/props
  */
-const Happy = () => {
+const Happy = ({ setFeeling }) => {
   return (
     <View style={styles.feelingContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setFeeling("happy")}>
         <Image
           style={styles.feelingImg}
           source={require("../../assets/Scared.png")}
@@ -26,10 +26,10 @@ const Happy = () => {
   );
 };
 
-const Excited = () => {
+const Excited = ({ setFeeling }) => {
   return (
     <View style={styles.feelingContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setFeeling("excited")}>
         <Image
           style={styles.feelingImg}
           source={require("../../assets/Scared.png")}
@@ -40,10 +40,10 @@ const Excited = () => {
   );
 };
 
-const Scared = () => {
+const Scared = ({ setFeeling }) => {
   return (
     <View style={styles.feelingContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setFeeling("scared")}>
         <Image
           style={styles.feelingImg}
           source={require("../../assets/Scared.png")}
@@ -54,10 +54,10 @@ const Scared = () => {
   );
 };
 
-const Worried = () => {
+const Worried = ({ setFeeling }) => {
   return (
     <View style={styles.feelingContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setFeeling("worried")}>
         <Image
           style={styles.feelingImg}
           source={require("../../assets/Scared.png")}
@@ -68,10 +68,10 @@ const Worried = () => {
   );
 };
 
-const Sad = () => {
+const Sad = ({ setFeeling }) => {
   return (
     <View style={styles.feelingContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setFeeling("sad")}>
         <Image
           style={styles.feelingImg}
           source={require("../../assets/Scared.png")}
@@ -82,25 +82,31 @@ const Sad = () => {
   );
 };
 
-const Angery = () => {
+const Angry = ({ setFeeling }) => {
   return (
     <View style={styles.feelingContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setFeeling("angry")}>
         <Image
           style={styles.feelingImg}
           source={require("../../assets/Scared.png")}
         />
       </TouchableOpacity>
-      <Text style={styles.feelingTxt}>Angery</Text>
+      <Text style={styles.feelingTxt}>Angry</Text>
     </View>
   );
 };
 
 const DailyCheckIn = ({ navigation: { navigate } }) => {
+  const userName = useSelector((state) =>
+    state.session.user.name ? state.session.user.name : "user"
+  );
+  const [curFeeling, setFeeling] = useState("");
+
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.txtQuestion}>
-        How are you feeling today,{"\n"}[userName]?
+        How are you feeling today,{"\n"}
+        {userName}?
       </Text>
       <View style={styles.txtInfo}>
         <Image source={require("../../assets/info.png")} />
@@ -108,16 +114,16 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
       </View>
       <View>
         <View style={styles.row}>
-          <Happy />
-          <Excited />
+          <Happy setFeeling={setFeeling} />
+          <Excited setFeeling={setFeeling} />
         </View>
         <View style={styles.row}>
-          <Scared />
-          <Worried />
+          <Scared setFeeling={setFeeling} />
+          <Worried setFeeling={setFeeling} />
         </View>
         <View style={styles.row}>
-          <Sad />
-          <Angery />
+          <Sad setFeeling={setFeeling} />
+          <Angry setFeeling={setFeeling} />
         </View>
       </View>
       <View style={styles.buttonContainer}>
@@ -132,7 +138,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttons}
-          onPress={() => navigate("CheckInExplain")}
+          onPress={() => navigate("CheckInExplain", { feeling: curFeeling })}
         >
           <Image
             style={styles.buttons}

@@ -2,8 +2,9 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
-const CheckInExplain = ({ navigation: { navigate } }) => {
+const CheckInExplain = ({ route, navigation: { navigate } }) => {
   const [value, onChangeText] = React.useState("Useless Placeholder");
+  const { feeling } = route.params;
 
   return (
     <View style={styles.tmp}>
@@ -11,14 +12,15 @@ const CheckInExplain = ({ navigation: { navigate } }) => {
         style={styles.feelingImg}
         source={require("../../assets/Scared.png")}
       />
-      <Text style={styles.txtFeeling}>Today I'm feeling [feeling]!</Text>
+      <Text style={styles.txtFeeling}>Today I'm feeling {feeling}!</Text>
       <Text style={styles.txtOptional}>
-        Tell me why you're feeling [feeling]...(optional)
+        Tell me why you're feeling {feeling}...(optional)
       </Text>
       <TextInput
         style={styles.userNameInput}
         placeholder={""}
         onChangeText={(text) => onChangeText(text)}
+        multiline
         // onChangeText={handleChange("name")}
         // clearButtonMode="while-editing"
         // value={name}
