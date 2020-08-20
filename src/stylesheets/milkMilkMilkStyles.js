@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     top: '34%',
     width: 187,
     height: 333,
+    zIndex:10
   },
   exitYNText: {
     fontFamily: 'Avenir',
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
   },
   milk: {
     position: 'absolute',
-    zIndex: 998,
+    zIndex: 1,
   },
   milkImage: {
     height:100,
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
   },
   fridge: {
     position: 'absolute',
-    zIndex: 998,
+    zIndex: 1,
   },
   fridgeImage: {
     height:100,
@@ -172,12 +173,20 @@ const styles = StyleSheet.create({
   },
   house: {
     position: 'absolute',
-    zIndex: 998,
+    zIndex: 1,
   },
   houseImage: {
     height: 100,
     width: 100,
   },
+  board: {
+    position: 'absolute',
+    zIndex: 0
+  },
+  figure: {
+    position: 'absolute',
+    zIndex: 1
+  }
 })
 
 export default styles;

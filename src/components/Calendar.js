@@ -21,7 +21,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default Calendar =({ navigation: { navigate} })=>{
-    const journals = useSelector(state=>state.session.user.checkIns)
+    let journals = null
+    if (useSelector(state=>state.session.user.checkIns)) {
+        journals = useSelector(state=>state.session.user.checkIns)
+    }
 
     //[{mood: 'happy', journal: 'i am happy today', date: 'Friday, August 07, 2020'},
     //{mood: 'sad', journal: 'i am sad today', date: 'Friday, August 07, 2020'},
