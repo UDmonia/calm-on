@@ -22,6 +22,8 @@ const receiveSessionErrors = (errors) => ({
 });
 
 const getUser = (token, user) => {
+  console.log("token:  " + token)
+  console.log("user:  " + user)
   SessionAPI.setAuthToken(token);
   deviceStorage.save("jwt", token);
   return user;

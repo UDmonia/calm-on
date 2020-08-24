@@ -226,9 +226,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         mood: curFeeling,
         journal: "",
       })
-      // .then((action) => {
-      //   navigate("Home");
-      // })
+      .then((action) => {
+        navigate("Home");
+      })
     );
   };
 
