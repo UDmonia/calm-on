@@ -133,7 +133,7 @@ const SessionForm = ({
       })
     ).then((action) => {
       if (user.name && !filter.isProfane(user.name)) {
-        navigate("Home");
+        navigate("DailyCheckIn");
       }
     });
   };
