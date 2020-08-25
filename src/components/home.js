@@ -37,7 +37,36 @@ const aurora = {
     "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
 };
 
-const Home = (props) => {
+const checkInExists = () => {
+  var res = false;
+  const checkIns = useSelector((state) =>
+    state.session.user.checkIns ? state.session.user.checkIns : []
+  );
+  for (var i = 0; i < checkIns.length; i++) {
+    const curDate = new Date(checkIns[i].date);
+    const todaysDate = new Date();
+
+    console.log(todaysDate.toDateString() + " == " + curDate.toDateString());
+    if (todaysDate.toDateString() == curDate.toDateString()) {
+      console.log("YES");
+      // navigate("DailyCheckIn");
+      res = false;
+      break;
+    } else {
+      console.log("NO");
+      res = true;
+      // navigate("DailyCheckIn");
+    }
+  }
+  return res;
+};
+
+const Home = ({ props, navigation: { navigate } }) => {
+  var goToCheckIn = checkInExists();
+  if (goToCheckIn) {
+    navigate("DailyCheckIn");
+  }
+
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
   let spirit = spirit || sprite;
   let [currentSpirit, setCurrentSpirit] = useState(spirit);

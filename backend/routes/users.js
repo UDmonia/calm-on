@@ -153,6 +153,7 @@ router.put(
   passport.authenticate('jwt',{session:false}),
   async (req, res) => {
     const currUser = req.user;
+    const currUserJson = currUser.toJSON();
     var {mood, journal} = req.body;
     const moods = ["happy", "excited", "scared", "worried", "sad", "angry"];
     mood = mood.toLowerCase();
@@ -165,7 +166,6 @@ router.put(
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
       today = mm + '/' + dd + '/' + yyyy;
-      console.log(currUser)
       const userid = currUser._id
       const checkInData = {
         mood: mood,
@@ -178,7 +178,17 @@ router.put(
       const checkins = await CheckIn.find({author:userid})
       userJson = currUser.toJSON();
       userJson.checkIns = checkins;
-      res.status(200).json(userJson)
+      jwt.sign(currUserJson, secret, (err, token) => {
+        if (token) {
+          res.status(201).json({
+            token: `Bearer ${token}`,
+            user: userJson
+          });
+        } else {
+          res.status(500).json(err);
+        }
+      });
+      //res.status(200).json({token: userJson)
     } catch (e) {
       console.log(e)
       res.status(500).json(e);
