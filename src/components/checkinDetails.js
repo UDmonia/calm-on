@@ -1,12 +1,46 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {ImageBackground,Text, View, Image , StyleSheet} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
 import moment from 'moment'
 import { useNavigation } from '@react-navigation/native';
 
+    //fake data
+const moodMap = {
+    happy: {path:require('../../assets/preview/large/happy.png'), color: '#FBC423'},
+    angry: {path:require('../../assets/preview/large/angry.png'), color: '#F09696'},
+    sad: {path:require('../../assets/preview/large/sad.png'), color: '#DF9AFF'},
+    scared: {path:require('../../assets/preview/large/scared.png'), color: '#E8B285'},
+    excited: {path:require('../../assets/preview/large/excited.png'), color: '#AED4B0'},
+    worried: {path:require('../../assets/preview/large/worried.png'), color: '#E8B285'}
+}
+
+
 export default checkinDetails =({route})=>{
     const navigation = useNavigation()
-    const {entry} = route.params
+    const {entry,allEntries,time} = route.params
+
+    // Enter from daily preview: set initial index to specfic time pressed
+    const specificTime = entry.journals.find(journal=> journal.time == time)
+    let specificIndex = entry.journals.indexOf(specificTime)
+
+    //Enter from monthly preview: set initial index to zero
+    if (!time) {
+        specificIndex = 0
+    }
+
+    const [journal,setJournal] = useState(entry.journals[specificIndex])
+    const [isActive,setActive] = useState(specificIndex)
+    const [currentEntryIndex,setEntryIndex] = useState(allEntries.indexOf(entry))
+
+    const buttons = allEntries[currentEntryIndex].journals.map((journal,i)=>(
+        <TouchableOpacity key = {i} onPress = {()=>{setJournal(journal)
+                                          setActive(i)}} 
+                                          style = {isActive == i?styles.timeActive:styles.times}>
+            <Text style  = {isActive == i? {...styles.timesText,color: 'black'}:styles.timesText}>{moment(journal.time).format('LT')}</Text>
+        </TouchableOpacity>
+    ))    
+
+
     return(
 <View style = {styles.format}>
     <ImageBackground source={require('../../assets/splash_panel.png')} style = {styles.background}>
@@ -17,13 +51,51 @@ export default checkinDetails =({route})=>{
                 <Image style = {styles.hangerLeft} source = {require('../../assets/hanger.png')}/>
                 <Image style = {styles.hangerRight} source = {require('../../assets/hanger.png')}/>
 
-                <Text style = {styles.text}>{moment(entry.date).format('dddd, LL')}</Text>
+                <Text style = {styles.text}>{moment(allEntries[currentEntryIndex].date).format('dddd, LL')}</Text>
                 </View>
             <View style = {styles.container}>
                 <View style = {styles.upper}>
-                    <Text style = {styles.title}>Today I'm Feeling {entry.mood}</Text>
-                    <Image source = {require('../../assets/Scared.png')}/>
-                    <Text numberOfLines = {40} style = {styles.journal}>{entry.journal}</Text>
+        
+            {/*Date increase/decrease*/}
+                <View style = {styles.header}>
+                {/*{index > 0?*/}
+                {currentEntryIndex > 0? 
+                <TouchableOpacity onPress = {()=>{
+                    setEntryIndex(currentEntryIndex-1)
+                    setJournal(allEntries[currentEntryIndex-1].journals[0])
+                    setActive(0)
+                    }}>
+                    <Image source = {require('../../assets/prevMonth.png')}/>
+                </TouchableOpacity>
+                :
+                    <Image source = {require('../../assets/leftDisabled.png')}/>
+                }
+                {/*:null}*/}
+
+                    <Text style = {styles.date}>{moment(allEntries[currentEntryIndex].date).format('LL')}</Text>
+                {/*{index < 11?*/}
+                {currentEntryIndex < allEntries.length-1 ?
+                <TouchableOpacity TouchableOpacity onPress = {()=>{
+                    setEntryIndex(currentEntryIndex+1)
+                    setJournal(allEntries[currentEntryIndex+1].journals[0])
+                    setActive(0)
+                    }} >
+                    <Image source = {require('../../assets/nextMonth.png')}/>
+                </TouchableOpacity>
+                :
+                    <Image source = {require('../../assets/rightDisabled.png')}/>
+                }
+                {/*:null}*/}
+            </View>
+
+            <View style ={styles.timeList}>
+                {buttons}
+            </View>
+
+
+                    <Image  source = {moodMap[journal.mood].path}/>
+                    <Text style = {styles.journal}>Today I'm Feeling <Text style = {{fontWeight:'bold'}}>{journal.mood}</Text></Text>
+
                 </View>
 
                 <View style = {styles.lower}>
@@ -55,30 +127,30 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    header:{
+        width: '100%',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    date:{
+        fontSize:20,
+        marginTop:'8%',
+        marginBottom:'8%',
+        width:'80%',
+        textAlign:'center'
+    },
     upper:{
         display:'flex',
         width: '90%',
         //borderWidth: 1,
         justifyContent:'center',
         alignItems:'center',
-        marginTop:'8%'
+        marginTop:'2%'
     },
-    journal:{
-        width:320,
-        height:180,
-        borderWidth:1,
-        marginTop:'8%',
-        fontSize:14,
-        borderColor:'#C5C5C5',
-        borderRadius: 6,
-        padding: '4%',
-        fontWeight:'500',
-
-    },
-    title: {
+    journal: {
+        marginTop: '5%',
         fontSize:18,
-        fontWeight:'500',
-        marginBottom:'8%'
     },
     lower:{
         //borderWidth:1,
@@ -142,7 +214,35 @@ const styles = StyleSheet.create({
         position:'absolute',
         right: '12%',
         top: '-20%'
-    }
+    },
+    timeList:{
+        display:'flex',
+        flexDirection:'row',
+        marginTop: '2%',
+        marginBottom: '8%',
+        justifyContent:'space-evenly',
+        width:'105%'
+    },
+    times:{
+        borderWidth: 1,
+        height: 33,
+        width: 75,
+        borderRadius: 5,
+        borderColor:'#CDCDCD'
+    },
+    timeActive:{
+        borderWidth: 1,
+        height: 33,
+        width: 75,
+        borderRadius: 5,
+        backgroundColor:'#FEE496',
+        borderColor:'#FFC10E'
+    },
 
+    timesText:{
+        textAlign:'center',
+        paddingTop: '8%',
+        color:'#848484'
+    }
 
 })

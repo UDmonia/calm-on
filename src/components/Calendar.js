@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect,useContext} from 'react';
 import {Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-native';
 import Preview from './previewEntries'
 import {useSelector} from 'react-redux'
@@ -20,23 +20,57 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 //]
 
 
-export default Calendar =({ navigation: { navigate} })=>{
-    const journals = useSelector(state=>state.session.user.checkIns)
+export default Calendar =({navigation: { navigate} })=>{
+    //useSelector(state=>state.session.user.checkIns)
+    const journals = 
+    //Omit 'Z' from the time stamp for actual time
+    [
 
-    //[{mood: 'happy', journal: 'i am happy today', date: 'Friday, August 07, 2020'},
-    //{mood: 'sad', journal: 'i am sad today', date: 'Friday, August 07, 2020'},
-    //{mood: 'angry', journal: 'i am angry today', date: 'Friday, August 07, 2020'},
-    //{mood: 'hungry', journal: 'i am hungry today', date: 'Friday, August 07, 2020'},]
+    {journals: [{time:"2020-08-09T10:00:00.000",journal:'i am excited',mood:'excited'},
+                {time:"2020-08-09T07:15:00.000",journal:'i am sad',mood:'sad'},
+                {time:"2020-08-09T11:15:00.000",journal:'i am angry',mood:'angry'},
+                {time:"2020-08-09T15:15:00.000",journal:'i am excited',mood:'excited'}], 
+                date: "2020-08-09T07:00:00.000"},
 
+    {journals:  [{time:"2020-08-10T08:00:00.000",journal:'i am hungry',mood:'happy'},
+                {time:"2020-08-10T07:15:00.000",journal:'i am sad',mood:'sad'},
+                {time:"2020-08-10T11:15:00.000",journal:'i am angry',mood:'angry'},
+                {time:"2020-08-10T14:15:00.000",journal:'i am worried',mood:'worried'}], 
+                date: "2020-08-10T07:00:00.000"},
+
+    {journals:  [{time:"2020-09-11T07:00:00.000",journal:'i am happy',mood:'happy'},
+                {time:"2020-09-11T07:15:00.000",journal:'i am sad',mood:'sad'},
+                {time:"2020-09-11T11:15:00.000",journal:'i am angry',mood:'angry'},
+                {time:"2020-09-11T14:15:00.000",journal:'i am excited',mood:'excited'}], 
+                date: "2020-09-11T07:00:00.000"},
+
+    {journals: [{time:"2020-09-12T07:00:00.000",journal:'i am happy',mood:'happy'},
+                {time:"2020-09-12T07:15:00.000",journal:'i am sad',mood:'sad'},
+                {time:"2020-09-12T11:15:00.000",journal:'i am angry',mood:'angry'},
+                {time:"2020-09-12T14:15:00.000",journal:'i am excited',mood:'excited'}], 
+                date: "2020-09-12T07:00:00.000"},
+            ]
+    const [time,setIndex] = useState(0)
+    
+    const getTimeStamp =time=>{
+        setIndex(time)
+    }
+
+    //useEffect(()=>{
+    //    console.log(time)
+    //})
+    
     const previewJournals = journals.map((entry,key)=>{
         return(
         <Preview  
         showJournal = {
-            ()=>navigate('CheckinDetail', {
-            entry: journals[key]
-         })
+            (time)=>{navigate('CheckinDetail', 
+            {entry: journals[key], allEntries: journals,time: time})
+            getTimeStamp(time)
+        }
+            
         } 
-         key = {key} journal = {entry.journal} date = {moment(entry.date).format('dddd, LL')}/>
+          key = {key} journals = {entry.journals} date = {moment(entry.date).format('dddd, LL')}/>
         )
     })
 
@@ -45,6 +79,25 @@ export default Calendar =({ navigation: { navigate} })=>{
     //useEffect(()=>{
     //    console.log('Date is: ', moment(journals[0].date).format('dddd LL'))
     //},[])
+    const activeColor = {
+        backgroundColor:'white',
+        color: 'black',
+        paddingTop:'8%',
+        fontSize:16,
+        fontWeight:'500',
+        textAlign: 'center',
+        height: '100%'
+    }
+
+    const inactiveColor = {
+        color: 'white',
+        backgroundColor: null,
+        paddingTop:'8%',
+        fontSize:16,
+        fontWeight:'500',
+        textAlign: 'center',
+        height: '100%'
+    }
 
     
     return (
@@ -58,13 +111,15 @@ export default Calendar =({ navigation: { navigate} })=>{
                         <Image style = {style.hangerRight} source = {require('../../assets/hanger.png')}/>
 
                             {/*<Button onPress = {()=>switchToDetailed(false)} title = 'back'/>*/}
+                            <View style = {{borderRadius: 5,borderColor: 'white', height: '49%',borderWidth:3, display:'flex',flexDirection:'row'}}>
+                                <TouchableOpacity style = {{width:105}} onPress = {()=>changeView(!viewByDay)}>
+                                    <Text style = {viewByDay? activeColor:inactiveColor}>Daily</Text>
+                                </TouchableOpacity>
 
-                            {viewByDay? <Text style = {style.text}>View By Day</Text> 
-                            :<Text style = {style.text}>View By Month</Text> }
-
-                            <TouchableOpacity onPress = {()=>changeView(!viewByDay)}>
-                                <Image style = {{marginLeft:10}} source = {require('../../assets/downArrow.png')}/>
-                            </TouchableOpacity>
+                                <TouchableOpacity  style = {{width:105}} onPress = {()=>changeView(!viewByDay)}>
+                                    <Text style = {!viewByDay? activeColor:inactiveColor}>Monthly</Text>
+                                </TouchableOpacity>
+                            </View>
                             
                         </View>
 
@@ -74,7 +129,7 @@ export default Calendar =({ navigation: { navigate} })=>{
                             {/*render dates here*/}
 
                             {/*Only shows up when the user have not submitted an entry for today*/}
-                            <Preview date = {'Today'} journal = {"Tell me how you're feeling"} image ={require('../../assets/addJournal.png')} />
+                            {/*<Preview date = {'Today'} journal = {"Tell me how you're feeling"} image ={require('../../assets/addJournal.png')} />*/}
                             {previewJournals}
                         </ScrollView>
                         :
@@ -102,13 +157,15 @@ const style = StyleSheet.create({
         display: 'flex',
         height: '100%',
         alignItems: 'center',
+        
       },
     calendar:{
-        width:'90%',
+        width:'92%',
         height:'100%',
         marginTop:'10%',
         borderRadius: 10,
         backgroundColor: 'white',
+        paddingBottom: '10%'
     },
     toggle:{
         height: '12%',
@@ -126,7 +183,7 @@ const style = StyleSheet.create({
     },
     dates:{
         marginTop: '5%',
-        height: '100%'
+        height: '100%',
     },
     hangerLeft:{
         position:'absolute',
