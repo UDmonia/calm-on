@@ -90,7 +90,7 @@ const SessionForm = ({
         : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          !login ? setShowUserDialog(true) : navigate("DailyCheckIn");
+          !login ? setShowUserDialog(true) : navigate("Home");
         } else {
           setError(true);
         }

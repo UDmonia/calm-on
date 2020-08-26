@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import styles from "../stylesheets/dailyCheckInStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { checkin } from "../actions/session_actions";
+
 /** TODO:
  * - make feelingContainers a single component and pass in props
  * - note: require cannot recieve variables/props
  */
-
 const Happy = ({ setFeeling, arrHooks, happy }) => {
   return (
     <View style={styles.feelingContainer}>
@@ -15,7 +16,7 @@ const Happy = ({ setFeeling, arrHooks, happy }) => {
           setFeeling("happy");
           var i;
           for (i = 0; i < 6; i++) {
-            if (i != 0) {
+            if (i !== 0) {
               arrHooks[i](false);
             }
           }
@@ -47,7 +48,7 @@ const Excited = ({ setFeeling, arrHooks, excited }) => {
           setFeeling("excited");
           var i;
           for (i = 0; i < 6; i++) {
-            if (i != 1) {
+            if (i !== 1) {
               arrHooks[i](false);
             }
           }
@@ -79,7 +80,7 @@ const Scared = ({ setFeeling, arrHooks, scared }) => {
           setFeeling("scared");
           var i;
           for (i = 0; i < 6; i++) {
-            if (i != 2) {
+            if (i !== 2) {
               arrHooks[i](false);
             }
           }
@@ -111,7 +112,7 @@ const Worried = ({ setFeeling, arrHooks, worried }) => {
           setFeeling("worried");
           var i;
           for (i = 0; i < 6; i++) {
-            if (i != 3) {
+            if (i !== 3) {
               arrHooks[i](false);
             }
           }
@@ -143,7 +144,7 @@ const Sad = ({ setFeeling, arrHooks, sad }) => {
           setFeeling("sad");
           var i;
           for (i = 0; i < 6; i++) {
-            if (i != 4) {
+            if (i !== 4) {
               arrHooks[i](false);
             }
           }
@@ -175,7 +176,7 @@ const Angry = ({ setFeeling, arrHooks, angry }) => {
           setFeeling("angry");
           var i;
           for (i = 0; i < 6; i++) {
-            if (i != 5) {
+            if (i !== 5) {
               arrHooks[i](false);
             }
           }
@@ -200,10 +201,9 @@ const Angry = ({ setFeeling, arrHooks, angry }) => {
 };
 
 const DailyCheckIn = ({ navigation: { navigate } }) => {
-  const userName = "";
-  // useSelector((state) =>
-  //   state.session.user.name ? state.session.user.name : "user"
-  // );
+  const userName = useSelector((state) =>
+    state.session.user.name ? state.session.user.name : "user"
+  );
   const [curFeeling, setFeeling] = useState("");
   const [happy, setHappy] = useState(false);
   const [exited, setExcited] = useState(false);
@@ -226,9 +226,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         mood: curFeeling,
         journal: "",
       })
-      .then((action) => {
-        navigate("Home");
-      })
+      // .then((action) => {
+      //   navigate("Home");
+      // })
     );
   };
 
@@ -276,8 +276,10 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.buttons}
-          // onPress={() => navigate("CheckInExplain", { feeling: curFeeling })}
-          onPress={() => handleAddEmotion()}
+          onPress={() => {
+            handleAddEmotion();
+            navigate("Home");
+          }}
         >
           <Image
             style={styles.buttons}
@@ -290,62 +292,3 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
 };
 
 export default DailyCheckIn;
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: "white",
-    alignItems: "center", // secondary axis
-  },
-  txtQuestion: {
-    marginTop: 40,
-    textAlign: "center",
-    fontSize: 20,
-  },
-  txtInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 10,
-    marginHorizontal: 10,
-    textAlign: "center",
-    fontSize: 16,
-    color: "#8AABFF",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    marginTop: 50,
-  },
-  buttons: {
-    width: 126,
-    height: 44,
-    marginHorizontal: 15,
-  },
-  buttonCancel: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-    resizeMode: "contain",
-  },
-  feelingContainer: {
-    marginTop: 50,
-    marginHorizontal: 45,
-    alignItems: "center",
-    textAlign: "center",
-  },
-  feelingImg: {
-    width: 88,
-    height: 88,
-  },
-  feelingImgScared: {
-    width: 90,
-    height: 88,
-  },
-  feelingTxt: {
-    fontSize: 16,
-    marginTop: 15,
-  },
-  row: {
-    flexDirection: "row",
-  },
-});
