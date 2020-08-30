@@ -1,64 +1,62 @@
-import React, {useState,useEffect,useContext} from 'react';
+import React, {useState,} from 'react';
 import {Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-native';
 import Preview from './previewEntries'
-import {useSelector} from 'react-redux'
 import PreviewMonth from './monthlyPreview'
 import moment from 'moment'
+import {useSelector} from 'react-redux'
+//import {checkIns} from './testData'
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
-//For later
-
-//const emotionMap = [
-//    {mood:'happy'},
-//    {mood:'Sad'},
-//    {mood:'Excited'},
-//    {mood:'Angry'},
-//    {mood:'Worried'},
-//    {mood:'Scared'},
-//]
-
-
 export default Calendar =({navigation: { navigate} })=>{
-    //useSelector(state=>state.session.user.checkIns)
-    const journals = 
-    //Omit 'Z' from the time stamp for actual time
-    [
-
-    {journals: [{time:"2020-08-09T10:00:00.000",journal:'i am excited',mood:'excited'},
-                {time:"2020-08-09T07:15:00.000",journal:'i am sad',mood:'sad'},
-                {time:"2020-08-09T11:15:00.000",journal:'i am angry',mood:'angry'},
-                {time:"2020-08-09T15:15:00.000",journal:'i am excited',mood:'excited'}], 
-                date: "2020-08-09T07:00:00.000"},
-
-    {journals:  [{time:"2020-08-10T08:00:00.000",journal:'i am hungry',mood:'happy'},
-                {time:"2020-08-10T07:15:00.000",journal:'i am sad',mood:'sad'},
-                {time:"2020-08-10T11:15:00.000",journal:'i am angry',mood:'angry'},
-                {time:"2020-08-10T14:15:00.000",journal:'i am worried',mood:'worried'}], 
-                date: "2020-08-10T07:00:00.000"},
-
-    {journals:  [{time:"2020-09-11T07:00:00.000",journal:'i am happy',mood:'happy'},
-                {time:"2020-09-11T07:15:00.000",journal:'i am sad',mood:'sad'},
-                {time:"2020-09-11T11:15:00.000",journal:'i am angry',mood:'angry'},
-                {time:"2020-09-11T14:15:00.000",journal:'i am excited',mood:'excited'}], 
-                date: "2020-09-11T07:00:00.000"},
-
-    {journals: [{time:"2020-09-12T07:00:00.000",journal:'i am happy',mood:'happy'},
-                {time:"2020-09-12T07:15:00.000",journal:'i am sad',mood:'sad'},
-                {time:"2020-09-12T11:15:00.000",journal:'i am angry',mood:'angry'},
-                {time:"2020-09-12T14:15:00.000",journal:'i am excited',mood:'excited'}], 
-                date: "2020-09-12T07:00:00.000"},
-            ]
-    const [time,setIndex] = useState(0)
     
-    const getTimeStamp =time=>{
-        setIndex(time)
+    //fake data
+    //const journals = 
+    //////Omit 'Z' from the time stamp for actual time
+    //[
+
+    //{journals: [{time:"2020-08-09T10:00:00.000",journal:'i am excited',mood:'excited'},
+    //            {time:"2020-08-09T07:15:00.000",journal:'i am sad',mood:'sad'},
+    //            {time:"2020-08-09T11:15:00.000",journal:'i am angry',mood:'angry'},
+    //            {time:"2020-08-09T15:15:00.000",journal:'i am excited',mood:'excited'}], 
+    //            date: "2020-08-09T07:00:00.000"},
+
+    //{journals:  [{time:"2020-08-10T08:00:00.000",journal:'i am hungry',mood:'happy'},
+    //            {time:"2020-08-10T07:15:00.000",journal:'i am sad',mood:'sad'},
+    //            {time:"2020-08-10T11:15:00.000",journal:'i am angry',mood:'angry'},
+    //            {time:"2020-08-10T14:15:00.000",journal:'i am worried',mood:'worried'}], 
+    //            date: "2020-08-10T07:00:00.000"},
+
+    //{journals:  [{time:"2020-09-11T07:00:00.000",journal:'i am happy',mood:'happy'},
+    //            {time:"2020-09-11T07:15:00.000",journal:'i am sad',mood:'sad'},
+    //            {time:"2020-09-11T11:15:00.000",journal:'i am angry',mood:'angry'},
+    //            {time:"2020-09-11T14:15:00.000",journal:'i am excited',mood:'excited'}], 
+    //            date: "2020-09-11T07:00:00.000"},
+
+    //{journals: [{time:"2020-09-12T07:00:00.000",journal:'i am happy',mood:'happy'},
+    //            {time:"2020-09-12T07:15:00.000",journal:'i am sad',mood:'sad'},
+    //            {time:"2020-09-12T11:15:00.000",journal:'i am angry',mood:'angry'},
+    //            {time:"2020-09-12T14:15:00.000",journal:'i am excited',mood:'excited'}], 
+    //            date: "2020-09-12T07:00:00.000"},
+    //        ]
+
+    const checkinObject = useSelector(state=>state.session.user.checkIns)
+    const journals = []
+    for (const prop in checkinObject) {
+        journals.push({journals:checkinObject[prop], _id:prop, date:prop})
     }
 
-    //useEffect(()=>{
-    //    console.log(time)
+
+    //const journals = []
+    //const checkinObject= useSelector(state=>state.session.user.checkIns)
+    //Object.keys(checkinObject).forEach((key,index)=>{
+    //    journals.push({date:key,journals:checkinObject[key],_id:index})
     //})
+    
+    //useEffect(()=>{
+    //    console.log(journals)
+    //})
+
     
     const previewJournals = journals.map((entry,key)=>{
         return(
@@ -66,18 +64,17 @@ export default Calendar =({navigation: { navigate} })=>{
         showJournal = {
             (time)=>{navigate('CheckinDetail', 
             {entry: journals[key], allEntries: journals,time: time})
-            getTimeStamp(time)
         }
             
         } 
-          key = {key} journals = {entry.journals} date = {moment(entry.date).format('dddd, LL')}/>
+          key = {key} journals = {entry.journals} date = {moment(entry.journals[0].createdAt).format('dddd, LL')}/>
         )
     })
 
     const [viewByDay,changeView] = useState(true)
 
     //useEffect(()=>{
-    //    console.log('Date is: ', moment(journals[0].date).format('dddd LL'))
+      
     //},[])
     const activeColor = {
         backgroundColor:'white',

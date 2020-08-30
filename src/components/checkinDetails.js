@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {ImageBackground,Text, View, Image , StyleSheet} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
-import moment from 'moment'
 import { useNavigation } from '@react-navigation/native';
+import moment from 'moment'
 
-    //fake data
+
 const moodMap = {
     happy: {path:require('../../assets/preview/large/happy.png'), color: '#FBC423'},
     angry: {path:require('../../assets/preview/large/angry.png'), color: '#F09696'},
@@ -20,7 +20,7 @@ export default checkinDetails =({route})=>{
     const {entry,allEntries,time} = route.params
 
     // Enter from daily preview: set initial index to specfic time pressed
-    const specificTime = entry.journals.find(journal=> journal.time == time)
+    const specificTime = entry.journals.find(journal=> journal.createdAt == time)
     let specificIndex = entry.journals.indexOf(specificTime)
 
     //Enter from monthly preview: set initial index to zero
@@ -36,9 +36,10 @@ export default checkinDetails =({route})=>{
         <TouchableOpacity key = {i} onPress = {()=>{setJournal(journal)
                                           setActive(i)}} 
                                           style = {isActive == i?styles.timeActive:styles.times}>
-            <Text style  = {isActive == i? {...styles.timesText,color: 'black'}:styles.timesText}>{moment(journal.time).format('LT')}</Text>
+            <Text style  = {isActive == i? {...styles.timesText,color: 'black'}:styles.timesText}>{moment(journal.createdAt).format('LT')}</Text>
         </TouchableOpacity>
     ))    
+
 
 
     return(
@@ -51,7 +52,7 @@ export default checkinDetails =({route})=>{
                 <Image style = {styles.hangerLeft} source = {require('../../assets/hanger.png')}/>
                 <Image style = {styles.hangerRight} source = {require('../../assets/hanger.png')}/>
 
-                <Text style = {styles.text}>{moment(allEntries[currentEntryIndex].date).format('dddd, LL')}</Text>
+                <Text style = {styles.text}>{moment(journal.createdAt).format('dddd, LL')}</Text>
                 </View>
             <View style = {styles.container}>
                 <View style = {styles.upper}>
@@ -72,7 +73,7 @@ export default checkinDetails =({route})=>{
                 }
                 {/*:null}*/}
 
-                    <Text style = {styles.date}>{moment(allEntries[currentEntryIndex].date).format('LL')}</Text>
+                    <Text style = {styles.date}>{moment(journal.createdAt).format('LL')}</Text>
                 {/*{index < 11?*/}
                 {currentEntryIndex < allEntries.length-1 ?
                 <TouchableOpacity TouchableOpacity onPress = {()=>{
@@ -94,19 +95,19 @@ export default checkinDetails =({route})=>{
 
 
                     <Image  source = {moodMap[journal.mood].path}/>
-                    <Text style = {styles.journal}>Today I'm Feeling <Text style = {{fontWeight:'bold'}}>{journal.mood}</Text></Text>
+                    
+                    {/*journal placeholder*/}
+                    <Text style = {styles.journal}>Today I'm Feeling <Text style = {{fontWeight:'bold'}}>{journal.mood.charAt(0).toUpperCase()+journal.mood.slice(1)}</Text></Text>
 
                 </View>
 
                 <View style = {styles.lower}>
                     <Image source = {require('../../assets/banner.png')}/>
                     <View style = {styles.activities}>
-                        <TouchableOpacity style = {styles.option}>
-                            <TouchableOpacity  >
-                                <Text>Milk Milk Milk</Text>
+                        <TouchableOpacity onPress = {()=>navigation.navigate('milkMilkMilk')}  style = {styles.option}>
+                            <Text>Milk Milk Milk</Text>
                         </TouchableOpacity>
-
-                        </TouchableOpacity>
+                        
                         <TouchableOpacity style = {styles.option}>
                             <Text>Some other activities</Text>
                         </TouchableOpacity>

@@ -7,13 +7,12 @@ import { useNavigation } from '@react-navigation/native'
 var today = Date.now()
 
 const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
-
+    const navigation = useNavigation()
     return(
-        
         <View style = {styles.container}>
         {empty? 
-            <TouchableOpacity style = {styles.box}>
-                <View style = {{width: '25%',backgroundColor:'white', justifyContent:'center',alignItems:'center',}}>
+            <TouchableOpacity onPress = {()=>navigation.navigate("DailyCheckIn")} style = {styles.box}>
+                <View style = {styles.iconBox}>
                     <Image source = {require('../../assets/addJournal.png')}/>
                 </View>
                 <Text style = {styles.journalTitle}>Tell me how you're feeling</Text>
@@ -22,12 +21,14 @@ const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
             <View>
                 <Text style = {styles.time}>{moment(time).format('LT')}</Text>
                 <TouchableOpacity  onPress = {()=>showJournal(time)} 
-                style = {{...styles.box,backgroundColor:color}}
+                    style = {{...styles.box,backgroundColor:color}}
                 >
-                    <View style = {{width: '25%',backgroundColor:'white', justifyContent:'center',alignItems:'center',}}>
-                    <Image source = {image} />
-                    </View>
+                        <View style = {styles.iconBox}>
+                            <Image source = {image} />
+                        </View>
                     <View>
+
+                    {/*Tell Luis to capitalize mood string */}
                     <Text style = {styles.journalTitle}>{mood.charAt(0).toUpperCase()+mood.slice(1)}</Text> 
                     <Text style = {styles.journal}>{journal}</Text>
                     </View>
@@ -38,10 +39,6 @@ const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
     )
 
 } 
-    
-
-
-
 
 export default previewEntries = ({journals,date,showJournal})=>{
 
@@ -61,15 +58,13 @@ export default previewEntries = ({journals,date,showJournal})=>{
     
     
     const journalList = journals.map((journal,i)=>(
-        <Box  color = {moodMap[journal.mood].color} image = {moodMap[journal.mood].path} key = {i} showJournal = {showJournal} journal = {journal.journal} mood = {journal.mood} time = {journal.time}/>
+        <Box  color = {moodMap[journal.mood].color} image = {moodMap[journal.mood].path} key = {i} showJournal = {showJournal} journal = {journal.journal} mood = {journal.mood} time = {journal.createdAt}/>
     ))
 
-
-    
-    
     return (
         <View >
-
+        
+        {/*search for if today's date is in the journal array, if not add to the top*/}
         {!journals.find(journal => moment(journal.time).format('L') === moment(today).format('L')) && 
             <Box empty = {true} color = {'white'} image = {require('../../assets/addJournal.png')} time = {null} mood = {null} journal = {''} />
         }
@@ -93,6 +88,12 @@ export default previewEntries = ({journals,date,showJournal})=>{
 }
 
 const styles = StyleSheet.create({
+    iconBox:{
+        width: '25%',
+        backgroundColor:'white', 
+        justifyContent:'center',
+        alignItems:'center',
+    },
     box: {
         display: 'flex',
         height: 90,

@@ -61,7 +61,7 @@ const checkInExists = () => {
   return res;
 };
 
-const Home = ({ props, navigation: { navigate } }) => {
+const Home = ({ navigation: { navigate } }) => {
   var goToCheckIn = checkInExists();
   if (goToCheckIn) {
     navigate("DailyCheckIn");
@@ -97,7 +97,7 @@ const Home = ({ props, navigation: { navigate } }) => {
 
   function handleBtnPress() {
     if (currentSpirit === sprite) {
-      props.navigation.navigate("spriteChat");
+      navigate("spriteChat");
     }
   }
 

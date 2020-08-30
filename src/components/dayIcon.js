@@ -38,7 +38,7 @@ export default DayIcon =({item,showJournal})=>{
              
 
              <View style = {styles.body}>
-                 <Text style ={{fontSize:18,marginLeft:15, color:'rgba(0, 0, 0, 0.4)' }}>No Entries</Text>
+                 <Text style ={{fontSize:18,marginLeft:'5%', color:'rgba(0, 0, 0, 0.4)' }}>No Entries</Text>
              </View>
         </View>
         }
