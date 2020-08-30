@@ -64,7 +64,8 @@ const Home = ({ props, navigation: { navigate } }) => {
     state.session.user.name ? state.session.user.name : "user"
   );
   if (userName === "user") {
-    navigate("loginSignup", { userPrompt: true });
+    // console.log("Home -> loginSignup: userPrompt=true userlogin=false");
+    navigate("loginSignup", { userPrompt: true, userLogin: false });
   }
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
   let spirit = spirit || sprite;

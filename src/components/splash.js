@@ -24,7 +24,12 @@ const Splash = ({ navigation: { navigate } }) => {
       <ImageBackground source={bg} style={styles.image}>
         {!loggedIn && (
           <TouchableOpacity
-            onPress={() => navigate("loginSignup", { userPrompt: false })}
+            onPress={() => {
+              // console.log(
+              //   "Splash -> loginSignup: userPrompt=false userlogin=true"
+              // );
+              navigate("loginSignup", { userPrompt: false, userLogin: true });
+            }}
           >
             <Image style={styles.btn} source={startBtn} />
           </TouchableOpacity>

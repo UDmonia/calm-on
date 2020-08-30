@@ -1,19 +1,14 @@
-/* eslint-disable react/jsx-filename-extension */
-
 import React, { useState, useEffect } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import styles from "../../stylesheets/loginSignup.styles";
-
 import {
   login as loginUser,
   register,
   RECEIVE_USER,
   addName,
 } from "../../actions/session_actions";
-
-// assets
 import mail from "../images/mail.png";
 import lock from "../images/password.png";
 import loginBtn from "../images/logIn.png";
@@ -99,9 +94,7 @@ const SessionForm = ({
   };
 
   const handleChange = (field) => (text) => setUser({ ...user, [field]: text });
-
   const { email, password, confirmPassword, birthday, name } = user;
-
   const emailError =
     localErrors.find((e) => e.match(/email/)) || dbErrors.email;
   const passwordError =
@@ -109,7 +102,6 @@ const SessionForm = ({
   const confirmPasswordError = localErrors.find((e) => e.match(/match/));
   const birthdayError =
     localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
-
   const formatDate = (d) => {
     const iso = d.toISOString().split("-");
     iso[2] = iso[2].slice(0, 2);

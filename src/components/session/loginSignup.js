@@ -10,12 +10,12 @@ import LoginToggle from "./login_toggle";
 const LoginSignup = ({ route, navigation: { navigate } }) => {
   // state for switching between login and signup page
   const { userPrompt } = route.params;
-  const [login, isLogin] = useState(() => (userPrompt ? true : false));
-  const [showUserDialog, setShowUserDialog] = useState(() =>
-    userPrompt ? true : false
-  );
+  const { userLogin } = route.params;
+  const [login, isLogin] = useState(() => userLogin);
+  const [showUserDialog, setShowUserDialog] = useState(() => userPrompt);
   const setLogin = (bool) => () => isLogin(bool);
-  console.log(showUserDialog + " " + userPrompt);
+  // console.log("Login Signup: " + userPrompt + " " + userLogin);
+  // console.log("Login Signup: " + showUserDialog + " " + login);
 
   return (
     // Outer most container
