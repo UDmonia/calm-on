@@ -23,9 +23,11 @@ const receiveSessionErrors = (errors) => ({
 
 const getUser = (token, user) => {
   console.log("token:  " + token)
-  console.log("user:  " + user)
+  const userJson = JSON.stringify(user)
+  console.log("user1:  " + userJson)
   SessionAPI.setAuthToken(token);
   deviceStorage.save("jwt", token);
+  deviceStorage.save("user",userJson)
   return user;
 };
 
@@ -41,17 +43,18 @@ export const login = (user) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  deviceStorage.delete("jwt");
+  deviceStorage.delete("user");
   SessionAPI.setAuthToken(false);
   return dispatch(logoutUser());
 };
-
+//actually getUserFromDeviceStorage
 export const getUserFromJWT = () => (dispatch) =>
   deviceStorage
-    .get("jwt")
-    .then((token) => {
-      const decodedJwt = jwtDecode(token);
-      if (token) return dispatch(receiveUser(getUser(token,decodedJwt)));
+    .get("user")
+    .then((userJson) => {
+      //const decodedJwt = jwtDecode(token);
+      const user = JSON.parse(userJson)
+      if (user) return dispatch(receiveUser(user));
     })
     .catch((e) => console.log(e));
 

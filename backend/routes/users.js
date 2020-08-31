@@ -8,10 +8,28 @@ const User = require("../models/user");
 const CheckIn = require("../models/checkin")
 const { formatErrors, valid } = require("../util/validations");
 
+
 const secret = process.env.SECRET;
 
 const router = express.Router();
-
+const groupCheckinsByDate = (checkins) => {
+  const dict = new Map();
+  for (i = 0; i < checkins.length; i++) {
+    var checkin = checkins[i];
+    var checkinJson = checkin.toJSON();
+    var date = checkin.date;
+    var localDate = date.toDateString();
+    var localTime = date.toString();
+    console.log("local time : " + localTime);
+    checkinJson.date = localTime;
+    console.log(checkinJson)
+    if (!dict[localDate]) {
+      dict[localDate] = [];
+    }
+    dict[localDate].push(checkinJson);
+  }
+  return dict;
+}
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -29,9 +47,10 @@ router.post("/login", async (req, res) => {
       const user = found.toJSON();
       delete user.password;
       const checkins = await CheckIn.find({author:user._id})
+      const checkinGroups = groupCheckinsByDate(checkins);
       const userCopy = new User(user);
       const userCopyJson = userCopy.toJSON();
-      userCopyJson.checkIns = checkins;
+      userCopyJson.checkIns = checkinGroups;
       
       jwt.sign(user, secret, (err, token) => {
         if (token) {
@@ -129,9 +148,10 @@ router.put(
       const user = savedUser.toJSON();
       delete user.password;
       const checkins = await CheckIn.find({author:user._id})
+      const checkinGroups = groupCheckinsByDate(checkins);
       const userCopy = new User(user);
       const userCopyJson = userCopy.toJSON();
-      userCopyJson.checkIns = checkins;
+      userCopyJson.checkIns = checkinGroups;
       jwt.sign(user, secret, (err, token) => {
         if (token) {
           res.status(200).json({
@@ -162,10 +182,6 @@ router.put(
     }
     try {
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      var yyyy = today.getFullYear();
-      today = mm + '/' + dd + '/' + yyyy;
       const userid = currUser._id
       const checkInData = {
         mood: mood,
@@ -176,8 +192,9 @@ router.put(
       const newCheckIn = new CheckIn(checkInData)
       const savedCheckIn = await newCheckIn.save();
       const checkins = await CheckIn.find({author:userid})
+      const checkinGroups = groupCheckinsByDate(checkins);
       userJson = currUser.toJSON();
-      userJson.checkIns = checkins;
+      userJson.checkIns = checkinGroups;
       jwt.sign(currUserJson, secret, (err, token) => {
         if (token) {
           res.status(201).json({
