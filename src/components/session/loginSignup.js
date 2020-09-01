@@ -7,11 +7,15 @@ import logo from "../images/logo.png";
 import SessionForm from "./session_form";
 import LoginToggle from "./login_toggle";
 
-const LoginSignup = ({ navigation: { navigate } }) => {
+const LoginSignup = ({ route, navigation: { navigate } }) => {
   // state for switching between login and signup page
-  const [login, isLogin] = useState(true);
-  const [showUserDialog, setShowUserDialog] = useState(false);
+  const { userPrompt } = route.params;
+  const { userLogin } = route.params;
+  const [login, isLogin] = useState(() => userLogin);
+  const [showUserDialog, setShowUserDialog] = useState(() => userPrompt);
   const setLogin = (bool) => () => isLogin(bool);
+  // console.log("Login Signup: " + userPrompt + " " + userLogin);
+  // console.log("Login Signup: " + showUserDialog + " " + login);
 
   return (
     // Outer most container

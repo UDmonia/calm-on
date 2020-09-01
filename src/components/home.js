@@ -46,35 +46,32 @@ const checkInExists = () => {
     const curDate = new Date(checkIns[i].date);
     const todaysDate = new Date();
 
-    console.log(todaysDate.toDateString() + " == " + curDate.toDateString());
     if (todaysDate.toDateString() == curDate.toDateString()) {
-      console.log("YES");
-      // navigate("DailyCheckIn");
       res = false;
       break;
     } else {
-      console.log("NO");
       res = true;
-      // navigate("DailyCheckIn");
     }
   }
   return res;
 };
 
-const Home = ({ navigation: { navigate } }) => {
-  var goToCheckIn = checkInExists();
-  if (goToCheckIn) {
+const Home = ({ props, navigation: { navigate } }) => {
+  if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-
+  const userName = useSelector((state) =>
+    state.session.user.name ? state.session.user.name : "user"
+  );
+  if (userName === "user") {
+    // console.log("Home -> loginSignup: userPrompt=true userlogin=false");
+    navigate("loginSignup", { userPrompt: true, userLogin: false });
+  }
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
   let spirit = spirit || sprite;
   let [currentSpirit, setCurrentSpirit] = useState(spirit);
   let xOffset;
   let screenWidth = Dimensions.get("window").width;
-  const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
-  );
 
   function handleScroll(e) {
     xOffset = e.nativeEvent.contentOffset.x;
