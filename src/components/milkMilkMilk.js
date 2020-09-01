@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useNativeDriver } from 'react';
 
 import { View, Button, TouchableOpacity, TouchableWithoutFeedback, Image, Text, ImageBackground, Animated } from 'react-native';
 import styles from '../stylesheets/milkMilkMilkStyles';
@@ -6,12 +6,18 @@ import styles from '../stylesheets/milkMilkMilkStyles';
 class milkMilkMilk extends React.Component {
   constructor(props) {
     super(props);
-
+    this.showBoard = new Animated.ValueXY({x:400,y:190})
+    this.showFigure = new Animated.ValueXY({x:400,y:190})
+    this.sayMilk = new Animated.ValueXY({x:400,y:190})
+    this.sayMilkFont = new Animated.ValueXY({x:400,y:190})
+    this.pourMilk = new Animated.ValueXY({x:400,y:190})
+    this.moveSpriteThinking = new Animated.ValueXY({x:400,y:190})
     this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 });
     this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320});
     this.moveAnimationHouse = new Animated.ValueXY({ x: 400, y: 190 });
     this.moveAnimationIcecream = new Animated.ValueXY({ x: 400, y: 320});
     this.moveAnimationCow = new Animated.ValueXY({ x: 400, y: 190 });
+    this.moveSpriteScholar = new Animated.ValueXY({x:400,y:190})
 
     this.fadeValueSprite = new Animated.Value(1);
     this.fadeValueCrystalBall = new Animated.Value(0);
@@ -50,55 +56,55 @@ class milkMilkMilk extends React.Component {
         { option: 'I have some at home', func: () => this._moveMilk2()  }
       ],
       [
-        { option: 'it\'s in a glass' },
-        { option: 'cows' },
-        { option: 'ice cream' }
+        { option: 'it\'s in a glass', func: ()=> this._moveSpriteThinking()},
+        { option: 'cows', func: ()=> this._moveSpriteThinking()},
+        { option: 'ice cream' , func: ()=> this._moveSpriteThinking()}
       ],
       [
-        { option: 'I can taste it' },
-        { option: 'it tastes cold' },
-        { option: 'it\'s refreshing' }
+        { option: 'I can taste it', func: ()=> this._pourMilk()},
+        { option: 'it tastes cold',func: ()=> this._pourMilk()},
+        { option: 'it\'s refreshing',func: ()=> this._pourMilk() }
       ],
       [
-        { option: 'A bit' },
-        { option: 'Exactly' },
-        { option: 'I guess' }
+        { option: 'A bit', func:()=>this._explain() },
+        { option: 'Exactly', func:()=>this._explain() },
+        { option: 'I guess', func:()=>this._explain() }
       ],
       [
-        { option: 'Next' }
+        { option: 'Next',func:()=>this._explain2()}
       ],
       [
-        { option: 'Yes!' },
-        { option: 'Maybe later!' }
+        { option: 'Yes!', func:()=>this._sayMilk()},
+        { option: 'Maybe later!',func:()=>this._sayMilk() }
       ],
       [
-        { option: 'Next' },
+        { option: 'Next', func:()=>this._sayMilk2() },
       ],
       [
-        { option: 'Yes!' },
-        { option: 'Maybe later!' }
+        { option: 'Yes!', func:()=>this._sayMilk3()},
+        { option: 'Maybe later!', func:()=>this._sayMilk3() }
       ],
       [
-        { option: 'Next' },
+        { option: 'Next', func:()=>this._board() },
       ],
       [
-        { option: 'I\'m not sure' },
-        { option: 'Gone!' },
-        { option: 'Where is the milkd?' },
+        { option: 'I\'m not sure', func:()=>this._board() },
+        { option: 'Gone!', func:()=>this._board()  },
+        { option: 'Where is the milkd?',func:()=>this._board() },
       ],
       [
-        { option: 'Next' },
+        { option: 'Next',func:()=>this._board() },
       ],
       [
-        { option: 'Yes, that\'s what happened.' },
+        { option: 'Yes, that\'s what happened.',func:()=>this._board() },
         { option: 'I guess' },
       ],
       [
-        { option: 'Yes' },
-        { option: 'Not really' },
+        { option: 'Yes',func:()=>this._board() },
+        { option: 'Not really',func:()=>this._board() },
       ],
       [
-        { option: 'Done' },
+        { option: 'Done',func:()=>this.exitOut() },
       ],
     ]
 
@@ -126,19 +132,23 @@ class milkMilkMilk extends React.Component {
     this.setState({ exit: false });
   }
 
+
   _moveMilk = () => {
     Animated.timing(this.moveAnimationMilk, {
       toValue: {x: 240, y: 300},
+      useNativeDriver: false
       // duration: 1000,
     }).start();
 
     setTimeout(() => {
       Animated.timing(this.moveAnimationFridge, {
       toValue: {x: 60, y: 300},
+      useNativeDriver: false
       // duration:1000,  
       }).start()
       setTimeout(() => {Animated.timing(this.moveAnimationHouse, {
         toValue: {x: 140, y: 160},
+        useNativeDriver: false
         // duration:1000,  
       }).start()}, 1000)
   }, 1000)
@@ -149,6 +159,142 @@ class milkMilkMilk extends React.Component {
     });
   }
 
+  _moveSpriteThinking = ()=>{
+    this.moveSpriteThinking = new Animated.ValueXY({x:400,y:190})
+    Animated.timing(this.moveSpriteThinking,{
+      toValue: {x:150,y:320},
+      useNativeDriver: false
+    }).start()
+
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    })
+  }
+
+  _pourMilk =()=>{
+    this.pourMilk = new Animated.ValueXY({x:400,y:190})
+    Animated.timing(this.pourMilk,{
+      toValue: {x:50,y:200},
+      useNativeDriver: false
+    }).start()
+
+
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+      show: 'sprite'
+    })
+
+    this._fadeSprite()
+  }
+
+  _sayMilk =()=>{
+    //if (this.state.question === 8) {
+      this.sayMilk = new Animated.ValueXY({x:400,y:190})
+      Animated.timing(this.sayMilk,{
+        toValue: {x:150,y:398},
+        useNativeDriver: false
+      }).start()
+    //}
+    //if (this.state.question === 9) {
+    //  this.sayMilk = new Animated.ValueXY({x:150,y:395})
+    //  Animated.timing(this.sayMilk,{
+    //    toValue: {x:150,y:200}
+    //  }).start()
+    //}
+
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    })
+  }
+
+  _board =()=>{
+    this.showBoard = new Animated.ValueXY({x:400,y:190})
+
+    Animated.timing(this.showBoard,{
+      toValue: {x:45,y:180},
+      useNativeDriver: false
+    }).start()
+
+    Animated.timing(this.showFigure,{
+      toValue: {x:70,y:180},
+      useNativeDriver: false
+    }).start()
+
+    Animated.timing(this.moveSpriteScholar,{
+      toValue: {x:130,y:350},
+      useNativeDriver: false
+    }).start()
+
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+      show: 'sprite'
+    })
+    this._fadeSprite()
+  }
+
+
+
+
+  _sayMilk2 =()=>{
+    this.sayMilk = new Animated.ValueXY({x:150,y:398})
+    Animated.timing(this.sayMilk,{
+      toValue: {x:150,y:330},
+      useNativeDriver: false
+    }).start()
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    })
+  }
+
+  _sayMilk3 =()=>{
+    this.sayMilk = new Animated.ValueXY({x:150,y:330})
+    Animated.timing(this.sayMilk,{
+      toValue: {x:150,y:420},
+      useNativeDriver: false
+    }).start()
+    Animated.timing(this.sayMilkFont,{
+      toValue: {x:50,y:300},
+      useNativeDriver: false
+    }).start()
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    })
+  }
+
+
+  _explain =()=>{
+    this.moveSpriteScholar = new Animated.ValueXY({x:400,y:190})
+    Animated.timing(this.moveSpriteScholar,{
+      toValue: {x:150,y:395},
+      useNativeDriver: false
+    }).start()
+
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    })
+    this._fadeSprite()
+    }
+  
+  _explain2 =()=>{
+    this.moveSpriteScholar = new Animated.ValueXY({x:150,y:395})
+    Animated.timing(this.moveSpriteScholar,{
+      toValue: {x:150,y:340},
+      useNativeDriver: false
+    }).start()
+    this.setState({
+      question: this.state.question + 1,
+      answers: this.state.answers + 1,
+    })
+  }
+
+
   _moveMilk2 = () => {
     this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 });
     this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320 });
@@ -156,16 +302,19 @@ class milkMilkMilk extends React.Component {
 
     Animated.timing(this.moveAnimationMilk, {
       toValue: {x: 240, y: 300},
+      useNativeDriver: false
       // duration: 1000,
     }).start();
 
     setTimeout(() => {
       Animated.timing(this.moveAnimationIcecream, {
       toValue: {x: 60, y: 300},
+      useNativeDriver: false
       // duration:1000,  
       }).start()
       setTimeout(() => {Animated.timing(this.moveAnimationCow, {
         toValue: {x: 140, y: 160},
+        useNativeDriver: false
         // duration:1000,  
       }).start()}, 1000)
   }, 1000)
@@ -192,25 +341,37 @@ class milkMilkMilk extends React.Component {
     Animated.timing(this.fadeValueCrystalBall, {
       toValue: 1,
       duration: 1000,
+      useNativeDriver: false
     }).start();
   }
 
   _fadeSprite = () => {
+    if (this.state.question === 0 || this.state.question == 5){
     Animated.timing(this.fadeValueSprite, {
       toValue: 0,
       duration: 1000,
+      useNativeDriver: false
     }).start();
+  }
+  else{
+    Animated.timing(this.fadeValueSprite, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: false
+    }).start();
+  }
+
   }
 
   render() {
     let spriteOrBall;
-    if (this.state.show === 'sprite') {
+    if (this.state.show === 'sprite'&& this.state.question == 0 || this.state.question == 5 || this.state.question == 11) {
       spriteOrBall = 
-      <Animated.View style={{opacity: this.fadeValueSprite, position: 'absolute', top:'34%', right: 0}}>
+      <Animated.View style={{opacity: this.fadeValueSprite,position: 'absolute', top:'34%', right: 0}}>
         <Image source={require('../../assets/sprite_still.png')}
           style={styles.sprite} />
       </Animated.View>
-    } else if (this.state.show === 'ball') {
+    } else if (this.state.show === 'ball' && this.state.question < 4) {
       spriteOrBall =
       <Animated.View style={{opacity: this.fadeValueCrystalBall}}>
         <View style={styles.circle}>
@@ -224,7 +385,8 @@ class milkMilkMilk extends React.Component {
       <View>
         <ImageBackground source={require('../../assets/storytime_background.png')} 
         style={styles.image}>
-  
+
+
           <View style={styles.main}>
             {spriteOrBall}
           </View>
@@ -259,35 +421,155 @@ class milkMilkMilk extends React.Component {
             ) : null
           }
 
+      
+        {this.state.question === 2 || this.state.question === 3?
+        <Animated.View style={{position:'absolute',zIndex:1,top:100,right:0}}>
+          <Image style = {{height:700,width:400}} source = {require('../../assets/twinkle_stars.gif')}/>
+        </Animated.View>
+        :null}
+
+        {this.state.question < 4?
           <Animated.View style={[styles.milk, this.moveAnimationMilk.getLayout()]}>
             <TouchableWithoutFeedback style={styles.milk} >
               <Image source={require('../../assets/milk2.png')} style={styles.milkImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
+          :null}
 
+          {this.state.question === 2?
           <Animated.View style={[styles.fridge, this.moveAnimationFridge.getLayout()]}>
             <TouchableWithoutFeedback style={styles.fridge} >
               <Image source={require('../../assets/fridge.png')} style={styles.fridgeImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
-
+          :null}
+          
+          {this.state.question === 2?
           <Animated.View style={[styles.house, this.moveAnimationHouse.getLayout()]}>
             <TouchableWithoutFeedback style={styles.house} >
               <Image source={require('../../assets/house.png')} style={styles.houseImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
+          :null}
 
+          {this.state.question < 4?
           <Animated.View style={[styles.fridge, this.moveAnimationIcecream.getLayout()]}>
             <TouchableWithoutFeedback style={styles.fridge} >
               <Image source={require('../../assets/icecream.png')} style={styles.fridgeImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
+          :null}
 
+          {this.state.question < 4?
           <Animated.View style={[styles.house, this.moveAnimationCow.getLayout()]}>
             <TouchableWithoutFeedback style={styles.house} >
               <Image source={require('../../assets/cow.png')} style={styles.houseImage} />
             </TouchableWithoutFeedback>
           </Animated.View>
+          :null}
+
+          {this.state.question == 4 || this.state.question == 14?
+          <Animated.View style={[styles.house, this.moveSpriteThinking.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image source={require('../../assets/sprite_thinking.png')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          :null}
+
+          {this.state.question == 5 &&
+          <Animated.View style={[styles.house, this.pourMilk.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image style = {{height:200,width:200}} source={require('../../assets/pour_milk.gif')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          }
+          
+          {this.state.question == 6 || this.state.question == 7?
+          <Animated.View
+          style={[{position: 'absolute',zIndex:0,  }, this.moveSpriteScholar.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image source={require('../../assets/sprite_scholar.png')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          :null}
+
+          {this.state.question >= 8 && this.state.question <= 10 || this.state.question == 15?
+          <Animated.View style={[{position: 'absolute',zIndex:0}, this.sayMilk.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image source={require('../../assets/sprite_happy.png')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          :null}
+
+          {this.state.question == 10 &&
+          <Animated.View style={[styles.house, this.sayMilkFont.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image style = {{height:300,width:200}} source={require('../../assets/milk_font.gif')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>}
+
+          {this.state.question >= 11 && this.state.question < 15?
+          <Animated.View style={[styles.board, this.showBoard.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.board} >
+              <Image source={require('../../assets/board.png')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          :null}
+
+          {spriteOrBall}
+  
+
+          {this.state.question == 11 &&
+          <Animated.View style={[styles.board, this.showFigure.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.board} >
+              <Image source={require('../../assets/board_figure1.png')}/>
+            </TouchableWithoutFeedback>
+          </Animated.View>
+           }
+
+           {this.state.question == 12 &&
+          <Animated.View style={[styles.board, this.showFigure.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.board} >
+              <Image source={require('../../assets/board_figure2.png')} style={styles.board} />
+            </TouchableWithoutFeedback>
+          </Animated.View> 
+          }
+
+          {this.state.question == 13 &&
+          <Animated.View style={[styles.board, this.showFigure.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.board} >
+              <Image source={require('../../assets/board_figure3.png')} style={styles.board} />
+            </TouchableWithoutFeedback>
+          </Animated.View> 
+          }
+
+        {this.state.question == 14 &&
+          <Animated.View style={[styles.board, this.showFigure.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.board} >
+              <Image source={require('../../assets/board_figure4.png')} style={styles.board} />
+            </TouchableWithoutFeedback>
+          </Animated.View> 
+          }
+
+          {this.state.question == 12 &&     
+          <Animated.View style={[{position: 'absolute',zIndex:0}, this.sayMilk.getLayout()]}>
+            <TouchableWithoutFeedback  >
+              <Image source={require('../../assets/sprite_surprised.png')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          }
+
+          {this.state.question == 13 &&    
+          <Animated.View
+          style={[{position: 'absolute',zIndex:0,  }, this.moveSpriteScholar.getLayout()]}>
+            <TouchableWithoutFeedback style={styles.house} >
+              <Image source={require('../../assets/sprite_scholar.png')}  />
+            </TouchableWithoutFeedback>
+          </Animated.View>
+          }
+
+        
+          
 
           <View style={styles.box}>
             <View style={styles.top}>
