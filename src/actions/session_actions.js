@@ -48,15 +48,30 @@ export const logout = () => (dispatch) => {
   return dispatch(logoutUser());
 };
 //actually getUserFromDeviceStorage
-export const getUserFromJWT = () => (dispatch) =>
-  deviceStorage
-    .get("user")
-    .then((userJson) => {
-      //const decodedJwt = jwtDecode(token);
-      const user = JSON.parse(userJson)
-      if (user) return dispatch(receiveUser(user));
-    })
-    .catch((e) => console.log(e));
+export const getUserFromJWT = () => async (dispatch) => {
+  const promise1 = deviceStorage.get("jwt")
+  const promise2 = deviceStorage.get("user")
+  var token;
+  var userJson;
+  try {[token, userJson] = await Promise.all([promise1, promise2])}
+  catch (err) {
+    dispatch(RECEIVE_SESSION_ERRORS(e))
+  }
+  console.log("token: " + token)
+  console.log("userJson: " + userJson)
+
+  const user = JSON.parse(userJson)
+  if (user) return dispatch(receiveUser(getUser(token, user)))
+  
+}
+  // deviceStorage
+  //   .get("user")
+  //   .then((userJson) => {
+  //     //const decodedJwt = jwtDecode(token);
+  //     const user = JSON.parse(userJson)
+  //     if (user) return dispatch(receiveUser(user));
+  //   })
+  //   .catch((e) => console.log(e));
 
 export const addName = (user) => (dispatch) =>
   SessionAPI.addName(user)
