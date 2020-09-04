@@ -16,6 +16,7 @@ import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
+import kpi from "./src/components/kpi";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -64,6 +65,17 @@ export default function App() {
             options={{ headerShown: true }}
           />
           <Stack.Screen name="milkMilkMilk" component={MilkMilkMilk} />
+          <Stack.Screen
+            name="kpi"
+            component={kpi}
+            options={{
+              headerShown: true,
+              headerTitle: "Placehoder KPI",
+              headerTitleStyle: { fontSize: 20, color: "#424242" },
+              headerStyle: { backgroundColor: "#FFC10E" },
+              headerTintColor: "#424242",
+            }}
+          />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
           <Stack.Screen
