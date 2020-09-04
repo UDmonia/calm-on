@@ -42,11 +42,11 @@ const checkInExists = () => {
   const checkIns = useSelector((state) =>
     state.session.user.checkIns ? state.session.user.checkIns : []
   );
-  for (var i = 0; i < checkIns.length; i++) {
-    const curDate = new Date(checkIns[i].date);
-    const todaysDate = new Date();
+  var checkInSet = new Set(Object.keys(checkIns));
 
-    if (todaysDate.toDateString() == curDate.toDateString()) {
+  const todaysDate = new Date();
+  for (let key of checkInSet) {
+    if (todaysDate.toDateString() == key) {
       res = false;
       break;
     } else {
