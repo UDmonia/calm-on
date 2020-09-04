@@ -16,6 +16,7 @@ import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
+import FeelingDictionary from "./src/components/FeelingDictionary";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -48,6 +49,18 @@ export default function App() {
           <Stack.Screen
             name="CheckInExplain"
             component={CheckInExplain}
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "Daily Check-In",
+              headerTitleStyle: { fontSize: 20, color: "#424242" },
+              headerStyle: { backgroundColor: "#FFC10E" },
+              headerTintColor: "#424242",
+            }}
+          />
+          <Stack.Screen
+            name="FeelingDictionary"
+            component={FeelingDictionary}
             options={{
               headerShown: true,
               headerBackTitleVisible: false,
