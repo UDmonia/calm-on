@@ -13,12 +13,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: "white",
   },
   scrollView: {
     backgroundColor: "white",
   },
   text: {
-    fontSize: 15,
+    fontSize: 12,
   },
   border: {
     borderWidth: 0.5,
@@ -32,12 +33,27 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
+    marginTop: 35,
+    marginBottom: 20,
   },
   wrap: {
     flexShrink: 1,
   },
   innerDesc: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
+  },
+  outerDesc: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 15,
+    marginVertical: 15,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+    height: 115,
+  },
+  imgTitleContainer: {
+    marginHorizontal: 12.5,
+    marginVertical: 15,
   },
 });
 
