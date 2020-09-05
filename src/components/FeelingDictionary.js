@@ -1,35 +1,63 @@
 import React from "react";
-import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import Constants from "expo-constants";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Image,
+} from "react-native";
+import styles from "../stylesheets/feelingDictionaryStyles";
+
+const feelingData = [
+  {
+    id: 1,
+    title: "Happy",
+    img: require("../../assets/emotions/angrySelected.png"),
+    description:
+      "When something or someone makes you smile or laugh\n\nI am happy to play games.",
+    color: "rgba(251, 196, 35, 0.5)",
+  },
+];
 
 export default FeelingDictionary = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Text>
+        <Text style={styles.pageTitle}>Emotion Dictionary</Text>
+        {feelingData.map((feeling) => {
+          return (
+            <View style={styles.column}>
+              <View style={styles.border} />
+              <View style={styles.row}>
+                <View style={styles.column}>
+                  <Image
+                    key={feeling.id}
+                    style={styles.feelingImg}
+                    source={feeling.img}
+                  />
+                  <Text style={styles.feelingName}>{feeling.title}</Text>
+                </View>
+                <View
+                  style={[
+                    styles.wrap,
+                    {
+                      backgroundColor: feeling.color,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    },
+                  ]}
+                >
+                  <View style={styles.innerDesc}>
+                    <Text style={styles.text}>{feeling.description}</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.border} />
+            </View>
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
-  scrollView: {
-    backgroundColor: "pink",
-    marginHorizontal: 20,
-  },
-  text: {
-    fontSize: 42,
-  },
-});
