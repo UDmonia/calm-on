@@ -1,7 +1,11 @@
 import React from "react";
 import { View, Text, SafeAreaView, ScrollView, Image } from "react-native";
 import styles from "../stylesheets/feelingDictionaryStyles";
-
+/**
+ * This screen is a dictionary of what each feeling means.
+ * Data is stored in objects and is mapped on to a component.
+ * Add data to feeling data to add it to the list.
+ */
 const feelingData = [
   {
     id: 1,
