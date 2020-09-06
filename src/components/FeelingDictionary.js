@@ -29,7 +29,7 @@ const feelingData = [
     img: require("../../assets/emotions/scaredSelected.png"),
     description:
       "When something or someone causes you to tremble, freeze, panic or scream\n\nI am scared because there is a monster under my bed.",
-    color: "rgba(251, 196, 35, 0.5)",
+    color: "rgba(165, 223, 240, 0.5)",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const feelingData = [
     img: require("../../assets/emotions/worriedSelected.png"),
     description:
       "When you keep thinking about problems you have or about bad things that might happen\n\nI am worried that something bad will happen if we go outside.",
-    color: "rgba(251, 196, 35, 0.5)",
+    color: "rgba(232, 178, 133, 0.5)",
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const feelingData = [
     img: require("../../assets/emotions/sadSelected.png"),
     description:
       "When something happens that you don't like\n\nI am sad that I can’t play with my friends.",
-    color: "rgba(251, 196, 35, 0.5)",
+    color: "rgba(223, 154, 255, 0.5)",
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ const feelingData = [
     img: require("../../assets/emotions/angrySelected.png"),
     description:
       "A strong feeling you have when something is wrong, unfair or unreasonable. It can range from annoyance to rage.\n\nI am angry because my dad promised to take me to the zoo, but he didn’t.",
-    color: "rgba(251, 196, 35, 0.5)",
+    color: "rgba(240, 150, 150, 0.5)",
   },
 ];
 
