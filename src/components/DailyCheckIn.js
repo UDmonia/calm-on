@@ -237,7 +237,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
       </Text>
       <View style={styles.txtInfo}>
         <Image source={require("../../assets/info.png")} />
-        <Text style={styles.txtInfo}>Learn more about feelings</Text>
+        <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
+          <Text style={styles.txtInfo}>Learn more about feelings</Text>
+        </TouchableOpacity>
       </View>
       <View>
         <View style={styles.row}>
