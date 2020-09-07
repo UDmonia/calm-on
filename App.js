@@ -16,6 +16,7 @@ import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
+import Activities from "./src/components/Activities";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -29,6 +30,18 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{ headerShown: false, animationEnabled: false }}
         >
+          <Stack.Screen 
+            name="Activities" 
+            component={Activities}
+            options= {{
+                headerShown: true,
+                headerBackTitleVisible: false,
+                headerTitle: "Activities",
+                headerTitleStyle: { fontSize: 20, color: "#424242" },
+                headerStyle: { backgroundColor: "#2E7D32" },
+                headerTintColor: "#424242",
+              }} 
+          />
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
