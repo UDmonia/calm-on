@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
+import { TouchableOpacity, Image } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -17,6 +18,8 @@ import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
 import kpi from "./src/components/kpi";
+import { navigationRef } from "./src/components/RootNavigation";
+import * as RootNavigation from "./src/components/RootNavigation";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -25,7 +28,7 @@ export default function App() {
   console.disableYellowBox = true;
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Provider store={store}>
         <Stack.Navigator
           screenOptions={{ headerShown: false, animationEnabled: false }}
@@ -74,6 +77,19 @@ export default function App() {
               headerTitleStyle: { fontSize: 20, color: "#424242" },
               headerStyle: { backgroundColor: "#FFC10E" },
               headerTintColor: "#424242",
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    RootNavigation.navigate("Storytime");
+                  }}
+                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
+                >
+                  <Image
+                    source={require("./assets/kpi/chevronLeft.png")}
+                    style={{ height: 21, width: 12 }}
+                  />
+                </TouchableOpacity>
+              ),
             }}
           />
           <Stack.Screen name="Profile" component={Profile} />
