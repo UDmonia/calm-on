@@ -13,7 +13,7 @@ const Happy = ({ setFeeling, arrHooks, happy }) => {
     <View style={styles.feelingContainer}>
       <TouchableOpacity
         onPress={() => {
-          setFeeling("happy");
+          setFeeling("Happy");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 0) {
@@ -45,7 +45,7 @@ const Excited = ({ setFeeling, arrHooks, excited }) => {
     <View style={styles.feelingContainer}>
       <TouchableOpacity
         onPress={() => {
-          setFeeling("excited");
+          setFeeling("Excited");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 1) {
@@ -77,7 +77,7 @@ const Scared = ({ setFeeling, arrHooks, scared }) => {
     <View style={styles.feelingContainer}>
       <TouchableOpacity
         onPress={() => {
-          setFeeling("scared");
+          setFeeling("Scared");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 2) {
@@ -109,7 +109,7 @@ const Worried = ({ setFeeling, arrHooks, worried }) => {
     <View style={styles.feelingContainer}>
       <TouchableOpacity
         onPress={() => {
-          setFeeling("worried");
+          setFeeling("Worried");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 3) {
@@ -141,7 +141,7 @@ const Sad = ({ setFeeling, arrHooks, sad }) => {
     <View style={styles.feelingContainer}>
       <TouchableOpacity
         onPress={() => {
-          setFeeling("sad");
+          setFeeling("Sad");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 4) {
@@ -173,7 +173,7 @@ const Angry = ({ setFeeling, arrHooks, angry }) => {
     <View style={styles.feelingContainer}>
       <TouchableOpacity
         onPress={() => {
-          setFeeling("angry");
+          setFeeling("Angry");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 5) {
@@ -226,9 +226,6 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         mood: curFeeling,
         journal: "",
       })
-      // .then((action) => {
-      //   navigate("Home");
-      // })
     );
   };
 
@@ -240,7 +237,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
       </Text>
       <View style={styles.txtInfo}>
         <Image source={require("../../assets/info.png")} />
-        <Text style={styles.txtInfo}>Learn more about feelings</Text>
+        <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
+          <Text style={styles.txtInfo}>Learn more about feelings</Text>
+        </TouchableOpacity>
       </View>
       <View>
         <View style={styles.row}>

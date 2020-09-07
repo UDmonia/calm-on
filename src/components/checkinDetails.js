@@ -6,12 +6,12 @@ import moment from 'moment'
 
 
 const moodMap = {
-    happy: {path:require('../../assets/preview/large/happy.png'), color: '#FBC423'},
-    angry: {path:require('../../assets/preview/large/angry.png'), color: '#F09696'},
-    sad: {path:require('../../assets/preview/large/sad.png'), color: '#DF9AFF'},
-    scared: {path:require('../../assets/preview/large/scared.png'), color: '#E8B285'},
-    excited: {path:require('../../assets/preview/large/excited.png'), color: '#AED4B0'},
-    worried: {path:require('../../assets/preview/large/worried.png'), color: '#E8B285'}
+    happy: {path:require('../../assets/preview/large/happy.png'),},
+    angry: {path:require('../../assets/preview/large/angry.png'),},
+    sad: {path:require('../../assets/preview/large/sad.png'), },
+    scared: {path:require('../../assets/preview/large/scared.png'),},
+    excited: {path:require('../../assets/preview/large/excited.png'), },
+    worried: {path:require('../../assets/preview/large/worried.png'), }
 }
 
 

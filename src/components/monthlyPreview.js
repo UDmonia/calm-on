@@ -5,7 +5,6 @@ import DayIcon from './dayIcon'
 import moment from 'moment'
 import {useSelector} from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
-import {checkIns} from './testData'
 
 var date = new Date()
 var year = date.getFullYear()
