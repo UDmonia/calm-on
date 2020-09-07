@@ -94,7 +94,7 @@ const Home = ({ props, navigation: { navigate } }) => {
 
   function handleBtnPress() {
     if (currentSpirit === sprite) {
-      navigate("spriteChat");
+      navigate("chatPlaceholder");
     }
   }
 
