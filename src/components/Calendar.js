@@ -1,12 +1,15 @@
-import React, {useState,} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Image,StyleSheet, View,Text, ImageBackground,ScrollView} from 'react-native';
 import Preview from './previewEntries'
 import PreviewMonth from './monthlyPreview'
 import moment from 'moment'
 import {useSelector} from 'react-redux'
+import {Box} from './previewEntries'
+
 //import {checkIns} from './testData'
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+var today = Date.now()
 
 export default Calendar =({navigation: { navigate} })=>{
     
@@ -49,25 +52,29 @@ export default Calendar =({navigation: { navigate} })=>{
 
     //const journals = []
     //const checkinObject= useSelector(state=>state.session.user.checkIns)
-    //Object.keys(checkinObject).forEach((key,index)=>{
+    //Object.keys(checkinObject).forEach((key,index)=>{`
     //    journals.push({date:key,journals:checkinObject[key],_id:index})
     //})
     
     //useEffect(()=>{
-    //    console.log(journals)
-    //})
+    //    console.log('checkin?',checkInEnabled)
+    //},[])
 
+    //Try to find today's checkIn in the checkin array by using dates of 'L' format ('L' === local time)
+    const todayJournal = journals.find(journal => moment(journal.journals[0].createdAt).format('L') === moment(today).format('L'))
+    //check if todayJournal exist or if the user checked in more than 4 times today
+    const checkInEnabled = !todayJournal || todayJournal.journals.length < 4
     
     const previewJournals = journals.map((entry,key)=>{
         return(
-        <Preview  
+        <Preview
         showJournal = {
             (time)=>{navigate('CheckinDetail', 
             {entry: journals[key], allEntries: journals,time: time})
         }
             
         } 
-          key = {key} journals = {entry.journals} date = {moment(entry.journals[0].createdAt).format('dddd, LL')}/>
+          key = {key} journals = {entry.journals}  date = {moment(entry.journals[0].createdAt).format('dddd, LL')}/>
         )
     })
 
@@ -127,6 +134,9 @@ export default Calendar =({navigation: { navigate} })=>{
 
                             {/*Only shows up when the user have not submitted an entry for today*/}
                             {/*<Preview date = {'Today'} journal = {"Tell me how you're feeling"} image ={require('../../assets/addJournal.png')} />*/}
+                                {checkInEnabled &&
+                                    <Box empty = {true} color = {'white'} image = {require('../../assets/addJournal.png')} time = {null} mood = {null} journal = {''} />
+                                }
                             {previewJournals}
                         </ScrollView>
                         :
