@@ -16,6 +16,8 @@ import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
+import BoxBreathing from "./src/components/boxBreathing"
+import ChatPlaceholder from "./src/components/chatPlaceholder"
 import FeelingDictionary from "./src/components/FeelingDictionary";
 
 const Stack = createStackNavigator();
@@ -79,7 +81,7 @@ export default function App() {
           <Stack.Screen name="milkMilkMilk" component={MilkMilkMilk} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
-          <Stack.Screen
+          {/*<Stack.Screen
             name="spriteChat"
             component={spriteChat}
             options={{
@@ -87,7 +89,9 @@ export default function App() {
               headerTitle: "Sprite",
               headerTitleStyle: { fontSize: 24 },
             }}
-          />
+          />*/}
+          <Stack.Screen name = 'chatPlaceholder'  options = {{headerShown: true}} component = {ChatPlaceholder}/>
+          <Stack.Screen name = 'boxBreathing' options = {{headerShown: true, headerTitle:'Box Breathing'}} component = {BoxBreathing}/>
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

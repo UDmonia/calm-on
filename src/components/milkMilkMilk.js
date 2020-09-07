@@ -125,7 +125,7 @@ class milkMilkMilk extends React.Component {
   }
 
   exitOut() {
-    this.props.navigation.navigate('Storytime');
+    this.props.navigation.navigate('chatPlaceholder');
   }
 
   dontExitOut() {
