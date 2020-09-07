@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:'white',
+        marginLeft: '3%',
         flexDirection:'row',
         width:'80%',
         justifyContent:'space-around'
