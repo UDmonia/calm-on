@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
+import { StackActions } from "@react-navigation/native";
 
 export default Kpi = ({ navigation: { navigate } }) => {
   return (
@@ -7,7 +8,9 @@ export default Kpi = ({ navigation: { navigate } }) => {
       <Text>KPI Screen</Text>
       <Button
         title={"Nav to storytime"}
-        onPress={() => navigate("Storytime")}
+        onPress={() => {
+          navigate("chatPlaceholder");
+        }}
       ></Button>
     </View>
   );

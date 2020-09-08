@@ -17,8 +17,8 @@ import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
-import BoxBreathing from "./src/components/boxBreathing"
-import ChatPlaceholder from "./src/components/chatPlaceholder"
+import BoxBreathing from "./src/components/boxBreathing";
+import ChatPlaceholder from "./src/components/chatPlaceholder";
 import FeelingDictionary from "./src/components/FeelingDictionary";
 import kpi from "./src/components/kpi";
 import { navigationRef } from "./src/components/RootNavigation";
@@ -95,7 +95,7 @@ export default function App() {
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
-                    RootNavigation.navigate("Storytime");
+                    RootNavigation.navigate("chatPlaceholder");
                   }}
                   style={{ height: 21, width: 12, marginHorizontal: 15 }}
                 >
@@ -118,8 +118,16 @@ export default function App() {
               headerTitleStyle: { fontSize: 24 },
             }}
           />*/}
-          <Stack.Screen name = 'chatPlaceholder'  options = {{headerShown: true}} component = {ChatPlaceholder}/>
-          <Stack.Screen name = 'boxBreathing' options = {{headerShown: true, headerTitle:'Box Breathing'}} component = {BoxBreathing}/>
+          <Stack.Screen
+            name="chatPlaceholder"
+            options={{ headerShown: true }}
+            component={ChatPlaceholder}
+          />
+          <Stack.Screen
+            name="boxBreathing"
+            options={{ headerShown: true, headerTitle: "Box Breathing" }}
+            component={BoxBreathing}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
