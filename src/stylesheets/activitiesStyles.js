@@ -1,33 +1,67 @@
 import { StyleSheet } from "react-native";
+import { color } from "react-native-reanimated";
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        //flexDirection: "column",
-        //alignItems: 'center',
-        //justifyContent:"center",
+        alignItems: 'center',
         backgroundColor: "white",
     },
-    allActivities:{
+    btnContainer:{
         marginTop: 10,
-        marginLeft: 10,
-        marginRight:10,
-        //width: 100,
-        height: 30,
-        borderColor: 'green',
-        borderWidth: 5,
+        marginLeft: 16,
+        width: 344,
+        maxHeight: 32,
+        borderColor: '#2E7D32',
+        borderWidth: 1,
         borderRadius: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        flexDirection: "row",
+    },
+    btn: {
+        width: 104,
+        height:32,
+        alignItems: 'center',
+        justifyContent: 'center', 
+        backgroundColor: '#2E7D32',
+        borderRadius: 10,
+    },
+    txt : {
+        color: 'white',
+    },
+    header: {
+        width: 290,
+        height: 31,
+        marginLeft: 26,
+        color: '#425054',
+        marginTop: 20,
+        fontSize: 18,
+        fontWeight: '500',
+        lineHeight: 20,
     },
     activity: {
-       width: 100,
-       height: 100,
-       marginLeft: 4,
-       backgroundColor: 'blue' 
+       width: 145,
+       height: 140,
+       marginLeft: 26,
+       marginRight: -10,
+       backgroundColor: 'white', 
+       borderRadius: 5,
     },
+    actImage: {
+        width: 145,
+        height: 100,
+    },
+    label: {
+        width: 140,
+        height: 29,
+        marginTop: 10,
+        fontSize: 14,
+        lineHeight:20,
+        color: '#425054',
+    }, 
     scrollView:{
         backgroundColor: 'white',
-        maxHeight: 100,
+        maxHeight: 140,
     },
 
     
