@@ -8,6 +8,7 @@ import counting from "../../assets/activities/counting.png";
 import painter from "../../assets/activities/painter.png"
 
 export default Activities =()=>{
+    const [all, setAll] = useState(false);
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -16,48 +17,48 @@ export default Activities =()=>{
                 showsHorizontalScrollIndicator={false}
             >
                 <TouchableOpacity 
-                    style={styles.btn}
-                    onPress = {() => {console.log('All');}}
+                    style={all ? styles.btnDefult : styles.btnPressed}
+                    onPress = {() => {setAll(true); console.log('All')}}
                 >
-                    <Text style={styles.txt}>All Activities</Text>
+                    <Text style={styles.txtDefult}>All Activities</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btn}
+                    style={styles.btnDefult}
                     onPress = {() => {console.log('Fear');}}
                 >
-                    <Text style={styles.txt}>Fear</Text>
+                    <Text style={styles.txtDefult}>Fear</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btn}
+                    style={styles.btnDefult}
                     onPress = {() => {console.log('Anger');}}
                 >
-                    <Text style={styles.txt}>Anger</Text>
+                    <Text style={styles.txtDefult}>Anger</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btn}
+                    style={styles.btnDefult}
                     onPress = {() => {console.log('Excitment');}}
                 >
-                    <Text style={styles.txt}>Excitement</Text>
+                    <Text style={styles.txtDefult}>Excitement</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btn}
+                    style={styles.btnDefult}
                     onPress = {() => {console.log('Happiness');}}
                 >
-                    <Text style={styles.txt}>Happiness</Text>
+                    <Text style={styles.txtDefult}>Happiness</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btn}
+                    style={styles.btnDefult}
                     onPress = {() => {console.log('Worry');}}
                 >
-                    <Text style={styles.txt}>Worry</Text>
+                    <Text style={styles.txtDefult}>Worry</Text>
                 </TouchableOpacity>
 
             </ScrollView>
-            <View style={styles.btnContainer}>
-                <TouchableOpacity style= {styles.btn}>
+            {/* <View style={styles.btnContainer}>
+                <TouchableOpacity style= {styles.btnPressed}>
                     <Text>Basic Skills</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
             <View>
                 <Text style={styles.header}>Learning about our feelings</Text>
                 <ScrollView 
@@ -113,7 +114,7 @@ export default Activities =()=>{
                 </TouchableOpacity>
                 </ScrollView>
             </View>
-            <View>
+            {/* <View>
                 <Text>Tackiling uncomftable feelings</Text>
                 <ScrollView style={styles.scrollView}
                     horizontal={true}>
@@ -148,8 +149,8 @@ export default Activities =()=>{
                     </Text>
                 </View>
                 </ScrollView>
-            </View>
-            <View>
+            </View> */}
+            {/* <View>
                 <Text>Storytime</Text>
                 <ScrollView style={styles.scrollView}
                     horizontal={true}>
@@ -182,7 +183,7 @@ export default Activities =()=>{
                     </Text>
                 </View>
                 </ScrollView>
-            </View>
+            </View> */}
         </View>
     )
 }

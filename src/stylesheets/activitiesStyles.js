@@ -18,7 +18,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: "row",
     },
-    btn: {
+    btnPressed: {
         width: 104,
         height:32,
         alignItems: 'center',
@@ -26,8 +26,19 @@ export default StyleSheet.create({
         backgroundColor: '#2E7D32',
         borderRadius: 10,
     },
-    txt : {
+    btnDefult: {
+        width: 104,
+        height:32,
+        alignItems: 'center',
+        justifyContent: 'center', 
+        backgroundColor: 'white',
+        borderRadius: 10,
+    },
+    txtPressed: {
         color: 'white',
+    },
+    txtDefult: {
+        color: '#A5A4A4'
     },
     header: {
         width: 290,
@@ -41,7 +52,7 @@ export default StyleSheet.create({
     },
     activity: {
        width: 145,
-       height: 140,
+       height: 100,
        marginLeft: 26,
        marginRight: -10,
        backgroundColor: 'white', 
@@ -61,7 +72,7 @@ export default StyleSheet.create({
     }, 
     scrollView:{
         backgroundColor: 'white',
-        maxHeight: 140,
+        maxHeight: 130,
     },
 
     
