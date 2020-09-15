@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { View,Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import styles from "../stylesheets/activitiesStyles";
 import feelings from "../../assets/activities/feelings.png";
@@ -9,6 +9,12 @@ import painter from "../../assets/activities/painter.png"
 
 export default Activities =()=>{
     const [all, setAll] = useState(false);
+    const [fear, setFear] = useState(false);
+    const [anger, setAnger] = useState(false);
+    const [excitement, setExcitement] = useState(false);
+    const [happy, SetHappy] = useState(false);
+    const [worry, SetWorry] = useState(false);
+    const toggleState = (setState, state) => setState(!state);
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -17,40 +23,64 @@ export default Activities =()=>{
                 showsHorizontalScrollIndicator={false}
             >
                 <TouchableOpacity 
-                    style={all ? styles.btnDefult : styles.btnPressed}
-                    onPress = {() => {setAll(true); console.log('All')}}
+                    style={all ? styles.btnPressed : styles.btnDefult}
+                    onPress = {() => {toggleState(setAll, all); console.log('All');}}
                 >
-                    <Text style={styles.txtDefult}>All Activities</Text>
+                    <Text 
+                        style={all ? styles.txtPressed : styles.txtDefult}
+                    >
+                        All Activities
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btnDefult}
-                    onPress = {() => {console.log('Fear');}}
+                    style={fear ? styles.btnPressed : styles.btnDefult}
+                    onPress = {() => {toggleState(setFear, fear); console.log('Fear');}}
                 >
-                    <Text style={styles.txtDefult}>Fear</Text>
+                    <Text 
+                        style={fear ? styles.txtPressed : styles.txtDefult}
+                    >
+                        Fear
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btnDefult}
-                    onPress = {() => {console.log('Anger');}}
+                    style={anger ? styles.btnPressed : styles.btnDefult}
+                    onPress = {() => {toggleState(setAnger, anger); console.log('Anger');}}
                 >
-                    <Text style={styles.txtDefult}>Anger</Text>
+                    <Text 
+                        style={anger ? styles.txtPressed : styles.txtDefult}
+                    >
+                        Anger
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btnDefult}
-                    onPress = {() => {console.log('Excitment');}}
+                    style={excitement ? styles.btnPressed : styles.btnDefult}
+                    onPress = {() => {toggleState(setExcitement, excitement); console.log('Excitement');}}
                 >
-                    <Text style={styles.txtDefult}>Excitement</Text>
+                    <Text 
+                        style={excitement ? styles.txtPressed : styles.txtDefult}
+                    >
+                        Excitement
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btnDefult}
-                    onPress = {() => {console.log('Happiness');}}
+                    style={happy ? styles.btnPressed : styles.btnDefult}
+                    onPress = {() => {toggleState(SetHappy, happy); console.log('Happiness');}}
                 >
-                    <Text style={styles.txtDefult}>Happiness</Text>
+                    <Text 
+                        style={happy ? styles.txtPressed : styles.txtDefult}
+                    >
+                        Happiness
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style={styles.btnDefult}
-                    onPress = {() => {console.log('Worry');}}
+                    style={worry ? styles.btnPressed : styles.btnDefult}
+                    onPress = {() => {toggleState(SetWorry, worry); console.log('Worry');}}
                 >
-                    <Text style={styles.txtDefult}>Worry</Text>
+                    <Text 
+                        style={worry ? styles.txtPressed : styles.txtDefult}
+                    >
+                        Worry
+                    </Text>
                 </TouchableOpacity>
 
             </ScrollView>
