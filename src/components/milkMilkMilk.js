@@ -658,29 +658,17 @@ class milkMilkMilk extends React.Component {
 
             <View style={styles.bottom}>
               {this.answers[this.state.answers].map((a, i) => {
-                if (i === 0) {
-                  return (
-                    <TouchableOpacity
-                      key={i}
-                      style={styles.answer1}
-                      onPress={a.func}
-                    >
-                      <Text style={styles.a}>{a.option}</Text>
-                    </TouchableOpacity>
-                  );
-                } else {
-                  return (
-                    <TouchableOpacity
-                      key={i}
-                      style={styles.answer}
-                      onPress={a.func}
-                    >
-                      <Text key={i} style={styles.a}>
-                        {a.option}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                }
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={styles.answer}
+                    onPress={a.func}
+                  >
+                    <Text key={i} style={styles.a}>
+                      {a.option}
+                    </Text>
+                  </TouchableOpacity>
+                );
               })}
             </View>
           </View>

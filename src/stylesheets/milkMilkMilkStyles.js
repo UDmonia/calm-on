@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   bottom: {
+    marginTop: 10,
     borderBottomEndRadius: 10,
     height: "100%",
     width: "100%",
