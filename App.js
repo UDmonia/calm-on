@@ -23,6 +23,7 @@ import FeelingDictionary from "./src/components/FeelingDictionary";
 import kpi from "./src/components/kpi";
 import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
+import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -109,15 +110,17 @@ export default function App() {
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
-          {/*<Stack.Screen
-            name="spriteChat"
-            component={spriteChat}
+          <Stack.Screen
+            name="FiveFourThreeTwoOne"
+            component={FiveFourThreeTwoOne}
             options={{
               headerShown: true,
-              headerTitle: "Sprite",
+              headerBackTitleVisible: false,
+              headerTitle: "5-4-3-2-1 Technique",
               headerTitleStyle: { fontSize: 24 },
+              headerStyle: { backgroundColor: "#FFC10E" },
             }}
-          />*/}
+          />
           <Stack.Screen
             name="chatPlaceholder"
             options={{ headerShown: true }}
