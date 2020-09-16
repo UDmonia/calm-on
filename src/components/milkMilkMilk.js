@@ -15,18 +15,18 @@ import styles from "../stylesheets/milkMilkMilkStyles";
 class milkMilkMilk extends React.Component {
   constructor(props) {
     super(props);
-    this.showBoard = new Animated.ValueXY({ x: 400, y: 190 });
-    this.showFigure = new Animated.ValueXY({ x: 400, y: 190 });
-    this.sayMilk = new Animated.ValueXY({ x: 400, y: 190 });
-    this.sayMilkFont = new Animated.ValueXY({ x: 400, y: 190 });
-    this.pourMilk = new Animated.ValueXY({ x: 400, y: 190 });
-    this.moveSpriteThinking = new Animated.ValueXY({ x: 400, y: 190 });
-    this.moveAnimationMilk = new Animated.ValueXY({ x: 400, y: 320 });
-    this.moveAnimationFridge = new Animated.ValueXY({ x: 400, y: 320 });
-    this.moveAnimationHouse = new Animated.ValueXY({ x: 400, y: 190 });
-    this.moveAnimationIcecream = new Animated.ValueXY({ x: 400, y: 320 });
-    this.moveAnimationCow = new Animated.ValueXY({ x: 400, y: 190 });
-    this.moveSpriteScholar = new Animated.ValueXY({ x: 400, y: 190 });
+    this.showBoard = new Animated.ValueXY({ x: 450, y: 190 });
+    this.showFigure = new Animated.ValueXY({ x: 450, y: 190 });
+    this.sayMilk = new Animated.ValueXY({ x: 450, y: 190 });
+    this.sayMilkFont = new Animated.ValueXY({ x: 450, y: 190 });
+    this.pourMilk = new Animated.ValueXY({ x: 450, y: 190 });
+    this.moveSpriteThinking = new Animated.ValueXY({ x: 450, y: 190 });
+    this.moveAnimationMilk = new Animated.ValueXY({ x: 450, y: 320 });
+    this.moveAnimationFridge = new Animated.ValueXY({ x: 450, y: 320 });
+    this.moveAnimationHouse = new Animated.ValueXY({ x: 450, y: 190 });
+    this.moveAnimationIcecream = new Animated.ValueXY({ x: 450, y: 320 });
+    this.moveAnimationCow = new Animated.ValueXY({ x: 450, y: 190 });
+    this.moveSpriteScholar = new Animated.ValueXY({ x: 450, y: 190 });
 
     this.fadeValueSprite = new Animated.Value(1);
     this.fadeValueCrystalBall = new Animated.Value(0);
@@ -53,7 +53,7 @@ class milkMilkMilk extends React.Component {
     this.answers = [
       [
         { option: "Yes, please!", func: () => this._fade() },
-        { option: "Maybe later" },
+        { option: "Maybe later", func: () => this.goToPrevScreen() },
       ],
       [
         { option: "I said it!", func: () => this._moveMilk() },
@@ -98,7 +98,7 @@ class milkMilkMilk extends React.Component {
       [{ option: "Next", func: () => this._board() }],
       [
         { option: "Yes, that's what happened.", func: () => this._board() },
-        { option: "I guess" },
+        { option: "I guess", func: () => this._board() },
       ],
       [
         { option: "Yes", func: () => this._board() },
@@ -117,6 +117,11 @@ class milkMilkMilk extends React.Component {
     this.exit = this.exit.bind(this);
     this.exitOut = this.exitOut.bind(this);
     this.dontExitOut = this.dontExitOut.bind(this);
+    this.goToPrevScreen = this.goToPrevScreen.bind(this);
+  }
+
+  goToPrevScreen() {
+    this.props.navigation.goBack();
   }
 
   exit() {
@@ -486,10 +491,10 @@ class milkMilkMilk extends React.Component {
             <Animated.View
               style={[styles.fridge, this.moveAnimationIcecream.getLayout()]}
             >
-              <TouchableWithoutFeedback style={styles.fridge}>
+              <TouchableWithoutFeedback style={styles.icecreamImage}>
                 <Image
                   source={require("../../assets/icecream.png")}
-                  style={styles.fridgeImage}
+                  style={styles.icecreamImage}
                 />
               </TouchableWithoutFeedback>
             </Animated.View>
@@ -499,10 +504,10 @@ class milkMilkMilk extends React.Component {
             <Animated.View
               style={[styles.house, this.moveAnimationCow.getLayout()]}
             >
-              <TouchableWithoutFeedback style={styles.house}>
+              <TouchableWithoutFeedback style={styles.cowImage}>
                 <Image
                   source={require("../../assets/cow.png")}
-                  style={styles.houseImage}
+                  style={styles.cowImage}
                 />
               </TouchableWithoutFeedback>
             </Animated.View>
@@ -653,29 +658,17 @@ class milkMilkMilk extends React.Component {
 
             <View style={styles.bottom}>
               {this.answers[this.state.answers].map((a, i) => {
-                if (i === 0) {
-                  return (
-                    <TouchableOpacity
-                      key={i}
-                      style={styles.answer1}
-                      onPress={a.func}
-                    >
-                      <Text style={styles.a}>{a.option}</Text>
-                    </TouchableOpacity>
-                  );
-                } else {
-                  return (
-                    <TouchableOpacity
-                      key={i}
-                      style={styles.answer}
-                      onPress={a.func}
-                    >
-                      <Text key={i} style={styles.a}>
-                        {a.option}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                }
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={styles.answer}
+                    onPress={a.func}
+                  >
+                    <Text key={i} style={styles.a}>
+                      {a.option}
+                    </Text>
+                  </TouchableOpacity>
+                );
               })}
             </View>
           </View>
