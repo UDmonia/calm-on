@@ -7,6 +7,81 @@ import nums from "../../assets/activities/54321.png";
 import counting from "../../assets/activities/counting.png";
 import painter from "../../assets/activities/painter.png"
 
+const learningFeelings = [
+    {
+        id: 1,
+        title: 'Feeling Faces',
+        img: require("../../assets/activities/feelings.png"),
+
+    },
+    {
+        id: 2,
+        title: 'Why we get sad?',
+        img: require("../../assets/activities/why.png"),
+    },
+    {
+        id: 3,
+        title: 'what is anger',
+        img: require("../../assets/activities/feelings.png"),
+    },
+    {
+        id: 4,
+        title: 'Place holder',
+        img: require("../../assets/activities/why.png"),
+    },
+    {
+        id: 5,
+        title: 'Place holder 2',
+        img: require("../../assets/activities/feelings.png"),
+    },
+];
+
+const uncomfortableFeelings = [
+    {
+        id: 1,
+        title: 'Feeling Faces',
+        img: require("../../assets/activities/feelings.png"),
+
+    },
+    {
+        id: 2,
+        title: 'Why we get sad?',
+        img: require("../../assets/activities/why.png"),
+    },
+    {
+        id: 3,
+        title: 'what is anger',
+        img: require("../../assets/activities/feelings.png"),
+    },
+    {
+        id: 4,
+        title: 'Place holder',
+        img: require("../../assets/activities/why.png"),
+    },
+    {
+        id: 5,
+        title: 'Place holder 2',
+        img: require("../../assets/activities/feelings.png"),
+    },
+];
+
+function actCategory(act) {
+    return(
+        <View style={styles.activity}>
+            <TouchableOpacity 
+            onPress = {() => {console.log(act.title);}}
+        >
+                <Image 
+                    key={act.id}
+                    source={act.img}/>
+            </TouchableOpacity>
+            <Text style={styles.label}>
+                {act.title}
+            </Text>
+        </View>);
+}
+
+
 export default Activities =()=>{
     const [all, setAll] = useState(false);
     const [fear, setFear] = useState(false);
@@ -14,7 +89,8 @@ export default Activities =()=>{
     const [excitement, setExcitement] = useState(false);
     const [happy, SetHappy] = useState(false);
     const [worry, SetWorry] = useState(false);
-    const toggleState = (setState, state) => setState(!state);
+    const toggleState = (setState, state) => {setState(!state);}
+    
     return (
         <View style={styles.container}>
             <ScrollView 
@@ -24,7 +100,10 @@ export default Activities =()=>{
             >
                 <TouchableOpacity 
                     style={all ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(setAll, all); console.log('All');}}
+                    onPress = {() => 
+                        {toggleState(setAll, all);
+                        console.log('All');
+                        }}
                 >
                     <Text 
                         style={all ? styles.txtPressed : styles.txtDefult}
@@ -34,7 +113,9 @@ export default Activities =()=>{
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={fear ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(setFear, fear); console.log('Fear');}}
+                    onPress = {() => {
+                        toggleState(setFear, fear);
+                        console.log('Fear');}}
                 >
                     <Text 
                         style={fear ? styles.txtPressed : styles.txtDefult}
@@ -84,136 +165,42 @@ export default Activities =()=>{
                 </TouchableOpacity>
 
             </ScrollView>
-            {/* <View style={styles.btnContainer}>
-                <TouchableOpacity style= {styles.btnPressed}>
-                    <Text>Basic Skills</Text>
-                </TouchableOpacity>
-            </View> */}
-            <View>
-                <Text style={styles.header}>Learning about our feelings</Text>
+            <View style={styles.headerView}>
+                <Text style={styles.headerTxt}>Learning about our feelings</Text>
                 <ScrollView 
                     style={styles.scrollView}
                     horizontal={true}
-                    showsHorizontalScrollIndicator= {false}>
-                <TouchableOpacity 
-                    style = {styles.activity}
-                    onPress = {() => {console.log('Feeling Faces');}}
-                    >
-                    <Image source={feelings}/>
-                    <Text style={styles.label}>
-                        Feeling Faces 
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={styles.activity}
-                    onPress = {() => {console.log('Why we get sad');}}
+                    showsHorizontalScrollIndicator= {false}
                 >
-                    <Image
-                        style={styles.actImage} 
-                        source={why}/>
-                    <Text style={styles.label}>
-                        Why do we get sad?
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style = {styles.activity}
-                    onPress = {() => {console.log('what is anger');}}
-                >
-                    <Image source={feelings}/>
-                    <Text style={styles.label}>
-                        What is anger?
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity  
-                    style = {styles.activity}
-                    onPress = {() => {console.log('Place holder 4');}}
-                >
-                    <Image source={why}/>
-                    <Text style={styles.label}>
-                        place holder 4
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style = {styles.activity}
-                    onPress = {() => {console.log('Place holder 5');}}
-                >
-                    <Image source={feelings}/>
-                    <Text style={styles.label}>
-                        place holder 5
-                    </Text>
-                </TouchableOpacity>
+                    {learningFeelings.map((act) => {
+                        return actCategory(act);
+                    })}
                 </ScrollView>
             </View>
-            {/* <View>
-                <Text>Tackiling uncomftable feelings</Text>
-                <ScrollView style={styles.scrollView}
-                    horizontal={true}>
-                <View style = {styles.activity}>
-                    <Image source={nums}/>
-                    <Text>
-                        place holder
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Image source={counting}/>
-                    <Text>
-                        place holder 2
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Image source={nums}/>
-                    <Text>
-                        place holder 3
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Image source={counting}/>
-                    <Text>
-                        place holder 4
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Image source={nums}/>
-                    <Text>
-                        place holder 5
-                    </Text>
-                </View>
-                </ScrollView>
-            </View> */}
-            {/* <View>
-                <Text>Storytime</Text>
-                <ScrollView style={styles.scrollView}
-                    horizontal={true}>
-                <View style = {styles.activity}>
-                    <Image source={painter}/>
-                    <Text>
-                        place holder
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Text styles= {styles.lable}>
-                        place holder 2
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Image source={painter}/>
-                    <Text>
-                        place holder 3
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Text>
-                        place holder 4
-                    </Text>
-                </View>
-                <View style = {styles.activity}>
-                    <Image source={painter}/>
-                    <Text>
-                        place holder 5
-                    </Text>
-                </View>
-                </ScrollView>
-            </View> */}
+            <View style={styles.headerView}>
+                <Text style={styles.headerTxt}>Tackling uncomfortable feelings</Text>
+                <ScrollView 
+                    style={styles.scrollView}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator= {false}
+                >
+                    {uncomfortableFeelings.map((act) => {
+                        return actCategory(act);
+                    })}
+                </ScrollView>  
+            </View>
+            <View style={styles.headerView}>
+                <Text style={styles.headerTxt}>Tackling uncomfortable feelings</Text>
+                <ScrollView 
+                    style={styles.scrollView}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator= {false}
+                >
+                    {uncomfortableFeelings.map((act) => {
+                        return actCategory(act);
+                    })}
+                </ScrollView>  
+            </View>
         </View>
     )
 }

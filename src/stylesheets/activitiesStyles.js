@@ -8,7 +8,7 @@ export default StyleSheet.create({
         backgroundColor: "white",
     },
     btnContainer:{
-        marginTop: 10,
+        marginTop: 30,
         marginLeft: 16,
         width: 344,
         maxHeight: 32,
@@ -40,17 +40,23 @@ export default StyleSheet.create({
     txtDefult: {
         color: '#A5A4A4'
     },
-    header: {
+    headerView: {
+        //marginLeft: 26,
+        marginTop: 30,
+        //justifyContent: "flex-start",
+        alignItems: 'flex-start',
+    },
+    headerTxt: {
         width: 290,
         height: 31,
-        marginLeft: 26,
-        color: '#425054',
-        marginTop: 20,
         fontSize: 18,
         fontWeight: '500',
         lineHeight: 20,
+        color: '#425054',
+        marginLeft: 26,
     },
     activity: {
+       alignItems: 'flex-start', 
        width: 145,
        height: 100,
        marginLeft: 26,
