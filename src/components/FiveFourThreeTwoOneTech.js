@@ -1,19 +1,19 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import styles from "../stylesheets/fiveFourThreeTwoOneStyles";
+import styles from "../stylesheets/fiveFourThreeTwoOneTechStyles";
 
-const FiveFourThreeTwoOne = ({ navigation: { navigate } }) => {
+const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
   return (
     <View>
       <View style={styles.breatheSteps}>
         <Text>Hold - 4 Seconds</Text>
         <View style={styles.row}>
-          <Text style={styles.verticalTxt}>Breathe Out - 4 Seconds</Text>
+          {/* <Text style={styles.verticalTxt}>Breathe Out - 4 Seconds</Text>
           <Image
             source={require("../../assets/emotions/excitedSelected.png")}
             style={styles.meditationImg}
           />
-          <Text style={styles.verticalTxt}>Hold - 4 Seconds</Text>
+          <Text style={styles.verticalTxt}>Hold - 4 Seconds</Text> */}
         </View>
         <Text>Breathe In - 4 Seconds</Text>
       </View>
@@ -29,7 +29,7 @@ const FiveFourThreeTwoOne = ({ navigation: { navigate } }) => {
         <Text>7 times</Text>
       </View>
       <View>
-        <TouchableOpacity onPress={() => navigate("FiveFourThreeTwoOneTech")}>
+        <TouchableOpacity>
           <Text>Demo</Text>
         </TouchableOpacity>
       </View>
@@ -38,4 +38,4 @@ const FiveFourThreeTwoOne = ({ navigation: { navigate } }) => {
   );
 };
 
-export default FiveFourThreeTwoOne;
+export default FiveFourThreeTwoOneTech;
