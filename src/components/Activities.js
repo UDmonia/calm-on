@@ -65,6 +65,8 @@ const uncomfortableFeelings = [
     },
 ];
 
+
+
 function actCategory(act) {
     return(
         <View style={styles.activity}>
@@ -87,9 +89,16 @@ export default Activities =()=>{
     const [fear, setFear] = useState(false);
     const [anger, setAnger] = useState(false);
     const [excitement, setExcitement] = useState(false);
-    const [happy, SetHappy] = useState(false);
-    const [worry, SetWorry] = useState(false);
-    const toggleState = (setState, state) => {setState(!state);}
+    const [happy, setHappy] = useState(false);
+    const [worry, setWorry] = useState(false);
+    const toggleState = (setState, state) => {toggleAll(); setState(!state);}
+    const toggleAll = () => {
+                            setAll(false); 
+                            setFear(false);
+                            setAnger(false);
+                            setExcitement(false);
+                            setHappy(false);
+                            setWorry(false);}
     
     return (
         <View style={styles.container}>
@@ -145,7 +154,7 @@ export default Activities =()=>{
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={happy ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(SetHappy, happy); console.log('Happiness');}}
+                    onPress = {() => {toggleState(setHappy, happy); console.log('Happiness');}}
                 >
                     <Text 
                         style={happy ? styles.txtPressed : styles.txtDefult}
@@ -155,7 +164,7 @@ export default Activities =()=>{
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={worry ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(SetWorry, worry); console.log('Worry');}}
+                    onPress = {() => {toggleState(setWorry, worry); console.log('Worry');}}
                 >
                     <Text 
                         style={worry ? styles.txtPressed : styles.txtDefult}
