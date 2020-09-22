@@ -64,9 +64,6 @@ const uncomfortableFeelings = [
         img: require("../../assets/activities/feelings.png"),
     },
 ];
-
-
-
 function actCategory(act) {
     return(
         <View style={styles.activity}>
@@ -83,6 +80,24 @@ function actCategory(act) {
         </View>);
 }
 
+function buttons(button){
+    return(
+        <TouchableOpacity
+            key={button.id} 
+            style={button.state ? styles.btnPressed : styles.btnDefult}
+            onPress = {() => {
+                button.fun(button.stateSet, button.state);
+                console.log(button.title);
+                }}
+        >
+            <Text 
+                style={button.state ? styles.txtPressed : styles.txtDefult}
+            >
+                {button.title}
+            </Text>
+        </TouchableOpacity>
+    );
+}
 
 export default Activities =()=>{
     const [all, setAll] = useState(false);
@@ -91,7 +106,13 @@ export default Activities =()=>{
     const [excitement, setExcitement] = useState(false);
     const [happy, setHappy] = useState(false);
     const [worry, setWorry] = useState(false);
+    const [basic, setBasic] = useState(false);
+    const [novice, setNovice] = useState(false);
+    const [apprentice, setApp] = useState(false);
+    const [master, setMaster] = useState(false);
+
     const toggleState = (setState, state) => {toggleAll(); setState(!state);}
+    const toggleState2 = (setState, state) => {toggleAll2(); setState(!state);}
     const toggleAll = () => {
                             setAll(false); 
                             setFear(false);
@@ -99,6 +120,86 @@ export default Activities =()=>{
                             setExcitement(false);
                             setHappy(false);
                             setWorry(false);}
+    const toggleAll2 = () => {
+                                setBasic(false);
+                                setNovice(false);
+                                setApp(false);
+                                setMaster(false);    
+    }
+    const emos = [
+        {
+            id: 1,
+            title: 'All Activities',
+            state: all,
+            stateSet: setAll,
+            fun: toggleState,
+        },
+        {
+            id: 2,
+            title: 'Fear',
+            state: fear,
+            stateSet: setFear,
+            fun: toggleState,
+        },
+        {
+            id: 3,
+            title: 'Anger',
+            state: anger,
+            stateSet: setAnger,
+            fun: toggleState,
+        },
+        {
+            id: 4,
+            title: 'Excitement',
+            state: excitement,
+            stateSet: setExcitement,
+            fun: toggleState,
+        },
+        {
+            id: 5,
+            title: 'Happy',
+            state: happy,
+            stateSet: setHappy,
+            fun: toggleState,
+        },
+        {
+            id: 6,
+            title: 'Worry',
+            state: worry,
+            stateSet: setWorry,
+            fun: toggleState,
+        }
+    ];
+    const skills = [
+        {
+            id: 1,
+            title: 'Basic Skills',
+            state: basic,
+            stateSet: setBasic,
+            fun: toggleState2,
+        },
+        {
+            id: 2,
+            title: 'Novice',
+            state: novice,
+            stateSet: setNovice,
+            fun: toggleState2,
+        },
+        {
+            id: 3,
+            title: 'Apprentice',
+            state: apprentice,
+            stateSet: setApp,
+            fun: toggleState2,
+        },
+        {
+            id: 4,
+            title: 'Master',
+            state: master,
+            stateSet: setMaster,
+            fun: toggleState2,
+        }
+    ];
     
     return (
         <View style={styles.container}>
@@ -107,72 +208,14 @@ export default Activities =()=>{
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                <TouchableOpacity 
-                    style={all ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => 
-                        {toggleState(setAll, all);
-                        console.log('All');
-                        }}
-                >
-                    <Text 
-                        style={all ? styles.txtPressed : styles.txtDefult}
-                    >
-                        All Activities
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={fear ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {
-                        toggleState(setFear, fear);
-                        console.log('Fear');}}
-                >
-                    <Text 
-                        style={fear ? styles.txtPressed : styles.txtDefult}
-                    >
-                        Fear
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={anger ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(setAnger, anger); console.log('Anger');}}
-                >
-                    <Text 
-                        style={anger ? styles.txtPressed : styles.txtDefult}
-                    >
-                        Anger
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={excitement ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(setExcitement, excitement); console.log('Excitement');}}
-                >
-                    <Text 
-                        style={excitement ? styles.txtPressed : styles.txtDefult}
-                    >
-                        Excitement
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={happy ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(setHappy, happy); console.log('Happiness');}}
-                >
-                    <Text 
-                        style={happy ? styles.txtPressed : styles.txtDefult}
-                    >
-                        Happiness
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={worry ? styles.btnPressed : styles.btnDefult}
-                    onPress = {() => {toggleState(setWorry, worry); console.log('Worry');}}
-                >
-                    <Text 
-                        style={worry ? styles.txtPressed : styles.txtDefult}
-                    >
-                        Worry
-                    </Text>
-                </TouchableOpacity>
-
+                {emos.map((button) => {return buttons(button);})}
+            </ScrollView>
+            <ScrollView 
+                style={styles.btnContainer}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+            >
+                {skills.map((button) => {return buttons(button);})}
             </ScrollView>
             <View style={styles.headerView}>
                 <Text style={styles.headerTxt}>Learning about our feelings</Text>
