@@ -119,7 +119,7 @@ export default function App() {
               headerBackTitleVisible: false,
               headerTitle: "5-4-3-2-1",
               headerTitleStyle: { fontSize: 24 },
-              headerStyle: { backgroundColor: "#FFC10E" },
+              headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />
           <Stack.Screen
@@ -130,7 +130,7 @@ export default function App() {
               headerBackTitleVisible: false,
               headerTitle: "5-4-3-2-1 Technique",
               headerTitleStyle: { fontSize: 24 },
-              headerStyle: { backgroundColor: "#FFC10E" },
+              headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />
           <Stack.Screen
