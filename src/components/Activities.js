@@ -10,75 +10,61 @@ import painter from "../../assets/activities/painter.png"
 const learningFeelings = [
     {
         id: 1,
-        title: 'Feeling Faces',
+        title: "milkMilkMilk",
         img: require("../../assets/activities/feelings.png"),
 
     },
     {
         id: 2,
-        title: 'Why we get sad?',
+        title: 'boxBreathing',
         img: require("../../assets/activities/why.png"),
+
     },
     {
         id: 3,
-        title: 'what is anger',
+        title: 'Mindfulness',
         img: require("../../assets/activities/feelings.png"),
     },
     {
         id: 4,
-        title: 'Place holder',
+        title: 'milkMilkMilk',
         img: require("../../assets/activities/why.png"),
     },
     {
         id: 5,
-        title: 'Place holder 2',
+        title: 'boxBreathing',
         img: require("../../assets/activities/feelings.png"),
     },
 ];
 
 const uncomfortableFeelings = [
     {
-        id: 1,
-        title: 'Feeling Faces',
+        id: 6,
+        title: 'milkMilkMilk',
         img: require("../../assets/activities/feelings.png"),
 
     },
     {
-        id: 2,
-        title: 'Why we get sad?',
+        id: 7,
+        title: 'boxBreathing',
         img: require("../../assets/activities/why.png"),
     },
     {
-        id: 3,
-        title: 'what is anger',
+        id: 8,
+        title: 'Mindfulness',
         img: require("../../assets/activities/feelings.png"),
     },
     {
-        id: 4,
-        title: 'Place holder',
+        id: 9,
+        title: 'milkMilkMilk',
         img: require("../../assets/activities/why.png"),
     },
     {
-        id: 5,
-        title: 'Place holder 2',
+        id: 10,
+        title: 'boxBreathing',
         img: require("../../assets/activities/feelings.png"),
     },
 ];
-function actCategory(act) {
-    return(
-        <View style={styles.activity}>
-            <TouchableOpacity 
-            onPress = {() => {console.log(act.title);}}
-        >
-                <Image 
-                    key={act.id}
-                    source={act.img}/>
-            </TouchableOpacity>
-            <Text style={styles.label}>
-                {act.title}
-            </Text>
-        </View>);
-}
 
 function buttons(button){
     return(
@@ -99,7 +85,7 @@ function buttons(button){
     );
 }
 
-export default Activities =()=>{
+export default Activities =({ navigation: { navigate } })=>{
     const [all, setAll] = useState(false);
     const [fear, setFear] = useState(false);
     const [anger, setAnger] = useState(false);
@@ -126,6 +112,24 @@ export default Activities =()=>{
                                 setApp(false);
                                 setMaster(false);    
     }
+
+    function actCategory(act) {
+        return(
+            <View key={act.id} style={styles.activity}>
+                <TouchableOpacity
+                    key={act.id} 
+                    onPress = {() => {console.log(act.title); navigate(act.title)}}
+            >
+                    <Image 
+                        key={act.id}
+                        source={act.img}/>
+                </TouchableOpacity>
+                <Text style={styles.label}>
+                    {act.title}
+                </Text>
+            </View>);
+    }
+
     const emos = [
         {
             id: 1,

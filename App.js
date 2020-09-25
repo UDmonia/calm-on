@@ -37,7 +37,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{ headerShown: false, animationEnabled: false }}
         >
-          <Stack.Screen 
+          {/* <Stack.Screen 
             name="Activities" 
             component={Activities}
             options= {{
@@ -48,7 +48,7 @@ export default function App() {
                 headerStyle: { backgroundColor: "#2E7D32" },
                 headerTintColor: "#424242",
               }} 
-          />
+          /> */}
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
@@ -108,7 +108,7 @@ export default function App() {
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
-                    RootNavigation.navigate("chatPlaceholder");
+                    RootNavigation.navigate("Activities");
                   }}
                   style={{ height: 21, width: 12, marginHorizontal: 15 }}
                 >
@@ -131,11 +131,23 @@ export default function App() {
               headerTitleStyle: { fontSize: 24 },
             }}
           />*/}
-          <Stack.Screen
+          <Stack.Screen 
+            name="Activities" 
+            component={Activities}
+            options= {{
+                headerShown: true,
+                headerBackTitleVisible: false,
+                headerTitle: "Activities",
+                headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+                headerStyle: { backgroundColor: "#2E7D32" },
+                headerTintColor: "#FFFFFF",
+              }} 
+          />
+          {/* <Stack.Screen
             name="chatPlaceholder"
             options={{ headerShown: true }}
             component={ChatPlaceholder}
-          />
+          /> */}
           <Stack.Screen
             name="boxBreathing"
             options={{ headerShown: true, headerTitle: "Box Breathing" }}

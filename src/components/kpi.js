@@ -9,7 +9,7 @@ export default Kpi = ({ navigation: { navigate } }) => {
       <Button
         title={"Nav to storytime"}
         onPress={() => {
-          navigate("chatPlaceholder");
+          navigate("Activities");
         }}
       ></Button>
     </View>
