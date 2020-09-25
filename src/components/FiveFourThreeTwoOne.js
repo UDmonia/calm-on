@@ -10,12 +10,12 @@ const FiveFourThreeTwoOne = ({ navigation: { navigate } }) => {
         <View style={styles.row}>
           <Text style={styles.verticalTxt}>Breathe Out - 4 Seconds</Text>
           <Image
-            source={require("../../assets/emotions/excitedSelected.png")}
+            source={require("../../assets/emotions/happySelected.png")}
             style={styles.meditationImg}
           />
           <Text style={styles.verticalTxt}>Hold - 4 Seconds</Text>
         </View>
-        <Text>Breathe In - 4 Seconds</Text>
+        <Text>Breathe In - 4 aasdfasddf</Text>
       </View>
       <View style={{}}>
         <Text>About/Description</Text>
@@ -26,7 +26,7 @@ const FiveFourThreeTwoOne = ({ navigation: { navigate } }) => {
         <Text>Helps/Works</Text>
         <Text>When you feel Anxiety, Depression</Text>
         <Text>Taken</Text>
-        <Text>7 times</Text>
+        <Text>7 timesasdfasdfasdfasdfasdf asfda</Text>
       </View>
       <View>
         <TouchableOpacity onPress={() => navigate("FiveFourThreeTwoOneTech")}>

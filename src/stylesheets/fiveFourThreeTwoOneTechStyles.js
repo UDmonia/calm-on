@@ -1,19 +1,24 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  breatheSteps: {
-    alignItems: "center", // Secondary axis
-  },
   background: {
     flex: 1,
+    height: "100%",
+    width: "100%",
+  },
+  breatheSteps: {
+    alignItems: "center", // Secondary axis
   },
   row: {
     flexDirection: "row",
   },
-  verticalTxt: {
-    transform: [{ rotate: "90deg" }],
+  slideTitle: {
+    fontSize: 24,
   },
-  meditationImg: {},
+  titleContainer: {
+    marginTop: 40,
+    marginBottom: 50,
+  },
 });
 
 export default styles;

@@ -10,14 +10,14 @@ import styles from "../stylesheets/fiveFourThreeTwoOneTechStyles";
 
 const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
   return (
-    <View>
+    <View style={styles.background}>
       <ImageBackground
         source={require("../../assets/FiveFourThreeTwoOne/background.png")}
-        style={styles.breatheSteps}
+        style={styles.background}
       >
         <View style={styles.breatheSteps}>
-          <View>
-            <Text>Sight</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.slideTitle}>Sight</Text>
             {/* <Text>Touch</Text>
           <Text>Sound</Text>
           <Text>Smell</Text>
@@ -46,7 +46,9 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
               <Text>Fruit salad! Yummy yummy!</Text> */}
               {/* </Image> */}
             </View>
-            <Image />
+            <Image
+              source={require("../../assets/FiveFourThreeTwoOne/tmpCharacter.png")}
+            />
           </View>
           <View>
             <Text>Steps 1/5</Text>
@@ -56,7 +58,10 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
           <Text>Steps 5/5</Text> */}
           </View>
           <View>
-            <Image />
+            <Image
+              source={require("../../assets/FiveFourThreeTwoOne/progress0.png")}
+              style={styles.breatheSteps}
+            />
           </View>
         </View>
       </ImageBackground>
