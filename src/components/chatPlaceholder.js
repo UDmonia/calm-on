@@ -15,6 +15,16 @@ const chatPlaceholder =({navigation: { navigate }})=>{
                 <Text>Box Breathing</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress = {()=>navigate('Mindfulness')}>
+                <Text>Mindfulness</Text>
+            </TouchableOpacity>
+
+            {/*Activities*/}
+            <TouchableOpacity onPress = {()=>navigate('Activities')}>
+                <Text>Activities</Text>
+            </TouchableOpacity>
+
+
         </View>
     )
 }

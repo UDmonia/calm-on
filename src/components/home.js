@@ -39,9 +39,10 @@ const aurora = {
 
 const checkInExists = () => {
   var res = false;
-  const checkIns = useSelector((state) =>
-    state.session.user.checkIns ? state.session.user.checkIns : []
-  );
+  const checkIns = []
+  //useSelector((state) =>
+  //  state.session.user.checkIns ? state.session.user.checkIns : []
+  //);
   for (var i = 0; i < checkIns.length; i++) {
     const curDate = new Date(checkIns[i].date);
     const todaysDate = new Date();
@@ -60,9 +61,10 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-  const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
-  );
+  const userName = 'jack'
+  //useSelector((state) =>
+  //  state.session.user.name ? state.session.user.name : "user"
+  //);
   if (userName === "user") {
     // console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });
