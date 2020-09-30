@@ -12,7 +12,6 @@ const learningFeelings = [
         id: 1,
         title: "milkMilkMilk",
         img: require("../../assets/activities/feelings.png"),
-
     },
     {
         id: 2,
@@ -66,14 +65,34 @@ const uncomfortableFeelings = [
     },
 ];
 
-function buttons(button){
+function actCategory(act, navigate) {
+    return(
+        <View key={act.id} style={styles.activity}>
+            <TouchableOpacity
+                //key={act.id} 
+                onPress = {() => {console.log(act.title); navigate(act.title)}}
+        >
+                <Image 
+                    //key={act.id}
+                    source={act.img}/>
+            </TouchableOpacity>
+            <Text style={styles.label}>
+                {act.title}
+            </Text>
+        </View>);
+}
+
+function buttons(button, setFilter, filter){
     return(
         <TouchableOpacity
             key={button.id} 
             style={button.state ? styles.btnPressed : styles.btnDefult}
             onPress = {() => {
                 button.fun(button.stateSet, button.state);
+                console.log(filter);
                 console.log(button.title);
+                setFilter(button.title);
+                console.log(filter);
                 }}
         >
             <Text 
@@ -96,8 +115,9 @@ export default Activities =({ navigation: { navigate } })=>{
     const [novice, setNovice] = useState(false);
     const [apprentice, setApp] = useState(false);
     const [master, setMaster] = useState(false);
+    const [filter, setFilter] = useState('All Activities');
 
-    const toggleState = (setState, state) => {toggleAll(); setState(!state);}
+    const toggleState = (setState, state) => {toggleAll(); setState(true);}
     const toggleState2 = (setState, state) => {toggleAll2(); setState(!state);}
     const toggleAll = () => {
                             setAll(false); 
@@ -111,23 +131,6 @@ export default Activities =({ navigation: { navigate } })=>{
                                 setNovice(false);
                                 setApp(false);
                                 setMaster(false);    
-    }
-
-    function actCategory(act) {
-        return(
-            <View key={act.id} style={styles.activity}>
-                <TouchableOpacity
-                    key={act.id} 
-                    onPress = {() => {console.log(act.title); navigate(act.title)}}
-            >
-                    <Image 
-                        key={act.id}
-                        source={act.img}/>
-                </TouchableOpacity>
-                <Text style={styles.label}>
-                    {act.title}
-                </Text>
-            </View>);
     }
 
     const emos = [
@@ -212,14 +215,14 @@ export default Activities =({ navigation: { navigate } })=>{
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {emos.map((button) => {return buttons(button);})}
+                {emos.map((button) => {return buttons(button, setFilter, filter);})}
             </ScrollView>
             <ScrollView 
                 style={styles.btnContainer}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {skills.map((button) => {return buttons(button);})}
+                {skills.map((button) => {return buttons(button, setFilter, filter);})}
             </ScrollView>
             <View style={styles.headerView}>
                 <Text style={styles.headerTxt}>Learning about our feelings</Text>
@@ -229,7 +232,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {learningFeelings.map((act) => {
-                        return actCategory(act);
+                        return actCategory(act, navigate);
                     })}
                 </ScrollView>
             </View>
@@ -241,7 +244,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {uncomfortableFeelings.map((act) => {
-                        return actCategory(act);
+                        return actCategory(act, navigate);
                     })}
                 </ScrollView>  
             </View>
@@ -253,7 +256,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {uncomfortableFeelings.map((act) => {
-                        return actCategory(act);
+                        return actCategory(act, navigate);
                     })}
                 </ScrollView>  
             </View>
