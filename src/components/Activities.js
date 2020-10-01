@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View,Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import styles from "../stylesheets/activitiesStyles";
 import feelings from "../../assets/activities/feelings.png";
@@ -12,27 +12,32 @@ const learningFeelings = [
         id: 1,
         title: "milkMilkMilk",
         img: require("../../assets/activities/feelings.png"),
+        tag: 'Fear',
     },
     {
         id: 2,
         title: 'boxBreathing',
         img: require("../../assets/activities/why.png"),
+        tag: 'Anger',
 
     },
     {
         id: 3,
         title: 'Mindfulness',
         img: require("../../assets/activities/feelings.png"),
+        tag: 'Excitement',
     },
     {
         id: 4,
         title: 'milkMilkMilk',
         img: require("../../assets/activities/why.png"),
+        tag: 'Happy',
     },
     {
         id: 5,
         title: 'boxBreathing',
         img: require("../../assets/activities/feelings.png"),
+        tag: 'Worry',
     },
 ];
 
@@ -41,58 +46,62 @@ const uncomfortableFeelings = [
         id: 6,
         title: 'milkMilkMilk',
         img: require("../../assets/activities/feelings.png"),
+        tag: 'Fear',
 
     },
     {
         id: 7,
         title: 'boxBreathing',
         img: require("../../assets/activities/why.png"),
+        tag: 'Fear',
     },
     {
         id: 8,
         title: 'Mindfulness',
         img: require("../../assets/activities/feelings.png"),
+        tag: 'Anger',
     },
     {
         id: 9,
         title: 'milkMilkMilk',
         img: require("../../assets/activities/why.png"),
+        tag: 'Anger',
     },
     {
         id: 10,
         title: 'boxBreathing',
         img: require("../../assets/activities/feelings.png"),
+        tag: 'Worry',
     },
 ];
 
-function actCategory(act, navigate) {
+function actCategory(act, navigate, filter) {
+    if (filter === act.tag || filter === 'All Activities'){
     return(
         <View key={act.id} style={styles.activity}>
             <TouchableOpacity
-                //key={act.id} 
-                onPress = {() => {console.log(act.title); navigate(act.title)}}
+                onPress = {() => {console.log('activitiy pressed ' + filter); navigate(act.title)}}
         >
                 <Image 
-                    //key={act.id}
                     source={act.img}/>
             </TouchableOpacity>
             <Text style={styles.label}>
                 {act.title}
             </Text>
         </View>);
+    }
+    return null;
 }
 
-function buttons(button, setFilter, filter){
+function buttons(button, setFilter){
     return(
         <TouchableOpacity
             key={button.id} 
             style={button.state ? styles.btnPressed : styles.btnDefult}
             onPress = {() => {
                 button.fun(button.stateSet, button.state);
-                console.log(filter);
                 console.log(button.title);
                 setFilter(button.title);
-                console.log(filter);
                 }}
         >
             <Text 
@@ -118,7 +127,7 @@ export default Activities =({ navigation: { navigate } })=>{
     const [filter, setFilter] = useState('All Activities');
 
     const toggleState = (setState, state) => {toggleAll(); setState(true);}
-    const toggleState2 = (setState, state) => {toggleAll2(); setState(!state);}
+    const toggleState2 = (setState, state) => {toggleAll2(); setState(true);}
     const toggleAll = () => {
                             setAll(false); 
                             setFear(false);
@@ -132,6 +141,12 @@ export default Activities =({ navigation: { navigate } })=>{
                                 setApp(false);
                                 setMaster(false);    
     }
+
+    useEffect(() => {    
+        // This gets called after every render, by default  
+        // (the first one, and every one after that)    
+        console.log('///////////UseEffect///// ' +  filter);  
+    })
 
     const emos = [
         {
@@ -215,14 +230,14 @@ export default Activities =({ navigation: { navigate } })=>{
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {emos.map((button) => {return buttons(button, setFilter, filter);})}
+                {emos.map((button) => {return buttons(button, setFilter);})}
             </ScrollView>
             <ScrollView 
                 style={styles.btnContainer}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {skills.map((button) => {return buttons(button, setFilter, filter);})}
+                {skills.map((button) => {return buttons(button, setFilter);})}
             </ScrollView>
             <View style={styles.headerView}>
                 <Text style={styles.headerTxt}>Learning about our feelings</Text>
@@ -232,7 +247,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {learningFeelings.map((act) => {
-                        return actCategory(act, navigate);
+                        return actCategory(act, navigate, filter);
                     })}
                 </ScrollView>
             </View>
@@ -244,7 +259,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {uncomfortableFeelings.map((act) => {
-                        return actCategory(act, navigate);
+                        return actCategory(act, navigate, filter);
                     })}
                 </ScrollView>  
             </View>
@@ -256,7 +271,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {uncomfortableFeelings.map((act) => {
-                        return actCategory(act, navigate);
+                        return actCategory(act, navigate, filter);
                     })}
                 </ScrollView>  
             </View>
