@@ -23,8 +23,12 @@ const chatPlaceholder = ({ navigation: { navigate } }) => {
       <TouchableOpacity onPress={() => navigate("FiveFourThreeTwoOne")}>
         <Text>5-4-3-2-1 Technique</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate("Mindfulness")}>
+        <Text>Mindfulness</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate("Activities")}>
+        <Text>Activities</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
-export default chatPlaceholder;
