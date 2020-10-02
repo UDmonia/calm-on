@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    flexDirection: "row",
+    justifyContent: "center",
+    textAlign: "center",
     height: 86,
     width: 160,
   },
@@ -27,23 +28,23 @@ const styles = StyleSheet.create({
   },
   cloud: {
     justifyContent: "center",
-    textAlign: "center",
-    textAlignVertical: "center",
+    alignSelf: "flex-end",
+    marginRight: 50,
+    marginTop: 25,
     fontSize: 14,
     height: 86,
     width: 160,
   },
   txt: {
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
     textAlign: "center",
-    textAlignVertical: "center",
+    // textAlignVertical: "center",
     color: "white",
   },
   zeroProgress: {
-    flexDirection: "row",
-    // height: 86,
-    // width: 160,
+    height: 6,
+    width: 300,
   },
 });
 

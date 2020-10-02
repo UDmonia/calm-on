@@ -86,36 +86,36 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
               />
             </TouchableOpacity>
           </View>
-          <View>
-            <View style={styles.cloud}>
-              <ImageBackground
-                source={require("../../assets/FiveFourThreeTwoOne/thinkCloud.png")}
-                style={styles.image}
-              >
+          {/* <View> */}
+          <View style={styles.cloud}>
+            <ImageBackground
+              source={require("../../assets/FiveFourThreeTwoOne/thinkCloud.png")}
+              style={styles.image}
+            >
+              <View style={{ width: 150 }}>
                 <Text style={styles.txt}>
                   {stepData[progress.valueOf()].thought}
                 </Text>
-              </ImageBackground>
-            </View>
-            <Image
-              source={require("../../assets/FiveFourThreeTwoOne/tmpCharacter.png")}
-            />
+              </View>
+            </ImageBackground>
           </View>
+          <Image
+            source={require("../../assets/FiveFourThreeTwoOne/tmpCharacter.png")}
+          />
+          {/* </View> */}
           <View>
             <Text>Steps {stepData[progress.valueOf()].stepProgress}</Text>
           </View>
           <View>
-            {/* <ImageBackground
+            <ImageBackground
               source={require("../../assets/FiveFourThreeTwoOne/progress0.png")}
               style={styles.zeroProgress}
             >
-              <View> */}
-            <Image
-              source={stepData[progress.valueOf()].pro}
-              style={styles.breatheSteps}
-            />
-            {/* </View>
-            </ImageBackground> */}
+              <Image
+                source={stepData[progress.valueOf()].progressImg}
+                style={styles.breatheSteps}
+              />
+            </ImageBackground>
           </View>
         </View>
       </ImageBackground>
