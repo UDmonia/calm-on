@@ -13,12 +13,14 @@ const learningFeelings = [
         title: "milkMilkMilk",
         img: require("../../assets/activities/feelings.png"),
         tag: 'Fear',
+        level: 'Basic Skills',
     },
     {
         id: 2,
         title: 'boxBreathing',
         img: require("../../assets/activities/why.png"),
         tag: 'Anger',
+        level: 'Novice',
 
     },
     {
@@ -26,18 +28,21 @@ const learningFeelings = [
         title: 'Mindfulness',
         img: require("../../assets/activities/feelings.png"),
         tag: 'Excitement',
+        level: 'Basic Skills',
     },
     {
         id: 4,
         title: 'milkMilkMilk',
         img: require("../../assets/activities/why.png"),
         tag: 'Happy',
+        level: 'Novice',
     },
     {
         id: 5,
         title: 'boxBreathing',
         img: require("../../assets/activities/feelings.png"),
         tag: 'Worry',
+        level: 'Basic Skills',
     },
 ];
 
@@ -47,6 +52,7 @@ const uncomfortableFeelings = [
         title: 'milkMilkMilk',
         img: require("../../assets/activities/feelings.png"),
         tag: 'Fear',
+        level: 'Basic Skills',
 
     },
     {
@@ -54,29 +60,34 @@ const uncomfortableFeelings = [
         title: 'boxBreathing',
         img: require("../../assets/activities/why.png"),
         tag: 'Fear',
+        level: 'Novice',
     },
     {
         id: 8,
         title: 'Mindfulness',
         img: require("../../assets/activities/feelings.png"),
         tag: 'Anger',
+        level: 'Novice',
     },
     {
         id: 9,
         title: 'milkMilkMilk',
         img: require("../../assets/activities/why.png"),
         tag: 'Anger',
+        level: 'Basic Skills',
     },
     {
         id: 10,
         title: 'boxBreathing',
         img: require("../../assets/activities/feelings.png"),
         tag: 'Worry',
+        level: 'Basic Skills',
     },
 ];
 
-function actCategory(act, navigate, filter) {
-    if (filter === act.tag || filter === 'All Activities'){
+function actCategory(act, navigate, filter, level) {
+    if ((filter === act.tag || filter === 'All Activities') &&
+        (level === act.level || level === 'Basic Skills')){
     return(
         <View key={act.id} style={styles.activity}>
             <TouchableOpacity
@@ -93,7 +104,7 @@ function actCategory(act, navigate, filter) {
     return null;
 }
 
-function buttons(button, setFilter){
+function buttons(button){
     return(
         <TouchableOpacity
             key={button.id} 
@@ -101,7 +112,7 @@ function buttons(button, setFilter){
             onPress = {() => {
                 button.fun(button.stateSet, button.state);
                 console.log(button.title);
-                setFilter(button.title);
+                button.bunType(button.title);
                 }}
         >
             <Text 
@@ -125,6 +136,8 @@ export default Activities =({ navigation: { navigate } })=>{
     const [apprentice, setApp] = useState(false);
     const [master, setMaster] = useState(false);
     const [filter, setFilter] = useState('All Activities');
+    const [level, setlevel] = useState('Basic Skills');
+    const [header, setHeader] = useState(true);
 
     const toggleState = (setState, state) => {toggleAll(); setState(true);}
     const toggleState2 = (setState, state) => {toggleAll2(); setState(true);}
@@ -145,7 +158,7 @@ export default Activities =({ navigation: { navigate } })=>{
     useEffect(() => {    
         // This gets called after every render, by default  
         // (the first one, and every one after that)    
-        console.log('///////////UseEffect///// ' +  filter);  
+        //console.log('///////////UseEffect///// ' +  filter);  
     })
 
     const emos = [
@@ -155,6 +168,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: all,
             stateSet: setAll,
             fun: toggleState,
+            bunType: setFilter,
         },
         {
             id: 2,
@@ -162,6 +176,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: fear,
             stateSet: setFear,
             fun: toggleState,
+            bunType: setFilter,
         },
         {
             id: 3,
@@ -169,6 +184,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: anger,
             stateSet: setAnger,
             fun: toggleState,
+            bunType: setFilter,
         },
         {
             id: 4,
@@ -176,6 +192,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: excitement,
             stateSet: setExcitement,
             fun: toggleState,
+            bunType: setFilter,
         },
         {
             id: 5,
@@ -183,6 +200,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: happy,
             stateSet: setHappy,
             fun: toggleState,
+            bunType: setFilter,
         },
         {
             id: 6,
@@ -190,6 +208,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: worry,
             stateSet: setWorry,
             fun: toggleState,
+            bunType: setFilter,
         }
     ];
     const skills = [
@@ -199,6 +218,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: basic,
             stateSet: setBasic,
             fun: toggleState2,
+            bunType: setlevel,
         },
         {
             id: 2,
@@ -206,6 +226,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: novice,
             stateSet: setNovice,
             fun: toggleState2,
+            bunType: setlevel,
         },
         {
             id: 3,
@@ -213,6 +234,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: apprentice,
             stateSet: setApp,
             fun: toggleState2,
+            bunType: setlevel,
         },
         {
             id: 4,
@@ -220,6 +242,7 @@ export default Activities =({ navigation: { navigate } })=>{
             state: master,
             stateSet: setMaster,
             fun: toggleState2,
+            bunType: setlevel,
         }
     ];
     
@@ -230,24 +253,29 @@ export default Activities =({ navigation: { navigate } })=>{
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {emos.map((button) => {return buttons(button, setFilter);})}
+                {emos.map((button) => {return buttons(button);})}
             </ScrollView>
             <ScrollView 
                 style={styles.btnContainer}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                {skills.map((button) => {return buttons(button, setFilter);})}
+                {skills.map((button) => {return buttons(button);})}
             </ScrollView>
             <View style={styles.headerView}>
-                <Text style={styles.headerTxt}>Learning about our feelings</Text>
+               {header ? (<Text style={styles.headerTxt}>Learning about our feelings</Text>) : null}
                 <ScrollView 
                     style={styles.scrollView}
                     horizontal={true}
                     showsHorizontalScrollIndicator= {false}
                 >
                     {learningFeelings.map((act) => {
-                        return actCategory(act, navigate, filter);
+                        // if (actCategory(act, navigate, filter, level) !== null)
+                        // {
+                        //     console.log("WTF??????????????????????????");
+                        //     //setHeader(true);
+                        // }
+                        return actCategory(act, navigate, filter, level);
                     })}
                 </ScrollView>
             </View>
@@ -259,7 +287,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {uncomfortableFeelings.map((act) => {
-                        return actCategory(act, navigate, filter);
+                        return actCategory(act, navigate, filter, level);
                     })}
                 </ScrollView>  
             </View>
@@ -271,7 +299,7 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {uncomfortableFeelings.map((act) => {
-                        return actCategory(act, navigate, filter);
+                        return actCategory(act, navigate, filter, level);
                     })}
                 </ScrollView>  
             </View>
