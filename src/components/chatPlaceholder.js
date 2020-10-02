@@ -1,13 +1,5 @@
 //This file is a temporary placeholder
-import {
-  TextInput,
-  ImageBackground,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  Keyboard,
-} from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
 const chatPlaceholder = ({ navigation: { navigate } }) => {
