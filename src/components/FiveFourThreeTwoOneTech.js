@@ -8,6 +8,11 @@ import {
 } from "react-native";
 import styles from "../stylesheets/fiveFourThreeTwoOneTechStyles";
 
+/**
+ * In this activity we step through stepData inorder to atchieve our conditional rendering.
+ * On press of the arrow buttons we itterate through the array.
+ * For now we only have a temporay images since they are not finalized.
+ */
 const stepData = [
   {
     id: 1,
@@ -51,6 +56,9 @@ const stepData = [
   },
 ];
 
+/**
+ * Main render function that iterates through the stepData array to display each step.
+ */
 const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
   const [progress, setProgress] = useState(0);
   return (
@@ -78,7 +86,9 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
             <Text>{stepData[progress.valueOf()].direction}</Text>
             <TouchableOpacity
               onPress={() => {
-                progress.valueOf() < 4 ? setProgress(progress + 1) : null;
+                progress.valueOf() < 4
+                  ? setProgress(progress + 1)
+                  : navigate("chatPlaceholder");
               }}
             >
               <Image
@@ -86,13 +96,12 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
               />
             </TouchableOpacity>
           </View>
-          {/* <View> */}
           <View style={styles.cloud}>
             <ImageBackground
               source={require("../../assets/FiveFourThreeTwoOne/thinkCloud.png")}
               style={styles.image}
             >
-              <View style={{ width: 150 }}>
+              <View style={styles.txtCloudContainer}>
                 <Text style={styles.txt}>
                   {stepData[progress.valueOf()].thought}
                 </Text>
@@ -102,8 +111,7 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
           <Image
             source={require("../../assets/FiveFourThreeTwoOne/tmpCharacter.png")}
           />
-          {/* </View> */}
-          <View>
+          <View style={styles.progressText}>
             <Text>Steps {stepData[progress.valueOf()].stepProgress}</Text>
           </View>
           <View>

@@ -129,7 +129,7 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "5-4-3-2-1 Technique",
-              headerTitleStyle: { fontSize: 24 },
+              headerTitleStyle: { fontSize: 24, color: "white" },
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />

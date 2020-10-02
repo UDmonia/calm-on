@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   image: {
     justifyContent: "center",
     textAlign: "center",
-    height: 86,
-    width: 160,
+    height: 103,
+    width: 192,
   },
   slideTitle: {
     fontSize: 24,
@@ -30,21 +30,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "flex-end",
     marginRight: 50,
-    marginTop: 25,
+    marginTop: 75,
     fontSize: 14,
-    height: 86,
-    width: 160,
+    height: 103,
+    width: 192,
   },
   txt: {
-    // justifyContent: "center",
-    // alignItems: "center",
     textAlign: "center",
-    // textAlignVertical: "center",
     color: "white",
+    fontSize: 14,
   },
   zeroProgress: {
     height: 6,
     width: 300,
+  },
+  txtCloudContainer: {
+    alignSelf: "center",
+    width: 150,
+  },
+  progressText: {
+    marginTop: 25,
+    marginBottom: 15,
+    alignSelf: "flex-start",
+    marginLeft: 55,
   },
 });
 
