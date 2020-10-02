@@ -32,3 +32,5 @@ const chatPlaceholder = ({ navigation: { navigate } }) => {
     </View>
   );
 };
+
+export default chatPlaceholder;
