@@ -91,7 +91,7 @@ function actCategory(act, navigate, filter, level) {
     return(
         <View key={act.id} style={styles.activity}>
             <TouchableOpacity
-                onPress = {() => {console.log('activitiy pressed ' + filter); navigate(act.title)}}
+                onPress = {() => {navigate(act.title)}}
         >
                 <Image 
                     source={act.img}/>
@@ -111,7 +111,7 @@ function buttons(button){
             style={button.state ? styles.btnPressed : styles.btnDefult}
             onPress = {() => {
                 button.fun(button.stateSet, button.state);
-                console.log(button.title);
+                //console.log(button.title);
                 button.bunType(button.title);
                 }}
         >
@@ -125,13 +125,13 @@ function buttons(button){
 }
 
 export default Activities =({ navigation: { navigate } })=>{
-    const [all, setAll] = useState(false);
+    const [all, setAll] = useState(true);
     const [fear, setFear] = useState(false);
     const [anger, setAnger] = useState(false);
     const [excitement, setExcitement] = useState(false);
     const [happy, setHappy] = useState(false);
     const [worry, setWorry] = useState(false);
-    const [basic, setBasic] = useState(false);
+    const [basic, setBasic] = useState(true);
     const [novice, setNovice] = useState(false);
     const [apprentice, setApp] = useState(false);
     const [master, setMaster] = useState(false);

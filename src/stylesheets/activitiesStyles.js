@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+ import { StyleSheet } from "react-native";
 import { color } from "react-native-reanimated";
 
 export default StyleSheet.create({
@@ -45,6 +45,8 @@ export default StyleSheet.create({
         marginTop: 30,
         //justifyContent: "flex-start",
         alignItems: 'flex-start',
+        //backgroundColor: 'green',
+        width: '100%',
     },
     headerTxt: {
         width: 290,
@@ -58,7 +60,7 @@ export default StyleSheet.create({
     activity: {
        alignItems: 'flex-start', 
        width: 145,
-       height: 100,
+       height: '100%',
        marginLeft: 26,
        marginRight: -10,
        backgroundColor: 'white', 
@@ -79,6 +81,7 @@ export default StyleSheet.create({
     scrollView:{
         backgroundColor: 'white',
         maxHeight: 130,
+        //height: '100%',
     },
 
     
