@@ -122,6 +122,7 @@ export default function App() {
               headerTitleStyle: { fontSize: 24, color: "white" },
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
+          />
           <Stack.Screen 
             name="Activities" 
             component={Activities}
