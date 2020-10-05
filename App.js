@@ -24,6 +24,8 @@ import FeelingDictionary from "./src/components/FeelingDictionary";
 import kpi from "./src/components/kpi";
 import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
+import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
+import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -110,15 +112,16 @@ export default function App() {
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
-          {/*<Stack.Screen
-            name="spriteChat"
-            component={spriteChat}
+          <Stack.Screen
+            name="FiveFourThreeTwoOne"
+            component={FiveFourThreeTwoOne}
             options={{
               headerShown: true,
-              headerTitle: "Sprite",
-              headerTitleStyle: { fontSize: 24 },
+              headerBackTitleVisible: false,
+              headerTitle: "5-4-3-2-1",
+              headerTitleStyle: { fontSize: 24, color: "white" },
+              headerStyle: { backgroundColor: "#2E7D32" },
             }}
-          />*/}
           <Stack.Screen 
             name="Activities" 
             component={Activities}
@@ -130,6 +133,17 @@ export default function App() {
                 headerStyle: { backgroundColor: "#2E7D32" },
                 headerTintColor: "#FFFFFF",
               }} 
+          />
+          <Stack.Screen
+            name="FiveFourThreeTwoOneTech"
+            component={FiveFourThreeTwoOneTech}
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "5-4-3-2-1 Technique",
+              headerTitleStyle: { fontSize: 24, color: "white" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+            }}
           />
           <Stack.Screen
             name="chatPlaceholder"
