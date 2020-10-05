@@ -57,6 +57,76 @@ const stepData = [
 ];
 
 /**
+ * Function that will display one step
+ * @param progress - progress state that constains the int step for current state
+ * @param setProgress - function that sets the state for the current step
+ * @param navigate - since we are in a function we need to pass navigate inorder to navigate from within it
+ */
+const step = (progress, setProgress, navigate) => {
+  return (
+    <View style={styles.breatheSteps}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.slideTitle}>
+          {stepData[progress.valueOf()].stepTitle}
+        </Text>
+      </View>
+      <View style={styles.row}>
+        <TouchableOpacity
+          onPress={() => {
+            progress.valueOf() > 0 ? setProgress(progress - 1) : null;
+          }}
+        >
+          <Image
+            source={require("../../assets/FiveFourThreeTwoOne/leftArrow.png")}
+          />
+        </TouchableOpacity>
+        <Text>{stepData[progress.valueOf()].direction}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            progress.valueOf() < stepData.length - 1
+              ? setProgress(progress + 1)
+              : navigate("chatPlaceholder");
+          }}
+        >
+          <Image
+            source={require("../../assets/FiveFourThreeTwoOne/rightArrow.png")}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.cloud}>
+        <ImageBackground
+          source={require("../../assets/FiveFourThreeTwoOne/thinkCloud.png")}
+          style={styles.image}
+        >
+          <View style={styles.txtCloudContainer}>
+            <Text style={styles.txt}>
+              {stepData[progress.valueOf()].thought}
+            </Text>
+          </View>
+        </ImageBackground>
+      </View>
+      <Image
+        source={require("../../assets/FiveFourThreeTwoOne/tmpCharacter.png")}
+      />
+      <View style={styles.progressText}>
+        <Text>Steps {stepData[progress.valueOf()].stepProgress}</Text>
+      </View>
+      <View>
+        <ImageBackground
+          source={require("../../assets/FiveFourThreeTwoOne/progress0.png")}
+          style={styles.zeroProgress}
+        >
+          <Image
+            source={stepData[progress.valueOf()].progressImg}
+            style={styles.breatheSteps}
+          />
+        </ImageBackground>
+      </View>
+    </View>
+  );
+};
+
+/**
  * Main render function that iterates through the stepData array to display each step.
  */
 const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
@@ -67,65 +137,7 @@ const FiveFourThreeTwoOneTech = ({ navigation: { navigate } }) => {
         source={require("../../assets/FiveFourThreeTwoOne/background.png")}
         style={styles.background}
       >
-        <View style={styles.breatheSteps}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.slideTitle}>
-              {stepData[progress.valueOf()].stepTitle}
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <TouchableOpacity
-              onPress={() => {
-                progress.valueOf() > 0 ? setProgress(progress - 1) : null;
-              }}
-            >
-              <Image
-                source={require("../../assets/FiveFourThreeTwoOne/leftArrow.png")}
-              />
-            </TouchableOpacity>
-            <Text>{stepData[progress.valueOf()].direction}</Text>
-            <TouchableOpacity
-              onPress={() => {
-                progress.valueOf() < 4
-                  ? setProgress(progress + 1)
-                  : navigate("chatPlaceholder");
-              }}
-            >
-              <Image
-                source={require("../../assets/FiveFourThreeTwoOne/rightArrow.png")}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.cloud}>
-            <ImageBackground
-              source={require("../../assets/FiveFourThreeTwoOne/thinkCloud.png")}
-              style={styles.image}
-            >
-              <View style={styles.txtCloudContainer}>
-                <Text style={styles.txt}>
-                  {stepData[progress.valueOf()].thought}
-                </Text>
-              </View>
-            </ImageBackground>
-          </View>
-          <Image
-            source={require("../../assets/FiveFourThreeTwoOne/tmpCharacter.png")}
-          />
-          <View style={styles.progressText}>
-            <Text>Steps {stepData[progress.valueOf()].stepProgress}</Text>
-          </View>
-          <View>
-            <ImageBackground
-              source={require("../../assets/FiveFourThreeTwoOne/progress0.png")}
-              style={styles.zeroProgress}
-            >
-              <Image
-                source={stepData[progress.valueOf()].progressImg}
-                style={styles.breatheSteps}
-              />
-            </ImageBackground>
-          </View>
-        </View>
+        {step(progress, setProgress, navigate)}
       </ImageBackground>
     </View>
   );
