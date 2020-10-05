@@ -270,11 +270,6 @@ export default Activities =({ navigation: { navigate } })=>{
                     showsHorizontalScrollIndicator= {false}
                 >
                     {learningFeelings.map((act) => {
-                        // if (actCategory(act, navigate, filter, level) !== null)
-                        // {
-                        //     console.log("WTF??????????????????????????");
-                        //     //setHeader(true);
-                        // }
                         return actCategory(act, navigate, filter, level);
                     })}
                 </ScrollView>

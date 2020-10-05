@@ -37,18 +37,6 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{ headerShown: false, animationEnabled: false }}
         >
-          {/* <Stack.Screen 
-            name="Activities" 
-            component={Activities}
-            options= {{
-                headerShown: true,
-                headerBackTitleVisible: false,
-                headerTitle: "Activities",
-                headerTitleStyle: { fontSize: 20, color: "#424242" },
-                headerStyle: { backgroundColor: "#2E7D32" },
-                headerTintColor: "#424242",
-              }} 
-          /> */}
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
@@ -143,11 +131,11 @@ export default function App() {
                 headerTintColor: "#FFFFFF",
               }} 
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="chatPlaceholder"
             options={{ headerShown: true }}
             component={ChatPlaceholder}
-          /> */}
+          />
           <Stack.Screen
             name="boxBreathing"
             options={{ headerShown: true, headerTitle: "Box Breathing" }}
