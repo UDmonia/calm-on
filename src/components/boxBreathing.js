@@ -7,8 +7,8 @@ const Intro = ({title,statArray,about,helpful,start})=>{
     const [voice,setVoice] = useState(false)
 
     return(
-        <View style = {styles.container}>
-            {/*<Intro/>*/}
+            //{/*<Intro/>*/}
+            <View>
             <View style = {styles.upper}></View>
             <View style = {styles.lower}>
                 <Text style = {styles.title}>Box Breathing</Text>
@@ -54,19 +54,22 @@ const Intro = ({title,statArray,about,helpful,start})=>{
                 </TouchableOpacity>
                 </View>*/}
 
-                <TouchableOpacity style = {styles.start}>
+                <TouchableOpacity onPress = {()=>start(true)} style = {styles.start}>
                     <Text style = {styles.startText}>Start Box Breathing</Text>
                 </TouchableOpacity>
 
-                <Text></Text>
             </View>
-        </View>
+            </View> 
     )
 }
 
 const boxBreathing =()=>{
     //const [location,setLocation] = useState({x:100,y:500})
     const [start,setStart] = useState(false)
+    const [text,setText] = useState('Get Ready')
+    const [timer,setTimer] = useState(0)
+    //const [countDown,isCountdown] = useState(false)
+    const getReady = 3000
     const length1 = useRef(new Animated.Value(0)).current
     const length2 = useRef(new Animated.Value(300)).current
     const length3 = useRef(new Animated.Value(310)).current
@@ -75,6 +78,38 @@ const boxBreathing =()=>{
     //const height = useRef(new Animated.Value(10)).current
 
     useEffect(()=>{
+        console.log('start?',start)
+        //console.log('counting down',countDown)
+
+        //const time = setInterval(()=>{
+        //    setTimer(timer+1)
+        //},1000)
+        
+         
+        setTimeout(()=>{
+            setText('Start!')
+        },2400)
+
+        setTimeout(()=>{
+            setText('Breathe In...')
+        },3000)
+
+        setTimeout(()=>{
+            setText('Hold Air In...')
+        },7000)
+
+        setTimeout(()=>{
+            setText('Breathe Out...')
+        },11000)
+
+        setTimeout(()=>{
+            setText('Hold Air Out...')
+        },15000)
+
+        setTimeout(()=>{
+            setText('Finished!')
+        },19000)
+        
 
     Animated.sequence([
         Animated.timing(
@@ -82,6 +117,7 @@ const boxBreathing =()=>{
             {
                 toValue: {x:300,y:330},
                 useNativeDriver: false,
+                delay:getReady,
                 duration:4000,
 
             }
@@ -122,36 +158,38 @@ const boxBreathing =()=>{
         Animated.timing(length1,{
             toValue: 290,
             duration: 4000,
+            delay:getReady,
             useNativeDriver:false
         }).start()
 
         
         Animated.timing(length2,{
             toValue: 0,
-            delay:4000,
+            delay:4000+getReady,
             duration: 4000,
             useNativeDriver:false
         }).start()
 
         Animated.timing(length3,{
             toValue: 0,
-            delay:8000,
+            delay:8000+getReady,
             duration: 4000,
             useNativeDriver:false
         }).start()
 
         Animated.timing(length4,{
             toValue:285,
-            delay:12000,
+            delay:12000+getReady,
             duration: 4000,
             useNativeDriver:false
         }).start()
 
-    },[])
+    },[timer])
 
     const animated1 = {
         position: 'absolute',
         left:60,
+        top: 395,
         width: length1,
         borderWidth:10,
         borderColor:'#7990AF',
@@ -192,11 +230,21 @@ const boxBreathing =()=>{
 
     //}
 
+    const startActivity =()=>{
+        setStart(true)
+    }
+
     return (
-        //<Intro/>
+        <View>
+        {!start?
+            <Intro start = {setStart}/>:
+
+        
         <View style = {styles.container}>
-            
-            {/*<View style = {styles.cover}></View>*/}
+            {/*{!start?
+            <Intro start = {setStart}/>:*/}
+            {/*//<View style = {styles.cover}></View>*/}
+        <Text style = {styles.text}>{text} {timer}</Text>
             <Animated.View style = {[animated1]}>
             </Animated.View>
             <Animated.View style = {styles.bottomFrame}></Animated.View>
@@ -216,11 +264,24 @@ const boxBreathing =()=>{
                 <Image source = {require('../../assets/boxBreathing/spirit.png')} />
             </Animated.View>
         </View>
+        }
+        </View>
+
     )
 }
 
 
 const styles = StyleSheet.create({
+    text:{
+        position: 'absolute',
+        top:240,
+        left:50,
+        fontSize:40,
+        color:'#7990AF',
+        //borderWidth:1,
+        width:300,
+        textAlign:'center'
+    },
     bottomFrame: {
         position: 'absolute',
         top:394,
@@ -238,14 +299,14 @@ const styles = StyleSheet.create({
         left:30,
         borderWidth:10,
         width: 30,
-        borderColor:'white',
+        borderColor:'#F2F2F2',
     },
     coverTop:{
         position: 'absolute',
-        top:115,
+        top:113,
         width:300,
-        borderWidth:10,
-        borderColor:'white',
+        borderWidth:11,
+        borderColor:'#F2F2F2',
         zIndex:4,
     },
     coverLeft:{
@@ -287,7 +348,6 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'white'
     },
     stats:{
         fontSize: 20,

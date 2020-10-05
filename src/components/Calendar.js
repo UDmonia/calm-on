@@ -11,7 +11,7 @@ import {Box} from './previewEntries'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 var today = Date.now()
 
-export default Calendar =({navigation: { navigate} })=>{
+const Calendar =({navigation: { navigate} })=>{
     
     //fake data
     //const journals = 
@@ -48,6 +48,9 @@ export default Calendar =({navigation: { navigate} })=>{
     for (const prop in checkinObject) {
         journals.push({journals:checkinObject[prop], _id:prop, date:prop})
     }
+
+    //for preview purpose only
+    journals.reverse()
 
 
     //const journals = []
@@ -150,6 +153,8 @@ export default Calendar =({navigation: { navigate} })=>{
     )
 }
 
+export default Calendar
+
 const style = StyleSheet.create({
     format:{
         padding: 0,
@@ -191,6 +196,7 @@ const style = StyleSheet.create({
     dates:{
         marginTop: '5%',
         height: '100%',
+        //borderWidth:1
     },
     hangerLeft:{
         position:'absolute',

@@ -11,14 +11,12 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
     return(
         <View style = {styles.container}>
         {empty? 
-            <TouchableOpacity onPress = {()=>navigation.navigate("DailyCheckIn")} style = {styles.box}>
-                <View style = {styles.iconBox}>
-                    <Image source = {require('../../assets/addJournal.png')}/>
-                </View>
-                <Text style = {styles.journalTitle}>Tell me how you're feeling</Text>
+            <TouchableOpacity onPress = {()=>navigation.navigate("DailyCheckIn")} style = {{...styles.box}}>
+                    <Image style = {{marginLeft:20,marginTop:20}} source = {require('../../assets/addJournal.png')}/>
+                <Text style = {{...styles.journalTitle,marginTop:10,marginRight:20}}>Tell me how you're feeling</Text>
             </TouchableOpacity>
         :
-            <View>
+            <View >
                 <Text style = {styles.time}>{moment(time).format('LT')}</Text>
                 <TouchableOpacity  onPress = {()=>showJournal(time)} 
                     style = {{...styles.box,backgroundColor:color}}
@@ -28,7 +26,6 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
                         </View>
                     <View>
 
-                    {/*Tell Luis to capitalize mood string */}
                     <Text style = {styles.journalTitle}>{mood.charAt(0).toUpperCase()+mood.slice(1)}</Text> 
                     <Text style = {styles.journal}>{journal}</Text>
                     </View>
@@ -40,7 +37,7 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
 
 } 
 
-export default previewEntries = ({journals,date,showJournal})=>{
+const previewEntries = ({journals,date,showJournal})=>{
 
     //fake data
     const moodMap = {
@@ -68,20 +65,13 @@ export default previewEntries = ({journals,date,showJournal})=>{
     
     return (
         <View >
-        
-        {/*search for if today's date is in the journal array, if not add to the top*/}
-        {/*{checkInEnabled &&
-            <Box empty = {true} color = {'white'} image = {require('../../assets/addJournal.png')} time = {null} mood = {null} journal = {''} />
-        }*/}
-
-        <Text style = {styles.date}>{date}</Text>
-        
-        {/*cannot find today's date then show option to add journal*/}
-        
-        {journalList}
+            <Text style = {styles.date}>{date}</Text>
+            {journalList}
         </View>
     )
 }
+
+export default previewEntries
 
 const styles = StyleSheet.create({
     iconBox:{
@@ -89,17 +79,21 @@ const styles = StyleSheet.create({
         backgroundColor:'white', 
         justifyContent:'center',
         alignItems:'center',
+        borderTopLeftRadius:5,
+        borderBottomLeftRadius:5
     },
     box: {
         display: 'flex',
         height: 90,
         flexDirection:'row',
         borderRadius: 5,
-        marginTop: '3%',
-        shadowColor:'#adb5bd',
-        //shadowRadius:3,
-        shadowOpacity: 0.7,
-        shadowOffset: {width:-1,height:1},
+        margin:'1.2%',
+        marginTop:'2%',
+        backgroundColor:'#edf2f4',
+        shadowColor:`rgba(0, 0, 0, 0.15)`,
+        shadowOpacity: 1,
+        shadowOffset: {width:0,height:0},
+        //borderWidth:1,
 
     },
     container:{
@@ -108,7 +102,8 @@ const styles = StyleSheet.create({
         height: 130,
         marginTop: '0.5%',
         marginBottom: '2.5%',
-        marginLeft:'3.5%'
+        marginLeft:'3.5%',
+        borderRadius:5
     },
     date:{
         fontFamily: 'Avenir',
@@ -132,6 +127,7 @@ const styles = StyleSheet.create({
     time:{
         fontWeight:'500',
         fontSize: 15,
+        marginLeft:'3%'
 
     },
     journalTitle: {

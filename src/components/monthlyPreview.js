@@ -6,8 +6,11 @@ import moment from 'moment'
 import {useSelector} from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 
+
+//Date global variables
 var date = new Date()
 var year = date.getFullYear()
+var currentMonth = date.getMonth()
 
 //const journals = 
 ////Omit 'Z' from the time stamp for actual time
@@ -43,54 +46,104 @@ var year = date.getFullYear()
 //            _id: '4'},
 //        ]
 
-
-export default MonthlyPreview =()=>{
+const MonthlyPreview =()=>{
     const navigation = useNavigation()
+
+    //Get check-in object from redux
     const checkinObject= useSelector(state=>state.session.user.checkIns)
-    //const checkinObject = checkIns
+
+    //Initialize empty check-ins array
     const journals = []
+
+    //Map each check-in object into the check-in array
+    //Format checkin {day1:{checkin1:[]}, day2:{checkin2:[]}} ===> checkin [{date:day1,checkins1:[]},{date:day2,checkins2:[]}]
     for (const prop in checkinObject) {
         journals.push({journals:checkinObject[prop], _id:prop, date:prop})
     }
-    //useEffect(()=>console.log('testJournals',testJournals))
+
+    //For previewing check-ins
+    journals.reverse()
 
 
+    //Render the data for Flatlist
     const renderItem = (({item})=>{
-        //console.log('Item:',item)
+        //find each check-in by '_id'
         const findJournal = journals.find(journal=>journal['_id'] === item.id)
+
         return (
+        //Return the icons that corresponds to the date and the moods
+
         <DayIcon 
+        //showJournal: navigates to the 'CheckinDetail'
+        //entry: locates the exact check-in and renders it in the 'CheckinDetail' page
+        //allEntries: helps 'CheckinDetail' to locate the index of the exact check-in in the journals array so user can change dates in 'CheckinDetail'
+        //item: this a special thing for Flatlist
         showJournal = {()=>navigation.navigate('CheckinDetail',{
             entry:findJournal, allEntries: journals
         })}
          item = {item}/>
         )
     })
-    const [index,setIndex] = useState(0)
+
+    //Month number is zero-based, i.e 'january' == 0 
+    //set initial month to be the current month
+    const [month,setMonth] = useState(currentMonth)
+
+    //Retrieve the starting month from the first item of the journals array, if no check-ins yet then just start at the current month
+    const startMonth = journals? new Date(journals[journals.length-1].journals[0].createdAt).getMonth():currentMonth
+    
+
+    //useEffect(()=>{
+    //    console.log('first month',new Date(journals[journals.length-1].journals[0].createdAt).getMonth())
+    //})
 
 
-    const numDays = new Date(year,index+1,0).getDate()
+    const numDays = new Date(year,month+1,0).getDate()
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
+    //Map each check-in ONE MONTH at a time from journals array, this is used by Flatlist as a data source
     const makeData =()=>{
+
+        //Initialize empty array
         const days = []
+
+
+        //Loop through the number of days of the current month starting at day 1
         for (var i = 1; i <= numDays; i++){
-            const pushToCalendar = mapJournals.find(journal => journal.date == i && journal.month == index+1)
+
+            //Finds a check-in in the journals array where the day and the month is the same as the index and the current month
+            const pushToCalendar = mapJournals.find(journal => journal.date == i && journal.month == month+1)
+
+            //if pushToCalendar array is not empty, add the re-format object into the days array
             if (pushToCalendar){
-            days.push({DOW:pushToCalendar.DOW,month:index+1,key:i,day:i,id:pushToCalendar.id,journals:pushToCalendar.journals})
+            days.push({DOW:`${moment(new Date(year,month,i)).format('dddd')}`,month:month,key:i,day:i,id:pushToCalendar.id,journals:pushToCalendar.journals})
             }
+
+            //if pushtoCalendar array is empty, meaning no check-ins, then add just the empty day without any check-ins into the days array
             else{
-                days.push({DOW:`${moment(new Date(year,index,i)).format('dddd')}`,id:null,month:index+1,key:i,day:i})
+                days.push({DOW:`${moment(new Date(year,month,i)).format('dddd')}`,id:null,month:month+1,key:i,day:i})
             }
         }
-        //console.log('return days', days)
+
+        //Check if next month is empty
+        //const findAllNextMonth = mapJournals.filter(journal=>journal.month == month+2)
+        //const findAllPrevMonth = mapJournals.filter(journal=>journal.month == month-2)
+        //if (findAllNextMonth.length === 0){
+        //    setEmpty(true)
+        //}
+        //console.log('Next month',findAllNextMonth)
+
+        
+        //The final days array will contain all days of the current month
         return days
     }
 
+    //Re-format the existing journals array from Redux store
     const mapJournals = journals.map((journal,index)=>(
-        {id:journal['_id'],month: `${new Date(journal.date).getMonth()+1}`,date:`${new Date(journal.date).getDate()}`,journals:journal.journals,DOW:moment(journal.createdAt).format('dddd')}
+        {id:journal['_id'],month: `${new Date(journal.date).getMonth()+1}`,date:`${new Date(journal.date).getDate()}`,journals:journal.journals}
     ))
 
+    //call the makeData array
     const data = makeData()
     
    
@@ -115,17 +168,17 @@ export default MonthlyPreview =()=>{
         <View style = {styles.container}>
 
             <View style = {styles.header}>
-                {index > 0?
-                <TouchableOpacity onPress = {()=>setIndex(index-1)} >
+                {month > startMonth ?
+                <TouchableOpacity onPress = {()=>setMonth(month-1)} >
                     <Image source = {require('../../assets/prevMonth.png')}/>
                 </TouchableOpacity>
                 :
                     <Image source = {require('../../assets/leftDisabled.png')}/>
                 }
 
-    <Text style = {styles.date}>{months[index]} {year}</Text>
-                {index < 11?
-                <TouchableOpacity onPress = {()=>setIndex(index+1)} >
+    <Text style = {styles.date}>{months[month]} {year}</Text>
+                {month < currentMonth?
+                <TouchableOpacity onPress = {()=>setMonth(month+1)} >
                     <Image source = {require('../../assets/nextMonth.png')}/>
                 </TouchableOpacity>
                 :
@@ -133,7 +186,9 @@ export default MonthlyPreview =()=>{
                 }
             </View>
 
+        {journals.length == 0? <Text>No Check-ins yet :(</Text>:
             <FlatList keyExtractor = {(item,index)=>index.toString()} data = {data} renderItem = {renderItem}  />
+        }
         </View>
     )
     //    <Calendar 
@@ -147,6 +202,8 @@ export default MonthlyPreview =()=>{
     //    theme = {theme} hideExtraDays = {true} firstDay = {1}/>
     //)
 }
+
+export default MonthlyPreview
 
 const styles = StyleSheet.create({
     container: {

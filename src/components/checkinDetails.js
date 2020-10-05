@@ -15,7 +15,7 @@ const moodMap = {
 }
 
 
-export default checkinDetails =({route})=>{
+const checkinDetails =({route})=>{
     const navigation = useNavigation()
     const {entry,allEntries,time} = route.params
 
@@ -60,10 +60,10 @@ export default checkinDetails =({route})=>{
             {/*Date increase/decrease*/}
                 <View style = {styles.header}>
                 {/*{index > 0?*/}
-                {currentEntryIndex > 0? 
+                {currentEntryIndex < allEntries.length-1? 
                 <TouchableOpacity onPress = {()=>{
-                    setEntryIndex(currentEntryIndex-1)
-                    setJournal(allEntries[currentEntryIndex-1].journals[0])
+                    setEntryIndex(currentEntryIndex+1)
+                    setJournal(allEntries[currentEntryIndex+1].journals[0])
                     setActive(0)
                     }}>
                     <Image source = {require('../../assets/prevMonth.png')}/>
@@ -75,10 +75,10 @@ export default checkinDetails =({route})=>{
 
                     <Text style = {styles.date}>{moment(journal.createdAt).format('LL')}</Text>
                 {/*{index < 11?*/}
-                {currentEntryIndex < allEntries.length-1 ?
+                {currentEntryIndex > 0?
                 <TouchableOpacity TouchableOpacity onPress = {()=>{
-                    setEntryIndex(currentEntryIndex+1)
-                    setJournal(allEntries[currentEntryIndex+1].journals[0])
+                    setEntryIndex(currentEntryIndex-1)
+                    setJournal(allEntries[currentEntryIndex-1].journals[0])
                     setActive(0)
                     }} >
                     <Image source = {require('../../assets/nextMonth.png')}/>
@@ -121,6 +121,8 @@ export default checkinDetails =({route})=>{
 </View>
     )
 }
+
+export default checkinDetails
 
 const styles = StyleSheet.create({
     container:{
