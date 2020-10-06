@@ -277,7 +277,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
           style={styles.buttons}
           onPress={() => {
             handleAddEmotion();
-            navigate("Home");
+            curFeeling !== ""
+              ? navigate("CheckInExplain", { feeling: curFeeling })
+              : null;
           }}
         >
           <Image

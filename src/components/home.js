@@ -39,7 +39,7 @@ const aurora = {
 
 const checkInExists = () => {
   var res = false;
-  const checkIns = []
+  const checkIns = [];
   //useSelector((state) =>
   //  state.session.user.checkIns ? state.session.user.checkIns : []
   //);
@@ -58,13 +58,12 @@ const checkInExists = () => {
 };
 
 const Home = ({ props, navigation: { navigate } }) => {
-  if (checkInExists()) {
-    navigate("DailyCheckIn");
-  }
-  const userName = 'jack'
-  //useSelector((state) =>
-  //  state.session.user.name ? state.session.user.name : "user"
-  //);
+  // if (checkInExists()) {
+  navigate("DailyCheckIn");
+  // }
+  const userName = useSelector((state) =>
+    state.session.user.name ? state.session.user.name : "user"
+  );
   if (userName === "user") {
     // console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });

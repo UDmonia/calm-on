@@ -1,17 +1,59 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import "../stylesheets/checkInExplainStyles";
+
+const imgPaths = [
+  {
+    id: 1,
+    feelingName: "Happy",
+    path: require("../../assets/emotions/happySelected.png"),
+  },
+  {
+    id: 2,
+    feelingName: "Excited",
+    path: require("../../assets/emotions/excitedSelected.png"),
+  },
+  {
+    id: 3,
+    feelingName: "Scared",
+    path: require("../../assets/emotions/scaredSelected.png"),
+  },
+  {
+    id: 4,
+    feelingName: "Worried",
+    path: require("../../assets/emotions/worriedSelected.png"),
+  },
+  {
+    id: 5,
+    feelingName: "Sad",
+    path: require("../../assets/emotions/sadSelected.png"),
+  },
+  {
+    id: 6,
+    feelingName: "Angry",
+    path: require("../../assets/emotions/angrySelected.png"),
+  },
+];
+
+const getPath = (feeling) => {
+  var path = require("../../assets/emotions/happySelected.png");
+  imgPaths.forEach((img) => {
+    if (img.feelingName === feeling) {
+      path = img.path;
+    }
+  });
+  return path;
+};
 
 const CheckInExplain = ({ route, navigation: { navigate } }) => {
   const [value, onChangeText] = React.useState("Useless Placeholder");
   const { feeling } = route.params;
+  const img = getPath(feeling);
 
   return (
     <View style={styles.tmp}>
-      <Image
-        style={styles.feelingImg}
-        source={require("../../assets/Scared.png")}
-      />
+      <Image style={styles.feelingImg} source={img} />
       <Text style={styles.txtFeeling}>Today I'm feeling {feeling}!</Text>
       <Text style={styles.txtOptional}>
         Tell me why you're feeling {feeling}...(optional)
@@ -21,9 +63,6 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
         placeholder={""}
         onChangeText={(text) => onChangeText(text)}
         multiline
-        // onChangeText={handleChange("name")}
-        // clearButtonMode="while-editing"
-        // value={name}
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -91,9 +130,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 305,
     height: 345,
-    // textAlign: "center",
-    // justifyContent: "center",
-    // alignItems: "center",
     marginTop: 10,
   },
   feelingImg: {
