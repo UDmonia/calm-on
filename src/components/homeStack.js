@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './home'
 import Calendar from './checkInStack'
 import Achievement from './Achievement'
-import Newsfeed from './Newsfeed'
+//import Newsfeed from './Newsfeed'
 import Profile from './profile'
 import React from 'react'
 import {Image} from 'react-native'

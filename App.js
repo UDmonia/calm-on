@@ -11,7 +11,8 @@ import Storytime from "./src/components/storytime.js";
 import MilkMilkMilk from "./src/components/milkMilkMilk";
 import Profile from "./src/components/profile.js";
 import Mindfulness from "./src/components/mindfulnessStack";
-import spriteChat from "./src/components/spriteChat";
+//import spriteChat from "./src/components/spriteChat";
+import Counting from "./src/components/Counting";
 import { Provider } from "react-redux";
 import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
@@ -42,6 +43,18 @@ export default function App() {
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
+          <Stack.Screen 
+            name="Counting" 
+            component={Counting}
+            options= {{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "Counting",
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            }} 
+          />
           <Stack.Screen
             name="DailyCheckIn"
             component={DailyCheckIn}

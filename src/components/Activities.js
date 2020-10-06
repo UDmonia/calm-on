@@ -10,8 +10,8 @@ import painter from "../../assets/activities/painter.png"
 const learningFeelings = [
     {
         id: 1,
-        title: "milkMilkMilk",
-        img: require("../../assets/activities/feelings.png"),
+        title: "Counting",
+        img: require("../../assets/activities/counting.png"),
         tag: 'Fear',
         level: 'Basic Skills',
     },
