@@ -1,24 +1,31 @@
 import React, { useEffect} from 'react';
-import { Text, View, Image , StyleSheet} from 'react-native';
+import { Text, View, Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import moment from 'moment'
 import { useNavigation } from '@react-navigation/native'
+import styles from '../stylesheets/previewEntriesStyles'
 
-var today = Date.now()
-
+/**
+ * Used in previewEntires.js (Daily Preview) for each check-in
+ * @param mood Mood in each check-in 
+ * @param journal User selected emotion state string
+ * @param time Time of the day of the check-in
+ * @param image Emoji associated with the mood
+ * @param showJournal Function used to locate check-in by time param and display in detailed view
+ * @param color BackgroundColor of the box container
+ * @param empty Empty is true if there's zero or less than four check-ins for the day
+ */
 export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
     const navigation = useNavigation()
     return(
         <View style = {styles.container}>
         {empty? 
-            <TouchableOpacity onPress = {()=>navigation.navigate("DailyCheckIn")} style = {styles.box}>
-                <View style = {styles.iconBox}>
-                    <Image source = {require('../../assets/addJournal.png')}/>
-                </View>
-                <Text style = {styles.journalTitle}>Tell me how you're feeling</Text>
+            <TouchableOpacity onPress = {()=>navigation.navigate("DailyCheckIn")} style = {{...styles.box}}>
+                    <Image style = {{marginLeft:20,marginTop:20}} source = {require('../../assets/addJournal.png')}/>
+                <Text style = {{...styles.journalTitle,marginTop:10,marginRight:20}}>Tell me how you're feeling</Text>
             </TouchableOpacity>
         :
-            <View>
+            <View >
                 <Text style = {styles.time}>{moment(time).format('LT')}</Text>
                 <TouchableOpacity  onPress = {()=>showJournal(time)} 
                     style = {{...styles.box,backgroundColor:color}}
@@ -28,7 +35,6 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
                         </View>
                     <View>
 
-                    {/*Tell Luis to capitalize mood string */}
                     <Text style = {styles.journalTitle}>{mood.charAt(0).toUpperCase()+mood.slice(1)}</Text> 
                     <Text style = {styles.journal}>{journal}</Text>
                     </View>
@@ -40,9 +46,18 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
 
 } 
 
-export default previewEntries = ({journals,date,showJournal})=>{
 
-    //fake data
+/**
+ * 
+ * @param journals Check-ins array of a specific day
+ * @param date Date of the check-in
+ * @param showJournal Function used to locate check-in by time param
+ */
+const previewEntries = ({journals,date,showJournal})=>{
+
+/**
+ * Contains all images associated with each emotion
+ */
     const moodMap = {
         happy: {path:require('../../assets/preview/happy.png'), color: '#FBC423'},
         angry: {path:require('../../assets/preview/angry.png'), color: '#F09696'},
@@ -51,94 +66,21 @@ export default previewEntries = ({journals,date,showJournal})=>{
         excited: {path:require('../../assets/preview/excited.png'), color: '#AED4B0'},
         worried: {path:require('../../assets/preview/worried.png'), color: '#E8B285'}
     }
-
     
-    
+    /**
+     * Map out each check-ins of the day and display them through Box.js
+     */
     const journalList = journals.map((journal,i)=>(
         <Box  color = {moodMap[journal.mood].color} image = {moodMap[journal.mood].path} key = {i} showJournal = {showJournal} journal = {journal.journal} mood = {journal.mood} time = {journal.createdAt}/>
     ))
-
-
-    //useEffect(()=>{
-    //    //console.log('before',render)
-    //    //render = false
-    //    //console.log('after',render)
-    //},[])
-
     
     return (
         <View >
-        
-        {/*search for if today's date is in the journal array, if not add to the top*/}
-        {/*{checkInEnabled &&
-            <Box empty = {true} color = {'white'} image = {require('../../assets/addJournal.png')} time = {null} mood = {null} journal = {''} />
-        }*/}
-
-        <Text style = {styles.date}>{date}</Text>
-        
-        {/*cannot find today's date then show option to add journal*/}
-        
-        {journalList}
+            <Text style = {styles.date}>{date}</Text>
+            {journalList}
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    iconBox:{
-        width: '25%',
-        backgroundColor:'white', 
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    box: {
-        display: 'flex',
-        height: 90,
-        flexDirection:'row',
-        borderRadius: 5,
-        marginTop: '3%',
-        shadowColor:'#adb5bd',
-        //shadowRadius:3,
-        shadowOpacity: 0.7,
-        shadowOffset: {width:-1,height:1},
+export default previewEntries
 
-    },
-    container:{
-        margin:'2.5%',
-        width: '92%',
-        height: 130,
-        marginTop: '0.5%',
-        marginBottom: '2.5%',
-        marginLeft:'3.5%'
-    },
-    date:{
-        fontFamily: 'Avenir',
-        fontWeight:'800',
-        fontSize: 20,
-        marginLeft: '3%',
-        marginBottom: '2%'
-    },
-    journal:{
-        fontSize: 14,
-        width: 200,
-        paddingBottom:'5%',
-        textAlign:'left',
-        marginLeft:'8%'
-    },
-    icon:{
-        margin:'3%',
-        marginLeft:'7%',
-        marginTop:'4%'
-    },
-    time:{
-        fontWeight:'500',
-        fontSize: 15,
-
-    },
-    journalTitle: {
-        textAlign:'left',
-        marginLeft:'8%',
-        paddingTop:'5%',
-        paddingBottom:'5%',
-        fontSize: 17,
-    }
-})
