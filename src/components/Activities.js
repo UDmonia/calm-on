@@ -7,6 +7,7 @@ import nums from "../../assets/activities/54321.png";
 import counting from "../../assets/activities/counting.png";
 import painter from "../../assets/activities/painter.png"
 
+//Activity data
 const learningFeelings = [
     {
         id: 1,
@@ -85,6 +86,14 @@ const uncomfortableFeelings = [
     },
 ];
 
+/*
+* @param act - activity object containig activity data 
+*    (see objects in learningFeelings)
+* @param navigate - navigation function pointer
+* @param filter - filter state used for filter activities
+* @param level - level state used for setting difficulty 
+* Function returns a View container for passed activity object data. 
+*/
 function actCategory(act, navigate, filter, level) {
     if ((filter === act.tag || filter === 'All Activities') &&
         (level === act.level || level === 'Basic Skills')){
@@ -104,6 +113,11 @@ function actCategory(act, navigate, filter, level) {
     return null;
 }
 
+/*
+* @param button - button object containig button data (see objects in emos)
+* The following function takes the data found in the passed parameter object
+* and returns a TouchableOpacity object.
+*/
 function buttons(button){
     return(
         <TouchableOpacity
@@ -111,7 +125,6 @@ function buttons(button){
             style={button.state ? styles.btnPressed : styles.btnDefult}
             onPress = {() => {
                 button.fun(button.stateSet, button.state);
-                //console.log(button.title);
                 button.bunType(button.title);
                 }}
         >
@@ -154,13 +167,7 @@ export default Activities =({ navigation: { navigate } })=>{
                                 setApp(false);
                                 setMaster(false);    
     }
-
-    useEffect(() => {    
-        // This gets called after every render, by default  
-        // (the first one, and every one after that)    
-        //console.log('///////////UseEffect///// ' +  filter);  
-    })
-
+    //Button data
     const emos = [
         {
             id: 1,

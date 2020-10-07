@@ -11,7 +11,6 @@ import Storytime from "./src/components/storytime.js";
 import MilkMilkMilk from "./src/components/milkMilkMilk";
 import Profile from "./src/components/profile.js";
 import Mindfulness from "./src/components/mindfulnessStack";
-//import spriteChat from "./src/components/spriteChat";
 import Counting from "./src/components/Counting";
 import { Provider } from "react-redux";
 import configureStore from "./src/store/store";

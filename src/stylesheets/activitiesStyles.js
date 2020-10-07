@@ -41,11 +41,8 @@ export default StyleSheet.create({
         color: '#A5A4A4'
     },
     headerView: {
-        //marginLeft: 26,
         marginTop: 30,
-        //justifyContent: "flex-start",
         alignItems: 'flex-start',
-        //backgroundColor: 'green',
         width: '100%',
     },
     headerTxt: {
@@ -55,17 +52,13 @@ export default StyleSheet.create({
         fontWeight: '500',
         lineHeight: 20,
         color: '#425054',
-        //marginLeft: 26,
         marginLeft: 18,
     },
     activity: {
        alignItems: 'flex-start', 
        width: 145,
        height: '100%',
-       //marginLeft: 26,
-       //marginRight: -10,
        marginLeft: 18,
-       //marginRight: -10,
        backgroundColor: 'white', 
        borderRadius: 5,
     },
@@ -84,8 +77,5 @@ export default StyleSheet.create({
     scrollView:{
         backgroundColor: 'white',
         maxHeight: 130,
-        //height: '100%',
     },
-
-    
 });
