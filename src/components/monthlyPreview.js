@@ -1,50 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList,Image,StyleSheet, View,Text} from 'react-native';
+import {FlatList,Image, View,Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DayIcon from './dayIcon'
 import moment from 'moment'
 import {useSelector} from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
+import styles from '../stylesheets/monthlyPreviewStyles'
 
 
 //Date global variables
 var date = new Date()
 var year = date.getFullYear()
 var currentMonth = date.getMonth()
-
-//const journals = 
-////Omit 'Z' from the time stamp for actual time
-////Loop through user.checkin object
-////
-//[
-//{journals: [{time:"2020-08-09T10:00:00.000",journal:'i am excited',mood:'excited'},
-//            {time:"2020-08-09T07:15:00.000",journal:'i am sad',mood:'sad'},
-//            {time:"2020-08-09T11:15:00.000",journal:'i am angry',mood:'angry'},
-//            {time:"2020-08-09T15:15:00.000",journal:'i am excited',mood:'excited'}], 
-//            date: "2020-08-09T07:00:00.000",
-//            _id: '1'},
-
-//{journals:  [{time:"2020-08-10T08:00:00.000",journal:'i am hungry',mood:'happy'},
-//            {time:"2020-08-10T07:15:00.000",journal:'i am sad',mood:'sad'},
-//            {time:"2020-08-10T11:15:00.000",journal:'i am angry',mood:'angry'},
-//            {time:"2020-08-10T14:15:00.000",journal:'i am worried',mood:'worried'}], 
-//            date: "2020-08-10T07:00:00.000",
-//            _id: '2'},
-
-//{journals:  [{time:"2020-09-11T07:00:00.000",journal:'i am happy',mood:'happy'},
-//            {time:"2020-09-11T07:15:00.000",journal:'i am sad',mood:'sad'},
-//            {time:"2020-09-11T11:15:00.000",journal:'i am angry',mood:'angry'},
-//            {time:"2020-09-11T14:15:00.000",journal:'i am excited',mood:'excited'}], 
-//            date: "2020-09-11T07:00:00.000",
-//            _id: '3'},
-
-//{journals: [{time:"2020-09-12T07:00:00.000",journal:'i am happy',mood:'happy'},
-//            {time:"2020-09-12T07:15:00.000",journal:'i am sad',mood:'sad'},
-//            {time:"2020-09-12T11:15:00.000",journal:'i am angry',mood:'angry'},
-//            {time:"2020-09-12T14:15:00.000",journal:'i am excited',mood:'excited'}], 
-//            date: "2020-09-12T07:00:00.000",
-//            _id: '4'},
-//        ]
 
 const MonthlyPreview =()=>{
     const navigation = useNavigation()
@@ -81,7 +48,7 @@ const MonthlyPreview =()=>{
         showJournal = {()=>navigation.navigate('CheckinDetail',{
             entry:findJournal, allEntries: journals
         })}
-         item = {item}/>
+         checkIn= {item}/>
         )
     })
 
@@ -89,24 +56,16 @@ const MonthlyPreview =()=>{
     //set initial month to be the current month
     const [month,setMonth] = useState(currentMonth)
 
-    //Retrieve the starting month from the first item of the journals array, if no check-ins yet then just start at the current month
+    //Retrieve the starting month from the first item of the journals array, if no check-ins yet then just display the current month
     const startMonth = journals? new Date(journals[journals.length-1].journals[0].createdAt).getMonth():currentMonth
     
-
-    //useEffect(()=>{
-    //    console.log('first month',new Date(journals[journals.length-1].journals[0].createdAt).getMonth())
-    //})
-
-
     const numDays = new Date(year,month+1,0).getDate()
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
 
     //Map each check-in ONE MONTH at a time from journals array, this is used by Flatlist as a data source
     const makeData =()=>{
 
-        //Initialize empty array
         const days = []
-
 
         //Loop through the number of days of the current month starting at day 1
         for (var i = 1; i <= numDays; i++){
@@ -125,16 +84,6 @@ const MonthlyPreview =()=>{
             }
         }
 
-        //Check if next month is empty
-        //const findAllNextMonth = mapJournals.filter(journal=>journal.month == month+2)
-        //const findAllPrevMonth = mapJournals.filter(journal=>journal.month == month-2)
-        //if (findAllNextMonth.length === 0){
-        //    setEmpty(true)
-        //}
-        //console.log('Next month',findAllNextMonth)
-
-        
-        //The final days array will contain all days of the current month
         return days
     }
 
@@ -146,24 +95,6 @@ const MonthlyPreview =()=>{
     //call the makeData array
     const data = makeData()
     
-   
-
-    
-    //const theme = {
-    //    arrowColor: '#3F3F3F',
-    //    monthTextColor: '#3F3F3F',
-    //    textMonthFontSize: 20,
-    //    textMonthFontWeight: '500',
-    //    'stylesheet.calendar.header': {
-    //        week: {
-    //          marginTop: 5,
-    //          flexDirection: 'row',
-    //          justifyContent: 'space-between'
-    //        }
-    //      }
-    //}
-
-
     return(
         <View style = {styles.container}>
 
@@ -191,45 +122,7 @@ const MonthlyPreview =()=>{
         }
         </View>
     )
-    //    <Calendar 
-    //    dayComponent = {({date,state})=>{
-    //        return(
-    //            <Text style = {{borderWidth:1,height:55,width:56,marginLeft:2,marginRight:2}}>
-    //                {date.day}
-    //            </Text>
-    //        )
-    //    }}
-    //    theme = {theme} hideExtraDays = {true} firstDay = {1}/>
-    //)
 }
 
 export default MonthlyPreview
 
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
-    },
-    header:{
-        width: '100%',
-        flexDirection:'row',
-        marginBottom: '5%',
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    date:{
-        fontSize:20,
-        marginTop:'8%',
-        marginBottom:'8%',
-        width:'80%',
-        textAlign:'center'
-    },
-    //increment:{
-    //    marginLeft:'20%'
-    //},
-    //decrement:{
-    //    marginLeft: '21%'
-    //}
-
-})
