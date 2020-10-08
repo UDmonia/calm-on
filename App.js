@@ -11,12 +11,13 @@ import Storytime from "./src/components/storytime.js";
 import MilkMilkMilk from "./src/components/milkMilkMilk";
 import Profile from "./src/components/profile.js";
 import Mindfulness from "./src/components/mindfulnessStack";
-import spriteChat from "./src/components/spriteChat";
+import Counting from "./src/components/Counting";
 import { Provider } from "react-redux";
 import configureStore from "./src/store/store";
 import Home from "./src/components/homeStack";
 import DailyCheckIn from "./src/components/DailyCheckIn";
 import CheckInExplain from "./src/components/CheckInExplain";
+import Activities from "./src/components/Activities";
 import BoxBreathing from "./src/components/boxBreathing";
 import ChatPlaceholder from "./src/components/chatPlaceholder";
 import FeelingDictionary from "./src/components/FeelingDictionary";
@@ -41,6 +42,18 @@ export default function App() {
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
+          <Stack.Screen 
+            name="Counting" 
+            component={Counting}
+            options= {{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "Counting",
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            }} 
+          />
           <Stack.Screen
             name="DailyCheckIn"
             component={DailyCheckIn}
@@ -97,7 +110,7 @@ export default function App() {
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
-                    RootNavigation.navigate("chatPlaceholder");
+                    RootNavigation.navigate("Activities");
                   }}
                   style={{ height: 21, width: 12, marginHorizontal: 15 }}
                 >
@@ -121,6 +134,18 @@ export default function App() {
               headerTitleStyle: { fontSize: 24, color: "white" },
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
+          />
+          <Stack.Screen 
+            name="Activities" 
+            component={Activities}
+            options= {{
+                headerShown: true,
+                headerBackTitleVisible: false,
+                headerTitle: "Activities",
+                headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+                headerStyle: { backgroundColor: "#2E7D32" },
+                headerTintColor: "#FFFFFF",
+              }} 
           />
           <Stack.Screen
             name="FiveFourThreeTwoOneTech"
