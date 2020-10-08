@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import { useDispatch } from "react-redux";
-import "../stylesheets/checkInExplainStyles";
+import styles from "../stylesheets/checkInExplainStyles";
 import { checkin } from "../actions/session_actions";
 
 const imgPaths = [
@@ -54,7 +54,6 @@ const button = (desc) => {
       style={{
         height: 55,
         width: 322,
-        // backgroundColor: "#E5E5E5",
         backgroundColor: desc.state ? "#ADD8E5" : "#E5E5E5",
         borderRadius: 8,
         justifyContent: "center",
@@ -71,7 +70,6 @@ const button = (desc) => {
 };
 
 const CheckInExplain = ({ route, navigation: { navigate } }) => {
-  const [reasons, setReasons] = useState("");
   const [school, setSchool] = useState(false);
   const [friends, setFriends] = useState(false);
   const [family, setFamily] = useState(false);
@@ -122,7 +120,10 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.buttons}
-          onPress={() => navigate("Home")}
+          onPress={() => {
+            handleAddEmotion(feeling, "");
+            navigate("Home");
+          }}
         >
           <Image
             style={styles.buttonCancel}
@@ -139,15 +140,6 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
                 .map((item) => item.desc)
                 .toString()
             );
-            // console.log(
-            //   // whyFeeling.map((item) => {
-            //   //   return item.state ? item.desc : null;
-            //   // })
-            //   whyFeeling
-            //     .filter((item) => item.state !== false)
-            //     .map((item) => item.desc)
-            //     .toString()
-            // );
             navigate("Home");
           }}
         >
@@ -162,50 +154,3 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
 };
 
 export default CheckInExplain;
-
-const styles = StyleSheet.create({
-  tmp: {
-    flex: 1,
-    backgroundColor: "white",
-    alignItems: "center", // secondary axis
-  },
-  txtFeeling: {
-    textAlign: "center",
-    fontSize: 16,
-    marginTop: 15,
-  },
-  txtOptional: {
-    textAlign: "center",
-    fontSize: 14,
-    color: "#8D8D8D",
-    marginTop: 25,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    marginTop: 25,
-  },
-  buttons: {
-    width: 126,
-    height: 44,
-    marginHorizontal: 15,
-  },
-  buttonCancel: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-    resizeMode: "contain",
-  },
-  userNameInput: {
-    padding: 10,
-    backgroundColor: "#E7E7E7",
-    borderRadius: 5,
-    width: 305,
-    height: 345,
-    marginTop: 10,
-  },
-  feelingImg: {
-    marginTop: 25,
-    width: 88,
-    height: 88,
-  },
-});

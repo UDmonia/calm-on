@@ -58,9 +58,9 @@ const checkInExists = () => {
 };
 
 const Home = ({ props, navigation: { navigate } }) => {
-  // if (checkInExists()) {
-  navigate("DailyCheckIn");
-  // }
+  if (checkInExists()) {
+    navigate("DailyCheckIn");
+  }
   const userName = useSelector((state) =>
     state.session.user.name ? state.session.user.name : "user"
   );
@@ -132,31 +132,6 @@ const Home = ({ props, navigation: { navigate } }) => {
               })}
             </ScrollView>
           </View>
-          {/* COMMENT OUT LATER ON */}
-          {/* <Button
-          title='Home'
-          onPress={() =>
-            props.navigation.navigate('Splash')
-          }
-        /> */}
-          {/* BEEPBOOP */}
-
-          {/* <GestureRecognizer style={styles.spirits}
-          onSwipeLeft={() => handleSwipeLeft()}
-          onSwipeRight={() => handleSwipeRight()}
-          >
-          <Image style={styles.spiritLeft}
-            source={spirits[0].img} />
-          
-          <View style={styles.spiritCenterView}>
-            <Image style={styles.spiritCenter}
-              source={spirits[1].img} />
-          </View>
-
-          <Image style={styles.spiritRight}
-            source={spirits[2].img} />
-        </GestureRecognizer> */}
-
           <TouchableOpacity onPress={() => handleBtnPress()}>
             <Image
               style={styles.btn}
