@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
+import { View, TouchableOpacity, Text, Image } from "react-native";
 import { useDispatch } from "react-redux";
 import styles from "../stylesheets/checkInExplainStyles";
 import { checkin } from "../actions/session_actions";
 
+/**
+ * Data that is used to determine what feeling image to load
+ */
 const imgPaths = [
   {
     id: 1,
@@ -37,6 +40,11 @@ const imgPaths = [
   },
 ];
 
+/**
+ * Returns the path of the image of our current feeling
+ *
+ * @param {string} feeling - feeling given from DailyCheckIn
+ */
 const getPath = (feeling) => {
   var path = require("../../assets/emotions/happySelected.png");
   imgPaths.forEach((img) => {
@@ -47,19 +55,22 @@ const getPath = (feeling) => {
   return path;
 };
 
+/**
+ * A single button that is used to render each object in "whyFeeling"
+ *
+ * @param {Single Object from whyFeeling array} desc - will be used for filling in each button
+ */
 const button = (desc) => {
   return (
     <TouchableOpacity
       key={desc}
-      style={{
-        height: 55,
-        width: 322,
-        backgroundColor: desc.state ? "#ADD8E5" : "#E5E5E5",
-        borderRadius: 8,
-        justifyContent: "center",
-        alignItems: "center",
-        marginVertical: 10,
-      }}
+      // need the style here to use desc.state
+      style={[
+        {
+          backgroundColor: desc.state ? "#ADD8E5" : "#E5E5E5",
+        },
+        styles.toggleButton,
+      ]}
       onPress={() => {
         desc.setState(!desc.state);
       }}
@@ -80,6 +91,12 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
   const img = getPath(feeling);
   const dispatch = useDispatch();
 
+  /**
+   * handleAddEmotion dispatches our checkin object to redux to be sent to the database
+   *
+   * @param {string} feeling - feeling that was selected by the user
+   * @param {comma seprarated string} reasons - built string that contains
+   */
   const handleAddEmotion = (feeling, reasons) => {
     return dispatch(
       checkin({
@@ -89,6 +106,9 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
     );
   };
 
+  /**
+   * Data that is used to store each button
+   */
   const whyFeeling = [
     { id: 1, desc: "School", state: school, setState: setSchool },
     { id: 2, desc: "Friends", state: friends, setState: setFriends },
@@ -101,17 +121,13 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
   return (
     <View style={styles.tmp}>
       <Image style={styles.feelingImg} source={img} />
-      <Text style={styles.txtFeeling}>Today I'm feeling {feeling}!</Text>
-      <View
-        style={{
-          marginHorizontal: 40,
-          marginVertical: 20,
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ fontSize: 18 }}>
-          What are you feeling {feeling} about? Select as many options as you
-          want.
+      <Text style={styles.txtFeeling}>
+        Today I'm feeling {feeling.toLowerCase()}!
+      </Text>
+      <View style={styles.questionContainer}>
+        <Text style={styles.question}>
+          What are you feeling {feeling.toLowerCase()} about? Select as many
+          options as you want.
         </Text>
       </View>
       {whyFeeling.map((desc) => {
@@ -135,6 +151,7 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
           onPress={() => {
             handleAddEmotion(
               feeling,
+              // filtering out all of the false states and converting it to a string
               whyFeeling
                 .filter((item) => item.state !== false)
                 .map((item) => item.desc)

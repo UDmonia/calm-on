@@ -11,11 +11,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 15,
   },
-  txtOptional: {
-    textAlign: "center",
-    fontSize: 14,
-    color: "#8D8D8D",
-    marginTop: 25,
+  questionContainer: {
+    marginHorizontal: 40,
+    marginVertical: 20,
+    alignItems: "center",
+  },
+  question: {
+    fontSize: 18,
+  },
+  toggleButton: {
+    height: 55,
+    width: 322,
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 10,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -31,14 +41,6 @@ const styles = StyleSheet.create({
     height: undefined,
     width: undefined,
     resizeMode: "contain",
-  },
-  userNameInput: {
-    padding: 10,
-    backgroundColor: "#E7E7E7",
-    borderRadius: 5,
-    width: 305,
-    height: 345,
-    marginTop: 10,
   },
   feelingImg: {
     marginTop: 25,
