@@ -10,15 +10,15 @@ export default StyleSheet.create({
     flexDirection: "row",
   },
   locationContainer: {
+    height: 52,
+    width: 300,
+    borderRadius: 4,
+    backgroundColor: "#DD6755",
+  },
+  itemContainer: {
     height: 105,
     width: 105,
     borderRadius: 4,
-    backgroundColor: "#AED4B0",
-  },
-  dialogContainer: {
-    height: 71,
-    width: 330,
-    borderRadius: 10,
-    backgroundColor: "#DD6755",
+    backgroundColor: "#9AE7FF",
   },
 });
