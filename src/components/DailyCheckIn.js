@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "../stylesheets/dailyCheckInStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { checkin } from "../actions/session_actions";
+import { useSelector } from "react-redux";
 
 /** TODO:
  * - make feelingContainers a single component and pass in props
@@ -219,15 +218,6 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
     setSad,
     setAngry,
   ];
-  const dispatch = useDispatch();
-  const handleAddEmotion = () => {
-    return dispatch(
-      checkin({
-        mood: curFeeling,
-        journal: "",
-      })
-    );
-  };
 
   return (
     <View style={styles.mainContainer}>
@@ -276,8 +266,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.buttons}
           onPress={() => {
-            handleAddEmotion();
-            navigate("Home");
+            curFeeling !== ""
+              ? navigate("CheckInExplain", { feeling: curFeeling })
+              : null;
           }}
         >
           <Image
