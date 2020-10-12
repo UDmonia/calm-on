@@ -19,7 +19,10 @@ export default Adventure = ({ navigation: { navigate } }) => {
         </Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity style={styles.locationContainer}>
+        <TouchableOpacity
+          style={styles.locationContainer}
+          onPress={() => navigate("Picnic")}
+        >
           <Image
             source={require("../../assets/adventure/locations/picnic.png")}
           />
