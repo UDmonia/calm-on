@@ -43,21 +43,42 @@ const picnicData = [
   },
   {
     id: 3,
-    letter: "B",
+    letter: "C",
     items: [
       {
         id: 1,
-        itemName: "Bananas",
+        itemName: "Cabbage",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/cabbage.png"),
+      },
+      {
+        id: 2,
+        itemName: "Cereal",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/cereal.png"),
+      },
+      {
+        id: 3,
+        itemName: "Christmas Tree",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/christmastree.png"),
+      },
+    ],
+  },
+  {
+    id: 4,
+    letter: "C",
+    items: [
+      {
+        id: 1,
+        itemName: "Cabbage",
         image: require("../../assets/adventure/locations/picnic/alphabetItems/banana.png"),
       },
       {
         id: 2,
-        itemName: "Bread",
+        itemName: "Cereal",
         image: require("../../assets/adventure/locations/picnic/alphabetItems/bread.png"),
       },
       {
         id: 3,
-        itemName: "Books",
+        itemName: "Christmas Tree",
         image: require("../../assets/adventure/locations/picnic/alphabetItems/books.png"),
       },
     ],

@@ -7,6 +7,7 @@ export default StyleSheet.create({
   locationContainer: {
     height: 105,
     width: 105,
+    margin: 10,
     borderRadius: 4,
     backgroundColor: "#AED4B0",
   },
