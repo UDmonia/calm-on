@@ -10,12 +10,15 @@ import styles from "../stylesheets/adventureStyles";
  */
 export default Adventure = ({ navigation: { navigate } }) => {
   return (
-    <View style={{ flex: 1 }}>
-      <Image source={require("../../assets/adventure/spirit.png")} />
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <Image
+        style={{ marginLeft: -50 }}
+        source={require("../../assets/adventure/spirit.png")}
+      />
       <View style={styles.dialogContainer}>
-        <Text>
-          Hey user! Great to see you! I’m so glad you want to go on an adventure
-          with me. Where do you want to go?
+        <Text style={{ margin: 10, color: "white" }}>
+          Hey [user]! Great to see you! I’m so glad you want to go on an
+          adventure with me. Where do you want to go?
         </Text>
       </View>
       <View style={styles.row}>
@@ -26,19 +29,19 @@ export default Adventure = ({ navigation: { navigate } }) => {
           <Image
             source={require("../../assets/adventure/locations/picnic.png")}
           />
-          <Text>Picnic</Text>
+          <Text style={styles.locationTxt}>Picnic</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.locationContainer}>
           <Image
             source={require("../../assets/adventure/locations/movieTheater.png")}
           />
-          <Text>Movie Theater</Text>
+          <Text style={styles.locationTxt}>Movie Theater</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.locationContainer}>
           <Image
             source={require("../../assets/adventure/locations/amusementPark.png")}
           />
-          <Text>Amusement Park</Text>
+          <Text style={styles.locationTxt}>Amusement Park</Text>
         </TouchableOpacity>
       </View>
     </View>

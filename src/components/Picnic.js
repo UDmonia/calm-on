@@ -40,12 +40,67 @@ export default Picnic = ({ navigation: { navigate } }) => {
   };
 
   return (
-    <ImageBackground
-      source={require("../../assets/adventure/locations/picnic/picnicBackground.png")}
-      style={styles.background}
+    <View
+      style={{
+        flex: 1,
+        height: "100%",
+        width: "100%",
+        // alignItems: "center",
+        justifyContent: "center",
+        // Todo take out
+        backgroundColor: "yellow",
+      }}
     >
+      <ImageBackground
+        source={require("../../assets/adventure/locations/picnic/picnicBackground.png")}
+        style={styles.background}
+        imageStyle={{
+          resizeMode: "cover",
+          width: "100%",
+          height: "100%",
+          top: undefined,
+          overflow: "hidden",
+          // position: "absolute",
+          // bottom: 0,
+        }}
+      >
+        <View style={styles.locationContainer}>
+          <Text style={styles.txtLetter}>
+            What should we bring that starts with{" "}
+            {picnicData[letter.valueOf()].letter}?
+          </Text>
+        </View>
+        <View style={styles.row}>
+          {picnicData[letter.valueOf()].items.map((item) => {
+            return alphaButton(item);
+          })}
+        </View>
+        <View style={styles.imgSpiritContainer}>
+          <Image
+            style={styles.imgSpirit}
+            source={require("../../assets/adventure/spirit.png")}
+          />
+        </View>
+      </ImageBackground>
       <View style={styles.basketContainer}>
-        <Text style={styles.txtLetter}>Selected items will appear here</Text>
+        <View
+          style={{
+            backgroundColor: "#027E2A",
+            width: "100%",
+            minHeight: 50,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{ color: "white", marginHorizontal: 10, marginRight: 235 }}
+          >
+            Selected Items
+          </Text>
+          <View style={{ justifyContent: "flex-end", color: "white" }}>
+            <Text style={{ color: "white" }}>See all {">"}</Text>
+          </View>
+        </View>
         <ScrollView
           style={styles.basket}
           horizontal={true}
@@ -53,31 +108,14 @@ export default Picnic = ({ navigation: { navigate } }) => {
         >
           {selected.map((item) => {
             return (
-              <View key={item.id} styles={styles.itemContainer}>
-                <Image source={item.img} />
-                <Text>{item.name}</Text>
+              <View key={item.id} style={styles.basketItem}>
+                <Image style={styles.img} source={item.img} />
+                <Text style={{ textAlign: "center" }}>{item.name}</Text>
               </View>
             );
           })}
         </ScrollView>
       </View>
-      <View style={styles.imgSpiritContainer}>
-        <Image
-          style={styles.imgSpirit}
-          source={require("../../assets/adventure/spirit.png")}
-        />
-      </View>
-      <View style={styles.locationContainer}>
-        <Text style={styles.txtLetter}>
-          What should we bring that starts with{" "}
-          {picnicData[letter.valueOf()].letter}?
-        </Text>
-      </View>
-      <View style={styles.row}>
-        {picnicData[letter.valueOf()].items.map((item) => {
-          return alphaButton(item);
-        })}
-      </View>
-    </ImageBackground>
+    </View>
   );
 };

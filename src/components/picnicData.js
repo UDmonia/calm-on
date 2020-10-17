@@ -57,29 +57,92 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Christmas Tree",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/christmastree.png"),
+        itemName: "Cat",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/cat.png"),
       },
     ],
   },
   {
     id: 4,
-    letter: "C",
+    letter: "D",
     items: [
       {
         id: 1,
-        itemName: "Cabbage",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/banana.png"),
+        itemName: "Dog",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/dog.png"),
       },
       {
         id: 2,
-        itemName: "Cereal",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/bread.png"),
+        itemName: "Drink",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/drink.png"),
       },
       {
         id: 3,
-        itemName: "Christmas Tree",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/books.png"),
+        itemName: "Diary",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/diary.png"),
+      },
+    ],
+  },
+  {
+    id: 5,
+    letter: "E",
+    items: [
+      {
+        id: 1,
+        itemName: "Earrings",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/earrings.png"),
+      },
+      {
+        id: 2,
+        itemName: "Egg",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/egg.png"),
+      },
+      {
+        id: 3,
+        itemName: "Elephant",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/elephant.png"),
+      },
+    ],
+  },
+  {
+    id: 6,
+    letter: "F",
+    items: [
+      {
+        id: 1,
+        itemName: "Fork",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/fork.png"),
+      },
+      {
+        id: 2,
+        itemName: "Frog",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/frog.png"),
+      },
+      {
+        id: 3,
+        itemName: "Fruits",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/fruits.png"),
+      },
+    ],
+  },
+  {
+    id: 7,
+    letter: "F",
+    items: [
+      {
+        id: 1,
+        itemName: "Fork",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/fork.png"),
+      },
+      {
+        id: 2,
+        itemName: "Frog",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/frog.png"),
+      },
+      {
+        id: 3,
+        itemName: "Fruits",
+        image: require("../../assets/adventure/locations/picnic/alphabetItems/fruits.png"),
       },
     ],
   },
