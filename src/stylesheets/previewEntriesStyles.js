@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     box: {
         display: 'flex',
-        height: 90,
+        height: 100,
         flexDirection:'row',
         borderRadius: 5,
         margin:'1.2%',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     journal:{
         fontSize: 14,
-        width: 200,
+        width: 215,
         paddingBottom:'5%',
         textAlign:'left',
         marginLeft:'8%'
@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
         margin:'3%',
         marginLeft:'7%',
         marginTop:'4%'
+    },
+    bolded: {
+        fontWeight:'bold'
     },
     time:{
         fontWeight:'500',
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
         textAlign:'left',
         marginLeft:'8%',
         paddingTop:'5%',
-        paddingBottom:'5%',
+        paddingBottom:'2%',
         fontSize: 17,
     }
 })

@@ -31,6 +31,7 @@ const checkinDetails =({route})=>{
      * @param time The time of the day of a particular check-in
      */
     const {entry,allEntries,time} = route.params
+    
 
     // Navigating from daily preview: set initial index to specfic time pressed
     const specificTime = entry.journals.find(journal=> journal.createdAt == time)
@@ -48,6 +49,12 @@ const checkinDetails =({route})=>{
 
     //Use currentEntryIndex to navigate through the check-in array
     const [currentEntryIndex,setEntryIndex] = useState(allEntries.indexOf(entry))
+
+    //const parsedJournal = journal.journal.split(',')
+    //parsedJournal.splice(parsedJournal.length-2,0,'and')
+    const lastCommaIndex = journal.journal.lastIndexOf(',')
+
+
 
     /**
      * Map out all check-ins in a single day
@@ -110,8 +117,10 @@ const checkinDetails =({route})=>{
                     <Image  source = {moodMap[journal.mood].path}/>
                     
                     {/*temporary journal placeholder until Luis's check-in page update*/}
-                    <Text style = {styles.journal}>Today I'm Feeling <Text style = {{fontWeight:'bold'}}>{journal.mood.charAt(0).toUpperCase()+journal.mood.slice(1)}</Text></Text>
-
+                    <Text style = {styles.journal}>Right now, I'm feeling <Text style = {{fontWeight:'bold'}}>{journal.mood.charAt(0).toUpperCase()+journal.mood.slice(1)} </Text>about 
+                        <Text style = {styles.bolded}> {journal.journal.split(',').length === 1? journal: journal.journal.toLowerCase().substring(0,lastCommaIndex+1)}</Text>
+                            and <Text style = {styles.bolded}>{journal.journal.toLowerCase().substring(lastCommaIndex+1)}</Text>
+                        </Text>
                 </View>
 
                 <View style = {styles.lower}>

@@ -7,16 +7,21 @@ import styles from '../stylesheets/previewEntriesStyles'
 
 /**
  * Used in previewEntires.js (Daily Preview) for each check-in
- * @param mood Mood in each check-in 
- * @param journal User selected emotion state string
- * @param time Time of the day of the check-in
- * @param image Emoji associated with the mood
- * @param showJournal Function used to locate check-in by time param and display in detailed view
- * @param color BackgroundColor of the box container
- * @param empty Empty is true if there's zero or less than four check-ins for the day
+ * @param {String} mood Mood in each check-in 
+ * @param {String} journal User selected emotion state string
+ * @param {Time} time Time of the day of the check-in
+ * @param {Image} image Emoji associated with the mood
+ * @param {Function} showJournal Function used to locate check-in by time param and display in detailed view
+ * @param {String} color BackgroundColor of the box container
+ * @param {Boolean} empty Empty is true if there's zero or less than four check-ins for the day
  */
 export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
     const navigation = useNavigation()
+    const lastCommaIndex = journal.lastIndexOf(',')
+    //const parsedJournal = journal.split(',')
+    //parsedJournal.splice(parsedJournal.length-1,0,'and')
+    //const parsedWithSpace = parsedJournal.join(',')
+
     return(
         <View style = {styles.container}>
         {empty? 
@@ -36,7 +41,11 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
                     <View>
 
                     <Text style = {styles.journalTitle}>{mood.charAt(0).toUpperCase()+mood.slice(1)}</Text> 
-                    <Text style = {styles.journal}>{journal}</Text>
+                        <Text style = {styles.journal}>I'm {mood} about <Text style = {styles.bolded}>{journal.split(',').length === 1? journal: journal.toLowerCase().substring(0,lastCommaIndex+1)} 
+                        </Text>
+                        and 
+                        <Text style = {styles.bolded}> {journal.toLowerCase().substring(lastCommaIndex+1)}</Text>
+                    </Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -44,8 +53,7 @@ export const Box = ({mood,journal,time,image,showJournal,color,empty})=>{
         </View>
     )
 
-} 
-
+}
 
 /**
  * 

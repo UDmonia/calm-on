@@ -11,6 +11,45 @@ const styles = StyleSheet.create({
         width:300,
         textAlign:'center'
     },
+    questionBox:{
+        backgroundColor:'#DD6755',
+        justifyContent:'center',
+        alignContent:'center',
+        textAlign:'center',
+        padding:15,
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10,
+    },
+    answers:{
+        width:'85%',
+        textAlign:'center',
+        backgroundColor:'white',
+        marginTop:'2%',
+        marginLeft:'7%',
+        marginTop:'7%',
+        borderRadius:10,
+        paddingBottom:8,
+        paddingTop:10,
+        fontWeight:'800'
+
+    },
+    introContainer:{
+        justifyContent:'center',
+        alignContent:'center',
+        width:450
+    },
+    backgroundImage:{
+        width:'100%',
+        height:'100%'
+    },
+    prompt:{
+        backgroundColor:'#FBBDB4',
+        width:'75%',
+        marginTop:'125%',
+        marginLeft:'12%',
+        borderRadius:10,
+        paddingBottom:'5%'
+    },
     bottomFrame: {
         position: 'absolute',
         top:394,

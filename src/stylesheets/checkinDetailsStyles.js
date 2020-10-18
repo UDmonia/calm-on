@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
         marginTop: '5%',
         fontSize:18,
     },
+    bolded:{
+        fontWeight:'bold'
+    },
     lower:{
         //borderWidth:1,
         marginTop:'10%',

@@ -1,11 +1,14 @@
-import { Animated,Text, View, TouchableOpacity, Image, } from 'react-native';
-import React, {useState,useEffect,useRef} from 'react';
+import { Animated,Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import React, {useState,useEffect,useRef,useContext} from 'react';
 import styles from '../stylesheets/boxBreathingStyles'
+import Node from './Node'
+
 
 const Intro = ({title,statArray,about,helpful,start})=>{
 
     //May use this later, dont need it for now
     const [voice,setVoice] = useState(false)
+    const [startActivity,setStartActivity] = useState(false)
 
     return(
             <View>
@@ -41,19 +44,77 @@ const Intro = ({title,statArray,about,helpful,start})=>{
                 <Text style = {styles.sectionTitle}>Helpful when..</Text>
                 <Text style = {styles.descriptions}>you are feeling very sad, mad, scared, or worried. This can help you feel more calm</Text>
 
+                {/*<TouchableOpacity onPress = {()=>start(true)} style = {styles.start}>*/}
                 <TouchableOpacity onPress = {()=>start(true)} style = {styles.start}>
                     <Text style = {styles.startText}>Start Box Breathing</Text>
                 </TouchableOpacity>
 
             </View>
-            </View> 
+
+            </View>
     )
 }
 
+const IntroStory =({start})=>{
+    const startAnimation = useContext(Context)
+    const [page,setPage] = useState(0)
+
+    //Modify this array to add more screens
+    const storyMap = [
+        //{question:'I love the beach! The sound of the waves is so relaxing, and I love the soft sand on my toes.',
+        //answers:['Continue',],background: 'forest' },
+
+        //{question:'For this activity, find a place where you can go 4 steps in any direction so we can walk together!',
+        //answers:["I'm there!","I'll imagine it!",],background: 'beach'},
+
+        //{question:'While we walk and breathe, follow the instructions on the sand. Click “Go” when you’re ready to start!',
+        //answers:['Go!'],background: 'city'},
+
+        // Calm On 2.1 updated screen
+        {question:"While we walk and breathe, follow the instructions on the sand. Click 'Go' when you're ready to start!",
+        answers:['Go',],background: 'forest' },
+
+    ]
+
+    const displayPrompt =()=>{
+        
+    }
+
+    //Implementing story progression mechanism
+    return (
+        <View style = {styles.introContainer}>
+
+            {/*Add background image here*/}
+            {/*<ImageBackground source = {require("../../assets/storytime_background.png")} style = {styles.backgroundImage}>*/}
+            {/*<TouchableOpacity onPress = {()=>startAnimation(true)}><Text>start animation</Text></TouchableOpacity>*/}
+            <View style = {styles.prompt}>
+                <View style = {styles.questionBox}>
+                    <Text style = {{color:'white',textAlign:'center'}}>{storyMap[page].question}</Text>
+                </View>
+
+            <View>
+                {storyMap[page].answers.map((answer,key)=>(
+                <TouchableOpacity style = {styles.answers} onPress = {page !== storyMap.length-1?()=>setPage(page+1):()=>start(true)} key = {key}>
+                    <Text style = {{textAlign:'center'}}>{answer}</Text>
+                </TouchableOpacity>
+                ))}
+            </View>
+
+            </View>
+            {/*</ImageBackground>*/}
+        </View>
+    )
+}
+
+//Use this hook to pass startAnimation function from root to children
+const Context = React.createContext(null)
+
+
 const boxBreathing =()=>{
     const [start,setStart] = useState(false)
-    const [text,setText] = useState('Get Ready')
-    let timer = useRef(0).current
+    const [startAnimation,setStartAnimation] = useState(false)
+    const [text,setText] = useState('')
+    const [timer,setTimer] = useState(1)
     const getReady = 3000
     const length1 = useRef(new Animated.Value(0)).current
     const length2 = useRef(new Animated.Value(300)).current
@@ -62,11 +123,25 @@ const boxBreathing =()=>{
     const move1 = useRef(new Animated.ValueXY({x:20,y:330})).current
 
     useEffect(()=>{
-        //var time = setInterval(()=>{
-        //    timer += 1
-        //},1000)
- 
+        if (startAnimation) {
+        //if (timer != 16) {
+        //    setInterval(()=>{
+        //        setTimer(timer+1)
+        //        if (timer % 4 === 0) {
+        //            setTimer(1)
+        //        }
+        //    },1000)
+        //}
+        //console.log(timer)
+        //else{
+        //    setTimer(1)
+        //}
+            
+        
         setTimeout(()=>{
+            setText('Get Ready')
+        },1000)
+        setTimeout(()=>{ 
             setText('Start!')
         },2400)
 
@@ -89,7 +164,8 @@ const boxBreathing =()=>{
         setTimeout(()=>{
             setText('Finished!')
         },19000)
-        
+
+
 
     Animated.sequence([
         Animated.timing(
@@ -163,8 +239,15 @@ const boxBreathing =()=>{
             duration: 4000,
             useNativeDriver:false
         }).start()
+    }
 
-    },[timer])
+    console.log(startAnimation)
+
+    return ()=>{
+        //Clean up here
+    }
+
+    },[timer,start,startAnimation])
 
     const animated1 = {
         position: 'absolute',
@@ -173,7 +256,7 @@ const boxBreathing =()=>{
         top: 395,
         width: length1,
         borderWidth:10,
-        borderColor:'red',
+        borderColor:'#7990AF',
         zIndex:3,
     }
 
@@ -209,15 +292,16 @@ const boxBreathing =()=>{
 
     return (
         <View>
+            <ImageBackground source = {require("../../assets/boxBreathing/beach.png")} style = {styles.backgroundImage}>
         {!start?
-            <Intro start = {setStart}/>:
-
-        
+            <Intro start = {setStart}/>
+            :
         <View style = {styles.container}>
-        <Text style = {styles.text}>
-            {text}
-            {/*{timer}*/}
-        </Text>
+            <Text style = {styles.text}>
+                {text}
+                {/*{timer}*/}
+            </Text>
+
             <Animated.View style = {[animated1]}>
             </Animated.View>
             <Animated.View style = {styles.bottomFrame}></Animated.View>
@@ -234,10 +318,16 @@ const boxBreathing =()=>{
             <View style = {styles.coverTop}></View>
             <View style = {styles.coverCorner}></View>
             <Animated.View style = {[move1.getLayout(),{position: 'absolute',zIndex:5}]}>
-                {/*<Image source = {require('../../assets/boxBreathing/spirit.png')} />*/}
+                <Image source = {require('../../assets/boxBreathing/spirit.png')} />
             </Animated.View>
+            {!startAnimation &&
+                <View style = {{position:'absolute',top:20,}}>
+                    <IntroStory start = {setStartAnimation}/>
+                </View>
+            }
         </View>
         }
+            </ImageBackground>
         </View>
 
     )
