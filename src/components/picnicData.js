@@ -127,7 +127,7 @@ const picnicData = [
   },
   {
     id: 7,
-    letter: "F",
+    letter: "G",
     items: [
       {
         id: 1,
