@@ -46,7 +46,7 @@ export default function App() {
             name="Counting" 
             component={Counting}
             options= {{
-              headerShown: true,
+              headerShown: false,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
               headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
