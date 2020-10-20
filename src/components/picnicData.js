@@ -546,7 +546,7 @@ const picnicData = [
     ],
   },
   {
-    // TODO: DUMMY! REM0VE ME
+    // TODO: DUMMY! REM0VE ME Need to find a solution
     id: 27,
     letter: "Z",
     items: [

@@ -45,10 +45,7 @@ export default Picnic = ({ navigation: { navigate } }) => {
         flex: 1,
         height: "100%",
         width: "100%",
-        // alignItems: "center",
         justifyContent: "center",
-        // Todo take out
-        backgroundColor: "yellow",
       }}
     >
       <ImageBackground
@@ -60,8 +57,6 @@ export default Picnic = ({ navigation: { navigate } }) => {
           height: "100%",
           top: undefined,
           overflow: "hidden",
-          // position: "absolute",
-          // bottom: 0,
         }}
       >
         <View style={styles.locationContainer}>
@@ -100,12 +95,10 @@ export default Picnic = ({ navigation: { navigate } }) => {
           <View style={{ justifyContent: "flex-end", color: "white" }}>
             <TouchableOpacity
               onPress={() => {
-                // console.log("hello");
                 navigate("PicnicSeeAll", { arr: selected });
               }}
-              style={{ color: "white" }}
             >
-              <Text>See all {">"}</Text>
+              <Text style={{ color: "white" }}>See all {">"}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -115,7 +108,6 @@ export default Picnic = ({ navigation: { navigate } }) => {
           showsHorizontalScrollIndicator={false}
         >
           {selected.map((item) => {
-            console.log(item.id);
             return (
               <View key={item.itemName} style={styles.basketItem}>
                 <Image style={styles.img} source={item.img} />

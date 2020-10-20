@@ -28,6 +28,7 @@ import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import Adventure from "./src/components/Adventure.js";
 import Picnic from "./src/components/Picnic.js";
+import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -188,6 +189,17 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "Picnic",
+              headerTitleStyle: { fontSize: 24, color: "white" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+            }}
+          />
+          <Stack.Screen
+            name="PicnicSeeAll"
+            component={PicnicSeeAll}
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "Picnic See All",
               headerTitleStyle: { fontSize: 24, color: "white" },
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
