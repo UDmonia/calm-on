@@ -8,7 +8,7 @@ import { Dimensions } from 'react-native';
 class IntroVideo extends React.Component {
   constructor(props) {
     super(props);
-    this.vid = require('../../assets/opening_video.mov');
+    this.vid = require('../../assets/Opening_v03.mp4');
     this.play = true;
 
     this.state = {
