@@ -98,7 +98,15 @@ export default Picnic = ({ navigation: { navigate } }) => {
             Selected Items
           </Text>
           <View style={{ justifyContent: "flex-end", color: "white" }}>
-            <Text style={{ color: "white" }}>See all {">"}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                // console.log("hello");
+                navigate("PicnicSeeAll", { arr: selected });
+              }}
+              style={{ color: "white" }}
+            >
+              <Text>See all {">"}</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <ScrollView
@@ -107,8 +115,9 @@ export default Picnic = ({ navigation: { navigate } }) => {
           showsHorizontalScrollIndicator={false}
         >
           {selected.map((item) => {
+            console.log(item.id);
             return (
-              <View key={item.id} style={styles.basketItem}>
+              <View key={item.itemName} style={styles.basketItem}>
                 <Image style={styles.img} source={item.img} />
                 <Text style={{ textAlign: "center" }}>{item.name}</Text>
               </View>
