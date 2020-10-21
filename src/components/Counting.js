@@ -104,6 +104,7 @@ export default Counting = ({ navigation: { navigate } }) => {
   const [boxed, setBox] = useState([]);
   const [count, setCount] = useState(0);
   const [next, setNext] = useState(false);
+  const [secRecipe, setRecipe] = useState(false);
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.image}>
@@ -123,9 +124,16 @@ export default Counting = ({ navigation: { navigate } }) => {
           })}
         </ScrollView>
         <View style={styles.fruitZone}>
-          {stuff.fruits.map((fruit) => {
+          {secRecipe
+            ? stuff.fruits.map((fruit) => {
+                return fruitObjects(fruit, boxed, setBox, count, setCount);
+              })
+            : stuff.fruits.map((fruit) => {
+                return fruitObjects(fruit, boxed, setBox, count, setCount);
+              })}
+          {/* {stuff.fruits.map((fruit) => {
             return fruitObjects(fruit, boxed, setBox, count, setCount);
-          })}
+          })} */}
         </View>
         <View
           style={
@@ -176,6 +184,7 @@ export default Counting = ({ navigation: { navigate } }) => {
                   setBox([]);
                   setCount(0);
                   setNext(false);
+                  setRecipe(true);
                 }}
               >
                 <Text>Next</Text>
