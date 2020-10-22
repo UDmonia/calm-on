@@ -15,7 +15,7 @@ import sprit from "../../assets/counting/spirit1.png";
 import apple from "../../assets/counting/apple.png";
 import pie from "../../assets/counting/pie.png";
 
-const stuff = {
+var apples = {
   groupName: "apples",
   dialog: [
     "Let’s make an apple pie together! We’re going to need 7 apples. Can you help me count them?",
@@ -53,6 +53,59 @@ const stuff = {
   ],
 };
 
+var fruit = {
+  groupName: "fruit",
+  dialog: [
+    "Let’s make an apple pie together! We’re going to need 7 apples. Can you help me count them?",
+    "All done! With your help, we made a delicious apple pie!",
+    "Do you want to try another recipe?",
+  ],
+  fruits: [
+    {
+      id: 4,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 30,
+        left: 50,
+      },
+    },
+    {
+      id: 5,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 60,
+        left: 80,
+      },
+    },
+    {
+      id: 6,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 80,
+        left: 90,
+      },
+    },
+    // {
+    //   id: 7,
+    //   name: "apple",
+    //   img: apple,
+    //   xpos: {
+    //     top: 100,
+    //     left: 90,
+    //   },
+    // },
+  ],
+};
+
+var stuff = apples;
+
+function setStuff() {
+  stuff = fruit;
+}
+
 function getBoxes(box) {
   if (box != null) {
     return (
@@ -64,7 +117,7 @@ function getBoxes(box) {
   return null;
 }
 
-function fruitObjects(fruit, boxed, setBox, count, setCount) {
+function fruitObjects(fruit, boxed, setBox, count, setCount, flag) {
   const [canSee, setSee] = useState(true);
   if (canSee) {
     return (
@@ -104,7 +157,7 @@ export default Counting = ({ navigation: { navigate } }) => {
   const [boxed, setBox] = useState([]);
   const [count, setCount] = useState(0);
   const [next, setNext] = useState(false);
-  const [secRecipe, setRecipe] = useState(false);
+  //const [secRecipe, setRecipe] = useState(false);
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.image}>
@@ -124,16 +177,16 @@ export default Counting = ({ navigation: { navigate } }) => {
           })}
         </ScrollView>
         <View style={styles.fruitZone}>
-          {secRecipe
+          {/* {secRecipe
             ? stuff.fruits.map((fruit) => {
                 return fruitObjects(fruit, boxed, setBox, count, setCount);
               })
             : stuff.fruits.map((fruit) => {
                 return fruitObjects(fruit, boxed, setBox, count, setCount);
-              })}
-          {/* {stuff.fruits.map((fruit) => {
-            return fruitObjects(fruit, boxed, setBox, count, setCount);
-          })} */}
+              })} */}
+          {stuff.fruits.map((fruit) => {
+            return fruitObjects(fruit, boxed, setBox, count, setCount, "fruit");
+          })}
         </View>
         <View
           style={
@@ -181,10 +234,12 @@ export default Counting = ({ navigation: { navigate } }) => {
               <TouchableOpacity
                 style={styles.navButton}
                 onPress={() => {
+                  //setRecipe(true);
+                  setStuff();
+                  console.log("WTF???");
                   setBox([]);
                   setCount(0);
                   setNext(false);
-                  setRecipe(true);
                 }}
               >
                 <Text>Next</Text>
@@ -192,11 +247,11 @@ export default Counting = ({ navigation: { navigate } }) => {
             </View>
           </View>
         ) : null}
-        <Button
+        {/* <Button
           title="Counter + 1"
           //onPress={() => navigate('Activities')}
           onPress={() => setCount(count + 1)}
-        />
+        /> */}
       </ImageBackground>
     </View>
   );
