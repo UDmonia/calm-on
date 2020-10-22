@@ -7,10 +7,11 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
+import Exit from "./Exit";
 import styles from "../stylesheets/picnicStyles";
 import picnicData from "./picnicData";
 
-export default Picnic = ({ navigation: { navigate } }) => {
+export default Picnic = ({ navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
 
@@ -59,6 +60,11 @@ export default Picnic = ({ navigation: { navigate } }) => {
           overflow: "hidden",
         }}
       >
+        <View
+          style={{ alignSelf: "flex-start", marginLeft: 50, marginBottom: 30 }}
+        >
+          <Exit />
+        </View>
         <View style={styles.locationContainer}>
           <Text style={styles.txtLetter}>
             What should we bring that starts with{" "}
@@ -95,7 +101,7 @@ export default Picnic = ({ navigation: { navigate } }) => {
           <View style={{ justifyContent: "flex-end", color: "white" }}>
             <TouchableOpacity
               onPress={() => {
-                navigate("PicnicSeeAll", { arr: selected });
+                navigation.navigate("PicnicSeeAll", { arr: selected });
               }}
             >
               <Text style={{ color: "white" }}>See all {">"}</Text>

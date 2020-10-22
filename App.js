@@ -182,28 +182,8 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />
-          <Stack.Screen
-            name="Picnic"
-            component={Picnic}
-            options={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-              headerTitle: "Picnic",
-              headerTitleStyle: { fontSize: 24, color: "white" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-            }}
-          />
-          <Stack.Screen
-            name="PicnicSeeAll"
-            component={PicnicSeeAll}
-            options={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-              headerTitle: "Picnic See All",
-              headerTitleStyle: { fontSize: 24, color: "white" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-            }}
-          />
+          <Stack.Screen name="Picnic" component={Picnic} />
+          <Stack.Screen name="PicnicSeeAll" component={PicnicSeeAll} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
