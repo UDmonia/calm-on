@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import bg from "../../assets/image73.png";
 import startBtn from "../../assets/start_btn.png";
+import { useFocusEffect } from '@react-navigation/native';
 
 const Splash = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch();
@@ -21,9 +22,16 @@ const Splash = ({ navigation: { navigate } }) => {
         navigate("Home");
       }
     });
-    //Effect Hook for back button
-    BackHandler.addEventListener("hardwareBackPress", backAction);
   }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      BackHandler.addEventListener("hardwareBackPress", backAction);
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", backAction);
+      };
+    }, [])
+  );
 
   return (
     <View style={styles.format}>
@@ -34,8 +42,6 @@ const Splash = ({ navigation: { navigate } }) => {
               // console.log(
               //   "Splash -> loginSignup: userPrompt=false userlogin=true"
               // );
-              //removing back button handler for next page
-              BackHandler.removeEventListener("hardwareBackPress", backAction);
               navigate("loginSignup", { userPrompt: false, userLogin: true });
             }}
           >
