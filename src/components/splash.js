@@ -1,6 +1,6 @@
 import styles from "../stylesheets/splashStyles";
 import React, { useEffect } from "react";
-import { View, ImageBackground, TouchableOpacity, Image } from "react-native";
+import { View, ImageBackground, TouchableOpacity, Image, BackHandler } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import bg from "../../assets/image73.png";
@@ -9,6 +9,10 @@ import startBtn from "../../assets/start_btn.png";
 const Splash = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((store) => Boolean(store.session.user));
+  //Handle Android hardware back button
+  const backAction = () => {
+    return true;
+  };
 
   useEffect(() => {
     dispatch(getUserFromJWT()).then((action) => {
@@ -17,6 +21,8 @@ const Splash = ({ navigation: { navigate } }) => {
         navigate("Home");
       }
     });
+    //Effect Hook for back button
+    BackHandler.addEventListener("hardwareBackPress", backAction);
   }, []);
 
   return (
@@ -28,6 +34,8 @@ const Splash = ({ navigation: { navigate } }) => {
               // console.log(
               //   "Splash -> loginSignup: userPrompt=false userlogin=true"
               // );
+              //removing back button handler for next page
+              BackHandler.removeEventListener("hardwareBackPress", backAction);
               navigate("loginSignup", { userPrompt: false, userLogin: true });
             }}
           >
