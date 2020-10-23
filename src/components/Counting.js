@@ -8,15 +8,15 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-//import { navigate } from "./RootNavigation";
 import styles from "../stylesheets/countingStyles";
 import bg from "../../assets/counting/backdrop.png";
 import sprit from "../../assets/counting/spirit1.png";
 import apple from "../../assets/counting/apple.png";
 import pie from "../../assets/counting/pie.png";
+import DialogBox from "./dialog";
 
 var apples = {
-  groupName: "apples",
+  groupName: "Pie",
   dialog: [
     "Let’s make an apple pie together! We’re going to need 7 apples. Can you help me count them?",
     "All done! With your help, we made a delicious apple pie!",
@@ -51,6 +51,7 @@ var apples = {
       },
     },
   ],
+  Next: [],
 };
 
 var fruit = {
@@ -102,10 +103,6 @@ var fruit = {
 
 var stuff = apples;
 
-function setStuff() {
-  stuff = fruit;
-}
-
 function getBoxes(box) {
   if (box != null) {
     return (
@@ -146,17 +143,19 @@ function fruitObjects(fruit, boxed, setBox, count, setCount, flag) {
   return null;
 }
 
-const DialogBox = ({ message }) => (
-  <View style={message.style}>
-    {/* change text color */}
-    <Text>{message.text}</Text>
-  </View>
-);
+// const DialogBox = ({ message }) => {
+//   return (
+//     <View style={message.style}>
+//       {/* change text color */}
+//       <Text>{message.text}</Text>
+//     </View>
+//   );
+// };
 
 export default Counting = ({ navigation: { navigate } }) => {
   const [boxed, setBox] = useState([]);
   const [count, setCount] = useState(0);
-  const [next, setNext] = useState(false);
+  //const [next, setNext] = useState(false);
   //const [secRecipe, setRecipe] = useState(false);
   return (
     <View style={styles.container}>
@@ -177,26 +176,15 @@ export default Counting = ({ navigation: { navigate } }) => {
           })}
         </ScrollView>
         <View style={styles.fruitZone}>
-          {/* {secRecipe
-            ? stuff.fruits.map((fruit) => {
-                return fruitObjects(fruit, boxed, setBox, count, setCount);
-              })
-            : stuff.fruits.map((fruit) => {
-                return fruitObjects(fruit, boxed, setBox, count, setCount);
-              })} */}
           {stuff.fruits.map((fruit) => {
             return fruitObjects(fruit, boxed, setBox, count, setCount, "fruit");
           })}
         </View>
-        <View
-          style={
-            count == stuff.fruits.length ? styles.spritBox2 : styles.spritBox
-          }
-        >
+        <View style={styles.spritBox}>
           <Image style={styles.sprit} source={sprit} />
-          {count == stuff.fruits.length ? (
+          {/* {count == stuff.fruits.length ? (
             <Image style={styles.pie} source={pie} />
-          ) : null}
+          ) : null} */}
         </View>
         {count == 0 ? (
           <DialogBox
@@ -206,7 +194,14 @@ export default Counting = ({ navigation: { navigate } }) => {
             }}
           />
         ) : null}
-        {count == stuff.fruits.length && !next ? (
+        {count == stuff.fruits.length
+          ? navigate("CountingPrompt", {
+              boxes: boxed,
+              actData: stuff,
+              counter: count,
+            })
+          : null}
+        {/* {count == stuff.fruits.length && !next ? (
           <View style={styles.fin}>
             <DialogBox
               message={{ style: styles.textBox2, text: stuff.dialog[1] }}
@@ -218,8 +213,8 @@ export default Counting = ({ navigation: { navigate } }) => {
               <Text>NEXT</Text>
             </TouchableOpacity>
           </View>
-        ) : null}
-        {count == stuff.fruits.length && next ? (
+        ) : null} */}
+        {/* {count == stuff.fruits.length && next ? (
           <View style={styles.fin}>
             <DialogBox
               message={{ style: styles.textBox2, text: stuff.dialog[2] }}
@@ -246,7 +241,7 @@ export default Counting = ({ navigation: { navigate } }) => {
               </TouchableOpacity>
             </View>
           </View>
-        ) : null}
+        ) : null} */}
         {/* <Button
           title="Counter + 1"
           //onPress={() => navigate('Activities')}

@@ -26,6 +26,7 @@ import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
 import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
+import CountingPromt from "./src/components/CountingPrompt.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -45,6 +46,18 @@ export default function App() {
           <Stack.Screen 
             name="Counting" 
             component={Counting}
+            options= {{
+              headerShown: false,
+              headerBackTitleVisible: false,
+              headerTitle: "Counting",
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            }} 
+          />
+          <Stack.Screen 
+            name="CountingPrompt" 
+            component={CountingPrompt}
             options= {{
               headerShown: false,
               headerBackTitleVisible: false,

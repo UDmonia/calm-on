@@ -138,7 +138,7 @@ export default StyleSheet.create({
     width: 350,
     height: 300,
     //backgroundColor: "black",
-    marginBottom: 58,
+    marginBottom: 95,
     alignItems: "center",
   },
 });
