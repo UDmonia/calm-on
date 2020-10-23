@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
         width:450
     },
     backgroundImage:{
-        width:'100%',
-        height:'100%'
+        width:'80%',
+        height:'90%'
     },
     prompt:{
         backgroundColor:'#FBBDB4',
@@ -61,22 +61,6 @@ const styles = StyleSheet.create({
         zIndex:0,
     },
 
-    coverCorner:{
-        position: 'absolute',
-        top:134,
-        left:30,
-        borderWidth:10,
-        width: 30,
-        borderColor:'#F2F2F2',
-    },
-    coverTop:{
-        position: 'absolute',
-        top:113,
-        width:300,
-        borderWidth:11,
-        borderColor:'#F2F2F2',
-        zIndex:4,
-    },
     coverLeft:{
         position: 'absolute',
         top:134,
@@ -88,29 +72,20 @@ const styles = StyleSheet.create({
     },
     barRight:{
         position: 'absolute',
-        top:114,
+        top:134,
         right:64,
         width: 10,
         borderWidth:10,
         borderColor:'#7990AF',
-        height:300,
+        height:270,
     },
     barTop:{
         position: 'absolute',
         top:134,
-        left:40,
-        width: 290,
+        left:70,
+        width: 270,
         borderWidth:10,
         borderColor:'#7990AF',
-    },
-    cover:{
-        width:50,
-        height:200,
-        borderWidth:1,
-        position: 'absolute',
-        left:0,
-        zIndex:1,
-        backgroundColor:'white'
     },
     container: {
         flex:1,
