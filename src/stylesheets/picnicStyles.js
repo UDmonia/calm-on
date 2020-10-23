@@ -29,6 +29,9 @@ export default StyleSheet.create({
     backgroundColor: "#E9E9E9",
     alignItems: "center",
     justifyContent: "center",
+    shadowOffset: {
+      height: -2,
+    },
   },
   imgSpirit: {
     height: 259,

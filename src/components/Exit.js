@@ -21,7 +21,7 @@ export default Exit = (props) => {
           width: props.width ? props.width : 30,
         }}
         source={
-          props.img ? props.img : require("../../assets/exit_storytime.png")
+          props.img ? props.img : require("../../assets/exit/blkExitBtn.png")
         }
       />
     </TouchableOpacity>
