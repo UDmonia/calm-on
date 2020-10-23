@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Image } from "react-native";
+import { TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 /**
@@ -9,6 +9,14 @@ import { useNavigation } from "@react-navigation/native";
 export default Exit = (props) => {
   // using useNavigation allows us to access the navigations stack
   navigation = useNavigation();
+
+  const styles = StyleSheet.create({
+    img: {
+      height: props.height ? props.height : 30,
+      width: props.width ? props.width : 30,
+    },
+  });
+
   return (
     <TouchableOpacity
       onPress={() =>
@@ -16,10 +24,7 @@ export default Exit = (props) => {
       }
     >
       <Image
-        style={{
-          height: props.height ? props.height : 30,
-          width: props.width ? props.width : 30,
-        }}
+        style={styles.img}
         source={
           props.img ? props.img : require("../../assets/exit/blkExitBtn.png")
         }

@@ -545,28 +545,6 @@ const picnicData = [
       },
     ],
   },
-  {
-    // TODO: DUMMY! REM0VE ME Need to find a solution
-    id: 27,
-    letter: "Z",
-    items: [
-      {
-        id: 1,
-        itemName: "Zebra",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/zebra.png"),
-      },
-      {
-        id: 2,
-        itemName: "Zombie",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/zombie.png"),
-      },
-      {
-        id: 3,
-        itemName: "Zucchini",
-        image: require("../../assets/adventure/locations/picnic/alphabetItems/zucchini.png"),
-      },
-    ],
-  },
 ];
 
 export default picnicData;

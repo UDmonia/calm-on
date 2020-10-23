@@ -10,26 +10,37 @@ import {
 import Exit from "./Exit";
 import styles from "../stylesheets/picnicStyles";
 import picnicData from "./picnicData";
+import { navigate } from "./RootNavigation";
+import chatPlaceholder from "./chatPlaceholder";
 
 export default Picnic = ({ navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
+  const [done, setDone] = useState(false);
   const scrollViewRef = useRef();
 
   const alphaButton = (item) => {
     return (
       <TouchableOpacity
         onPress={() => {
+          // add item to the bottom basket
           if (letter < picnicData.length - 1) {
             setSelected([
               ...selected,
               { id: item.id, name: item.itemName, img: item.image },
             ]);
             setLetter(letter + 1);
-          } else {
-            return null;
+          } else if (letter === picnicData.length - 1 && !done) {
+            setSelected([
+              ...selected,
+              { id: item.id, name: item.itemName, img: item.image },
+            ]);
+            setDone(true);
           }
-          letter < picnicData.length - 1 ? setLetter(letter + 1) : null;
+          // TODO: when designs are finalized replace "true" with another flag that will end
+          else if (done && true) {
+            navigate("chatPlaceholder");
+          }
         }}
         key={item.id}
         style={styles.itemContainer}
@@ -59,8 +70,6 @@ export default Picnic = ({ navigation }) => {
           height: "110%",
           top: undefined,
           overflow: "hidden",
-          // alignSelf: "flex-start",
-          // bottom: "10%",
         }}
       >
         <View
