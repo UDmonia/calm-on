@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   TouchableOpacity,
@@ -14,6 +14,7 @@ import picnicData from "./picnicData";
 export default Picnic = ({ navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
+  const scrollViewRef = useRef();
 
   const alphaButton = (item) => {
     return (
@@ -28,7 +29,6 @@ export default Picnic = ({ navigation }) => {
           } else {
             return null;
           }
-
           letter < picnicData.length - 1 ? setLetter(letter + 1) : null;
         }}
         key={item.id}
@@ -54,16 +54,19 @@ export default Picnic = ({ navigation }) => {
         style={styles.background}
         imageStyle={{
           resizeMode: "cover",
+          flex: 1,
           width: "100%",
-          height: "100%",
+          height: "110%",
           top: undefined,
           overflow: "hidden",
+          // alignSelf: "flex-start",
+          // bottom: "10%",
         }}
       >
         <View
           style={{ alignSelf: "flex-start", marginLeft: 50, marginBottom: 30 }}
         >
-          <Exit />
+          <Exit navTo={"chatPlaceholder"} />
         </View>
         <View style={styles.locationContainer}>
           <Text style={styles.txtLetter}>
@@ -112,12 +115,34 @@ export default Picnic = ({ navigation }) => {
           style={styles.basket}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
+          ref={scrollViewRef}
+          onContentSizeChange={() =>
+            scrollViewRef.current.scrollToEnd({ animated: true })
+          }
         >
           {selected.map((item) => {
             return (
-              <View key={item.itemName} style={styles.basketItem}>
-                <Image style={styles.img} source={item.img} />
-                <Text style={{ textAlign: "center" }}>{item.name}</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  marginTop: 10,
+                }}
+              >
+                <View key={item.itemName} style={styles.basketItem}>
+                  <Image style={styles.img} source={item.img} />
+                  <Text style={{ textAlign: "center" }}>{item.name}</Text>
+                </View>
+                {/* <View> */}
+                <View
+                  style={{
+                    backgroundColor: "grey",
+                    height: 59,
+                    width: 1,
+                  }}
+                />
+                {/* </View> */}
               </View>
             );
           })}

@@ -31,12 +31,12 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   imgSpirit: {
-    height: 220,
-    width: 125,
-    marginTop: 50,
+    height: 259,
+    width: 134,
+    marginTop: 40,
   },
   imgSpiritContainer: {
-    width: 300,
+    width: 250,
     alignItems: "flex-start",
   },
   img: {
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     color: "white",
   },
   basketContainer: {
-    flex: 0.75,
+    flex: 0.65,
     // height: "15%",
     // marginTop: 100,
     alignItems: "center",
@@ -64,9 +64,9 @@ export default StyleSheet.create({
   basketItem: {
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: "center",
-    height: 75,
-    width: 75,
+    alignSelf: "flex-start",
+    height: 59,
+    width: 95,
     margin: 5,
   },
 });

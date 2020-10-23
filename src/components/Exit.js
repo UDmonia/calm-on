@@ -27,13 +27,3 @@ export default Exit = (props) => {
     </TouchableOpacity>
   );
 };
-
-// const Logo = styled.Image`
-//   width: ${(props) => (props.width ? wp(props.width) : "300")}px;
-//   height: ${(props) => (props.height ? hp(props.height) : "348")}px;
-//   ${(props) =>
-//     props.width || props.height ? "resizeMode: contain;" : "margin: 75px auto;"}
-//   margin-top: ${(props) => (props.marginTop ? hp(props.marginTop) : "0")}px;
-//   margin-bottom: ${(props) =>
-//     props.marginBottom ? hp(props.marginBottom) : "0"}px;
-// `;
