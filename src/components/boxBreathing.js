@@ -171,41 +171,41 @@ const boxBreathing =()=>{
         //    setTimer(1)
         //}
             
+        Animated.loop(
+        //setTimeout(()=>{
+        //    setText('Get Ready')
+        //},1000),
         
-        setTimeout(()=>{
-            setText('Get Ready')
-        },1000)
-        setTimeout(()=>{ 
-            setText('Start!')
-        },2400)
+        //setTimeout(()=>{ 
+        //    setText('Start!')
+        //},2400),
 
-        setTimeout(()=>{
-            setText('Breathe In...')
-        },3000)
+        //setTimeout(()=>{
+        //    setText('Breathe In...')
+        //},3000),
 
-        setTimeout(()=>{
-            setText('Hold Air In...')
-        },7000)
+        //setTimeout(()=>{
+        //    setText('Hold Air In...')
+        //},7000),
 
 
-        setTimeout(()=>{
-            setWidth1(0)
-            setText('Breathe Out...')
-        },11000)
+        //setTimeout(()=>{
+        //    setWidth1(0)
+        //    setText('Breathe Out...')
+        //},11000),
 
-        setTimeout(()=>{
-            setWidth2(10)
-            setText('Hold Air Out...')
-        },15000)
+        //setTimeout(()=>{
+        //    setWidth2(10)
+        //    setText('Hold Air Out...')
+        //},15000),
 
-        setTimeout(()=>{
-            setText('Finished!')
-            showOutro(true)
-        },19000)
+        //setTimeout(()=>{
+        //    setText('Finished!')
+        //    showOutro(true)
+        //},19000),
 
 
-
-    Animated.sequence([
+        Animated.sequence([
         Animated.timing(
             move1,
             {
@@ -244,17 +244,17 @@ const boxBreathing =()=>{
                 duration:4000,
             }
         )
-        ]).start()
+        ]),
 
 
 
-
+        
         Animated.timing(length1,{
             toValue: 290,
             duration: 4000,
             delay:getReady,
             useNativeDriver:false
-        }).start()
+        }),
 
         
         Animated.timing(length2,{
@@ -262,27 +262,29 @@ const boxBreathing =()=>{
             delay:4000+getReady,
             duration: 4000,
             useNativeDriver:false
-        }).start()
+        }),
 
         Animated.timing(length3,{
             toValue: 0,
             delay:8000+getReady,
             duration: 4000,
             useNativeDriver:false
-        }).start()
+        }),
 
         Animated.timing(length4,{
             toValue:285,
             delay:12000+getReady,
             duration: 4000,
             useNativeDriver:false
-        }).start()
+        })
+
+        ,{iterations:3}).start()
     }
 
 
-    return ()=>{
+    //return ()=>{
         
-    }
+    //}
 
 
     },[start,startAnimation])
@@ -335,9 +337,9 @@ const boxBreathing =()=>{
     return (
         <View>
 
-            {outro && 
+            {/*{outro && 
                 <OutroStory/>
-            }
+            }*/}
 
             <ImageBackground source = {require("../../assets/boxBreathing/beach.png")} style = {styles.backgroundImage}>
         {!start?
@@ -373,9 +375,9 @@ const boxBreathing =()=>{
                 </View>
             }
 
-            {outro && 
+            {/*{outro && 
                 <OutroStory/>
-            }
+            }*/}
         </View>
         }
             </ImageBackground>
