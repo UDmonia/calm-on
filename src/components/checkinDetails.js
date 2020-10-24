@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {ImageBackground,Text, View, Image} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
@@ -54,6 +54,9 @@ const checkinDetails =({route})=>{
     //parsedJournal.splice(parsedJournal.length-2,0,'and')
     const lastCommaIndex = journal.journal.lastIndexOf(',')
 
+    //useEffect(()=>{
+    //    console.log('ALL',allEntries)
+    //})
 
 
     /**
@@ -116,11 +119,12 @@ const checkinDetails =({route})=>{
 
                     <Image  source = {moodMap[journal.mood].path}/>
                     
-                    {/*temporary journal placeholder until Luis's check-in page update*/}
-                    <Text style = {styles.journal}>Right now, I'm feeling <Text style = {{fontWeight:'bold'}}>{journal.mood.charAt(0).toUpperCase()+journal.mood.slice(1)} </Text>about 
-                        <Text style = {styles.bolded}> {journal.journal.split(',').length === 1? journal: journal.journal.toLowerCase().substring(0,lastCommaIndex+1)}</Text>
-                            and <Text style = {styles.bolded}>{journal.journal.toLowerCase().substring(lastCommaIndex+1)}</Text>
+                    <Text style = {styles.journalTitle}>{journal.mood.charAt(0).toUpperCase()+journal.mood.slice(1)}</Text> 
+                        <Text style = {styles.journal}>I'm {journal.mood} about <Text style = {styles.bolded}>{journal.journal.split(',').length === 1? journal.journal: journal.journal.toLowerCase().substring(0,lastCommaIndex+1)} 
                         </Text>
+                        and 
+                        <Text style = {styles.bolded}> {journal.journal.toLowerCase().substring(lastCommaIndex+1)}</Text>
+                    </Text>
                 </View>
 
                 <View style = {styles.lower}>

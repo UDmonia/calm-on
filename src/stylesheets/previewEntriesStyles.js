@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     box: {
         display: 'flex',
-        height: 100,
+        height: 110,
         flexDirection:'row',
         borderRadius: 5,
         margin:'1.2%',
@@ -23,21 +23,25 @@ const styles = StyleSheet.create({
         //borderWidth:1,
 
     },
+    category:{
+        fontWeight:'bold'
+    }
+    ,
     container:{
         margin:'2.5%',
         width: '92%',
-        height: 130,
-        marginTop: '0.5%',
-        marginBottom: '2.5%',
+        marginTop: '2%',
+        marginBottom: '2.8%',
         marginLeft:'3.5%',
-        borderRadius:5
+        borderRadius:5,
     },
     date:{
         fontFamily: 'Avenir',
         fontWeight:'800',
         fontSize: 20,
         marginLeft: '3%',
-        marginBottom: '2%'
+        marginBottom: '2%',
+        marginTop:'1.5%'
     },
     journal:{
         fontSize: 14,

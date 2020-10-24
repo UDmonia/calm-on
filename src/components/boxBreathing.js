@@ -121,7 +121,7 @@ const OutroStory =()=>{
 
     return(
         <View style = {styles.introContainer}>
-            <ImageBackground style = {styles.backgroundImage} source = {require('../../assets/boxBreathing/sand.png')}>
+            <ImageBackground style = {styles.backgroundImage} source = {require('../../assets/boxBreathing/beach.png')}>
             <View style = {styles.prompt}>
                 <View style = {styles.questionBox}>
                     <Text style = {{color:'white',textAlign:'center'}}>{storyMap[page].question}</Text>

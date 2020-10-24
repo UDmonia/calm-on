@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
         width:450
     },
     backgroundImage:{
-        width:'80%',
-        height:'90%'
+        width:'100%',
+        height:'100%'
     },
     prompt:{
         backgroundColor:'#FBBDB4',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         color: '#7B7B7B',
         paddingTop: '2%',
         //paddingBottom: '%'
-    }
+    },
     
 })
 
