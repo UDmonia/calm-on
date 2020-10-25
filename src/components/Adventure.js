@@ -2,21 +2,15 @@ import React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import styles from "../stylesheets/adventureStyles";
 
-/**
- * TODO:
- * - map each location
- * - margins
- * - styles
- */
 export default Adventure = ({ navigation: { navigate } }) => {
   return (
-    <View style={{ flex: 1, alignItems: "center" }}>
+    <View style={styles.screenContainer}>
       <Image
-        style={{ marginLeft: -50 }}
+        style={styles.imgPosition}
         source={require("../../assets/adventure/spirit.png")}
       />
       <View style={styles.dialogContainer}>
-        <Text style={{ margin: 10, color: "white" }}>
+        <Text style={styles.greetingTxt}>
           Hey [user]! Great to see you! I’m so glad you want to go on an
           adventure with me. Where do you want to go?
         </Text>

@@ -1,6 +1,17 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  imgPosition: {
+    marginLeft: -50,
+  },
+  greetingTxt: {
+    margin: 10,
+    color: "white",
+  },
   row: {
     flexDirection: "row",
   },
