@@ -28,6 +28,9 @@ const initialSignUp = {
   birthday: "",
 };
 
+const validateEmail = (email) =>
+  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
 const SessionForm = ({
   login,
   navigate,
@@ -54,9 +57,6 @@ const SessionForm = ({
   useEffect(() => {
     if (error) setError(true);
   }, [error]);
-
-  const validateEmail = (email) =>
-    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
   const isValid = () => {
     const keys = Object.keys(user);
@@ -279,4 +279,5 @@ const SessionForm = ({
   );
 };
 
+export { validateEmail };
 export default SessionForm;
