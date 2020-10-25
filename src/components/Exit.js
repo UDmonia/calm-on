@@ -19,9 +19,15 @@ export default Exit = (props) => {
 
   return (
     <TouchableOpacity
-      onPress={() =>
-        props.navTo ? navigation.navigate(props.navTo) : navigation.pop()
-      }
+      onPress={() => {
+        if (props.navTo) {
+          navigation.pop();
+          navigation.navigate(props.navTo);
+        } else {
+          navigation.pop();
+        }
+        // props.navTo ? navigation.navigate(props.navTo) : navigation.pop()
+      }}
     >
       <Image
         style={styles.img}

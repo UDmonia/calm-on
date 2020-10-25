@@ -1,13 +1,30 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+  },
   background: {
     flex: 2.5,
     resizeMode: "contain",
-    // height: "75%",
-    // width: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  imgBackground: {
+    resizeMode: "cover",
+    flex: 1,
+    width: "100%",
+    height: "110%",
+    top: undefined,
+    overflow: "hidden",
+  },
+  exitPosition: {
+    alignSelf: "flex-start",
+    marginLeft: 50,
+    marginBottom: 30,
   },
   row: {
     flexDirection: "row",
@@ -53,16 +70,35 @@ export default StyleSheet.create({
   },
   basketContainer: {
     flex: 0.65,
-    // height: "15%",
-    // marginTop: 100,
     alignItems: "center",
     width: "100%",
     backgroundColor: "blue",
+  },
+  seeAllContainer: {
+    backgroundColor: "#027E2A",
+    width: "100%",
+    minHeight: 50,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  selectedItemTxt: {
+    color: "white",
+    marginHorizontal: 10,
+    marginRight: 235,
+  },
+  seeAllTxt: {
+    color: "white",
   },
   basket: {
     backgroundColor: "white",
     height: 75,
     width: "100%",
+  },
+  basketItemContainer: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    marginTop: 10,
   },
   basketItem: {
     justifyContent: "center",
@@ -71,5 +107,13 @@ export default StyleSheet.create({
     height: 59,
     width: 95,
     margin: 5,
+  },
+  itemName: {
+    textAlign: "center",
+  },
+  itemDivider: {
+    backgroundColor: "grey",
+    height: 59,
+    width: 1,
   },
 });

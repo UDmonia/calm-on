@@ -11,19 +11,31 @@ import Exit from "./Exit";
 import styles from "../stylesheets/picnicStyles";
 import picnicData from "./picnicData";
 import { navigate } from "./RootNavigation";
-import chatPlaceholder from "./chatPlaceholder";
 
+/**
+ * Picnic is a single screen in the adventures activity.
+ * We use the data imported from "picnicData" to fill our componenets.
+ */
 export default Picnic = ({ navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
   const scrollViewRef = useRef();
 
+  /**
+   * alphaButton populates a single button for each letter A - Z. It
+   * adds items to our "selected" array which will display
+   * items at the bottom of the screen and in the "See All" screen
+   *
+   * @param { object } item - object for each letters subitem
+   *                           (Ex. {id: 1, itemName: "Dog", image: PATH TO PIC})
+   */
   const alphaButton = (item) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          // add item to the bottom basket
+          // Add item to the bottom basket
+          // After each press we increment our index through "picnicData"
           if (letter < picnicData.length - 1) {
             setSelected([
               ...selected,
@@ -37,7 +49,7 @@ export default Picnic = ({ navigation }) => {
             ]);
             setDone(true);
           }
-          // TODO: when designs are finalized replace "true" with another flag that will end
+          // TODO: when designs are finalized replace "true" with another flag that will end the activity
           else if (done && true) {
             navigate("chatPlaceholder");
           }
@@ -52,29 +64,13 @@ export default Picnic = ({ navigation }) => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        height: "100%",
-        width: "100%",
-        justifyContent: "center",
-      }}
-    >
+    <View style={styles.screenContainer}>
       <ImageBackground
         source={require("../../assets/adventure/locations/picnic/picnicBackground.png")}
         style={styles.background}
-        imageStyle={{
-          resizeMode: "cover",
-          flex: 1,
-          width: "100%",
-          height: "110%",
-          top: undefined,
-          overflow: "hidden",
-        }}
+        imageStyle={styles.imgBackground}
       >
-        <View
-          style={{ alignSelf: "flex-start", marginLeft: 50, marginBottom: 30 }}
-        >
+        <View style={styles.exitPosition}>
           <Exit navTo={"chatPlaceholder"} />
         </View>
         <View style={styles.locationContainer}>
@@ -96,29 +92,15 @@ export default Picnic = ({ navigation }) => {
         </View>
       </ImageBackground>
       <View style={styles.basketContainer}>
-        <View
-          style={{
-            backgroundColor: "#027E2A",
-            width: "100%",
-            minHeight: 50,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{ color: "white", marginHorizontal: 10, marginRight: 235 }}
+        <View style={styles.seeAllContainer}>
+          <Text style={styles.selectedItemTxt}>Selected Items</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("PicnicSeeAll", { arr: selected });
+            }}
           >
-            Selected Items
-          </Text>
-          <View style={{ justifyContent: "flex-end", color: "white" }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("PicnicSeeAll", { arr: selected });
-              }}
-            >
-              <Text style={{ color: "white" }}>See all {">"}</Text>
-            </TouchableOpacity>
-          </View>
+            <Text style={styles.seeAllTxt}>See all {">"}</Text>
+          </TouchableOpacity>
         </View>
         <ScrollView
           style={styles.basket}
@@ -131,27 +113,12 @@ export default Picnic = ({ navigation }) => {
         >
           {selected.map((item) => {
             return (
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  marginTop: 10,
-                }}
-              >
+              <View style={styles.basketItemContainer}>
                 <View key={item.itemName} style={styles.basketItem}>
                   <Image style={styles.img} source={item.img} />
-                  <Text style={{ textAlign: "center" }}>{item.name}</Text>
+                  <Text style={styles.itemName}>{item.name}</Text>
                 </View>
-                {/* <View> */}
-                <View
-                  style={{
-                    backgroundColor: "grey",
-                    height: 59,
-                    width: 1,
-                  }}
-                />
-                {/* </View> */}
+                <View style={styles.itemDivider} />
               </View>
             );
           })}
