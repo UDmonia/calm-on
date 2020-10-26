@@ -113,8 +113,8 @@ export default Picnic = ({ navigation }) => {
         >
           {selected.map((item) => {
             return (
-              <View style={styles.basketItemContainer}>
-                <View key={item.itemName} style={styles.basketItem}>
+              <View key={item.name} style={styles.basketItemContainer}>
+                <View style={styles.basketItem}>
                   <Image style={styles.img} source={item.img} />
                   <Text style={styles.itemName}>{item.name}</Text>
                 </View>
