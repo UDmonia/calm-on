@@ -66,8 +66,6 @@ export default StyleSheet.create({
   },
   textBox: {
     position: "absolute",
-    //marginLeft: 10,
-    //marginRight: 10,
     top: 775,
     height: 82,
     width: 300,
@@ -78,10 +76,6 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   textBox2: {
-    //position: "absolute",
-    //marginLeft: 10,
-    //marginRight: 10,
-    //top: 500,
     height: 82,
     width: 300,
     borderRadius: 5,
@@ -130,7 +124,7 @@ export default StyleSheet.create({
   buttonView: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     width: 350,
     height: 51,
     marginTop: 60,
