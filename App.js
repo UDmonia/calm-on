@@ -26,7 +26,9 @@ import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
 import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
-import CountingPromt from "./src/components/CountingPrompt.js";
+import CountingPrompt from "./src/components/CountingPrompt.js";
+import CountingSelection from "./src/components/CountingSelection.js";
+
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -43,29 +45,41 @@ export default function App() {
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
-          <Stack.Screen 
-            name="Counting" 
+          <Stack.Screen
+            name="Counting"
             component={Counting}
-            options= {{
+            options={{
               headerShown: false,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
               headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",
-            }} 
+            }}
           />
-          <Stack.Screen 
-            name="CountingPrompt" 
+          <Stack.Screen
+            name="CountingPrompt"
             component={CountingPrompt}
-            options= {{
+            options={{
               headerShown: false,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
               headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",
-            }} 
+            }}
+          />
+          <Stack.Screen
+            name="CountingSelection"
+            component={CountingSelection}
+            options={{
+              headerShown: false,
+              headerBackTitleVisible: false,
+              headerTitle: "Counting",
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            }}
           />
           <Stack.Screen
             name="DailyCheckIn"
@@ -148,17 +162,17 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />
-          <Stack.Screen 
-            name="Activities" 
+          <Stack.Screen
+            name="Activities"
             component={Activities}
-            options= {{
-                headerShown: true,
-                headerBackTitleVisible: false,
-                headerTitle: "Activities",
-                headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-                headerStyle: { backgroundColor: "#2E7D32" },
-                headerTintColor: "#FFFFFF",
-              }} 
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "Activities",
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            }}
           />
           <Stack.Screen
             name="FiveFourThreeTwoOneTech"

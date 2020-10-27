@@ -12,6 +12,55 @@ import styles from "../stylesheets/countingStyles";
 import pie from "../../assets/counting/pie.png";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
+import apple from "../../assets/counting/apple.png";
+
+var Fruit = {
+  groupName: "fruit",
+  dialog: [
+    "Let’s make an apple pie together! We’re going to need 7 apples. Can you help me count them?",
+    "All done! With your help, we made a delicious apple pie!",
+    "Do you want to try another recipe?",
+  ],
+  fruits: [
+    {
+      id: 4,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 10,
+        left: 10,
+      },
+    },
+    {
+      id: 5,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 60,
+        left: 10,
+      },
+    },
+    {
+      id: 6,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 60,
+        left: 60,
+      },
+    },
+    {
+      id: 7,
+      name: "apple",
+      img: apple,
+      xpos: {
+        top: 90,
+        left: 90,
+      },
+    },
+
+  ],
+};
 
 function getBoxes(box) {
   if (box != null) {
@@ -74,7 +123,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.navButton}
-                onPress={() => navigate("Counting")}
+                onPress={() => navigate("Counting",  { stuff: Fruit })}
               >
                 <Text>Next</Text>
               </TouchableOpacity>

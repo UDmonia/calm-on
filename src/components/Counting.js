@@ -15,8 +15,8 @@ import apple from "../../assets/counting/apple.png";
 import pie from "../../assets/counting/pie.png";
 import DialogBox from "./dialog";
 
-var apples = {
-  groupName: "Pie",
+var applePie = {
+  groupName: "apples",
   dialog: [
     "Let’s make an apple pie together! We’re going to need 7 apples. Can you help me count them?",
     "All done! With your help, we made a delicious apple pie!",
@@ -51,57 +51,7 @@ var apples = {
       },
     },
   ],
-  Next: [],
 };
-
-var fruit = {
-  groupName: "fruit",
-  dialog: [
-    "Let’s make an apple pie together! We’re going to need 7 apples. Can you help me count them?",
-    "All done! With your help, we made a delicious apple pie!",
-    "Do you want to try another recipe?",
-  ],
-  fruits: [
-    {
-      id: 4,
-      name: "apple",
-      img: apple,
-      xpos: {
-        top: 30,
-        left: 50,
-      },
-    },
-    {
-      id: 5,
-      name: "apple",
-      img: apple,
-      xpos: {
-        top: 60,
-        left: 80,
-      },
-    },
-    {
-      id: 6,
-      name: "apple",
-      img: apple,
-      xpos: {
-        top: 80,
-        left: 90,
-      },
-    },
-    // {
-    //   id: 7,
-    //   name: "apple",
-    //   img: apple,
-    //   xpos: {
-    //     top: 100,
-    //     left: 90,
-    //   },
-    // },
-  ],
-};
-
-var stuff = apples;
 
 function getBoxes(box) {
   if (box != null) {
@@ -152,11 +102,19 @@ function fruitObjects(fruit, boxed, setBox, count, setCount, flag) {
 //   );
 // };
 
-export default Counting = ({ navigation: { navigate } }) => {
+export default Counting = ({ route, navigation }) => {
   const [boxed, setBox] = useState([]);
   const [count, setCount] = useState(0);
-  //const [next, setNext] = useState(false);
-  //const [secRecipe, setRecipe] = useState(false);
+  const { stuff } = route.params;
+
+  function doTheThing() {
+    navigation.pop();
+    navigation.navigate("CountingPrompt", {
+      boxes: boxed,
+      actData: stuff,
+      counter: count,
+    });
+  }
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.image}>
@@ -195,12 +153,13 @@ export default Counting = ({ navigation: { navigate } }) => {
           />
         ) : null}
         {count == stuff.fruits.length
-          ? navigate("CountingPrompt", {
-              boxes: boxed,
-              actData: stuff,
-              counter: count,
-            })
-          : null}
+          ? doTheThing()
+          : // ? navigate("CountingPrompt", {
+            //     boxes: boxed,
+            //     actData: stuff,
+            //     counter: count,
+            //   })
+            null}
         {/* {count == stuff.fruits.length && !next ? (
           <View style={styles.fin}>
             <DialogBox
@@ -235,6 +194,8 @@ export default Counting = ({ navigation: { navigate } }) => {
                   setBox([]);
                   setCount(0);
                   setNext(false);
+                  navigation.pop()
+                  navigate("Counting")
                 }}
               >
                 <Text>Next</Text>

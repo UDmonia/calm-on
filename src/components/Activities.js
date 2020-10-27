@@ -11,7 +11,7 @@ import painter from "../../assets/activities/painter.png"
 const learningFeelings = [
     {
         id: 1,
-        title: "Counting",
+        title: "CountingSelection",
         img: require("../../assets/activities/counting.png"),
         tag: 'Fear',
         level: 'Basic Skills',
