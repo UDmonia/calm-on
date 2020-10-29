@@ -15,7 +15,7 @@ function getBoxes(box) {
   if (box != null) {
     return (
       <View key={box.id} style={styles.itemBox}>
-        <Image source={box.img} />
+        <Image style={styles.boxImg} source={box.img} />
       </View>
     );
   }
@@ -29,9 +29,11 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
   const { counter } = route.params;
   return (
     <View style={styles.container}>
-      <ImageBackground source={bg} style={styles.image}>
+      <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.countDis}>
-          <Text>{"Count: " + counter}</Text>
+          <Text style={{ color: "#FFFFFF" }}>
+            {counter + " " + actData.groupName}
+          </Text>
         </View>
         <ScrollView
           style={styles.itemBoxes}
@@ -44,7 +46,9 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
         </ScrollView>
         <View style={styles.spritBox2}>
           <Image style={styles.sprit} source={sprit} />
-          <Image style={styles.pie} source={actData.groupImg} />
+          <View style={styles.recpImgBox}>
+            <Image style={styles.groupImg} source={actData.groupImg} />
+          </View>
         </View>
         {next ? (
           <View style={styles.fin}>

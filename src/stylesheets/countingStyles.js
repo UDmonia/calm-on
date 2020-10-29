@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: "#39565F",
     //alignItems: "center"
   },
-  image: {
+  backImage: {
     width: "100%",
     height: "100%",
     flex: 1,
@@ -87,16 +87,26 @@ export default StyleSheet.create({
   itemBoxes: {
     position: "absolute",
     width: 330,
-    height: 48,
+    height: 47,
     top: 130,
     left: 40,
-    //backgroundColor: "pink",
+    //backgroundColor: "#DCF4F1",
   },
   itemBox: {
     height: 48,
     width: 47,
-    borderColor: "red",
-    borderWidth: 1,
+    //borderColor: "#39565F",
+    alignItems: "center",
+    justifyContent: "center",
+    //borderWidth: 1,
+    backgroundColor: "#DCF4F1",
+    margin: 1,
+  },
+  boxImg: {
+    height: 40,
+    width: 40,
+    //margin: 10,
+    resizeMode: "contain",
   },
   countDis: {
     position: "absolute",
@@ -107,10 +117,17 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  pie: {
-    position: "absolute",
+  recpImgBox: {
+    height: 150,
+    width: 200,
     left: 90,
-    top: 91,
+    top: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "green",
+  },
+  groupImg: {
+    resizeMode: "contain",
   },
   nextButton: {
     width: 163,

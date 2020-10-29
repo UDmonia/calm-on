@@ -17,7 +17,7 @@ function getBoxes(box) {
   if (box != null) {
     return (
       <View key={box.id} style={styles.itemBox}>
-        <Image source={box.img} />
+        <Image style={styles.boxImg} source={box.img} />
       </View>
     );
   }
@@ -66,24 +66,29 @@ export default Counting = ({ route, navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <ImageBackground source={bg} style={styles.image}>
+      <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.countDis}>
           {count > 0 ? (
-            //   <Text>{boxed[boxed.length - 1].name + ": " + count}</Text>
-            <Text>{"Count: " + count}</Text>
+            <Text style={{ color: "#FFFFFF" }}>
+              {count + " " + stuff.groupName}
+            </Text>
           ) : null}
         </View>
         <ScrollView
           style={styles.itemBoxes}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
+          // ref={scrollViewRef}
+          // onContentSizeChange={() =>
+          //   scrollViewRef.current.scrollToEnd({ animated: true })
+          // }
         >
           {boxed.map((box) => {
             return getBoxes(box);
           })}
         </ScrollView>
         <View style={styles.fruitZone}>
-          {stuff.fruits.map((fruit) => {
+          {stuff.items.map((fruit) => {
             return fruitObjects(fruit, boxed, setBox, count, setCount, "fruit");
           })}
         </View>
@@ -98,7 +103,7 @@ export default Counting = ({ route, navigation }) => {
             }}
           />
         ) : null}
-        {count == stuff.fruits.length ? doTheThing() : null}
+        {count == stuff.items.length ? doTheThing() : null}
       </ImageBackground>
     </View>
   );
