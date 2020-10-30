@@ -28,6 +28,9 @@ import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import CountingPrompt from "./src/components/CountingPrompt.js";
 import CountingSelection from "./src/components/CountingSelection.js";
+import Adventure from "./src/components/Adventure.js";
+import Picnic from "./src/components/Picnic.js";
+import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
 
 
 const Stack = createStackNavigator();
@@ -195,6 +198,20 @@ export default function App() {
             options={{ headerShown: true, headerTitle: "Box Breathing" }}
             component={BoxBreathing}
           />
+          <Stack.Screen
+            name="Adventure"
+            component={Adventure}
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTintColor: "white",
+              headerTitle: "Going on an Adventure",
+              headerTitleStyle: { fontSize: 24, color: "white" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+            }}
+          />
+          <Stack.Screen name="Picnic" component={Picnic} />
+          <Stack.Screen name="PicnicSeeAll" component={PicnicSeeAll} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
