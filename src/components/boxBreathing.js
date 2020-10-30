@@ -147,14 +147,58 @@ const boxBreathing =()=>{
     const [startAnimation,setStartAnimation] = useState(false)
     const [text,setText] = useState('')
     const getReady = 3000
-    const [hideWidth1,setWidth1] = useState(10)
-    const [hideWidth2,setWidth2] = useState(0)
+    //const [hideWidth1,setWidth1] = useState(10)
+    const topRightCorner = useRef(new Animated.Value(10)).current
+    const leftBar = useRef(new Animated.Value(0)).current
+    //const [hideWidth2,setWidth2] = useState(0)
+    const textList = ['Breathe In','Hold Air In', 'Breath Out', 'Hold Air Out','Finished!']
     const [outro,showOutro] = useState(false)
     const length1 = useRef(new Animated.Value(0)).current
     const length2 = useRef(new Animated.Value(280)).current
     const length3 = useRef(new Animated.Value(290)).current
     const length4 = useRef(new Animated.Value(0)).current
     const move1 = useRef(new Animated.ValueXY({x:20,y:330})).current
+    const index = useRef(new Animated.Value(0)).current
+    const [mapIndex,setIndex] = useState(0)
+
+    const cleanUp = ()=>{
+        return Animated.parallel([
+            Animated.timing(topRightCorner,{
+                toValue: 10,
+                duration: 0,
+                useNativeDriver:false
+            }),
+
+            Animated.timing(length1,{
+                toValue: 0,
+                duration: 0,
+                useNativeDriver:false
+            }),
+            Animated.timing(length2,{
+                toValue: 280,
+                duration: 0,
+                useNativeDriver:false
+            }),
+            Animated.timing(length3,{
+                toValue: 290,
+                duration: 0,
+                useNativeDriver:false
+            }),
+            Animated.timing(length4,{
+                toValue: 0,
+                duration: 0,
+                useNativeDriver:false
+            })
+            ,
+            Animated.timing(leftBar,{
+                toValue: 0,
+                duration: 0,
+                useNativeDriver:false
+            }),
+        ])
+        
+    }
+
 
     useEffect(()=>{
         if (startAnimation) {
@@ -170,15 +214,10 @@ const boxBreathing =()=>{
         //else{
         //    setTimer(1)
         //}
-            
-        Animated.loop(
-        //setTimeout(()=>{
-        //    setText('Get Ready')
-        //},1000),
+
+        index.stopAnimation(value=>setIndex(value))
+       
         
-        //setTimeout(()=>{ 
-        //    setText('Start!')
-        //},2400),
 
         //setTimeout(()=>{
         //    setText('Breathe In...')
@@ -190,102 +229,202 @@ const boxBreathing =()=>{
 
 
         //setTimeout(()=>{
-        //    setWidth1(0)
+        //    //setWidth1(0)
         //    setText('Breathe Out...')
         //},11000),
 
         //setTimeout(()=>{
-        //    setWidth2(10)
-        //    setText('Hold Air Out...')
+        //    //setWidth2(10)
+        //    //setText('Hold Air Out...')
         //},15000),
 
+
         //setTimeout(()=>{
-        //    setText('Finished!')
-        //    showOutro(true)
+        //    //setText('Finished!')
+        //    //length1.resetAnimation()
+        //    //length2.resetAnimation()
+        //    //length3.resetAnimation()
+        //    //length4.resetAnimation()
+        //    //length1.addListener(()=>length1 = 0)
+        //    //setWidth1(10)
+        //    //setWidth2(0)
+        //    //showOutro(true)
         //},19000),
+        console.log(leftBar)
 
+        Animated.loop(
+            Animated.sequence([
+            Animated.parallel([
+            Animated.timing(
+                move1,
+                {
+                    toValue: {x:300,y:330},
+                    useNativeDriver: false,
+                    delay:getReady,
+                    duration:4000,
 
-        Animated.sequence([
-        Animated.timing(
-            move1,
-            {
-                toValue: {x:300,y:330},
-                useNativeDriver: false,
-                delay:getReady,
-                duration:4000,
-
-            }
+                }
             
-        ),
-
-        Animated.timing(
-            move1,
-            {
-                toValue: {x:300,y:60},
-                useNativeDriver: false,
-                duration:4000,
-            }
-        ),
+            ),
+            Animated.timing(length1,{
+                toValue: 290,
+                duration: 4000,
+                delay:getReady,
+                useNativeDriver:false
+            }),
+            Animated.timing(index,{
+                toValue: 1,
+                duration: 4000,
+                delay:getReady,
+                useNativeDriver:false
+            })
+            ]
+            ),
         
-        Animated.timing(
-            move1,
-            {
-                toValue: {x:20,y:60},
-                useNativeDriver: false,
-                duration:4000,
-            }
-        ),
+            Animated.parallel([
+            Animated.timing(
+                move1,
+                {
+                    toValue: {x:300,y:60},
+                    useNativeDriver: false,
+                    duration:4000,
+                }
+            ),
+                Animated.timing(length2,{
+                toValue: 0,
+                //delay:4000 + getReady,
+                duration: 4000,
+                useNativeDriver:false
+            }),
+            //Animated.timing(index,{
+            //    toValue: 2,
+            //    duration: 4000,
+            //    delay:getReady,
+            //    useNativeDriver:false
+            //}) 
+            ]
+         ),
 
-        Animated.timing(
-            move1,
-            {
-                toValue: {x:20,y:330},
-                useNativeDriver: false,
-                duration:4000,
-            }
-        )
-        ]),
-
-
-
-        
-        Animated.timing(length1,{
-            toValue: 290,
-            duration: 4000,
-            delay:getReady,
+         Animated.timing(index,{
+            toValue: 1,
+            duration: 0,
             useNativeDriver:false
-        }),
-
-        
-        Animated.timing(length2,{
+         }),
+         Animated.timing(topRightCorner,{
             toValue: 0,
-            delay:4000+getReady,
-            duration: 4000,
+            duration: 0,
             useNativeDriver:false
-        }),
+         }),
+        
+         Animated.parallel([
+            Animated.timing(
+                move1,
+                {
+                    toValue: {x:20,y:60},
+                    useNativeDriver: false,
+                    duration:4000,
+                }
+            ),
+            Animated.timing(length3,{
+                toValue: 0,
+                //delay:8000
+                //+getReady
+            
+                duration: 4000,
+                useNativeDriver:false
+            }),
+            //Animated.timing(index,{
+            //    toValue: 3,
+            //    duration: 4000,
+            //    delay:getReady,
+            //    useNativeDriver:false
+            //})
+            ]
+         ),
 
-        Animated.timing(length3,{
-            toValue: 0,
-            delay:8000+getReady,
-            duration: 4000,
+         Animated.timing(leftBar,{
+            toValue: 10,
+            duration: 0,
             useNativeDriver:false
-        }),
+         }),
+         
 
-        Animated.timing(length4,{
-            toValue:285,
-            delay:12000+getReady,
-            duration: 4000,
-            useNativeDriver:false
-        })
+        
+         Animated.parallel([ 
+                Animated.timing(
+                move1,
+                {
+                    toValue: {x:20,y:330},
+                    useNativeDriver: false,
+                    duration:4000,
+                }
+            ),
+            Animated.timing(length4,{
+                toValue:285,
+                //+getReady
+                duration: 4000,
+                useNativeDriver:false
+            }),
+            //Animated.timing(index,{
+            //    toValue: 4,
+            //    duration: 4000,
+            //    delay:getReady,
+            //    useNativeDriver:false
+            //})
+            ]
+            ),
 
-        ,{iterations:3}).start()
-    }
+            cleanUp()
+        //]),
+
+        ])
+
+
+    //    Animated.sequence([
+    //    Animated.timing(length1,{
+    //        toValue: 290,
+    //        duration: 4000,
+    //        delay:getReady,
+    //        useNativeDriver:false
+    //    }),
+        
+
+        
+    //    Animated.timing(length2,{
+    //        toValue: 0,
+    //        delay:4000
+    //        //+getReady
+    //        ,
+    //        duration: 4000,
+    //        useNativeDriver:false
+    //    }),
+
+    //    Animated.timing(length3,{
+    //        toValue: 0,
+    //        delay:8000
+    //        //+getReady
+    //        ,
+    //        duration: 4000,
+    //        useNativeDriver:false
+    //    }),
+
+    //    Animated.timing(length4,{
+    //        toValue:285,
+    //        delay:12000
+    //        //+getReady
+    //        ,
+    //        duration: 4000,
+    //        useNativeDriver:false
+    //    })
+    //])
+        ,{iterations:3}).start(()=>showOutro(true))
+    
 
 
     //return ()=>{
         
     //}
-
+    }
 
     },[start,startAnimation])
 
@@ -306,7 +445,7 @@ const boxBreathing =()=>{
         top:134,
         right:64,
         width: 10,
-        borderWidth:hideWidth1,
+        borderWidth:topRightCorner,
         height:length2,
         borderColor:'#CFDCEF',
         zIndex:2
@@ -328,7 +467,7 @@ const boxBreathing =()=>{
         position: 'absolute',
         top:134,
         left:60,
-        borderWidth:hideWidth2,
+        borderWidth:leftBar,
         height:length4,
         borderColor:'#7990AF',
         zIndex:1,
@@ -337,9 +476,9 @@ const boxBreathing =()=>{
     return (
         <View>
 
-            {/*{outro && 
+            {outro && 
                 <OutroStory/>
-            }*/}
+            }
 
             <ImageBackground source = {require("../../assets/boxBreathing/beach.png")} style = {styles.backgroundImage}>
         {!start?
@@ -347,7 +486,7 @@ const boxBreathing =()=>{
             :
         <View style = {styles.container}>
             <Text style = {styles.text}>
-                {text}
+                {text[mapIndex]}
             </Text>
 
             <Animated.View style = {[animated1]}>
@@ -375,9 +514,6 @@ const boxBreathing =()=>{
                 </View>
             }
 
-            {/*{outro && 
-                <OutroStory/>
-            }*/}
         </View>
         }
             </ImageBackground>
