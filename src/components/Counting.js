@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -55,6 +55,7 @@ export default Counting = ({ route, navigation }) => {
   const [boxed, setBox] = useState([]);
   const [count, setCount] = useState(0);
   const { stuff } = route.params;
+  const scrollViewRef = useRef();
 
   function doTheThing() {
     navigation.pop();
@@ -78,10 +79,10 @@ export default Counting = ({ route, navigation }) => {
           style={styles.itemBoxes}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          // ref={scrollViewRef}
-          // onContentSizeChange={() =>
-          //   scrollViewRef.current.scrollToEnd({ animated: true })
-          // }
+          ref={scrollViewRef}
+          onContentSizeChange={() =>
+            scrollViewRef.current.scrollToEnd({ animated: true })
+          }
         >
           {boxed.map((box) => {
             return getBoxes(box);

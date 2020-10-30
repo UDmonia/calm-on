@@ -59,7 +59,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               style={styles.nextButton}
               onPress={() => setNext(false)}
             >
-              <Text>NEXT</Text>
+              <Text style={{color: "#3B96B2"}}>NEXT</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -72,14 +72,14 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                 style={styles.navButton}
                 onPress={() => navigate("Home")}
               >
-                <Text>HOME</Text>
+                <Text style={{color: "#3B96B2"}} >HOME</Text>
               </TouchableOpacity>
               {actData.next != null ? (
                 <TouchableOpacity
                   style={styles.navButton}
                   onPress={() => navigate("Counting", { stuff: actData.next })}
                 >
-                  <Text>Next</Text>
+                  <Text style={{color: "#3B96B2"}} >Next</Text>
                 </TouchableOpacity>
               ) : null}
             </View>

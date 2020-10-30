@@ -9,7 +9,7 @@ import {
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
-import Recipes from "./CountingData" 
+import Recipes from "./countingData" 
 
 export default CountingSelection = ({ navigation: { navigate } }) => {
   return (
@@ -30,7 +30,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
             style={styles.nextButton}
             onPress={() => navigate("Counting", { stuff: Recipes.start })}
           >
-            <Text>START</Text>
+            <Text style={{color: "#3B96B2"}}>START</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
