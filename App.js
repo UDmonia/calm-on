@@ -26,12 +26,21 @@ import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
 import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
+import {useFonts} from "expo-font";
 
 const Stack = createStackNavigator();
 const store = configureStore();
 
 export default function App() {
   console.disableYellowBox = true;
+  const [loaded] = useFonts({
+    NunitoReg: require('./assets/fonts/Nunito-Regular.ttf'),
+    NunitoBold: require('./assets/fonts/Nunito-Bold.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer ref={navigationRef}>
