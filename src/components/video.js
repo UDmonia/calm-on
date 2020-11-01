@@ -33,11 +33,11 @@ class IntroVideo extends React.Component {
     } else {
       // Update your UI for the loaded state
   
-      // if (playbackStatus.isPlaying) {
-      //   // console.log('this is playing')
-      // } else {
-      //   // console.log('not playing')
-      // }
+      if (playbackStatus.isPlaying) {
+        console.log('this is playing')
+      } else {
+        console.log('not playing')
+      }
 
       // if (playbackStatus.isBuffering) {
       //   // Update your UI for the buffering state
@@ -74,6 +74,7 @@ class IntroVideo extends React.Component {
           isMuted={false}
           resizeMode="stretch"
           shouldPlay={this.state.play}
+          onPlaybackStatusUpdate={(playBackstatus) => this._onPlaybackStatusUpdate(playBackstatus)}
           style={{ 
             width: '100%', 
             height: '100%',
