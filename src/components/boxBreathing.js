@@ -475,7 +475,6 @@ const boxBreathing =()=>{
 
     return (
         <View>
-
             {outro && 
                 <OutroStory/>
             }
@@ -485,6 +484,10 @@ const boxBreathing =()=>{
             <Intro start = {setStart}/>
             :
         <View style = {styles.container}>
+            {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
+                <Image source = {require("../../assets/exit_storytime.png")}/>
+            </TouchableOpacity>*/}
+
             <Text style = {styles.text}>
                 {text[mapIndex]}
             </Text>
