@@ -60,32 +60,15 @@ const IntroStory =({start})=>{
 
     //Modify this array to add more screens
     const storyMap = [
-        //{question:'I love the beach! The sound of the waves is so relaxing, and I love the soft sand on my toes.',
-        //answers:['Continue',],background: 'forest' },
-
-        //{question:'For this activity, find a place where you can go 4 steps in any direction so we can walk together!',
-        //answers:["I'm there!","I'll imagine it!",],background: 'beach'},
-
-        //{question:'While we walk and breathe, follow the instructions on the sand. Click “Go” when you’re ready to start!',
-        //answers:['Go!'],background: 'city'},
-
-        // Calm On 2.1 updated screen
         {question:"While we walk and breathe, follow the instructions on the sand. Click 'Go' when you're ready to start!",
         answers:['Go',],background: 'forest' },
 
     ]
 
-    const displayPrompt =()=>{
-        
-    }
-
     //Implementing story progression mechanism
     return (
         <View style = {styles.introContainer}>
 
-            {/*Add background image here*/}
-            {/*<ImageBackground source = {require("../../assets/storytime_background.png")} style = {styles.backgroundImage}>*/}
-            {/*<TouchableOpacity onPress = {()=>startAnimation(true)}><Text>start animation</Text></TouchableOpacity>*/}
             <View style = {styles.prompt}>
                 <View style = {styles.questionBox}>
                     <Text style = {{color:'white',textAlign:'center'}}>{storyMap[page].question}</Text>
@@ -100,7 +83,6 @@ const IntroStory =({start})=>{
             </View>
 
             </View>
-            {/*</ImageBackground>*/}
         </View>
     )
 }
@@ -114,8 +96,6 @@ const OutroStory =()=>{
         answers:['I also had fun, bye for now!', 'Can we walk again now?'],background: 'forest' ,},
         {question:"Okay, I'm looking forwaard to doing more activities with you! Goodbye!",
         answers:['Bye Bye!',],background: 'forest' ,},
-        //{question:"That was so much fun, and I feel much calmer now. What about you?",
-        //answers:['Go',],background: 'forest',},
 
     ]
 
@@ -147,11 +127,8 @@ const boxBreathing =()=>{
     const [startAnimation,setStartAnimation] = useState(false)
     const [text,setText] = useState('')
     const getReady = 3000
-    //const [hideWidth1,setWidth1] = useState(10)
     const topRightCorner = useRef(new Animated.Value(10)).current
     const leftBar = useRef(new Animated.Value(0)).current
-    //const [hideWidth2,setWidth2] = useState(0)
-    const textList = ['Breathe In','Hold Air In', 'Breath Out', 'Hold Air Out','Finished!']
     const [outro,showOutro] = useState(false)
     const length1 = useRef(new Animated.Value(0)).current
     const length2 = useRef(new Animated.Value(280)).current
@@ -159,8 +136,84 @@ const boxBreathing =()=>{
     const length4 = useRef(new Animated.Value(0)).current
     const move1 = useRef(new Animated.ValueXY({x:20,y:330})).current
     const index = useRef(new Animated.Value(0)).current
-    const [mapIndex,setIndex] = useState(0)
 
+
+    const fadeAnimHoldInAir = useRef(new Animated.Value(0)).current;
+    const fadeAnimBreatheAirOut = useRef(new Animated.Value(0)).current;
+    const fadeAnimHoldAirOut = useRef(new Animated.Value(0)).current;
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const fadeTimer1 = useRef(new Animated.Value(0)).current;
+    const fadeTimer2 = useRef(new Animated.Value(0)).current;
+    const fadeTimer3 = useRef(new Animated.Value(0)).current;
+    const fadeTimer4 = useRef(new Animated.Value(0)).current;
+    
+    const ready1 = useRef(new Animated.Value(0)).current;
+    const ready2 = useRef(new Animated.Value(0)).current;
+
+    
+
+
+    const timerAnim =()=>(
+        Animated.sequence([
+            Animated.timing(
+                fadeTimer1, {
+                    toValue: 1,
+                    duration: 0
+                }
+            ),
+            Animated.timing(
+                fadeTimer1, {
+                    toValue: 0,
+                    duration: 1000
+                }
+            ),
+
+            Animated.timing(
+                fadeTimer2, {
+                    toValue: 1,
+                    duration: 0
+                }
+            ),
+            Animated.timing(
+                fadeTimer2, {
+                    toValue: 0,
+                    duration: 1000
+                }
+            ),
+            Animated.timing(
+                fadeTimer3, {
+                    toValue: 1,
+                    duration: 0
+                }
+            ),
+            Animated.timing(
+                fadeTimer3, {
+                    toValue: 0,
+                    duration: 1000
+                }
+            ),
+            Animated.timing(
+                fadeTimer4, {
+                    toValue: 1,
+                    duration: 0
+                }
+            ),
+            Animated.timing(
+                fadeTimer4, {
+                    toValue: 0,
+                    duration: 1000
+                }
+            ),
+            Animated.timing(
+                fadeTimer1, {
+                    toValue: 1,
+                    duration: 0
+                }
+            ),
+
+        ])
+    )
+ 
     const cleanUp = ()=>{
         return Animated.parallel([
             Animated.timing(topRightCorner,{
@@ -202,65 +255,42 @@ const boxBreathing =()=>{
 
     useEffect(()=>{
         if (startAnimation) {
-        //if (timer != 16) {
-        //    setInterval(()=>{
-        //        setTimer(timer+1)
-        //        if (timer % 4 === 0) {
-        //            setTimer(1)
-        //        }
-        //    },1000)
-        //}
-        //console.log(timer)
-        //else{
-        //    setTimer(1)
-        //}
 
-        index.stopAnimation(value=>setIndex(value))
-       
-        
-
-        //setTimeout(()=>{
-        //    setText('Breathe In...')
-        //},3000),
-
-        //setTimeout(()=>{
-        //    setText('Hold Air In...')
-        //},7000),
-
-
-        //setTimeout(()=>{
-        //    //setWidth1(0)
-        //    setText('Breathe Out...')
-        //},11000),
-
-        //setTimeout(()=>{
-        //    //setWidth2(10)
-        //    //setText('Hold Air Out...')
-        //},15000),
-
-
-        //setTimeout(()=>{
-        //    //setText('Finished!')
-        //    //length1.resetAnimation()
-        //    //length2.resetAnimation()
-        //    //length3.resetAnimation()
-        //    //length4.resetAnimation()
-        //    //length1.addListener(()=>length1 = 0)
-        //    //setWidth1(10)
-        //    //setWidth2(0)
-        //    //showOutro(true)
-        //},19000),
-        console.log(leftBar)
-
+        Animated.sequence([
+            Animated.timing(
+                ready1,{
+                    toValue:1,
+                    duration:0
+                }
+            ),
+            Animated.timing(
+                ready1,{
+                    toValue:0,
+                    duration:3000
+                }
+            ),
+            Animated.timing(
+                ready2,{
+                    toValue:1,
+                    duration:0
+                }
+            ),
+            Animated.timing(
+                ready2,{
+                    toValue:0,
+                    duration:1500
+                }
+            )
+        ,
         Animated.loop(
             Animated.sequence([
             Animated.parallel([
+            timerAnim(),
             Animated.timing(
                 move1,
                 {
                     toValue: {x:300,y:330},
                     useNativeDriver: false,
-                    delay:getReady,
                     duration:4000,
 
                 }
@@ -269,19 +299,30 @@ const boxBreathing =()=>{
             Animated.timing(length1,{
                 toValue: 290,
                 duration: 4000,
-                delay:getReady,
                 useNativeDriver:false
             }),
             Animated.timing(index,{
                 toValue: 1,
                 duration: 4000,
-                delay:getReady,
                 useNativeDriver:false
-            })
+            }),
+            
+            Animated.timing(fadeAnim, {
+                toValue: 1,
+                duration: 500,
+              }),
+
+            Animated.timing(fadeAnimHoldAirOut, {
+                toValue: 0,
+                duration: 0,
+            }),
+
+
             ]
             ),
         
             Animated.parallel([
+            timerAnim(),
             Animated.timing(
                 move1,
                 {
@@ -292,16 +333,17 @@ const boxBreathing =()=>{
             ),
                 Animated.timing(length2,{
                 toValue: 0,
-                //delay:4000 + getReady,
                 duration: 4000,
                 useNativeDriver:false
             }),
-            //Animated.timing(index,{
-            //    toValue: 2,
-            //    duration: 4000,
-            //    delay:getReady,
-            //    useNativeDriver:false
-            //}) 
+            Animated.timing(fadeAnimHoldInAir, {
+                toValue: 1,
+                duration: 500,
+              }),
+              Animated.timing(fadeAnim, {
+                toValue: 0,
+                duration: 0,
+              }),
             ]
          ),
 
@@ -317,6 +359,7 @@ const boxBreathing =()=>{
          }),
         
          Animated.parallel([
+            timerAnim(),
             Animated.timing(
                 move1,
                 {
@@ -327,18 +370,19 @@ const boxBreathing =()=>{
             ),
             Animated.timing(length3,{
                 toValue: 0,
-                //delay:8000
-                //+getReady
-            
                 duration: 4000,
                 useNativeDriver:false
             }),
-            //Animated.timing(index,{
-            //    toValue: 3,
-            //    duration: 4000,
-            //    delay:getReady,
-            //    useNativeDriver:false
-            //})
+
+            Animated.timing(fadeAnimBreatheAirOut, {
+                toValue: 1,
+                duration: 500,
+              }),
+
+              Animated.timing(fadeAnimHoldInAir, {
+                toValue: 0,
+                duration: 0,
+              }),
             ]
          ),
 
@@ -351,6 +395,7 @@ const boxBreathing =()=>{
 
         
          Animated.parallel([ 
+                timerAnim(),
                 Animated.timing(
                 move1,
                 {
@@ -361,69 +406,28 @@ const boxBreathing =()=>{
             ),
             Animated.timing(length4,{
                 toValue:285,
-                //+getReady
                 duration: 4000,
                 useNativeDriver:false
             }),
-            //Animated.timing(index,{
-            //    toValue: 4,
-            //    duration: 4000,
-            //    delay:getReady,
-            //    useNativeDriver:false
-            //})
+
+            Animated.timing(fadeAnimHoldAirOut, {
+                toValue: 1,
+                duration: 500,
+              }),
+
+              Animated.timing(fadeAnimBreatheAirOut, {
+                toValue: 0,
+                duration: 0,
+              }),
             ]
             ),
 
             cleanUp()
-        //]),
 
         ])
+        ,{iterations:3})
+    ]).start(()=>showOutro(true))
 
-
-    //    Animated.sequence([
-    //    Animated.timing(length1,{
-    //        toValue: 290,
-    //        duration: 4000,
-    //        delay:getReady,
-    //        useNativeDriver:false
-    //    }),
-        
-
-        
-    //    Animated.timing(length2,{
-    //        toValue: 0,
-    //        delay:4000
-    //        //+getReady
-    //        ,
-    //        duration: 4000,
-    //        useNativeDriver:false
-    //    }),
-
-    //    Animated.timing(length3,{
-    //        toValue: 0,
-    //        delay:8000
-    //        //+getReady
-    //        ,
-    //        duration: 4000,
-    //        useNativeDriver:false
-    //    }),
-
-    //    Animated.timing(length4,{
-    //        toValue:285,
-    //        delay:12000
-    //        //+getReady
-    //        ,
-    //        duration: 4000,
-    //        useNativeDriver:false
-    //    })
-    //])
-        ,{iterations:3}).start(()=>showOutro(true))
-    
-
-
-    //return ()=>{
-        
-    //}
     }
 
     },[start,startAnimation])
@@ -431,11 +435,10 @@ const boxBreathing =()=>{
     const animated1 = {
         position: 'absolute',
         left:'14.5%',
-        //left:60,
         top: 395,
         width: length1,
         borderWidth:10,
-        borderColor:'#7990AF',
+        borderColor:'#064B5B',
         zIndex:3,
     }
 
@@ -447,7 +450,7 @@ const boxBreathing =()=>{
         width: 10,
         borderWidth:topRightCorner,
         height:length2,
-        borderColor:'#CFDCEF',
+        borderColor:'#429BAF',
         zIndex:2
     }
 
@@ -458,7 +461,7 @@ const boxBreathing =()=>{
         left:60,
         width: length3,
         borderWidth:10,
-        borderColor:'#CFDCEF',
+        borderColor:'#429BAF',
 
     }
 
@@ -469,7 +472,7 @@ const boxBreathing =()=>{
         left:60,
         borderWidth:leftBar,
         height:length4,
-        borderColor:'#7990AF',
+        borderColor:'#064B5B',
         zIndex:1,
     }
 
@@ -487,10 +490,120 @@ const boxBreathing =()=>{
             {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
                 <Image source = {require("../../assets/exit_storytime.png")}/>
             </TouchableOpacity>*/}
+        
 
-            <Text style = {styles.text}>
-                {text[mapIndex]}
-            </Text>
+            <Animated.View
+              style={[
+                styles.numText,
+                {
+                  opacity: fadeTimer1, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText}>1</Text>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.numText,
+                {
+                  opacity: fadeTimer2, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText}>2</Text>
+            </Animated.View>
+            
+            <Animated.View
+              style={[
+                styles.numText,
+                {
+                  opacity: fadeTimer3, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText}>3</Text>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.numText,
+                {
+                  opacity: fadeTimer4, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText}>4</Text>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.introText,
+                {
+                  opacity: ready1, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText2}>Get ready...</Text>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                {...styles.introText,left:160},
+                {
+                  opacity: ready2, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText2}>Start!</Text>
+            </Animated.View>
+
+
+            <Animated.View
+              style={[
+                styles.text,
+                {
+                  opacity: fadeAnim, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText2}>Breathe In...</Text>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.text,
+                {
+                  opacity: fadeAnimHoldInAir, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText2}>Hold In Air...</Text>
+            </Animated.View>
+
+
+            <Animated.View
+              style={[
+                styles.text,
+                {
+                  opacity: fadeAnimBreatheAirOut, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText2}>Breath Out...</Text>
+            </Animated.View>
+
+            <Animated.View
+              style={[
+                styles.text,
+                {
+                  opacity: fadeAnimHoldAirOut, // Bind opacity to animated value
+                },
+              ]}
+            >
+              <Text style={styles.animatedText2}>Hold Air Out...</Text>
+            </Animated.View>
+            
 
             <Animated.View style = {[animated1]}>
             </Animated.View>

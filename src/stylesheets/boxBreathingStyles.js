@@ -1,20 +1,39 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  text: {
+  numText: {
     position: "absolute",
-    top: 240,
-    left: 50,
-    fontSize: 40,
-    color: "#7990AF",
+    top: 350,
+    left: 170,
+    color: "#064B5B",
     //borderWidth:1,
-    width: 300,
-    textAlign: "center",
+  },
+  text:{
+    position: "absolute",
+    top: 300,
+    left: 125,
+    //borderWidth:1,
+  },
+  introText:{
+    position: "absolute",
+    top: 350,
+    left: 125,
   },
   animatedText: {
     top: -120,
     left: 0,
-    fontSize: 17,
+    color: "#064B5B",
+    fontSize: 120,
+    textAlign: "center",
+  },
+  animatedText2: {
+    top: -120,
+    left: 0,
+    color: "#064B5B",
+    fontWeight:'600',
+    fontSize: 30,
+    textAlign: "center",
+
   },
   questionBox: {
     backgroundColor: "#DD6755",
@@ -56,12 +75,12 @@ const styles = StyleSheet.create({
   },
   bottomFrame: {
     position: "absolute",
-    top: 394,
+    top: 395,
     left: 60,
     borderWidth: 10,
     width: 280,
     //borderColor:'red',
-    borderColor: "#CFDCEF",
+    borderColor: "#429BAF",
     zIndex: 0,
   },
 
@@ -71,7 +90,7 @@ const styles = StyleSheet.create({
     left: 60,
     borderWidth: 10,
     height: 280,
-    borderColor: "#CFDCEF",
+    borderColor: "#429BAF",
     zIndex: 0,
   },
   barRight: {
@@ -80,7 +99,7 @@ const styles = StyleSheet.create({
     right: 64,
     width: 10,
     borderWidth: 10,
-    borderColor: "#7990AF",
+    borderColor: "#064B5B",
     height: 270,
   },
   barTop: {
@@ -89,7 +108,7 @@ const styles = StyleSheet.create({
     left: 70,
     width: 270,
     borderWidth: 10,
-    borderColor: "#7990AF",
+    borderColor: "#064B5B",
   },
   container: {
     flex: 1,
