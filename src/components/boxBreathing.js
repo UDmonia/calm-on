@@ -2,6 +2,8 @@ import { Animated,Text, View, TouchableOpacity, Image, ImageBackground } from 'r
 import React, {useState,useEffect,useRef,useContext} from 'react';
 import styles from '../stylesheets/boxBreathingStyles'
 import Node from './Node'
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const Intro = ({title,statArray,about,helpful,start})=>{
@@ -88,28 +90,45 @@ const IntroStory =({start})=>{
 }
 
 const OutroStory =()=>{
+    const navigation = useNavigation()
     const [page,setPage] = useState(0)
-    const storyMap = [        
+    const [switchPath,setPath] = useState(false)
+
+    const storyMap1 = [  
+      //branch1      
         {question:"That was so much fun, and I feel much calmer now. What about you?",
-        answers:['I feel calmer too!', "I don't feel different"],background: 'forest' ,},
+        answers:['I feel calmer too!', "I don't feel different"],},
         {question:"That's great to hear! I always enjoy going ton walks with you, let's walk again soon!",
-        answers:['I also had fun, bye for now!', 'Can we walk again now?'],background: 'forest' ,},
+        answers:['I also had fun, bye for now!', 'Can we walk again now?'],},
         {question:"Okay, I'm looking forwaard to doing more activities with you! Goodbye!",
-        answers:['Bye Bye!',],background: 'forest' ,},
+        answers:['Bye Bye!',],
+      },
+
+      //branch2
+      {question:"Hmm, would you like to go walk some more? Sometimes it takes some time to feel better",
+      answers:["Yea, let's walk again?", "I don't feel different"],},
 
     ]
+
 
     return(
         <View style = {styles.introContainer}>
             <ImageBackground style = {styles.backgroundImage} source = {require('../../assets/boxBreathing/beach.png')}>
             <View style = {styles.prompt}>
                 <View style = {styles.questionBox}>
-                    <Text style = {{color:'white',textAlign:'center'}}>{storyMap[page].question}</Text>
+                    <Text style = {{color:'white',textAlign:'center'}}>{storyMap1[page].question}</Text>
                 </View>
 
             <View>
-                {storyMap[page].answers.map((answer,key)=>(
-                <TouchableOpacity style = {styles.answers} onPress = {()=>setPage(page+1)} key = {key}>
+                {storyMap1[page].answers.map((answer,key)=>(
+                <TouchableOpacity style = {styles.answers} onPress = {()=>{
+                  
+                  answer === 'Can we walk again now?' ? setPage(3):
+                  answer === "Yea, let's walk again?" ? navigation.navigate('boxBreathing'):
+                  answer === 'Bye Bye!'?
+                  navigation.navigate('kpi')
+                     :setPage(page+1)
+                    }} key = {key}>
                     <Text style = {{textAlign:'center'}}>{answer}</Text>
                 </TouchableOpacity>
                 ))}
@@ -158,56 +177,66 @@ const boxBreathing =()=>{
             Animated.timing(
                 fadeTimer1, {
                     toValue: 1,
-                    duration: 0
+                    duration: 0,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 fadeTimer1, {
                     toValue: 0,
-                    duration: 1000
+                    duration: 1000,
+                    useNativeDriver:false,
                 }
             ),
 
             Animated.timing(
                 fadeTimer2, {
                     toValue: 1,
-                    duration: 0
+                    duration: 0,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 fadeTimer2, {
                     toValue: 0,
-                    duration: 1000
+                    duration: 1000,
+                    useNativeDriver:false,
+
                 }
             ),
             Animated.timing(
                 fadeTimer3, {
                     toValue: 1,
-                    duration: 0
+                    duration: 0,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 fadeTimer3, {
                     toValue: 0,
-                    duration: 1000
+                    duration: 1000,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 fadeTimer4, {
                     toValue: 1,
-                    duration: 0
+                    duration: 0,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 fadeTimer4, {
                     toValue: 0,
-                    duration: 1000
+                    duration: 1000,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 fadeTimer1, {
                     toValue: 1,
-                    duration: 0
+                    duration: 0,
+                    useNativeDriver:false,
                 }
             ),
 
@@ -260,25 +289,29 @@ const boxBreathing =()=>{
             Animated.timing(
                 ready1,{
                     toValue:1,
-                    duration:0
+                    duration:0,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 ready1,{
                     toValue:0,
-                    duration:3000
+                    duration:3000,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 ready2,{
                     toValue:1,
-                    duration:0
+                    duration:0,
+                    useNativeDriver:false,
                 }
             ),
             Animated.timing(
                 ready2,{
                     toValue:0,
-                    duration:1500
+                    duration:1500,
+                    useNativeDriver:false,
                 }
             )
         ,
@@ -310,11 +343,13 @@ const boxBreathing =()=>{
             Animated.timing(fadeAnim, {
                 toValue: 1,
                 duration: 500,
+                useNativeDriver:false,
               }),
 
             Animated.timing(fadeAnimHoldAirOut, {
                 toValue: 0,
                 duration: 0,
+                useNativeDriver:false,
             }),
 
 
@@ -339,10 +374,12 @@ const boxBreathing =()=>{
             Animated.timing(fadeAnimHoldInAir, {
                 toValue: 1,
                 duration: 500,
+                useNativeDriver:false,
               }),
               Animated.timing(fadeAnim, {
                 toValue: 0,
                 duration: 0,
+                useNativeDriver:false,
               }),
             ]
          ),
@@ -377,11 +414,13 @@ const boxBreathing =()=>{
             Animated.timing(fadeAnimBreatheAirOut, {
                 toValue: 1,
                 duration: 500,
+                useNativeDriver:false,
               }),
 
               Animated.timing(fadeAnimHoldInAir, {
                 toValue: 0,
                 duration: 0,
+                useNativeDriver:false,
               }),
             ]
          ),
@@ -413,11 +452,13 @@ const boxBreathing =()=>{
             Animated.timing(fadeAnimHoldAirOut, {
                 toValue: 1,
                 duration: 500,
+                useNativeDriver:false,
               }),
 
               Animated.timing(fadeAnimBreatheAirOut, {
                 toValue: 0,
                 duration: 0,
+                useNativeDriver:false,
               }),
             ]
             ),
@@ -445,7 +486,7 @@ const boxBreathing =()=>{
     //Light blue
     const animated2 = {
         position: 'absolute',
-        top:134,
+        top:135,
         right:64,
         width: 10,
         borderWidth:topRightCorner,
