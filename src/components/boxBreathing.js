@@ -92,7 +92,6 @@ const IntroStory =({start})=>{
 const OutroStory =()=>{
     const navigation = useNavigation()
     const [page,setPage] = useState(0)
-    const [switchPath,setPath] = useState(false)
 
     const storyMap1 = [  
       //branch1      
@@ -110,6 +109,11 @@ const OutroStory =()=>{
 
     ]
 
+    const restartThis =()=>{
+      navigation.pop() 
+      navigation.navigate('boxBreathing')
+    }
+
 
     return(
         <View style = {styles.introContainer}>
@@ -124,7 +128,9 @@ const OutroStory =()=>{
                 <TouchableOpacity style = {styles.answers} onPress = {()=>{
                   
                   answer === 'Can we walk again now?' ? setPage(3):
-                  answer === "Yea, let's walk again?" ? navigation.navigate('boxBreathing'):
+                  answer === "Yea, let's walk again?" ?
+                    restartThis()
+                     :
                   answer === 'Bye Bye!'?
                   navigation.navigate('kpi')
                      :setPage(page+1)
