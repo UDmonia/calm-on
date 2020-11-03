@@ -27,6 +27,9 @@ import * as RootNavigation from "./src/components/RootNavigation";
 import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import {useFonts} from "expo-font";
+import Adventure from "./src/components/Adventure.js";
+import Picnic from "./src/components/Picnic.js";
+import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -54,17 +57,17 @@ export default function App() {
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
-          <Stack.Screen 
-            name="Counting" 
+          <Stack.Screen
+            name="Counting"
             component={Counting}
-            options= {{
+            options={{
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
               headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",
-            }} 
+            }}
           />
           <Stack.Screen
             name="DailyCheckIn"
@@ -147,17 +150,17 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />
-          <Stack.Screen 
-            name="Activities" 
+          <Stack.Screen
+            name="Activities"
             component={Activities}
-            options= {{
-                headerShown: true,
-                headerBackTitleVisible: false,
-                headerTitle: "Activities",
-                headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-                headerStyle: { backgroundColor: "#2E7D32" },
-                headerTintColor: "#FFFFFF",
-              }} 
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: "Activities",
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            }}
           />
           <Stack.Screen
             name="FiveFourThreeTwoOneTech"
@@ -180,6 +183,20 @@ export default function App() {
             options={{ headerShown: true, headerTitle: "Box Breathing" }}
             component={BoxBreathing}
           />
+          <Stack.Screen
+            name="Adventure"
+            component={Adventure}
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTintColor: "white",
+              headerTitle: "Going on an Adventure",
+              headerTitleStyle: { fontSize: 24, color: "white" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+            }}
+          />
+          <Stack.Screen name="Picnic" component={Picnic} />
+          <Stack.Screen name="PicnicSeeAll" component={PicnicSeeAll} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
