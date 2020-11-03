@@ -140,7 +140,7 @@ export default function App() {
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
-                    RootNavigation.navigate("Activities");
+                    RootNavigation.navigate("chatPlaceholder");
                   }}
                   style={{ height: 21, width: 12, marginHorizontal: 15 }}
                 >
