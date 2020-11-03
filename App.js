@@ -33,11 +33,14 @@ const store = configureStore();
 
 export default function App() {
   console.disableYellowBox = true;
+  // Importing the font here
+  // NunitoReg is the Regular font
+  // NunitoBold is used for Bold font
   const [loaded] = useFonts({
     NunitoReg: require('./assets/fonts/Nunito-Regular.ttf'),
     NunitoBold: require('./assets/fonts/Nunito-Bold.ttf'),
   });
-
+  // If font is not loaded in handler
   if (!loaded) {
     return null;
   }

@@ -74,7 +74,8 @@ class IntroVideo extends React.Component {
           isMuted={false}
           resizeMode="stretch"
           shouldPlay={this.state.play}
-          onPlaybackStatusUpdate={(playBackstatus) => this._onPlaybackStatusUpdate(playBackstatus)}
+          // UnCommment here if you want to access the console.log for the playback status
+          //onPlaybackStatusUpdate={(playBackstatus) => this._onPlaybackStatusUpdate(playBackstatus)}
           style={{ 
             width: '100%', 
             height: '100%',
