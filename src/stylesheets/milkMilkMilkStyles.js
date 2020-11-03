@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     marginHorizontal: (screenWidth - 330) / 2,
     bottom: "5%",
+    zIndex: 3,
   },
   top: {
     backgroundColor: "#DD6755",
