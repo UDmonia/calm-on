@@ -16,11 +16,13 @@ import { navigate } from "./RootNavigation";
  * Picnic is a single screen in the adventures activity.
  * We use the data imported from "picnicData" to fill our componenets.
  */
-export default Picnic = ({ navigation }) => {
+export default Picnic = ({ route, navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
   const scrollViewRef = useRef();
+  const { locationBackground } = route.params;
+  const { locationBackgroundTint } = route.params;
 
   /**
    * alphaButton populates a single button for each letter A - Z. It
@@ -66,7 +68,7 @@ export default Picnic = ({ navigation }) => {
   return (
     <View style={styles.screenContainer}>
       <ImageBackground
-        source={require("../../assets/adventure/locations/picnic/picnicBackground.png")}
+        source={locationBackground}
         style={styles.background}
         imageStyle={styles.imgBackground}
       >

@@ -17,7 +17,7 @@ export default StyleSheet.create({
     resizeMode: "cover",
     flex: 1,
     width: "100%",
-    height: "110%",
+    height: "100%",
     top: undefined,
     overflow: "hidden",
   },
