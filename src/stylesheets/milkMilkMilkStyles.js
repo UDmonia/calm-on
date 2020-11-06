@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   exitText: {
     color: "#FFFFFF",
-    fontFamily: "Avenir",
+    fontFamily: "FontReg",
     fontSize: 24,
     fontWeight: "800",
     marginHorizontal: "10%",
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   exitYNText: {
-    fontFamily: "Avenir",
+    fontFamily: "FontReg",
     fontWeight: "800",
     fontSize: 24,
     lineHeight: 50,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   question: {
     color: "#FFFFFF",
-    fontFamily: "Avenir",
+    fontFamily: "FontReg",
     fontSize: 14,
     fontWeight: "800",
     textAlign: "center",
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     marginBottom: "5%",
   },
   a: {
-    fontFamily: "Avenir",
+    fontFamily: "FontReg",
     fontWeight: "800",
     textAlign: "center",
     lineHeight: 34,
