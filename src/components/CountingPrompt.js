@@ -79,7 +79,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                   style={styles.navButton}
                   onPress={() => navigate("Counting", { stuff: actData.next })}
                 >
-                  <Text style={{color: "#3B96B2"}} >Next</Text>
+                  <Text style={{color: "#3B96B2"}} >NEXT</Text>
                 </TouchableOpacity>
               ) : null}
             </View>
