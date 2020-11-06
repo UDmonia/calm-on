@@ -376,6 +376,7 @@ class milkMilkMilk extends React.Component {
             position: "absolute",
             top: "34%",
             right: 0,
+            zIndex: 1,
           }}
         >
           <Image
