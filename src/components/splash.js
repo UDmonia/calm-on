@@ -1,14 +1,19 @@
 import styles from "../stylesheets/splashStyles";
 import React, { useEffect } from "react";
-import { View, ImageBackground, TouchableOpacity, Image } from "react-native";
+import { View, ImageBackground, TouchableOpacity, Image, BackHandler } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import bg from "../../assets/image73.png";
 import startBtn from "../../assets/start_btn.png";
+import { useFocusEffect } from '@react-navigation/native';
 
 const Splash = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((store) => Boolean(store.session.user));
+  //Handle Android hardware back button
+  const backAction = () => {
+    return true;
+  };
 
   useEffect(() => {
     dispatch(getUserFromJWT()).then((action) => {
@@ -18,6 +23,15 @@ const Splash = ({ navigation: { navigate } }) => {
       }
     });
   }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      BackHandler.addEventListener("hardwareBackPress", backAction);
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", backAction);
+      };
+    }, [])
+  );
 
   return (
     <View style={styles.format}>

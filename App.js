@@ -28,6 +28,7 @@ import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import CountingPrompt from "./src/components/CountingPrompt.js";
 import CountingSelection from "./src/components/CountingSelection.js";
+import {useFonts} from "expo-font";
 import Adventure from "./src/components/Adventure.js";
 import Picnic from "./src/components/Picnic.js";
 import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
@@ -38,6 +39,17 @@ const store = configureStore();
 
 export default function App() {
   console.disableYellowBox = true;
+  // Importing the font here
+  // NunitoReg is the Regular font
+  // NunitoBold is used for Bold font
+  const [loaded] = useFonts({
+    NunitoReg: require('./assets/fonts/Nunito-Regular.ttf'),
+    NunitoBold: require('./assets/fonts/Nunito-Bold.ttf'),
+  });
+  // If font is not loaded in handler
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer ref={navigationRef}>
