@@ -9,12 +9,13 @@ import {
 } from "react-native";
 import Exit from "./Exit";
 import styles from "../stylesheets/picnicStyles";
-import picnicData from "./picnicData";
+// import locationData from "./locationData";
 import { navigate } from "./RootNavigation";
+// import locationData from "./locationData";
 
 /**
  * Picnic is a single screen in the adventures activity.
- * We use the data imported from "picnicData" to fill our componenets.
+ * We use the data imported from "locationData" to fill our componenets.
  */
 export default Picnic = ({ route, navigation }) => {
   const [letter, setLetter] = useState(0);
@@ -23,6 +24,8 @@ export default Picnic = ({ route, navigation }) => {
   const scrollViewRef = useRef();
   const { locationBackground } = route.params;
   const { locationBackgroundTint } = route.params;
+  const { locationData } = route.params;
+  // const locationData = locationData;
 
   /**
    * alphaButton populates a single button for each letter A - Z. It
@@ -37,14 +40,14 @@ export default Picnic = ({ route, navigation }) => {
       <TouchableOpacity
         onPress={() => {
           // Add item to the bottom basket
-          // After each press we increment our index through "picnicData"
-          if (letter < picnicData.length - 1) {
+          // After each press we increment our index through "locationData"
+          if (letter < locationData.length - 1) {
             setSelected([
               ...selected,
               { id: item.id, name: item.itemName, img: item.image },
             ]);
             setLetter(letter + 1);
-          } else if (letter === picnicData.length - 1 && !done) {
+          } else if (letter === locationData.length - 1 && !done) {
             setSelected([
               ...selected,
               { id: item.id, name: item.itemName, img: item.image },
@@ -78,11 +81,11 @@ export default Picnic = ({ route, navigation }) => {
         <View style={styles.locationContainer}>
           <Text style={styles.txtLetter}>
             What should we bring that starts with{" "}
-            {picnicData[letter.valueOf()].letter}?
+            {locationData[letter.valueOf()].letter}?
           </Text>
         </View>
         <View style={styles.row}>
-          {picnicData[letter.valueOf()].items.map((item) => {
+          {locationData[letter.valueOf()].items.map((item) => {
             return alphaButton(item);
           })}
         </View>
@@ -98,7 +101,10 @@ export default Picnic = ({ route, navigation }) => {
           <Text style={styles.selectedItemTxt}>Selected Items</Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("PicnicSeeAll", { arr: selected });
+              navigation.navigate("PicnicSeeAll", {
+                arr: selected,
+                bg: locationBackgroundTint,
+              });
             }}
           >
             <Text style={styles.seeAllTxt}>See all {">"}</Text>

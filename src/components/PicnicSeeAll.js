@@ -8,11 +8,9 @@ import Exit from "./Exit";
  */
 export default PicnicSeeAll = ({ route }) => {
   const { arr } = route.params;
+  const { bg } = route.params;
   return (
-    <ImageBackground
-      source={require("../../assets/adventure/locations/picnic/picnicBackgroundTint.png")}
-      style={styles.background}
-    >
+    <ImageBackground source={bg} style={styles.background}>
       <View style={styles.exitContainer}>
         <Exit
           height={21}

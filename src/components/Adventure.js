@@ -1,6 +1,9 @@
 import React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import styles from "../stylesheets/adventureStyles";
+import picnicData from "./picnicData";
+import theaterData from "./theaterData";
+import amusementData from "./amusementData";
 
 export default Adventure = ({ navigation: { navigate } }) => {
   return (
@@ -22,6 +25,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
             navigate("Picnic", {
               locationBackground: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
               locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
+              locationData: picnicData,
             })
           }
         >
@@ -35,7 +39,8 @@ export default Adventure = ({ navigation: { navigate } }) => {
           onPress={() =>
             navigate("Picnic", {
               locationBackground: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
-              locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
+              locationBackgroundTint: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
+              locationData: theaterData,
             })
           }
         >
@@ -49,7 +54,8 @@ export default Adventure = ({ navigation: { navigate } }) => {
           onPress={() =>
             navigate("Picnic", {
               locationBackground: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
-              locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
+              locationBackgroundTint: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
+              locationData: amusementData,
             })
           }
         >
