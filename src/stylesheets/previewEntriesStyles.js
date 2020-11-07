@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         borderRadius:5,
     },
     date:{
-        fontFamily: 'Avenir',
+        fontFamily: 'FontReg',
         fontWeight:'800',
         fontSize: 20,
         marginLeft: '3%',

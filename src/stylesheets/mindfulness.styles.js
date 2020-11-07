@@ -9,7 +9,7 @@ export default StyleSheet.create({
     },
     text: {
         textAlign: 'center',
-        fontFamily: 'Avenir',
+        fontFamily: 'FontReg',
         letterSpacing: -0.24,
         fontSize: 18,
         color: 'white',
