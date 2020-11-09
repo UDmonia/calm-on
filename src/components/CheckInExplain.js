@@ -63,7 +63,7 @@ const getPath = (feeling) => {
 const button = (desc) => {
   return (
     <TouchableOpacity
-      key={desc}
+      key={desc.id}
       // need the style here to use desc.state
       style={[
         {

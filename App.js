@@ -43,8 +43,8 @@ export default function App() {
   // NunitoReg is the Regular font
   // NunitoBold is used for Bold font
   const [loaded] = useFonts({
-    NunitoReg: require('./assets/fonts/Nunito-Regular.ttf'),
-    NunitoBold: require('./assets/fonts/Nunito-Bold.ttf'),
+    FontReg: require('./assets/fonts/Nunito-Regular.ttf'),
+    FontBold: require('./assets/fonts/Nunito-Bold.ttf'),
   });
   // If font is not loaded in handler
   if (!loaded) {
