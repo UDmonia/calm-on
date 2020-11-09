@@ -13,7 +13,15 @@ export default StyleSheet.create({
     marginLeft: "15%",
     alignSelf: "flex-start",
   },
-  selectedItemsTxt: { color: "white", fontSize: 18, marginVertical: 5 },
+  selectedItemsTxt: {
+    color: "white",
+    fontSize: 18,
+    marginVertical: 5,
+    fontFamily: "FontReg",
+  },
+  itemsTxt: {
+    fontFamily: "FontReg",
+  },
   allSelectedContainer: {
     flexDirection: "row",
     flexWrap: "wrap",

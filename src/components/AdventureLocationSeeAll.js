@@ -24,7 +24,7 @@ export default AdventureLocationSeeAll = ({ route }) => {
           return (
             <View key={item.name} style={styles.itemContainer}>
               <Image source={item.img} style={styles.imgContainer} />
-              <Text>{item.name}</Text>
+              <Text style={styles.itemsTxt}>{item.name}</Text>
             </View>
           );
         })}

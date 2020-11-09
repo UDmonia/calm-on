@@ -6,6 +6,7 @@ export default StyleSheet.create({
     height: "100%",
     width: "100%",
     justifyContent: "center",
+    fontFamily: "FontReg",
   },
   background: {
     flex: 2.5,
@@ -67,6 +68,7 @@ export default StyleSheet.create({
   },
   txtLetter: {
     color: "white",
+    fontFamily: "FontReg",
   },
   basketContainer: {
     flex: 0.65,
@@ -85,9 +87,11 @@ export default StyleSheet.create({
     color: "white",
     marginHorizontal: 10,
     marginRight: 235,
+    fontFamily: "FontReg",
   },
   seeAllTxt: {
     color: "white",
+    fontFamily: "FontReg",
   },
   basket: {
     backgroundColor: "white",
@@ -110,6 +114,7 @@ export default StyleSheet.create({
   },
   itemName: {
     textAlign: "center",
+    fontFamily: "FontReg",
   },
   itemDivider: {
     backgroundColor: "grey",
