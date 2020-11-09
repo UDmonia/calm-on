@@ -10,6 +10,7 @@ import {
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
+import Exit from "./Exit";
 
 function getBoxes(box) {
   if (box != null) {
@@ -30,6 +31,9 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
+        <View style={styles.exitPosition}>
+          <Exit navTo={"chatPlaceholder"} />
+        </View>
         <View style={styles.countDis}>
           <Text style={{ color: "#FFFFFF" }}>
             {counter + " " + actData.groupName}
@@ -57,9 +61,9 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             />
             <TouchableOpacity
               style={styles.nextButton}
-              onPress={() => setNext(false)}
+              onPress={() => setNext(!next)}
             >
-              <Text style={{color: "#3B96B2"}}>NEXT</Text>
+              <Text style={{ color: "#3B96B2" }}>Next</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -70,16 +74,19 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             <View style={styles.buttonView}>
               <TouchableOpacity
                 style={styles.navButton}
-                onPress={() => navigate("Home")}
+                onPress={() => navigate("chatPlaceholder")}
               >
-                <Text style={{color: "#3B96B2"}} >HOME</Text>
+                <Text style={{ color: "#3B96B2" }}>Home</Text>
               </TouchableOpacity>
               {actData.next != null ? (
                 <TouchableOpacity
                   style={styles.navButton}
-                  onPress={() => navigate("Counting", { stuff: actData.next })}
+                  onPress={() => {
+                    setNext(!next),
+                      navigate("Counting", { stuff: actData.next });
+                  }}
                 >
-                  <Text style={{color: "#3B96B2"}} >NEXT</Text>
+                  <Text style={{ color: "#3B96B2" }}>Next Recipe</Text>
                 </TouchableOpacity>
               ) : null}
             </View>

@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#39565F",
-    //alignItems: "center"
+    // justifyContent: "center",
   },
   backImage: {
     width: "100%",
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "flex-end",
+    //justifyContent: "flex-end",
   },
   fruitZone: {
     position: "absolute",
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     position: "absolute",
     marginLeft: 10,
     marginRight: 10,
-    top: 300,
+    top: 200,
     width: 300,
     height: 200,
     //backgroundColor: "blue",
@@ -86,26 +86,22 @@ export default StyleSheet.create({
   },
   itemBoxes: {
     position: "absolute",
-    width: 330,
+    width: 400,
     height: 47,
     top: 130,
     left: 40,
-    //backgroundColor: "#DCF4F1",
   },
   itemBox: {
     height: 48,
     width: 47,
-    //borderColor: "#39565F",
     alignItems: "center",
     justifyContent: "center",
-    //borderWidth: 1,
     backgroundColor: "#DCF4F1",
     margin: 1,
   },
   boxImg: {
     height: 40,
     width: 40,
-    //margin: 10,
     resizeMode: "contain",
   },
   countDis: {
@@ -160,7 +156,21 @@ export default StyleSheet.create({
     width: 350,
     height: 300,
     //backgroundColor: "black",
-    marginBottom: 95,
+    //marginBottom: 100,
+    marginTop: 430,
     alignItems: "center",
+  },
+  starting: {
+    width: 350,
+    height: 300,
+    //backgroundColor: "black",
+    marginTop: 350,
+    alignItems: "center",
+  },
+  exitPosition: {
+    //position: "absolute",
+    alignSelf: "flex-start",
+    marginLeft: 50,
+    marginTop: 40,
   },
 });

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
-  Button,
   ImageBackground,
   Image,
   TouchableOpacity,
@@ -12,6 +11,7 @@ import styles from "../stylesheets/countingStyles";
 import bg from "../../assets/counting/backdrop.png";
 import sprit from "../../assets/counting/spirit1.png";
 import DialogBox from "./dialog";
+import Exit from "./Exit";
 
 function getBoxes(box) {
   if (box != null) {
@@ -68,6 +68,9 @@ export default Counting = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
+        <View style={styles.exitPosition}>
+          <Exit navTo={"chatPlaceholder"} />
+        </View>
         <View style={styles.countDis}>
           {count > 0 ? (
             <Text style={{ color: "#FFFFFF" }}>

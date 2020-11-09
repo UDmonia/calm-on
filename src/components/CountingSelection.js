@@ -9,16 +9,20 @@ import {
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
-import Recipes from "./countingData" 
+import Recipes from "./countingData";
+import Exit from "./Exit";
 
 export default CountingSelection = ({ navigation: { navigate } }) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
+        <View style={styles.exitPosition}>
+          <Exit navTo={"chatPlaceholder"} />
+        </View>
         <View style={styles.spritBox3}>
           <Image style={styles.sprit} source={sprit} />
         </View>
-        <View style={styles.fin}>
+        <View style={styles.starting}>
           <DialogBox
             message={{
               style: styles.textBox2,
@@ -30,7 +34,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
             style={styles.nextButton}
             onPress={() => navigate("Counting", { stuff: Recipes.start })}
           >
-            <Text style={{color: "#3B96B2"}}>START</Text>
+            <Text style={{ color: "#3B96B2" }}>Fruits</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
