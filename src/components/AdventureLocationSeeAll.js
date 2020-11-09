@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View, ImageBackground, Image } from "react-native";
-import styles from "../stylesheets/picnicSeeAllStyles.js";
+import styles from "../stylesheets/adventureLocationAllStyles.js";
 import Exit from "./Exit";
 
 /**
- * Displays all of the selected items sent from the Picnic activity
+ * Displays all of the selected items sent from the AdventureLocation activity
  */
-export default PicnicSeeAll = ({ route }) => {
+export default AdventureLocationSeeAll = ({ route }) => {
   const { arr } = route.params;
   const { bg } = route.params;
   return (

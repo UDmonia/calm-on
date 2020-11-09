@@ -22,7 +22,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.locationContainer}
           onPress={() =>
-            navigate("Picnic", {
+            navigate("AdventureLocation", {
               locationBackground: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
               locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
               locationData: picnicData,
@@ -37,7 +37,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.locationContainer}
           onPress={() =>
-            navigate("Picnic", {
+            navigate("AdventureLocation", {
               locationBackground: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
               locationBackgroundTint: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
               locationData: theaterData,
@@ -52,7 +52,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.locationContainer}
           onPress={() =>
-            navigate("Picnic", {
+            navigate("AdventureLocation", {
               locationBackground: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
               locationBackgroundTint: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
               locationData: amusementData,

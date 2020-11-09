@@ -8,16 +8,16 @@ import {
   ScrollView,
 } from "react-native";
 import Exit from "./Exit";
-import styles from "../stylesheets/picnicStyles";
+import styles from "../stylesheets/adventureLocationStyles";
 // import locationData from "./locationData";
 import { navigate } from "./RootNavigation";
 // import locationData from "./locationData";
 
 /**
- * Picnic is a single screen in the adventures activity.
+ * AdventureLocation is a single screen in the adventures activity.
  * We use the data imported from "locationData" to fill our componenets.
  */
-export default Picnic = ({ route, navigation }) => {
+export default AdventureLocation = ({ route, navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
@@ -101,7 +101,7 @@ export default Picnic = ({ route, navigation }) => {
           <Text style={styles.selectedItemTxt}>Selected Items</Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("PicnicSeeAll", {
+              navigation.navigate("AdventureLocationSeeAll", {
                 arr: selected,
                 bg: locationBackgroundTint,
               });
