@@ -1,139 +1,194 @@
-import React, {useState} from 'react'
-import {ImageBackground,Text, View, Image} from 'react-native';
-import { TouchableOpacity} from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
-import styles from '../stylesheets/checkinDetailsStyles'
-import moment from 'moment'
+import React, { useEffect, useState } from "react";
+import { ImageBackground, Text, View, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
+import styles from "../stylesheets/checkinDetailsStyles";
+import moment from "moment";
 
 /**
  * Contains all images associated with each emotion
  */
 const moodMap = {
-    happy: {path:require('../../assets/preview/large/happy.png'),},
-    angry: {path:require('../../assets/preview/large/angry.png'),},
-    sad: {path:require('../../assets/preview/large/sad.png'), },
-    scared: {path:require('../../assets/preview/large/scared.png'),},
-    excited: {path:require('../../assets/preview/large/excited.png'), },
-    worried: {path:require('../../assets/preview/large/worried.png'), }
-}
+  happy: { path: require("../../assets/preview/large/happy.png") },
+  angry: { path: require("../../assets/preview/large/angry.png") },
+  sad: { path: require("../../assets/preview/large/sad.png") },
+  scared: { path: require("../../assets/preview/large/scared.png") },
+  excited: { path: require("../../assets/preview/large/excited.png") },
+  worried: { path: require("../../assets/preview/large/worried.png") },
+};
 
 /**
  * Detailed check-in page containing all check-ins for the selected date
  * @param route For navigation from daily preview or monthly review
  */
-const checkinDetails =({route})=>{
-    const navigation = useNavigation()
+const checkinDetails = ({ route }) => {
+  const navigation = useNavigation();
 
-    /**
-     * Passing data from Calendar.js
-     * @param entry The specific check-in from the check-in array
-     * @param allEntries The entire check-in array
-     * @param time The time of the day of a particular check-in
-     */
-    const {entry,allEntries,time} = route.params
+  /**
+   * Passing data from Calendar.js
+   * @param entry The specific check-in from the check-in array
+   * @param allEntries The entire check-in array
+   * @param time The time of the day of a particular check-in
+   */
+  const { entry, allEntries, time } = route.params;
 
-    // Navigating from daily preview: set initial index to specfic time pressed
-    const specificTime = entry.journals.find(journal=> journal.createdAt == time)
-    let specificIndex = entry.journals.indexOf(specificTime)
+  // Navigating from daily preview: set initial index to specfic time pressed
+  const specificTime = entry.journals.find(
+    (journal) => journal.createdAt == time
+  );
+  let specificIndex = entry.journals.indexOf(specificTime);
 
-    //Navigating from monthly preview: set initial index to zero
-    if (!time) {
-        specificIndex = 0
-    }
+  //Navigating from monthly preview: set initial index to zero
+  if (!time) {
+    specificIndex = 0;
+  }
 
-    //Go to specific check-in time of the day by index
-    const [journal,setJournal] = useState(entry.journals[specificIndex])
+  //Go to specific check-in time of the day by index
+  const [journal, setJournal] = useState(entry.journals[specificIndex]);
 
-    const [isActive,setActive] = useState(specificIndex)
+  const [isActive, setActive] = useState(specificIndex);
 
-    //Use currentEntryIndex to navigate through the check-in array
-    const [currentEntryIndex,setEntryIndex] = useState(allEntries.indexOf(entry))
+  //Use currentEntryIndex to navigate through the check-in array
+  const [currentEntryIndex, setEntryIndex] = useState(
+    allEntries.indexOf(entry)
+  );
 
-    /**
-     * Map out all check-ins in a single day
-     */
-    const buttons = allEntries[currentEntryIndex].journals.map((journal,i)=>(
-        <TouchableOpacity key = {i} onPress = {()=>{setJournal(journal)
-                                          setActive(i)}} 
-                                          style = {isActive == i?styles.timeActive:styles.times}>
-            <Text style  = {isActive == i? {...styles.timesText,color: 'black'}:styles.timesText}>{moment(journal.createdAt).format('LT')}</Text>
-        </TouchableOpacity>
-    ))    
+  const lastCommaIndex = journal.journal.lastIndexOf(",");
 
-    return(
-<View style = {styles.format}>
-    <ImageBackground source={require('../../assets/splash_panel.png')} style = {styles.background}>
-    <View style = {styles.main}>
-        <View style = {styles.calendar}>
-            <View style = {styles.toggle}>
+  /**
+   * Map out all check-ins in a single day
+   */
+  const buttons = allEntries[currentEntryIndex].journals.map((journal, i) => (
+    <TouchableOpacity
+      key={i}
+      onPress={() => {
+        setJournal(journal);
+        setActive(i);
+      }}
+      style={isActive == i ? styles.timeActive : styles.times}
+    >
+      <Text
+        style={
+          isActive == i
+            ? { ...styles.timesText, color: "black" }
+            : styles.timesText
+        }
+      >
+        {moment(journal.createdAt).format("LT")}
+      </Text>
+    </TouchableOpacity>
+  ));
 
-                <Image style = {styles.hangerLeft} source = {require('../../assets/hanger.png')}/>
-                <Image style = {styles.hangerRight} source = {require('../../assets/hanger.png')}/>
+  return (
+    <View style={styles.format}>
+      <ImageBackground
+        source={require("../../assets/splash_panel.png")}
+        style={styles.background}
+      >
+        <View style={styles.main}>
+          <View style={styles.calendar}>
+            <View style={styles.toggle}>
+              <Image
+                style={styles.hangerLeft}
+                source={require("../../assets/hanger.png")}
+              />
+              <Image
+                style={styles.hangerRight}
+                source={require("../../assets/hanger.png")}
+              />
 
-                <Text style = {styles.text}>{moment(journal.createdAt).format('dddd, LL')}</Text>
-                </View>
-            <View style = {styles.container}>
-                <View style = {styles.upper}>
-        
-            {/*Date increase/decrease*/}
-                <View style = {styles.header}>
-                {currentEntryIndex < allEntries.length-1? 
-                <TouchableOpacity onPress = {()=>{
-                    setEntryIndex(currentEntryIndex+1)
-                    setJournal(allEntries[currentEntryIndex+1].journals[0])
-                    setActive(0)
-                    }}>
-                    <Image source = {require('../../assets/prevMonth.png')}/>
-                </TouchableOpacity>
-                :
-                    <Image source = {require('../../assets/leftDisabled.png')}/>
-                }
-
-                    <Text style = {styles.date}>{moment(journal.createdAt).format('LL')}</Text>
-                {currentEntryIndex > 0?
-                <TouchableOpacity TouchableOpacity onPress = {()=>{
-                    setEntryIndex(currentEntryIndex-1)
-                    setJournal(allEntries[currentEntryIndex-1].journals[0])
-                    setActive(0)
-                    }} >
-                    <Image source = {require('../../assets/nextMonth.png')}/>
-                </TouchableOpacity>
-                :
-                    <Image source = {require('../../assets/rightDisabled.png')}/>
-                }
+              <Text style={styles.text}>
+                {moment(journal.createdAt).format("dddd, LL")}
+              </Text>
             </View>
+            <View style={styles.container}>
+              <View style={styles.upper}>
+                {/*Date increase/decrease*/}
+                <View style={styles.header}>
+                  {currentEntryIndex < allEntries.length - 1 ? (
+                    <TouchableOpacity
+                      onPress={() => {
+                        setEntryIndex(currentEntryIndex + 1);
+                        setJournal(
+                          allEntries[currentEntryIndex + 1].journals[0]
+                        );
+                        setActive(0);
+                      }}
+                    >
+                      <Image source={require("../../assets/prevMonth.png")} />
+                    </TouchableOpacity>
+                  ) : (
+                    <Image source={require("../../assets/leftDisabled.png")} />
+                  )}
 
-            <View style ={styles.timeList}>
-                {buttons}
-            </View>
-
-                    <Image  source = {moodMap[journal.mood].path}/>
-                    
-                    {/*temporary journal placeholder until Luis's check-in page update*/}
-                    <Text style = {styles.journal}>Today I'm Feeling <Text style = {{fontWeight:'bold'}}>{journal.mood.charAt(0).toUpperCase()+journal.mood.slice(1)}</Text></Text>
-
+                  <Text style={styles.date}>
+                    {moment(journal.createdAt).format("LL")}
+                  </Text>
+                  {currentEntryIndex > 0 ? (
+                    <TouchableOpacity
+                      TouchableOpacity
+                      onPress={() => {
+                        setEntryIndex(currentEntryIndex - 1);
+                        setJournal(
+                          allEntries[currentEntryIndex - 1].journals[0]
+                        );
+                        setActive(0);
+                      }}
+                    >
+                      <Image source={require("../../assets/nextMonth.png")} />
+                    </TouchableOpacity>
+                  ) : (
+                    <Image source={require("../../assets/rightDisabled.png")} />
+                  )}
                 </View>
 
-                <View style = {styles.lower}>
-                    <Image source = {require('../../assets/banner.png')}/>
-                    <View style = {styles.activities}>
-                        <TouchableOpacity onPress = {()=>navigation.navigate('milkMilkMilk')}  style = {styles.option}>
-                            <Text>Milk Milk Milk</Text>
-                        </TouchableOpacity>
-                        
-                        <TouchableOpacity style = {styles.option}>
-                            <Text>Some other activities</Text>
-                        </TouchableOpacity>
+                <View style={styles.timeList}>{buttons}</View>
 
-                    </View>
+                <Image source={moodMap[journal.mood].path} />
+
+                <Text style={styles.journalTitle}>
+                  {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
+                </Text>
+                <Text style={styles.journal}>
+                  I'm {journal.mood} about{" "}
+                  <Text style={styles.bolded}>
+                    {journal.journal.split(",").length === 1
+                      ? journal.journal
+                      : journal.journal
+                          .toLowerCase()
+                          .substring(0, lastCommaIndex + 1)}
+                  </Text>
+                  and
+                  <Text style={styles.bolded}>
+                    {" "}
+                    {journal.journal
+                      .toLowerCase()
+                      .substring(lastCommaIndex + 1)}
+                  </Text>
+                </Text>
+              </View>
+
+              <View style={styles.lower}>
+                <Image source={require("../../assets/banner.png")} />
+                <View style={styles.activities}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("milkMilkMilk")}
+                    style={styles.option}
+                  >
+                    <Text>Milk Milk Milk</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.option}>
+                    <Text>Some other activities</Text>
+                  </TouchableOpacity>
                 </View>
+              </View>
             </View>
+          </View>
         </View>
+      </ImageBackground>
     </View>
-    </ImageBackground>
-</View>
-    )
-}
+  );
+};
 
-export default checkinDetails
-
+export default checkinDetails;

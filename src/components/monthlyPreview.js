@@ -75,12 +75,12 @@ const MonthlyPreview =()=>{
 
             //if pushToCalendar array is not empty, add the re-format object into the days array
             if (pushToCalendar){
-            days.push({DOW:`${moment(new Date(year,month,i)).format('dddd')}`,month:month,key:i,day:i,id:pushToCalendar.id,journals:pushToCalendar.journals})
+            days.push({DOW:moment(new Date(year,month,i)).format('dddd'),month:month,key:i,day:i,id:pushToCalendar.id,journals:pushToCalendar.journals})
             }
 
             //if pushtoCalendar array is empty, meaning no check-ins, then add just the empty day without any check-ins into the days array
             else{
-                days.push({DOW:`${moment(new Date(year,month,i)).format('dddd')}`,id:null,month:month+1,key:i,day:i})
+                days.push({DOW:moment(new Date(year,month,i)).format('dddd'),id:null,month:month+1,key:i,day:i})
             }
         }
 
