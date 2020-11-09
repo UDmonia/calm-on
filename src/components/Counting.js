@@ -13,6 +13,13 @@ import sprit from "../../assets/counting/spirit1.png";
 import DialogBox from "./dialog";
 import Exit from "./Exit";
 
+/**
+ * This componet is responsible for preforming the counting activity
+ * It does so by reading the recipe data passed to it as {stuff} from the route 
+ *
+ * @param { object } stuff  - json object containing recipe data
+ */
+
 function getBoxes(box) {
   if (box != null) {
     return (

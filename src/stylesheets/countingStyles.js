@@ -5,7 +5,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#39565F",
-    // justifyContent: "center",
   },
   backImage: {
     width: "100%",
@@ -13,7 +12,6 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    //justifyContent: "flex-end",
   },
   fruitZone: {
     position: "absolute",
@@ -22,7 +20,6 @@ export default StyleSheet.create({
     top: 200,
     width: 400,
     height: 360,
-    //backgroundColor: "black",
   },
   fruit: {
     position: "absolute",
@@ -34,7 +31,6 @@ export default StyleSheet.create({
     width: 116,
     height: 213,
     marginLeft: -20,
-    //marginTop: 13,
   },
   spritBox: {
     position: "absolute",
@@ -43,7 +39,6 @@ export default StyleSheet.create({
     top: 575,
     width: 300,
     height: 200,
-    //backgroundColor: "blue",
   },
   spritBox2: {
     position: "absolute",
@@ -52,7 +47,6 @@ export default StyleSheet.create({
     top: 300,
     width: 300,
     height: 200,
-    //backgroundColor: "blue",
   },
   spritBox3: {
     position: "absolute",
@@ -61,7 +55,6 @@ export default StyleSheet.create({
     top: 200,
     width: 300,
     height: 200,
-    //backgroundColor: "blue",
     alignItems: "flex-end",
   },
   textBox: {
@@ -109,7 +102,6 @@ export default StyleSheet.create({
     height: 30,
     width: 100,
     top: 100,
-    //backgroundColor: "green",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -120,7 +112,6 @@ export default StyleSheet.create({
     top: 50,
     alignItems: "center",
     justifyContent: "center",
-    //backgroundColor: "green",
   },
   groupImg: {
     resizeMode: "contain",
@@ -141,7 +132,6 @@ export default StyleSheet.create({
     width: 350,
     height: 51,
     marginTop: 60,
-    //backgroundColor: "blue",
   },
   navButton: {
     width: 163,
@@ -155,20 +145,16 @@ export default StyleSheet.create({
   fin: {
     width: 350,
     height: 300,
-    //backgroundColor: "black",
-    //marginBottom: 100,
     marginTop: 430,
     alignItems: "center",
   },
   starting: {
     width: 350,
     height: 300,
-    //backgroundColor: "black",
     marginTop: 350,
     alignItems: "center",
   },
   exitPosition: {
-    //position: "absolute",
     alignSelf: "flex-start",
     marginLeft: 50,
     marginTop: 40,

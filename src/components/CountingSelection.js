@@ -12,6 +12,14 @@ import bg from "../../assets/counting/backdrop.png";
 import Recipes from "./countingData";
 import Exit from "./Exit";
 
+/**
+ * This componet is the starting point for the counting activity
+ * It will handle selection of recipe data and handle it by passing it
+ * as a route parameter to counting.
+ *
+ * @param { object } stuff  - json object containing recipe data
+ */
+
 export default CountingSelection = ({ navigation: { navigate } }) => {
   return (
     <View style={styles.container}>

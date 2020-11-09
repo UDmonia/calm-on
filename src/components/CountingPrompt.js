@@ -12,6 +12,15 @@ import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
 import Exit from "./Exit";
 
+/**
+ * This componet is an intermediate step 
+ * for handeling recipe transitions
+ *  
+ * The componet will render all necessary objects and when necessary 
+ * will navigate to counting and pass the {actData} 
+ * (which is the data for the next recipe) to counting 
+ */
+
 function getBoxes(box) {
   if (box != null) {
     return (
