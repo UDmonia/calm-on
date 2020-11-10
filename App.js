@@ -28,10 +28,10 @@ import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import CountingPrompt from "./src/components/CountingPrompt.js";
 import CountingSelection from "./src/components/CountingSelection.js";
-import {useFonts} from "expo-font";
+import { useFonts } from "expo-font";
 import Adventure from "./src/components/Adventure.js";
-import Picnic from "./src/components/Picnic.js";
-import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
+import AdventureLocation from "./src/components/AdventureLocation.js";
+import AdventureLocationSeeAll from "./src/components/AdventureLocationSeeAll.js";
 
 
 const Stack = createStackNavigator();
@@ -222,8 +222,14 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
             }}
           />
-          <Stack.Screen name="Picnic" component={Picnic} />
-          <Stack.Screen name="PicnicSeeAll" component={PicnicSeeAll} />
+          <Stack.Screen
+            name="AdventureLocation"
+            component={AdventureLocation}
+          />
+          <Stack.Screen
+            name="AdventureLocationSeeAll"
+            component={AdventureLocationSeeAll}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
