@@ -32,6 +32,7 @@ import {useFonts} from "expo-font";
 import Adventure from "./src/components/Adventure.js";
 import Picnic from "./src/components/Picnic.js";
 import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
+import IntroActivity from "./src/components/IntroActivity.js";
 
 
 const Stack = createStackNavigator();
@@ -71,6 +72,18 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",
             }}
+          />
+          <Stack.Screen
+            name="IntroActivity"
+            component={IntroActivity}
+            options={({ route }) => ({
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: route.params.name,
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            })}
           />
           <Stack.Screen
             name="CountingPrompt"
