@@ -32,6 +32,7 @@ import { useFonts } from "expo-font";
 import Adventure from "./src/components/Adventure.js";
 import AdventureLocation from "./src/components/AdventureLocation.js";
 import AdventureLocationSeeAll from "./src/components/AdventureLocationSeeAll.js";
+import FlatActivities from "./src/components/FlatActivities.js";
 
 
 const Stack = createStackNavigator();
@@ -134,6 +135,30 @@ export default function App() {
             }}
           />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen
+            name="FlatActivities"
+            component={FlatActivities}
+            options={{ 
+              headerShown: true ,
+              headerStyle: { backgroundColor: "#2E7D32" },
+              title: 'Activities',
+              headerTitleAlign: 'center',
+              headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    RootNavigation.navigate("Home");
+                  }}
+                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
+                >
+                  <Image
+                    source={require("./assets/kpi/chevronLeft.png")}
+                    style={{ height: 21, width: 12 }}
+                  />
+                </TouchableOpacity>
+              ),
+              }}
+          />
           <Stack.Screen
             name="Storytime"
             component={Storytime}
