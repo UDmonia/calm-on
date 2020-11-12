@@ -28,12 +28,11 @@ import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import CountingPrompt from "./src/components/CountingPrompt.js";
 import CountingSelection from "./src/components/CountingSelection.js";
-import {useFonts} from "expo-font";
+import { useFonts } from "expo-font";
 import Adventure from "./src/components/Adventure.js";
 import Picnic from "./src/components/Picnic.js";
 import PicnicSeeAll from "./src/components/PicnicSeeAll.js";
 import IntroActivity from "./src/components/IntroActivity.js";
-
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -44,8 +43,8 @@ export default function App() {
   // NunitoReg is the Regular font
   // NunitoBold is used for Bold font
   const [loaded] = useFonts({
-    FontReg: require('./assets/fonts/Nunito-Regular.ttf'),
-    FontBold: require('./assets/fonts/Nunito-Bold.ttf'),
+    FontReg: require("./assets/fonts/Nunito-Regular.ttf"),
+    FontBold: require("./assets/fonts/Nunito-Bold.ttf"),
   });
   // If font is not loaded in handler
   if (!loaded) {
@@ -73,13 +72,14 @@ export default function App() {
               headerTintColor: "#FFFFFF",
             }}
           />
+          {/* screen componet used for activity discription */}
           <Stack.Screen
             name="IntroActivity"
             component={IntroActivity}
             options={({ route }) => ({
               headerShown: true,
               headerBackTitleVisible: false,
-              headerTitle: route.params.name,
+              headerTitle: route.params.name, // Header is passed upon navigation through the route
               headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",

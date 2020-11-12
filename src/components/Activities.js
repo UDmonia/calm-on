@@ -10,21 +10,22 @@ import painter from "../../assets/activities/painter.png";
 //Activity data
 const learningFeelings = [
   {
-    id: 1,
-    title: "Calm Counting",
-    navRoute: "IntroActivity",
-    ActRoute: "CountingSelection",
-    // imgIntro: require("../../assets/counting/countingTitle.png"),
+    id: 1, // Activity key 
+    title: "Calm Counting", // Activity 
+    navRoute: "IntroActivity", // route to information screen
+    ActRoute: "CountingSelection", // route to actual activity
+    imgIntro: require("../../assets/counting/countingTitle.png"), // image for activity discription
+    //Activity discription
     about:
       "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
-    helpful: "Anxiety",
-    img: require("../../assets/activities/counting.png"),
-    tag: "Fear",
-    level: "Basic Skills",
+    helpful: "Anxiety", // discription of what the activity is helpful with
+    img: require("../../assets/activities/counting.png"), // image for activity button 
+    tag: "Fear", // Emotion tag for filtering
+    level: "Basic Skills", // Level tag for filtering levels.
   },
   {
     id: 2,
-    title: "boxBreathing",
+    title: "Box Breathing",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
@@ -48,7 +49,7 @@ const learningFeelings = [
   },
   {
     id: 4,
-    title: "milkMilkMilk",
+    title: "Milk Milk Milk",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
@@ -60,7 +61,7 @@ const learningFeelings = [
   },
   {
     id: 5,
-    title: "boxBreathing",
+    title: "Box Breathing",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
@@ -75,7 +76,7 @@ const learningFeelings = [
 const uncomfortableFeelings = [
   {
     id: 6,
-    title: "milkMilkMilk",
+    title: "Milk Milk Milk",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
@@ -87,7 +88,7 @@ const uncomfortableFeelings = [
   },
   {
     id: 7,
-    title: "boxBreathing",
+    title: "Box Breathing",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
@@ -111,7 +112,7 @@ const uncomfortableFeelings = [
   },
   {
     id: 9,
-    title: "milkMilkMilk",
+    title: "Milk Milk Milk",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
@@ -123,7 +124,7 @@ const uncomfortableFeelings = [
   },
   {
     id: 10,
-    title: "boxBreathing",
+    title: "Box Breathing",
     navRoute: "IntroActivity",
     ActRoute: "CountingSelection",
     about:
