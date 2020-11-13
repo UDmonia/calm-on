@@ -17,7 +17,7 @@ const SpriteActivityData = [
         title: "Calm Counting",
         color: "#FBBDB4",
         img: require("../../assets/activities/counting.png"),
-        navigationReference: "FiveFourThreeTwoOne",
+        navigationReference: "CountingSelection",
     },
     {
         id: 3,
