@@ -143,7 +143,7 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
         >
           <Image
             style={styles.buttonCancel}
-            source={require("../../assets/checkInCancelButton.png")}
+            source={require("../../assets/images/checkInCancelButton.png")}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -162,7 +162,7 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
         >
           <Image
             style={styles.buttonCancel}
-            source={require("../../assets/checkInSubmitButton.png")}
+            source={require("../../assets/images/checkInSubmitButton.png")}
           />
         </TouchableOpacity>
       </View>
