@@ -20,7 +20,11 @@ const UserSchema = new Schema(
     },
     name: {
       type: String,
-    }
+    },
+    tutorialComplete : {
+      type : Boolean,
+      default  : false,  
+    },
   },
   {
     timestamps: true,

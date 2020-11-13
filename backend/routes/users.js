@@ -233,4 +233,27 @@ router.get(
   }
 )
 
+//User data initially pulled to client, check for tutorial boolean
+//Call endpoint whenever tutorial is completed
+//Don't notify tutorial if tutorial already completed
+router.put("/kpi", 
+passport.authenticate('jwt', {session:false}),
+async(req,res) => {
+  const currUser = req.user;
+  const completed = currUser.tutorialComplete;
+  const currUserJson = currUser.toJSON();
+  if(completed){
+    res.status(422).json({"message" : "has already completed tutorial"})
+  } else{
+    res.json({"message" : "has not completed tutorial, setting complete now"})
+  }
+  try{
+    const userDoc = await User.findById(currUser._id);
+    userDoc.tutorialComplete = true;
+    await userDoc.save();
+  } catch (e) {
+  res.status(500).json(e);
+  }
+  })
+
 module.exports = router;
