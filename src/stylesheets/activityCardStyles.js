@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         display: "flex",
+        alignItems: "center",
+        width: "100%"
     },
     center: {
         paddingTop: 25,
@@ -28,6 +30,8 @@ export default StyleSheet.create({
         shadowOpacity: 0.30,
         shadowRadius: 4.65,
         elevation: 6,
+    },
+    title: {
+        fontFamily: "FontReg",
     }
-    
 });

@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container: {
-        display: "flex",
-    },
     center: {
         paddingTop: 25,
         paddingBottom: 25,
