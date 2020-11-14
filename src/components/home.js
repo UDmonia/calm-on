@@ -8,9 +8,6 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import GestureRecognizer, {
-  swipeDirections,
-} from "react-native-swipe-gestures";
 import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
@@ -61,12 +58,11 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-  const userName = "jack";
-  // useSelector((state) =>
-  //   state.session.user.name ? state.session.user.name : "user"
-  // );
+  const userName = useSelector((state) =>
+    state.session.user.name ? state.session.user.name : "user"
+  );
   if (userName === "user") {
-    // console.log("Home -> loginSignup: userPrompt=true userlogin=false");
+    console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });
   }
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
@@ -96,7 +92,7 @@ const Home = ({ props, navigation: { navigate } }) => {
 
   function handleBtnPress() {
     if (currentSpirit === sprite) {
-      navigate("chatPlaceholder");
+      navigate("chatPlaceholder", { character: "Sprite" });
     }
   }
 
@@ -147,25 +143,6 @@ const Home = ({ props, navigation: { navigate } }) => {
             </Text>
           </View>
         </View>
-
-        {/*<View style={styles.nav}>
-        <View style={styles.navIcons}>
-          <TouchableOpacity>
-              <Image style={styles.homeIcon}
-                source={require('../../assets/icon_home_selected.png')}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Image style={styles.achieveIcon}
-              source={require('../../assets/icon_achievements.png')} />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
-            <Image style={styles.profileIcon}
-              source={require('../../assets/icon_profile.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>*/}
       </ImageBackground>
     </View>
   );
