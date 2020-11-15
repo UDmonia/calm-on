@@ -39,14 +39,14 @@ const styles = StyleSheet.create({
   topBoxTextName: {
     color: '#000000',
     fontSize: 24,
-    fontFamily: 'Avenir',
+    fontFamily: 'FontReg',
     marginTop: 16,
     marginHorizontal: 16,
   },
   topBoxText: {
     color: '#000000',
     fontSize: 14,
-    fontFamily: 'Avenir',
+    fontFamily: 'FontReg',
     marginHorizontal: 16,
   },
   scroll: {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   bottomBoxTextName: {
     color: '#000000',
     fontSize: 24,
-    fontFamily: 'Avenir',
+    fontFamily: 'FontReg',
     fontWeight: '800',
     marginTop: 4,
     marginHorizontal: 16,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   bottomBoxTextDescription: {
     color: '#000000',
     fontSize: 14,
-    fontFamily: 'Avenir',
+    fontFamily: 'FontReg',
     marginHorizontal: 8,
     textAlign: 'center',
   },

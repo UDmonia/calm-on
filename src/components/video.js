@@ -8,7 +8,7 @@ import { Dimensions } from 'react-native';
 class IntroVideo extends React.Component {
   constructor(props) {
     super(props);
-    this.vid = require('../../assets/opening_video.mov');
+    this.vid = require('../../assets/Opening_v03.mp4');
     this.play = true;
 
     this.state = {
@@ -33,11 +33,11 @@ class IntroVideo extends React.Component {
     } else {
       // Update your UI for the loaded state
   
-      // if (playbackStatus.isPlaying) {
-      //   // console.log('this is playing')
-      // } else {
-      //   // console.log('not playing')
-      // }
+      if (playbackStatus.isPlaying) {
+        console.log('this is playing')
+      } else {
+        console.log('not playing')
+      }
 
       // if (playbackStatus.isBuffering) {
       //   // Update your UI for the buffering state
@@ -74,6 +74,8 @@ class IntroVideo extends React.Component {
           isMuted={false}
           resizeMode="stretch"
           shouldPlay={this.state.play}
+          // UnCommment here if you want to access the console.log for the playback status
+          //onPlaybackStatusUpdate={(playBackstatus) => this._onPlaybackStatusUpdate(playBackstatus)}
           style={{ 
             width: '100%', 
             height: '100%',

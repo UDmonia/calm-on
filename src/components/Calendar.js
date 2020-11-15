@@ -102,6 +102,7 @@ const Calendar =({navigation: { navigate} })=>{
                                 }
                             {previewDaily}
                         </ScrollView>
+                        
                         :
                             <PreviewMonth/>
                         }

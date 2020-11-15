@@ -11,7 +11,7 @@ export default  StyleSheet.create({
         textAlign: 'center',
         marginTop: '5%',
         marginBottom: '5%',
-        fontFamily: 'Avenir',
+        fontFamily: 'FontReg',
         fontSize: 18,
         color: 'white',
         fontWeight: '900',
@@ -26,7 +26,7 @@ export default  StyleSheet.create({
     },
     text1: {
         color: 'white',
-        fontFamily: 'Avenir',
+        fontFamily: 'FontReg',
         fontSize: 16,
         position: 'absolute',
         width: 150,
@@ -34,7 +34,7 @@ export default  StyleSheet.create({
         left: 184,
     },
     text2: {
-        fontFamily: 'Avenir',
+        fontFamily: 'FontReg',
         fontSize: 18,
         position: 'absolute',
         width: 150,
@@ -45,7 +45,7 @@ export default  StyleSheet.create({
     bigSqueezeAngry: {
         position: 'absolute',
         top: 110,
-        fontFamily: 'Avenir',
+        fontFamily: 'FontReg',
         fontSize: 20,
         fontWeight: '800',
         width: 150,
