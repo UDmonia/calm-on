@@ -34,7 +34,7 @@ const Intro = ({title,statArray,about,helpful,start})=>{
                 <View>
                     <Text style = {styles.statType}>Add to Favorite</Text>
                         <TouchableOpacity>
-                            <Image style = {{marginLeft:'32%'}} source = {require('../../assets/favorite.png')}/>
+                            <Image style = {{marginLeft:'32%'}} source = {require('../../assets/images/favorite.png')}/>
                         </TouchableOpacity>
                 </View>
                     
