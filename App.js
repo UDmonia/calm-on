@@ -32,7 +32,7 @@ import { useFonts } from "expo-font";
 import Adventure from "./src/components/Adventure.js";
 import AdventureLocation from "./src/components/AdventureLocation.js";
 import AdventureLocationSeeAll from "./src/components/AdventureLocationSeeAll.js";
-
+import IntroActivity from "./src/components/IntroActivity.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -43,8 +43,8 @@ export default function App() {
   // NunitoReg is the Regular font
   // NunitoBold is used for Bold font
   const [loaded] = useFonts({
-    FontReg: require('./assets/fonts/Nunito-Regular.ttf'),
-    FontBold: require('./assets/fonts/Nunito-Bold.ttf'),
+    FontReg: require("./assets/fonts/Nunito-Regular.ttf"),
+    FontBold: require("./assets/fonts/Nunito-Bold.ttf"),
   });
   // If font is not loaded in handler
   if (!loaded) {
@@ -71,6 +71,19 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",
             }}
+          />
+          {/* screen componet used for activity discription */}
+          <Stack.Screen
+            name="IntroActivity"
+            component={IntroActivity}
+            options={({ route }) => ({
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: route.params.name, // Header is passed upon navigation through the route
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            })}
           />
           <Stack.Screen
             name="CountingPrompt"
