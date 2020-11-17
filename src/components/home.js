@@ -17,21 +17,21 @@ import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const sprite = {
-  img: require("../../assets/sprite.gif"),
+  img: require("../../assets/images/sprite.gif"),
   name: "Sprite",
   description:
     "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
 };
 
 const flynn = {
-  img: require("../../assets/flynn.gif"),
+  img: require("../../assets/images/flynn.gif"),
   name: "Flynn",
   description:
     "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
 };
 
 const aurora = {
-  img: require("../../assets/aurora.gif"),
+  img: require("../../assets/images/aurora.gif"),
   name: "Aurora",
   description:
     "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
@@ -102,7 +102,7 @@ const Home = ({ props, navigation: { navigate } }) => {
   return (
     <View style={styles.format}>
       <ImageBackground
-        source={require("../../assets/splash_panel.png")}
+        source={require("../../assets/images/splash_panel.png")}
         style={styles.image}
       >
         <View style={styles.main}>
@@ -135,7 +135,7 @@ const Home = ({ props, navigation: { navigate } }) => {
           <TouchableOpacity onPress={() => handleBtnPress()}>
             <Image
               style={styles.btn}
-              source={require("../../assets/homescreen_btn.png")}
+              source={require("../../assets/images/homescreen_btn.png")}
             />
           </TouchableOpacity>
 

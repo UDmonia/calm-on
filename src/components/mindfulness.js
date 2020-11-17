@@ -8,19 +8,19 @@ export default mindfulness = props=> {
             <Text style={styles.text}>Here are some activities you can try to think more positively</Text>
 
             <TouchableOpacity onPress={()=>props.navigation.navigate('Techniques')}>
-            <Image style={styles.image} source={require('./images/MindfulnessNav/1.png')}/>
+            <Image style={styles.image} source={require('../../assets/images/MindfulnessNav/1.png')}/>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={()=>props.navigation.navigate('BigSqueeze')}>
-            <Image style={styles.image} source={require('./images/MindfulnessNav/2.png')}/>
+            <Image style={styles.image} source={require('../../assets/images/MindfulnessNav/2.png')}/>
             </TouchableOpacity>
             
             <TouchableOpacity onPress={()=>props.navigation.navigate('MonsterHug')}>
-            <Image style={styles.image} source={require('./images/MindfulnessNav/3.png')}/>
+            <Image style={styles.image} source={require('../../assets/images/MindfulnessNav/3.png')}/>
             </TouchableOpacity>
 
             <TouchableOpacity>
-            <Image style={styles.image} source={require('./images/MindfulnessNav/4.png')}/>
+            <Image style={styles.image} source={require('../../assets/images/MindfulnessNav/4.png')}/>
             </TouchableOpacity>
 
         </View>

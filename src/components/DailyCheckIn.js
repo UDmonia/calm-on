@@ -226,7 +226,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         {userName}?
       </Text>
       <View style={styles.txtInfo}>
-        <Image source={require("../../assets/info.png")} />
+        <Image source={require("../../assets/images/info.png")} />
         <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
           <Text style={styles.txtInfo}>Learn more about feelings</Text>
         </TouchableOpacity>
@@ -260,7 +260,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         >
           <Image
             style={styles.buttonCancel}
-            source={require("../../assets/checkInCancelButton.png")}
+            source={require("../../assets/images/checkInCancelButton.png")}
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -273,7 +273,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
         >
           <Image
             style={styles.buttons}
-            source={require("../../assets/checkInContinueButton.png")}
+            source={require("../../assets/images/checkInContinueButton.png")}
           />
         </TouchableOpacity>
       </View>
