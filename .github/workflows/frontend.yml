@@ -4,8 +4,8 @@
 name: Build CI
 
 on:
-  push:
-    branches: [jest]
+  pull_request:
+    branches: [dev, master]
 
 jobs:
   install-and-test:
@@ -30,14 +30,15 @@ jobs:
       # https://docs.expo.io/workflow/expo-cli/#expo-doctor
       - run: expo doctor
 
-  release-ios:
-    name: Build iOS app
-    runs-on: macOS-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "10.x"
+  # will comment out for now until android works
+  # release-ios:
+  #   name: Build iOS app
+  #   runs-on: macOS-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: "10.x"
 
 defaults:
   run:
