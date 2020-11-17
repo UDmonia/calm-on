@@ -72,7 +72,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   const { email, password, birthday } = req.body;
-
+  // console.log(req.body)
   if (
     !email ||
     !valid(email) ||
@@ -239,21 +239,22 @@ router.get(
 router.put("/kpi", 
 passport.authenticate('jwt', {session:false}),
 async(req,res) => {
+  console.log(req);
   const currUser = req.user;
   const completed = currUser.tutorialComplete;
   const currUserJson = currUser.toJSON();
   if(completed){
+    try{
+      const userDoc = await User.findById(currUser._id);
+      userDoc.tutorialComplete = true;
+      await userDoc.save();
+    } catch (e) {
+    res.status(500).json(e);
+    }
     res.status(422).json({"message" : "has already completed tutorial"})
   } else{
     res.json({"message" : "has not completed tutorial, setting complete now"})
   }
-  try{
-    const userDoc = await User.findById(currUser._id);
-    userDoc.tutorialComplete = true;
-    await userDoc.save();
-  } catch (e) {
-  res.status(500).json(e);
-  }
-  })
+})
 
 module.exports = router;
