@@ -13,7 +13,7 @@ export default DialogBox = ({ message }) => {
   return (
     <View style={message.style}>
       {/* change text color */}
-      <Text style={{ color: "#FFFFFF" }}>{message.text}</Text>
+      <Text style={{ color: "#FFFFFF", fontFamily: "FontReg",}}>{message.text}</Text>
     </View>
   );
 };

@@ -29,12 +29,12 @@ export default  mindfulnessStack = props => {
 
   const homeButton = (
     <TouchableOpacity onPress = {()=>props.navigation.navigate('Home')}>
-      <Image source = {require('./images/MindfulnessNav/home.png')}/>
+      <Image source = {require('../../assets/images/MindfulnessNav/home.png')}/>
     </TouchableOpacity>
   )
 
   const level = (
-    <Image source = {require('./images/misc/level.png')} />
+    <Image source = {require('../../assets/images/misc/level.png')} />
   )
  
     return (

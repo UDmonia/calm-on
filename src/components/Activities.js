@@ -10,15 +10,27 @@ import painter from "../../assets/activities/painter.png";
 //Activity data
 const learningFeelings = [
   {
-    id: 1,
-    title: "CountingSelection",
-    img: require("../../assets/activities/counting.png"),
-    tag: "Fear",
-    level: "Basic Skills",
+    id: 1, // Activity key 
+    title: "Calm Counting", // Activity 
+    navRoute: "IntroActivity", // route to information screen
+    ActRoute: "CountingSelection", // route to actual activity
+    imgIntro: require("../../assets/counting/countingTitle.png"), // image for activity discription
+    //Activity discription
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety", // discription of what the activity is helpful with
+    img: require("../../assets/activities/counting.png"), // image for activity button 
+    tag: "Fear", // Emotion tag for filtering
+    level: "Basic Skills", // Level tag for filtering levels.
   },
   {
     id: 2,
-    title: "boxBreathing",
+    title: "Box Breathing",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/why.png"),
     tag: "Anger",
     level: "Novice",
@@ -26,20 +38,35 @@ const learningFeelings = [
   {
     id: 3,
     title: "Mindfulness",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/feelings.png"),
     tag: "Excitement",
     level: "Basic Skills",
   },
   {
     id: 4,
-    title: "milkMilkMilk",
+    title: "Milk Milk Milk",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/why.png"),
     tag: "Happy",
     level: "Novice",
   },
   {
     id: 5,
-    title: "boxBreathing",
+    title: "Box Breathing",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/feelings.png"),
     tag: "Worry",
     level: "Basic Skills",
@@ -49,14 +76,24 @@ const learningFeelings = [
 const uncomfortableFeelings = [
   {
     id: 6,
-    title: "milkMilkMilk",
+    title: "Milk Milk Milk",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/feelings.png"),
     tag: "Fear",
     level: "Basic Skills",
   },
   {
     id: 7,
-    title: "boxBreathing",
+    title: "Box Breathing",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/why.png"),
     tag: "Fear",
     level: "Novice",
@@ -64,20 +101,35 @@ const uncomfortableFeelings = [
   {
     id: 8,
     title: "Mindfulness",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/feelings.png"),
     tag: "Anger",
     level: "Novice",
   },
   {
     id: 9,
-    title: "milkMilkMilk",
+    title: "Milk Milk Milk",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/why.png"),
     tag: "Anger",
     level: "Basic Skills",
   },
   {
     id: 10,
-    title: "boxBreathing",
+    title: "Box Breathing",
+    navRoute: "IntroActivity",
+    ActRoute: "CountingSelection",
+    about:
+      "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
+    helpful: "Anxiety",
     img: require("../../assets/activities/feelings.png"),
     tag: "Worry",
     level: "Basic Skills",
@@ -101,7 +153,13 @@ function actCategory(act, navigate, filter, level) {
       <View key={act.id} style={styles.activity}>
         <TouchableOpacity
           onPress={() => {
-            navigate(act.title);
+            navigate(act.navRoute, {
+              name: act.title,
+              actNav: act.ActRoute,
+              about: act.about,
+              helpful: act.helpful,
+              img: act.imgIntro,
+            });
           }}
         >
           <Image source={act.img} />
