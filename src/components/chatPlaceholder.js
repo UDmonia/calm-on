@@ -9,16 +9,16 @@ import {
 import React, { useState } from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
 
-const chatPlaceholder = ({ navigation: { navigate } }) => {
+const chatPlaceholder = ({ route, navigation: { navigate } }) => {
+  const { character } = route.params;
+  const { img } = route.params;
+
   return (
     <ImageBackground
       style={styles.background}
       source={require("../../assets/splash_panel.png")}
     >
-      <Image
-        style={styles.chosenCharacter}
-        source={require("../../assets/sprite_still.png")}
-      />
+      <Image style={styles.chosenCharacter} source={img} />
       <View
         style={{
           justifyContent: "center",

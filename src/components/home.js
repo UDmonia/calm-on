@@ -92,7 +92,14 @@ const Home = ({ props, navigation: { navigate } }) => {
 
   function handleBtnPress() {
     if (currentSpirit === sprite) {
-      navigate("chatPlaceholder", { character: "Sprite" });
+      console.log("sprite");
+      navigate("chatPlaceholder", { character: "Sprite", img: sprite.img });
+    } else if (currentSpirit === flynn) {
+      console.log("flynn");
+      navigate("chatPlaceholder", { character: "Flynn", img: flynn.img });
+    } else if (currentSpirit === aurora) {
+      console.log("aurora");
+      navigate("chatPlaceholder", { character: "Aurora", img: aurora.img });
     }
   }
 
