@@ -44,7 +44,7 @@ export default Intro = ({ route, navigation }) => {
             <TouchableOpacity>
               <Image
                 style={styles.fav}
-                source={require("../../assets/favorite.png")}
+                source={require("../../assets/images/favorite.png")}
               />
             </TouchableOpacity>
           </View>

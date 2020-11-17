@@ -11,69 +11,69 @@ import styles from "../stylesheets/boxBreathingStyles";
 import Node from "./Node";
 import { useNavigation } from "@react-navigation/native";
 
-const Intro = ({ title, statArray, about, helpful, start }) => {
-  //May use this later, dont need it for now
-  const [voice, setVoice] = useState(false);
-  const [startActivity, setStartActivity] = useState(false);
+// const Intro = ({ title, statArray, about, helpful, start }) => {
+//   //May use this later, dont need it for now
+//   const [voice, setVoice] = useState(false);
+//   const [startActivity, setStartActivity] = useState(false);
 
-  return (
-    <View>
-      <View style={styles.upper}></View>
-      <View style={styles.lower}>
-        <Text style={styles.title}>Box Breathing</Text>
-        <View style={styles.statsRow}>
-          <View>
-            <Text style={styles.statType}>Time (mins)</Text>
-            <Text style={styles.stats}>2</Text>
-          </View>
+//   return (
+//     <View>
+//       <View style={styles.upper}></View>
+//       <View style={styles.lower}>
+//         <Text style={styles.title}>Box Breathing</Text>
+//         <View style={styles.statsRow}>
+//           <View>
+//             <Text style={styles.statType}>Time (mins)</Text>
+//             <Text style={styles.stats}>2</Text>
+//           </View>
 
-          <View>
-            <Text style={styles.statType}>Time(s) Completed</Text>
-            <View
-              style={{
-                borderLeftWidth: 2,
-                borderRightWidth: 2,
-                width: 130,
-                borderColor: "#C4C4C4",
-              }}
-            >
-              <Text style={styles.stats}>1</Text>
-            </View>
-          </View>
+//           <View>
+//             <Text style={styles.statType}>Time(s) Completed</Text>
+//             <View
+//               style={{
+//                 borderLeftWidth: 2,
+//                 borderRightWidth: 2,
+//                 width: 130,
+//                 borderColor: "#C4C4C4",
+//               }}
+//             >
+//               <Text style={styles.stats}>1</Text>
+//             </View>
+//           </View>
 
-          <View>
-            <Text style={styles.statType}>Add to Favorite</Text>
-            <TouchableOpacity>
-              <Image
-                style={{ marginLeft: "32%" }}
-                source={require("../../assets/favorite.png")}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <Text style={styles.sectionTitle}>About</Text>
-        <Text style={styles.descriptions}>2 minutes</Text>
-        <Text style={styles.descriptions}>
-          Take a walk with Sprite while you work on a calming breathing pattern
-        </Text>
+//           <View>
+//             <Text style={styles.statType}>Add to Favorite</Text>
+//             <TouchableOpacity>
+//               <Image
+//                 style={{ marginLeft: "32%" }}
+//                 source={require("../../assets/images/favorite.png")}
+//               />
+//             </TouchableOpacity>
+//           </View>
+//         </View>
+//         <Text style={styles.sectionTitle}>About</Text>
+//         <Text style={styles.descriptions}>2 minutes</Text>
+//         <Text style={styles.descriptions}>
+//           Take a walk with Sprite while you work on a calming breathing pattern
+//         </Text>
 
-        <Text style={styles.sectionTitle}>Helpful when..</Text>
-        <Text style={styles.descriptions}>
-          you are feeling very sad, mad, scared, or worried. This can help you
-          feel more calm
-        </Text>
+//         <Text style={styles.sectionTitle}>Helpful when..</Text>
+//         <Text style={styles.descriptions}>
+//           you are feeling very sad, mad, scared, or worried. This can help you
+//           feel more calm
+//         </Text>
 
-        {/*<TouchableOpacity onPress = {()=>start(true)} style = {styles.start}>*/}
-        <TouchableOpacity
-          onPress={start ? () => start(true) : null}
-          style={styles.start}
-        >
-          <Text style={styles.startText}>Start Box Breathing</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
+//         {/*<TouchableOpacity onPress = {()=>start(true)} style = {styles.start}>*/}
+//         <TouchableOpacity
+//           onPress={start ? () => start(true) : null}
+//           style={styles.start}
+//         >
+//           <Text style={styles.startText}>Start Box Breathing</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   );
+//};
 
 const IntroStory = ({ start }) => {
   const [page, setPage] = useState(0);
@@ -512,9 +512,6 @@ const boxBreathing = () => {
         source={require("../../assets/boxBreathing/beach.png")}
         style={styles.backgroundImage}
       >
-        {!start ? (
-          <Intro start={setStart} />
-        ) : (
           <View style={styles.container}>
             {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
                 <Image source = {require("../../assets/exit_storytime.png")}/>
@@ -651,7 +648,6 @@ const boxBreathing = () => {
               </View>
             )}
           </View>
-        )}
       </ImageBackground>
     </View>
   );
