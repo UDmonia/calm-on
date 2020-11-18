@@ -12,27 +12,29 @@ import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import { useDispatch, useSelector } from "react-redux";
+import { sprite, aurora, flynn } from "./characterData";
 
-const sprite = {
-  img: require("../../assets/sprite.gif"),
-  name: "Sprite",
-  description:
-    "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
-};
+// const sprite = {
+//   img: require("../../assets/sprite.gif"),
+//   name: "Sprite",
+//   description:
+//     "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
 
-const flynn = {
-  img: require("../../assets/flynn.gif"),
-  name: "Flynn",
-  description:
-    "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
-};
+//   };
 
-const aurora = {
-  img: require("../../assets/aurora.gif"),
-  name: "Aurora",
-  description:
-    "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
-};
+// const flynn = {
+//   img: require("../../assets/flynn.gif"),
+//   name: "Flynn",
+//   description:
+//     "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
+// };
+
+// const aurora = {
+//   img: require("../../assets/aurora.gif"),
+//   name: "Aurora",
+//   description:
+//     "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
+// };
 
 const checkInExists = () => {
   var res = false;
@@ -91,16 +93,10 @@ const Home = ({ props, navigation: { navigate } }) => {
   }
 
   function handleBtnPress() {
-    if (currentSpirit === sprite) {
-      console.log("sprite");
-      navigate("chatPlaceholder", { character: "Sprite", img: sprite.img });
-    } else if (currentSpirit === flynn) {
-      console.log("flynn");
-      navigate("chatPlaceholder", { character: "Flynn", img: flynn.img });
-    } else if (currentSpirit === aurora) {
-      console.log("aurora");
-      navigate("chatPlaceholder", { character: "Aurora", img: aurora.img });
-    }
+    navigate("chatPlaceholder", {
+      curCharacter: currentSpirit,
+      name: currentSpirit.name,
+    });
   }
 
   return (

@@ -10,8 +10,9 @@ import React, { useState } from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
 
 const chatPlaceholder = ({ route, navigation: { navigate } }) => {
-  const { character } = route.params;
-  const { img } = route.params;
+  const { curCharacter } = route.params;
+  // const { img } = route.params;
+  const img = curCharacter.img;
 
   return (
     <ImageBackground
