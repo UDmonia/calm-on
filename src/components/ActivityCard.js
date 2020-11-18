@@ -10,7 +10,13 @@ function ActivityCard(props) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={[styles.activityContainer, {backgroundColor: props.bgColor}]}
-                onPress={() => navigation.navigate(props.navigateLink)}>
+                onPress={() => navigation.navigate(props.navigateLink, {
+                    name: props.title,
+                    actNav: props.introPageData.ActRoute,
+                    about: props.introPageData.about,
+                    helpful: props.introPageData.helpful,
+                    img: props.introPageData.img,
+                })}>
                 <Text style={styles.title}>{props.title}</Text>
                 <Image source={props.imagePath}/>
             </TouchableOpacity>
