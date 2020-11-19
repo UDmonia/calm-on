@@ -151,9 +151,9 @@ export default function App() {
           <Stack.Screen
             name="FlatActivities"
             component={FlatActivities}
-            options={{
+            options={({ route }) => ({
               headerShown: true,
-              headerStyle: { backgroundColor: "#2E7D32" },
+              headerStyle: { backgroundColor: route.params.headerColor },
               title: "Activities",
               headerTitleAlign: "center",
               headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
@@ -170,7 +170,7 @@ export default function App() {
                   />
                 </TouchableOpacity>
               ),
-            }}
+            })}
           />
           <Stack.Screen
             name="Storytime"

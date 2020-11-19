@@ -23,7 +23,10 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.activityBtn}
           onPress={() =>
-            navigate("FlatActivities", { activities: charaterActivities })
+            navigate("FlatActivities", {
+              activities: charaterActivities,
+              headerColor: curCharacter.characterColor,
+            })
           }
         >
           <Image source={activitiesBtnImg} />
