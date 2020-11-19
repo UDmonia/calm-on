@@ -14,7 +14,7 @@ const Profile = ({ navigation: { navigate } }) => {
     return (
         <View>
             <TouchableOpacity onPress={logoutUser}>
-                <Image source={require('../../assets/logout_btn.png')} />
+                <Image source={require('../../assets/images/logout_btn.png')} />
             </TouchableOpacity>
         </View>
     )

@@ -9,22 +9,22 @@ const storytime = props => {
       <View style={styles.main}>
         <TouchableOpacity onPress={() => props.navigation.navigate('milkMilkMilk')}>
           <Image style={styles.btn1}
-            source={require('../../assets/milk.png')} />
+            source={require('../../assets/images/milk.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity>
           <Image style={styles.btn2}
-            source={require('../../assets/anger.png')} />
+            source={require('../../assets/images/anger.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity>
           <Image style={styles.btn2}
-            source={require('../../assets/fears.png')} />
+            source={require('../../assets/images/fears.png')} />
         </TouchableOpacity>
 
         <TouchableOpacity>
           <Image style={styles.btn}
-            source={require('../../assets/anxiety.png')} />
+            source={require('../../assets/images/anxiety.png')} />
         </TouchableOpacity>
 
       </View>

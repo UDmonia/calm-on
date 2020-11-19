@@ -110,11 +110,15 @@ export default StyleSheet.create({
     width: 200,
     left: 90,
     top: 50,
-    alignItems: "center",
-    justifyContent: "center",
+    alignContent: "center",
+    flexDirection: "column",
+    justifyContent: "flex-end",
   },
   groupImg: {
+    height: '100%',
+    width: '100%',
     resizeMode: "contain",
+    alignSelf: "flex-end",
   },
   nextButton: {
     width: 163,

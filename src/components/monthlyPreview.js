@@ -101,19 +101,19 @@ const MonthlyPreview =()=>{
             <View style = {styles.header}>
                 {month > startMonth ?
                 <TouchableOpacity onPress = {()=>setMonth(month-1)} >
-                    <Image source = {require('../../assets/prevMonth.png')}/>
+                    <Image source = {require('../../assets/images/prevMonth.png')}/>
                 </TouchableOpacity>
                 :
-                    <Image source = {require('../../assets/leftDisabled.png')}/>
+                    <Image source = {require('../../assets/images/leftDisabled.png')}/>
                 }
 
     <Text style = {styles.date}>{months[month]} {year}</Text>
                 {month < currentMonth?
                 <TouchableOpacity onPress = {()=>setMonth(month+1)} >
-                    <Image source = {require('../../assets/nextMonth.png')}/>
+                    <Image source = {require('../../assets/images/nextMonth.png')}/>
                 </TouchableOpacity>
                 :
-                    <Image source = {require('../../assets/rightDisabled.png')}/>
+                    <Image source = {require('../../assets/images/rightDisabled.png')}/>
                 }
             </View>
 

@@ -102,7 +102,7 @@ const Home = ({ props, navigation: { navigate } }) => {
   return (
     <View style={styles.format}>
       <ImageBackground
-        source={require("../../assets/splash_panel.png")}
+        source={require("../../assets/images/splash_panel.png")}
         style={styles.image}
       >
         <View style={styles.main}>
@@ -135,7 +135,7 @@ const Home = ({ props, navigation: { navigate } }) => {
           <TouchableOpacity onPress={() => handleBtnPress()}>
             <Image
               style={styles.btn}
-              source={require("../../assets/homescreen_btn.png")}
+              source={require("../../assets/images/homescreen_btn.png")}
             />
           </TouchableOpacity>
 

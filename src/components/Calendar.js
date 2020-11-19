@@ -75,13 +75,13 @@ const Calendar =({navigation: { navigate} })=>{
     
     return (
         <View style = {styles.format}>
-            <ImageBackground source={require('../../assets/splash_panel.png')} style = {styles.background}>
+            <ImageBackground source={require('../../assets/images/splash_panel.png')} style = {styles.background}>
                 <View style = {styles.main}>
                     <View style = {styles.calendar}>
                         <View style = {styles.toggle}>
 
-                        <Image style = {styles.hangerLeft} source = {require('../../assets/hanger.png')}/>
-                        <Image style = {styles.hangerRight} source = {require('../../assets/hanger.png')}/>
+                        <Image style = {styles.hangerLeft} source = {require('../../assets/images/hanger.png')}/>
+                        <Image style = {styles.hangerRight} source = {require('../../assets/images/hanger.png')}/>
 
                             <View style = {{borderRadius: 5,borderColor: 'white', height: '49%',borderWidth:3, display:'flex',flexDirection:'row'}}>
                                 <TouchableOpacity style = {{width:105}} onPress = {()=>changeView(!viewByDay)}>
@@ -98,7 +98,7 @@ const Calendar =({navigation: { navigate} })=>{
                         {viewByDay?
                         <ScrollView style = {styles.dates}>
                                 {checkInEnabled &&
-                                    <Box empty = {true} color = {'white'} image = {require('../../assets/addJournal.png')} time = {null} mood = {null} journal = {''} />
+                                    <Box empty = {true} color = {'white'} image = {require('../../assets/images/addJournal.png')} time = {null} mood = {null} journal = {''} />
                                 }
                             {previewDaily}
                         </ScrollView>

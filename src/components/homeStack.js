@@ -13,11 +13,11 @@ const HomeStack =props=>{
 
     const icons = 
     [
-        {name: 'Home',active: false,comp:Home, icon: require('../../assets/home.png')},
-        {name: 'Achievements', comp:Achievement,icon:require('../../assets/achievement.png')},
-        {name: 'Check-in',comp:Calendar, icon:require('../../assets/calendar.png')},
-        //{name: 'Newsfeed', comp:Newsfeed,icon:require('../../assets/newsfeed.png')},
-        {name: 'Profile',comp:Profile, icon:require('../../assets/account.png')},
+        {name: 'Home',active: false,comp:Home, icon: require('../../assets/images/home.png')},
+        {name: 'Achievements', comp:Achievement,icon:require('../../assets/images/achievement.png')},
+        {name: 'Check-in',comp:Calendar, icon:require('../../assets/images/calendar.png')},
+        //{name: 'Newsfeed', comp:Newsfeed,icon:require('../../assets/images/newsfeed.png')},
+        {name: 'Profile',comp:Profile, icon:require('../../assets/images/account.png')},
 
     ]
 

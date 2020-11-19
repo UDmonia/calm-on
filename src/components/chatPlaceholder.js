@@ -13,12 +13,10 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const { curCharacter } = route.params;
   // const { img } = route.params;
   const img = curCharacter.img;
+  const bg = curCharacter.bg;
 
   return (
-    <ImageBackground
-      style={styles.background}
-      source={require("../../assets/splash_panel.png")}
-    >
+    <ImageBackground style={styles.background} source={bg}>
       <Image style={styles.chosenCharacter} source={img} />
       <View
         style={{

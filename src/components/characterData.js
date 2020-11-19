@@ -4,7 +4,7 @@ import { SpriteActivityData } from "./activityData.js";
  */
 
 const sprite = {
-  img: require("../../assets/sprite.gif"),
+  img: require("../../assets/images/sprite.gif"),
   name: "Sprite",
   characterColor: "#2E7D32",
   description:
@@ -13,7 +13,7 @@ const sprite = {
 };
 
 const flynn = {
-  img: require("../../assets/flynn.gif"),
+  img: require("../../assets/images/flynn.gif"),
   name: "Flynn",
   characterColor: "#B24A2B",
   description:
@@ -22,7 +22,7 @@ const flynn = {
 };
 
 const aurora = {
-  img: require("../../assets/aurora.gif"),
+  img: require("../../assets/images/aurora.gif"),
   name: "Aurora",
   characterColor: "#8248D7",
   description:

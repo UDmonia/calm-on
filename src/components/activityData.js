@@ -66,7 +66,8 @@ const SpriteActivityData = [
       ActRoute: "Adventure",
       about:
         "Sometimes when we are upset, it helps us calm down when we imagine ourselves doing something enjoyable. Join me on an adventure!",
-      img: require("../../assets/activities/chooseadventure1.png"),
+      //   img: require("../../assets/activities/chooseadventure1.png"),
+      img: require("../../assets/favicon.png"),
       helpful: "You are scared or worried.",
     },
   },
