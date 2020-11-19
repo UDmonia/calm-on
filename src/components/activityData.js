@@ -1,5 +1,14 @@
 //Activities data constant used for map and potentially to store in the database later on:
-
+// Structure for this data:
+/*
+    {
+        General Activity Data
+        ...
+        Intro Page Data Object for Activity: {
+            ...
+        }
+    }
+*/
 const SpriteActivityData = [
   {
     id: 1,
@@ -66,8 +75,7 @@ const SpriteActivityData = [
       ActRoute: "Adventure",
       about:
         "Sometimes when we are upset, it helps us calm down when we imagine ourselves doing something enjoyable. Join me on an adventure!",
-      //   img: require("../../assets/activities/chooseadventure1.png"),
-      img: require("../../assets/favicon.png"),
+      img: require("../../assets/activities/chooseadventure1.png"),
       helpful: "You are scared or worried.",
     },
   },

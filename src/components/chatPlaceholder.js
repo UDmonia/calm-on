@@ -6,28 +6,30 @@ import {
   ImageBackground,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
 
 const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const { curCharacter } = route.params;
-  // const { img } = route.params;
   const img = curCharacter.img;
-  const bg = curCharacter.bg;
+  const bg = curCharacter.background;
+  const activitiesBtnImg = curCharacter.viewActivities;
+  const charaterActivities = curCharacter.activities;
 
   return (
     <ImageBackground style={styles.background} source={bg}>
       <Image style={styles.chosenCharacter} source={img} />
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          height: "30%",
-          width: "90%",
-          backgroundColor: "white",
-          borderRadius: 10,
-        }}
-      >
+      <View style={styles.activityBtnContainer}>
+        <TouchableOpacity
+          style={styles.activityBtn}
+          onPress={() =>
+            navigate("FlatActivities", { activities: charaterActivities })
+          }
+        >
+          <Image source={activitiesBtnImg} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.chatContainer}>
         <Text>Placeholder page</Text>
         <TouchableOpacity onPress={() => navigate("milkMilkMilk")}>
           <Text>Milk Milk Milk</Text>

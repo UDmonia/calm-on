@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
-  Button,
   ImageBackground,
   TouchableOpacity,
   Image,
@@ -10,31 +9,8 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
-import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { sprite, aurora, flynn } from "./characterData";
-
-// const sprite = {
-//   img: require("../../assets/sprite.gif"),
-//   name: "Sprite",
-//   description:
-//     "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
-
-//   };
-
-// const flynn = {
-//   img: require("../../assets/flynn.gif"),
-//   name: "Flynn",
-//   description:
-//     "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
-// };
-
-// const aurora = {
-//   img: require("../../assets/aurora.gif"),
-//   name: "Aurora",
-//   description:
-//     "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
-// };
 
 const checkInExists = () => {
   var res = false;
@@ -96,6 +72,7 @@ const Home = ({ props, navigation: { navigate } }) => {
     navigate("chatPlaceholder", {
       curCharacter: currentSpirit,
       name: currentSpirit.name,
+      headerColor: currentSpirit.characterColor,
     });
   }
 
