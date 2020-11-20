@@ -31,8 +31,8 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Blanket",
-        image: require("../../assets/adventure/locations/alphabetItems/blanket.png"),
+        itemName: "Backpack",
+        image: require("../../assets/adventure/locations/alphabetItems/backpack.png"),
       },
       {
         id: 3,
