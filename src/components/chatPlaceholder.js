@@ -24,6 +24,10 @@ const chatPlaceholder = ({ navigation: { navigate } }) => {
       <TouchableOpacity onPress={() => navigate("Adventure")}>
         <Text>Going on an Adventure</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate("kpi")}>
+        <Text>KPI Screen</Text>
+      </TouchableOpacity>
+
     </View>
   );
 };
