@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { ImageBackground, Image, View } from "react-native";
 import styles from "../../stylesheets/loginSignup.styles";
-import bg from "../images/backgroundImage.png";
-import logo from "../images/logo.png";
+import bg from "../../../assets/images/backgroundImage.png";
+import logo from "../../../assets/images/logo.png";
 import SessionForm from "./session_form";
 import LoginToggle from "./login_toggle";
 
@@ -14,8 +14,6 @@ const LoginSignup = ({ route, navigation: { navigate } }) => {
   const [login, isLogin] = useState(() => userLogin);
   const [showUserDialog, setShowUserDialog] = useState(() => userPrompt);
   const setLogin = (bool) => () => isLogin(bool);
-  // console.log("Login Signup: " + userPrompt + " " + userLogin);
-  // console.log("Login Signup: " + showUserDialog + " " + login);
 
   return (
     // Outer most container

@@ -32,7 +32,8 @@ import { useFonts } from "expo-font";
 import Adventure from "./src/components/Adventure.js";
 import AdventureLocation from "./src/components/AdventureLocation.js";
 import AdventureLocationSeeAll from "./src/components/AdventureLocationSeeAll.js";
-
+import FlatActivities from "./src/components/FlatActivities.js";
+import IntroActivity from "./src/components/IntroActivity.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -43,8 +44,8 @@ export default function App() {
   // NunitoReg is the Regular font
   // NunitoBold is used for Bold font
   const [loaded] = useFonts({
-    FontReg: require('./assets/fonts/Nunito-Regular.ttf'),
-    FontBold: require('./assets/fonts/Nunito-Bold.ttf'),
+    FontReg: require("./assets/fonts/Nunito-Regular.ttf"),
+    FontBold: require("./assets/fonts/Nunito-Bold.ttf"),
   });
   // If font is not loaded in handler
   if (!loaded) {
@@ -71,6 +72,19 @@ export default function App() {
               headerStyle: { backgroundColor: "#2E7D32" },
               headerTintColor: "#FFFFFF",
             }}
+          />
+          {/* screen componet used for activity discription */}
+          <Stack.Screen
+            name="IntroActivity"
+            component={IntroActivity}
+            options={({ route }) => ({
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: route.params.name, // Header is passed upon navigation through the route
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: "#2E7D32" },
+              headerTintColor: "#FFFFFF",
+            })}
           />
           <Stack.Screen
             name="CountingPrompt"
@@ -134,6 +148,30 @@ export default function App() {
             }}
           />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen
+            name="FlatActivities"
+            component={FlatActivities}
+            options={({ route }) => ({
+              headerShown: true,
+              headerStyle: { backgroundColor: route.params.headerColor },
+              title: "Activities",
+              headerTitleAlign: "center",
+              headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    RootNavigation.navigate("Home");
+                  }}
+                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
+                >
+                  <Image
+                    source={require("./assets/kpi/chevronLeft.png")}
+                    style={{ height: 21, width: 12 }}
+                  />
+                </TouchableOpacity>
+              ),
+            })}
+          />
           <Stack.Screen
             name="Storytime"
             component={Storytime}
@@ -202,7 +240,14 @@ export default function App() {
           />
           <Stack.Screen
             name="chatPlaceholder"
-            options={{ headerShown: true }}
+            options={({ route }) => ({
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: route.params.name, // Header is passed upon navigation through the route
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: route.params.headerColor },
+              headerTintColor: "#FFFFFF",
+            })}
             component={ChatPlaceholder}
           />
           <Stack.Screen

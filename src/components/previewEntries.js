@@ -61,7 +61,7 @@ export const Box = ({
         >
           <Image
             style={{ marginLeft: 20, marginTop: 20 }}
-            source={require("../../assets/addJournal.png")}
+            source={require("../../assets/images/addJournal.png")}
           />
           <Text
             style={{ ...styles.journalTitle, marginTop: 10, marginRight: 20 }}
