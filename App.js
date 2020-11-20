@@ -181,6 +181,7 @@ export default function App() {
           <Stack.Screen
             name="kpi"
             component={kpi}
+            /*
             options={{
               headerShown: true,
               headerTitle: "Placehoder KPI",
@@ -201,6 +202,7 @@ export default function App() {
                 </TouchableOpacity>
               ),
             }}
+            */
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />

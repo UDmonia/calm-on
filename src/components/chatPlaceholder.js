@@ -27,6 +27,9 @@ const chatPlaceholder = ({ navigation: { navigate } }) => {
       <TouchableOpacity onPress={() => navigate("FlatActivities")}>
         <Text>FlatActivities</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate("kpi")}>
+        <Text>kpi</Text>
+      </TouchableOpacity>
     </View>
   );
 };
