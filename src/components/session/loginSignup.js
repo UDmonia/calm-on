@@ -14,8 +14,6 @@ const LoginSignup = ({ route, navigation: { navigate } }) => {
   const [login, isLogin] = useState(() => userLogin);
   const [showUserDialog, setShowUserDialog] = useState(() => userPrompt);
   const setLogin = (bool) => () => isLogin(bool);
-  // console.log("Login Signup: " + userPrompt + " " + userLogin);
-  // console.log("Login Signup: " + showUserDialog + " " + login);
 
   return (
     // Outer most container
