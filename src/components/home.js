@@ -10,7 +10,7 @@ import {
 import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
 import { useSelector } from "react-redux";
-import { sprite, aurora, flynn } from "./characterData";
+import { sprite, aurora, flynn } from "../data/characterData";
 
 const checkInExists = () => {
   var res = false;
