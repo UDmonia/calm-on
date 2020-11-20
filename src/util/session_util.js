@@ -9,10 +9,25 @@ const SessionAPI = {
     }
   },
   register: (user) =>
-    axios.post(`http://localhost:3001/api/users/register`, user),
-  login: (user) => axios.post(`http://localhost:3001/api/users/login`, user),
-  addName: (user) => axios.put(`http://localhost:3001/api/users/name`, user),
-  checkin: (user) => axios.put(`http://localhost:3001/api/users/checkin`, user),
+    axios.post(
+      `http://ubuntu@ec2-34-221-72-50.us-west-2.compute.amazonaws.com/api/users/register`,
+      user
+    ),
+  login: (user) =>
+    axios.post(
+      `http://ubuntu@ec2-34-221-72-50.us-west-2.compute.amazonaws.com/api/users/login`,
+      user
+    ),
+  addName: (user) =>
+    axios.put(
+      `http://ubuntu@ec2-34-221-72-50.us-west-2.compute.amazonaws.com/api/users/name`,
+      user
+    ),
+  checkin: (user) =>
+    axios.put(
+      `http://ubuntu@ec2-34-221-72-50.us-west-2.compute.amazonaws.com/api/users/checkin`,
+      user
+    ),
 };
 
 export default SessionAPI;
