@@ -151,11 +151,11 @@ export default function App() {
           <Stack.Screen
             name="FlatActivities"
             component={FlatActivities}
-            options={{ 
-              headerShown: true ,
-              headerStyle: { backgroundColor: "#2E7D32" },
-              title: 'Activities',
-              headerTitleAlign: 'center',
+            options={({ route }) => ({
+              headerShown: true,
+              headerStyle: { backgroundColor: route.params.headerColor },
+              title: "Activities",
+              headerTitleAlign: "center",
               headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
               headerLeft: () => (
                 <TouchableOpacity
@@ -170,7 +170,7 @@ export default function App() {
                   />
                 </TouchableOpacity>
               ),
-              }}
+            })}
           />
           <Stack.Screen
             name="Storytime"
@@ -240,7 +240,14 @@ export default function App() {
           />
           <Stack.Screen
             name="chatPlaceholder"
-            options={{ headerShown: true }}
+            options={({ route }) => ({
+              headerShown: true,
+              headerBackTitleVisible: false,
+              headerTitle: route.params.name, // Header is passed upon navigation through the route
+              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerStyle: { backgroundColor: route.params.headerColor },
+              headerTintColor: "#FFFFFF",
+            })}
             component={ChatPlaceholder}
           />
           <Stack.Screen

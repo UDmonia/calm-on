@@ -28,8 +28,14 @@ const initialSignUp = {
   birthday: "",
 };
 
-export const validateEmail = (email) =>
-    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+const validateEmail = (email) =>
+  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+const formatDate = (d) => {
+  const iso = d.toISOString().split("-");
+  iso[2] = iso[2].slice(0, 2);
+  return iso.join("-");
+};
 
 const SessionForm = ({
   login,
@@ -95,18 +101,11 @@ const SessionForm = ({
 
   const handleChange = (field) => (text) => setUser({ ...user, [field]: text });
   const { email, password, confirmPassword, birthday, name } = user;
-  const emailError =
-    localErrors.find((e) => e.match(/email/)) || dbErrors.email;
   const passwordError =
     localErrors.find((e) => e.match(/password [^c]/)) || dbErrors.password;
   const confirmPasswordError = localErrors.find((e) => e.match(/match/));
   const birthdayError =
     localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
-  const formatDate = (d) => {
-    const iso = d.toISOString().split("-");
-    iso[2] = iso[2].slice(0, 2);
-    return iso.join("-");
-  };
 
   const handleConfirm = (d) => {
     handleChange("birthday")(formatDate(d));
@@ -279,5 +278,6 @@ const SessionForm = ({
   );
 };
 
+export { validateEmail, formatDate };
 export default SessionForm;
 
