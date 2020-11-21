@@ -2,8 +2,16 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     mainContainer: {
-        backgroundColor: "#090E24",
+        backgroundColor: "#019F66",
         height: "100%",
+    },
+    imgBackground: {
+        resizeMode: "cover",
+        flex: 1,
+        width: "100%",
+        height: "100%",
+        top: undefined,
+        overflow: "hidden",
     },
     container: {
         height: "80%",
@@ -68,18 +76,18 @@ export default StyleSheet.create({
     centeredView: {
         display: "flex",
         height: "100%",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
-        marginTop: 22,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
     },
     modalView: {
         width: "90%",
-        margin: "5%",
+        marginHorizontal: "5%",
         backgroundColor: "white",
         borderRadius: 20,
         padding: "5%",
         alignItems: "center",
+        justifyContent: "space-between",
     },
     modalSubmitButton: {
         display: "flex",
@@ -95,7 +103,7 @@ export default StyleSheet.create({
         borderRadius: 20,
         height: "60%",
         width: "80%",
-        marginVertical: 7,
+        paddingVertical: 7,
         paddingHorizontal: 14,
     },
     textArea: {

@@ -181,28 +181,7 @@ export default function App() {
           <Stack.Screen
             name="kpi"
             component={kpi}
-            /*
-            options={{
-              headerShown: true,
-              headerTitle: "Placehoder KPI",
-              headerTitleStyle: { fontSize: 20, color: "#424242" },
-              headerStyle: { backgroundColor: "#FFC10E" },
-              headerTintColor: "#424242",
-              headerLeft: () => (
-                <TouchableOpacity
-                  onPress={() => {
-                    RootNavigation.navigate("chatPlaceholder");
-                  }}
-                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
-                >
-                  <Image
-                    source={require("./assets/kpi/chevronLeft.png")}
-                    style={{ height: 21, width: 12 }}
-                  />
-                </TouchableOpacity>
-              ),
-            }}
-            */
+            screenOptions={{headerShown: false}}
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
