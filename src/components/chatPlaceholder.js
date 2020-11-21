@@ -1,8 +1,21 @@
 //This file is a temporary placeholder
-import { Text, View, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+  Image,
+} from "react-native";
+import React from "react";
+import styles from "../stylesheets/chatPlaceholderStyles";
 
-const chatPlaceholder = ({ navigation: { navigate } }) => {
+const chatPlaceholder = ({ route, navigation: { navigate } }) => {
+  const { curCharacter } = route.params;
+  const img = curCharacter.img;
+  const bg = curCharacter.background;
+  const activitiesBtnImg = curCharacter.viewActivities;
+  const charaterActivities = curCharacter.activities;
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Placeholder page</Text>
