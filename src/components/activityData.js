@@ -17,7 +17,7 @@ const SpriteActivityData = [
     img: require("../../assets/activities/54321.png"),
     introPageData: {
       navRoute: "IntroActivity",
-      ActRoute: "FiveFourThreeTwoOne",
+      ActRoute: "FiveFourThreeTwoOneTech",
       about:
         "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
       helpful: "You have trouble focusing or when you feel scared or worried.",

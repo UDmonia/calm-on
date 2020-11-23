@@ -42,7 +42,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
               locationBackground: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
               locationBackgroundTint: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
               locationData: theaterData,
-              exitAsset: require("../../assets/exit/blkExitBtn.png"),
+              exitAsset: require("../../assets/exit/whtExitBtn.png"),
             })
           }
         >
@@ -59,7 +59,6 @@ export default Adventure = ({ navigation: { navigate } }) => {
               locationBackgroundTint: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
               locationData: amusementData,
               exitAsset: null,
-
             })
           }
         >
