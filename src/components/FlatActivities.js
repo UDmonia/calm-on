@@ -5,6 +5,7 @@ import ActivityCard from "./ActivityCard.js";
 
 function FlatActivities({ route, navigation: { navigate } }) {
   const { activities } = route.params;
+  const {headerColor} = route.params;
   return (
     <SafeAreaView>
       <ScrollView
@@ -20,6 +21,7 @@ function FlatActivities({ route, navigation: { navigate } }) {
               navigateLink={activity.introPageData.navRoute}
               imagePath={activity.img}
               introPageData={activity.introPageData}
+              header={headerColor}
             />
           );
         })}

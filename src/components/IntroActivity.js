@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { color } from "react-native-reanimated";
 
 /**
  * This is a componet used to provide activity information to the user
@@ -12,6 +13,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
  * @param { string } route.params.actNav - string value used for navigation
  */
 export default Intro = ({ route, navigation }) => {
+  const { headerColor } = route.params;
   return (
     <View>
       <View style={styles.upper}>
@@ -21,12 +23,13 @@ export default Intro = ({ route, navigation }) => {
         <Text style={styles.title}>{route.params.name}</Text>
         <View style={styles.statsRow}>
           <View>
-            <Text style={styles.statType}>Time (mins)</Text>
             <Text style={styles.stats}>2</Text>
+            <Text style={[styles.statType, { color: headerColor }]}>
+              Time (mins)
+            </Text>
           </View>
 
           <View>
-            <Text style={styles.statType}>Time(s) Completed</Text>
             <View
               style={{
                 borderLeftWidth: 2,
@@ -36,17 +39,22 @@ export default Intro = ({ route, navigation }) => {
               }}
             >
               <Text style={styles.stats}>1</Text>
+              <Text style={[styles.statType, { color: headerColor }]}>
+                Time(s) Completed
+              </Text>
             </View>
           </View>
 
           <View>
-            <Text style={styles.statType}>Add to Favorite</Text>
             <TouchableOpacity>
               <Image
                 style={styles.fav}
                 source={require("../../assets/images/favorite.png")}
               />
             </TouchableOpacity>
+            <Text style={[styles.statType, { color: headerColor }]}>
+              Add to Favorite
+            </Text>
           </View>
         </View>
         <Text style={styles.sectionTitle}>About</Text>
@@ -59,9 +67,9 @@ export default Intro = ({ route, navigation }) => {
 
         <TouchableOpacity
           onPress={() => navigation.navigate(route.params.actNav)}
-          style={styles.start}
+          style={[styles.start, { backgroundColor: headerColor }]}
         >
-          <Text style={styles.startText}>{"Start " + route.params.name}</Text>
+          <Text style={styles.startText}>Start</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    color: "#4F7947",
+    //color: "#4F7947",
     width: 125,
     marginBottom: "5%",
     fontFamily: "FontReg",
@@ -109,7 +117,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#2E7D32",
     marginTop: "10%",
     marginLeft: "15%",
   },
