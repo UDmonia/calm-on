@@ -11,6 +11,7 @@ import styles from "../stylesheets/homeStyles";
 import { useSelector } from "react-redux";
 import { sprite, aurora, flynn } from "./characterData";
 import { Dimensions } from "react-native";
+import { windowWidth } from "../util/windowDimensions.js";
 
 const checkInExists = () => {
   var res = false;
@@ -77,6 +78,8 @@ const Home = ({ props, navigation: { navigate } }) => {
     });
   }
 
+  // what units are these?
+  const screenWidthThreshold = 800;
   return (
     <View style={styles.format}>
       <ImageBackground
@@ -87,7 +90,7 @@ const Home = ({ props, navigation: { navigate } }) => {
           <View style={styles.topBox}>
             <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
             <Text
-              numberOfLines={2}
+              numberOfLines={windowWidth > screenWidthThreshold ? 1 : 2}
               adjustsFontSizeToFit
               style={styles.topBoxText}
             >
@@ -126,7 +129,7 @@ const Home = ({ props, navigation: { navigate } }) => {
               {currentSpirit.name}
             </Text>
             <Text
-              numberOfLines={3}
+              numberOfLines={windowWidth > screenWidthThreshold ? 2 : 3}
               adjustsFontSizeToFit={true}
               style={styles.bottomBoxTextDescription}
             >

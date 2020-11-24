@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
-import { Dimensions } from "react-native";
+import { windowWidth } from "../util/windowDimensions";
 
-const titleText = 0.05 * Dimensions.get("window").width;
-const bodyText = 0.0335 * Dimensions.get("window").width;
+const titleText = 0.05 * windowWidth;
+const bodyText = 0.0335 * windowWidth;
 
 const styles = StyleSheet.create({
   container: {
@@ -48,13 +48,13 @@ const styles = StyleSheet.create({
   scroll: {
     display: "flex",
     alignItems: "center",
-    width: Dimensions.get("window").width,
+    width: windowWidth,
     marginTop: "2.5%",
     height: "40%",
   },
   spiritView: {
     alignItems: "center",
-    width: Dimensions.get("window").width,
+    width: windowWidth,
     height: "100%",
   },
   spirit: {

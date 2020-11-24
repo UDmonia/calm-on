@@ -63,7 +63,7 @@ const HomeStack = (props) => {
     <Tab.Navigator
       tabBarOptions={{
         labelStyle: { fontSize: 13, color: "black" },
-        style: style,
+        style: styles,
       }}
       intialRouteName="Home"
     >
@@ -72,10 +72,11 @@ const HomeStack = (props) => {
   );
 };
 
-const style = {
+const styles = {
   backgroundColor: "#E2E8F8",
   height: "10%",
   paddingTop: "2%",
+  justifyContent: "flex-start",
 };
 
 const buttonStyle = {
