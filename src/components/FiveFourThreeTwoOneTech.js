@@ -85,7 +85,7 @@ const step = (progress, setProgress, navigate) => {
           onPress={() => {
             progress.valueOf() < stepData.length - 1
               ? setProgress(progress + 1)
-              : navigate("chatPlaceholder");
+              : navigate("kpi");
           }}
         >
           <Image

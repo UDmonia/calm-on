@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Modal, TextInput, ImageBackground 
 import { StackActions } from "@react-navigation/native";
 import styles from '../stylesheets/kpiStyles';
 
-export default Kpi = ({ navigation: { navigate } }) => {
+export default Kpi = ({ route, navigation: { navigate } }) => {
 
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);

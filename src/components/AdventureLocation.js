@@ -56,7 +56,7 @@ export default AdventureLocation = ({ route, navigation }) => {
           }
           // TODO: when designs are finalized replace "true" with another flag that will end the activity
           else if (done && true) {
-            navigate("chatPlaceholder");
+            navigate("kpi");
           }
         }}
         key={item.id}

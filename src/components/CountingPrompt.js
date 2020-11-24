@@ -13,12 +13,12 @@ import bg from "../../assets/counting/backdrop.png";
 import Exit from "./Exit";
 
 /**
- * This componet is an intermediate step 
+ * This componet is an intermediate step
  * for handeling recipe transitions
- *  
- * The componet will render all necessary objects and when necessary 
- * will navigate to counting and pass the {actData} 
- * (which is the data for the next recipe) to counting 
+ *
+ * The componet will render all necessary objects and when necessary
+ * will navigate to counting and pass the {actData}
+ * (which is the data for the next recipe) to counting
  */
 
 function getBoxes(box) {
@@ -80,14 +80,14 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             <DialogBox
               message={{ style: styles.textBox2, text: actData.dialog[2] }}
             />
-            <View style={styles.buttonView}>
-              <TouchableOpacity
-                style={styles.navButton}
-                onPress={() => navigate("chatPlaceholder")}
-              >
-                <Text style={{ color: "#3B96B2" }}>Home</Text>
-              </TouchableOpacity>
-              {actData.next != null ? (
+            {actData.next != null ? (
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={styles.navButton}
+                  onPress={() => navigate("chatPlaceholder")}
+                >
+                  <Text style={{ color: "#3B96B2" }}>Home</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.navButton}
                   onPress={() => {
@@ -97,8 +97,17 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                 >
                   <Text style={{ color: "#3B96B2" }}>Next Recipe</Text>
                 </TouchableOpacity>
-              ) : null}
-            </View>
+              </View>
+            ) : (
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={styles.navButton}
+                  onPress={() => navigate("kpi")}
+                >
+                  <Text style={{ color: "#3B96B2" }}>Next</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         )}
       </ImageBackground>
