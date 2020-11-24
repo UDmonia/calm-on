@@ -101,6 +101,8 @@ const SessionForm = ({
 
   const handleChange = (field) => (text) => setUser({ ...user, [field]: text });
   const { email, password, confirmPassword, birthday, name } = user;
+  const emailError =
+    localErrors.find((e) => e.match(/email/)) || dbErrors.email;
   const passwordError =
     localErrors.find((e) => e.match(/password [^c]/)) || dbErrors.password;
   const confirmPasswordError = localErrors.find((e) => e.match(/match/));
@@ -280,4 +282,3 @@ const SessionForm = ({
 
 export { validateEmail, formatDate };
 export default SessionForm;
-

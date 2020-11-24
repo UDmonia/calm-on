@@ -58,6 +58,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{ headerShown: false, animationEnabled: false }}
         >
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
@@ -147,7 +148,6 @@ export default function App() {
               headerTintColor: "#424242",
             }}
           />
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen
             name="FlatActivities"
             component={FlatActivities}
