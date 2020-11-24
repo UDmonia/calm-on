@@ -1,9 +1,9 @@
 import React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import styles from "../stylesheets/adventureStyles";
-import picnicData from "./picnicData";
-import theaterData from "./theaterData";
-import amusementData from "./amusementData";
+import picnicData from "../data/picnicData";
+import theaterData from "../data/theaterData";
+import amusementData from "../data/amusementData";
 
 export default Adventure = ({ navigation: { navigate } }) => {
   return (
