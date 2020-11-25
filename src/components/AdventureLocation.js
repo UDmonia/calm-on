@@ -25,6 +25,7 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationBackground } = route.params;
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
+  const {exitAsset} = route.params; 
   // const locationData = locationData;
 
   /**
@@ -76,7 +77,7 @@ export default AdventureLocation = ({ route, navigation }) => {
         imageStyle={styles.imgBackground}
       >
         <View style={styles.exitPosition}>
-          <Exit navTo={"chatPlaceholder"} />
+          <Exit navTo={"chatPlaceholder"} img={exitAsset} />
         </View>
         <View style={styles.locationContainer}>
           <Text style={styles.txtLetter}>

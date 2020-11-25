@@ -31,8 +31,8 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Blanket",
-        image: require("../../assets/adventure/locations/alphabetItems/blanket.png"),
+        itemName: "Backpack",
+        image: require("../../assets/adventure/locations/alphabetItems/backpack.png"),
       },
       {
         id: 3,
@@ -178,7 +178,7 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Iceskates",
+        itemName: "Ice skates",
         image: require("../../assets/adventure/locations/alphabetItems/iceskates.png"),
       },
       {
@@ -194,7 +194,7 @@ const picnicData = [
     items: [
       {
         id: 1,
-        itemName: "Jellybeans",
+        itemName: "Jelly beans",
         image: require("../../assets/adventure/locations/alphabetItems/jellybeans.png"),
       },
       {
@@ -456,7 +456,7 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Videocamera",
+        itemName: "Video camera",
         image: require("../../assets/adventure/locations/alphabetItems/videocamera.png"),
       },
     ],
