@@ -24,7 +24,6 @@ import FeelingDictionary from "./src/components/FeelingDictionary";
 import kpi from "./src/components/kpi";
 import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
-import FiveFourThreeTwoOne from "./src/components/FiveFourThreeTwoOne.js";
 import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
 import CountingPrompt from "./src/components/CountingPrompt.js";
 import CountingSelection from "./src/components/CountingSelection.js";
@@ -181,40 +180,10 @@ export default function App() {
           <Stack.Screen
             name="kpi"
             component={kpi}
-            options={{
-              headerShown: true,
-              headerTitle: "Placehoder KPI",
-              headerTitleStyle: { fontSize: 20, color: "#424242" },
-              headerStyle: { backgroundColor: "#FFC10E" },
-              headerTintColor: "#424242",
-              headerLeft: () => (
-                <TouchableOpacity
-                  onPress={() => {
-                    RootNavigation.navigate("chatPlaceholder");
-                  }}
-                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
-                >
-                  <Image
-                    source={require("./assets/kpi/chevronLeft.png")}
-                    style={{ height: 21, width: 12 }}
-                  />
-                </TouchableOpacity>
-              ),
-            }}
+            screenOptions={{headerShown: false}}
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
-          <Stack.Screen
-            name="FiveFourThreeTwoOne"
-            component={FiveFourThreeTwoOne}
-            options={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-              headerTitle: "5-4-3-2-1",
-              headerTitleStyle: { fontSize: 24, color: "white" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-            }}
-          />
           <Stack.Screen
             name="Activities"
             component={Activities}

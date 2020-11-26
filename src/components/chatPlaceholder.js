@@ -40,7 +40,19 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
         <TouchableOpacity onPress={() => navigate("boxBreathing")}>
           <Text>Box Breathing</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigate("FiveFourThreeTwoOne")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigate("IntroActivity", {
+              name: "54321 Technique",
+              actNav: "FiveFourThreeTwoOneTech",
+              about:
+                "Use your senses to bring you back to the present moment. This will help you feel more focused and calm.",
+              helpful:
+                "You have trouble focusing or when you feel scared or worried.",
+              img: require("../../assets/FiveFourThreeTwoOne/54321Title.png"),
+            })
+          }
+        >
           <Text>5-4-3-2-1 Technique</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigate("Mindfulness")}>
