@@ -108,9 +108,8 @@ const SessionForm = ({
     localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
 
   const handleConfirm = (d) => {
-    console.log("test");
-    handleChange("birthday")(formatDate(d));
     toggleShow();
+    handleChange("birthday")(formatDate(d));
   };
   const showOnlyDatePicker = () => {
     Keyboard.dismiss();
@@ -266,11 +265,13 @@ const SessionForm = ({
               value={name}
             />
           </View>
-          <TouchableOpacity
-            onPress={() => handleAddName()}
-            style={styles.nextButton}>
-            <Image source={require("../../../assets/images/next_button.png")} />
-          </TouchableOpacity>
+          <View style={{paddingTop: "10%"}}>
+            <TouchableOpacity
+              onPress={() => handleAddName()}
+              style={styles.bottomButton}>
+              <Text style={styles.bottomButtonText}>Next</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
