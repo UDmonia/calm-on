@@ -3,6 +3,7 @@ import { windowWidth } from "../util/windowDimensions";
 
 const titleText = 0.05 * windowWidth;
 const bodyText = 0.0335 * windowWidth;
+const screenWidthThreshold = 800;
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 2,
     height: "12.5%",
-    marginTop: "25%",
+    marginTop: windowWidth > screenWidthThreshold ? "15%" : "25%",
     width: "85%",
   },
   topBoxTextName: {

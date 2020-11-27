@@ -6,6 +6,7 @@ import Profile from "./profile";
 import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { windowWidth } from "../util/windowDimensions";
 
 const icons = [
   {
@@ -31,8 +32,11 @@ const icons = [
   },
 ];
 
+const screenWidthThreshold = 800;
+
 const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
+  // what units are these?
 
   const screens = icons.map((icon, index) => (
     <Tab.Screen
@@ -48,6 +52,7 @@ const HomeStack = (props) => {
                     ...buttonStyle,
                     borderTopColor: "#4E80FF",
                     borderTopWidth: 5,
+                    alignSelf: "flex-start",
                   }
                 : { ...buttonStyle }
             }
@@ -73,10 +78,14 @@ const HomeStack = (props) => {
 };
 
 const styles = {
+  flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
   backgroundColor: "#E2E8F8",
-  height: "10%",
+  height: windowWidth > screenWidthThreshold ? "5%" : "10%",
   paddingTop: "2%",
-  justifyContent: "flex-start",
+  // alignContent: "flex-start",
+  // alignSelf: "flex-start",
+  // justifyContent: "center",
+  alignItems: "flex-start",
 };
 
 const buttonStyle = {
@@ -84,7 +93,11 @@ const buttonStyle = {
   width: 80,
   paddingTop: "7%",
   paddingLeft: "22.5%",
-  marginBottom: "4%",
+  // marginBottom: "4%",
+  // alignContent: "center",
+  // justifyContent: "center",
+  // alignSelf: "center",
+  // backgroundColor: "yellow",
 };
 
 export default HomeStack;
