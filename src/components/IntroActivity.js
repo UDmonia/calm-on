@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { color } from "react-native-reanimated";
 
 /**
  * This is a componet used to provide activity information to the user
@@ -95,7 +94,6 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    //color: "#4F7947",
     width: 125,
     marginBottom: "5%",
     fontFamily: "FontReg",
