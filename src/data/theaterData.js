@@ -304,7 +304,7 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Onionrings",
+        itemName: "Onion rings",
         image: require("../../assets/adventure/locations/alphabetItems/onionrings.png"),
       },
       {
@@ -383,7 +383,7 @@ const picnicData = [
     items: [
       {
         id: 1,
-        itemName: "Sandwhich",
+        itemName: "Sandwich",
         image: require("../../assets/adventure/locations/alphabetItems/sandwhich.png"),
       },
       {
@@ -404,12 +404,12 @@ const picnicData = [
     items: [
       {
         id: 1,
-        itemName: "Teddybear",
+        itemName: "Teddy bear",
         image: require("../../assets/adventure/locations/alphabetItems/teddybear.png"),
       },
       {
         id: 2,
-        itemName: "Ticketstub",
+        itemName: "Ticket stub",
         image: require("../../assets/adventure/locations/alphabetItems/ticketstub.png"),
       },
       {
@@ -446,7 +446,7 @@ const picnicData = [
     items: [
       {
         id: 1,
-        itemName: "Videocamera",
+        itemName: "Video camera",
         image: require("../../assets/adventure/locations/alphabetItems/videocamera.png"),
       },
       {
