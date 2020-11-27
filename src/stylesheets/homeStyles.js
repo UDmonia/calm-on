@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
 import { windowWidth } from "../util/windowDimensions";
-
+import { screenWidthThreshold } from "../util/thresholds";
 const titleText = 0.05 * windowWidth;
 const bodyText = 0.0335 * windowWidth;
-const screenWidthThreshold = 800;
 
 const styles = StyleSheet.create({
   container: {

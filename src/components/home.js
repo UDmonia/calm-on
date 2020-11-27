@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { Dimensions } from "react-native";
 import { windowWidth } from "../util/windowDimensions.js";
 import { sprite, aurora, flynn } from "../data/characterData";
+import { screenWidthThreshold } from "../util/thresholds";
 
 const checkInExists = () => {
   var res = false;
@@ -78,8 +79,6 @@ const Home = ({ props, navigation: { navigate } }) => {
     });
   }
 
-  // what units are these?
-  const screenWidthThreshold = 800;
   return (
     <View style={styles.format}>
       <ImageBackground
