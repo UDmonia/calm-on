@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import styles from "../stylesheets/homeStyles";
 import { useSelector } from "react-redux";
-import { sprite, aurora, flynn } from "./characterData";
 import { Dimensions } from "react-native";
 import { windowWidth } from "../util/windowDimensions.js";
+import { sprite, aurora, flynn } from "../data/characterData";
 
 const checkInExists = () => {
   var res = false;
