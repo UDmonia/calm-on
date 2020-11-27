@@ -22,6 +22,14 @@ const deviceStorage = {
       console.log("AsyncStorage Error: ", error.message);
     }
   },
+  clear : async(k) => {
+    try{
+      AsyncStorage.clear().then(() => console.log('Cleared'))
+    }
+    catch (error) {
+      console.log("AsyncStorage Error: ", error.message);
+    }
+  }
 };
 
 export default deviceStorage;

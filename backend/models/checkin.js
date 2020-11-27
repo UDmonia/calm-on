@@ -25,5 +25,6 @@ const CheckInSchema = new Schema(
       },
     }
   );
+  
 const CheckIn = mongoose.model("CheckIn", CheckInSchema);
 module.exports = CheckIn;

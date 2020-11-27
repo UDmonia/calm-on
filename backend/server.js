@@ -42,5 +42,5 @@ mongoose.set("useFindAndModify", false);
 app.use("/api", apiRoutes);
 
 app.listen(process.env.PORT || 3001, () => {
-  console.log("You are connected! on" + process.env.PORT);
+  console.log("You are connected! on " + 3001);
 });

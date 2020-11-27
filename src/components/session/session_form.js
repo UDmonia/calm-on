@@ -8,6 +8,8 @@ import {
   register,
   RECEIVE_USER,
   addName,
+  getUserFromJWT,
+  kpiPost,
 } from "../../actions/session_actions";
 import mail from "../images/mail.png";
 import lock from "../images/password.png";
@@ -15,6 +17,7 @@ import loginBtn from "../images/logIn.png";
 import pwConfirm from "../images/passwordConfirmed.png";
 import date from "../images/date.png";
 import registerBtn from "../images/createAcc.png";
+import deviceStorage from "../../services/device_storage";
 
 const initialLogin = {
   email: "",
@@ -124,11 +127,19 @@ const SessionForm = ({
             : setNameError(true),
       })
     ).then((action) => {
+      handleKPIPost();
       if (user.name && !filter.isProfane(user.name)) {
         navigate("DailyCheckIn");
       }
     });
   };
+
+  const handleKPIPost = () => {//create new activity document after new user is registered
+    return dispatch(getUserFromJWT(user))
+    .then((action) => {
+      dispatch(kpiPost({name : user.name, id : action.user._id}))
+    })
+  }
 
   return (
     <View>

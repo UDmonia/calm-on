@@ -6,6 +6,7 @@ const passport = require("passport");
 
 const User = require("../models/user");
 const CheckIn = require("../models/checkin")
+const Activity = require("../models/activity")
 const { formatErrors, valid } = require("../util/validations");
 
 
@@ -233,28 +234,67 @@ router.get(
   }
 )
 
-//User data initially pulled to client, check for tutorial boolean
-//Call endpoint whenever tutorial is completed
-//Don't notify tutorial if tutorial already completed
+//Call post kpi after a new user registers to create activities doc
+router.post("/kpi", async (req, res) => {
+  console.log("KPI post")
+  const currUser = req.body
+  try {
+    const userid = currUser.id;
+    const name = currUser.name;
+    const activityData = {
+      author: userid,
+      name : name,
+    }
+    const newActivityList = new Activity(activityData);
+    const savedActivityList = await newActivityList.save();
+  } catch (e) {
+    console.log(e)
+    res.status(500).json(e);
+  }
+})
+
+//Assuming Bearer token and _id field are accesible in front-end
+//50 entries 150 characters each(handled on front-end)
 router.put("/kpi", 
 passport.authenticate('jwt', {session:false}),
 async(req,res) => {
-  console.log(req);
-  const currUser = req.user;
-  const completed = currUser.tutorialComplete;
-  const currUserJson = currUser.toJSON();
-  if(completed){
-    try{
-      const userDoc = await User.findById(currUser._id);
-      userDoc.tutorialComplete = true;
-      await userDoc.save();
-    } catch (e) {
+  console.log("KPI put")
+  currUser = req.user;
+  try{
+    if(typeof req.body.data === boolean){
+      if(req.body.data){
+        const activityDoc = await Activity.find({author : currUser._id});
+        activityDoc.reaction = true;
+        await activityDoc.save();
+      }
+      else{
+        const activityDoc = await Activity.find({author : currUser._id});
+        activityDoc.reaction = false;
+        await activityDoc.save();
+      }
+    } 
+    else{
+      confusedStr = req.body.data;
+      const activityDoc = await Activity.find({author : currUser._id});
+      activityDoc.confused = activityDoc.confused.push(req.body.data)
+      await activityDoc.save();
+    }
+    const currUserJson = currUser.toJSON();
+    jwt.sign(currUserJson, secret, (err, token) => {
+      if (token) {
+        res.status(201).json({
+          token: `Bearer ${token}`,
+          user: userJson
+        });
+      } else {
+        res.status(500).json(err);
+      }
+    })
+  }
+  catch (e) {
     res.status(500).json(e);
     }
-    res.status(422).json({"message" : "has already completed tutorial"})
-  } else{
-    res.json({"message" : "has not completed tutorial, setting complete now"})
-  }
+  //res.status(200).json({token: userJson)
 })
 
 module.exports = router;

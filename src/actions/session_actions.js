@@ -57,8 +57,8 @@ export const getUserFromJWT = () => async (dispatch) => {
   catch (err) {
     dispatch(RECEIVE_SESSION_ERRORS(e))
   }
-  console.log("token: " + token)
-  console.log("userJson: " + userJson)
+  console.log("token from JWT: " + token)
+  console.log("userJson: from JWT: " + userJson)
 
   const user = JSON.parse(userJson)
   if (user) return dispatch(receiveUser(getUser(token, user)))
@@ -82,3 +82,8 @@ export const checkin = (checkinDTO) => (dispatch) =>
   SessionAPI.checkin(checkinDTO)
   .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))
   .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+
+  export const kpiPost = (user) => (dispatch) =>
+    SessionAPI.kpiPost(user)
+    .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
+    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
