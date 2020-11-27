@@ -131,38 +131,38 @@ export default Kpi = ({ navigation: { navigate } }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center'
-  },
-  character:{
-    borderWidth:1,
-    marginTop:'3%',
-    marginBottom:'3%'
-  },
-  reactions: {
-    borderWidth:1,
-    width:300,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center'
-  },
-  title:{
-    fontSize:60
-  },
-  body:{
-    fontSize:20,
-  },
-  button: {
-    width: 300,
-    justifyContent:'center',
-    alignItems:'center',
-    height:55,
-    borderWidth:1,
-    borderRadius:30,
-    marginTop:'10%'
-  }
+//const styles = StyleSheet.create({
+//  container:{
+//    flex:1,
+//    justifyContent:'center',
+//    alignItems:'center'
+//  },
+//  character:{
+//    borderWidth:1,
+//    marginTop:'3%',
+//    marginBottom:'3%'
+//  },
+//  reactions: {
+//    borderWidth:1,
+//    width:300,
+//    flexDirection:'row',
+//    justifyContent:'space-between',
+//    alignItems:'center'
+//  },
+//  title:{
+//    fontSize:60
+//  },
+//  body:{
+//    fontSize:20,
+//  },
+//  button: {
+//    width: 300,
+//    justifyContent:'center',
+//    alignItems:'center',
+//    height:55,
+//    borderWidth:1,
+//    borderRadius:30,
+//    marginTop:'10%'
+//  }
 
-})
+//})

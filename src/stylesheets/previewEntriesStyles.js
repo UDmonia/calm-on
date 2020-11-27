@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         marginLeft:'8%',
         paddingTop:'5%',
         paddingBottom:'2%',
-        fontSize: 17,
+        fontSize: 18,
     }
 })
 

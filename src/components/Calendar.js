@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Image,View,Text, ImageBackground,ScrollView} from 'react-native';
+import {Image,View,ImageBackground,ScrollView} from 'react-native';
+import Text from './Text'
 import PreviewDaily from './previewEntries'
 import PreviewMonth from './monthlyPreview'
 import moment from 'moment'

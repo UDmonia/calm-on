@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { ImageBackground, Text, View, Image } from "react-native";
+import React, { useState } from "react";
+import Text from './Text'
+import { ImageBackground, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
@@ -149,7 +150,10 @@ const checkinDetails = ({ route }) => {
                 <Text style={styles.journalTitle}>
                   {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
                 </Text>
-                <Text style={styles.journal}>
+
+                {/*Dont need it yet for MVP */}
+                {/****************************/}
+                {/*<Text style={styles.journal}>
                   I'm {journal.mood} about{" "}
                   <Text style={styles.bolded}>
                     {journal.journal.split(",").length === 1
@@ -165,7 +169,9 @@ const checkinDetails = ({ route }) => {
                       .toLowerCase()
                       .substring(lastCommaIndex + 1)}
                   </Text>
-                </Text>
+                </Text>*/}
+                {/****************************/}
+
               </View>
 
               <View style={styles.lower}>

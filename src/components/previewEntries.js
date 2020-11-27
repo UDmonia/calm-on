@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { Text, View, Image } from "react-native";
+import React from "react";
+import {View, Image } from "react-native";
+import Text from './Text'
 import { TouchableOpacity } from "react-native-gesture-handler";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
@@ -80,12 +81,20 @@ export const Box = ({
               <Image source={image} />
             </View>
             <View>
-              <Text style={styles.journalTitle}>
+              <Text style={{...styles.journalTitle,
+              //Temp styles for MVP
+                marginTop:25,marginLeft:20
+                }}>
                 {mood.charAt(0).toUpperCase() + mood.slice(1)}
               </Text>
-              <Text style={styles.journal}>
+              
+              {/*Dont need it for MVP*/}
+              {/**************************/}
+              {/*<Text style={styles.journal}>
                 I'm {mood} about {parsedJournal}
-              </Text>
+              </Text>*/}
+              {/**************************/}
+
             </View>
           </TouchableOpacity>
         </View>

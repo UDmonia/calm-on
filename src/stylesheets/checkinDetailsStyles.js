@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
         marginTop: '5%',
         fontSize:18,
     },
+    journalTitle:{
+        marginTop:'2%',
+        fontSize:23,
+        fontWeight:'bold'
+    },
     bolded:{
         fontWeight:'bold'
     },
