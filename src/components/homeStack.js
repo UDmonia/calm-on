@@ -82,9 +82,7 @@ const styles = {
   backgroundColor: "#E2E8F8",
   height: windowWidth > screenWidthThreshold ? "5%" : "10%",
   paddingTop: "2%",
-  // alignContent: "flex-start",
-  // alignSelf: "flex-start",
-  // justifyContent: "center",
+
   alignItems: "flex-start",
 };
 
@@ -93,11 +91,6 @@ const buttonStyle = {
   width: 80,
   paddingTop: "7%",
   paddingLeft: "22.5%",
-  // marginBottom: "4%",
-  // alignContent: "center",
-  // justifyContent: "center",
-  // alignSelf: "center",
-  // backgroundColor: "yellow",
 };
 
 export default HomeStack;
