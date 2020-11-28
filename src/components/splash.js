@@ -1,6 +1,6 @@
 import styles from "../stylesheets/splashStyles";
 import React, { useEffect } from "react";
-import { View, ImageBackground, TouchableOpacity, Image, BackHandler } from "react-native";
+import { View, ImageBackground, TouchableOpacity, Text, BackHandler } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import bg from "../../assets/images/image73.png";
@@ -37,16 +37,19 @@ const Splash = ({ navigation: { navigate } }) => {
     <View style={styles.format}>
       <ImageBackground source={bg} style={styles.image}>
         {!loggedIn && (
-          <TouchableOpacity
-            onPress={() => {
-              // console.log(
-              //   "Splash -> loginSignup: userPrompt=false userlogin=true"
-              // );
-              navigate("loginSignup", { userPrompt: false, userLogin: true });
-            }}
-          >
-            <Image style={styles.btn} source={startBtn} />
-          </TouchableOpacity>
+          <View style={styles.btnContainer}>
+            <TouchableOpacity
+                onPress={() => {
+                  // console.log(
+                  //   "Splash -> loginSignup: userPrompt=false userlogin=true"
+                  // );
+                  navigate("loginSignup", { userPrompt: false, userLogin: true });
+                }}
+                style={styles.btn}
+              >
+                <Text style={styles.text}>Start</Text>
+              </TouchableOpacity>
+          </View>
         )}
       </ImageBackground>
     </View>

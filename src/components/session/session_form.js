@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
+import { Image, Text, View, TextInput, TouchableOpacity, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import styles from "../../stylesheets/loginSignup.styles";
@@ -110,9 +110,13 @@ const SessionForm = ({
     localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
 
   const handleConfirm = (d) => {
-    handleChange("birthday")(formatDate(d));
     toggleShow();
+    handleChange("birthday")(formatDate(d));
   };
+  const showOnlyDatePicker = () => {
+    Keyboard.dismiss();
+    setShow(!show);
+  }
 
   const handleAddName = () => {
     var Filter = require("bad-words");
@@ -137,7 +141,7 @@ const SessionForm = ({
         <View style={styles.form}>
           <View style={styles.label}>
             <Text style={styles.description}>Email</Text>
-            {emailError && <Text style={styles.error}>{emailError}</Text>}
+            {/*emailError && <Text style={styles.error}>{emailError}</Text>*/}
           </View>
           <View style={styles.inputAndIcon}>
             <Image styles={styles.icon} source={mail} />
@@ -207,13 +211,14 @@ const SessionForm = ({
                   value={birthday}
                   placeholder="Select Date..."
                   style={styles.input}
-                  onFocus={toggleShow}
+                  onFocus={showOnlyDatePicker}
                 />
 
                 <DateTimePickerModal
                   date={new Date()}
                   isVisible={show}
                   mode="date"
+                  display="calendar"
                   onCancel={toggleShow}
                   onConfirm={handleConfirm}
                 />
@@ -230,22 +235,16 @@ const SessionForm = ({
             style={styles.bottomButton}
             onPress={handleSubmit}
           >
-            <Image
-              style={{ width: 80, height: 40, borderRadius: 5 }}
-              source={loginBtn}
-            />
+            <Text style={styles.bottomButtonText}>Log in</Text>
           </TouchableOpacity>
         </View>
       ) : (
-        <View>
+        <View style={styles.test}>
           <TouchableOpacity
-            style={{ ...styles.bottomButton, width: 155 }}
+            style={{ ...styles.bottomButton, width: 215 }}
             onPress={handleSubmit}
           >
-            <Image
-              style={{ width: 150, height: 40, borderRadius: 5 }}
-              source={registerBtn}
-            />
+            <Text style={styles.bottomButtonText}>Create Account</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -268,12 +267,13 @@ const SessionForm = ({
               value={name}
             />
           </View>
-          <TouchableOpacity
-            onPress={() => handleAddName()}
-            style={styles.nextButton}
-          >
-            <Image source={require("../../../assets/images/next_button.png")} />
-          </TouchableOpacity>
+          <View style={{paddingTop: "10%"}}>
+            <TouchableOpacity
+              onPress={() => handleAddName()}
+              style={styles.bottomButton}>
+              <Text style={styles.bottomButtonText}>Next</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>

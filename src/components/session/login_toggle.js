@@ -16,7 +16,7 @@ const LoginToggle = ({
       <Text
         style={
           login
-            ? { ...styles.topButtonText, fontWeight: "bold" }
+            ? { ...styles.topButtonText, fontFamily: "FontBold" }
             : { ...styles.topButtonText }
         }
       >
@@ -40,7 +40,7 @@ const LoginToggle = ({
       <Text
         style={
           !login
-            ? { ...styles.topButtonText, fontWeight: "bold" }
+            ? { ...styles.topButtonText, fontFamily: "FontBold" }
             : { ...styles.topButtonText }
         }
       >
