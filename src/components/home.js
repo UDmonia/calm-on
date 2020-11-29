@@ -7,10 +7,12 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
 import { useSelector } from "react-redux";
+import { Dimensions } from "react-native";
+import { windowWidth } from "../util/windowDimensions.js";
 import { sprite, aurora, flynn } from "../data/characterData";
+import { screenWidthThreshold } from "../util/thresholds";
 
 const checkInExists = () => {
   var res = false;
@@ -36,9 +38,10 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-  const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
-  );
+  const userName = "Jack";
+  // const userName = useSelector((state) =>
+  //   state.session.user.name ? state.session.user.name : "user"
+  // );
   if (userName === "user") {
     console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });
@@ -85,7 +88,11 @@ const Home = ({ props, navigation: { navigate } }) => {
         <View style={styles.main}>
           <View style={styles.topBox}>
             <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
-            <Text style={styles.topBoxText}>
+            <Text
+              numberOfLines={windowWidth > screenWidthThreshold ? 1 : 2}
+              adjustsFontSizeToFit
+              style={styles.topBoxText}
+            >
               Scroll through your three fairy friends and pick one to learn more
               about them.
             </Text>
@@ -102,7 +109,7 @@ const Home = ({ props, navigation: { navigate } }) => {
             >
               {spirits.map((spirit) => {
                 return (
-                  <View key={spirit.name} style={styles.scroll}>
+                  <View key={spirit.name} style={styles.spiritView}>
                     <Image style={styles.spirit} source={spirit.img} />
                   </View>
                 );
@@ -117,8 +124,14 @@ const Home = ({ props, navigation: { navigate } }) => {
           </TouchableOpacity>
 
           <View style={styles.bottomBox}>
-            <Text style={styles.bottomBoxTextName}>{currentSpirit.name}</Text>
-            <Text style={styles.bottomBoxTextDescription}>
+            <Text adjustsFontSizeToFit={true} style={styles.bottomBoxTextName}>
+              {currentSpirit.name}
+            </Text>
+            <Text
+              numberOfLines={windowWidth > screenWidthThreshold ? 2 : 3}
+              adjustsFontSizeToFit={true}
+              style={styles.bottomBoxTextDescription}
+            >
               {currentSpirit.description}
             </Text>
           </View>

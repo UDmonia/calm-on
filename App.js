@@ -60,6 +60,7 @@ export default function App() {
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen
             name="Counting"
             component={Counting}
@@ -146,7 +147,6 @@ export default function App() {
               headerTintColor: "#424242",
             }}
           />
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen
             name="FlatActivities"
             component={FlatActivities}
@@ -180,7 +180,7 @@ export default function App() {
           <Stack.Screen
             name="kpi"
             component={kpi}
-            screenOptions={{headerShown: false}}
+            screenOptions={{ headerShown: false }}
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
