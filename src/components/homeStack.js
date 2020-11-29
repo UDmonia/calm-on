@@ -7,6 +7,7 @@ import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { windowWidth } from "../util/windowDimensions";
+import { screenWidthThreshold } from "../util/thresholds";
 
 const icons = [
   {
@@ -31,8 +32,6 @@ const icons = [
     icon: require("../../assets/images/account.png"),
   },
 ];
-
-const screenWidthThreshold = 800;
 
 const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
