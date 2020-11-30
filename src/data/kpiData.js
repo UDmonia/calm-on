@@ -3,7 +3,7 @@ const kpiData = {
     title: "counting",
     primMsg: "Good Job!",
     secMsg: "Let’s count more fruit together the next time you feel worried.",
-    img: null,
+    img: require('../../assets/counting/Imgkpi.png'),
     likeApi: null,
     confusedApi: null,
   },

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { View, Text, Image, TouchableOpacity, Modal, TextInput, ImageBackground } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import styles from '../stylesheets/kpiStyles';
+import kpiData from "../data/kpiData";
 
 export default Kpi = ({ route, navigation: { navigate } }) => {
 
@@ -84,6 +85,8 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
             </TouchableOpacity>
           </View>
         </View>
+        {/* Add image container here */}
+        {route.params.image ? (<Image source={route.params.image}/>) : null}
         <View style={styles.feedbackButtons}>
           {/*Like button toggle*/}
           {like === false && (

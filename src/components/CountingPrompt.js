@@ -107,6 +107,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                     bg: bg,
                     pMsg: kpiData.counting.primMsg,
                     sMsg: kpiData.counting.secMsg,
+                    image: kpiData.counting.img,
                   })}
                 >
                   <Text style={{ color: "#3B96B2" }}>Next</Text>
