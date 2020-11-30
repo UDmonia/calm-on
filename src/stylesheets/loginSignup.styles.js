@@ -9,14 +9,14 @@ export default StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
-    flex: 1,
+    display: "flex",
     backgroundColor: "rgba(0,0,0,0.60)",
     minHeight: 0,
   },
   logo: {
     marginTop: "5%",
     alignItems: "center",
-    height: "80%",
+    height: "67%",
     resizeMode: "contain",
     //borderWidth:2
   },
@@ -27,7 +27,6 @@ export default StyleSheet.create({
     height: "20%",
     alignItems: "center",
     justifyContent: "center",
-    padding: "3%",
   },
   topButtons: {
     borderColor: "#8161B2",
@@ -56,7 +55,6 @@ export default StyleSheet.create({
     //borderWidth: 2,
     padding: "1.8%",
     paddingBottom: "11%",
-    paddingTop: "10%",
   },
   input: {
     //borderColor: 'grey',
@@ -140,7 +138,7 @@ export default StyleSheet.create({
   },
   topContainer: {
     display: "flex",
-    height: 200,
+    height: 275,
   },
   test: {
     paddingBottom: "20%",
