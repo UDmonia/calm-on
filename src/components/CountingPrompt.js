@@ -11,6 +11,7 @@ import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
 import Exit from "./Exit";
+import kpiData from "../data/kpiData";
 
 /**
  * This componet is an intermediate step
@@ -102,7 +103,11 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               <View style={styles.buttonView}>
                 <TouchableOpacity
                   style={styles.navButton}
-                  onPress={() => navigate("kpi")}
+                  onPress={() => navigate("kpi", {
+                    bg: bg,
+                    pMsg: kpiData.counting.primMsg,
+                    sMsg: kpiData.counting.secMsg,
+                  })}
                 >
                   <Text style={{ color: "#3B96B2" }}>Next</Text>
                 </TouchableOpacity>

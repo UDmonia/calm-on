@@ -11,6 +11,7 @@ import {
   Animated,
 } from "react-native";
 import styles from "../stylesheets/milkMilkMilkStyles";
+import kpiData from "../data/kpiData";
 
 class milkMilkMilk extends React.Component {
   constructor(props) {
@@ -129,7 +130,11 @@ class milkMilkMilk extends React.Component {
   }
 
   exitOut() {
-    this.props.navigation.navigate("kpi");
+    this.props.navigation.navigate("kpi", {
+      bg: require("../../assets/images/storytime_background.png"),
+      pMsg: kpiData.milkMilkMilk.primMsg,
+      sMsg: kpiData.milkMilkMilk.secMsg,
+    });
   }
 
   dontExitOut() {

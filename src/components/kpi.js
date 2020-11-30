@@ -29,7 +29,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
     <View style={styles.mainContainer}>
       {/* Replace the source url with the image parameter when needed later on, currently constant is added for testing purposes. */}
       <ImageBackground
-        source={require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png")}
+        source={route.params.bg}
         style={styles.imgBackground}>
       <Modal
         animationType="fade"
@@ -72,8 +72,8 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
       {/*Need to add background image here on this container*/}
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text style={[styles.text, styles.title]}>Main Text!</Text>
-          <Text style={[styles.text, styles.subtext]}>Here is some text that is going to be under the main text.</Text>
+                  <Text style={[styles.text, styles.title]}>{route.params.pMsg}</Text>
+                  <Text style={[styles.text, styles.subtext]}>{route.params.sMsg}</Text>
           <View style={styles.backButtonContainer}>
             <TouchableOpacity
               onPress={() => {

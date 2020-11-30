@@ -3,7 +3,6 @@ const kpiData = {
     title: "counting",
     primMsg: "Good Job!",
     secMsg: "Let’s count more fruit together the next time you feel worried.",
-    backimg: require("../../assets/counting/backdrop.png"),
     img: null,
     likeApi: null,
     confusedApi: null,
@@ -12,7 +11,6 @@ const kpiData = {
     title: "FiveFourThreeTwoOneTech",
     primMsg: "Nice Work!",
     secMsg: "Let do this again some other time.",
-    backimg: require("../../assets/FiveFourThreeTwoOne/thinkCloud.png"),
     img: null,
     likeApi: null,
     confusedApi: null,
@@ -21,7 +19,6 @@ const kpiData = {
     title: "milkMilkMilk",
     primMsg: "Nice!",
     secMsg: "You can check out some of our other story times.",
-    backimg: require("../../assets/images/storytime_background.png"),
     img: null,
     likeApi: null,
     confusedApi: null,
@@ -30,18 +27,18 @@ const kpiData = {
     title: "boxBreathing",
     primMsg: "Cowabunga Dude!",
     secMsg: "That was awsome dude. Lets do chill again someother time.",
-    backimg: require("../../assets/images/storytime_background.png"),
     img: null,
     likeApi: null,
     confusedApi: null,
   },
-  Adventure: {
-    title: "boxBreathing",
+  adventure: {
+    title: "adventure",
     primMsg: "Cowabunga Dude!",
     secMsg: "That was awsome dude. Lets do chill again someother time.",
-    backimg: require("../../assets/images/storytime_background.png"),
     img: null,
     likeApi: null,
     confusedApi: null,
   },
 };
+
+export default kpiData;
