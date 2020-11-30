@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState } from "react";
-import { ImageBackground, Image, View } from "react-native";
+import { ImageBackground, Image, View, ScrollView } from "react-native";
 import styles from "../../stylesheets/loginSignup.styles";
 import bg from "../../../assets/images/backgroundImage.png";
 import logo from "../../../assets/images/logo.png";
@@ -21,24 +21,30 @@ const LoginSignup = ({ route, navigation: { navigate } }) => {
       {/* background image */}
       <ImageBackground style={styles.background} source={bg}>
         {/* inner container for adjusting the background image rgb */}
-        <View style={styles.innerContainer}>
+        <ScrollView style={styles.innerContainer}>
           {/* logo */}
-          <View style={styles.logo}>
-            <Image style={styles.image} source={logo} />
+          <View style={styles.topContainer}>
+            <View style={styles.logo}>
+              <Image 
+                style={styles.image} 
+                source={logo}
+                resizeMode="contain" 
+                />
+            </View>
+            <LoginToggle
+              login={login}
+              setLogin={setLogin}
+              showUserDialog={showUserDialog}
+              setShowUserDialog={setShowUserDialog}
+            />
           </View>
-          <LoginToggle
-            login={login}
-            setLogin={setLogin}
-            showUserDialog={showUserDialog}
-            setShowUserDialog={setShowUserDialog}
-          />
           <SessionForm
             login={login}
             navigate={navigate}
             showUserDialog={showUserDialog}
             setShowUserDialog={setShowUserDialog}
           />
-        </View>
+        </ScrollView>
       </ImageBackground>
     </View>
   );

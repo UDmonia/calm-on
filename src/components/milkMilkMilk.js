@@ -39,10 +39,10 @@ class milkMilkMilk extends React.Component {
       "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
       "Great, what else do you think of when we say milk?",
       "You can imagine what it feels like to drink a glass of milk, right? It is cold, creamy, and coats your mouth!",
-      "You were thinking about actual milk and your past experiences with milk. Together, we made a sound--milk, but do you realie there is no milk, physically?",
+      "You were thinking about actual milk and your past experiences with milk. Together, we made a sound--milk, but do you realize there is no milk, physically?",
       "Yet it felt very present. We were seeing milk and tasting it, but it was only present in our minds. If you want, we can try an exercise together!",
       "It is a bit silly, but we will do it together. If you are embarrassed, just know that I am embarrassed too!",
-      'What I am going to ask you to do is say the word "milk" outloud, quickly, over and over again for about 10 seconds and see what happens. Are you willing to try it?',
+      'What I am going to ask you to do is say the word "milk" out loud, quickly, over and over again for about 10 seconds and see what happens. Are you willing to try it?',
       'OK. Let\'s do it. Say "milk" over and over for about 10 seconds.',
       "Okay, you can stop! Where is the milk?",
       "After saying the word several times, didn't the cold and creamy imagery disappear? When you first said it, it felt like the milk was actually in the room.",
@@ -94,7 +94,7 @@ class milkMilkMilk extends React.Component {
       [
         { option: "I'm not sure", func: () => this._board() },
         { option: "Gone!", func: () => this._board() },
-        { option: "Where is the milkd?", func: () => this._board() },
+        { option: "Where is the milk?", func: () => this._board() },
       ],
       [{ option: "Next", func: () => this._board() }],
       [
@@ -524,7 +524,9 @@ class milkMilkMilk extends React.Component {
               style={[styles.house, this.moveSpriteThinking.getLayout()]}
             >
               <TouchableWithoutFeedback style={styles.house}>
-                <Image source={require("../../assets/images/sprite_thinking.png")} />
+                <Image
+                  source={require("../../assets/images/sprite_thinking.png")}
+                />
               </TouchableWithoutFeedback>
             </Animated.View>
           ) : null}
@@ -548,7 +550,9 @@ class milkMilkMilk extends React.Component {
               ]}
             >
               <TouchableWithoutFeedback style={styles.house}>
-                <Image source={require("../../assets/images/sprite_scholar.png")} />
+                <Image
+                  source={require("../../assets/images/sprite_scholar.png")}
+                />
               </TouchableWithoutFeedback>
             </Animated.View>
           ) : null}
@@ -562,7 +566,9 @@ class milkMilkMilk extends React.Component {
               ]}
             >
               <TouchableWithoutFeedback style={styles.house}>
-                <Image source={require("../../assets/images/sprite_happy.png")} />
+                <Image
+                  source={require("../../assets/images/sprite_happy.png")}
+                />
               </TouchableWithoutFeedback>
             </Animated.View>
           ) : null}
@@ -591,7 +597,9 @@ class milkMilkMilk extends React.Component {
           {this.state.question == 11 && (
             <Animated.View style={[styles.board, this.showFigure.getLayout()]}>
               <TouchableWithoutFeedback style={styles.board}>
-                <Image source={require("../../assets/images/board_figure1.png")} />
+                <Image
+                  source={require("../../assets/images/board_figure1.png")}
+                />
               </TouchableWithoutFeedback>
             </Animated.View>
           )}
@@ -637,7 +645,9 @@ class milkMilkMilk extends React.Component {
               ]}
             >
               <TouchableWithoutFeedback>
-                <Image source={require("../../assets/images/sprite_surprised.png")} />
+                <Image
+                  source={require("../../assets/images/sprite_surprised.png")}
+                />
               </TouchableWithoutFeedback>
             </Animated.View>
           )}
@@ -650,7 +660,9 @@ class milkMilkMilk extends React.Component {
               ]}
             >
               <TouchableWithoutFeedback style={styles.house}>
-                <Image source={require("../../assets/images/sprite_scholar.png")} />
+                <Image
+                  source={require("../../assets/images/sprite_scholar.png")}
+                />
               </TouchableWithoutFeedback>
             </Animated.View>
           )}

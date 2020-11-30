@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 export default StyleSheet.create({
   background: {
     resizeMode: "cover",
@@ -11,35 +11,46 @@ export default StyleSheet.create({
   innerContainer: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.60)",
+    minHeight: 0,
   },
   logo: {
-    marginTop: "10%",
+    marginTop: "5%",
     alignItems: "center",
-    height: "23%",
+    height: "80%",
+    resizeMode: "contain",
     //borderWidth:2
   },
 
   buttonGroup: {
     flexDirection: "row",
     //borderWidth:1,
-    height: "7%",
-    alignContent: "center",
+    height: "20%",
+    alignItems: "center",
     justifyContent: "center",
     padding: "3%",
   },
-
   topButtons: {
     borderColor: "#8161B2",
   },
   topButtonText: {
     fontSize: 25,
     color: "white",
+    fontFamily: "FontReg"
   },
   bottomButton: {
+    backgroundColor: "#8AABFF",
     alignItems: "center",
     justifyContent: "center",
+    height: 50,
+    width: 130,
     marginLeft: "auto",
     marginRight: "auto",
+    borderRadius: 25,
+  },
+  bottomButtonText: {
+    color: "white",
+    fontFamily: "FontReg",
+    fontSize: 20,
   },
   form: {
     //borderWidth: 2,
@@ -67,6 +78,7 @@ export default StyleSheet.create({
     width: "100%",
   },
   description: {
+    fontFamily: "FontReg",
     fontSize: 18,
     color: "white",
     marginLeft: "12%",
@@ -82,6 +94,7 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   error: {
+    fontFamily: "FontReg",
     fontVariant: ["small-caps"],
     fontSize: 16,
     color: "red",
@@ -91,6 +104,7 @@ export default StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "FontReg"
   },
   userNameBodyText: {
     fontSize: 18,
@@ -123,5 +137,12 @@ export default StyleSheet.create({
     height: 45,
     justifyContent: "center",
     alignItems: "center",
+  },
+  topContainer: {
+    display: "flex",
+    height: 200,
+  },
+  test: {
+    paddingBottom: "20%",
   },
 });
