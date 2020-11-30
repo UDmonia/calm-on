@@ -1,8 +1,6 @@
-import React, { useState, useNativeDriver } from "react";
-
+import React from "react";
 import {
   View,
-  Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Image,
@@ -11,6 +9,7 @@ import {
   Animated,
 } from "react-native";
 import styles from "../stylesheets/milkMilkMilkStyles";
+import milkTreeData from "../data/milkTreeData";
 
 class milkMilkMilk extends React.Component {
   constructor(props) {
@@ -107,9 +106,13 @@ class milkMilkMilk extends React.Component {
       [{ option: "Done", func: () => this.exitOut() }],
     ];
 
+    this.milkMilkMilkData = milkTreeData;
+
     this.state = {
-      question: 0,
-      answers: 0,
+      question: this.milkMilkMilkData.question,
+      answers: this.milkMilkMilkData.answers,
+      animation: null,
+      nxtNode: this.milkMilkMilkData.nxtNode,
       show: "sprite",
       exit: false,
     };
@@ -118,6 +121,30 @@ class milkMilkMilk extends React.Component {
     this.exitOut = this.exitOut.bind(this);
     this.dontExitOut = this.dontExitOut.bind(this);
     this.goToPrevScreen = this.goToPrevScreen.bind(this);
+    this._findNode = this._findNode.bind(this);
+    this._traverseTree = this._traverseTree.bind(this);
+  }
+
+  _findNode(answer) {
+    return this.state.nxtNode.find((node) => node.key === answer);
+  }
+
+  _traverseTree(answer) {
+    const newNode = this._findNode(answer);
+    if (newNode !== undefined) {
+      this.setState((prevState) => {
+        const updatedState = {
+          ...prevState,
+          question: newNode.question,
+          answers: newNode.answers,
+          animation: newNode.animation,
+          nxtNode: newNode.nxtNode,
+        };
+        return updatedState;
+      });
+    } else {
+      console.log("done with the activity.");
+    }
   }
 
   goToPrevScreen() {
@@ -331,8 +358,8 @@ class milkMilkMilk extends React.Component {
     setTimeout(() => {
       this.setState({
         show: "ball",
-        question: this.state.question + 1,
-        answers: this.state.answers + 1,
+        // question: this.state.question + 1,
+        // answers: this.state.answers + 1,
       });
       this._fadeCrystalBall();
     }, 1000);
@@ -661,7 +688,7 @@ class milkMilkMilk extends React.Component {
               </TouchableWithoutFeedback>
             </Animated.View>
           )}
-
+          {/* 
           <View style={styles.box}>
             <View style={styles.top}>
               <Text style={styles.question}>
@@ -679,6 +706,29 @@ class milkMilkMilk extends React.Component {
                   >
                     <Text key={i} style={styles.a}>
                       {a.option}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View> */}
+          <View style={styles.box}>
+            <View style={styles.top}>
+              <Text style={styles.question}>{this.state.question}</Text>
+            </View>
+            <View style={styles.bottom}>
+              {this.state.answers.map((a, i) => {
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={styles.answer}
+                    onPress={() => {
+                      // a.func;
+                      this._traverseTree(a);
+                    }}
+                  >
+                    <Text key={i} style={styles.a}>
+                      {a}
                     </Text>
                   </TouchableOpacity>
                 );
