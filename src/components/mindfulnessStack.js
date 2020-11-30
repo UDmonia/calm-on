@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Mindfulness from './mindfulness'
 import Techniques from './techniques'
-import BigSqueeze from './bigSqueeze'
+import BigSqueeze from '../screens/bigSqueeze'
 import MonsterHug from './monsterHug'
 import { Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';

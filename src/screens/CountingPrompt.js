@@ -10,7 +10,7 @@ import {
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
-import Exit from "./Exit";
+import Exit from "../components/Exit";
 
 /**
  * This componet is an intermediate step 

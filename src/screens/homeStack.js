@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "./home";
-import Calendar from "./checkInStack";
+import Home from "../components/home";
+import Calendar from "../components/checkInStack";
 import Achievement from "./Achievement";
-import Profile from "./profile";
+import Profile from "../components/profile";
 import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
