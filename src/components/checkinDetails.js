@@ -82,7 +82,7 @@ const checkinDetails = ({ route }) => {
   return (
     <View style={styles.format}>
       <ImageBackground
-        source={require("../../assets/splash_panel.png")}
+        source={require("../../assets/images/splash_panel.png")}
         style={styles.background}
       >
         <View style={styles.main}>
@@ -90,11 +90,11 @@ const checkinDetails = ({ route }) => {
             <View style={styles.toggle}>
               <Image
                 style={styles.hangerLeft}
-                source={require("../../assets/hanger.png")}
+                source={require("../../assets/images/hanger.png")}
               />
               <Image
                 style={styles.hangerRight}
-                source={require("../../assets/hanger.png")}
+                source={require("../../assets/images/hanger.png")}
               />
 
               <Text style={styles.text}>
@@ -115,10 +115,10 @@ const checkinDetails = ({ route }) => {
                         setActive(0);
                       }}
                     >
-                      <Image source={require("../../assets/prevMonth.png")} />
+                      <Image source={require("../../assets/images/prevMonth.png")} />
                     </TouchableOpacity>
                   ) : (
-                    <Image source={require("../../assets/leftDisabled.png")} />
+                    <Image source={require("../../assets/images/leftDisabled.png")} />
                   )}
 
                   <Text style={styles.date}>
@@ -135,10 +135,10 @@ const checkinDetails = ({ route }) => {
                         setActive(0);
                       }}
                     >
-                      <Image source={require("../../assets/nextMonth.png")} />
+                      <Image source={require("../../assets/images/nextMonth.png")} />
                     </TouchableOpacity>
                   ) : (
-                    <Image source={require("../../assets/rightDisabled.png")} />
+                    <Image source={require("../../assets/images/rightDisabled.png")} />
                   )}
                 </View>
 
@@ -169,7 +169,7 @@ const checkinDetails = ({ route }) => {
               </View>
 
               <View style={styles.lower}>
-                <Image source={require("../../assets/banner.png")} />
+                <Image source={require("../../assets/images/banner.png")} />
                 <View style={styles.activities}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate("milkMilkMilk")}

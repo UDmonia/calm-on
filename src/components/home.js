@@ -1,41 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
-  Button,
   ImageBackground,
   TouchableOpacity,
   Image,
   ScrollView,
 } from "react-native";
-import GestureRecognizer, {
-  swipeDirections,
-} from "react-native-swipe-gestures";
-import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
-import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
-import { useDispatch, useSelector } from "react-redux";
-
-const sprite = {
-  img: require("../../assets/sprite.gif"),
-  name: "Sprite",
-  description:
-    "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
-};
-
-const flynn = {
-  img: require("../../assets/flynn.gif"),
-  name: "Flynn",
-  description:
-    "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
-};
-
-const aurora = {
-  img: require("../../assets/aurora.gif"),
-  name: "Aurora",
-  description:
-    "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
-};
+import { useSelector } from "react-redux";
+import { Dimensions } from "react-native";
+import { windowWidth } from "../util/windowDimensions.js";
+import { sprite, aurora, flynn } from "../data/characterData";
+import { screenWidthThreshold } from "../util/thresholds";
 
 const checkInExists = () => {
   var res = false;
@@ -61,12 +38,12 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-  const userName = "jack";
-  // useSelector((state) =>
+  const userName = "Jack";
+  // const userName = useSelector((state) =>
   //   state.session.user.name ? state.session.user.name : "user"
   // );
   if (userName === "user") {
-    // console.log("Home -> loginSignup: userPrompt=true userlogin=false");
+    console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });
   }
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
@@ -95,21 +72,27 @@ const Home = ({ props, navigation: { navigate } }) => {
   }
 
   function handleBtnPress() {
-    if (currentSpirit === sprite) {
-      navigate("chatPlaceholder");
-    }
+    navigate("chatPlaceholder", {
+      curCharacter: currentSpirit,
+      name: currentSpirit.name,
+      headerColor: currentSpirit.characterColor,
+    });
   }
 
   return (
     <View style={styles.format}>
       <ImageBackground
-        source={require("../../assets/splash_panel.png")}
+        source={require("../../assets/images/splash_panel.png")}
         style={styles.image}
       >
         <View style={styles.main}>
           <View style={styles.topBox}>
             <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
-            <Text style={styles.topBoxText}>
+            <Text
+              numberOfLines={windowWidth > screenWidthThreshold ? 1 : 2}
+              adjustsFontSizeToFit
+              style={styles.topBoxText}
+            >
               Scroll through your three fairy friends and pick one to learn more
               about them.
             </Text>
@@ -126,7 +109,7 @@ const Home = ({ props, navigation: { navigate } }) => {
             >
               {spirits.map((spirit) => {
                 return (
-                  <View key={spirit.name} style={styles.scroll}>
+                  <View key={spirit.name} style={styles.spiritView}>
                     <Image style={styles.spirit} source={spirit.img} />
                   </View>
                 );
@@ -136,36 +119,23 @@ const Home = ({ props, navigation: { navigate } }) => {
           <TouchableOpacity onPress={() => handleBtnPress()}>
             <Image
               style={styles.btn}
-              source={require("../../assets/homescreen_btn.png")}
+              source={require("../../assets/images/homescreen_btn.png")}
             />
           </TouchableOpacity>
 
           <View style={styles.bottomBox}>
-            <Text style={styles.bottomBoxTextName}>{currentSpirit.name}</Text>
-            <Text style={styles.bottomBoxTextDescription}>
+            <Text adjustsFontSizeToFit={true} style={styles.bottomBoxTextName}>
+              {currentSpirit.name}
+            </Text>
+            <Text
+              numberOfLines={windowWidth > screenWidthThreshold ? 2 : 3}
+              adjustsFontSizeToFit={true}
+              style={styles.bottomBoxTextDescription}
+            >
               {currentSpirit.description}
             </Text>
           </View>
         </View>
-
-        {/*<View style={styles.nav}>
-        <View style={styles.navIcons}>
-          <TouchableOpacity>
-              <Image style={styles.homeIcon}
-                source={require('../../assets/icon_home_selected.png')}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Image style={styles.achieveIcon}
-              source={require('../../assets/icon_achievements.png')} />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
-            <Image style={styles.profileIcon}
-              source={require('../../assets/icon_profile.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>*/}
       </ImageBackground>
     </View>
   );

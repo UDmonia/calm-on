@@ -12,6 +12,7 @@ import styles from "../stylesheets/adventureLocationStyles";
 // import locationData from "./locationData";
 import { navigate } from "./RootNavigation";
 // import locationData from "./locationData";
+import kpiData from "../data/kpiData";
 
 /**
  * AdventureLocation is a single screen in the adventures activity.
@@ -25,6 +26,7 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationBackground } = route.params;
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
+  const {exitAsset} = route.params; 
   // const locationData = locationData;
 
   /**
@@ -56,7 +58,11 @@ export default AdventureLocation = ({ route, navigation }) => {
           }
           // TODO: when designs are finalized replace "true" with another flag that will end the activity
           else if (done && true) {
-            navigate("chatPlaceholder");
+            navigate("kpi", {
+              bg: locationBackgroundTint,
+              pMsg: kpiData.adventure.primMsg,
+              sMsg: kpiData.adventure.secMsg,
+            });
           }
         }}
         key={item.id}
@@ -76,7 +82,7 @@ export default AdventureLocation = ({ route, navigation }) => {
         imageStyle={styles.imgBackground}
       >
         <View style={styles.exitPosition}>
-          <Exit navTo={"chatPlaceholder"} />
+          <Exit navTo={"chatPlaceholder"} img={exitAsset} />
         </View>
         <View style={styles.locationContainer}>
           <Text style={styles.txtLetter}>

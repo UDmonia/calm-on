@@ -1,9 +1,9 @@
 import React from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import styles from "../stylesheets/adventureStyles";
-import picnicData from "./picnicData";
-import theaterData from "./theaterData";
-import amusementData from "./amusementData";
+import picnicData from "../data/picnicData";
+import theaterData from "../data/theaterData";
+import amusementData from "../data/amusementData";
 
 export default Adventure = ({ navigation: { navigate } }) => {
   return (
@@ -24,8 +24,9 @@ export default Adventure = ({ navigation: { navigate } }) => {
           onPress={() =>
             navigate("AdventureLocation", {
               locationBackground: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
-              locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackground.png"),
+              locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackgroundTint.png"),
               locationData: picnicData,
+              exitAsset: null,
             })
           }
         >
@@ -39,8 +40,9 @@ export default Adventure = ({ navigation: { navigate } }) => {
           onPress={() =>
             navigate("AdventureLocation", {
               locationBackground: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
-              locationBackgroundTint: require("../../assets/adventure/locations/movieTheater/movieTheaterBackground.png"),
+              locationBackgroundTint: require("../../assets/adventure/locations/movieTheater/movieTheaterBackgroundTint.png"),
               locationData: theaterData,
+              exitAsset: require("../../assets/exit/whtExitBtn.png"),
             })
           }
         >
@@ -54,8 +56,9 @@ export default Adventure = ({ navigation: { navigate } }) => {
           onPress={() =>
             navigate("AdventureLocation", {
               locationBackground: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
-              locationBackgroundTint: require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png"),
+              locationBackgroundTint: require("../../assets/adventure/locations/amusementPark/amusementParkBackgroundTint.png"),
               locationData: amusementData,
+              exitAsset: null,
             })
           }
         >

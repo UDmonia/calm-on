@@ -9,7 +9,7 @@ import {
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
-import Recipes from "./countingData";
+import Recipes from "../data/countingData";
 import Exit from "./Exit";
 
 /**
