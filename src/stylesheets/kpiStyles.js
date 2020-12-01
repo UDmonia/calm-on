@@ -50,6 +50,7 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        // backgroundColor: 'blue',
     },
     buttons: {
         height: "50%",
