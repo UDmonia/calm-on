@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import { View, Text, Image, TouchableOpacity, Modal, TextInput, ImageBackground } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import styles from '../stylesheets/kpiStyles';
+import kpiData from "../data/kpiData";
 
-export default Kpi = ({ navigation: { navigate } }) => {
+export default Kpi = ({ route, navigation: { navigate } }) => {
 
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
@@ -29,7 +30,7 @@ export default Kpi = ({ navigation: { navigate } }) => {
     <View style={styles.mainContainer}>
       {/* Replace the source url with the image parameter when needed later on, currently constant is added for testing purposes. */}
       <ImageBackground
-        source={require("../../assets/adventure/locations/amusementPark/amusementParkBackground.png")}
+        source={route.params.bg}
         style={styles.imgBackground}>
       <Modal
         animationType="fade"
@@ -72,8 +73,8 @@ export default Kpi = ({ navigation: { navigate } }) => {
       {/*Need to add background image here on this container*/}
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text style={[styles.text, styles.title]}>Main Text!</Text>
-          <Text style={[styles.text, styles.subtext]}>Here is some text that is going to be under the main text.</Text>
+                  <Text style={[styles.text, styles.title]}>{route.params.pMsg}</Text>
+                  <Text style={[styles.text, styles.subtext]}>{route.params.sMsg}</Text>
           <View style={styles.backButtonContainer}>
             <TouchableOpacity
               onPress={() => {
@@ -84,6 +85,8 @@ export default Kpi = ({ navigation: { navigate } }) => {
             </TouchableOpacity>
           </View>
         </View>
+        {/* Add image container here */}
+        {route.params.image ? (<Image source={route.params.image}/>) : null}
         <View style={styles.feedbackButtons}>
           {/*Like button toggle*/}
           {like === false && (

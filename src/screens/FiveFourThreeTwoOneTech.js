@@ -7,6 +7,8 @@ import {
   ImageBackground,
 } from "react-native";
 import styles from "../stylesheets/fiveFourThreeTwoOneTechStyles";
+import kpiData from "../data/kpiData";
+
 
 /**
  * In this activity we step through stepData inorder to atchieve our conditional rendering.
@@ -85,7 +87,11 @@ const step = (progress, setProgress, navigate) => {
           onPress={() => {
             progress.valueOf() < stepData.length - 1
               ? setProgress(progress + 1)
-              : navigate("chatPlaceholder");
+              : navigate("kpi", {
+                bg: require("../../assets/FiveFourThreeTwoOne/background.png"),
+                pMsg: kpiData.Five4321Tech.primMsg,
+                sMsg: kpiData.Five4321Tech.secMsg,
+              });
           }}
         >
           <Image
