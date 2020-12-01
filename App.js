@@ -5,7 +5,7 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Splash from "./src/screens/splash.js";
-import LoginSignup from "./src/components/session/loginSignup.js";
+import LoginSignup from "./src/screens/session/loginSignup.js";
 import IntroVideo from "./src/screens/video.js";
 import Storytime from "./src/screens/storytime.js";
 import MilkMilkMilk from "./src/screens/milkMilkMilk";
