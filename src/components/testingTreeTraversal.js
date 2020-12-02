@@ -10,46 +10,55 @@ import {
   ImageBackground,
   Animated,
 } from "react-native";
+import milkTreeData from "../data/milkTreeData";
 import styles from "../stylesheets/milkMilkMilkStyles";
 
 class testingTreeTraversal extends React.Component {
   constructor(props) {
     super(props);
-    this.milkMilkMilkData = {
-      questions: "Hey Joe, would you like to hear something really cool?",
-      answers: ["Yes, please!", "Maybe later"],
-      animations: null,
-      nxtNode: [
-        {
-          key: "Yes, please!",
-          question:
-            'Great! You will love it! Could you say the word "milk" once?',
-          answers: ["No", "Yeah"],
-          animation: null,
-          nxtNode: null,
-        },
-        { key: "Maybe later", nxtNode: null },
-      ],
-    };
-    this.curNode = {
-      question: "",
-      answers: [],
+    this.milkMilkMilkData = milkTreeData;
+
+    this.state = {
+      question: this.milkMilkMilkData.question,
+      answers: this.milkMilkMilkData.answers,
       animation: null,
-      nxtNode: null,
+      nxtNode: this.milkMilkMilkData.nxtNode,
     };
+
+    this._traverseTree = this._traverseTree.bind(this);
   }
+
+  _findNode(answer) {
+    return this.state.nxtNode.find((node) => node.key === answer);
+  }
+
   _traverseTree(answer) {
-    console.log(answer);
+    const newNode = this._findNode(answer);
+    if (newNode !== undefined) {
+      this.setState((prevState) => {
+        const updatedState = {
+          ...prevState,
+          question: newNode.question,
+          answers: newNode.answers,
+          animation: newNode.animation,
+          nxtNode: newNode.nxtNode,
+        };
+        return updatedState;
+      });
+    } else {
+      console.log("done with the activity.");
+    }
   }
+
   render() {
     return (
       <View style={styles.box}>
         <View style={styles.top}>
-          <Text style={styles.question}>{this.milkMilkMilkData.question}</Text>
+          <Text style={styles.question}>{this.state.question}</Text>
         </View>
 
         <View style={styles.bottom}>
-          {this.milkMilkMilkData.answers.map((a, i) => {
+          {this.state.answers.map((a, i) => {
             return (
               <TouchableOpacity
                 key={i}

@@ -9,7 +9,6 @@ import {
   Animated,
 } from "react-native";
 import styles from "../stylesheets/milkMilkMilkStyles";
-import milkTreeData from "../data/milkTreeData";
 
 class milkMilkMilk extends React.Component {
   constructor(props) {
@@ -106,13 +105,100 @@ class milkMilkMilk extends React.Component {
       [{ option: "Done", func: () => this.exitOut() }],
     ];
 
-    this.milkMilkMilkData = milkTreeData;
+    this.milkMilkMilkData = {
+      key: null,
+      question: "Hey Joe, would you like to hear something really cool?",
+      answers: ["Yes, please!", "Maybe later"],
+      animations: () => this._fade(),
+      renderAnim: "_fade",
+      nxtNode: [
+        {
+          key: "Yes, please!",
+          question:
+            'Great! You will love it! Could you say the word "milk" once?',
+          answers: ["I said it!", "I thought it!"],
+          animation: () => this._moveMilk(),
+          renderAnim: "_moveMilk",
+          nxtNode: [
+            {
+              key: "I said it!",
+              question:
+                "Alright, what came to mind when you said it? You can choose one of the options above:",
+              answers: ["refrigerator", "I like milk", "I have some at home"],
+              animation: () => this._moveMilk2(),
+              renderAnim: "_moveMilk2",
+              nxtNode: [
+                {
+                  key: "refrigerator",
+                  question:
+                    "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+                  answers: ["All done!"],
+                  animation: null,
+                  nxtNode: [],
+                },
+                {
+                  key: "I like milk",
+                  question:
+                    "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+                  answers: ["Done we are"],
+                  animation: null,
+                  nxtNode: [],
+                },
+                {
+                  key: "I have some at home",
+                  question:
+                    "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+                  answers: ["Finish"],
+                  animation: null,
+                  nxtNode: [],
+                },
+              ],
+            },
+            {
+              key: "I thought it!",
+              question:
+                "Alright, what came to mind when you said it? You can choose one of the options above:",
+              answers: ["refrigerator", "I like milk", "I have some at home"],
+              animation: () => this._moveMilk2(),
+              nxtNode: [
+                {
+                  key: "refrigerator",
+                  question:
+                    "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+                  answers: ["All done!"],
+                  animation: null,
+                  nxtNode: [],
+                },
+                {
+                  key: "I like milk",
+                  question:
+                    "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+                  answers: ["Done we are"],
+                  animation: null,
+                  nxtNode: [],
+                },
+                {
+                  key: "I have some at home",
+                  question:
+                    "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+                  answers: ["Finish"],
+                  animation: null,
+                  nxtNode: [],
+                },
+              ],
+            },
+          ],
+        },
+        { key: "Maybe later", nxtNode: [] },
+      ],
+    };
 
     this.state = {
       question: this.milkMilkMilkData.question,
       answers: this.milkMilkMilkData.answers,
-      animation: null,
+      animation: this.milkMilkMilkData.animations,
       nxtNode: this.milkMilkMilkData.nxtNode,
+      renderAnim: "startAnim",
       show: "sprite",
       exit: false,
     };
@@ -185,10 +271,10 @@ class milkMilkMilk extends React.Component {
       }, 1000);
     }, 1000);
 
-    this.setState({
-      question: this.state.question + 1,
-      answers: this.state.answers + 1,
-    });
+    // this.setState({
+    //   question: this.state.question + 1,
+    //   answers: this.state.answers + 1,
+    // });
   };
 
   _moveSpriteThinking = () => {
@@ -198,10 +284,10 @@ class milkMilkMilk extends React.Component {
       useNativeDriver: false,
     }).start();
 
-    this.setState({
-      question: this.state.question + 1,
-      answers: this.state.answers + 1,
-    });
+    // this.setState({
+    //   question: this.state.question + 1,
+    //   answers: this.state.answers + 1,
+    // });
   };
 
   _pourMilk = () => {
@@ -235,10 +321,10 @@ class milkMilkMilk extends React.Component {
     //  }).start()
     //}
 
-    this.setState({
-      question: this.state.question + 1,
-      answers: this.state.answers + 1,
-    });
+    // this.setState({
+    //   // question: this.state.question + 1,
+    //   // answers: this.state.answers + 1,
+    // });
   };
 
   _board = () => {
@@ -358,6 +444,7 @@ class milkMilkMilk extends React.Component {
     setTimeout(() => {
       this.setState({
         show: "ball",
+        index: 1,
         // question: this.state.question + 1,
         // answers: this.state.answers + 1,
       });
@@ -374,25 +461,25 @@ class milkMilkMilk extends React.Component {
   };
 
   _fadeSprite = () => {
-    if (this.state.question === 0 || this.state.question == 5) {
-      Animated.timing(this.fadeValueSprite, {
-        toValue: 0,
-        duration: 1000,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(this.fadeValueSprite, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: false,
-      }).start();
-    }
+    // if (this.state.question === 0 || this.state.question == 5) {
+    Animated.timing(this.fadeValueSprite, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+    // } else {
+    //   Animated.timing(this.fadeValueSprite, {
+    //     toValue: 1,
+    //     duration: 1000,
+    //     useNativeDriver: false,
+    //   }).start();
+    // }
   };
 
   render() {
     let spriteOrBall;
     if (
-      (this.state.show === "sprite" && this.state.question == 0) ||
+      (this.state.show === "sprite" && this.state.renderAnim == "startAnim") ||
       this.state.question == 5 ||
       this.state.question == 11
     ) {
@@ -688,30 +775,6 @@ class milkMilkMilk extends React.Component {
               </TouchableWithoutFeedback>
             </Animated.View>
           )}
-          {/* 
-          <View style={styles.box}>
-            <View style={styles.top}>
-              <Text style={styles.question}>
-                {this.questions[this.state.question]}
-              </Text>
-            </View>
-
-            <View style={styles.bottom}>
-              {this.answers[this.state.answers].map((a, i) => {
-                return (
-                  <TouchableOpacity
-                    key={i}
-                    style={styles.answer}
-                    onPress={a.func}
-                  >
-                    <Text key={i} style={styles.a}>
-                      {a.option}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </View> */}
           <View style={styles.box}>
             <View style={styles.top}>
               <Text style={styles.question}>{this.state.question}</Text>
@@ -723,7 +786,9 @@ class milkMilkMilk extends React.Component {
                     key={i}
                     style={styles.answer}
                     onPress={() => {
-                      // a.func;
+                      console.log(this.state.animation);
+                      // this.state.animation;
+                      () => this._sayMilk();
                       this._traverseTree(a);
                     }}
                   >

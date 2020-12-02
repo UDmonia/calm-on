@@ -7,33 +7,36 @@ const milkTreeData = {
     {
       key: "Yes, please!",
       question: 'Great! You will love it! Could you say the word "milk" once?',
-      answers: ["No", "Yeah"],
-      animation: null,
+      answers: ["I said it!", "I thought it!"],
+      animation: "() => this._fade()",
       nxtNode: [
         {
-          key: "No",
+          key: "I said it!",
           question:
             "Alright, what came to mind when you said it? You can choose one of the options above:",
-          answers: ["to be here", "I am not", "Bubble"],
+          answers: ["refrigerator", "I like milk", "I have some at home"],
           animation: null,
           nxtNode: [
             {
-              key: "to be here",
-              question: "Saf",
+              key: "refrigerator",
+              question:
+                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
               answers: ["All done!"],
               animation: null,
               nxtNode: [],
             },
             {
-              key: "I am not",
-              question: "Anger",
+              key: "I like milk",
+              question:
+                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
               answers: ["Done we are"],
               animation: null,
               nxtNode: [],
             },
             {
-              key: "Bubble",
-              question: "Dabble",
+              key: "I have some at home",
+              question:
+                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
               answers: ["Finish"],
               animation: null,
               nxtNode: [],
@@ -41,11 +44,37 @@ const milkTreeData = {
           ],
         },
         {
-          key: "Yeah",
-          question: "Hello",
+          key: "I thought it!",
+          question:
+            "Alright, what came to mind when you said it? You can choose one of the options above:",
+          answers: ["refrigerator", "I like milk", "I have some at home"],
           animation: null,
-          answers: ["your", "chicken"],
-          nxtNode: [],
+          nxtNode: [
+            {
+              key: "refrigerator",
+              question:
+                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+              answers: ["All done!"],
+              animation: null,
+              nxtNode: [],
+            },
+            {
+              key: "I like milk",
+              question:
+                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+              answers: ["Done we are"],
+              animation: null,
+              nxtNode: [],
+            },
+            {
+              key: "I have some at home",
+              question:
+                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
+              answers: ["Finish"],
+              animation: null,
+              nxtNode: [],
+            },
+          ],
         },
       ],
     },
