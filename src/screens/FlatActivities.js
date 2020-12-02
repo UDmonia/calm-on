@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView } from "react-native";
 import React from "react";
 import styles from "../stylesheets/flatActivitiesStyles";
-import ActivityCard from "./ActivityCard.js";
+import ActivityCard from "../components/ActivityCard.js";
 
 function FlatActivities({ route, navigation: { navigate } }) {
   const { activities } = route.params;

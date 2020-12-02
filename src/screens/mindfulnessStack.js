@@ -1,9 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Mindfulness from './mindfulness'
-import Techniques from './techniques'
-import BigSqueeze from './bigSqueeze'
-import MonsterHug from './monsterHug'
+import Mindfulness from '../components/mindfulness'
+import Techniques from '../components/techniques'
+import BigSqueeze from '../screens/bigSqueeze'
+import MonsterHug from '../components/monsterHug'
 import { Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 

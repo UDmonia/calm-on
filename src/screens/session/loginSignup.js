@@ -4,8 +4,8 @@ import { ImageBackground, Image, View, ScrollView } from "react-native";
 import styles from "../../stylesheets/loginSignup.styles";
 import bg from "../../../assets/images/backgroundImage.png";
 import logo from "../../../assets/images/logo.png";
-import SessionForm from "./session_form";
-import LoginToggle from "./login_toggle";
+import SessionForm from "../../components/session/session_form";
+import LoginToggle from "../../components/session/login_toggle";
 
 const LoginSignup = ({ route, navigation: { navigate } }) => {
   // state for switching between login and signup page
