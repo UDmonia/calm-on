@@ -12,6 +12,7 @@ import styles from "../stylesheets/adventureLocationStyles";
 // import locationData from "./locationData";
 import { navigate } from "./RootNavigation";
 // import locationData from "./locationData";
+import kpiData from "../data/kpiData";
 
 /**
  * AdventureLocation is a single screen in the adventures activity.
@@ -57,7 +58,11 @@ export default AdventureLocation = ({ route, navigation }) => {
           }
           // TODO: when designs are finalized replace "true" with another flag that will end the activity
           else if (done && true) {
-            navigate("chatPlaceholder");
+            navigate("kpi", {
+              bg: locationBackgroundTint,
+              pMsg: kpiData.adventure.primMsg,
+              sMsg: kpiData.adventure.secMsg,
+            });
           }
         }}
         key={item.id}

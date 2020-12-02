@@ -9,6 +9,7 @@ import {
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
+import kpiData from "../data/kpiData";
 
 const IntroStory = ({ start }) => {
   const [page, setPage] = useState(0);
@@ -111,7 +112,11 @@ const OutroStory = () => {
                     : answer === "Yea, let's walk again?"
                     ? restartThis()
                     : answer === "Bye Bye!"
-                    ? navigation.navigate("kpi")
+                    ? navigation.navigate("kpi", {
+                      bg: require("../../assets/boxBreathing/beach.png"),
+                      pMsg: kpiData.boxBreathing.primMsg,
+                      sMsg: kpiData.boxBreathing.secMsg,
+                    })
                     : setPage(page + 1);
                 }}
                 key={key}
