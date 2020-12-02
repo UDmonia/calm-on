@@ -109,7 +109,7 @@ class milkMilkMilk extends React.Component {
       key: null,
       question: "Hey Joe, would you like to hear something really cool?",
       answers: ["Yes, please!", "Maybe later"],
-      animations: () => this._fade(),
+      animation: () => this._fade(),
       renderAnim: "_fade",
       nxtNode: [
         {
@@ -133,7 +133,8 @@ class milkMilkMilk extends React.Component {
                   question:
                     "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
                   answers: ["All done!"],
-                  animation: null,
+                  animation: () => this._moveSpriteThinking(),
+                  renderAnim: "_moveSpriteThinking",
                   nxtNode: [],
                 },
                 {
@@ -141,7 +142,8 @@ class milkMilkMilk extends React.Component {
                   question:
                     "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
                   answers: ["Done we are"],
-                  animation: null,
+                  animation: () => this._moveSpriteThinking(),
+                  renderAnim: "_moveSpriteThinking",
                   nxtNode: [],
                 },
                 {
@@ -149,7 +151,8 @@ class milkMilkMilk extends React.Component {
                   question:
                     "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
                   answers: ["Finish"],
-                  animation: null,
+                  animation: () => this._moveSpriteThinking(),
+                  renderAnim: "_moveSpriteThinking",
                   nxtNode: [],
                 },
               ],
@@ -166,7 +169,8 @@ class milkMilkMilk extends React.Component {
                   question:
                     "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
                   answers: ["All done!"],
-                  animation: null,
+                  animation: () => this.exitOut(),
+                  renderAnim: "exitOut",
                   nxtNode: [],
                 },
                 {
@@ -174,7 +178,8 @@ class milkMilkMilk extends React.Component {
                   question:
                     "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
                   answers: ["Done we are"],
-                  animation: null,
+                  animation: () => this.exitOut(),
+                  renderAnim: "exitOut",
                   nxtNode: [],
                 },
                 {
@@ -182,7 +187,8 @@ class milkMilkMilk extends React.Component {
                   question:
                     "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
                   answers: ["Finish"],
-                  animation: null,
+                  animation: () => this.exitOut(),
+                  renderAnim: "exitOut",
                   nxtNode: [],
                 },
               ],
@@ -196,9 +202,9 @@ class milkMilkMilk extends React.Component {
     this.state = {
       question: this.milkMilkMilkData.question,
       answers: this.milkMilkMilkData.answers,
-      animation: this.milkMilkMilkData.animations,
+      animation: this.milkMilkMilkData.animation,
       nxtNode: this.milkMilkMilkData.nxtNode,
-      renderAnim: "startAnim",
+      renderAnim: this.milkMilkMilkData.renderAnim,
       show: "sprite",
       exit: false,
     };
@@ -225,6 +231,7 @@ class milkMilkMilk extends React.Component {
           answers: newNode.answers,
           animation: newNode.animation,
           nxtNode: newNode.nxtNode,
+          renderAnim: newNode.renderAnim,
         };
         return updatedState;
       });
@@ -346,8 +353,8 @@ class milkMilkMilk extends React.Component {
     }).start();
 
     this.setState({
-      question: this.state.question + 1,
-      answers: this.state.answers + 1,
+      // question: this.state.question + 1,
+      // answers: this.state.answers + 1,
       show: "sprite",
     });
     this._fadeSprite();
@@ -433,10 +440,10 @@ class milkMilkMilk extends React.Component {
       }, 1000);
     }, 1000);
 
-    this.setState({
-      question: this.state.question + 1,
-      answers: this.state.answers + 1,
-    });
+    // this.setState({
+    //   question: this.state.question + 1,
+    //   answers: this.state.answers + 1,
+    // });
   };
 
   _fade = () => {
@@ -461,25 +468,25 @@ class milkMilkMilk extends React.Component {
   };
 
   _fadeSprite = () => {
-    // if (this.state.question === 0 || this.state.question == 5) {
-    Animated.timing(this.fadeValueSprite, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start();
-    // } else {
-    //   Animated.timing(this.fadeValueSprite, {
-    //     toValue: 1,
-    //     duration: 1000,
-    //     useNativeDriver: false,
-    //   }).start();
-    // }
+    if (this.state.renderAnim === "_fade" || this.state.question == 5) {
+      Animated.timing(this.fadeValueSprite, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(this.fadeValueSprite, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: false,
+      }).start();
+    }
   };
 
   render() {
     let spriteOrBall;
     if (
-      (this.state.show === "sprite" && this.state.renderAnim == "startAnim") ||
+      (this.state.show === "sprite" && this.state.renderAnim == "_fade") ||
       this.state.question == 5 ||
       this.state.question == 11
     ) {
@@ -499,7 +506,14 @@ class milkMilkMilk extends React.Component {
           />
         </Animated.View>
       );
-    } else if (this.state.show === "ball" && this.state.question < 4) {
+    } else if (
+      // (this.state.show === "ball" && this.state.question < 4) ||
+      this.state.show === "ball" &&
+      (this.state.renderAnim === "_fade" ||
+        this.state.renderAnim === "_moveMilk" ||
+        this.state.renderAnim === "_moveMilk2" ||
+        this.state.renderAnim === "_moveSpriteThinking")
+    ) {
       spriteOrBall = (
         <Animated.View style={{ opacity: this.fadeValueCrystalBall }}>
           <View style={styles.circle}>
@@ -552,7 +566,8 @@ class milkMilkMilk extends React.Component {
             </View>
           ) : null}
 
-          {this.state.question === 2 || this.state.question === 3 ? (
+          {this.state.renderAnim === "_moveMilk2" ||
+          this.state.renderAnim === "_moveSpriteThinking" ? (
             <Animated.View
               style={{ position: "absolute", zIndex: 1, top: 100, right: 0 }}
             >
@@ -563,7 +578,11 @@ class milkMilkMilk extends React.Component {
             </Animated.View>
           ) : null}
 
-          {this.state.question < 4 ? (
+          {/* {this.state.renderAnim < 4 ? ( */}
+          {this.state.renderAnim === "_fade" ||
+          this.state.renderAnim === "_moveMilk" ||
+          this.state.renderAnim === "_moveMilk2" ||
+          this.state.renderAnim === "_moveSpriteThinking" ? (
             <Animated.View
               style={[styles.milk, this.moveAnimationMilk.getLayout()]}
             >
@@ -576,7 +595,7 @@ class milkMilkMilk extends React.Component {
             </Animated.View>
           ) : null}
 
-          {this.state.question === 2 ? (
+          {this.state.renderAnim === "_moveMilk2" ? (
             <Animated.View
               style={[styles.fridge, this.moveAnimationFridge.getLayout()]}
             >
@@ -589,7 +608,7 @@ class milkMilkMilk extends React.Component {
             </Animated.View>
           ) : null}
 
-          {this.state.question === 2 ? (
+          {this.state.renderAnim === "_moveMilk2" ? (
             <Animated.View
               style={[styles.house, this.moveAnimationHouse.getLayout()]}
             >
@@ -602,7 +621,11 @@ class milkMilkMilk extends React.Component {
             </Animated.View>
           ) : null}
 
-          {this.state.question < 4 ? (
+          {/* {this.state.question < 4 ? ( */}
+          {this.state.renderAnim === "_fade" ||
+          this.state.renderAnim === "_moveMilk" ||
+          this.state.renderAnim === "_moveMilk2" ||
+          this.state.renderAnim === "_moveSpriteThinking" ? (
             <Animated.View
               style={[styles.fridge, this.moveAnimationIcecream.getLayout()]}
             >
@@ -615,7 +638,11 @@ class milkMilkMilk extends React.Component {
             </Animated.View>
           ) : null}
 
-          {this.state.question < 4 ? (
+          {/* {this.state.question < 4 ? ( */}
+          {this.state.renderAnim === "_fade" ||
+          this.state.renderAnim === "_moveMilk" ||
+          this.state.renderAnim === "_moveMilk2" ||
+          this.state.renderAnim === "_moveSpriteThinking" ? (
             <Animated.View
               style={[styles.house, this.moveAnimationCow.getLayout()]}
             >
@@ -735,7 +762,7 @@ class milkMilkMilk extends React.Component {
             </Animated.View>
           )}
 
-          {this.state.question == 14 && (
+          {this.state.render == "exitOut" && (
             <Animated.View style={[styles.board, this.showFigure.getLayout()]}>
               <TouchableWithoutFeedback style={styles.board}>
                 <Image
@@ -786,9 +813,10 @@ class milkMilkMilk extends React.Component {
                     key={i}
                     style={styles.answer}
                     onPress={() => {
-                      console.log(this.state.animation);
-                      // this.state.animation;
-                      () => this._sayMilk();
+                      // console.log(this.state.animation);
+                      // this.state.animation ? this.state.animation() : null;
+                      // () => this._sayMilk();
+                      this.state.animation();
                       this._traverseTree(a);
                     }}
                   >
