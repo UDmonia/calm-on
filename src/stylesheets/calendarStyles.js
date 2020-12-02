@@ -12,9 +12,8 @@ const styles = StyleSheet.create({
     main: {
         backgroundColor: 'rgba(0, 0, 0, 0.45)',
         display: 'flex',
-        height: '100%',
         alignItems: 'center',
-        
+        height: "100%",
       },
     calendar:{
         width:'92%',

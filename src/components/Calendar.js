@@ -83,8 +83,8 @@ const Calendar =({navigation: { navigate} })=>{
                         <Image style = {styles.hangerLeft} source = {require('../../assets/images/hanger.png')}/>
                         <Image style = {styles.hangerRight} source = {require('../../assets/images/hanger.png')}/>
 
-                            <View style = {{borderRadius: 5,borderColor: 'white', height: '49%',borderWidth:3, display:'flex',flexDirection:'row'}}>
-                                <TouchableOpacity style = {{width:105}} onPress = {()=>changeView(!viewByDay)}>
+                            <View style = {{borderRadius: 5,borderColor: 'white', minHeight: 35, height: '45%',borderWidth:3, display:'flex',flexDirection:'row'}}>
+                                <TouchableOpacity style = {{width:105, justifyContent: "flex-start"}} onPress = {()=>changeView(!viewByDay)}>
                                     <Text style = {viewByDay? activeColor:inactiveColor}>Daily</Text>
                                 </TouchableOpacity>
 

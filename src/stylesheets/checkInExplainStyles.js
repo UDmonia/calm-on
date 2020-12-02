@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   tmp: {
-    flex: 1,
     backgroundColor: "white",
     alignItems: "center", // secondary axis
+    flex: 1,
+    minHeight: 800,
   },
   txtFeeling: {
     textAlign: "center",
@@ -29,18 +30,27 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
-    marginTop: 25,
+    marginTop: "10%",
+    marginBottom: 33,
+    height: 57,
   },
   buttons: {
-    width: 126,
-    height: 44,
-    marginHorizontal: 15,
+    display: "flex",
+    marginHorizontal: "5%",
+    height: "80%",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  buttonCancel: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-    resizeMode: "contain",
+  cancelButton: {
+    borderWidth: 4,
+    borderRadius: 25,
+    borderColor: "#8AABFF",
+    width: 130,
+  },
+  submitButton: {
+    backgroundColor: "#8AABFF",
+    borderRadius: 25,
+    width: 150,
   },
   feelingImg: {
     marginTop: 25,
