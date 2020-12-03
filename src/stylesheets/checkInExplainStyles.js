@@ -52,6 +52,16 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     width: 150,
   },
+  submitButtonText: {
+    color: "white",
+    fontFamily: "FontReg",
+    fontSize: 18,
+  },
+  cancelButtonText: {
+    color: "#8AABFF",
+    fontFamily: "FontReg",
+    fontSize: 18,
+  },
   feelingImg: {
     marginTop: 25,
     width: 88,
