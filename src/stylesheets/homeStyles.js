@@ -118,6 +118,20 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  pickMeButton: {
+    backgroundColor: "#8AABFF",
+    height: "5%",
+    minHeight: 40,
+    width: "32.5%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 25,
+  },
+  pickMeText: {
+    color: "white",
+    fontFamily: "FontBold",
+    fontSize: 18,
+  },
 });
 
 export default styles;

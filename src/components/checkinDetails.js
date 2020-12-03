@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, Text, View, Image } from "react-native";
+import { ImageBackground, Text, View, Image, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
+import ActivityCard from "./ActivityCard";
 
 /**
  * Contains all images associated with each emotion
@@ -101,7 +102,7 @@ const checkinDetails = ({ route }) => {
                 {moment(journal.createdAt).format("dddd, LL")}
               </Text>
             </View>
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
               <View style={styles.upper}>
                 {/*Date increase/decrease*/}
                 <View style={styles.header}>
@@ -142,7 +143,12 @@ const checkinDetails = ({ route }) => {
                   )}
                 </View>
 
-                <View style={styles.timeList}>{buttons}</View>
+                <ScrollView 
+                  style={styles.timeList}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}>
+                  {buttons}
+                </ScrollView>
 
                 <Image source={moodMap[journal.mood].path} />
 
@@ -171,19 +177,23 @@ const checkinDetails = ({ route }) => {
               <View style={styles.lower}>
                 <Image source={require("../../assets/images/banner.png")} />
                 <View style={styles.activities}>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate("milkMilkMilk")}
-                    style={styles.option}
-                  >
-                    <Text>Milk Milk Milk</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.option}>
-                    <Text>Some other activities</Text>
-                  </TouchableOpacity>
+                    <ActivityCard
+                      title={"Milk Milk Milk"}
+                      key={3}
+                      bgColor={"#6E891A"}
+                      navigateLink={"IntroActivity"}
+                      imagePath={require("../../assets/favicon.png")}
+                      introPageData={{
+                        navRoute: "IntroActivity",
+                        ActRoute: "milkMilkMilk",
+                        about: "A story about your thoughts and feelings with the word milk!",
+                        helpful: "You feel scared or worried.",
+                        img: require("../../assets/favicon.png"),
+                        }}
+                      header={"#2E7D32"}/>
                 </View>
               </View>
-            </View>
+            </ScrollView>
           </View>
         </View>
       </ImageBackground>
