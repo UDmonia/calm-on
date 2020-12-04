@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
+import { View, TouchableOpacity, Text, Image, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import styles from "../stylesheets/checkInExplainStyles";
 import { checkin } from "../actions/session_actions";
@@ -119,7 +119,7 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
   ];
 
   return (
-    <View style={styles.tmp}>
+    <ScrollView contentContainerStyle={styles.tmp}>
       <Image style={styles.feelingImg} source={img} />
       <Text style={styles.txtFeeling}>
         Today I'm feeling {feeling.toLowerCase()}!
@@ -135,19 +135,16 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
       })}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.buttons}
+          style={[styles.buttons, styles.cancelButton]}
           onPress={() => {
             handleAddEmotion(feeling, "");
             navigate("Home");
           }}
         >
-          <Image
-            style={styles.buttonCancel}
-            source={require("../../assets/images/checkInCancelButton.png")}
-          />
+          <Text style={styles.cancelButtonText}>Cancel</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.buttons}
+          style={[styles.buttons, styles.submitButton]}
           onPress={() => {
             handleAddEmotion(
               feeling,
@@ -160,13 +157,10 @@ const CheckInExplain = ({ route, navigation: { navigate } }) => {
             navigate("Home");
           }}
         >
-          <Image
-            style={styles.buttonCancel}
-            source={require("../../assets/images/checkInSubmitButton.png")}
-          />
+          <Text style={styles.submitButtonText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
