@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, Text, View, Image } from "react-native";
+import { ImageBackground, Text, View, Image, ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
+import ActivityCard from "./ActivityCard";
 
 /**
  * Contains all images associated with each emotion
@@ -82,7 +83,7 @@ const checkinDetails = ({ route }) => {
   return (
     <View style={styles.format}>
       <ImageBackground
-        source={require("../../assets/splash_panel.png")}
+        source={require("../../assets/images/splash_panel.png")}
         style={styles.background}
       >
         <View style={styles.main}>
@@ -90,18 +91,18 @@ const checkinDetails = ({ route }) => {
             <View style={styles.toggle}>
               <Image
                 style={styles.hangerLeft}
-                source={require("../../assets/hanger.png")}
+                source={require("../../assets/images/hanger.png")}
               />
               <Image
                 style={styles.hangerRight}
-                source={require("../../assets/hanger.png")}
+                source={require("../../assets/images/hanger.png")}
               />
 
               <Text style={styles.text}>
                 {moment(journal.createdAt).format("dddd, LL")}
               </Text>
             </View>
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
               <View style={styles.upper}>
                 {/*Date increase/decrease*/}
                 <View style={styles.header}>
@@ -115,10 +116,10 @@ const checkinDetails = ({ route }) => {
                         setActive(0);
                       }}
                     >
-                      <Image source={require("../../assets/prevMonth.png")} />
+                      <Image source={require("../../assets/images/prevMonth.png")} />
                     </TouchableOpacity>
                   ) : (
-                    <Image source={require("../../assets/leftDisabled.png")} />
+                    <Image source={require("../../assets/images/leftDisabled.png")} />
                   )}
 
                   <Text style={styles.date}>
@@ -135,20 +136,26 @@ const checkinDetails = ({ route }) => {
                         setActive(0);
                       }}
                     >
-                      <Image source={require("../../assets/nextMonth.png")} />
+                      <Image source={require("../../assets/images/nextMonth.png")} />
                     </TouchableOpacity>
                   ) : (
-                    <Image source={require("../../assets/rightDisabled.png")} />
+                    <Image source={require("../../assets/images/rightDisabled.png")} />
                   )}
                 </View>
 
-                <View style={styles.timeList}>{buttons}</View>
+                <ScrollView 
+                  style={styles.timeList}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}>
+                  {buttons}
+                </ScrollView>
 
                 <Image source={moodMap[journal.mood].path} />
 
                 <Text style={styles.journalTitle}>
                   {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
                 </Text>
+                {/*
                 <Text style={styles.journal}>
                   I'm {journal.mood} about{" "}
                   <Text style={styles.bolded}>
@@ -166,24 +173,29 @@ const checkinDetails = ({ route }) => {
                       .substring(lastCommaIndex + 1)}
                   </Text>
                 </Text>
+                */}
               </View>
 
               <View style={styles.lower}>
-                <Image source={require("../../assets/banner.png")} />
+                <Image source={require("../../assets/images/banner.png")} />
                 <View style={styles.activities}>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate("milkMilkMilk")}
-                    style={styles.option}
-                  >
-                    <Text>Milk Milk Milk</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.option}>
-                    <Text>Some other activities</Text>
-                  </TouchableOpacity>
+                    <ActivityCard
+                      title={"Milk Milk Milk"}
+                      key={3}
+                      bgColor={"#6E891A"}
+                      navigateLink={"IntroActivity"}
+                      imagePath={require("../../assets/favicon.png")}
+                      introPageData={{
+                        navRoute: "IntroActivity",
+                        ActRoute: "milkMilkMilk",
+                        about: "A story about your thoughts and feelings with the word milk!",
+                        helpful: "You feel scared or worried.",
+                        img: require("../../assets/favicon.png"),
+                        }}
+                      header={"#2E7D32"}/>
                 </View>
               </View>
-            </View>
+            </ScrollView>
           </View>
         </View>
       </ImageBackground>

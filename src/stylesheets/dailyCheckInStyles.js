@@ -2,9 +2,11 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
     backgroundColor: "white",
     alignItems: "center", // secondary axis
+    paddingBottom: "10%",
+    flex: 1,
+    minHeight: 800,
   },
   txtQuestion: {
     marginTop: 40,
@@ -23,18 +25,36 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
-    marginTop: 50,
+    marginTop: "10%",
+    height: 57,
   },
   buttons: {
-    width: 126,
-    height: 44,
-    marginHorizontal: 15,
+    display: "flex",
+    marginHorizontal: "5%",
+    height: "80%",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  buttonCancel: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-    resizeMode: "contain",
+  cancelButton: {
+    borderColor: "#8AABFF",
+    borderWidth: 4,
+    borderRadius: 25,
+    width: 130,
+  },
+  cancelButtonText: {
+    color: "#8AABFF",
+    fontFamily: "FontReg",
+    fontSize: 18,
+  },
+  continueButton: {
+    backgroundColor: "#8AABFF",
+    borderRadius: 25,
+    width: 150,
+  },
+  continueButtonText: {
+    color: "white",
+    fontFamily: "FontReg",
+    fontSize: 18,
   },
   feelingContainer: {
     marginTop: 50,

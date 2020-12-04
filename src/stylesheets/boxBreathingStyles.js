@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     marginTop: "10%",
     marginLeft: "15%",
   },
-  upper: {
+    er: {
     height: "40%",
   },
   lower: {

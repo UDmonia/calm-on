@@ -1,0 +1,51 @@
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import Mindfulness from '../components/mindfulness'
+import Techniques from '../components/techniques'
+import BigSqueeze from '../screens/bigSqueeze'
+import MonsterHug from '../components/monsterHug'
+import { Image} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+const Stack = createStackNavigator();
+
+
+export default  mindfulnessStack = props => {
+  const headerOptions1 ={
+    headerBackTitleVisible: false,
+    headerTitle: 'Mindfulness',
+    headerRight: homeButton,
+    headerRightContainerStyle:{marginRight: '80%'},
+    headerTitleStyle: {fontSize: 20},
+  }
+
+  const headerOptions2 ={
+    headerBackTitleVisible: false,
+    headerTitle: 'Mindfulness',
+    headerTitleStyle: {fontSize: 24},
+    headerRight:level,
+    headerRightContainerStyle:{marginRight: '8%'},
+  }
+
+  const homeButton = (
+    <TouchableOpacity onPress = {()=>props.navigation.navigate('Home')}>
+      <Image source = {require('../../assets/images/MindfulnessNav/home.png')}/>
+    </TouchableOpacity>
+  )
+
+  const level = (
+    <Image source = {require('../../assets/images/misc/level.png')} />
+  )
+ 
+    return (
+    
+        <Stack.Navigator intialRouteName = 'Mindfulness'>
+          <Stack.Screen options = {headerOptions1} name='Mindfulness' component={Mindfulness} />
+          <Stack.Screen options = {headerOptions2} name= 'Techniques' component ={Techniques}/>
+          <Stack.Screen options = {headerOptions2} name= 'BigSqueeze' component ={BigSqueeze}/>
+          <Stack.Screen options = {headerOptions2} name= 'MonsterHug' component ={MonsterHug}/>
+        </Stack.Navigator>
+      
+    );
+  }
+  

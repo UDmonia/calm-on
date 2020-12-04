@@ -61,7 +61,7 @@ export const Box = ({
         >
           <Image
             style={{ marginLeft: 20, marginTop: 20 }}
-            source={require("../../assets/addJournal.png")}
+            source={require("../../assets/images/addJournal.png")}
           />
           <Text
             style={{ ...styles.journalTitle, marginTop: 10, marginRight: 20 }}
@@ -79,13 +79,15 @@ export const Box = ({
             <View style={styles.iconBox}>
               <Image source={image} />
             </View>
-            <View>
+            <View style={styles.textContainer}>
               <Text style={styles.journalTitle}>
                 {mood.charAt(0).toUpperCase() + mood.slice(1)}
               </Text>
+              {/*
               <Text style={styles.journal}>
                 I'm {mood} about {parsedJournal}
               </Text>
+              */}
             </View>
           </TouchableOpacity>
         </View>

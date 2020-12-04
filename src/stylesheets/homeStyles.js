@@ -1,109 +1,108 @@
-import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
+import { StyleSheet } from "react-native";
+import { windowWidth } from "../util/windowDimensions";
+import { screenWidthThreshold } from "../util/thresholds";
+const titleText = 0.05 * windowWidth;
+const bodyText = 0.0335 * windowWidth;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: "column",
   },
   image: {
-    width: '100%',
-    height: '100%',
-    
-  },
-  text: {
-    color: "grey",
-    fontSize: 30,
-    fontWeight: "bold"
+    width: "100%",
+    height: "100%",
   },
   format: {
     padding: 0,
   },
-
   main: {
-    backgroundColor: 'rgba(0, 0, 0, 0.45)',
-    display: 'flex',
-    height: '100%',
-    alignItems: 'center',
+    backgroundColor: "rgba(0, 0, 0, 0.45)",
+    display: "flex",
+    height: "100%",
+    alignItems: "center",
   },
   topBox: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#89AAFF',
+    backgroundColor: "#FFFFFF",
+    borderColor: "#89AAFF",
     borderRadius: 6,
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 2,
-    height: 108,
-    marginTop: 106,
-    width: 348,
+    height: "12.5%",
+    marginTop: windowWidth > screenWidthThreshold ? "15%" : "25%",
+    width: "85%",
   },
   topBoxTextName: {
-    color: '#000000',
-    fontSize: 24,
-    fontFamily: 'FontReg',
-    marginTop: 16,
-    marginHorizontal: 16,
+    color: "#000000",
+    fontSize: titleText,
+    fontFamily: "FontReg",
+    marginTop: "3%",
+    marginHorizontal: "5%",
   },
   topBoxText: {
-    color: '#000000',
-    fontSize: 14,
-    fontFamily: 'FontReg',
-    marginHorizontal: 16,
+    color: "#000000",
+    fontSize: bodyText,
+    fontFamily: "FontReg",
+    marginHorizontal: "5%",
   },
   scroll: {
-    display: 'flex',
-    alignItems: 'center',
-    width: Dimensions.get('window').width,
-    marginTop: 20,
+    display: "flex",
+    alignItems: "center",
+    width: windowWidth,
+    marginTop: "2.5%",
+    height: "40%",
+  },
+  spiritView: {
+    alignItems: "center",
+    width: windowWidth,
+    height: "100%",
   },
   spirit: {
-    width: 140,
-    height: 250,
+    height: "100%",
+    resizeMode: "contain",
   },
   btn: {
     borderRadius: 6,
-    position: 'relative',
     width: 104,
     height: 40,
-    // top: 321,
-    top: 20,
   },
   bottomBox: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#89AAFF',
+    backgroundColor: "#FFFFFF",
+    borderColor: "#89AAFF",
     borderRadius: 6,
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 2,
-    height: 112,
-    marginTop: '10%',
-    width: 348,
+    height: "14%",
+    marginTop: "7%",
+    width: "85%",
   },
   bottomBoxTextName: {
-    color: '#000000',
-    fontSize: 24,
-    fontFamily: 'FontReg',
-    fontWeight: '800',
+    color: "#000000",
+    fontSize: titleText,
+    fontFamily: "FontReg",
+    fontWeight: "800",
     marginTop: 4,
-    marginHorizontal: 16,
-    textAlign: 'center',
+    marginHorizontal: "5%",
+    textAlign: "center",
   },
   bottomBoxTextDescription: {
-    color: '#000000',
-    fontSize: 14,
-    fontFamily: 'FontReg',
-    marginHorizontal: 8,
-    textAlign: 'center',
+    color: "#000000",
+    fontSize: bodyText,
+    fontFamily: "FontReg",
+    marginHorizontal: "3%",
+    textAlign: "center",
   },
   nav: {
-    backgroundColor: '#8AABFF',
+    backgroundColor: "#8AABFF",
     height: 77,
-    width: '100%',
-    position: 'absolute',
+    width: "100%",
+    position: "absolute",
     bottom: 0,
   },
   navIcons: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 16,
     paddingHorizontal: 50,
   },
@@ -118,7 +117,21 @@ const styles = StyleSheet.create({
   profileIcon: {
     height: 40,
     width: 40,
-  }
-})
+  },
+  pickMeButton: {
+    backgroundColor: "#8AABFF",
+    height: "5%",
+    minHeight: 40,
+    width: "32.5%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 25,
+  },
+  pickMeText: {
+    color: "white",
+    fontFamily: "FontBold",
+    fontSize: 18,
+  },
+});
 
 export default styles;

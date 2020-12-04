@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, View, TextInput, TouchableOpacity } from "react-native";
+import { Image, Text, View, TextInput, TouchableOpacity, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import styles from "../../stylesheets/loginSignup.styles";
@@ -9,12 +9,12 @@ import {
   RECEIVE_USER,
   addName,
 } from "../../actions/session_actions";
-import mail from "../images/mail.png";
-import lock from "../images/password.png";
-import loginBtn from "../images/logIn.png";
-import pwConfirm from "../images/passwordConfirmed.png";
-import date from "../images/date.png";
-import registerBtn from "../images/createAcc.png";
+import mail from "../../../assets/images/mail.png";
+import lock from "../../../assets/images/password.png";
+import loginBtn from "../../../assets/images/logIn.png";
+import pwConfirm from "../../../assets/images/passwordConfirmed.png";
+import date from "../../../assets/images/date.png";
+import registerBtn from "../../../assets/images/createAcc.png";
 
 const initialLogin = {
   email: "",
@@ -28,8 +28,14 @@ const initialSignUp = {
   birthday: "",
 };
 
-export const validateEmail = (email) =>
-    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+const validateEmail = (email) =>
+  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+const formatDate = (d) => {
+  const iso = d.toISOString().split("-");
+  iso[2] = iso[2].slice(0, 2);
+  return iso.join("-");
+};
 
 const SessionForm = ({
   login,
@@ -102,16 +108,15 @@ const SessionForm = ({
   const confirmPasswordError = localErrors.find((e) => e.match(/match/));
   const birthdayError =
     localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
-  const formatDate = (d) => {
-    const iso = d.toISOString().split("-");
-    iso[2] = iso[2].slice(0, 2);
-    return iso.join("-");
-  };
 
   const handleConfirm = (d) => {
-    handleChange("birthday")(formatDate(d));
     toggleShow();
+    handleChange("birthday")(formatDate(d));
   };
+  const showOnlyDatePicker = () => {
+    Keyboard.dismiss();
+    setShow(!show);
+  }
 
   const handleAddName = () => {
     var Filter = require("bad-words");
@@ -136,7 +141,7 @@ const SessionForm = ({
         <View style={styles.form}>
           <View style={styles.label}>
             <Text style={styles.description}>Email</Text>
-            {emailError && <Text style={styles.error}>{emailError}</Text>}
+            {/*emailError && <Text style={styles.error}>{emailError}</Text>*/}
           </View>
           <View style={styles.inputAndIcon}>
             <Image styles={styles.icon} source={mail} />
@@ -206,13 +211,14 @@ const SessionForm = ({
                   value={birthday}
                   placeholder="Select Date..."
                   style={styles.input}
-                  onFocus={toggleShow}
+                  onFocus={showOnlyDatePicker}
                 />
 
                 <DateTimePickerModal
                   date={new Date()}
                   isVisible={show}
                   mode="date"
+                  display="calendar"
                   onCancel={toggleShow}
                   onConfirm={handleConfirm}
                 />
@@ -229,22 +235,16 @@ const SessionForm = ({
             style={styles.bottomButton}
             onPress={handleSubmit}
           >
-            <Image
-              style={{ width: 80, height: 40, borderRadius: 5 }}
-              source={loginBtn}
-            />
+            <Text style={styles.bottomButtonText}>Log in</Text>
           </TouchableOpacity>
         </View>
       ) : (
-        <View>
+        <View style={styles.test}>
           <TouchableOpacity
-            style={{ ...styles.bottomButton, width: 155 }}
+            style={{ ...styles.bottomButton, width: 215 }}
             onPress={handleSubmit}
           >
-            <Image
-              style={{ width: 150, height: 40, borderRadius: 5 }}
-              source={registerBtn}
-            />
+            <Text style={styles.bottomButtonText}>Create Account</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -267,17 +267,18 @@ const SessionForm = ({
               value={name}
             />
           </View>
-          <TouchableOpacity
-            onPress={() => handleAddName()}
-            style={styles.nextButton}
-          >
-            <Image source={require("../../../assets/next_button.png")} />
-          </TouchableOpacity>
+          <View style={{paddingTop: "10%"}}>
+            <TouchableOpacity
+              onPress={() => handleAddName()}
+              style={styles.bottomButton}>
+              <Text style={styles.bottomButtonText}>Next</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
   );
 };
 
+export { validateEmail, formatDate };
 export default SessionForm;
-

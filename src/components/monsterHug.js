@@ -6,7 +6,7 @@ export default MonsterHug =()=>{
     return(
         <View style = {styles.container}>
         <Text style = {styles.text} >Monster Hug</Text>
-         <Image source = {require('./images/MonsterHug/monsterHug.png')}/>
+         <Image source = {require('../../assets/images/MonsterHug/monsterHug.png')}/>
      </View>
     )
 }
