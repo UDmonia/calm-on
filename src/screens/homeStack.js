@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./home";
-import Calendar from "./checkInStack";
+import Calendar from "../components/checkInStack";
 import Achievement from "./Achievement";
 import Profile from "./profile";
 import React from "react";
