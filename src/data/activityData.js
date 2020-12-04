@@ -34,7 +34,7 @@ const SpriteActivityData = [
       ActRoute: "CountingSelection",
       about:
         "Play a matching game with Sprite to help you concentrate and focus.",
-      helpful: "You have trouble focusing or when you feel scared or worried.",
+      helpful: "You feel scared or worried.",
       img: require("../../assets/counting/countingTitle.png"),
     },
   },
@@ -75,8 +75,8 @@ const SpriteActivityData = [
       ActRoute: "Adventure",
       about:
         "Sometimes when we are upset, it helps us calm down when we imagine ourselves doing something enjoyable. Join me on an adventure!",
+      helpful: "You feel scared, angry or worried.",
       img: require("../../assets/activities/chooseadventure1.png"),
-      helpful: "You are scared or worried.",
     },
   },
 ];
