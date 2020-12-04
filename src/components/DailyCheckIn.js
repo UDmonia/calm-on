@@ -280,7 +280,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
               navigate("Home");
             }}
           >
-            <Text style={styles.continueButtonText}>Continue</Text>
+            <Text style={styles.continueButtonText}>Submit</Text>
           </TouchableOpacity>
         </View>
     </ScrollView>
