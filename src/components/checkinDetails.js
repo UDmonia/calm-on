@@ -155,6 +155,7 @@ const checkinDetails = ({ route }) => {
                 <Text style={styles.journalTitle}>
                   {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
                 </Text>
+                {/*
                 <Text style={styles.journal}>
                   I'm {journal.mood} about{" "}
                   <Text style={styles.bolded}>
@@ -172,6 +173,7 @@ const checkinDetails = ({ route }) => {
                       .substring(lastCommaIndex + 1)}
                   </Text>
                 </Text>
+                */}
               </View>
 
               <View style={styles.lower}>
