@@ -10,8 +10,8 @@ import {
 import styles from "../stylesheets/countingStyles";
 import bg from "../../assets/counting/backdrop.png";
 import sprit from "../../assets/counting/spirit1.png";
-import DialogBox from "./dialog";
-import Exit from "./Exit";
+import DialogBox from "../components/dialog";
+import Exit from "../components/Exit";
 
 /**
  * This componet is responsible for preforming the counting activity

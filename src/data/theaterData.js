@@ -36,8 +36,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Batman",
-        image: require("../../assets/adventure/locations/alphabetItems/batman.png"),
+        itemName: "Bat",
+        image: require("../../assets/adventure/locations/alphabetItems/bat.png"),
       },
     ],
   },
@@ -94,8 +94,8 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Elsa",
-        image: require("../../assets/adventure/locations/alphabetItems/elsa.png"),
+        itemName: "Elf",
+        image: require("../../assets/adventure/locations/alphabetItems/elf.png"),
       },
       {
         id: 3,
@@ -194,8 +194,8 @@ const picnicData = [
     items: [
       {
         id: 1,
-        itemName: "Jello",
-        image: require("../../assets/adventure/locations/alphabetItems/jello.png"),
+        itemName: "Jelly",
+        image: require("../../assets/adventure/locations/alphabetItems/jelly.png"),
       },
       {
         id: 2,
@@ -283,8 +283,8 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Ninja Turtles",
-        image: require("../../assets/adventure/locations/alphabetItems/ninjaturtles.png"),
+        itemName: "Ninja",
+        image: require("../../assets/adventure/locations/alphabetItems/ninja.png"),
       },
       {
         id: 3,
@@ -299,8 +299,8 @@ const picnicData = [
     items: [
       {
         id: 1,
-        itemName: "Oreos",
-        image: require("../../assets/adventure/locations/alphabetItems/oreos.png"),
+        itemName: "Ox",
+        image: require("../../assets/adventure/locations/alphabetItems/ox.png"),
       },
       {
         id: 2,
@@ -309,8 +309,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Olaf",
-        image: require("../../assets/adventure/locations/alphabetItems/olaf.png"),
+        itemName: "Otter",
+        image: require("../../assets/adventure/locations/alphabetItems/otter.png"),
       },
     ],
   },
@@ -372,8 +372,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Reclining Seat",
-        image: require("../../assets/adventure/locations/alphabetItems/recliningseat.png"),
+        itemName: "Rocket",
+        image: require("../../assets/adventure/locations/alphabetItems/rocket.png"),
       },
     ],
   },
@@ -388,13 +388,13 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Seat",
-        image: require("../../assets/adventure/locations/alphabetItems/seat.png"),
+        itemName: "Soda",
+        image: require("../../assets/adventure/locations/alphabetItems/soda.png"),
       },
       {
         id: 3,
-        itemName: "Superman",
-        image: require("../../assets/adventure/locations/alphabetItems/superman.png"),
+        itemName: "Superhero",
+        image: require("../../assets/adventure/locations/alphabetItems/superhero.png"),
       },
     ],
   },
@@ -472,8 +472,8 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Watermelon",
-        image: require("../../assets/adventure/locations/alphabetItems/watermelon.png"),
+        itemName: "Wizard",
+        image: require("../../assets/adventure/locations/alphabetItems/wizard.png"),
       },
       {
         id: 3,
@@ -498,8 +498,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Xmen",
-        image: require("../../assets/adventure/locations/alphabetItems/xmen.png"),
+        itemName: "X-mas",
+        image: require("../../assets/adventure/locations/alphabetItems/x-mas.png"),
       },
     ],
   },

@@ -10,7 +10,7 @@ import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
 import Recipes from "../data/countingData";
-import Exit from "./Exit";
+import Exit from "../components/Exit";
 
 /**
  * This componet is the starting point for the counting activity

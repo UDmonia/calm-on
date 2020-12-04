@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, ImageBackground, Image } from "react-native";
 import styles from "../stylesheets/adventureLocationAllStyles.js";
-import Exit from "./Exit";
+import Exit from "../components/Exit";
 
 /**
  * Displays all of the selected items sent from the AdventureLocation activity
