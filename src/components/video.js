@@ -1,7 +1,8 @@
 import React from 'react';
 import { Video } from 'expo-av';
 import Splash from './splash.js';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet,View, TouchableOpacity } from 'react-native';
+import Text from './Text';
 import { Dimensions } from 'react-native';
 
 

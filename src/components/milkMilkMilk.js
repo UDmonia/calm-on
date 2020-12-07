@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Image,
-  Text,
   ImageBackground,
   Animated,
 } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/milkMilkMilkStyles";
 
 class milkMilkMilk extends React.Component {

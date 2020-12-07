@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import {
   View,
   TouchableOpacity,
-  Text,
   Image,
   ImageBackground,
   ScrollView,
 } from "react-native";
+import Text from './Text';
 import Exit from "./Exit";
 import styles from "../stylesheets/adventureLocationStyles";
 // import locationData from "./locationData";

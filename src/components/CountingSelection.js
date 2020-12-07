@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   ImageBackground,
   Image,
   TouchableOpacity,
 } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";

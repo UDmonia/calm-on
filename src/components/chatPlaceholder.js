@@ -1,11 +1,11 @@
 //This file is a temporary placeholder
 import {
-  Text,
   View,
   TouchableOpacity,
   ImageBackground,
   Image,
 } from "react-native";
+import Text from './Text';
 import React from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
 

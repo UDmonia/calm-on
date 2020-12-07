@@ -1,4 +1,5 @@
-import { Text, Image, TouchableOpacity, View} from "react-native";
+import { Image, TouchableOpacity, View} from "react-native";
+import Text from './Text';
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import styles from "../stylesheets/activityCardStyles";

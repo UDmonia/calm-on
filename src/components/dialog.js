@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   Button,
   ImageBackground,
   Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import Text from './Text';
 
 export default DialogBox = ({ message }) => {
   return (

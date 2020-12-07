@@ -6,7 +6,7 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import Text from './Text'
+import Text from './Text';
 import { Dimensions } from "react-native";
 import styles from "../stylesheets/homeStyles";
 import { useSelector } from "react-redux";

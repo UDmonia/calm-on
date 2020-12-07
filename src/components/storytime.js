@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { View, Button, TouchableOpacity, Image, Text } from 'react-native';
+import { View, Button, TouchableOpacity, Image, } from 'react-native';
+import Text from './Text';
 import styles from '../stylesheets/storytimeStyles';
 
 const storytime = props => {

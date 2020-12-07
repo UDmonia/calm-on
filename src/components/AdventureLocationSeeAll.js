@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, ImageBackground, Image } from "react-native";
+import { View, ImageBackground, Image } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/adventureLocationAllStyles.js";
 import Exit from "./Exit";
 

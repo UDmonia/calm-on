@@ -1,5 +1,6 @@
 import React from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/adventureStyles";
 import picnicData from "../data/picnicData";
 import theaterData from "../data/theaterData";

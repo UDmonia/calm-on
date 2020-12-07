@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Image, Text, View, TouchableOpacity } from 'react-native';
+import { Image,View, TouchableOpacity } from 'react-native';
+import Text from './Text';
 import styles from '../stylesheets/techniques.styles'
 
 export default BigSqueeze =() => {

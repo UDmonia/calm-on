@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, Image, TouchableOpacity, Modal, TextInput, ImageBackground } from "react-native";
+import Text from './Text';
+import { View,Image, TouchableOpacity, Modal, TextInput, ImageBackground } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import styles from '../stylesheets/kpiStyles';
 

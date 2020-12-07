@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
+import { View, TouchableOpacity,Image } from "react-native";
+import Text from './Text';
 import { useDispatch } from "react-redux";
 import styles from "../stylesheets/checkInExplainStyles";
 import { checkin } from "../actions/session_actions";

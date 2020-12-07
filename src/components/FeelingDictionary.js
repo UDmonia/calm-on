@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, SafeAreaView, ScrollView, Image } from "react-native";
+import { View,SafeAreaView, ScrollView, Image } from "react-native";
 import styles from "../stylesheets/feelingDictionaryStyles";
+import Text from './Text';
 /**
  * This screen is a dictionary of what each feeling means.
  * Data is stored in objects and is mapped on to a component.

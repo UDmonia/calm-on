@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   Image,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/fiveFourThreeTwoOneTechStyles";
 
 /**

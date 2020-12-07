@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, ScrollView, TouchableOpacity } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/activitiesStyles";
 import feelings from "../../assets/activities/feelings.png";
 import why from "../../assets/activities/why.png";

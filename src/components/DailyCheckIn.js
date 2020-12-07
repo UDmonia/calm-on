@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View,Image, TouchableOpacity } from "react-native";
+import Text from './Text';
 import styles from "../stylesheets/dailyCheckInStyles";
 import { useSelector } from "react-redux";
 

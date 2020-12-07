@@ -1,6 +1,6 @@
 import React from "react";
 import {View, Image } from "react-native";
-import Text from './Text'
+import Text from './Text';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";

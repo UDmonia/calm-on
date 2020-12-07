@@ -1,11 +1,11 @@
 import {
   Animated,
-  Text,
   View,
   TouchableOpacity,
   Image,
   ImageBackground,
 } from "react-native";
+import Text from './Text';
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";

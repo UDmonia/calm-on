@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View,Image, TouchableOpacity, StyleSheet } from "react-native";
+import Text from './Text';
 
 /**
  * This is a componet used to provide activity information to the user
