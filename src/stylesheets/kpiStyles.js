@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },
     container: {
         height: "80%",
-        marginTop: "35%",
+        marginTop: "20%",
         marginHorizontal: "10%",
         display: "flex",
         alignItems: "center",
