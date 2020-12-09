@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { windowWidth, windowHeight } from "../util/windowDimensions";
 
 const styles = StyleSheet.create({
   numText: {
@@ -12,18 +13,21 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 300,
     left: 125,
+    fontFamily: "FontReg",
     //borderWidth:1,
   },
   introText:{
     position: "absolute",
     top: 350,
     left: 125,
+    fontFamily: "FontReg",
   },
   animatedText: {
     top: -120,
     left: 0,
     color: "#064B5B",
     fontSize: 120,
+    fontFamily: "FontReg",
     textAlign: "center",
   },
   animatedText2: {
@@ -32,6 +36,7 @@ const styles = StyleSheet.create({
     color: "#064B5B",
     fontWeight:'600',
     fontSize: 30,
+    fontFamily: "FontReg",
     textAlign: "center",
 
   },
@@ -43,6 +48,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    fontFamily: "FontReg",
   },
   answers: {
     width: "85%",
@@ -51,7 +57,9 @@ const styles = StyleSheet.create({
     marginTop: "2%",
     marginLeft: "7%",
     marginTop: "7%",
-    borderRadius: 10,
+    borderRadius: 25,
+    borderWidth: 3,
+    borderColor: "#DD6755",
     paddingBottom: 8,
     paddingTop: 10,
     fontWeight: "800",
@@ -59,7 +67,6 @@ const styles = StyleSheet.create({
   introContainer: {
     justifyContent: "center",
     alignContent: "center",
-    width: 450,
   },
   backgroundImage: {
     width: "100%",
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
   prompt: {
     backgroundColor: "#FBBDB4",
     width: "75%",
-    marginTop: "125%",
+    marginTop: "40%",
     marginLeft: "12%",
     borderRadius: 10,
     paddingBottom: "5%",
@@ -112,7 +119,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   stats: {

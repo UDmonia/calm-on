@@ -5,21 +5,23 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
 import kpiData from "../data/kpiData";
+import { windowWidth, windowHeight } from "../util/windowDimensions";
+
 
 const IntroStory = ({ start }) => {
   const [page, setPage] = useState(0);
-
   //Modify this array to add more screens
   const storyMap = [
     {
       question:
         "While we walk and breathe, follow the instructions on the sand. Click 'Go' when you're ready to start!",
-      answers: ["Go"],
+      answers: ["Go!"],
       background: "forest",
     },
   ];
@@ -29,7 +31,7 @@ const IntroStory = ({ start }) => {
     <View style={styles.introContainer}>
       <View style={styles.prompt}>
         <View style={styles.questionBox}>
-          <Text style={{ color: "white", textAlign: "center" }}>
+          <Text style={{ color: "white", textAlign: "center", fontFamily: "FontBold" }}>
             {storyMap[page].question}
           </Text>
         </View>
@@ -45,7 +47,7 @@ const IntroStory = ({ start }) => {
               }
               key={key}
             >
-              <Text style={{ textAlign: "center" }}>{answer}</Text>
+              <Text style={{ textAlign: "center", fontFamily: "FontReg", color: "#DD6755" }}>{answer}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -97,7 +99,7 @@ const OutroStory = () => {
       >
         <View style={styles.prompt}>
           <View style={styles.questionBox}>
-            <Text style={{ color: "white", textAlign: "center" }}>
+            <Text style={{ color: "white", textAlign: "center", fontFamily: "FontReg" }}>
               {storyMap1[page].question}
             </Text>
           </View>
@@ -121,7 +123,7 @@ const OutroStory = () => {
                 }}
                 key={key}
               >
-                <Text style={{ textAlign: "center" }}>{answer}</Text>
+                <Text style={{ textAlign: "center", fontFamily: "FontReg" }}>{answer}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -444,14 +446,25 @@ const boxBreathing = () => {
     zIndex: 1,
   };
 
+  const navigation = useNavigation();
+
   return (
     <View>
-      {outro && <OutroStory />}
-
       <ImageBackground
         source={require("../../assets/boxBreathing/beach.png")}
         style={styles.backgroundImage}
       >
+        <TouchableOpacity
+          style={{position: "absolute", top: "5%", left: "5%", zIndex: 14}}
+          onPress={ () => {navigation.navigate("kpi", {
+                      bg: require("../../assets/boxBreathing/beach.png"),
+                      pMsg: kpiData.boxBreathing.primMsg,
+                      sMsg: kpiData.boxBreathing.secMsg,
+                    })}}>
+          <Image
+            source={require('../../assets/exit/blkExitBtn.png')}/>
+        </TouchableOpacity>
+          {outro && <OutroStory />}
           <View style={styles.container}>
             {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
                 <Image source = {require("../../assets/exit_storytime.png")}/>

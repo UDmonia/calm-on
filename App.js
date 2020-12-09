@@ -221,7 +221,7 @@ export default function App() {
           />
           <Stack.Screen
             name="boxBreathing"
-            options={{ headerShown: true, headerTitle: "Box Breathing" }}
+            options={{ headerShown: false }}
             component={BoxBreathing}
           />
           <Stack.Screen
