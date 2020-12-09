@@ -14,8 +14,8 @@ import styles from "../stylesheets/chatPlaceholderStyles";
  *    - use a string, that will be used by a switch statement to call specific fucntions
  * [ ] Pass the route params out of the main function scope
  * [X] Convert all of the class methods to regular functions
- * [ ] Import the styles from the milkmilk chat box
- * [ ] Obatain the last emotion entered
+ * [X] Import the styles from the milkmilk chat box
+ * [ ] Obtain the last emotion entered
  */
 const spriteHappy = {
   key: null,
@@ -61,10 +61,11 @@ const spriteHappy = {
                   answers: [],
                   animation: null,
                   renderAnim: "",
-                  func: () =>
-                    navigation.navigate("FiveFourThreeTwoOneTech", {
-                      headerColor: curCharacter.characterColor,
-                    }),
+                  func: () => console.log("helllo!"),
+                  // () =>
+                  //   navigation.navigate("FiveFourThreeTwoOneTech", {
+                  //     headerColor: curCharacter.characterColor,
+                  //   }),
                   nxtNode: [],
                 },
                 {
@@ -73,10 +74,7 @@ const spriteHappy = {
                   answers: [],
                   animation: null,
                   renderAnim: "",
-                  func: () =>
-                    navigation.navigate("boxBreathing", {
-                      headerColor: curCharacter.characterColor,
-                    }),
+                  func: null,
                   nxtNode: [],
                 },
               ],
@@ -103,6 +101,7 @@ const spriteHappy = {
 };
 
 function findNode(answer, nxtNode) {
+  // console.log("-----" + { ...nxtNode.find((node) => node.key === answer) });
   return nxtNode.find((node) => node.key === answer);
 }
 
@@ -116,13 +115,21 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const [question, setQuestion] = useState(spriteHappy.question);
   const [answers, setAnswers] = useState(spriteHappy.answers);
   const [nxtNode, setNxtNode] = useState(spriteHappy.nxtNode);
+  const [funct, setFunc] = useState(spriteHappy.func);
 
   function traverseTree(answers) {
+    // const funcNode = nxtNode;
     const newNode = findNode(answers, nxtNode);
-    if (newNode !== undefined) {
+    // nxtNode.length !== 0 ? findNode(answers, nxtNode) : undefined;
+
+    // console.log("taverseTree: " + (newNode !== undefined));
+    // console.log("NEWNODE LEN: " + newNode.len);
+    // if (newNode !== undefined) {
+    if (newNode.nxtNode.length !== 0) {
       setQuestion(() => newNode.question);
       setAnswers(() => newNode.answers);
       setNxtNode(() => newNode.nxtNode);
+      setFunc(() => newNode.func);
     } else {
       console.log("done with the activity.");
       navigate("FlatActivities", {
@@ -164,7 +171,8 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
                   { borderColor: curCharacter.characterColor },
                 ]}
                 onPress={() => {
-                  // func;
+                  // console.log(func);
+                  funct ? funct() : null;
                   traverseTree(a);
                 }}
               >
