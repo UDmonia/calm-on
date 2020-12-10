@@ -7,6 +7,10 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
+/**
+ * Figure out how to conditionally import
+ */
+import { SpriteActivityData } from "../data/activityData";
 
 /**
  * TODO:
@@ -53,7 +57,7 @@ const spriteHappy = {
               answers: ["5-4-3-2-1", "Box Breathing"],
               animation: null,
               renderAnim: "",
-              func: null,
+              func: "FiveFourThreeTwoOneTech",
               nxtNode: [
                 {
                   key: "5-4-3-2-1",
@@ -61,11 +65,10 @@ const spriteHappy = {
                   answers: [],
                   animation: null,
                   renderAnim: "",
-                  func: () => console.log("helllo!"),
-                  // () =>
-                  //   navigation.navigate("FiveFourThreeTwoOneTech", {
-                  //     headerColor: curCharacter.characterColor,
-                  //   }),
+                  func: "FiveFourThreeTwoOneTech",
+                  // {
+                  //   navRoute: "FiveFourThreeTwoOneTech",
+                  // },
                   nxtNode: [],
                 },
                 {
@@ -74,7 +77,7 @@ const spriteHappy = {
                   answers: [],
                   animation: null,
                   renderAnim: "",
-                  func: null,
+                  func: "boxBreathing",
                   nxtNode: [],
                 },
               ],
@@ -86,11 +89,7 @@ const spriteHappy = {
               answers: [],
               animation: null,
               renderAnim: "",
-              func: () =>
-                navigation.navigate("FlatActivities", {
-                  activities: charaterActivities,
-                  headerColor: curCharacter.characterColor,
-                }),
+              func: null,
               nxtNode: [],
             },
           ],
@@ -101,7 +100,6 @@ const spriteHappy = {
 };
 
 function findNode(answer, nxtNode) {
-  // console.log("-----" + { ...nxtNode.find((node) => node.key === answer) });
   return nxtNode.find((node) => node.key === answer);
 }
 
@@ -115,28 +113,25 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const [question, setQuestion] = useState(spriteHappy.question);
   const [answers, setAnswers] = useState(spriteHappy.answers);
   const [nxtNode, setNxtNode] = useState(spriteHappy.nxtNode);
-  const [funct, setFunc] = useState(spriteHappy.func);
+  const [func, setFunc] = useState(spriteHappy.func);
 
   function traverseTree(answers) {
-    // const funcNode = nxtNode;
     const newNode = findNode(answers, nxtNode);
-    // nxtNode.length !== 0 ? findNode(answers, nxtNode) : undefined;
+    console.log(func);
+    setFunc(() => newNode.func);
+    setQuestion(() => newNode.question);
+    setAnswers(() => newNode.answers);
+    setNxtNode(() => newNode.nxtNode);
 
-    // console.log("taverseTree: " + (newNode !== undefined));
-    // console.log("NEWNODE LEN: " + newNode.len);
-    // if (newNode !== undefined) {
-    if (newNode.nxtNode.length !== 0) {
-      setQuestion(() => newNode.question);
-      setAnswers(() => newNode.answers);
-      setNxtNode(() => newNode.nxtNode);
-      setFunc(() => newNode.func);
-    } else {
+    if (newNode.nxtNode.length === 0) {
       console.log("done with the activity.");
-      navigate("FlatActivities", {
-        activities: charaterActivities,
-        headerColor: curCharacter.characterColor,
-      });
+      func ? navigate(func) : null;
     }
+    //  else {
+    //   // setFunc(() => newNode.func);
+    //   // console.log(func.navRoute);
+
+    // }
   }
 
   return (
@@ -171,9 +166,8 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
                   { borderColor: curCharacter.characterColor },
                 ]}
                 onPress={() => {
-                  // console.log(func);
-                  funct ? funct() : null;
                   traverseTree(a);
+                  func ? navigate(func) : null;
                 }}
               >
                 <Text key={i} style={styles.a}>
