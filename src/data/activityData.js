@@ -27,7 +27,7 @@ const SpriteActivityData = [
   {
     id: 2,
     title: "Calm Counting",
-    color: "#FBBDB4",
+    color: "#A7D1A8",
     img: require("../../assets/activities/counting.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -41,35 +41,35 @@ const SpriteActivityData = [
   {
     id: 3,
     title: "Milk Milk Milk",
-    color: "#6E891A",
-    img: require("../../assets/favicon.png"),
+    color: "#A7D1A8",
+    img: require("../../assets/activities/milk.png"),
     introPageData: {
       navRoute: "IntroActivity",
       ActRoute: "milkMilkMilk",
       about: "A story about your thoughts and feelings with the word milk!",
       helpful: "You feel scared or worried.",
-      img: require("../../assets/favicon.png"),
+      img: require("../../assets/activities/milkTitle.png"),
     },
   },
   {
     id: 4,
     title: "Box Breathing",
-    color: "#418295",
-    img: require("../../assets/favicon.png"),
+    color: "#A7D1A8",
+    img: require("../../assets/activities/box.png"),
     introPageData: {
       navRoute: "IntroActivity",
       ActRoute: "boxBreathing",
       about:
         "Take a walk with Sprite while you work on a calming breathing pattern",
       helpful: "You are feeling very sad, angry, scared, or worried.",
-      img: require("../../assets/favicon.png"),
+      img: require("../../assets/boxBreathing/actTitle.png"),
     },
   },
   {
     id: 5,
     title: "Picnic Time",
-    color: "#DA71C4",
-    img: require("../../assets/favicon.png"),
+    color: "#A7D1A8",
+    img: require("../../assets/activities/adventure.png"),
     introPageData: {
       navRoute: "IntroActivity",
       ActRoute: "Adventure",
