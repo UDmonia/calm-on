@@ -5,13 +5,12 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
-  Dimensions,
 } from "react-native";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
 import kpiData from "../data/kpiData";
-import { windowWidth, windowHeight } from "../util/windowDimensions";
+import { horizontalLength, horizontalPosition, bottomPosition, topPosition, spriteX1, spriteY1, spriteX2, spriteY2, spriteX3, spriteY3 } from "../util/boxBreathingMeasurements";
 
 
 const IntroStory = ({ start }) => {
@@ -142,10 +141,10 @@ const boxBreathing = () => {
   const leftBar = useRef(new Animated.Value(0)).current;
   const [outro, showOutro] = useState(false);
   const length1 = useRef(new Animated.Value(0)).current;
-  const length2 = useRef(new Animated.Value(280)).current;
-  const length3 = useRef(new Animated.Value(290)).current;
+  const length2 = useRef(new Animated.Value(horizontalLength)).current;
+  const length3 = useRef(new Animated.Value(horizontalLength)).current;
   const length4 = useRef(new Animated.Value(0)).current;
-  const move1 = useRef(new Animated.ValueXY({ x: 20, y: 330 })).current;
+  const move1 = useRef(new Animated.ValueXY({ x: spriteX1, y: spriteY1 })).current;
   const index = useRef(new Animated.Value(0)).current;
 
   const fadeAnimHoldInAir = useRef(new Animated.Value(0)).current;
@@ -224,12 +223,12 @@ const boxBreathing = () => {
         useNativeDriver: false,
       }),
       Animated.timing(length2, {
-        toValue: 280,
+        toValue: horizontalLength,
         duration: 0,
         useNativeDriver: false,
       }),
       Animated.timing(length3, {
-        toValue: 290,
+        toValue: horizontalLength,
         duration: 0,
         useNativeDriver: false,
       }),
@@ -274,12 +273,12 @@ const boxBreathing = () => {
             Animated.parallel([
               timerAnim(),
               Animated.timing(move1, {
-                toValue: { x: 300, y: 330 },
+                toValue: { x: spriteX2, y: spriteY1 },
                 useNativeDriver: false,
                 duration: 4000,
               }),
               Animated.timing(length1, {
-                toValue: 290,
+                toValue: horizontalLength,
                 duration: 4000,
                 useNativeDriver: false,
               }),
@@ -305,7 +304,7 @@ const boxBreathing = () => {
             Animated.parallel([
               timerAnim(),
               Animated.timing(move1, {
-                toValue: { x: 300, y: 60 },
+                toValue: { x: spriteX2, y: spriteY3 },
                 useNativeDriver: false,
                 duration: 4000,
               }),
@@ -340,7 +339,7 @@ const boxBreathing = () => {
             Animated.parallel([
               timerAnim(),
               Animated.timing(move1, {
-                toValue: { x: 20, y: 60 },
+                toValue: { x: spriteX1, y: spriteY3 },
                 useNativeDriver: false,
                 duration: 4000,
               }),
@@ -372,12 +371,12 @@ const boxBreathing = () => {
             Animated.parallel([
               timerAnim(),
               Animated.timing(move1, {
-                toValue: { x: 20, y: 330 },
+                toValue: { x: spriteX1, y: spriteY1 },
                 useNativeDriver: false,
                 duration: 4000,
               }),
               Animated.timing(length4, {
-                toValue: 285,
+                toValue: horizontalLength,
                 duration: 4000,
                 useNativeDriver: false,
               }),
@@ -405,8 +404,8 @@ const boxBreathing = () => {
 
   const animated1 = {
     position: "absolute",
-    left: "14.5%",
-    top: 395,
+    left: horizontalPosition,
+    top: bottomPosition,
     width: length1,
     borderWidth: 10,
     borderColor: "#064B5B",
@@ -416,8 +415,8 @@ const boxBreathing = () => {
   //Light blue
   const animated2 = {
     position: "absolute",
-    top: 135,
-    right: 64,
+    top: topPosition,
+    right: horizontalPosition,
     width: 10,
     borderWidth: topRightCorner,
     height: length2,
@@ -428,8 +427,8 @@ const boxBreathing = () => {
   //Light blue frame 3
   const animated3 = {
     position: "absolute",
-    top: 134,
-    left: 60,
+    top: topPosition,
+    left: horizontalPosition,
     width: length3,
     borderWidth: 10,
     borderColor: "#429BAF",
@@ -438,8 +437,8 @@ const boxBreathing = () => {
   //Dark blue moving bar 4
   const animated4 = {
     position: "absolute",
-    top: 134,
-    left: 60,
+    top: topPosition,
+    left: horizontalPosition,
     borderWidth: leftBar,
     height: length4,
     borderColor: "#064B5B",
@@ -447,7 +446,7 @@ const boxBreathing = () => {
   };
 
   const navigation = useNavigation();
-
+  console.log("Length: "+ horizontalLength +" | Window: " + horizontalLength/0.70)
   return (
     <View>
       <ImageBackground

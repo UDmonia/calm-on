@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { windowWidth, windowHeight } from "../util/windowDimensions";
+import { horizontalLength, horizontalPosition, bottomPosition, topPosition } from "../util/boxBreathingMeasurements";
 
 const styles = StyleSheet.create({
   numText: {
@@ -82,10 +82,10 @@ const styles = StyleSheet.create({
   },
   bottomFrame: {
     position: "absolute",
-    top: 395,
-    left: 60,
+    top: bottomPosition,
+    left: horizontalPosition,
     borderWidth: 10,
-    width: 280,
+    width: horizontalLength,
     //borderColor:'red',
     borderColor: "#429BAF",
     zIndex: 0,
@@ -93,27 +93,27 @@ const styles = StyleSheet.create({
 
   coverLeft: {
     position: "absolute",
-    top: 134,
-    left: 60,
+    top: topPosition,
+    left: horizontalPosition,
     borderWidth: 10,
-    height: 280,
+    height: horizontalLength,
     borderColor: "#429BAF",
     zIndex: 0,
   },
   barRight: {
     position: "absolute",
-    top: 134,
-    right: 64,
+    top: topPosition,
+    right: horizontalPosition,
     width: 10,
     borderWidth: 10,
     borderColor: "#064B5B",
-    height: 270,
+    height: horizontalLength,
   },
   barTop: {
     position: "absolute",
-    top: 134,
-    left: 70,
-    width: 270,
+    top: topPosition,
+    left: horizontalPosition,
+    width: horizontalLength,
     borderWidth: 10,
     borderColor: "#064B5B",
   },
