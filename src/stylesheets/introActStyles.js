@@ -8,7 +8,6 @@ export default StyleSheet.create({
     backgroundColor: "white",
     height: "60%",
     width: "100%",
-    //paddingLeft: "2%",
     paddingTop: "8%",
     alignItems: "center",
   },
@@ -48,10 +47,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: "5%",
-    //marginLeft: "15%",
   },
   fav: {
-    //marginLeft: "32%",
     alignSelf: "center",
   },
   startText: {
@@ -82,5 +79,9 @@ export default StyleSheet.create({
     width: "100%",
     borderColor: "#C4C4C4",
     alignItems: "center",
+  },
+  statData: { 
+    width: "33%", 
+    alignItems: "center" 
   },
 });

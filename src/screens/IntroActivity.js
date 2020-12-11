@@ -22,14 +22,14 @@ export default Intro = ({ route, navigation }) => {
       <View style={styles.lower}>
         {/* <Text style={styles.title}>{route.params.name}</Text> */}
         <View style={styles.statsRow}>
-          <View style= {{width: "33%", alignItems: "center"}}>
+          <View style= {styles.statData}>
             <Text style={styles.stats}>2</Text>
             <Text style={[styles.statType, { color: headerColor }]}>
               Time (mins)
             </Text>
           </View>
 
-          <View style= {{width: "33%", alignItems: "center"}}>
+          <View style= {styles.statData}>
             <View
               style={styles.border}
             >
@@ -40,7 +40,7 @@ export default Intro = ({ route, navigation }) => {
             </View>
           </View>
 
-          <View style= {{width: "33%", alignItems: "center"}}>
+          <View style= {styles.statData}>
             <TouchableOpacity>
               <Image
                 style={styles.fav}
