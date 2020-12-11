@@ -119,9 +119,9 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const [nxtNode, setNxtNode] = useState(spriteHappy.nxtNode);
   const [navInfo, setNavInfo] = useState(spriteHappy.navInfo);
 
-  console.log("Print last emotion");
+  console.log("Print last emotion: " + "emotion");
   if (nxtNode.length === 0) {
-    // console.log("done with the activity.");
+    // FlatActivities is the default navigation
     if (navInfo === "FlatActivities") {
       navigate("FlatActivities", {
         activities: charaterActivities,
@@ -181,7 +181,6 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
                 ]}
                 onPress={() => {
                   traverseTree(a);
-                  console.log("Called from PRESS");
                   navInfo ? navigate(navInfo) : null;
                 }}
               >
