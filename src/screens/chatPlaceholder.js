@@ -14,12 +14,13 @@ import { SpriteActivityData } from "../data/activityData";
 
 /**
  * TODO:
- * [ ] Use the navigate function out of the main function
+ * [X] Use the navigate function out of the main function
  *    - use a string, that will be used by a switch statement to call specific fucntions
- * [ ] Pass the route params out of the main function scope
+ * [X] Pass the route params out of the main function scope
  * [X] Convert all of the class methods to regular functions
  * [X] Import the styles from the milkmilk chat box
  * [ ] Obtain the last emotion entered
+ * [ ] Make a tree for all emotions
  */
 const spriteHappy = {
   key: null,
@@ -28,28 +29,25 @@ const spriteHappy = {
   answers: ["Ok"],
   animation: null,
   renderAnim: "",
-  func: null,
+  navInfo: null,
   nxtNode: [
     {
       key: "Ok",
       question:
-        "Last weekend, my buddy Flynn and I went on a nice and long hike near Fairylantis! We went on a very scenic trail with a lot of trees. You could see the bridge that connects from Central Fairyland to Northern Fairyland. There was a huuuuge rainbow and it was so beautiful. I felt so happy!",
-      answers: [
-        "Wow Sprite! That sounds like so much fun! I would like to go there sometime.",
-      ],
+        "Flynn and I went on a nice hike recently. I could clearly see Fairylantis Bridge, and there was a huuuuge rainbow!",
+      answers: ["That sounds like so much fun!"],
       animation: null,
       renderAnim: "",
-      func: null,
+      navInfo: null,
       nxtNode: [
         {
-          key:
-            "Wow Sprite! That sounds like so much fun! I would like to go there sometime.",
+          key: "That sounds like so much fun!",
           question:
-            "It is great to feel happy, but sometimes there may be a time where you may not feel happy. Why don’t we do some activities to help you be prepared for those moments?",
+            "Sometimes we need to find our happiness again. How about some activities for those moments?",
           answers: ["Sure!", "No, not right now."],
           animation: null,
           renderAnim: "",
-          func: null,
+          navInfo: null,
           nxtNode: [
             {
               key: "Sure!",
@@ -57,7 +55,7 @@ const spriteHappy = {
               answers: ["5-4-3-2-1", "Box Breathing"],
               animation: null,
               renderAnim: "",
-              func: "FiveFourThreeTwoOneTech",
+              navInfo: "",
               nxtNode: [
                 {
                   key: "5-4-3-2-1",
@@ -65,10 +63,7 @@ const spriteHappy = {
                   answers: [],
                   animation: null,
                   renderAnim: "",
-                  func: "FiveFourThreeTwoOneTech",
-                  // {
-                  //   navRoute: "FiveFourThreeTwoOneTech",
-                  // },
+                  navInfo: SpriteActivityData[0], // info for "FiveFourThreeTwoOne"
                   nxtNode: [],
                 },
                 {
@@ -77,20 +72,29 @@ const spriteHappy = {
                   answers: [],
                   animation: null,
                   renderAnim: "",
-                  func: "boxBreathing",
+                  navInfo: SpriteActivityData[3], // info for boxBreathing
                   nxtNode: [],
                 },
               ],
             },
             {
               key: "No, not right now.",
-              question:
-                "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
-              answers: [],
+              question: "Okay we can try another activity next time!",
+              answers: ["Ok"],
               animation: null,
               renderAnim: "",
-              func: null,
-              nxtNode: [],
+              navInfo: null,
+              nxtNode: [
+                {
+                  key: "Ok",
+                  question: "",
+                  answers: [],
+                  animation: null,
+                  renderAnim: "",
+                  navInfo: "FlatActivities",
+                  nxtNode: [],
+                },
+              ],
             },
           ],
         },
@@ -113,25 +117,35 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const [question, setQuestion] = useState(spriteHappy.question);
   const [answers, setAnswers] = useState(spriteHappy.answers);
   const [nxtNode, setNxtNode] = useState(spriteHappy.nxtNode);
-  const [func, setFunc] = useState(spriteHappy.func);
+  const [navInfo, setNavInfo] = useState(spriteHappy.navInfo);
+
+  console.log("Print last emotion");
+  if (nxtNode.length === 0) {
+    // console.log("done with the activity.");
+    if (navInfo === "FlatActivities") {
+      navigate("FlatActivities", {
+        activities: charaterActivities,
+        headerColor: curCharacter.characterColor,
+      });
+    } else {
+      navigate(navInfo.introPageData.navRoute, {
+        name: navInfo.title,
+        actNav: navInfo.introPageData.ActRoute,
+        about: navInfo.introPageData.about,
+        helpful: navInfo.introPageData.helpful,
+        img: navInfo.introPageData.img,
+        headerColor: curCharacter.characterColor,
+      });
+    }
+  }
 
   function traverseTree(answers) {
     const newNode = findNode(answers, nxtNode);
-    console.log(func);
-    setFunc(() => newNode.func);
+
+    setNavInfo(() => newNode.navInfo);
     setQuestion(() => newNode.question);
     setAnswers(() => newNode.answers);
     setNxtNode(() => newNode.nxtNode);
-
-    if (newNode.nxtNode.length === 0) {
-      console.log("done with the activity.");
-      func ? navigate(func) : null;
-    }
-    //  else {
-    //   // setFunc(() => newNode.func);
-    //   // console.log(func.navRoute);
-
-    // }
   }
 
   return (
@@ -167,7 +181,8 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
                 ]}
                 onPress={() => {
                   traverseTree(a);
-                  func ? navigate(func) : null;
+                  console.log("Called from PRESS");
+                  navInfo ? navigate(navInfo) : null;
                 }}
               >
                 <Text key={i} style={styles.a}>
