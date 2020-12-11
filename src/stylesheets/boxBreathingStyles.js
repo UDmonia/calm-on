@@ -1,37 +1,33 @@
 import { StyleSheet } from "react-native";
+import { horizontalLength, horizontalPosition, bottomPosition, topPosition } from "../util/boxBreathingMeasurements";
 
 const styles = StyleSheet.create({
   numText: {
-    position: "absolute",
-    top: 350,
-    left: 170,
     color: "#064B5B",
+    position: "absolute",
+    top: bottomPosition - bottomPosition * 0.5,
     //borderWidth:1,
   },
   text:{
     position: "absolute",
-    top: 300,
-    left: 125,
+    top: bottomPosition - bottomPosition * 0.57,
+    fontFamily: "FontReg",
     //borderWidth:1,
   },
   introText:{
     position: "absolute",
-    top: 350,
-    left: 125,
+    top: bottomPosition - bottomPosition * 0.45,
   },
   animatedText: {
-    top: -120,
-    left: 0,
     color: "#064B5B",
     fontSize: 120,
+    fontFamily: "FontReg",
     textAlign: "center",
   },
   animatedText2: {
-    top: -120,
-    left: 0,
     color: "#064B5B",
-    fontWeight:'600',
     fontSize: 30,
+    fontFamily: "FontBold",
     textAlign: "center",
 
   },
@@ -43,6 +39,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    fontFamily: "FontReg",
   },
   answers: {
     width: "85%",
@@ -51,7 +48,9 @@ const styles = StyleSheet.create({
     marginTop: "2%",
     marginLeft: "7%",
     marginTop: "7%",
-    borderRadius: 10,
+    borderRadius: 25,
+    borderWidth: 3,
+    borderColor: "#DD6755",
     paddingBottom: 8,
     paddingTop: 10,
     fontWeight: "800",
@@ -59,7 +58,6 @@ const styles = StyleSheet.create({
   introContainer: {
     justifyContent: "center",
     alignContent: "center",
-    width: 450,
   },
   backgroundImage: {
     width: "100%",
@@ -68,17 +66,17 @@ const styles = StyleSheet.create({
   prompt: {
     backgroundColor: "#FBBDB4",
     width: "75%",
-    marginTop: "125%",
-    marginLeft: "12%",
+    marginTop: bottomPosition + bottomPosition * 0.14,
+    marginLeft: "12.5%",
     borderRadius: 10,
     paddingBottom: "5%",
   },
   bottomFrame: {
     position: "absolute",
-    top: 395,
-    left: 60,
+    top: bottomPosition,
+    left: horizontalPosition,
     borderWidth: 10,
-    width: 280,
+    width: horizontalLength,
     //borderColor:'red',
     borderColor: "#429BAF",
     zIndex: 0,
@@ -86,33 +84,33 @@ const styles = StyleSheet.create({
 
   coverLeft: {
     position: "absolute",
-    top: 134,
-    left: 60,
+    top: topPosition,
+    left: horizontalPosition,
     borderWidth: 10,
-    height: 280,
+    height: horizontalLength,
     borderColor: "#429BAF",
     zIndex: 0,
   },
   barRight: {
     position: "absolute",
-    top: 134,
-    right: 64,
+    top: topPosition,
+    right: horizontalPosition,
     width: 10,
     borderWidth: 10,
     borderColor: "#064B5B",
-    height: 270,
+    height: horizontalLength,
   },
   barTop: {
     position: "absolute",
-    top: 134,
-    left: 70,
-    width: 270,
+    top: topPosition,
+    left: horizontalPosition,
+    width: horizontalLength,
     borderWidth: 10,
     borderColor: "#064B5B",
   },
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   stats: {
@@ -168,6 +166,30 @@ const styles = StyleSheet.create({
   descriptions: {
     color: "#7B7B7B",
     paddingTop: "2%",
+  },
+  questionText: {
+    color: "white",
+    textAlign: "center",
+    fontFamily: "FontReg"
+  },
+  answerText: { 
+    textAlign: "center", 
+    fontFamily: "FontReg" 
+  },
+  exitBtn: {
+    position: "absolute", 
+    top: "5%", 
+    left: "5%", 
+    zIndex: 14
+  },
+  spriteIcon: { 
+    position: "absolute", 
+    zIndex: 5 
+  },
+  introStory: { 
+    position: "absolute", 
+    top: 20, 
+    zIndex: 12 
   },
 });
 
