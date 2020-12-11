@@ -41,10 +41,8 @@ const styles = StyleSheet.create({
     },
     activities:{
         marginTop:'5.5%',
+        marginBottom: "20%",
         //borderWidth:1,
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-around'
     },
     option:{
         width:155,
@@ -102,15 +100,14 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         marginTop: '2%',
         marginBottom: '8%',
-        justifyContent:'space-evenly',
-        width:'105%'
     },
     times:{
         borderWidth: 1,
         height: 33,
         width: 75,
         borderRadius: 5,
-        borderColor:'#CDCDCD'
+        borderColor:'#CDCDCD',
+        marginHorizontal: 10,
     },
     timeActive:{
         borderWidth: 1,
@@ -118,7 +115,8 @@ const styles = StyleSheet.create({
         width: 75,
         borderRadius: 5,
         backgroundColor:'#FEE496',
-        borderColor:'#FFC10E'
+        borderColor:'#FFC10E',
+        marginHorizontal: 10,
     },
 
     timesText:{

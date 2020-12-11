@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,24 +17,27 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
       },
       text: {
-        color: "grey",
-        fontSize: 30,
-        fontWeight: "bold"
+        color: "white",
+        fontSize: 20,
+        fontFamily: "FontReg"
       },
       format: {
-        padding: 0,
         flex: 1,
         flexDirection: "column",
         alignItems: "center",
       },
+      btnContainer: {
+        height: 50,
+        width: "50%",
+        display: "flex",
+        marginBottom: "20%",
+      },
       btn: {
-        borderRadius: 6,
-        marginBottom: 80,
-
-        // position: 'relative',
-        width: 104,
-        height: 40,
-        // top: 321,
+        height: "100%",
+        backgroundColor: "#8AABFF",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 100,
       },
 })
 

@@ -16,6 +16,7 @@ function ActivityCard(props) {
                     about: props.introPageData.about,
                     helpful: props.introPageData.helpful,
                     img: props.introPageData.img,
+                    headerColor: props.header,
                 })}>
                 <Text style={styles.title}>{props.title}</Text>
                 <Image source={props.imagePath}/>
