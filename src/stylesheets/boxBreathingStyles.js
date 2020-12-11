@@ -3,40 +3,31 @@ import { horizontalLength, horizontalPosition, bottomPosition, topPosition } fro
 
 const styles = StyleSheet.create({
   numText: {
-    position: "absolute",
-    top: 350,
-    left: 170,
     color: "#064B5B",
+    position: "absolute",
+    top: bottomPosition - bottomPosition * 0.5,
     //borderWidth:1,
   },
   text:{
     position: "absolute",
-    top: 300,
-    left: 125,
+    top: bottomPosition - bottomPosition * 0.57,
     fontFamily: "FontReg",
     //borderWidth:1,
   },
   introText:{
     position: "absolute",
-    top: 350,
-    left: 125,
-    fontFamily: "FontReg",
+    top: bottomPosition - bottomPosition * 0.45,
   },
   animatedText: {
-    top: -120,
-    left: 0,
     color: "#064B5B",
     fontSize: 120,
     fontFamily: "FontReg",
     textAlign: "center",
   },
   animatedText2: {
-    top: -120,
-    left: 0,
     color: "#064B5B",
-    fontWeight:'600',
     fontSize: 30,
-    fontFamily: "FontReg",
+    fontFamily: "FontBold",
     textAlign: "center",
 
   },
@@ -75,8 +66,8 @@ const styles = StyleSheet.create({
   prompt: {
     backgroundColor: "#FBBDB4",
     width: "75%",
-    marginTop: "40%",
-    marginLeft: "12%",
+    marginTop: bottomPosition + bottomPosition * 0.14,
+    marginLeft: "12.5%",
     borderRadius: 10,
     paddingBottom: "5%",
   },

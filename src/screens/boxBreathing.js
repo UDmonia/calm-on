@@ -446,7 +446,7 @@ const boxBreathing = () => {
   };
 
   const navigation = useNavigation();
-  console.log("Length: "+ horizontalLength +" | Window: " + horizontalLength/0.70)
+  
   return (
     <View>
       <ImageBackground
@@ -526,7 +526,7 @@ const boxBreathing = () => {
 
             <Animated.View
               style={[
-                { ...styles.introText, left: 160 },
+                { ...styles.introText},
                 {
                   opacity: ready2, // Bind opacity to animated value
                 },
