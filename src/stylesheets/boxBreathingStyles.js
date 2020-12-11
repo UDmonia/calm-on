@@ -167,6 +167,30 @@ const styles = StyleSheet.create({
     color: "#7B7B7B",
     paddingTop: "2%",
   },
+  questionText: {
+    color: "white",
+    textAlign: "center",
+    fontFamily: "FontReg"
+  },
+  answerText: { 
+    textAlign: "center", 
+    fontFamily: "FontReg" 
+  },
+  exitBtn: {
+    position: "absolute", 
+    top: "5%", 
+    left: "5%", 
+    zIndex: 14
+  },
+  spriteIcon: { 
+    position: "absolute", 
+    zIndex: 5 
+  },
+  introStory: { 
+    position: "absolute", 
+    top: 20, 
+    zIndex: 12 
+  },
 });
 
 export default styles;

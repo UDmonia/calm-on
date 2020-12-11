@@ -98,7 +98,7 @@ const OutroStory = () => {
       >
         <View style={styles.prompt}>
           <View style={styles.questionBox}>
-            <Text style={{ color: "white", textAlign: "center", fontFamily: "FontReg" }}>
+            <Text style={styles.questionText}>
               {storyMap1[page].question}
             </Text>
           </View>
@@ -122,7 +122,7 @@ const OutroStory = () => {
                 }}
                 key={key}
               >
-                <Text style={{ textAlign: "center", fontFamily: "FontReg" }}>{answer}</Text>
+                <Text style={styles.answerText}>{answer}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -454,7 +454,7 @@ const boxBreathing = () => {
         style={styles.backgroundImage}
       >
         <TouchableOpacity
-          style={{position: "absolute", top: "5%", left: "5%", zIndex: 14}}
+          style={styles.exitBtn}
           onPress={ () => {navigation.navigate("kpi", {
                       bg: require("../../assets/boxBreathing/beach.png"),
                       pMsg: kpiData.boxBreathing.primMsg,
@@ -589,13 +589,13 @@ const boxBreathing = () => {
             <Animated.View style={[animated4]}></Animated.View>
             <View style={styles.coverLeft}></View>
             <Animated.View
-              style={[move1.getLayout(), { position: "absolute", zIndex: 5 }]}
+              style={[move1.getLayout(), styles.spriteIcon]}
             >
               <Image source={require("../../assets/boxBreathing/spirit.png")} />
             </Animated.View>
 
             {!startAnimation && (
-              <View style={{ position: "absolute", top: 20, zIndex: 12 }}>
+              <View style={styles.introStory}>
                 <IntroStory start={setStartAnimation} />
               </View>
             )}
