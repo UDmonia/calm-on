@@ -33,6 +33,9 @@ export default StyleSheet.create({
     },
     title: {
         fontFamily: "FontReg",
-        //backgroundColor: "blue",
+        flex: 1,
+        flexWrap: "wrap",
+        textAlign: "right",
+        marginRight: "15%",
     }
 });

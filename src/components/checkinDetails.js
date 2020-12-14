@@ -29,9 +29,9 @@ const checkinDetails = ({ route }) => {
    * Passing data from Calendar.js
    * @param entry The specific check-in from the check-in array
    * @param allEntries The entire check-in array
-   * @param time The time of the day of a particular check-in
+   * @param spriteActivityData all the activity data for the sprite character
    */
-  const { entry, allEntries, time } = route.params;
+  const { entry, allEntries, time, spriteActivityData } = route.params;
 
   // Navigating from daily preview: set initial index to specfic time pressed
   const specificTime = entry.journals.find(
@@ -79,6 +79,7 @@ const checkinDetails = ({ route }) => {
       </Text>
     </TouchableOpacity>
   ));
+  console.log(journal.mood);
 
   return (
     <View style={styles.format}>
@@ -178,22 +179,19 @@ const checkinDetails = ({ route }) => {
 
               <View style={styles.lower}>
                 <Image source={require("../../assets/images/banner.png")} />
-                <View style={styles.activities}>
+                {spriteActivityData.map((activity) => {
+                  return (
                     <ActivityCard
-                      title={"Milk Milk Milk"}
-                      key={3}
-                      bgColor={"#6E891A"}
-                      navigateLink={"IntroActivity"}
-                      imagePath={require("../../assets/favicon.png")}
-                      introPageData={{
-                        navRoute: "IntroActivity",
-                        ActRoute: "milkMilkMilk",
-                        about: "A story about your thoughts and feelings with the word milk!",
-                        helpful: "You feel scared or worried.",
-                        img: require("../../assets/favicon.png"),
-                        }}
-                      header={"#2E7D32"}/>
-                </View>
+                      title={activity.title}
+                      key={activity.id}
+                      bgColor={activity.color}
+                      navigateLink={activity.introPageData.navRoute}
+                      imagePath={activity.img}
+                      introPageData={activity.introPageData}
+                      header={"#2E7D32"}
+                    />
+                  );
+                })}
               </View>
             </ScrollView>
           </View>
