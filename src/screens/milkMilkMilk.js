@@ -105,7 +105,7 @@ class milkMilkMilk extends React.Component {
         { option: "Yes", func: () => this._board() },
         { option: "Not really", func: () => this._board() },
       ],
-      [{ option: "Done", func: () => this.exitOut() }],
+      [{ option: "Done", func: () => this.finishAct() }],
     ];
 
     this.state = {
@@ -117,6 +117,7 @@ class milkMilkMilk extends React.Component {
 
     this.exit = this.exit.bind(this);
     this.exitOut = this.exitOut.bind(this);
+    this.finishAct = this.finishAct.bind(this);
     this.dontExitOut = this.dontExitOut.bind(this);
     this.goToPrevScreen = this.goToPrevScreen.bind(this);
   }
@@ -130,6 +131,9 @@ class milkMilkMilk extends React.Component {
   }
 
   exitOut() {
+    this.props.navigation.navigate("FlatActivities");
+  }
+  finishAct() {
     this.props.navigation.navigate("kpi", {
       bg: require("../../assets/images/storytime_background.png"),
       pMsg: kpiData.milkMilkMilk.primMsg,
