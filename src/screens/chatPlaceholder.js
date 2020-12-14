@@ -7,10 +7,12 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
+import { useSelector } from "react-redux";
 /**
  * Figure out how to conditionally import
  */
-import { SpriteActivityData } from "../data/activityData";
+// import { SpriteActivityData } from "../data/activityData";
+import { spriteHappy } from "../data/spriteChatData";
 
 /**
  * TODO:
@@ -22,89 +24,41 @@ import { SpriteActivityData } from "../data/activityData";
  * [ ] Obtain the last emotion entered
  * [ ] Make a tree for all emotions
  */
-const spriteHappy = {
-  key: null,
-  question:
-    "Hey _____. I heard you were feeling happy today. Can I tell you a story about the last time I felt happy?",
-  answers: ["Ok"],
-  animation: null,
-  renderAnim: "",
-  navInfo: null,
-  nxtNode: [
-    {
-      key: "Ok",
-      question:
-        "Flynn and I went on a nice hike recently. I could clearly see Fairylantis Bridge, and there was a huuuuge rainbow!",
-      answers: ["That sounds like so much fun!"],
-      animation: null,
-      renderAnim: "",
-      navInfo: null,
-      nxtNode: [
-        {
-          key: "That sounds like so much fun!",
-          question:
-            "Sometimes we need to find our happiness again. How about some activities for those moments?",
-          answers: ["Sure!", "No, not right now."],
-          animation: null,
-          renderAnim: "",
-          navInfo: null,
-          nxtNode: [
-            {
-              key: "Sure!",
-              question: "Great, let’s go!",
-              answers: ["5-4-3-2-1", "Box Breathing"],
-              animation: null,
-              renderAnim: "",
-              navInfo: "",
-              nxtNode: [
-                {
-                  key: "5-4-3-2-1",
-                  question: "",
-                  answers: [],
-                  animation: null,
-                  renderAnim: "",
-                  navInfo: SpriteActivityData[0], // info for "FiveFourThreeTwoOne"
-                  nxtNode: [],
-                },
-                {
-                  key: "Box Breathing",
-                  question: "",
-                  answers: [],
-                  animation: null,
-                  renderAnim: "",
-                  navInfo: SpriteActivityData[3], // info for boxBreathing
-                  nxtNode: [],
-                },
-              ],
-            },
-            {
-              key: "No, not right now.",
-              question: "Okay we can try another activity next time!",
-              answers: ["Ok"],
-              animation: null,
-              renderAnim: "",
-              navInfo: null,
-              nxtNode: [
-                {
-                  key: "Ok",
-                  question: "",
-                  answers: [],
-                  animation: null,
-                  renderAnim: "",
-                  navInfo: "FlatActivities",
-                  nxtNode: [],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
 
 function findNode(answer, nxtNode) {
   return nxtNode.find((node) => node.key === answer);
+}
+
+/**
+ * getEmotion: will return the last emotion the user entered if one doesnt
+ *  exist the function will return a "default" string value signaling that
+ *  no emotion was ever entered
+ *
+ * @param {object of checkins} checkinObject: checkinObject will contain
+ *  all of the users checkins and returns a string value of the last emotion
+ */
+function getEmotion(checkinObject) {
+  const journals = [];
+  if (checkinObject) {
+    for (const prop in checkinObject) {
+      journals.push({ journals: checkinObject[prop], _id: prop, date: prop });
+    }
+
+    //Reverse journals array so the first element check-in item is the latest instead of the oldest
+    journals.reverse();
+    return journals[0].journals[0].mood;
+  } else {
+    return "default";
+  }
+}
+
+function getDialogue(emotion, character) {
+  if (character === "spirit") {
+    switch (emotion) {
+      case "sad":
+        return spriteHappy;
+    }
+  }
 }
 
 const chatPlaceholder = ({ route, navigation: { navigate } }) => {
@@ -113,13 +67,21 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const bg = curCharacter.background;
   const activitiesBtnImg = curCharacter.viewActivities;
   const charaterActivities = curCharacter.activities;
-
   const [question, setQuestion] = useState(spriteHappy.question);
   const [answers, setAnswers] = useState(spriteHappy.answers);
   const [nxtNode, setNxtNode] = useState(spriteHappy.nxtNode);
   const [navInfo, setNavInfo] = useState(spriteHappy.navInfo);
+  const checkinObject = useSelector((state) => state.session.user.checkIns);
+  const chatEmotion = getEmotion(checkinObject);
+  const chatDialogue = getDialogue(chatEmotion, curCharacter.name);
+  console.log(chatDialogue);
 
-  console.log("Print last emotion: " + "emotion");
+  // if (chatEmotion === "sad" && curCharacter.name) {
+  //   console.log("GOOOD");
+  // } else {
+  //   console.log("BAAAAD");
+  // }
+
   if (nxtNode.length === 0) {
     // FlatActivities is the default navigation
     if (navInfo === "FlatActivities") {
