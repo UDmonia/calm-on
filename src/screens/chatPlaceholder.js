@@ -21,8 +21,9 @@ import { spriteHappy } from "../data/spriteChatData";
  * [X] Pass the route params out of the main function scope
  * [X] Convert all of the class methods to regular functions
  * [X] Import the styles from the milkmilk chat box
- * [ ] Obtain the last emotion entered
+ * [X] Obtain the last emotion entered
  * [ ] Make a tree for all emotions
+ * [ ] Choose chat based on character and emotion
  */
 
 function findNode(answer, nxtNode) {
@@ -53,10 +54,13 @@ function getEmotion(checkinObject) {
 }
 
 function getDialogue(emotion, character) {
-  if (character === "spirit") {
+  console.log(emotion + character);
+  if (character === "Sprite") {
     switch (emotion) {
       case "sad":
         return spriteHappy;
+      default:
+        return "NOT GOOD";
     }
   }
 }
@@ -67,20 +71,13 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   const bg = curCharacter.background;
   const activitiesBtnImg = curCharacter.viewActivities;
   const charaterActivities = curCharacter.activities;
-  const [question, setQuestion] = useState(spriteHappy.question);
-  const [answers, setAnswers] = useState(spriteHappy.answers);
-  const [nxtNode, setNxtNode] = useState(spriteHappy.nxtNode);
-  const [navInfo, setNavInfo] = useState(spriteHappy.navInfo);
   const checkinObject = useSelector((state) => state.session.user.checkIns);
   const chatEmotion = getEmotion(checkinObject);
   const chatDialogue = getDialogue(chatEmotion, curCharacter.name);
-  console.log(chatDialogue);
-
-  // if (chatEmotion === "sad" && curCharacter.name) {
-  //   console.log("GOOOD");
-  // } else {
-  //   console.log("BAAAAD");
-  // }
+  const [question, setQuestion] = useState(chatDialogue.question);
+  const [answers, setAnswers] = useState(chatDialogue.answers);
+  const [nxtNode, setNxtNode] = useState(chatDialogue.nxtNode);
+  const [navInfo, setNavInfo] = useState(chatDialogue.navInfo);
 
   if (nxtNode.length === 0) {
     // FlatActivities is the default navigation
