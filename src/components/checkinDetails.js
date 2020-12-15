@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
 import ActivityCard from "./ActivityCard";
+import { SpriteActivityData } from "../data/activityData";
 
 /**
  * Contains all images associated with each emotion
@@ -79,7 +80,16 @@ const checkinDetails = ({ route }) => {
       </Text>
     </TouchableOpacity>
   ));
-  console.log(journal.mood);
+  
+  // Filter all the activities if they fit the tag
+  const activityList = [];
+  var i;
+  for (i = 0; i < spriteActivityData.length; i++) {
+    //console.log(spriteActivityData[i].tag);
+    if(spriteActivityData[i].tag.includes(journal.mood)) {
+        activityList.push(spriteActivityData[i]);
+    }
+  }
 
   return (
     <View style={styles.format}>
@@ -179,7 +189,7 @@ const checkinDetails = ({ route }) => {
 
               <View style={styles.lower}>
                 <Image source={require("../../assets/images/banner.png")} />
-                {spriteActivityData.map((activity) => {
+                {activityList.map((activity) => {
                   return (
                     <ActivityCard
                       title={activity.title}
@@ -188,7 +198,7 @@ const checkinDetails = ({ route }) => {
                       navigateLink={activity.introPageData.navRoute}
                       imagePath={activity.img}
                       introPageData={activity.introPageData}
-                      header={"#2E7D32"}
+                      header={activity.introPageData.headerColor}
                     />
                   );
                 })}
