@@ -6,8 +6,8 @@ import moment from 'moment'
 import {useSelector} from 'react-redux'
 import {Box} from './previewEntries'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import styles from '../stylesheets/calendarStyles'
-
+import styles from '../stylesheets/calendarStyles';
+import { SpriteActivityData } from "../data/activityData";
 var today = Date.now()
 
 /**
@@ -42,7 +42,7 @@ const Calendar =({navigation: { navigate} })=>{
         <PreviewDaily
         showJournal = {
             (time)=>{navigate('CheckinDetail', 
-            {entry: journals[key], allEntries: journals,time: time})
+            {entry: journals[key], allEntries: journals,time: time, spriteActivityData: SpriteActivityData})
         }
             
         } 
