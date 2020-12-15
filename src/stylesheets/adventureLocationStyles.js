@@ -24,8 +24,10 @@ export default StyleSheet.create({
   },
   exitPosition: {
     alignSelf: "flex-start",
-    marginLeft: 50,
-    marginBottom: 30,
+    marginTop: "5%",
+    marginBottom: "5%",
+    left: "5%",
+    top: "1%",
   },
   row: {
     flexDirection: "row",
@@ -82,11 +84,11 @@ export default StyleSheet.create({
     minHeight: 50,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: "4%",
   },
   selectedItemTxt: {
     color: "white",
-    marginHorizontal: 10,
-    marginRight: 235,
     fontFamily: "FontReg",
   },
   seeAllTxt: {
