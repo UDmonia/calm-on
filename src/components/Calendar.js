@@ -8,7 +8,6 @@ import {Box} from './previewEntries'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from '../stylesheets/calendarStyles';
 import { SpriteActivityData } from "../data/activityData";
-import { sprite, flynn, aurora} from "../data/characterData";
 var today = Date.now()
 
 /**

@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
 import ActivityCard from "./ActivityCard";
-import { SpriteActivityData } from "../data/activityData";
 
 /**
  * Contains all images associated with each emotion
