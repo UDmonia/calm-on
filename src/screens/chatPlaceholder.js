@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
  * Figure out how to conditionally import
  */
 // import { SpriteActivityData } from "../data/activityData";
-import { spriteHappy } from "../data/spriteChatData";
+import { spriteHappy, spriteSad } from "../data/spriteChatData";
 
 /**
  * TODO:
@@ -47,18 +47,29 @@ function getEmotion(checkinObject) {
 
     //Reverse journals array so the first element check-in item is the latest instead of the oldest
     journals.reverse();
+
+    journals.forEach((j) => {
+      console.log(j.journals);
+    });
     return journals[0].journals[0].mood;
   } else {
     return "default";
   }
 }
 
+/**
+ *
+ * @param {String} emotion: last emotion entered
+ * @param {String} character: current character
+ */
 function getDialogue(emotion, character) {
   console.log(emotion + character);
   if (character === "Sprite") {
     switch (emotion) {
-      case "sad":
+      case "happy":
         return spriteHappy;
+      case "sad":
+        return spriteSad;
       default:
         return "NOT GOOD";
     }
