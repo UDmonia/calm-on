@@ -116,11 +116,10 @@ const Home = ({ props, navigation: { navigate } }) => {
               })}
             </ScrollView>
           </View>
-          <TouchableOpacity onPress={() => handleBtnPress()}>
-            <Image
-              style={styles.btn}
-              source={require("../../assets/images/homescreen_btn.png")}
-            />
+          <TouchableOpacity 
+            onPress={() => handleBtnPress()}
+            style={styles.pickMeButton}>
+            <Text style={styles.pickMeText}>Pick Me!</Text>
           </TouchableOpacity>
 
           <View style={styles.bottomBox}>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import styles from "../stylesheets/dailyCheckInStyles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { checkin } from "../actions/session_actions";
 
 /** TODO:
  * - make feelingContainers a single component and pass in props
@@ -218,66 +219,71 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
     setSad,
     setAngry,
   ];
+  const dispatch = useDispatch();
+
+
+
+  const handleAddEmotion = (feeling, reasons) => {
+    return dispatch(
+      checkin({
+        mood: feeling,
+        journal: reasons,
+      })
+    );
+  };
 
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.txtQuestion}>
-        How are you feeling today,{"\n"}
-        {userName}?
-      </Text>
-      <View style={styles.txtInfo}>
-        <Image source={require("../../assets/images/info.png")} />
-        <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
-          <Text style={styles.txtInfo}>Learn more about feelings</Text>
-        </TouchableOpacity>
-      </View>
-      <View>
-        <View style={styles.row}>
-          <Happy setFeeling={setFeeling} arrHooks={arrHooks} happy={happy} />
-          <Excited
-            setFeeling={setFeeling}
-            arrHooks={arrHooks}
-            excited={exited}
-          />
+    <ScrollView contentContainerStyle={styles.mainContainer}>
+        <Text style={styles.txtQuestion}>
+          How are you feeling today,{"\n"}
+          {userName}?
+        </Text>
+        <View style={styles.txtInfo}>
+          <Image source={require("../../assets/images/info.png")} />
+          <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
+            <Text style={styles.txtInfo}>Learn more about feelings</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.row}>
-          <Scared setFeeling={setFeeling} arrHooks={arrHooks} scared={scared} />
-          <Worried
-            setFeeling={setFeeling}
-            arrHooks={arrHooks}
-            worried={worried}
-          />
+        <View>
+          <View style={styles.row}>
+            <Happy setFeeling={setFeeling} arrHooks={arrHooks} happy={happy} />
+            <Excited
+              setFeeling={setFeeling}
+              arrHooks={arrHooks}
+              excited={exited}
+            />
+          </View>
+          <View style={styles.row}>
+            <Scared setFeeling={setFeeling} arrHooks={arrHooks} scared={scared} />
+            <Worried
+              setFeeling={setFeeling}
+              arrHooks={arrHooks}
+              worried={worried}
+            />
+          </View>
+          <View style={styles.row}>
+            <Sad setFeeling={setFeeling} arrHooks={arrHooks} sad={sad} />
+            <Angry setFeeling={setFeeling} arrHooks={arrHooks} angry={angry} />
+          </View>
         </View>
-        <View style={styles.row}>
-          <Sad setFeeling={setFeeling} arrHooks={arrHooks} sad={sad} />
-          <Angry setFeeling={setFeeling} arrHooks={arrHooks} angry={angry} />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.buttons, styles.cancelButton]}
+            onPress={() => navigate("Home")}
+          >
+            <Text style={styles.cancelButtonText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.buttons, styles.continueButton]}
+            onPress={() => {
+              handleAddEmotion(curFeeling, "");
+              navigate("Home");
+            }}
+          >
+            <Text style={styles.continueButtonText}>Submit</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.buttons}
-          onPress={() => navigate("Home")}
-        >
-          <Image
-            style={styles.buttonCancel}
-            source={require("../../assets/images/checkInCancelButton.png")}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttons}
-          onPress={() => {
-            curFeeling !== ""
-              ? navigate("CheckInExplain", { feeling: curFeeling })
-              : null;
-          }}
-        >
-          <Image
-            style={styles.buttons}
-            source={require("../../assets/images/checkInContinueButton.png")}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

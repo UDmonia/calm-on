@@ -12,9 +12,8 @@ const styles = StyleSheet.create({
     main: {
         backgroundColor: 'rgba(0, 0, 0, 0.45)',
         display: 'flex',
-        height: '100%',
         alignItems: 'center',
-        
+        height: "100%",
       },
     calendar:{
         width:'92%',
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
     },
     dates:{
         marginTop: '5%',
-        height: '100%',
         //borderWidth:1
     },
     hangerLeft:{
@@ -52,6 +50,47 @@ const styles = StyleSheet.create({
         position:'absolute',
         right: '12%',
         top: '-20%'
+    },
+    toggleTextWhite: {
+        fontSize: 20,
+        fontFamily: "FontReg",
+        color: "white",
+    },
+    toggleTextBlack: {
+        fontSize: 20,
+        fontFamily: "FontReg",
+        color: "black",
+    },
+    highlighted: {
+        width:105,
+        height: "100%",
+        backgroundColor: "white",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    notHighlighted: {
+        width:105,
+        height: "100%",
+        backgroundColor: null,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    feelingContainer: {
+        paddingLeft: "8%",
+    },
+    addFeelings: {
+        backgroundColor: "#edf2f4",
+        height: 110,
+        width: "92%",
+        borderRadius: 10,
+        display: "flex",
+        flexDirection :"row",
+        justifyContent: "space-around",
+        alignItems: "center"
+
+    },
+    feelingText: {
+        fontSize: 15
     }
 })
 
