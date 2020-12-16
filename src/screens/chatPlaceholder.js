@@ -31,7 +31,7 @@ import {
  * [X] Obtain the last emotion entered
  * [X] Make a tree for all emotions
  * [X] Choose chat based on character and emotion
- * [ ] Styles
+ * [~] Styles
  */
 
 function findNode(answer, nxtNode) {
@@ -69,8 +69,6 @@ function getEmotion(checkinObject) {
  * @param {String} character: current character
  */
 function getDialogue(emotion, character) {
-  console.log(emotion + character);
-  // emotion = "worried";
   if (character === "Sprite") {
     switch (emotion) {
       case "happy":
@@ -84,7 +82,7 @@ function getDialogue(emotion, character) {
       case "worried":
         return spriteWorried;
       default:
-        return "NOT GOOD"; // TODO: fill in default dialogue
+        return "[default dialogue placeholder]"; // TODO: fill in default dialogue
     }
   }
 }

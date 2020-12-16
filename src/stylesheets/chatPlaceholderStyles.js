@@ -7,7 +7,6 @@ export default StyleSheet.create({
   background: {
     flex: 1,
     alignItems: "center",
-    // justifyContent: "center",
   },
   chosenCharacter: {
     height: "40%",
@@ -46,21 +45,13 @@ export default StyleSheet.create({
   box: {
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    // minHeight: 100,
-    // minHeight: "10%",
-    // height: "10%",
     width: "80%",
-    // position: "absolute",
-    // minHeight: "30%",
     marginHorizontal: (screenWidth - 330) / 2,
-    // bottom: "5%",
-    // zIndex: 3,
     alignSelf: "baseline",
   },
   bottom: {
     marginTop: 10,
     borderBottomEndRadius: 10,
-    // height: "100%",
     width: "100%",
     display: "flex",
     alignItems: "center",
