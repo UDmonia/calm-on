@@ -398,4 +398,119 @@ const spriteScared = {
   ],
 };
 
-export { spriteHappy, spriteSad, spriteAngry, spriteScared };
+const spriteWorried = {
+  key: null,
+  question:
+    "Hey ____. I heard you were feeling worried today. Can I tell you about a time when I felt worried too?",
+  answers: ["Ok"],
+  animation: null,
+  renderAnim: "",
+  navInfo: null,
+  nxtNode: [
+    {
+      key: "Ok",
+      question:
+        "One night, I had a Pixie History test coming up and I totally forgot! I could barely study, I was so stressed.",
+      answers: ["..."],
+      animation: null,
+      renderAnim: "",
+      navInfo: null,
+      nxtNode: [
+        {
+          key: "...",
+          question: "Have you ever felt worried about something too?",
+          answers: ["Yes"],
+          animation: null,
+          renderAnim: "",
+          navInfo: null,
+          nxtNode: [
+            {
+              key: "Yes",
+              question:
+                "It's ok to be worried. But worrying can make it tough to think properly, so try to work through that feeling first.",
+              answers: ["..."],
+              animation: null,
+              renderAnim: "",
+              navInfo: null,
+              nxtNode: [
+                {
+                  key: "...",
+                  question:
+                    "I know what can help! Do you want to try some of these activities with me?",
+                  answers: ["Ok", "No, not right now."],
+                  animation: null,
+                  renderAnim: "",
+                  navInfo: null,
+                  nxtNode: [
+                    {
+                      key: "Ok",
+                      question: "Awesome!",
+                      answers: [
+                        "Box Breathing",
+                        "54321 Technique",
+                        "Calm Counting",
+                      ],
+                      animation: null,
+                      renderAnim: "",
+                      navInfo: null,
+                      nxtNode: [
+                        {
+                          key: "Box Breathing",
+                          question: "",
+                          answers: [],
+                          animation: null,
+                          renderAnim: "",
+                          navInfo: SpriteActivityData[3],
+                          nxtNode: [],
+                        },
+                        {
+                          key: "54321 Technique",
+                          question: "",
+                          answers: [],
+                          animation: null,
+                          renderAnim: "",
+                          navInfo: SpriteActivityData[0],
+                          nxtNode: [],
+                        },
+                        {
+                          key: "Calm Counting",
+                          question: "",
+                          answers: [],
+                          animation: null,
+                          renderAnim: "",
+                          navInfo: SpriteActivityData[1],
+                          nxtNode: [],
+                        },
+                      ],
+                    },
+                    {
+                      key: "No, not right now.",
+                      question: "Ok, we can try other activities next time.",
+                      answers: ["Ok"],
+                      animation: null,
+                      renderAnim: "",
+                      navInfo: null,
+                      nxtNode: [
+                        {
+                          key: "Ok",
+                          question: "",
+                          answers: [],
+                          animation: null,
+                          renderAnim: "",
+                          navInfo: "FlatActivities",
+                          nxtNode: [],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export { spriteHappy, spriteSad, spriteAngry, spriteScared, spriteWorried };

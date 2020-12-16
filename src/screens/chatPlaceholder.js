@@ -17,6 +17,7 @@ import {
   spriteSad,
   spriteAngry,
   spriteScared,
+  spriteWorried,
 } from "../data/spriteChatData";
 
 /**
@@ -69,14 +70,21 @@ function getEmotion(checkinObject) {
  */
 function getDialogue(emotion, character) {
   console.log(emotion + character);
+  emotion = "worried";
   if (character === "Sprite") {
     switch (emotion) {
       case "happy":
         return spriteHappy;
       case "sad":
         return spriteSad;
+      case "angry":
+        return spriteAngry;
+      case "scared":
+        return spriteScared;
+      case "worried":
+        return spriteWorried;
       default:
-        return "NOT GOOD";
+        return "NOT GOOD"; // TODO: fill in default dialogue
     }
   }
 }
