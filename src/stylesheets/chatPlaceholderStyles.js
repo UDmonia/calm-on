@@ -7,11 +7,12 @@ export default StyleSheet.create({
   background: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
   },
   chosenCharacter: {
     height: "40%",
     resizeMode: "contain",
+    marginTop: "25%",
   },
   activityBtn: {
     alignSelf: "flex-end",
@@ -52,7 +53,7 @@ export default StyleSheet.create({
     // position: "absolute",
     // minHeight: "30%",
     marginHorizontal: (screenWidth - 330) / 2,
-    bottom: "5%",
+    // bottom: "5%",
     // zIndex: 3,
     alignSelf: "baseline",
   },

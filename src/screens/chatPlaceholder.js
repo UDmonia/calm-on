@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Image,
+  SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
@@ -28,8 +29,9 @@ import {
  * [X] Convert all of the class methods to regular functions
  * [X] Import the styles from the milkmilk chat box
  * [X] Obtain the last emotion entered
- * [~] Make a tree for all emotions
+ * [X] Make a tree for all emotions
  * [X] Choose chat based on character and emotion
+ * [ ] Styles
  */
 
 function findNode(answer, nxtNode) {
@@ -131,6 +133,7 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
 
   return (
     <ImageBackground style={styles.background} source={bg}>
+      {/* <SafeAreaView style={styles.background}> */}
       <Image style={styles.chosenCharacter} source={img} />
       <View style={styles.activityBtnContainer}>
         <TouchableOpacity
@@ -173,6 +176,7 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
           })}
         </View>
       </View>
+      {/* </SafeAreaView> */}
     </ImageBackground>
   );
 };
