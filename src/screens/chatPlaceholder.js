@@ -50,14 +50,12 @@ function getEmotion(checkinObject) {
     for (const prop in checkinObject) {
       journals.push({ journals: checkinObject[prop], _id: prop, date: prop });
     }
-
-    //Reverse journals array so the first element check-in item is the latest instead of the oldest
+    //Reverse journals array so the first element check-in item is the latest set instead of the oldest
     journals.reverse();
+    // last element in this array is the latest emotion input
+    const len = journals[0].journals.length;
 
-    journals.forEach((j) => {
-      console.log(j.journals);
-    });
-    return journals[0].journals[0].mood;
+    return journals[0].journals[len - 1].mood;
   } else {
     return "default";
   }
@@ -70,7 +68,7 @@ function getEmotion(checkinObject) {
  */
 function getDialogue(emotion, character) {
   console.log(emotion + character);
-  emotion = "worried";
+  // emotion = "worried";
   if (character === "Sprite") {
     switch (emotion) {
       case "happy":
