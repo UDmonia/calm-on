@@ -12,7 +12,12 @@ import { useSelector } from "react-redux";
  * Figure out how to conditionally import
  */
 // import { SpriteActivityData } from "../data/activityData";
-import { spriteHappy, spriteSad } from "../data/spriteChatData";
+import {
+  spriteHappy,
+  spriteSad,
+  spriteAngry,
+  spriteScared,
+} from "../data/spriteChatData";
 
 /**
  * TODO:
@@ -22,8 +27,8 @@ import { spriteHappy, spriteSad } from "../data/spriteChatData";
  * [X] Convert all of the class methods to regular functions
  * [X] Import the styles from the milkmilk chat box
  * [X] Obtain the last emotion entered
- * [ ] Make a tree for all emotions
- * [ ] Choose chat based on character and emotion
+ * [~] Make a tree for all emotions
+ * [X] Choose chat based on character and emotion
  */
 
 function findNode(answer, nxtNode) {

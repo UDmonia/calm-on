@@ -283,4 +283,119 @@ const spriteAngry = {
   ],
 };
 
-export { spriteHappy, spriteSad, spriteAngry };
+const spriteScared = {
+  key: null,
+  question:
+    "Hi_____. I heard you were feeling scared today.  It’s okay! Can I tell you about a time I felt scared?",
+  answers: ["Ok"],
+  animation: null,
+  renderAnim: "",
+  navInfo: null,
+  nxtNode: [
+    {
+      key: "Ok",
+      question:
+        "Last night, I had a dream that a big fairy eating beast swept down and ate me. I got scared and woke up.",
+      answers: ["..."],
+      animation: null,
+      renderAnim: "",
+      navInfo: null,
+      nxtNode: [
+        {
+          key: "...",
+          question: "Did you ever wake up because of a bad dream?",
+          answers: ["Yea!", "Nope!"],
+          animation: null,
+          renderAnim: "",
+          navInfo: null,
+          nxtNode: [
+            {
+              key: "Yea!",
+              question:
+                "I could not go back to sleep so I called Aurora and she reminded me it was just a dream!",
+              answers: ["..."],
+              animation: null,
+              renderAnim: "",
+              navInfo: null,
+              nxtNode: [
+                {
+                  key: "...",
+                  question:
+                    "If you feel scared, talk to someone about it. It is easier to face your fears with someone by your side.",
+                  answers: ["..."],
+                  animation: null,
+                  renderAnim: "",
+                  navInfo: null,
+                  nxtNode: [
+                    {
+                      key: "...",
+                      question: "Now, let’s go do some fun activities!",
+                      answers: ["Ok!"],
+                      animation: null,
+                      renderAnim: "",
+                      navInfo: null,
+                      nxtNode: [
+                        {
+                          key: "Ok!",
+                          question: "",
+                          answers: [],
+                          animation: null,
+                          renderAnim: "",
+                          navInfo: "FlatActivities",
+                          nxtNode: [],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              key: "Nope!",
+              question:
+                "Well, it is terrible! I could not go back to sleep so I called Aurora and she reminded me it was just a dream!",
+              answers: ["..."],
+              animation: null,
+              renderAnim: "",
+              navInfo: null,
+              nxtNode: [
+                {
+                  key: "...",
+                  question:
+                    "If you feel scared, talk to someone about it. It is easier to face your fears with someone by your side.",
+                  answers: ["..."],
+                  animation: null,
+                  renderAnim: "",
+                  navInfo: null,
+                  nxtNode: [
+                    {
+                      key: "...",
+                      question: "Now, let’s go do some fun activities!",
+                      answers: ["Ok!"],
+                      animation: null,
+                      renderAnim: "",
+                      navInfo: null,
+                      nxtNode: [
+                        {
+                          key: "Ok!",
+                          question: "",
+                          answers: [],
+                          animation: null,
+                          renderAnim: "",
+                          navInfo: "FlatActivities",
+                          nxtNode: [],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export { spriteHappy, spriteSad, spriteAngry, spriteScared };
