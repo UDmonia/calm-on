@@ -228,12 +228,7 @@ export default function App() {
             name="Adventure"
             component={Adventure}
             options={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-              headerTintColor: "white",
-              headerTitle: "Going on an Adventure",
-              headerTitleStyle: { fontSize: 24, color: "white" },
-              headerStyle: { backgroundColor: "#2E7D32" },
+              headerShown: false,
             }}
           />
           <Stack.Screen
