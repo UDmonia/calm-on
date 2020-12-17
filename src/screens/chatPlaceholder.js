@@ -22,18 +22,44 @@ import {
 } from "../data/spriteChatData";
 
 /**
- * TODO:
- * [X] Use the navigate function out of the main function
- *    - use a string, that will be used by a switch statement to call specific fucntions
- * [X] Pass the route params out of the main function scope
- * [X] Convert all of the class methods to regular functions
- * [X] Import the styles from the milkmilk chat box
- * [X] Obtain the last emotion entered
- * [X] Make a tree for all emotions
- * [X] Choose chat based on character and emotion
- * [~] Styles
+ * The default dialogue if no other dialoge is chosen or when the user goes back to the
+ * character chat
  */
+const defaultDialogue = {
+  key: null,
+  question: "Let’s do something together!",
+  answers: ["Take me to the activities"],
+  animation: null,
+  renderAnim: "",
+  navInfo: null,
+  nxtNode: [
+    {
+      key: "Take me to the activities",
+      question: "",
+      answers: [],
+      animation: null,
+      renderAnim: "",
+      navInfo: "FlatActivities",
+      nxtNode: [],
+    },
+  ],
+};
 
+/**
+ * isEmpty: will check whether an object is empty or not
+ *
+ * @param {object} inputObject : tested object
+ */
+function isEmpty(inputObject) {
+  return Object.keys(inputObject).length === 0;
+}
+
+/**
+ * findNode: finds the next node in the tree
+ *
+ * @param {String} answer : the answer the user selected
+ * @param {Array of nodes} nxtNode : the array of the next nodes available
+ */
 function findNode(answer, nxtNode) {
   return nxtNode.find((node) => node.key === answer);
 }
@@ -43,12 +69,13 @@ function findNode(answer, nxtNode) {
  *  exist the function will return a "default" string value signaling that
  *  no emotion was ever entered
  *
- * @param {object of checkins} checkinObject: checkinObject will contain
+ * @param {Object of checkins} checkinObject: checkinObject will contain
  *  all of the users checkins and returns a string value of the last emotion
  */
 function getEmotion(checkinObject) {
   const journals = [];
-  if (checkinObject) {
+
+  if (!isEmpty(checkinObject)) {
     for (const prop in checkinObject) {
       journals.push({ journals: checkinObject[prop], _id: prop, date: prop });
     }
@@ -59,11 +86,12 @@ function getEmotion(checkinObject) {
 
     return journals[0].journals[len - 1].mood;
   } else {
-    return "default";
+    return null;
   }
 }
 
 /**
+ * TODO: add other character dialogue trees
  *
  * @param {String} emotion: last emotion entered
  * @param {String} character: current character
@@ -81,8 +109,44 @@ function getDialogue(emotion, character) {
         return spriteScared;
       case "worried":
         return spriteWorried;
+      case "excited": // TODO: replace with the actual worried dialogue
+        return spriteWorried;
       default:
-        return "[default dialogue placeholder]"; // TODO: fill in default dialogue
+        return defaultDialogue;
+    }
+  } else if (character === "Flynn") {
+    switch (emotion) {
+      case "happy":
+        return spriteHappy;
+      case "sad":
+        return spriteSad;
+      case "angry":
+        return spriteAngry;
+      case "scared":
+        return spriteScared;
+      case "worried":
+        return spriteWorried;
+      case "excited": // TODO: replace with the actual worried dialogue
+        return spriteWorried;
+      default:
+        return defaultDialogue;
+    }
+  } else if (character === "Aurora") {
+    switch (emotion) {
+      case "happy":
+        return spriteHappy;
+      case "sad":
+        return spriteSad;
+      case "angry":
+        return spriteAngry;
+      case "scared":
+        return spriteScared;
+      case "worried":
+        return spriteWorried;
+      case "excited": // TODO: replace with the actual worried dialogue
+        return spriteWorried;
+      default:
+        return defaultDialogue;
     }
   }
 }
