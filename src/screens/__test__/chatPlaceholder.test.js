@@ -1,7 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 // import chatPlaceholder from "../chatPlaceholder";
-import { getDialogue, defaultDialogue, getEmotion } from "../chatPlaceholder";
+import {
+  getDialogue,
+  defaultDialogue,
+  getEmotion,
+  findNode,
+  isEmpty,
+} from "../chatPlaceholder";
 import { spriteSad, spriteHappy } from "../../data/spriteChatData";
 
 describe("getDialogue tests", () => {
@@ -56,5 +62,25 @@ describe("getEmotion tests", () => {
 
   it("getEmotion should return angry", () => {
     expect(getEmotion(checkins)).toBe("angry");
+  });
+});
+
+describe("findNode tests", () => {
+  it('findNode should return the object with the key "Ok"', () => {
+    expect(findNode("Ok", spriteHappy.nxtNode)).toBe(spriteHappy.nxtNode[0]);
+  });
+
+  it('findNode should return undefined"', () => {
+    expect(findNode("Im not a key", spriteHappy.nxtNode)).toBe(undefined);
+  });
+});
+
+describe("isEmpty tests", () => {
+  it("isEmpty should return false", () => {
+    expect(isEmpty({})).toBe(true);
+  });
+
+  it("isEmpty should return true", () => {
+    expect(isEmpty({ attr: "I'm not empty" })).toBe(false);
   });
 });

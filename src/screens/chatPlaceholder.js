@@ -245,5 +245,5 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
   );
 };
 
-export { getDialogue, defaultDialogue, getEmotion };
+export { getDialogue, defaultDialogue, getEmotion, findNode, isEmpty };
 export default chatPlaceholder;
