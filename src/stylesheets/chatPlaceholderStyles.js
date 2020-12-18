@@ -18,13 +18,14 @@ export default StyleSheet.create({
   },
   activityBtnContainer: {
     width: "90%",
+    minWidth: "90%",
   },
   chatContainer: {
     justifyContent: "center",
     alignItems: "center",
+    alignContent: "center",
     height: "30%",
     width: "90%",
-    backgroundColor: "white",
     borderRadius: 10,
   },
   top: {
@@ -51,10 +52,10 @@ export default StyleSheet.create({
   },
   bottom: {
     marginTop: 10,
-    borderBottomEndRadius: 10,
     width: "100%",
     display: "flex",
     alignItems: "center",
+    alignSelf: "center",
   },
   a: {
     fontFamily: "FontReg",

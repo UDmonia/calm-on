@@ -4,15 +4,11 @@ import {
   TouchableOpacity,
   ImageBackground,
   Image,
-  SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
 import styles from "../stylesheets/chatPlaceholderStyles";
 import { useSelector } from "react-redux";
-/**
- * Figure out how to conditionally import
- */
-// import { SpriteActivityData } from "../data/activityData";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   spriteHappy,
   spriteSad,
@@ -22,7 +18,7 @@ import {
 } from "../data/spriteChatData";
 
 /**
- * The default dialogue if no other dialoge is chosen or when the user goes back to the
+ * The default dialogue, if no dialoge has ever been chosen or when the user goes back to the
  * character chat
  */
 const defaultDialogue = {
@@ -48,7 +44,7 @@ const defaultDialogue = {
 /**
  * isEmpty: will check whether an object is empty or not
  *
- * @param {object} inputObject : tested object
+ * @param {Object} inputObject : tested object
  */
 function isEmpty(inputObject) {
   return Object.keys(inputObject).length === 0;
@@ -58,7 +54,7 @@ function isEmpty(inputObject) {
  * findNode: finds the next node in the tree
  *
  * @param {String} answer : the answer the user selected
- * @param {Array of nodes} nxtNode : the array of the next nodes available
+ * @param {Array} nxtNode : the array of the next nodes available
  */
 function findNode(answer, nxtNode) {
   return nxtNode.find((node) => node.key === answer);
@@ -69,8 +65,8 @@ function findNode(answer, nxtNode) {
  *  exist the function will return a "default" string value signaling that
  *  no emotion was ever entered
  *
- * @param {Object of checkins} checkinObject: checkinObject will contain
- *  all of the users checkins and returns a string value of the last emotion
+ * @param {Object} checkinObject: checkinObject will contain
+ *  all of the user checkins and returns a string value of the last emotion
  */
 function getEmotion(checkinObject) {
   const journals = [];
@@ -91,7 +87,9 @@ function getEmotion(checkinObject) {
 }
 
 /**
- * TODO: add other character dialogue trees
+ * TODO: add other character dialogue trees when design team is done with them
+ * getDialogue: returns the dialogue based on the character chosen and the last emotion
+ *  the user input. If no emotion is input getDilogue sends back
  *
  * @param {String} emotion: last emotion entered
  * @param {String} character: current character
@@ -149,6 +147,7 @@ function getDialogue(emotion, character) {
         return defaultDialogue;
     }
   }
+  return defaultDialogue;
 }
 
 const chatPlaceholder = ({ route, navigation: { navigate } }) => {
@@ -195,52 +194,56 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
 
   return (
     <ImageBackground style={styles.background} source={bg}>
-      {/* <SafeAreaView style={styles.background}> */}
-      <Image style={styles.chosenCharacter} source={img} />
-      <View style={styles.activityBtnContainer}>
-        <TouchableOpacity
-          style={styles.activityBtn}
-          onPress={() =>
-            navigate("FlatActivities", {
-              activities: charaterActivities,
-              headerColor: curCharacter.characterColor,
-            })
-          }
-        >
-          <Image source={activitiesBtnImg} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.box}>
-        <View
-          style={[styles.top, { backgroundColor: curCharacter.characterColor }]}
-        >
-          <Text style={styles.question}>{question}</Text>
+      <SafeAreaView style={styles.background}>
+        <Image style={styles.chosenCharacter} source={img} />
+        <View style={styles.activityBtnContainer}>
+          <TouchableOpacity
+            style={styles.activityBtn}
+            onPress={() =>
+              navigate("FlatActivities", {
+                activities: charaterActivities,
+                headerColor: curCharacter.characterColor,
+              })
+            }
+          >
+            <Image source={activitiesBtnImg} />
+          </TouchableOpacity>
         </View>
-        <View style={styles.bottom}>
-          {answers.map((a, i) => {
-            return (
-              <TouchableOpacity
-                key={i}
-                style={[
-                  styles.answer,
-                  { borderColor: curCharacter.characterColor },
-                ]}
-                onPress={() => {
-                  traverseTree(a);
-                  navInfo ? navigate(navInfo) : null;
-                }}
-              >
-                <Text key={i} style={styles.a}>
-                  {a}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
+        <View style={styles.box}>
+          <View
+            style={[
+              styles.top,
+              { backgroundColor: curCharacter.characterColor },
+            ]}
+          >
+            <Text style={styles.question}>{question}</Text>
+          </View>
+          <View style={styles.bottom}>
+            {answers.map((a, i) => {
+              return (
+                <TouchableOpacity
+                  key={i}
+                  style={[
+                    styles.answer,
+                    { borderColor: curCharacter.characterColor },
+                  ]}
+                  onPress={() => {
+                    traverseTree(a);
+                    navInfo ? navigate(navInfo) : null;
+                  }}
+                >
+                  <Text key={i} style={styles.a}>
+                    {a}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </View>
-      </View>
-      {/* </SafeAreaView> */}
+      </SafeAreaView>
     </ImageBackground>
   );
 };
 
+export { getDialogue, defaultDialogue, getEmotion };
 export default chatPlaceholder;
