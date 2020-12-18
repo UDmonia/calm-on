@@ -1,5 +1,4 @@
 const hexCodes = {
-    //Colors associated with moods in check-in
     "black" : {
         "activityCardShadow" : "#000"
     },
