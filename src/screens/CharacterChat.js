@@ -6,7 +6,7 @@ import {
   Image,
 } from "react-native";
 import React, { useState } from "react";
-import styles from "../stylesheets/chatPlaceholderStyles";
+import styles from "../stylesheets/CharacterChatStyles";
 import { useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -150,7 +150,7 @@ function getDialogue(emotion, character) {
   return defaultDialogue;
 }
 
-const chatPlaceholder = ({ route, navigation: { navigate } }) => {
+const CharacterChat = ({ route, navigation: { navigate } }) => {
   const { curCharacter } = route.params;
   const img = curCharacter.img;
   const bg = curCharacter.background;
@@ -246,4 +246,4 @@ const chatPlaceholder = ({ route, navigation: { navigate } }) => {
 };
 
 export { getDialogue, defaultDialogue, getEmotion, findNode, isEmpty };
-export default chatPlaceholder;
+export default CharacterChat;

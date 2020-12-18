@@ -1,13 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-// import chatPlaceholder from "../chatPlaceholder";
 import {
   getDialogue,
   defaultDialogue,
   getEmotion,
   findNode,
   isEmpty,
-} from "../chatPlaceholder";
+} from "../CharacterChat";
 import { spriteSad, spriteHappy } from "../../data/spriteChatData";
 
 describe("getDialogue tests", () => {

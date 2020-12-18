@@ -72,7 +72,7 @@ const Home = ({ props, navigation: { navigate } }) => {
   }
 
   function handleBtnPress() {
-    navigate("chatPlaceholder", {
+    navigate("CharacterChat", {
       curCharacter: currentSpirit,
       name: currentSpirit.name,
       headerColor: currentSpirit.characterColor,
@@ -116,9 +116,10 @@ const Home = ({ props, navigation: { navigate } }) => {
               })}
             </ScrollView>
           </View>
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={() => handleBtnPress()}
-            style={styles.pickMeButton}>
+            style={styles.pickMeButton}
+          >
             <Text style={styles.pickMeText}>Pick Me!</Text>
           </TouchableOpacity>
 
