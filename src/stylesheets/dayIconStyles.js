@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
     container:{
@@ -8,16 +9,16 @@ const styles = StyleSheet.create({
         width:330,
         borderWidth:0.3,
         flexDirection: 'row',
-        borderColor: '#E1E1E1'
+        borderColor: hex.grey.dayIconBackground
     },
     header: {
         width: 50,
         height: '100%',
         paddingTop:'5%',
         textAlign:'center',
-        backgroundColor:'#F0F0F0',
-        color:'#767676',
-        borderColor: '#E1E1E1',
+        backgroundColor:hex.grey.dayIconBackground2,
+        color: hex.grey.dayIconBackground3,
+        borderColor: hex.grey.dayIconBackground,
         borderWidth:0.3,
     },
 

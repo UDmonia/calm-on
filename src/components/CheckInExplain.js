@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity,Image } from "react-native";
 import Text from './Text';
+import hex from '../stylesheets/hexCodes';
 import { useDispatch } from "react-redux";
 import styles from "../stylesheets/checkInExplainStyles";
 import { checkin } from "../actions/session_actions";
@@ -68,7 +69,7 @@ const button = (desc) => {
       // need the style here to use desc.state
       style={[
         {
-          backgroundColor: desc.state ? "#ADD8E5" : "#E5E5E5",
+          backgroundColor: desc.state ? hex.blue.checkinButtonActive : hex.blue.checkinButtonInactive,
         },
         styles.toggleButton,
       ]}

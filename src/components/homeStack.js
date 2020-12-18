@@ -6,6 +6,7 @@ import Profile from './profile'
 import React from 'react'
 import {Image} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import hex from '../stylesheets/hexCodes';
 
 const Tab = createBottomTabNavigator()
 
@@ -22,7 +23,7 @@ const HomeStack =props=>{
     ]
 
     const style = {
-        backgroundColor: '#E2E8F8',
+        backgroundColor: hex.blue.NavBackground,
         height: 90,
         paddingTop: '2%',
     }
@@ -50,7 +51,7 @@ const HomeStack =props=>{
                     options = {
                         ()=>({
                         tabBarIcon: ({focused})=>
-                        <TouchableOpacity style = {focused?{...buttonStyle,borderTopColor:'#4E80FF',borderTopWidth: 5}:{...buttonStyle}}>
+                        <TouchableOpacity style = {focused?{...buttonStyle,borderTopColor:hex.blue.NavSelector,borderTopWidth: 5}:{...buttonStyle}}>
                             <Image  source = {icon.icon}/>
                         </TouchableOpacity> 
                         ,

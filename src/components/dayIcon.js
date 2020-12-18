@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
-import {Image,View} from 'react-native';
-import Text from './Text';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import styles from '../stylesheets/dayIconStyles'
+import React, { useEffect } from "react";
+import {Image,View} from "react-native";
+import Text from "./Text";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import styles from "../stylesheets/dayIconStyles"
+import hex from "../stylesheets/hexCodes";
 
 /**
  * Contains all images associated with each emotion
  */
 const moodMap = {
-    happy: {path:require('../../assets/preview/happy.png'), color: '#FBC423'},
-    angry: {path:require('../../assets/preview/angry.png'), color: '#F09696'},
-    sad: {path:require('../../assets/preview/sad.png'), color: '#DF9AFF'},
-    scared: {path:require('../../assets/preview/scared.png'), color: '#E8B285'},
-    excited: {path:require('../../assets/preview/excited.png'), color: '#AED4B0'},
-    worried: {path:require('../../assets/preview/worried.png'), color: '#E8B285'}
+    happy: {path:require("../../assets/preview/happy.png"), color: hex.yellow.happy},
+    angry: {path:require("../../assets/preview/angry.png"), color: hex.pink.angry},
+    sad: {path:require("../../assets/preview/sad.png"), color: hex.purple.sad},
+    scared: {path:require("../../assets/preview/scared.png"), color: hex.blue.scared},
+    excited: {path:require("../../assets/preview/excited.png"), color: hex.green.excited},
+    worried: {path:require("../../assets/preview/worried.png"), color: hex.brown.worried}
 }
 
 /**
@@ -44,7 +45,7 @@ export default DayIcon =({checkIn,showJournal})=>{
              
 
              <View style = {styles.body}>
-                 <Text style ={{fontSize:18,marginLeft:'5%', color:'rgba(0, 0, 0, 0.4)' }}>No Entries</Text>
+                 <Text style ={{fontSize:18,marginLeft:"5%", color:"rgba(0, 0, 0, 0.4)" }}>No Entries</Text>
              </View>
         </View>
         }

@@ -6,6 +6,7 @@ import {
   ImageBackground,
 } from "react-native";
 import Text from './Text';
+import hex from '../stylesheets/hexCodes'
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
@@ -402,7 +403,7 @@ const boxBreathing = () => {
     top: 395,
     width: length1,
     borderWidth: 10,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.boxBreathingDarkBar,
     zIndex: 3,
   };
 
@@ -414,7 +415,7 @@ const boxBreathing = () => {
     width: 10,
     borderWidth: topRightCorner,
     height: length2,
-    borderColor: "#429BAF",
+    borderColor: hex.blue.boxBreathingLightBar,
     zIndex: 2,
   };
 
@@ -425,7 +426,7 @@ const boxBreathing = () => {
     left: 60,
     width: length3,
     borderWidth: 10,
-    borderColor: "#429BAF",
+    borderColor: hex.blue.boxBreathingLightBar,
   };
 
   //Dark blue moving bar 4
@@ -435,7 +436,7 @@ const boxBreathing = () => {
     left: 60,
     borderWidth: leftBar,
     height: length4,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.boxBreathingDarkBar,
     zIndex: 1,
   };
 

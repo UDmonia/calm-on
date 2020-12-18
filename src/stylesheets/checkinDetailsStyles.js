@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
     container:{
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor: '#873E25',
+        backgroundColor: hex.brown.calendarBackground,
         borderTopRightRadius:10,
         borderTopLeftRadius:10
     },
@@ -115,21 +116,21 @@ const styles = StyleSheet.create({
         height: 33,
         width: 75,
         borderRadius: 5,
-        borderColor:'#CDCDCD'
+        borderColor:hex.grey.calendarBackground
     },
     timeActive:{
         borderWidth: 1,
         height: 33,
         width: 75,
         borderRadius: 5,
-        backgroundColor:'#FEE496',
-        borderColor:'#FFC10E'
+        backgroundColor:hex.yellow.calendarBackground,
+        borderColor:hex.yellow.dailyCheckinHeader
     },
 
     timesText:{
         textAlign:'center',
         paddingTop: '8%',
-        color:'#848484'
+        color:hex.grey.calendarText
     }
 
 })

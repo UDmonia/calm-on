@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Text from './Text';
-import { ImageBackground, View, Image } from "react-native";
+import hex from '../stylesheets/hexCodes';
+import { ImageBackground, ScrollView,View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
@@ -103,6 +104,7 @@ const checkinDetails = ({ route }) => {
                 {moment(journal.createdAt).format("dddd, LL")}
               </Text>
             </View>
+
             <ScrollView contentContainerStyle={styles.container}>
               <View style={styles.upper}>
                 {/*Date increase/decrease*/}
@@ -145,7 +147,7 @@ const checkinDetails = ({ route }) => {
                 </View>
 
                 <ScrollView 
-                  style={styles.timeList}
+                  contentContainerStyle={styles.timeList}
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}>
                   {buttons}
@@ -186,7 +188,7 @@ const checkinDetails = ({ route }) => {
                     <ActivityCard
                       title={"Milk Milk Milk"}
                       key={3}
-                      bgColor={"#6E891A"}
+                      bgColor={hex.green.spriteActivityButton}
                       navigateLink={"IntroActivity"}
                       imagePath={require("../../assets/favicon.png")}
                       introPageData={{
@@ -196,7 +198,7 @@ const checkinDetails = ({ route }) => {
                         helpful: "You feel scared or worried.",
                         img: require("../../assets/favicon.png"),
                         }}
-                      header={"#2E7D32"}/>
+                      header={hex.green.sprite}/>
                 </View>
               </View>
             </ScrollView>

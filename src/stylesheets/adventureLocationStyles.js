@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 export default StyleSheet.create({
   screenContainer: {
@@ -35,7 +36,7 @@ export default StyleSheet.create({
     height: 103,
     width: 340,
     borderRadius: 4,
-    backgroundColor: "#027E2A",
+    backgroundColor: hex.green.adventureLocationBackground,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -44,7 +45,7 @@ export default StyleSheet.create({
     width: 105,
     borderRadius: 4,
     margin: 10,
-    backgroundColor: "#E9E9E9",
+    backgroundColor: hex.white.adventureBackground,
     alignItems: "center",
     justifyContent: "center",
     shadowOffset: {
@@ -77,7 +78,7 @@ export default StyleSheet.create({
     backgroundColor: "blue",
   },
   seeAllContainer: {
-    backgroundColor: "#027E2A",
+    backgroundColor: hex.green.adventureLocationBackground,
     width: "100%",
     minHeight: 50,
     flexDirection: "row",

@@ -8,12 +8,14 @@ import {
   ScrollView,
 } from "react-native";
 import Text from './Text';
+import hex from "../stylesheets/hexCodes";
+
 
 export default DialogBox = ({ message }) => {
   return (
     <View style={message.style}>
       {/* change text color */}
-      <Text style={{ color: "#FFFFFF", fontFamily: "FontReg",}}>{message.text}</Text>
+      <Text style={{ color: hex.white.appBackground, fontFamily: "FontReg",}}>{message.text}</Text>
     </View>
   );
 };

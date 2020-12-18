@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Dimensions } from 'react-native';
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,8 +28,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topBox: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#89AAFF',
+    backgroundColor: hex.white.appBackground,
+    borderColor: hex.blue.homeBackground,
     borderRadius: 6,
     borderStyle: 'solid',
     borderWidth: 2,
@@ -37,14 +38,14 @@ const styles = StyleSheet.create({
     width: 348,
   },
   topBoxTextName: {
-    color: '#000000',
+    color: hex.black.activityCardShadow,
     fontSize: 24,
     fontFamily: 'FontReg',
     marginTop: 16,
     marginHorizontal: 16,
   },
   topBoxText: {
-    color: '#000000',
+    color: hex.black.activityCardShadow,
     fontSize: 14,
     fontFamily: 'FontReg',
     marginHorizontal: 16,
@@ -68,8 +69,8 @@ const styles = StyleSheet.create({
     top: 20,
   },
   bottomBox: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#89AAFF',
+    backgroundColor: hex.white.appBackground,
+    borderColor: hex.blue.homeBackground,
     borderRadius: 6,
     borderStyle: 'solid',
     borderWidth: 2,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     width: 348,
   },
   bottomBoxTextName: {
-    color: '#000000',
+    color: hex.black.activityCardShadow,
     fontSize: 24,
     fontFamily: 'FontReg',
     fontWeight: '800',
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomBoxTextDescription: {
-    color: '#000000',
+    color: hex.black.activityCardShadow,
     fontSize: 14,
     fontFamily: 'FontReg',
     marginHorizontal: 8,

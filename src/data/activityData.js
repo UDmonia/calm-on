@@ -9,11 +9,14 @@
         }
     }
 */
+
+import hex from "../stylesheets/hexCodes";
+
 const SpriteActivityData = [
   {
     id: 1,
     title: "5-4-3-2-1 Techniques",
-    color: "#A7D1A8",
+    color: hex.green.techniques,
     img: require("../../assets/activities/54321.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -27,7 +30,7 @@ const SpriteActivityData = [
   {
     id: 2,
     title: "Calm Counting",
-    color: "#FBBDB4",
+    color: hex.pink.counting,
     img: require("../../assets/activities/counting.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -41,7 +44,7 @@ const SpriteActivityData = [
   {
     id: 3,
     title: "Milk Milk Milk",
-    color: "#6E891A",
+    color: hex.green.milk,
     img: require("../../assets/favicon.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -54,7 +57,7 @@ const SpriteActivityData = [
   {
     id: 4,
     title: "Box Breathing",
-    color: "#418295",
+    color: hex.blue.boxBreathing,
     img: require("../../assets/favicon.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -68,7 +71,7 @@ const SpriteActivityData = [
   {
     id: 5,
     title: "Picnic Time",
-    color: "#DA71C4",
+    color: hex.pink.picnicTime,
     img: require("../../assets/favicon.png"),
     introPageData: {
       navRoute: "IntroActivity",

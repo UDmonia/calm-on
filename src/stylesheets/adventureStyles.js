@@ -1,3 +1,4 @@
+import hex from "./hexCodes";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -22,13 +23,13 @@ export default StyleSheet.create({
     borderRadius: 4,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#9AE7FF",
+    backgroundColor: hex.blue.adventureBackground,
   },
   dialogContainer: {
     height: 71,
     width: 330,
     borderRadius: 10,
-    backgroundColor: "#DD6755",
+    backgroundColor: hex.brown.adventureBackground,
   },
   locationTxt: {
     marginTop: 5,

@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 export default StyleSheet.create({
     mainContainer: {
-        backgroundColor: "#019F66",
+        backgroundColor: hex.green.kpiBackground,
         height: "100%",
     },
     imgBackground: {
@@ -66,7 +67,7 @@ export default StyleSheet.create({
         marginTop: "15%",
     },
     backButton: {
-        backgroundColor:"#2E7D32",
+        backgroundColor:hex.green.sprite,
         minWidth: "100%",
         minHeight: "20%",
         borderRadius: 100,
@@ -116,7 +117,7 @@ export default StyleSheet.create({
         fontSize: 40,
     },
     ModalBackButton: {
-        backgroundColor:"#2E7D32",
+        backgroundColor:hex.green.sprite,
         minWidth: "50%",
         height: "50%",
         borderRadius: 100,

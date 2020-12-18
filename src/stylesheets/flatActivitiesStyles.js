@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 export default StyleSheet.create({
     center: {
@@ -11,14 +12,14 @@ export default StyleSheet.create({
         flexDirection: "row",
         height: 100,
         width: "80%",
-        backgroundColor: "#A7D1A8",
+        backgroundColor: hex.green.techniques,
         marginTop: 10,
         marginBottom: 10,
         paddingLeft: 25,
         justifyContent: "space-between",
         alignItems: "center",
         borderRadius: 10,
-        shadowColor: "#000",
+        shadowColor: hex.black.activityCardShadow,
         shadowOffset: {
             width: 0,
             height: 4,

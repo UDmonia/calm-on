@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#67B66A',
+    backgroundColor: hex.green.storytimeBackground,
     display: 'flex',
     alignItems: 'center',
     height: '100%',

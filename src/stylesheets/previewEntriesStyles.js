@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
     iconBox:{
@@ -16,10 +17,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin:'1.2%',
         marginTop:'2%',
-        backgroundColor:'#edf2f4',
-        shadowColor:`rgba(0, 0, 0, 0.15)`,
-        shadowOpacity: 1,
-        shadowOffset: {width:0,height:0},
+        backgroundColor:hex.grey.calendarBackground2,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
         //borderWidth:1,
 
     },
@@ -65,11 +71,13 @@ const styles = StyleSheet.create({
 
     },
     journalTitle: {
-        textAlign:'left',
-        marginLeft:'8%',
-        paddingTop:'5%',
-        paddingBottom:'2%',
-        fontSize: 18,
+        fontSize: 17,
+        fontFamily: "FontReg",
+    },
+    textContainer: {
+        paddingLeft: "10%",
+        alignItems :"center",
+        justifyContent: "center",
     }
 })
 

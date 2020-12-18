@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
+
 export default StyleSheet.create({
   background: {
     resizeMode: "cover",
@@ -29,7 +31,7 @@ export default StyleSheet.create({
   },
 
   topButtons: {
-    borderColor: "#8161B2",
+    borderColor: hex.purple.loginBorder,
   },
   topButtonText: {
     fontSize: 25,
@@ -116,7 +118,7 @@ export default StyleSheet.create({
   },
   userNameInput: {
     padding: 10,
-    backgroundColor: "#E7E7E7",
+    backgroundColor: hex.grey.loginBackground,
     borderRadius: 5,
     width: 219,
     textAlign: "center",

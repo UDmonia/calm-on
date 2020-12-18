@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Text from './Text';
+import hex from '../stylesheets/hexCodes';
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
@@ -42,7 +43,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
             style={styles.nextButton}
             onPress={() => navigate("Counting", { stuff: Recipes.start })}
           >
-            <Text style={{ color: "#3B96B2" }}>Fruits</Text>
+            <Text style={{ color: hex.blue.countingPromptText }}>Fruits</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

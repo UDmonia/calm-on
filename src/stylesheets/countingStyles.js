@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 import { color } from "react-native-reanimated";
+import hex from "./hexCodes";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#39565F",
+    backgroundColor: hex.grey.countingBackground,
   },
   backImage: {
     width: "100%",
@@ -64,7 +65,7 @@ export default StyleSheet.create({
     width: 300,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: "#3B96B3",
+    backgroundColor: hex.blue.countingBackground,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -73,7 +74,7 @@ export default StyleSheet.create({
     width: 300,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: "#3B96B3",
+    backgroundColor: hex.blue.countingBackground,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -89,7 +90,7 @@ export default StyleSheet.create({
     width: 47,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#DCF4F1",
+    backgroundColor: hex.green.countingBackground,
     margin: 1,
   },
   boxImg: {
@@ -124,7 +125,7 @@ export default StyleSheet.create({
     width: 163,
     height: 51,
     borderRadius: 41,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: hex.white.appBackground,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 60,
@@ -142,7 +143,7 @@ export default StyleSheet.create({
     height: 51,
     borderRadius: 41,
     margin: 10,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: hex.white.appBackground,
     justifyContent: "center",
     alignItems: "center",
   },

@@ -1,5 +1,7 @@
- import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { color } from "react-native-reanimated";
+import hex from "./hexCodes";
+
 
 export default StyleSheet.create({
     container: {
@@ -12,7 +14,7 @@ export default StyleSheet.create({
         marginLeft: 16,
         width: 344,
         maxHeight: 32,
-        borderColor: '#2E7D32',
+        borderColor: hex.green.sprite,
         borderWidth: 1,
         borderRadius: 10,
         backgroundColor: 'white',
@@ -23,7 +25,7 @@ export default StyleSheet.create({
         height:32,
         alignItems: 'center',
         justifyContent: 'center', 
-        backgroundColor: '#2E7D32',
+        backgroundColor: hex.green.sprite,
         borderRadius: 10,
     },
     btnDefult: {
@@ -38,7 +40,7 @@ export default StyleSheet.create({
         color: 'white',
     },
     txtDefult: {
-        color: '#A5A4A4'
+        color: hex.grey.activityTextDefault
     },
     headerView: {
         marginTop: 30,
@@ -51,7 +53,7 @@ export default StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
         lineHeight: 20,
-        color: '#425054',
+        color: hex.grey.activityHeaderText,
         marginLeft: 18,
     },
     activity: {
@@ -72,7 +74,7 @@ export default StyleSheet.create({
         marginTop: 10,
         fontSize: 14,
         lineHeight:20,
-        color: '#425054',
+        color: hex.grey.activityHeaderText,
     }, 
     scrollView:{
         backgroundColor: 'white',

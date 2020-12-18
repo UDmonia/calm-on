@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View,Image, TouchableOpacity, StyleSheet } from "react-native";
+import hex from "../stylesheets/hexCodes";
 import Text from './Text';
 
 /**
@@ -33,7 +34,7 @@ export default Intro = ({ route, navigation }) => {
                 borderLeftWidth: 2,
                 borderRightWidth: 2,
                 width: 130,
-                borderColor: "#C4C4C4",
+                borderColor: hex.grey.introActivityBorder,
               }}
             >
               <Text style={styles.stats}>1</Text>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    color: "#4F7947",
+    color: hex.green.introActivityGreen,
     width: 125,
     marginBottom: "5%",
     fontFamily: "FontReg",
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     fontFamily: "FontReg",
   },
   descriptions: {
-    color: "#7B7B7B",
+    color: hex.grey.introActivityText,
     paddingTop: "2%",
     fontFamily: "FontReg",
   },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#2E7D32",
+    backgroundColor: hex.green.sprite,
     marginTop: "10%",
     marginLeft: "15%",
   },

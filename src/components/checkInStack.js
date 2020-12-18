@@ -1,6 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import Calendar from './Calendar'
 import React from 'react'
+import hex from '../stylesheets/hexCodes';
 import DetailedView from './checkinDetails'
 import MonthlyView from './monthlyPreview'
 
@@ -10,17 +11,17 @@ export default checkinStack =()=>{
 
     const headerOption = {
         headerLeft:null,
-        headerTitleStyle: {fontSize: 20,color:'#424242'},
-        headerStyle: {backgroundColor: '#FFC10E'}
+        headerTitleStyle: {fontSize: 20,color:hex.grey.allText},
+        headerStyle: {backgroundColor: hex.yellow.dailyCheckinHeader}
     }
 
     const headerOption2 ={
         headerBackTitleVisible:false,
-        headerBackTitleStyle:{color:'#424242'},
+        headerBackTitleStyle:{color:hex.grey.allText},
         headerTitle: 'Daily Check-In',
-        headerTitleStyle: {fontSize: 20,color:'#424242'},
-        headerStyle: {backgroundColor: '#FFC10E'},
-        headerTintColor: '#424242'
+        headerTitleStyle: {fontSize: 20,color:hex.grey.allText},
+        headerStyle: {backgroundColor: hex.yellow.dailyCheckinHeader},
+        headerTintColor: hex.grey.allText
     }
 
     return(

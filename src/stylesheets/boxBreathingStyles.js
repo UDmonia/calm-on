@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   numText: {
     position: "absolute",
     top: 350,
     left: 170,
-    color: "#064B5B",
+    color: hex.blue.boxBreathingDarkBar,
     //borderWidth:1,
   },
   text:{
@@ -22,21 +23,21 @@ const styles = StyleSheet.create({
   animatedText: {
     top: -120,
     left: 0,
-    color: "#064B5B",
+    color: hex.blue.boxBreathingDarkBar,
     fontSize: 120,
     textAlign: "center",
   },
   animatedText2: {
     top: -120,
     left: 0,
-    color: "#064B5B",
+    color: hex.blue.boxBreathingDarkBar,
     fontWeight:'600',
     fontSize: 30,
     textAlign: "center",
 
   },
   questionBox: {
-    backgroundColor: "#DD6755",
+    backgroundColor: hex.brown.adventureBackground,
     justifyContent: "center",
     alignContent: "center",
     textAlign: "center",
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   prompt: {
-    backgroundColor: "#FBBDB4",
+    backgroundColor: hex.pink.counting,
     width: "75%",
     marginTop: "125%",
     marginLeft: "12%",
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     width: 280,
     //borderColor:'red',
-    borderColor: "#429BAF",
+    borderColor: hex.blue.boxBreathingLightBar,
     zIndex: 0,
   },
 
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     left: 60,
     borderWidth: 10,
     height: 280,
-    borderColor: "#429BAF",
+    borderColor: hex.blue.boxBreathingLightBar,
     zIndex: 0,
   },
   barRight: {
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     right: 64,
     width: 10,
     borderWidth: 10,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.boxBreathingDarkBar,
     height: 270,
   },
   barTop: {
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     left: 70,
     width: 270,
     borderWidth: 10,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.boxBreathingDarkBar,
   },
   container: {
     flex: 1,
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    color: "#4F7947",
+    color: hex.green.introActivityGreen,
     width: 125,
     marginBottom: "5%",
   },
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#2E7D32",
+    backgroundColor: hex.green.sprite,
     marginTop: "10%",
     marginLeft: "15%",
   },
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
   },
   descriptions: {
-    color: "#7B7B7B",
+    color: hex.grey.introActivityText,
     paddingTop: "2%",
   },
 });

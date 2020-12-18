@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     textAlign: "center",
     fontSize: 16,
-    color: "#8AABFF",
+    color: hex.blue.dayIconBackground,
   },
   buttonContainer: {
     flexDirection: "row",

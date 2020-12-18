@@ -11,6 +11,7 @@ import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
 import Exit from "./Exit";
+import hex from "../stylesheets/hexCodes";
 
 /**
  * This componet is an intermediate step 
@@ -44,7 +45,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
           <Exit navTo={"chatPlaceholder"} />
         </View>
         <View style={styles.countDis}>
-          <Text style={{ color: "#FFFFFF" }}>
+          <Text style={{ color: hex.white.appBackground }}>
             {counter + " " + actData.groupName}
           </Text>
         </View>
@@ -72,7 +73,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               style={styles.nextButton}
               onPress={() => setNext(!next)}
             >
-              <Text style={{ color: "#3B96B2" }}>Next</Text>
+              <Text style={{ color: hex.blue.countingPromptText }}>Next</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -85,7 +86,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                 style={styles.navButton}
                 onPress={() => navigate("chatPlaceholder")}
               >
-                <Text style={{ color: "#3B96B2" }}>Home</Text>
+                <Text style={{ color: hex.blue.countingPromptText }}>Home</Text>
               </TouchableOpacity>
               {actData.next != null ? (
                 <TouchableOpacity
@@ -95,7 +96,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                       navigate("Counting", { stuff: actData.next });
                   }}
                 >
-                  <Text style={{ color: "#3B96B2" }}>Next Recipe</Text>
+                  <Text style={{ color: hex.blue.countingPromptText }}>Next Recipe</Text>
                 </TouchableOpacity>
               ) : null}
             </View>

@@ -7,11 +7,13 @@ import {
   ScrollView,
 } from "react-native";
 import Text from './Text';
+import hex from '../stylesheets/hexCodes';
 import styles from "../stylesheets/countingStyles";
 import bg from "../../assets/counting/backdrop.png";
 import sprit from "../../assets/counting/spirit1.png";
 import DialogBox from "./dialog";
 import Exit from "./Exit";
+
 
 /**
  * This componet is responsible for preforming the counting activity
@@ -80,7 +82,7 @@ export default Counting = ({ route, navigation }) => {
         </View>
         <View style={styles.countDis}>
           {count > 0 ? (
-            <Text style={{ color: "#FFFFFF" }}>
+            <Text style={{ color: hex.white.appBackground}}>
               {count + " " + stuff.groupName}
             </Text>
           ) : null}
