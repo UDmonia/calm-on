@@ -13,9 +13,10 @@ export default StyleSheet.create({
   },
   imgBackground: {
     resizeMode: "cover",
-    flex: 1,
     width: "100%",
-    height: "100%",
+    height: "145%",
+    top: undefined,
+    bottom: 0,
   },
   exitPosition: {
     marginTop: "10%",
@@ -106,7 +107,7 @@ export default StyleSheet.create({
   itemName: {
     textAlign: "center",
     fontFamily: "FontReg",
-    fontSize: windowWidth * 0.035,
+    fontSize: windowWidth * 0.030,
   },
   itemDivider: {
     backgroundColor: "#027E2A",
@@ -123,7 +124,7 @@ export default StyleSheet.create({
     position: "absolute",
     bottom: 0,
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.035
+    fontSize: windowWidth * 0.030,
   },
   selectImg: {
     height: "60%",
