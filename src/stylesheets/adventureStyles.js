@@ -46,5 +46,9 @@ export default StyleSheet.create({
   center: {
     marginTop: "15%",
     alignItems: "center",
-  }
+  },
+  background: {
+    width: "100%", 
+    height: "100%",
+  },
 });
