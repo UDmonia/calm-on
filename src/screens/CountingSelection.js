@@ -25,7 +25,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"chatPlaceholder"} />
+          <Exit navTo={"CharacterChat"} />
         </View>
         <View style={styles.spritBox3}>
           <Image style={styles.sprit} source={sprit} />
