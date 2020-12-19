@@ -165,6 +165,11 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
   const [navInfo, setNavInfo] = useState(chatDialogue.navInfo);
 
   if (nxtNode.length === 0) {
+    setNavInfo(() => defaultDialogue.navInfo);
+    setQuestion(() => defaultDialogue.question);
+    setAnswers(() => defaultDialogue.answers);
+    setNxtNode(() => defaultDialogue.nxtNode);
+
     // FlatActivities is the default navigation
     if (navInfo === "FlatActivities") {
       navigate("FlatActivities", {
@@ -194,53 +199,48 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
 
   return (
     <ImageBackground style={styles.background} source={bg}>
-      <SafeAreaView style={styles.background}>
-        <Image style={styles.chosenCharacter} source={img} />
-        <View style={styles.activityBtnContainer}>
-          <TouchableOpacity
-            style={styles.activityBtn}
-            onPress={() =>
-              navigate("FlatActivities", {
-                activities: charaterActivities,
-                headerColor: curCharacter.characterColor,
-              })
-            }
-          >
-            <Image source={activitiesBtnImg} />
-          </TouchableOpacity>
+      <Image style={styles.chosenCharacter} source={img} />
+      <View style={styles.activityBtnContainer}>
+        <TouchableOpacity
+          style={styles.activityBtn}
+          onPress={() =>
+            navigate("FlatActivities", {
+              activities: charaterActivities,
+              headerColor: curCharacter.characterColor,
+            })
+          }
+        >
+          <Image source={activitiesBtnImg} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.box}>
+        <View
+          style={[styles.top, { backgroundColor: curCharacter.characterColor }]}
+        >
+          <Text style={styles.question}>{question}</Text>
         </View>
-        <View style={styles.box}>
-          <View
-            style={[
-              styles.top,
-              { backgroundColor: curCharacter.characterColor },
-            ]}
-          >
-            <Text style={styles.question}>{question}</Text>
-          </View>
-          <View style={styles.bottom}>
-            {answers.map((a, i) => {
-              return (
-                <TouchableOpacity
-                  key={i}
-                  style={[
-                    styles.answer,
-                    { borderColor: curCharacter.characterColor },
-                  ]}
-                  onPress={() => {
-                    traverseTree(a);
-                    navInfo ? navigate(navInfo) : null;
-                  }}
-                >
-                  <Text key={i} style={styles.a}>
-                    {a}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+        <View style={styles.bottom}>
+          {answers.map((a, i) => {
+            return (
+              <TouchableOpacity
+                key={i}
+                style={[
+                  styles.answer,
+                  { borderColor: curCharacter.characterColor },
+                ]}
+                onPress={() => {
+                  traverseTree(a);
+                  navInfo ? navigate(navInfo) : null;
+                }}
+              >
+                <Text key={i} style={styles.a}>
+                  {a}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
-      </SafeAreaView>
+      </View>
     </ImageBackground>
   );
 };
