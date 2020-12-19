@@ -15,7 +15,7 @@ import Exit from "../components/Exit";
 
 /**
  * This componet is responsible for preforming the counting activity
- * It does so by reading the recipe data passed to it as {stuff} from the route 
+ * It does so by reading the recipe data passed to it as {stuff} from the route
  *
  * @param { object } stuff  - json object containing recipe data
  */
@@ -76,7 +76,7 @@ export default Counting = ({ route, navigation }) => {
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"chatPlaceholder"} />
+          <Exit navTo={"CharacterChat"} />
         </View>
         <View style={styles.countDis}>
           {count > 0 ? (
