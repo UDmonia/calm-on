@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity} from "react-native";
+import styles from "../stylesheets/introActStyles";
 
 /**
  * This is a componet used to provide activity information to the user
@@ -19,23 +20,18 @@ export default Intro = ({ route, navigation }) => {
         <Image style={styles.img} source={route.params.img} />
       </View>
       <View style={styles.lower}>
-        <Text style={styles.title}>{route.params.name}</Text>
+        {/* <Text style={styles.title}>{route.params.name}</Text> */}
         <View style={styles.statsRow}>
-          <View>
+          <View style= {styles.statData}>
             <Text style={styles.stats}>2</Text>
             <Text style={[styles.statType, { color: headerColor }]}>
               Time (mins)
             </Text>
           </View>
 
-          <View>
+          <View style= {styles.statData}>
             <View
-              style={{
-                borderLeftWidth: 2,
-                borderRightWidth: 2,
-                width: 130,
-                borderColor: "#C4C4C4",
-              }}
+              style={styles.border}
             >
               <Text style={styles.stats}>1</Text>
               <Text style={[styles.statType, { color: headerColor }]}>
@@ -44,7 +40,7 @@ export default Intro = ({ route, navigation }) => {
             </View>
           </View>
 
-          <View>
+          <View style= {styles.statData}>
             <TouchableOpacity>
               <Image
                 style={styles.fav}
@@ -74,73 +70,3 @@ export default Intro = ({ route, navigation }) => {
     </View>
   );
 };
-
-//Styles for componet
-const styles = StyleSheet.create({
-  upper: {
-    height: "40%",
-  },
-  lower: {
-    backgroundColor: "white",
-    height: "60%",
-    width: "100%",
-    paddingLeft: "5%",
-    paddingTop: "8%",
-  },
-  statsRow: {
-    marginTop: "5%",
-    flexDirection: "row",
-    marginLeft: "-2%",
-  },
-  statType: {
-    textAlign: "center",
-    width: 125,
-    marginBottom: "5%",
-    fontFamily: "FontReg",
-  },
-  sectionTitle: {
-    fontSize: 20,
-    paddingTop: "5%",
-    fontFamily: "FontReg",
-  },
-  descriptions: {
-    color: "#7B7B7B",
-    paddingTop: "2%",
-    fontFamily: "FontReg",
-  },
-  start: {
-    display: "flex",
-    height: 50,
-    width: 250,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "10%",
-    marginLeft: "15%",
-  },
-  fav: {
-    marginLeft: "32%",
-  },
-  startText: {
-    textAlign: "center",
-    fontSize: 18,
-    color: "white",
-    fontFamily: "FontReg",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "700",
-    fontFamily: "FontReg",
-  },
-  stats: {
-    fontSize: 20,
-    textAlign: "center",
-    marginTop: "2%",
-    fontFamily: "FontReg",
-  },
-  img: {
-    height: "100%",
-    width: "100%",
-    resizeMode: "cover",
-  },
-});

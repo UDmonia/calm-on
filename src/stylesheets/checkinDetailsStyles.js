@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     lower:{
         //borderWidth:1,
         marginTop:'10%',
-        width:'100%'
+        width:'100%',
+        marginBottom: "15%",
     },
     activities:{
         marginTop:'5.5%',

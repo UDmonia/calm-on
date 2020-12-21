@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ImageBackground, Image } from "react-native";
+import { Text, View, ImageBackground, Image, ScrollView } from "react-native";
 import styles from "../stylesheets/adventureLocationAllStyles.js";
 import Exit from "../components/Exit";
 
@@ -19,7 +19,7 @@ export default AdventureLocationSeeAll = ({ route }) => {
         />
       </View>
       <Text style={styles.selectedItemsTxt}>Selected Items</Text>
-      <View style={styles.allSelectedContainer}>
+      <ScrollView contentContainerStyle={styles.allSelectedContainer}>
         {arr.map((item) => {
           return (
             <View key={item.name} style={styles.itemContainer}>
@@ -28,7 +28,7 @@ export default AdventureLocationSeeAll = ({ route }) => {
             </View>
           );
         })}
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };

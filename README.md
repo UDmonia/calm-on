@@ -50,7 +50,6 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 - Luis Trujillo - front end
 - Gabriel Marquez - front end
 - Jerry Zhu - front end
-- Brandon Yu - back end
 - Joshua Ong - back end
 
 ### Past Members
@@ -59,3 +58,4 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 - Clifford Yan - back end
 - Akif Saifi - back end
 - Joseph Zhao - back end
+- Brandon Yu - back end

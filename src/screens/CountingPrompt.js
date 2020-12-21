@@ -13,12 +13,12 @@ import bg from "../../assets/counting/backdrop.png";
 import Exit from "../components/Exit";
 
 /**
- * This componet is an intermediate step 
+ * This componet is an intermediate step
  * for handeling recipe transitions
- *  
- * The componet will render all necessary objects and when necessary 
- * will navigate to counting and pass the {actData} 
- * (which is the data for the next recipe) to counting 
+ *
+ * The componet will render all necessary objects and when necessary
+ * will navigate to counting and pass the {actData}
+ * (which is the data for the next recipe) to counting
  */
 
 function getBoxes(box) {
@@ -41,7 +41,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"chatPlaceholder"} />
+          <Exit navTo={"CharacterChat"} />
         </View>
         <View style={styles.countDis}>
           <Text style={{ color: "#FFFFFF" }}>
@@ -83,7 +83,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             <View style={styles.buttonView}>
               <TouchableOpacity
                 style={styles.navButton}
-                onPress={() => navigate("chatPlaceholder")}
+                onPress={() => navigate("CharacterChat")}
               >
                 <Text style={{ color: "#3B96B2" }}>Home</Text>
               </TouchableOpacity>

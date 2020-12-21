@@ -5,7 +5,8 @@ import DayIcon from './dayIcon'
 import moment from 'moment'
 import {useSelector} from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
-import styles from '../stylesheets/monthlyPreviewStyles'
+import styles from '../stylesheets/monthlyPreviewStyles';
+import { SpriteActivityData } from "../data/activityData";
 
 
 //Date global variables
@@ -46,7 +47,7 @@ const MonthlyPreview =()=>{
         //allEntries: helps 'CheckinDetail' to locate the index of the exact check-in in the journals array so user can change dates in 'CheckinDetail'
         //item: this a special thing for Flatlist
         showJournal = {()=>navigation.navigate('CheckinDetail',{
-            entry:findJournal, allEntries: journals
+            entry:findJournal, allEntries: journals, spriteActivityData: SpriteActivityData
         })}
          checkIn= {item}/>
         )
