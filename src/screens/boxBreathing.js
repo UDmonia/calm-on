@@ -5,14 +5,24 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import Text from './Text';
-import hex from '../stylesheets/hexCodes'
+import Text from "../components/Text";
+import hex from "../stylesheets/hexCodes";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
 import kpiData from "../data/kpiData";
-import { horizontalLength, horizontalPosition, bottomPosition, topPosition, spriteX1, spriteY1, spriteX2, spriteY2, spriteX3, spriteY3 } from "../util/boxBreathingMeasurements";
-
+import {
+  horizontalLength,
+  horizontalPosition,
+  bottomPosition,
+  topPosition,
+  spriteX1,
+  spriteY1,
+  spriteX2,
+  spriteY2,
+  spriteX3,
+  spriteY3,
+} from "../util/boxBreathingMeasurements";
 
 const IntroStory = ({ start }) => {
   const [page, setPage] = useState(0);
@@ -31,7 +41,13 @@ const IntroStory = ({ start }) => {
     <View style={styles.introContainer}>
       <View style={styles.prompt}>
         <View style={styles.questionBox}>
-          <Text style={{ color: "white", textAlign: "center", fontFamily: "FontBold" }}>
+          <Text
+            style={{
+              color: "white",
+              textAlign: "center",
+              fontFamily: "FontBold",
+            }}
+          >
             {storyMap[page].question}
           </Text>
         </View>
@@ -47,7 +63,15 @@ const IntroStory = ({ start }) => {
               }
               key={key}
             >
-              <Text style={{ textAlign: "center", fontFamily: "FontReg", color: "#DD6755" }}>{answer}</Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontFamily: "FontReg",
+                  color: "#DD6755",
+                }}
+              >
+                {answer}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -99,9 +123,7 @@ const OutroStory = () => {
       >
         <View style={styles.prompt}>
           <View style={styles.questionBox}>
-            <Text style={styles.questionText}>
-              {storyMap1[page].question}
-            </Text>
+            <Text style={styles.questionText}>{storyMap1[page].question}</Text>
           </View>
 
           <View>
@@ -115,10 +137,10 @@ const OutroStory = () => {
                     ? restartThis()
                     : answer === "Bye Bye!"
                     ? navigation.navigate("kpi", {
-                      bg: require("../../assets/boxBreathing/beach.png"),
-                      pMsg: kpiData.boxBreathing.primMsg,
-                      sMsg: kpiData.boxBreathing.secMsg,
-                    })
+                        bg: require("../../assets/boxBreathing/beach.png"),
+                        pMsg: kpiData.boxBreathing.primMsg,
+                        sMsg: kpiData.boxBreathing.secMsg,
+                      })
                     : setPage(page + 1);
                 }}
                 key={key}
@@ -145,7 +167,8 @@ const boxBreathing = () => {
   const length2 = useRef(new Animated.Value(horizontalLength)).current;
   const length3 = useRef(new Animated.Value(horizontalLength)).current;
   const length4 = useRef(new Animated.Value(0)).current;
-  const move1 = useRef(new Animated.ValueXY({ x: spriteX1, y: spriteY1 })).current;
+  const move1 = useRef(new Animated.ValueXY({ x: spriteX1, y: spriteY1 }))
+    .current;
   const index = useRef(new Animated.Value(0)).current;
 
   const fadeAnimHoldInAir = useRef(new Animated.Value(0)).current;
@@ -447,7 +470,7 @@ const boxBreathing = () => {
   };
 
   const navigation = useNavigation();
-  
+
   return (
     <View>
       <ImageBackground
@@ -456,151 +479,151 @@ const boxBreathing = () => {
       >
         <TouchableOpacity
           style={styles.exitBtn}
-          onPress={ () => {navigation.navigate("kpi", {
-                      bg: require("../../assets/boxBreathing/beach.png"),
-                      pMsg: kpiData.boxBreathing.primMsg,
-                      sMsg: kpiData.boxBreathing.secMsg,
-                    })}}>
-          <Image
-            source={require('../../assets/exit/blkExitBtn.png')}/>
+          onPress={() => {
+            navigation.navigate("kpi", {
+              bg: require("../../assets/boxBreathing/beach.png"),
+              pMsg: kpiData.boxBreathing.primMsg,
+              sMsg: kpiData.boxBreathing.secMsg,
+            });
+          }}
+        >
+          <Image source={require("../../assets/exit/blkExitBtn.png")} />
         </TouchableOpacity>
-          {outro && <OutroStory />}
-          <View style={styles.container}>
-            {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
+        {outro && <OutroStory />}
+        <View style={styles.container}>
+          {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
                 <Image source = {require("../../assets/exit_storytime.png")}/>
             </TouchableOpacity>*/}
 
-            <Animated.View
-              style={[
-                styles.numText,
-                {
-                  opacity: fadeTimer1, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText}>1</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.numText,
+              {
+                opacity: fadeTimer1, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText}>1</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.numText,
-                {
-                  opacity: fadeTimer2, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText}>2</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.numText,
+              {
+                opacity: fadeTimer2, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText}>2</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.numText,
-                {
-                  opacity: fadeTimer3, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText}>3</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.numText,
+              {
+                opacity: fadeTimer3, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText}>3</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.numText,
-                {
-                  opacity: fadeTimer4, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText}>4</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.numText,
+              {
+                opacity: fadeTimer4, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText}>4</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.introText,
-                {
-                  opacity: ready1, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText2}>Get ready...</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.introText,
+              {
+                opacity: ready1, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText2}>Get ready...</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                { ...styles.introText},
-                {
-                  opacity: ready2, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText2}>Start!</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              { ...styles.introText },
+              {
+                opacity: ready2, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText2}>Start!</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.text,
-                {
-                  opacity: fadeAnim, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText2}>Breathe In...</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.text,
+              {
+                opacity: fadeAnim, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText2}>Breathe In...</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.text,
-                {
-                  opacity: fadeAnimHoldInAir, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText2}>Hold In Air...</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.text,
+              {
+                opacity: fadeAnimHoldInAir, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText2}>Hold In Air...</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.text,
-                {
-                  opacity: fadeAnimBreatheAirOut, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText2}>Breath Out...</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.text,
+              {
+                opacity: fadeAnimBreatheAirOut, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText2}>Breath Out...</Text>
+          </Animated.View>
 
-            <Animated.View
-              style={[
-                styles.text,
-                {
-                  opacity: fadeAnimHoldAirOut, // Bind opacity to animated value
-                },
-              ]}
-            >
-              <Text style={styles.animatedText2}>Hold Air Out...</Text>
-            </Animated.View>
+          <Animated.View
+            style={[
+              styles.text,
+              {
+                opacity: fadeAnimHoldAirOut, // Bind opacity to animated value
+              },
+            ]}
+          >
+            <Text style={styles.animatedText2}>Hold Air Out...</Text>
+          </Animated.View>
 
-            <Animated.View style={[animated1]}></Animated.View>
-            <Animated.View style={styles.bottomFrame}></Animated.View>
-            <View style={styles.barTop}></View>
-            <Animated.View style={[animated3]}></Animated.View>
+          <Animated.View style={[animated1]}></Animated.View>
+          <Animated.View style={styles.bottomFrame}></Animated.View>
+          <View style={styles.barTop}></View>
+          <Animated.View style={[animated3]}></Animated.View>
 
-            <View style={styles.barRight}></View>
-            <Animated.View style={[animated2]}></Animated.View>
-            <Animated.View style={[animated4]}></Animated.View>
-            <View style={styles.coverLeft}></View>
-            <Animated.View
-              style={[move1.getLayout(), styles.spriteIcon]}
-            >
-              <Image source={require("../../assets/boxBreathing/spirit.png")} />
-            </Animated.View>
+          <View style={styles.barRight}></View>
+          <Animated.View style={[animated2]}></Animated.View>
+          <Animated.View style={[animated4]}></Animated.View>
+          <View style={styles.coverLeft}></View>
+          <Animated.View style={[move1.getLayout(), styles.spriteIcon]}>
+            <Image source={require("../../assets/boxBreathing/spirit.png")} />
+          </Animated.View>
 
-            {!startAnimation && (
-              <View style={styles.introStory}>
-                <IntroStory start={setStartAnimation} />
-              </View>
-            )}
-          </View>
+          {!startAnimation && (
+            <View style={styles.introStory}>
+              <IntroStory start={setStartAnimation} />
+            </View>
+          )}
+        </View>
       </ImageBackground>
     </View>
   );
