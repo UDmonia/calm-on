@@ -5,35 +5,35 @@ import { TouchableOpacity, Image } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Splash from "./src/components/splash.js";
-import LoginSignup from "./src/components/session/loginSignup.js";
-import IntroVideo from "./src/components/video.js";
-import Storytime from "./src/components/storytime.js";
-import MilkMilkMilk from "./src/components/milkMilkMilk";
-import Profile from "./src/components/profile.js";
-import Mindfulness from "./src/components/mindfulnessStack";
-import Counting from "./src/components/Counting";
+import Splash from "./src/screens/splash.js";
+import LoginSignup from "./src/screens/session/loginSignup.js";
+import IntroVideo from "./src/screens/video.js";
+import Storytime from "./src/screens/storytime.js";
+import MilkMilkMilk from "./src/screens/milkMilkMilk";
+import Profile from "./src/screens/profile.js";
+import Mindfulness from "./src/screens/mindfulnessStack";
+import Counting from "./src/screens/Counting";
 import { Provider } from "react-redux";
 import configureStore from "./src/store/store";
-import Home from "./src/components/homeStack";
-import DailyCheckIn from "./src/components/DailyCheckIn";
-import CheckInExplain from "./src/components/CheckInExplain";
-import Activities from "./src/components/Activities";
-import BoxBreathing from "./src/components/boxBreathing";
-import ChatPlaceholder from "./src/components/chatPlaceholder";
-import FeelingDictionary from "./src/components/FeelingDictionary";
-import kpi from "./src/components/kpi";
+import Home from "./src/screens/homeStack";
+import DailyCheckIn from "./src/screens/DailyCheckIn";
+import CheckInExplain from "./src/screens/CheckInExplain";
+import Activities from "./src/screens/Activities";
+import BoxBreathing from "./src/screens/boxBreathing";
+import CharacterChat from "./src/screens/CharacterChat";
+import FeelingDictionary from "./src/screens/FeelingDictionary";
+import kpi from "./src/screens/kpi";
 import { navigationRef } from "./src/components/RootNavigation";
 import * as RootNavigation from "./src/components/RootNavigation";
-import FiveFourThreeTwoOneTech from "./src/components/FiveFourThreeTwoOneTech.js";
-import CountingPrompt from "./src/components/CountingPrompt.js";
-import CountingSelection from "./src/components/CountingSelection.js";
+import FiveFourThreeTwoOneTech from "./src/screens/FiveFourThreeTwoOneTech.js";
+import CountingPrompt from "./src/screens/CountingPrompt.js";
+import CountingSelection from "./src/screens/CountingSelection.js";
 import { useFonts } from "expo-font";
-import Adventure from "./src/components/Adventure.js";
-import AdventureLocation from "./src/components/AdventureLocation.js";
-import AdventureLocationSeeAll from "./src/components/AdventureLocationSeeAll.js";
-import FlatActivities from "./src/components/FlatActivities.js";
-import IntroActivity from "./src/components/IntroActivity.js";
+import Adventure from "./src/screens/Adventure.js";
+import AdventureLocation from "./src/screens/AdventureLocation.js";
+import AdventureLocationSeeAll from "./src/screens/AdventureLocationSeeAll.js";
+import FlatActivities from "./src/screens/FlatActivities.js";
+import IntroActivity from "./src/screens/IntroActivity.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -61,6 +61,7 @@ export default function App() {
           <Stack.Screen name="IntroVideo" component={IntroVideo} />
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="loginSignup" component={LoginSignup} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen
             name="Counting"
             component={Counting}
@@ -147,7 +148,6 @@ export default function App() {
               headerTintColor: hex.grey.allText,
             }}
           />
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen
             name="FlatActivities"
             component={FlatActivities}
@@ -181,7 +181,7 @@ export default function App() {
           <Stack.Screen
             name="kpi"
             component={kpi}
-            screenOptions={{headerShown: false}}
+            screenOptions={{ headerShown: false }}
           />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
@@ -209,7 +209,7 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="chatPlaceholder"
+            name="CharacterChat"
             options={({ route }) => ({
               headerShown: true,
               headerBackTitleVisible: false,
@@ -218,23 +218,18 @@ export default function App() {
               headerStyle: { backgroundColor: route.params.headerColor },
               headerTintColor: hex.white.appBackground,
             })}
-            component={ChatPlaceholder}
+            component={CharacterChat}
           />
           <Stack.Screen
             name="boxBreathing"
-            options={{ headerShown: true, headerTitle: "Box Breathing" }}
+            options={{ headerShown: false }}
             component={BoxBreathing}
           />
           <Stack.Screen
             name="Adventure"
             component={Adventure}
             options={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-              headerTintColor: "white",
-              headerTitle: "Going on an Adventure",
-              headerTitleStyle: { fontSize: 24, color: "white" },
-              headerStyle: { backgroundColor: hex.green.sprite },
+              headerShown: false,
             }}
           />
           <Stack.Screen

@@ -81,21 +81,15 @@ export const Box = ({
             <View style={styles.iconBox}>
               <Image source={image} />
             </View>
-            <View>
-              <Text style={{...styles.journalTitle,
-              //Temp styles for MVP
-                marginTop:25,marginLeft:20
-                }}>
+            <View style={styles.textContainer}>
+              <Text style={styles.journalTitle}>
                 {mood.charAt(0).toUpperCase() + mood.slice(1)}
               </Text>
-              
-              {/*Dont need it for MVP*/}
-              {/**************************/}
-              {/*<Text style={styles.journal}>
+              {/*
+              <Text style={styles.journal}>
                 I'm {mood} about {parsedJournal}
-              </Text>*/}
-              {/**************************/}
-
+              </Text>
+              */}
             </View>
           </TouchableOpacity>
         </View>

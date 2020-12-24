@@ -1,38 +1,55 @@
 import hex from "./hexCodes";
 import { StyleSheet } from "react-native";
+import {windowWidth} from "../util/windowDimensions";
 
 export default StyleSheet.create({
   screenContainer: {
     flex: 1,
-    alignItems: "center",
   },
   imgPosition: {
     marginLeft: -50,
   },
   greetingTxt: {
-    margin: 10,
     color: "white",
+    fontFamily: "FontBold",
+    fontSize: windowWidth * 0.04,
   },
   row: {
     flexDirection: "row",
   },
   locationContainer: {
-    height: 105,
-    width: 105,
-    margin: 10,
-    borderRadius: 4,
+    height: .2333 * windowWidth,
+    width: .2333 * windowWidth,
+    margin: "5%",
+    borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: hex.blue.adventureBackground,
   },
   dialogContainer: {
-    height: 71,
-    width: 330,
+    height: "30%",
+    width: "90%",
     borderRadius: 10,
+    justifyContent: "center",
+    paddingHorizontal: "5.5%",
     backgroundColor: hex.brown.adventureBackground,
   },
   locationTxt: {
     marginTop: 5,
     textAlign: "center",
+    fontFamily: "FontBold",
+    fontSize: windowWidth * 0.030,
+  },
+  exitPosition: {
+    marginTop: "10%",
+    marginLeft :"5%",
+  },
+  center: {
+    marginTop: "15%",
+    alignItems: "center",
+  },
+  background: {
+    width: "100%", 
+    height: "100%",
   },
 });

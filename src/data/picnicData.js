@@ -288,8 +288,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Nutella",
-        image: require("../../assets/adventure/locations/alphabetItems/nutella.png"),
+        itemName: "Nuts",
+        image: require("../../assets/adventure/locations/alphabetItems/nuts.png"),
       },
     ],
   },
