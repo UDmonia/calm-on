@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Text from './Text';
-import hex from '../stylesheets/hexCodes';
 import { ImageBackground, ScrollView,View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -31,9 +30,9 @@ const checkinDetails = ({ route }) => {
    * Passing data from Calendar.js
    * @param entry The specific check-in from the check-in array
    * @param allEntries The entire check-in array
-   * @param time The time of the day of a particular check-in
+   * @param spriteActivityData all the activity data for the sprite character
    */
-  const { entry, allEntries, time } = route.params;
+  const { entry, allEntries, time, spriteActivityData } = route.params;
 
   // Navigating from daily preview: set initial index to specfic time pressed
   const specificTime = entry.journals.find(
@@ -81,6 +80,16 @@ const checkinDetails = ({ route }) => {
       </Text>
     </TouchableOpacity>
   ));
+  
+  // Filter all the activities if they fit the tag
+  const activityList = [];
+  var i;
+  for (i = 0; i < spriteActivityData.length; i++) {
+    //console.log(spriteActivityData[i].tag);
+    if(spriteActivityData[i].tag.includes(journal.mood)) {
+        activityList.push(spriteActivityData[i]);
+    }
+  }
 
   return (
     <View style={styles.format}>
@@ -104,7 +113,6 @@ const checkinDetails = ({ route }) => {
                 {moment(journal.createdAt).format("dddd, LL")}
               </Text>
             </View>
-
             <ScrollView contentContainerStyle={styles.container}>
               <View style={styles.upper}>
                 {/*Date increase/decrease*/}
@@ -147,7 +155,7 @@ const checkinDetails = ({ route }) => {
                 </View>
 
                 <ScrollView 
-                  contentContainerStyle={styles.timeList}
+                  style={styles.timeList}
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}>
                   {buttons}
@@ -158,10 +166,8 @@ const checkinDetails = ({ route }) => {
                 <Text style={styles.journalTitle}>
                   {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
                 </Text>
-
-                {/*Dont need it yet for MVP */}
-                {/****************************/}
-                {/*<Text style={styles.journal}>
+                {/*
+                <Text style={styles.journal}>
                   I'm {journal.mood} about{" "}
                   <Text style={styles.bolded}>
                     {journal.journal.split(",").length === 1
@@ -177,29 +183,25 @@ const checkinDetails = ({ route }) => {
                       .toLowerCase()
                       .substring(lastCommaIndex + 1)}
                   </Text>
-                </Text>*/}
-                {/****************************/}
-
+                </Text>
+                */}
               </View>
 
               <View style={styles.lower}>
                 <Image source={require("../../assets/images/banner.png")} />
-                <View style={styles.activities}>
+                {activityList.map((activity) => {
+                  return (
                     <ActivityCard
-                      title={"Milk Milk Milk"}
-                      key={3}
-                      bgColor={hex.green.green2}
-                      navigateLink={"IntroActivity"}
-                      imagePath={require("../../assets/favicon.png")}
-                      introPageData={{
-                        navRoute: "IntroActivity",
-                        ActRoute: "milkMilkMilk",
-                        about: "A story about your thoughts and feelings with the word milk!",
-                        helpful: "You feel scared or worried.",
-                        img: require("../../assets/favicon.png"),
-                        }}
-                      header={hex.green.green1}/>
-                </View>
+                      title={activity.title}
+                      key={activity.id}
+                      bgColor={activity.color}
+                      navigateLink={activity.introPageData.navRoute}
+                      imagePath={activity.img}
+                      introPageData={activity.introPageData}
+                      header={activity.introPageData.headerColor}
+                    />
+                  );
+                })}
               </View>
             </ScrollView>
           </View>

@@ -7,8 +7,8 @@ import moment from 'moment'
 import {useSelector} from 'react-redux'
 import {Box} from './previewEntries'
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import styles from '../stylesheets/calendarStyles'
-
+import styles from '../stylesheets/calendarStyles';
+import { SpriteActivityData } from "../data/activityData";
 var today = Date.now()
 
 /**
@@ -43,7 +43,7 @@ const Calendar =({navigation: { navigate} })=>{
         <PreviewDaily
         showJournal = {
             (time)=>{navigate('CheckinDetail', 
-            {entry: journals[key], allEntries: journals,time: time})
+            {entry: journals[key], allEntries: journals,time: time, spriteActivityData: SpriteActivityData})
         }
             
         } 
@@ -56,21 +56,13 @@ const Calendar =({navigation: { navigate} })=>{
     const activeColor = {
         backgroundColor:'white',
         color: 'black',
-        paddingTop:'8%',
         fontSize:16,
-        fontWeight:'500',
-        textAlign: 'center',
-        height: '100%'
     }
 
     const inactiveColor = {
         color: 'white',
         backgroundColor: null,
-        paddingTop:'8%',
         fontSize:16,
-        fontWeight:'500',
-        textAlign: 'center',
-        height: '100%'
     }
 
     
@@ -84,22 +76,30 @@ const Calendar =({navigation: { navigate} })=>{
                         <Image style = {styles.hangerLeft} source = {require('../../assets/images/hanger.png')}/>
                         <Image style = {styles.hangerRight} source = {require('../../assets/images/hanger.png')}/>
 
-                            <View style = {{borderRadius: 5,borderColor: 'white', height: '49%',borderWidth:3, display:'flex',flexDirection:'row'}}>
-                                <TouchableOpacity style = {{width:105}} onPress = {()=>changeView(!viewByDay)}>
-                                    <Text style = {viewByDay? activeColor:inactiveColor}>Daily</Text>
+                            <View style = {{borderRadius: 5,borderColor: 'white', minHeight: 35, height: '45%',borderWidth:3, display:'flex',flexDirection:'row'}}>
+                                <TouchableOpacity style = {viewByDay ? styles.highlighted : styles.notHighlighted} onPress = {()=>changeView(!viewByDay)}>
+                                    <Text style={viewByDay ? styles.toggleTextBlack : styles.toggleTextWhite}>Daily</Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity  style = {{width:105}} onPress = {()=>changeView(!viewByDay)}>
-                                    <Text style = {!viewByDay? activeColor:inactiveColor}>Monthly</Text>
+                                <TouchableOpacity  style = {!viewByDay ? styles.highlighted : styles.notHighlighted} onPress = {()=>changeView(!viewByDay)}>
+                                    <Text style={!viewByDay ? styles.toggleTextBlack : styles.toggleTextWhite}>Monthly</Text>
                                 </TouchableOpacity>
                             </View>
                             
                         </View>
 
                         {viewByDay?
-                        <ScrollView style = {styles.dates}>
+                        <ScrollView contentContainerStyle = {styles.dates}>
                                 {checkInEnabled &&
-                                    <Box empty = {true} color = {'white'} image = {require('../../assets/images/addJournal.png')} time = {null} mood = {null} journal = {''} />
+                                    <View style={styles.feelingContainer}>
+                                        <TouchableOpacity 
+                                            style={styles.addFeelings}
+                                            onPress={() => navigate("DailyCheckIn")}>
+                                            <Image
+                                            source={require('../../assets/images/addJournal.png')}/>
+                                            <Text style={styles.feelingText}>Tell me how you're feeling</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 }
                             {previewDaily}
                         </ScrollView>

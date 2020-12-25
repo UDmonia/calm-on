@@ -1,81 +1,73 @@
 import { StyleSheet } from "react-native";
 import hex from "./hexCodes";
+import {windowHeight, windowWidth} from "../util/windowDimensions";
 
 export default StyleSheet.create({
   screenContainer: {
     flex: 1,
     height: "100%",
     width: "100%",
-    justifyContent: "center",
     fontFamily: "FontReg",
   },
   background: {
-    flex: 2.5,
-    resizeMode: "contain",
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 4,
   },
   imgBackground: {
     resizeMode: "cover",
-    flex: 1,
     width: "100%",
-    height: "100%",
+    height: "145%",
     top: undefined,
-    overflow: "hidden",
+    bottom: 0,
   },
   exitPosition: {
-    alignSelf: "flex-start",
-    marginLeft: 50,
-    marginBottom: 30,
+    marginTop: "10%",
+    marginLeft :"5%",
   },
   row: {
     flexDirection: "row",
     marginTop: 30,
   },
   locationContainer: {
-    height: 103,
-    width: 340,
-    borderRadius: 4,
+    height: .2333 * windowWidth,
+    width: "90%",
+    borderRadius: 10,
     backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
   },
   itemContainer: {
-    height: 105,
-    width: 105,
-    borderRadius: 4,
-    margin: 10,
+    height: .2333 * windowWidth,
+    width: .2333 * windowWidth,
+    marginHorizontal: "5%",
+    borderRadius: 5,
     backgroundColor: hex.white.white1,
     alignItems: "center",
     justifyContent: "center",
-    shadowOffset: {
-      height: -2,
-    },
   },
   imgSpirit: {
-    height: 259,
-    width: 134,
-    marginTop: 40,
+    height: "100%",
   },
   imgSpiritContainer: {
-    width: 250,
-    alignItems: "flex-start",
+    height: "50%",
+    alignSelf: "flex-start",
+    marginLeft: "15%",
+    
   },
   img: {
-    height: 50,
-    width: 50,
+    height: "50%",
+    width: "70%",
     resizeMode: "contain",
     margin: 5,
   },
   txtLetter: {
     color: "white",
-    fontFamily: "FontReg",
+    fontFamily: "FontBold",
+    fontSize: windowWidth * 0.04,
   },
   basketContainer: {
-    flex: 0.65,
     alignItems: "center",
     width: "100%",
-    backgroundColor: "blue",
+    flex: 1.25,
   },
   seeAllContainer: {
     backgroundColor: hex.green.green1,
@@ -83,43 +75,62 @@ export default StyleSheet.create({
     minHeight: 50,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: "4%",
   },
   selectedItemTxt: {
     color: "white",
-    marginHorizontal: 10,
-    marginRight: 235,
-    fontFamily: "FontReg",
+    fontFamily: "FontBold",
+    fontSize: windowWidth * 0.04
   },
   seeAllTxt: {
     color: "white",
-    fontFamily: "FontReg",
+    fontFamily: "FontBold",
+    fontSize: windowWidth * 0.04
   },
   basket: {
     backgroundColor: "white",
-    height: 75,
+    height: "10%",
     width: "100%",
   },
   basketItemContainer: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
   },
   basketItem: {
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: "flex-start",
-    height: 59,
-    width: 95,
+    height: "100%",
+    width: windowWidth * 0.20,
     margin: 5,
   },
   itemName: {
     textAlign: "center",
     fontFamily: "FontReg",
+    fontSize: windowWidth * 0.030,
   },
   itemDivider: {
-    backgroundColor: "grey",
-    height: 59,
+    backgroundColor: "#027E2A",
+    height: "80%",
     width: 1,
   },
+  center: {
+    flex: 1,
+    marginTop: "10%",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  imgText: {
+    position: "absolute",
+    bottom: 0,
+    fontFamily: "FontBold",
+    fontSize: windowWidth * 0.030,
+  },
+  selectImg: {
+    height: "60%",
+    width: "70%",
+    resizeMode: "contain"
+
+  }
 });

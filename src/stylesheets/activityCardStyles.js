@@ -19,8 +19,8 @@ export default StyleSheet.create({
         width: "80%",
         marginTop: 10,
         marginBottom: 10,
-        paddingLeft: 25,
-        justifyContent: "space-between",
+        //paddingRight: 30,
+        justifyContent: "space-evenly",
         alignItems: "center",
         borderRadius: 10,
         shadowColor: hex.black.black1,
@@ -34,5 +34,9 @@ export default StyleSheet.create({
     },
     title: {
         fontFamily: "FontReg",
+        flex: 1,
+        flexWrap: "wrap",
+        textAlign: "right",
+        marginRight: "15%",
     }
 });
