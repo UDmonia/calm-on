@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     textAlign: "center",
     fontSize: 16,
-    color: hex.blue.dayIconBackground,
+    color: hex.blue.blue1,
   },
   buttonContainer: {
     flexDirection: "row",

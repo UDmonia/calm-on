@@ -69,7 +69,7 @@ const button = (desc) => {
       // need the style here to use desc.state
       style={[
         {
-          backgroundColor: desc.state ? hex.blue.checkinButtonActive : hex.blue.checkinButtonInactive,
+          backgroundColor: desc.state ? hex.blue.blue3 : hex.grey.grey2,
         },
         styles.toggleButton,
       ]}

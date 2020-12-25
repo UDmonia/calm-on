@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor: hex.brown.calendarBackground,
+        backgroundColor: hex.brown.brown3,
         borderTopRightRadius:10,
         borderTopLeftRadius:10
     },
@@ -116,21 +116,21 @@ const styles = StyleSheet.create({
         height: 33,
         width: 75,
         borderRadius: 5,
-        borderColor:hex.grey.calendarBackground
+        borderColor:hex.grey.grey2
     },
     timeActive:{
         borderWidth: 1,
         height: 33,
         width: 75,
         borderRadius: 5,
-        backgroundColor:hex.yellow.calendarBackground,
-        borderColor:hex.yellow.dailyCheckinHeader
+        backgroundColor:hex.yellow.yellow3,
+        borderColor:hex.yellow.yellow1
     },
 
     timesText:{
         textAlign:'center',
         paddingTop: '8%',
-        color:hex.grey.calendarText
+        color:hex.grey.grey1
     }
 
 })

@@ -4,7 +4,7 @@ import hex from './hexCodes';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: hex.green.mindfulnessBackground,
+        backgroundColor: hex.green.green1,
         justifyContent: 'center',
         alignItems: 'center',
     },

@@ -32,7 +32,7 @@ export default StyleSheet.create({
     height: 89,
     width: 89,
     margin: 3,
-    backgroundColor: hex.white.adventureBackground,
+    backgroundColor: hex.white.white1,
     alignItems: "center",
     justifyContent: "center",
   },

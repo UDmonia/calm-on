@@ -3,7 +3,7 @@ import hex from "./hexCodes";
 
 export default StyleSheet.create({
     mainContainer: {
-        backgroundColor: hex.green.kpiBackground,
+        backgroundColor: hex.green.green1,
         height: "100%",
     },
     imgBackground: {
@@ -67,7 +67,7 @@ export default StyleSheet.create({
         marginTop: "15%",
     },
     backButton: {
-        backgroundColor:hex.green.sprite,
+        backgroundColor:hex.green.green1,
         minWidth: "100%",
         minHeight: "20%",
         borderRadius: 100,
@@ -117,7 +117,7 @@ export default StyleSheet.create({
         fontSize: 40,
     },
     ModalBackButton: {
-        backgroundColor:hex.green.sprite,
+        backgroundColor:hex.green.green1,
         minWidth: "50%",
         height: "50%",
         borderRadius: 100,

@@ -3,7 +3,7 @@ import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: hex.green.storytimeBackground,
+    backgroundColor: hex.green.green1,
     display: 'flex',
     alignItems: 'center',
     height: '100%',

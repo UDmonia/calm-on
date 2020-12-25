@@ -5,7 +5,7 @@ import hex from "./hexCodes";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: hex.grey.countingBackground,
+    backgroundColor: hex.grey.grey2,
   },
   backImage: {
     width: "100%",
@@ -65,7 +65,7 @@ export default StyleSheet.create({
     width: 300,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: hex.blue.countingBackground,
+    backgroundColor: hex.green.green1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -74,7 +74,7 @@ export default StyleSheet.create({
     width: 300,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: hex.blue.countingBackground,
+    backgroundColor: hex.green.green1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -90,7 +90,7 @@ export default StyleSheet.create({
     width: 47,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: hex.green.countingBackground,
+    backgroundColor: hex.white.white1,
     margin: 1,
   },
   boxImg: {
@@ -125,7 +125,7 @@ export default StyleSheet.create({
     width: 163,
     height: 51,
     borderRadius: 41,
-    backgroundColor: hex.white.appBackground,
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 60,
@@ -143,7 +143,7 @@ export default StyleSheet.create({
     height: 51,
     borderRadius: 41,
     margin: 10,
-    backgroundColor: hex.white.appBackground,
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
   },

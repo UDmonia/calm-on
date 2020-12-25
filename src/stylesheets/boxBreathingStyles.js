@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 350,
     left: 170,
-    color: hex.blue.boxBreathingDarkBar,
+    color: hex.blue.blue5,
     //borderWidth:1,
   },
   text:{
@@ -23,21 +23,21 @@ const styles = StyleSheet.create({
   animatedText: {
     top: -120,
     left: 0,
-    color: hex.blue.boxBreathingDarkBar,
+    color: hex.blue.blue5,
     fontSize: 120,
     textAlign: "center",
   },
   animatedText2: {
     top: -120,
     left: 0,
-    color: hex.blue.boxBreathingDarkBar,
+    color: hex.blue.blue5,
     fontWeight:'600',
     fontSize: 30,
     textAlign: "center",
 
   },
   questionBox: {
-    backgroundColor: hex.brown.adventureBackground,
+    backgroundColor: hex.brown.brown1,
     justifyContent: "center",
     alignContent: "center",
     textAlign: "center",
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   prompt: {
-    backgroundColor: hex.pink.counting,
+    backgroundColor: hex.white.white1,
     width: "75%",
     marginTop: "125%",
     marginLeft: "12%",
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     width: 280,
     //borderColor:'red',
-    borderColor: hex.blue.boxBreathingLightBar,
+    borderColor: hex.blue.blue4,
     zIndex: 0,
   },
 
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     left: 60,
     borderWidth: 10,
     height: 280,
-    borderColor: hex.blue.boxBreathingLightBar,
+    borderColor: hex.blue.blue4,
     zIndex: 0,
   },
   barRight: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     right: 64,
     width: 10,
     borderWidth: 10,
-    borderColor: hex.blue.boxBreathingDarkBar,
+    borderColor: hex.blue.blue5,
     height: 270,
   },
   barTop: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     left: 70,
     width: 270,
     borderWidth: 10,
-    borderColor: hex.blue.boxBreathingDarkBar,
+    borderColor: hex.blue.blue5,
   },
   container: {
     flex: 1,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    color: hex.green.introActivityGreen,
+    color: hex.green.green1,
     width: 125,
     marginBottom: "5%",
   },
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: hex.green.sprite,
+    backgroundColor: hex.green.green1,
     marginTop: "10%",
     marginLeft: "15%",
   },
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
   },
   descriptions: {
-    color: hex.grey.introActivityText,
+    color: hex.grey.grey1,
     paddingTop: "2%",
   },
 });

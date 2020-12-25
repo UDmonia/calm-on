@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   sendMessage: { 
     height: 55, 
-    backgroundColor: hex.grey.introActivityBorder, 
+    backgroundColor: hex.grey.grey3, 
     justifyContent: "center", 
     alignItems: 'center', 
     flexDirection: 'row',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   optionBox: { 
     height: 200, 
-    backgroundColor: hex.green.spriteChatBackgroundxxxxxx, 
+    backgroundColor: hex.green.green1, 
   },
   optionBoxItems: { 
     flexDirection: 'row', 

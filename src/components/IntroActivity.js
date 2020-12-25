@@ -34,7 +34,7 @@ export default Intro = ({ route, navigation }) => {
                 borderLeftWidth: 2,
                 borderRightWidth: 2,
                 width: 130,
-                borderColor: hex.grey.introActivityBorder,
+                borderColor: hex.grey.grey3,
               }}
             >
               <Text style={styles.stats}>1</Text>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    color: hex.green.introActivityGreen,
+    color: hex.green.green1,
     width: 125,
     marginBottom: "5%",
     fontFamily: "FontReg",
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     fontFamily: "FontReg",
   },
   descriptions: {
-    color: hex.grey.introActivityText,
+    color: hex.grey.grey1,
     paddingTop: "2%",
     fontFamily: "FontReg",
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: hex.green.sprite,
+    backgroundColor: hex.green.green1,
     marginTop: "10%",
     marginLeft: "15%",
   },

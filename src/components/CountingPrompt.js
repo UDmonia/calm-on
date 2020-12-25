@@ -45,7 +45,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
           <Exit navTo={"chatPlaceholder"} />
         </View>
         <View style={styles.countDis}>
-          <Text style={{ color: hex.white.appBackground }}>
+          <Text style={{ color: hex.white.white1 }}>
             {counter + " " + actData.groupName}
           </Text>
         </View>
@@ -73,7 +73,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               style={styles.nextButton}
               onPress={() => setNext(!next)}
             >
-              <Text style={{ color: hex.blue.countingPromptText }}>Next</Text>
+              <Text style={{ color: hex.white.white1 }}>Next</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -86,7 +86,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                 style={styles.navButton}
                 onPress={() => navigate("chatPlaceholder")}
               >
-                <Text style={{ color: hex.blue.countingPromptText }}>Home</Text>
+                <Text style={{ color: hex.white.white1 }}>Home</Text>
               </TouchableOpacity>
               {actData.next != null ? (
                 <TouchableOpacity
@@ -96,7 +96,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                       navigate("Counting", { stuff: actData.next });
                   }}
                 >
-                  <Text style={{ color: hex.blue.countingPromptText }}>Next Recipe</Text>
+                  <Text style={{ color: hex.white.white1 }}>Next Recipe</Text>
                 </TouchableOpacity>
               ) : null}
             </View>

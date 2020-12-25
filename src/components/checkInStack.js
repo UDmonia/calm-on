@@ -11,17 +11,17 @@ export default checkinStack =()=>{
 
     const headerOption = {
         headerLeft:null,
-        headerTitleStyle: {fontSize: 20,color:hex.grey.allText},
-        headerStyle: {backgroundColor: hex.yellow.dailyCheckinHeader}
+        headerTitleStyle: {fontSize: 20,color:hex.grey.grey1},
+        headerStyle: {backgroundColor: hex.yellow.yellow1}
     }
 
     const headerOption2 ={
         headerBackTitleVisible:false,
-        headerBackTitleStyle:{color:hex.grey.allText},
+        headerBackTitleStyle:{color:hex.grey.grey1},
         headerTitle: 'Daily Check-In',
-        headerTitleStyle: {fontSize: 20,color:hex.grey.allText},
-        headerStyle: {backgroundColor: hex.yellow.dailyCheckinHeader},
-        headerTintColor: hex.grey.allText
+        headerTitleStyle: {fontSize: 20,color:hex.grey.grey1},
+        headerStyle: {backgroundColor: hex.yellow.yellow1},
+        headerTintColor: hex.grey.grey1
     }
 
     return(

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     bottom: "90.64 %",
   },
   exitBox: {
-    backgroundColor: hex.brown.adventureBackground,
+    backgroundColor: hex.brown.brown1,
     borderRadius: 10,
     position: "absolute",
     width: 337,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   exitText: {
-    color: hex.white.appBackground,
+    color: hex.white.white1,
     fontFamily: "FontReg",
     fontSize: 24,
     fontWeight: "800",
@@ -57,15 +57,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: 50,
     width: "100%",
-    backgroundColor: hex.white.appBackground,
+    backgroundColor: hex.white.white1,
   },
   yesNo: {
     borderBottomLeftRadius: 10,
     height: "100%",
     width: "50%",
     borderWidth: 1,
-    borderColor: hex.white.appBackground,
-    borderRightColor: hex.brown.adventureBackground,
+    borderColor: hex.white.white1,
+    borderRightColor: hex.brown.brown1,
   },
   no: {
     height: "100%",
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   circle: {
-    // backgroundColor: hex.white.appBackground,
+    // backgroundColor: hex.white.white1,
     // borderRadius: 1000,
     // flex: 1,
     justifyContent: "center",
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     // top: -34,
   },
   box: {
-    backgroundColor: hex.pink.counting,
+    backgroundColor: hex.white.white1,
     borderRadius: 10,
     minHeight: 100,
     width: 330,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   top: {
-    backgroundColor: hex.brown.adventureBackground,
+    backgroundColor: hex.brown.brown1,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     minHeight: 50,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   question: {
-    color: hex.white.appBackground,
+    color: hex.white.white1,
     fontFamily: "FontReg",
     fontSize: 14,
     fontWeight: "800",
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 14,
   },
   answer1: {
-    backgroundColor: hex.white.appBackground,
+    backgroundColor: hex.white.white1,
     borderRadius: 10,
     height: 35,
     width: 284,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     marginVertical: "5%",
   },
   answer: {
-    backgroundColor: hex.white.appBackground,
+    backgroundColor: hex.white.white1,
     borderRadius: 10,
     fontSize: 14,
     height: 35,

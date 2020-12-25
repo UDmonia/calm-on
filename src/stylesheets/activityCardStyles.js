@@ -23,7 +23,7 @@ export default StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         borderRadius: 10,
-        shadowColor: hex.black.activityCardShadow,
+        shadowColor: hex.black.black1,
         shadowOffset: {
             width: 0,
             height: 4,

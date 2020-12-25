@@ -23,13 +23,13 @@ export default StyleSheet.create({
     borderRadius: 4,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: hex.blue.adventureBackground,
+    backgroundColor: hex.blue.blue3,
   },
   dialogContainer: {
     height: 71,
     width: 330,
     borderRadius: 10,
-    backgroundColor: hex.brown.adventureBackground,
+    backgroundColor: hex.brown.brown1,
   },
   locationTxt: {
     marginTop: 5,

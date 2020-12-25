@@ -9,16 +9,16 @@ const styles = StyleSheet.create({
         width:330,
         borderWidth:0.3,
         flexDirection: 'row',
-        borderColor: hex.grey.dayIconBackground
+        borderColor: hex.grey.grey3
     },
     header: {
         width: 50,
         height: '100%',
         paddingTop:'5%',
         textAlign:'center',
-        backgroundColor:hex.grey.dayIconBackground2,
-        color: hex.grey.dayIconBackground3,
-        borderColor: hex.grey.dayIconBackground,
+        backgroundColor:hex.grey.grey2,
+        color: hex.grey.grey1,
+        borderColor: hex.grey.grey3,
         borderWidth:0.3,
     },
 

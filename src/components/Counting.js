@@ -82,7 +82,7 @@ export default Counting = ({ route, navigation }) => {
         </View>
         <View style={styles.countDis}>
           {count > 0 ? (
-            <Text style={{ color: hex.white.appBackground}}>
+            <Text style={{ color: hex.white.white1}}>
               {count + " " + stuff.groupName}
             </Text>
           ) : null}

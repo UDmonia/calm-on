@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin:'1.2%',
         marginTop:'2%',
-        backgroundColor:hex.grey.calendarBackground2,
+        backgroundColor:hex.grey.grey2,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

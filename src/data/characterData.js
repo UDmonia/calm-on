@@ -7,7 +7,7 @@ import hex from "../stylesheets/hexCodes";
 const sprite = {
   img: require("../../assets/images/sprite.gif"),
   name: "Sprite",
-  characterColor: hex.green.sprite,
+  characterColor: hex.green.green1,
   description:
     "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
   background: require("../../assets/images/characterChat/spriteBackground.png"),

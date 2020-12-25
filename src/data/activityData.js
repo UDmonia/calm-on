@@ -16,7 +16,7 @@ const SpriteActivityData = [
   {
     id: 1,
     title: "5-4-3-2-1 Techniques",
-    color: hex.green.techniques,
+    color: hex.green.green1,
     img: require("../../assets/activities/54321.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -30,7 +30,7 @@ const SpriteActivityData = [
   {
     id: 2,
     title: "Calm Counting",
-    color: hex.pink.counting,
+    color: hex.pink.pink2,
     img: require("../../assets/activities/counting.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -44,7 +44,7 @@ const SpriteActivityData = [
   {
     id: 3,
     title: "Milk Milk Milk",
-    color: hex.green.milk,
+    color: hex.green.green1,
     img: require("../../assets/favicon.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -57,7 +57,7 @@ const SpriteActivityData = [
   {
     id: 4,
     title: "Box Breathing",
-    color: hex.blue.boxBreathing,
+    color: hex.blue.blue3,
     img: require("../../assets/favicon.png"),
     introPageData: {
       navRoute: "IntroActivity",
@@ -71,7 +71,7 @@ const SpriteActivityData = [
   {
     id: 5,
     title: "Picnic Time",
-    color: hex.pink.picnicTime,
+    color: hex.pink.pink3,
     img: require("../../assets/favicon.png"),
     introPageData: {
       navRoute: "IntroActivity",

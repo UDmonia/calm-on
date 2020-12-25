@@ -188,7 +188,7 @@ const checkinDetails = ({ route }) => {
                     <ActivityCard
                       title={"Milk Milk Milk"}
                       key={3}
-                      bgColor={hex.green.spriteActivityButton}
+                      bgColor={hex.green.green2}
                       navigateLink={"IntroActivity"}
                       imagePath={require("../../assets/favicon.png")}
                       introPageData={{
@@ -198,7 +198,7 @@ const checkinDetails = ({ route }) => {
                         helpful: "You feel scared or worried.",
                         img: require("../../assets/favicon.png"),
                         }}
-                      header={hex.green.sprite}/>
+                      header={hex.green.green1}/>
                 </View>
               </View>
             </ScrollView>

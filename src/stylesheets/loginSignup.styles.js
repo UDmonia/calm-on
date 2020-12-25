@@ -31,7 +31,7 @@ export default StyleSheet.create({
   },
 
   topButtons: {
-    borderColor: hex.purple.loginBorder,
+    borderColor: hex.purple.purple2,
   },
   topButtonText: {
     fontSize: 25,
@@ -118,7 +118,7 @@ export default StyleSheet.create({
   },
   userNameInput: {
     padding: 10,
-    backgroundColor: hex.grey.loginBackground,
+    backgroundColor: hex.grey.grey2,
     borderRadius: 5,
     width: 219,
     textAlign: "center",

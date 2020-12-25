@@ -403,7 +403,7 @@ const boxBreathing = () => {
     top: 395,
     width: length1,
     borderWidth: 10,
-    borderColor: hex.blue.boxBreathingDarkBar,
+    borderColor: hex.blue.blue5,
     zIndex: 3,
   };
 
@@ -415,7 +415,7 @@ const boxBreathing = () => {
     width: 10,
     borderWidth: topRightCorner,
     height: length2,
-    borderColor: hex.blue.boxBreathingLightBar,
+    borderColor: hex.blue.blue4,
     zIndex: 2,
   };
 
@@ -426,7 +426,7 @@ const boxBreathing = () => {
     left: 60,
     width: length3,
     borderWidth: 10,
-    borderColor: hex.blue.boxBreathingLightBar,
+    borderColor: hex.blue.blue4,
   };
 
   //Dark blue moving bar 4
@@ -436,7 +436,7 @@ const boxBreathing = () => {
     left: 60,
     borderWidth: leftBar,
     height: length4,
-    borderColor: hex.blue.boxBreathingDarkBar,
+    borderColor: hex.blue.blue5,
     zIndex: 1,
   };
 

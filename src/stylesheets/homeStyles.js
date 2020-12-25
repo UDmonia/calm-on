@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topBox: {
-    backgroundColor: hex.white.appBackground,
-    borderColor: hex.blue.homeBackground,
+    backgroundColor: hex.white.white1,
+    borderColor: hex.blue.blue1,
     borderRadius: 6,
     borderStyle: 'solid',
     borderWidth: 2,
@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
     width: 348,
   },
   topBoxTextName: {
-    color: hex.black.activityCardShadow,
+    color: hex.black.black1,
     fontSize: 24,
     fontFamily: 'FontReg',
     marginTop: 16,
     marginHorizontal: 16,
   },
   topBoxText: {
-    color: hex.black.activityCardShadow,
+    color: hex.black.black1,
     fontSize: 14,
     fontFamily: 'FontReg',
     marginHorizontal: 16,
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     top: 20,
   },
   bottomBox: {
-    backgroundColor: hex.white.appBackground,
-    borderColor: hex.blue.homeBackground,
+    backgroundColor: hex.white.white1,
+    borderColor: hex.blue.blue1,
     borderRadius: 6,
     borderStyle: 'solid',
     borderWidth: 2,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     width: 348,
   },
   bottomBoxTextName: {
-    color: hex.black.activityCardShadow,
+    color: hex.black.black1,
     fontSize: 24,
     fontFamily: 'FontReg',
     fontWeight: '800',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   bottomBoxTextDescription: {
-    color: hex.black.activityCardShadow,
+    color: hex.black.black1,
     fontSize: 14,
     fontFamily: 'FontReg',
     marginHorizontal: 8,

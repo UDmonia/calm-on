@@ -14,7 +14,7 @@ export default StyleSheet.create({
         marginLeft: 16,
         width: 344,
         maxHeight: 32,
-        borderColor: hex.green.sprite,
+        borderColor: hex.green.green1,
         borderWidth: 1,
         borderRadius: 10,
         backgroundColor: 'white',
@@ -25,7 +25,7 @@ export default StyleSheet.create({
         height:32,
         alignItems: 'center',
         justifyContent: 'center', 
-        backgroundColor: hex.green.sprite,
+        backgroundColor: hex.green.green1,
         borderRadius: 10,
     },
     btnDefult: {
@@ -40,7 +40,7 @@ export default StyleSheet.create({
         color: 'white',
     },
     txtDefult: {
-        color: hex.grey.activityTextDefault
+        color: hex.grey.grey1
     },
     headerView: {
         marginTop: 30,
@@ -53,7 +53,7 @@ export default StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
         lineHeight: 20,
-        color: hex.grey.activityHeaderText,
+        color: hex.grey.grey1,
         marginLeft: 18,
     },
     activity: {
@@ -74,7 +74,7 @@ export default StyleSheet.create({
         marginTop: 10,
         fontSize: 14,
         lineHeight:20,
-        color: hex.grey.activityHeaderText,
+        color: hex.grey.grey1,
     }, 
     scrollView:{
         backgroundColor: 'white',

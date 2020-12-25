@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor: hex.brown.calendarBackground,
+        backgroundColor: hex.brown.brown3,
         borderTopRightRadius:10,
         borderTopLeftRadius:10
     },

@@ -23,7 +23,7 @@ const HomeStack =props=>{
     ]
 
     const style = {
-        backgroundColor: hex.blue.NavBackground,
+        backgroundColor: hex.blue.blue7,
         height: 90,
         paddingTop: '2%',
     }
@@ -51,7 +51,7 @@ const HomeStack =props=>{
                     options = {
                         ()=>({
                         tabBarIcon: ({focused})=>
-                        <TouchableOpacity style = {focused?{...buttonStyle,borderTopColor:hex.blue.NavSelector,borderTopWidth: 5}:{...buttonStyle}}>
+                        <TouchableOpacity style = {focused?{...buttonStyle,borderTopColor:hex.blue.blue6,borderTopWidth: 5}:{...buttonStyle}}>
                             <Image  source = {icon.icon}/>
                         </TouchableOpacity> 
                         ,

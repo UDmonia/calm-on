@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   border: {
     borderWidth: 0.5,
-    borderColor: hex.grey.checkinButtonInactive,
+    borderColor: hex.grey.grey2,
   },
   feelingName: {
     textAlign: "center",

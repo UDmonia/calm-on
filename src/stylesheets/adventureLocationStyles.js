@@ -36,7 +36,7 @@ export default StyleSheet.create({
     height: 103,
     width: 340,
     borderRadius: 4,
-    backgroundColor: hex.green.adventureLocationBackground,
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -45,7 +45,7 @@ export default StyleSheet.create({
     width: 105,
     borderRadius: 4,
     margin: 10,
-    backgroundColor: hex.white.adventureBackground,
+    backgroundColor: hex.white.white1,
     alignItems: "center",
     justifyContent: "center",
     shadowOffset: {
@@ -78,7 +78,7 @@ export default StyleSheet.create({
     backgroundColor: "blue",
   },
   seeAllContainer: {
-    backgroundColor: hex.green.adventureLocationBackground,
+    backgroundColor: hex.green.green1,
     width: "100%",
     minHeight: 50,
     flexDirection: "row",

@@ -117,24 +117,24 @@ const previewEntries = ({ journals, date, showJournal }) => {
   const moodMap = {
     happy: {
       path: require("../../assets/preview/happy.png"),
-      color: hex.yellow.happy,
+      color: hex.yellow.yellow2,
     },
     angry: {
       path: require("../../assets/preview/angry.png"),
-      color: hex.pink.angry,
+      color: hex.pink.pink1,
     },
-    sad: { path: require("../../assets/preview/sad.png"), color: hex.purple.sad },
+    sad: { path: require("../../assets/preview/sad.png"), color: hex.purple.purple1 },
     scared: {
       path: require("../../assets/preview/scared.png"),
-      color: hex.blue.scared,
+      color: hex.blue.blue3,
     },
     excited: {
       path: require("../../assets/preview/excited.png"),
-      color: hex.green.excited,
+      color: hex.green.green2,
     },
     worried: {
       path: require("../../assets/preview/worried.png"),
-      color: hex.brown.worried,
+      color: hex.brown.brown2,
     },
   };
 
