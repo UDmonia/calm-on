@@ -40,8 +40,8 @@ const Recipes = {
           name: "apple",
           img: apple,
           xpos: {
-            top: 240,
-            left: 50,
+            top: 30,
+            left: 40,
           },
         },
         {
@@ -58,8 +58,8 @@ const Recipes = {
           name: "apple",
           img: apple,
           xpos: {
-            top: 300,
-            left: 300,
+            top: 30,
+            left: 40,
           },
         },
         {
@@ -93,16 +93,16 @@ const Recipes = {
         ],
         items: [
           {
-            id: 8,
+            id: 1,
             name: "apple",
             img: apple,
             xpos: {
-              top: 300,
+              top: 30,
               left: 60,
             },
           },
           {
-            id: 9,
+            id: 2,
             name: "banana",
             img: banana,
             xpos: {
@@ -111,7 +111,7 @@ const Recipes = {
             },
           },
           {
-            id: 10,
+            id: 3,
             name: "kiwi",
             img: kiwi,
             xpos: {
@@ -120,7 +120,7 @@ const Recipes = {
             },
           },
           {
-            id: 11,
+            id: 4,
             name: "mango",
             img: mango,
             xpos: {
@@ -129,7 +129,7 @@ const Recipes = {
             },
           },
           {
-            id: 12,
+            id: 5,
             name: "strawberry",
             img: strawberry,
             xpos: {
@@ -138,7 +138,7 @@ const Recipes = {
             },
           },
           {
-            id: 13,
+            id: 6,
             name: "watermelon",
             img: watermelon,
             xpos: {
