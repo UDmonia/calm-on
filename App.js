@@ -200,7 +200,6 @@ export default function App() {
             name="FiveFourThreeTwoOneTech"
             component={FiveFourThreeTwoOneTech}
             options={{
-              headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "5-4-3-2-1 Technique",
               headerTitleStyle: { fontSize: 24, color: "white" },
