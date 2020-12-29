@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, Button, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
 let screenWidth = Dimensions.get("window").width;
-let screenHeight = Dimensions.get("window").height;
 
 function ModalOptions() {
   return {
@@ -34,26 +33,18 @@ export default ({ navigation }) => (
   <TouchableOpacity
     activeOpacity={1}
     onPress={() => navigation.pop()}
-    style={{
-      flex: 1,
-      backgroundColor: "transparent",
-      alignItems: "center",
-      justifyContent: "center",
-      //   marginBottom: 75,
-    }}
+    style={styles.screenContainer}
   >
     <View style={styles.exitBox}>
       <View style={styles.exitTop}>
-        <Text style={styles.exitText}>
-          Are you sure you want to quit storytime?
-        </Text>
+        <Text style={styles.exitText}>Are you sure you want to quit?</Text>
       </View>
       <View style={styles.exitBottom}>
         <TouchableOpacity
           style={styles.yesNo}
           onPress={() => {
             navigation.pop();
-            navigation.navigate("Home", { IsModal: true });
+            navigation.navigate("CharacterChat", { IsModal: true });
           }}
         >
           <Text style={styles.exitYNText}>Yes</Text>
@@ -63,39 +54,22 @@ export default ({ navigation }) => (
           style={styles.no}
           onPress={() => {
             navigation.pop();
-            navigation.navigate("Home", { IsModal: true });
           }}
         >
           <Text style={styles.exitYNText}>No</Text>
         </TouchableOpacity>
       </View>
     </View>
-    {/* <Button
-      title="New Goals"
-      spacing="3"
-      width="45%"
-      height="7%"
-      fontSize="3%"
-      onPress={() => {
-        navigation.pop();
-        navigation.navigate("Home", { IsModal: true });
-      }}
-    />
-    <Button
-      title="New Habits"
-      spacing="3"
-      width="45%"
-      height="7%"
-      fontSize="3%"
-      onPress={() => {
-        navigation.pop();
-        navigation.navigate("Home", { IsModal: true });
-      }}
-    /> */}
   </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    backgroundColor: "transparent",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   image: {
     height: "100%",
     width: "100%",
@@ -160,6 +134,13 @@ const styles = StyleSheet.create({
   no: {
     height: "100%",
     width: "50%",
+  },
+  exitYNText: {
+    fontFamily: "FontReg",
+    fontWeight: "800",
+    fontSize: 24,
+    lineHeight: 50,
+    textAlign: "center",
   },
 });
 
