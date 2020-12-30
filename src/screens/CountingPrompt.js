@@ -13,14 +13,12 @@ import bg from "../../assets/counting/backdrop.png";
 import Exit from "../components/Exit";
 
 /**
- * This componet is an intermediate step
- * for handeling recipe transitions
+ * This componet is an intermediate step for handeling recipe transitions
  *
- * The componet will render all necessary objects and when necessary
- * will navigate to counting and pass the {actData}
+ * The componet will render all necessary objects and when necessary will
+ * navigate to counting and pass the { actData }
  * (which is the data for the next recipe) to counting
  */
-
 function getBoxes(box) {
   if (box != null) {
     return (
@@ -37,11 +35,12 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
   const { boxes } = route.params;
   const { actData } = route.params;
   const { counter } = route.params;
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"CharacterChat"} />
+          <Exit navTo={"Modal"} />
         </View>
         <View style={styles.countDis}>
           <Text style={{ color: "#FFFFFF" }}>

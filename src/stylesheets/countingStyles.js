@@ -115,8 +115,8 @@ export default StyleSheet.create({
     justifyContent: "flex-end",
   },
   groupImg: {
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     resizeMode: "contain",
     alignSelf: "flex-end",
   },
@@ -160,7 +160,7 @@ export default StyleSheet.create({
   },
   exitPosition: {
     alignSelf: "flex-start",
-    marginLeft: 50,
-    marginTop: 40,
+    marginTop: "12.5%",
+    marginLeft: "5%",
   },
 });

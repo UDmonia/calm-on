@@ -84,7 +84,7 @@ export default AdventureLocation = ({ route, navigation }) => {
         imageStyle={styles.imgBackground}
       >
         <View style={styles.exitPosition}>
-          <Exit navTo={"CharacterChat"} img={exitAsset} />
+          <Exit navTo={"Modal"} img={exitAsset} />
         </View>
         <View style={styles.center}>
           <View style={styles.locationContainer}>

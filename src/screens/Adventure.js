@@ -1,5 +1,11 @@
 import React from "react";
-import { View, TouchableOpacity, Text, Image, ImageBackground } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Image,
+  ImageBackground,
+} from "react-native";
 import styles from "../stylesheets/adventureStyles";
 import picnicData from "../data/picnicData";
 import theaterData from "../data/theaterData";
@@ -14,7 +20,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
         style={styles.background}
       >
         <View style={styles.exitPosition}>
-          <Exit navTo={"chatPlaceholder"} img={null} />
+          <Exit navTo={"Modal"} />
         </View>
         <View style={styles.center}>
           <View style={styles.dialogContainer}>
