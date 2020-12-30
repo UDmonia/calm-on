@@ -22,7 +22,7 @@ const SpriteActivityData = [
       about:
         "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
       helpful: "You have trouble focusing or when you feel scared or worried.",
-      img: require("../../assets/activities/54321.png"),
+      img: require("../../assets/activities/54321Intro.png"),
       headerColor: "#2E7D32",
     },
   },
@@ -75,7 +75,7 @@ const SpriteActivityData = [
   },
   {
     id: 5,
-    title: "Picnic Time",
+    title: "Going on an Adventure",
     color: "#A7D1A8",
     img: require("../../assets/activities/adventure.png"),
     tag: ["happy", "excited", "angry"],
@@ -85,7 +85,7 @@ const SpriteActivityData = [
       about:
         "Sometimes when we are upset, it helps us calm down when we imagine ourselves doing something enjoyable. Join me on an adventure!",
       helpful: "You feel scared, angry or worried.",
-      img: require("../../assets/activities/chooseadventure1.png"),
+      img: require("../../assets/activities/goingonadventure.png"),
       headerColor: "#2E7D32",
     },
   },
