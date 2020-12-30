@@ -23,7 +23,7 @@ export default StyleSheet.create({
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#9AE7FF",
+    backgroundColor: "#E9E9E9",
   },
   dialogContainer: {
     height: "30%",

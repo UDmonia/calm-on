@@ -25,7 +25,7 @@ const kpiData = {
   },
   boxBreathing: {
     title: "boxBreathing",
-    primMsg: "Cowabunga Dude!",
+    primMsg: "Awesome!",
     secMsg: "That was awsome dude. Lets do chill again someother time.",
     img: null,
     likeApi: null,
@@ -33,7 +33,7 @@ const kpiData = {
   },
   adventure: {
     title: "adventure",
-    primMsg: "Cowabunga Dude!",
+    primMsg: "Awesome!",
     secMsg: "That was awsome dude. Lets do chill again someother time.",
     img: null,
     likeApi: null,
