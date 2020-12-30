@@ -20,7 +20,6 @@ import { windowHeight, windowWidth } from "../util/windowDimensions";
  *
  * @param { object } stuff  - json object containing recipe data
  */
-
 export default CountingSelection = ({ navigation: { navigate } }) => {
   var positionList = [];
   async function randomizePosition() {
@@ -37,7 +36,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"CharacterChat"} />
+          <Exit navTo={"Modal"} />
         </View>
         <View style={styles.spritBox3}>
           <Image style={styles.sprit} source={sprit} />
