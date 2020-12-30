@@ -11,6 +11,7 @@ import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
 import Exit from "../components/Exit";
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 
 /**
  * This componet is an intermediate step for handeling recipe transitions
@@ -35,7 +36,18 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
   const { boxes } = route.params;
   const { actData } = route.params;
   const { counter } = route.params;
-
+  
+  var positionList = [];
+  async function randomizePosition() {
+    var i;
+    for(i = 0; i < actData.next.items.length; i++) {
+      var xpos = {
+        top: parseFloat((Math.random() * ((windowHeight * 0.350) - (windowHeight * 0.005)) + (windowHeight * 0.005)).toFixed(3)),
+        left: parseFloat((Math.random() * ((windowWidth * 0.895) - (windowWidth * 0.005)) + (windowWidth * 0.005)).toFixed(3)),
+      }
+      positionList.push(xpos);
+    }
+  }
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
@@ -57,7 +69,9 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
           })}
         </ScrollView>
         <View style={styles.spritBox2}>
-          <Image style={styles.sprit} source={sprit} />
+          <View style={styles.spritImgBox}>
+            <Image style={styles.sprit} source={sprit} />
+          </View>
           <View style={styles.recpImgBox}>
             <Image style={styles.groupImg} source={actData.groupImg} />
           </View>
@@ -91,7 +105,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                   style={styles.navButton}
                   onPress={() => {
                     setNext(!next),
-                      navigate("Counting", { stuff: actData.next });
+                      randomizePosition().then(navigate("Counting", { stuff: actData.next, positionList: positionList }))
                   }}
                 >
                   <Text style={{ color: "#3B96B2" }}>Next Recipe</Text>
