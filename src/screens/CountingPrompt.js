@@ -14,14 +14,12 @@ import Exit from "../components/Exit";
 import { windowHeight, windowWidth } from "../util/windowDimensions";
 
 /**
- * This componet is an intermediate step
- * for handeling recipe transitions
+ * This componet is an intermediate step for handeling recipe transitions
  *
- * The componet will render all necessary objects and when necessary
- * will navigate to counting and pass the {actData}
+ * The componet will render all necessary objects and when necessary will
+ * navigate to counting and pass the { actData }
  * (which is the data for the next recipe) to counting
  */
-
 function getBoxes(box) {
   if (box != null) {
     return (
@@ -54,7 +52,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"CharacterChat"} />
+          <Exit navTo={"Modal"} />
         </View>
         <View style={styles.countDis}>
           <Text style={{ color: "#FFFFFF" }}>

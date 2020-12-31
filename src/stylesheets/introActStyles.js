@@ -10,6 +10,7 @@ export default StyleSheet.create({
     width: "100%",
     paddingTop: "8%",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   statsRow: {
     width: "100%",
@@ -30,7 +31,8 @@ export default StyleSheet.create({
     marginLeft: "3%",
     fontSize: 20,
     paddingTop: "5%",
-    fontFamily: "FontReg",
+    fontFamily: "FontBold",
+    color: "#2E7D32",
   },
   descriptions: {
     alignSelf: "flex-start",
@@ -41,13 +43,13 @@ export default StyleSheet.create({
   },
   start: {
     display: "flex",
-    height: "15%",
-    width: "65%",
-    borderRadius: 25,
+    height: "12%",
+    width: "45%",
+    borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "5%",
-  },
+    marginBottom: "7.5%",
+    },
   fav: {
     alignSelf: "center",
   },
@@ -55,7 +57,7 @@ export default StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     color: "white",
-    fontFamily: "FontReg",
+    fontFamily: "FontBold",
   },
   title: {
     fontSize: 24,

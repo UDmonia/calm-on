@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Image, Text, View, TextInput, TouchableOpacity, Keyboard } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import styles from "../../stylesheets/loginSignup.styles";
@@ -80,15 +87,30 @@ const SessionForm = ({
     if (!login && user.password !== user.confirmPassword)
       err.push("does not match");
     setLocalErrors(err);
-    return !err.length;
+
+    /**
+     * TESTING ONLY!!!
+     */
+    const TEST_ONLY = err.filter((value, index, arr) => {
+      if (value !== "birthday is required") {
+        return value;
+      }
+    });
+    /********************************** */
+
+    // return !err.length;
+    return !TEST_ONLY.length;
   };
 
+  // : dispatch(register({ ...user, birthday: new Date(user.birthday) })) TESTING ONLY
   const handleSubmit = () => {
     setLocalErrors([]);
     if (isValid()) {
       return (login
         ? dispatch(loginUser(user))
-        : dispatch(register({ ...user, birthday: new Date(user.birthday) }))
+        : dispatch(
+            register({ ...user, birthday: new Date("0000", "00", "00") })
+          )
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
           !login ? setShowUserDialog(true) : navigate("Home");
@@ -110,13 +132,13 @@ const SessionForm = ({
     localErrors.find((e) => e.match(/birthday/)) || dbErrors.birthday;
 
   const handleConfirm = (d) => {
-    toggleShow();
+    // toggleShow(); // TESTING ONLY
     handleChange("birthday")(formatDate(d));
   };
   const showOnlyDatePicker = () => {
     Keyboard.dismiss();
     setShow(!show);
-  }
+  };
 
   const handleAddName = () => {
     var Filter = require("bad-words");
@@ -198,7 +220,7 @@ const SessionForm = ({
                 />
               </View>
 
-              <View style={styles.label}>
+              {/* <View style={styles.label}>
                 <Text style={styles.description}>Birthday</Text>
                 {birthdayError && (
                   <Text style={styles.error}>{birthdayError}</Text>
@@ -222,7 +244,7 @@ const SessionForm = ({
                   onCancel={toggleShow}
                   onConfirm={handleConfirm}
                 />
-              </View>
+              </View> */}
             </View>
           )}
         </View>
@@ -267,10 +289,11 @@ const SessionForm = ({
               value={name}
             />
           </View>
-          <View style={{paddingTop: "10%"}}>
+          <View style={{ paddingTop: "10%" }}>
             <TouchableOpacity
               onPress={() => handleAddName()}
-              style={styles.bottomButton}>
+              style={styles.bottomButton}
+            >
               <Text style={styles.bottomButtonText}>Next</Text>
             </TouchableOpacity>
           </View>

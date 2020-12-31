@@ -1,20 +1,29 @@
 import { StyleSheet } from "react-native";
-import { horizontalLength, horizontalPosition, bottomPosition, topPosition } from "../util/boxBreathingMeasurements";
+import {
+  horizontalLength,
+  horizontalPosition,
+  bottomPosition,
+  topPosition,
+} from "../util/boxBreathingMeasurements";
 
 const styles = StyleSheet.create({
+  exitPosition: {
+    marginTop: "12.5%",
+    marginLeft: "5%",
+  },
   numText: {
     color: "#064B5B",
     position: "absolute",
     top: bottomPosition - bottomPosition * 0.5,
     //borderWidth:1,
   },
-  text:{
+  text: {
     position: "absolute",
     top: bottomPosition - bottomPosition * 0.57,
     fontFamily: "FontReg",
     //borderWidth:1,
   },
-  introText:{
+  introText: {
     position: "absolute",
     top: bottomPosition - bottomPosition * 0.45,
   },
@@ -29,7 +38,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "FontBold",
     textAlign: "center",
-
   },
   questionBox: {
     backgroundColor: "#DD6755",
@@ -149,7 +157,7 @@ const styles = StyleSheet.create({
     marginTop: "10%",
     marginLeft: "15%",
   },
-    er: {
+  er: {
     height: "40%",
   },
   lower: {
@@ -170,26 +178,26 @@ const styles = StyleSheet.create({
   questionText: {
     color: "white",
     textAlign: "center",
-    fontFamily: "FontReg"
+    fontFamily: "FontReg",
   },
-  answerText: { 
-    textAlign: "center", 
-    fontFamily: "FontReg" 
+  answerText: {
+    textAlign: "center",
+    fontFamily: "FontReg",
   },
   exitBtn: {
-    position: "absolute", 
-    top: "5%", 
-    left: "5%", 
-    zIndex: 14
+    position: "absolute",
+    top: "5%",
+    left: "5%",
+    zIndex: 14,
   },
-  spriteIcon: { 
-    position: "absolute", 
-    zIndex: 5 
+  spriteIcon: {
+    position: "absolute",
+    zIndex: 5,
   },
-  introStory: { 
-    position: "absolute", 
-    top: 20, 
-    zIndex: 12 
+  introStory: {
+    position: "absolute",
+    top: 20,
+    zIndex: 12,
   },
 });
 

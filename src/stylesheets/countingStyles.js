@@ -147,8 +147,8 @@ export default StyleSheet.create({
   },
   exitPosition: {
     alignSelf: "flex-start",
-    marginLeft: 50,
-    marginTop: 40,
+    marginTop: "12.5%",
+    marginLeft: "5%",
   },
   fruitImg: {
     height: windowHeight * 0.05,

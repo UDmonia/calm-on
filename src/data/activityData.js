@@ -75,7 +75,7 @@ const SpriteActivityData = [
   },
   {
     id: 5,
-    title: "Picnic Time",
+    title: "Going on an Adventure",
     color: "#A7D1A8",
     img: require("../../assets/activities/adventure.png"),
     tag: ["happy", "excited", "angry"],
