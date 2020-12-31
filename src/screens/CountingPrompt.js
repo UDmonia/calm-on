@@ -13,16 +13,15 @@ import bg from "../../assets/counting/backdrop.png";
 import Exit from "../components/Exit";
 import hex from "../stylesheets/hexCodes";
 
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 
 /**
- * This componet is an intermediate step
- * for handeling recipe transitions
+ * This componet is an intermediate step for handeling recipe transitions
  *
- * The componet will render all necessary objects and when necessary
- * will navigate to counting and pass the {actData}
+ * The componet will render all necessary objects and when necessary will
+ * navigate to counting and pass the { actData }
  * (which is the data for the next recipe) to counting
  */
-
 function getBoxes(box) {
   if (box != null) {
     return (
@@ -39,11 +38,23 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
   const { boxes } = route.params;
   const { actData } = route.params;
   const { counter } = route.params;
+  
+  var positionList = [];
+  async function randomizePosition() {
+    var i;
+    for(i = 0; i < actData.next.items.length; i++) {
+      var xpos = {
+        top: parseFloat((Math.random() * ((windowHeight * 0.350) - (windowHeight * 0.005)) + (windowHeight * 0.005)).toFixed(3)),
+        left: parseFloat((Math.random() * ((windowWidth * 0.895) - (windowWidth * 0.005)) + (windowWidth * 0.005)).toFixed(3)),
+      }
+      positionList.push(xpos);
+    }
+  }
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
         <View style={styles.exitPosition}>
-          <Exit navTo={"CharacterChat"} />
+          <Exit navTo={"Modal"} />
         </View>
         <View style={styles.countDis}>
           <Text style={{ color: hex.white.white1 }}>
@@ -60,7 +71,9 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
           })}
         </ScrollView>
         <View style={styles.spritBox2}>
-          <Image style={styles.sprit} source={sprit} />
+          <View style={styles.spritImgBox}>
+            <Image style={styles.sprit} source={sprit} />
+          </View>
           <View style={styles.recpImgBox}>
             <Image style={styles.groupImg} source={actData.groupImg} />
           </View>
@@ -94,7 +107,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                   style={styles.navButton}
                   onPress={() => {
                     setNext(!next),
-                      navigate("Counting", { stuff: actData.next });
+                      randomizePosition().then(navigate("Counting", { stuff: actData.next, positionList: positionList }))
                   }}
                 >
                   <Text style={{ color: hex.white.white1 }}>Next Recipe</Text>

@@ -477,18 +477,9 @@ const boxBreathing = () => {
         source={require("../../assets/boxBreathing/beach.png")}
         style={styles.backgroundImage}
       >
-        <TouchableOpacity
-          style={styles.exitBtn}
-          onPress={() => {
-            navigation.navigate("kpi", {
-              bg: require("../../assets/boxBreathing/beach.png"),
-              pMsg: kpiData.boxBreathing.primMsg,
-              sMsg: kpiData.boxBreathing.secMsg,
-            });
-          }}
-        >
-          <Image source={require("../../assets/exit/blkExitBtn.png")} />
-        </TouchableOpacity>
+        <View style={styles.exitPosition}>
+          <Exit navTo={"Modal"} />
+        </View>
         {outro && <OutroStory />}
         <View style={styles.container}>
           {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>

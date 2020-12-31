@@ -87,15 +87,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   circle: {
-    // backgroundColor: hex.white.white1,
-    // borderRadius: 1000,
-    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // position: "relative",
     width: screenWidth,
     height: screenHeight,
-    // top: 146,
   },
   ball: {
     // position: "absolute",

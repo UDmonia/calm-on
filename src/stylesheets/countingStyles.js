@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { color } from "react-native-reanimated";
 import hex from "./hexCodes";
+import { windowHeight } from "../util/windowDimensions";
 
 export default StyleSheet.create({
   container: {
@@ -11,16 +12,13 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%",
     flex: 1,
-    flexDirection: "column",
     alignItems: "center",
   },
   fruitZone: {
     position: "absolute",
-    marginLeft: 10,
-    marginRight: 10,
-    top: 200,
-    width: 400,
-    height: 360,
+    top: windowHeight * 0.225,
+    width: "100%",
+    height: "40%",
   },
   fruit: {
     position: "absolute",
@@ -28,26 +26,22 @@ export default StyleSheet.create({
     height: 36,
   },
   sprit: {
-    position: "absolute",
-    width: 116,
-    height: 213,
-    marginLeft: -20,
+    resizeMode: "contain",
+    height: "100%",
   },
   spritBox: {
     position: "absolute",
-    marginLeft: 10,
-    marginRight: 10,
-    top: 575,
-    width: 300,
-    height: 200,
+    top: windowHeight * 0.65,
+    height: "20%",
+    alignSelf: "flex-start",
   },
   spritBox2: {
     position: "absolute",
-    marginLeft: 10,
-    marginRight: 10,
-    top: 300,
-    width: 300,
-    height: 200,
+    top: windowHeight * 0.35,
+    width: "80%",
+    height: "35%",
+    display: "flex",
+    flexDirection: "row",
   },
   spritBox3: {
     position: "absolute",
@@ -60,9 +54,9 @@ export default StyleSheet.create({
   },
   textBox: {
     position: "absolute",
-    top: 775,
-    height: 82,
-    width: 300,
+    top: windowHeight * 0.85,
+    height: "10%",
+    width: "80%",
     borderRadius: 5,
     padding: 10,
     backgroundColor: hex.green.green1,
@@ -80,46 +74,38 @@ export default StyleSheet.create({
   },
   itemBoxes: {
     position: "absolute",
-    width: 400,
-    height: 47,
-    top: 130,
-    left: 40,
+    width: "80%",
+    height: "5%",
+    top: windowHeight * 0.175,
   },
   itemBox: {
-    height: 48,
-    width: 47,
+    height: windowHeight * 0.05,
+    width: windowHeight * 0.05,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: hex.white.white1,
     margin: 1,
   },
   boxImg: {
-    height: 40,
-    width: 40,
+    height: windowHeight * 0.05,
+    width: windowHeight * 0.05,
     resizeMode: "contain",
   },
   countDis: {
     position: "absolute",
     height: 30,
     width: 100,
-    top: 100,
+    top: windowHeight * 0.135,
     alignItems: "center",
     justifyContent: "center",
   },
   recpImgBox: {
-    height: 150,
-    width: 200,
-    left: 90,
-    top: 50,
-    alignContent: "center",
-    flexDirection: "column",
-    justifyContent: "flex-end",
+    width: "60%",
+    justifyContent: "center",
   },
   groupImg: {
-    height: '100%',
     width: '100%',
     resizeMode: "contain",
-    alignSelf: "flex-end",
   },
   nextButton: {
     width: 163,
@@ -128,7 +114,7 @@ export default StyleSheet.create({
     backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 60,
+    marginTop: "5%",
   },
   buttonView: {
     flexDirection: "row",
@@ -136,21 +122,22 @@ export default StyleSheet.create({
     justifyContent: "center",
     width: 350,
     height: 51,
-    marginTop: 60,
+    marginTop: "5%",
   },
   navButton: {
     width: 163,
     height: 51,
     borderRadius: 41,
-    margin: 10,
+    margin: "2.5%",
     backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
   },
   fin: {
-    width: 350,
-    height: 300,
-    marginTop: 430,
+    position: "absolute",
+    top: windowHeight * 0.7,
+    width: "80%",
+    height: "275%",
     alignItems: "center",
   },
   starting: {
@@ -161,7 +148,16 @@ export default StyleSheet.create({
   },
   exitPosition: {
     alignSelf: "flex-start",
-    marginLeft: 50,
-    marginTop: 40,
+    marginTop: "12.5%",
+    marginLeft: "5%",
   },
+  fruitImg: {
+    height: windowHeight * 0.05,
+    width: windowHeight * 0.05,
+    resizeMode: "contain",
+  },
+  spritImgBox: {
+    width: "40%",
+    justifyContent: "flex-end",
+  }
 });

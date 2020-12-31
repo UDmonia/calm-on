@@ -88,6 +88,7 @@ export default StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 20,
         padding: "5%",
+        marginTop: "5%",
         alignItems: "center",
         justifyContent: "space-between",
     },
@@ -111,6 +112,8 @@ export default StyleSheet.create({
     textArea: {
         fontFamily: "FontReg",
         justifyContent: "flex-start",
+        flex: 1,
+        textAlignVertical: "top",
     },
     modalText: {
         fontFamily: "FontReg",

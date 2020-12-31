@@ -141,7 +141,7 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "glasses3d",
+        itemName: "Glasses 3D",
         image: require("../../assets/adventure/locations/alphabetItems/glasses3d.png"),
       },
     ],

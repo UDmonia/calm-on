@@ -1,6 +1,6 @@
 import hex from "./hexCodes";
 import { StyleSheet } from "react-native";
-import {windowWidth} from "../util/windowDimensions";
+import { windowWidth } from "../util/windowDimensions";
 
 export default StyleSheet.create({
   screenContainer: {
@@ -18,8 +18,8 @@ export default StyleSheet.create({
     flexDirection: "row",
   },
   locationContainer: {
-    height: .2333 * windowWidth,
-    width: .2333 * windowWidth,
+    height: 0.2333 * windowWidth,
+    width: 0.2333 * windowWidth,
     margin: "5%",
     borderRadius: 5,
     justifyContent: "center",
@@ -38,18 +38,18 @@ export default StyleSheet.create({
     marginTop: 5,
     textAlign: "center",
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.030,
+    fontSize: windowWidth * 0.03,
   },
   exitPosition: {
-    marginTop: "10%",
-    marginLeft :"5%",
+    marginTop: "12.5%",
+    marginLeft: "5%",
   },
   center: {
     marginTop: "15%",
     alignItems: "center",
   },
   background: {
-    width: "100%", 
+    width: "100%",
     height: "100%",
   },
 });

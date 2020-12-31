@@ -34,6 +34,8 @@ import AdventureLocation from "./src/screens/AdventureLocation.js";
 import AdventureLocationSeeAll from "./src/screens/AdventureLocationSeeAll.js";
 import FlatActivities from "./src/screens/FlatActivities.js";
 import IntroActivity from "./src/screens/IntroActivity.js";
+import Modal from "./src/components/Modal";
+import { ModalOptions } from "./src/components/Modal";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -201,7 +203,6 @@ export default function App() {
             name="FiveFourThreeTwoOneTech"
             component={FiveFourThreeTwoOneTech}
             options={{
-              headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "5-4-3-2-1 Technique",
               headerTitleStyle: { fontSize: 24, color: "white" },
@@ -240,6 +241,7 @@ export default function App() {
             name="AdventureLocationSeeAll"
             component={AdventureLocationSeeAll}
           />
+        <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
