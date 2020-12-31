@@ -10,22 +10,22 @@ const SessionAPI = {
   },
   register: (user) =>
     axios.post(
-      `http://ubuntu@ec2-34-213-178-115.us-west-2.compute.amazonaws.com/api/users/register`,
+      `http://ubuntu@ec2-34-211-138-169.us-west-2.compute.amazonaws.com/api/users/register`,
       user
     ),
   login: (user) =>
     axios.post(
-      `http://ubuntu@ec2-34-213-178-115.us-west-2.compute.amazonaws.com/api/users/login`,
+      `http://ubuntu@ec2-34-211-138-169.us-west-2.compute.amazonaws.com/api/users/login`,
       user
     ),
   addName: (user) =>
     axios.put(
-      `http://ubuntu@ec2-34-213-178-115.us-west-2.compute.amazonaws.com/api/users/name`,
+      `http://ubuntu@ec2-34-211-138-169.us-west-2.compute.amazonaws.com/api/users/name`,
       user
     ),
   checkin: (user) =>
     axios.put(
-      `http://ubuntu@ec2-34-213-178-115.us-west-2.compute.amazonaws.com/api/users/checkin`,
+      `http://ubuntu@ec2-34-211-138-169.us-west-2.compute.amazonaws.com/api/users/checkin`,
       user
     ),
 };
