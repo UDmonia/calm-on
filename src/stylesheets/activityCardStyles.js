@@ -31,6 +31,10 @@ export default StyleSheet.create({
         shadowRadius: 4.65,
         elevation: 6,
     },
+    textContainer: {
+        height: "60%",
+        width: "40%",
+    },
     title: {
         fontFamily: "FontReg",
         flex: 1,
