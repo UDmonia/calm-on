@@ -38,10 +38,10 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-  const userName = "Jack";
-  // const userName = useSelector((state) =>
-  //   state.session.user.name ? state.session.user.name : "user"
-  // );
+  //const userName = "Jack";
+  const userName = useSelector((state) =>
+    state.session.user.name ? state.session.user.name : "user"
+  );
   if (userName === "user") {
     console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });
