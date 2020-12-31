@@ -43,7 +43,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
             style={styles.nextButton}
             onPress={() => navigate("Counting", { stuff: Recipes.start })}
           >
-            <Text style={{ color: hex.blue.countingPromptText }}>Fruits</Text>
+            <Text style={{ color: hex.white.white1 }}>Fruits</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
