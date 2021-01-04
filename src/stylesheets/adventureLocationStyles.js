@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import {windowHeight, windowWidth} from "../util/windowDimensions";
+import { windowWidth } from "../util/windowDimensions";
 
 export default StyleSheet.create({
   screenContainer: {
@@ -20,14 +20,14 @@ export default StyleSheet.create({
   },
   exitPosition: {
     marginTop: "10%",
-    marginLeft :"5%",
+    marginLeft: "5%",
   },
   row: {
     flexDirection: "row",
     marginTop: 30,
   },
   locationContainer: {
-    height: .2333 * windowWidth,
+    height: 0.2333 * windowWidth,
     width: "90%",
     borderRadius: 10,
     backgroundColor: "#027E2A",
@@ -35,8 +35,8 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   itemContainer: {
-    height: .2333 * windowWidth,
-    width: .2333 * windowWidth,
+    height: 0.2333 * windowWidth,
+    width: 0.2333 * windowWidth,
     marginHorizontal: "5%",
     borderRadius: 5,
     backgroundColor: "#E9E9E9",
@@ -50,7 +50,6 @@ export default StyleSheet.create({
     height: "50%",
     alignSelf: "flex-start",
     marginLeft: "15%",
-    
   },
   img: {
     height: "50%",
@@ -80,12 +79,12 @@ export default StyleSheet.create({
   selectedItemTxt: {
     color: "white",
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.04
+    fontSize: windowWidth * 0.04,
   },
   seeAllTxt: {
     color: "white",
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.04
+    fontSize: windowWidth * 0.04,
   },
   basket: {
     backgroundColor: "white",
@@ -101,13 +100,13 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
-    width: windowWidth * 0.20,
+    width: windowWidth * 0.2,
     margin: 5,
   },
   itemName: {
     textAlign: "center",
     fontFamily: "FontReg",
-    fontSize: windowWidth * 0.030,
+    fontSize: windowWidth * 0.03,
   },
   itemDivider: {
     backgroundColor: "#027E2A",
@@ -124,12 +123,11 @@ export default StyleSheet.create({
     position: "absolute",
     bottom: 0,
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.030,
+    fontSize: windowWidth * 0.03,
   },
   selectImg: {
     height: "60%",
     width: "70%",
-    resizeMode: "contain"
-
-  }
+    resizeMode: "contain",
+  },
 });
