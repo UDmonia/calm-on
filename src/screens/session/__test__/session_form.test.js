@@ -36,7 +36,7 @@ test("Testing correct date format", () => {
   const correctDateFormat =
     date.getFullYear() +
     "-" +
-    (date.getMonth() + 1) +
+    AddZero(date.getMonth() + 1) +
     "-" +
     AddZero(date.getDate());
   expect(formatDate(date)).toBe(correctDateFormat);

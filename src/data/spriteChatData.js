@@ -3,7 +3,7 @@ import { SpriteActivityData } from "./activityData";
 const spriteHappy = {
   key: null,
   question:
-    "Hey _____. I heard you were feeling happy today. Can I tell you a story about the last time I felt happy?",
+    "I heard you were feeling happy today. Can I tell you a story about the last time I felt happy?",
   answers: ["Ok"],
   animation: null,
   renderAnim: "",
@@ -84,7 +84,7 @@ const spriteHappy = {
 const spriteSad = {
   key: null,
   question:
-    "Hey ___. I heard you were feeling sad today. Can I tell you a story about a time when I was sad too?",
+    "I heard you were feeling sad today. Can I tell you a story about a time when I was sad too?",
   answers: ["Ok"],
   animation: null,
   renderAnim: "",
@@ -156,7 +156,7 @@ const spriteSad = {
 const spriteAngry = {
   key: null,
   question:
-    "Hey ___. I heard you were feeling angry today. I was feeling the same thing a few days ago. Is it okay if i talk about it with you?",
+    "I heard you were feeling angry today. I was feeling the same thing a few days ago. Is it okay if i talk about it with you?",
   answers: ["Sure"],
   animation: null,
   renderAnim: "",
@@ -286,7 +286,7 @@ const spriteAngry = {
 const spriteScared = {
   key: null,
   question:
-    "Hi_____. I heard you were feeling scared today.  It’s okay! Can I tell you about a time I felt scared?",
+    "I heard you were feeling scared today.  It’s okay! Can I tell you about a time I felt scared?",
   answers: ["Ok"],
   animation: null,
   renderAnim: "",
@@ -401,7 +401,7 @@ const spriteScared = {
 const spriteWorried = {
   key: null,
   question:
-    "Hey ____. I heard you were feeling worried today. Can I tell you about a time when I felt worried too?",
+    "I heard you were feeling worried today. Can I tell you about a time when I felt worried too?",
   answers: ["Ok"],
   animation: null,
   renderAnim: "",
