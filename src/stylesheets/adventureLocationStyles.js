@@ -130,4 +130,20 @@ export default StyleSheet.create({
     width: "70%",
     resizeMode: "contain",
   },
+  doneButton: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    height: 25,
+    marginLeft: -90,
+    width: 180,
+    zIndex: 3,
+    shadowOffset: {
+      width: 3,
+      height: 6,
+    },
+    shadowOpacity: 10,
+    shadowRadius: 15,
+    elevation: 2, // Android
+  },
 });
