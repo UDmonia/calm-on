@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { windowHeight, windowWidth } from "../util/windowDimensions";
+import { windowWidth } from "../util/windowDimensions";
 
 export default StyleSheet.create({
   screenContainer: {

@@ -9,9 +9,7 @@ import {
 } from "react-native";
 import Exit from "../components/Exit";
 import styles from "../stylesheets/adventureLocationStyles";
-// import locationData from "./locationData";
 import { navigate } from "../components/RootNavigation";
-// import locationData from "./locationData";
 import kpiData from "../data/kpiData";
 import Button from "../components/Button";
 import {
