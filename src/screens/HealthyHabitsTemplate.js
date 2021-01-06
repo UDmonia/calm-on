@@ -14,7 +14,7 @@ function Item(props) {
                     <Text style={styles.itemDescription}>{props.description}</Text>
                 </View>
                 <View style={styles.rightSide}>
-                    <Image source={require('../../assets/favicon.png')}/>
+                    <Image source={props.img}/>
                 </View>
             </View>
         </View>
@@ -36,6 +36,7 @@ export default function App() {
                 index={index + 1}
                 title={step.title}
                 description={step.description}
+                img={step.img}
             />
           )}
         </View>
