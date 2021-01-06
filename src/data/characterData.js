@@ -1,4 +1,4 @@
-import { SpriteActivityData } from "./activityData.js";
+import { SpriteActivityData, FlynnAcitivityData } from "./activityData.js";
 /**
  * TODO: add proper activity data for Flynn and Aurora
  */
@@ -22,7 +22,7 @@ const flynn = {
     "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
   background: require("../../assets/images/characterChat/flynnBackground.png"),
   viewActivities: require("../../assets/images/characterChat/flynnViewActivities.png"),
-  activities: SpriteActivityData,
+  activities: FlynnAcitivityData,
 };
 
 const aurora = {

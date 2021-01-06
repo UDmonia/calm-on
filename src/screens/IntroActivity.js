@@ -53,12 +53,12 @@ export default Intro = ({ route, navigation }) => {
               </Text>
             </View>
           </View>
-          <Text style={styles.sectionTitle}>About</Text>
+          <Text style={[styles.sectionTitle, { color: headerColor }]}>About</Text>
           {/* This could be used if we want to include a duration estimate of activity */}
           {/* <Text style={styles.descriptions}></Text> */}
           <Text style={styles.descriptions}>{route.params.about}</Text>
 
-          <Text style={styles.sectionTitle}>Helpful when..</Text>
+          <Text style={[styles.sectionTitle, { color: headerColor }]}>Helpful when..</Text>
           <Text style={styles.descriptions}>{route.params.helpful}</Text>
         </View>
         <TouchableOpacity

@@ -35,6 +35,7 @@ import FlatActivities from "./src/screens/FlatActivities.js";
 import IntroActivity from "./src/screens/IntroActivity.js";
 import Modal from "./src/components/Modal";
 import { ModalOptions } from "./src/components/Modal";
+import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -241,6 +242,10 @@ export default function App() {
             component={AdventureLocationSeeAll}
           />
         <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
+          <Stack.Screen
+              name="HealthyHabitsTemplate"
+              component={HealthyHabitsTemplate}
+            />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

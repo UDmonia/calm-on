@@ -91,4 +91,23 @@ const SpriteActivityData = [
   },
 ];
 
-export { SpriteActivityData };
+const FlynnAcitivityData = [
+  {
+    id: 1,
+    title: "Healthy Habits",
+    color: "#A7D1A8",
+    img: require("../../assets/activities/54321.png"),
+    tag: ["happy", "excited", "sad", "angry"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  }
+];
+
+export { SpriteActivityData, FlynnAcitivityData };
