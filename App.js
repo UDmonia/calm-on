@@ -36,6 +36,7 @@ import IntroActivity from "./src/screens/IntroActivity.js";
 import Modal from "./src/components/Modal";
 import { ModalOptions } from "./src/components/Modal";
 import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
+import FilteredActivities from "./src/screens/FilteredActivities.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -245,7 +246,31 @@ export default function App() {
           <Stack.Screen
               name="HealthyHabitsTemplate"
               component={HealthyHabitsTemplate}
-            />
+          />
+        <Stack.Screen
+            name="FilteredActivities"
+            component={FilteredActivities}
+            options={({ route }) => ({
+              headerShown: true,
+              headerStyle: { backgroundColor: route.params.headerColor },
+              title: "Activities",
+              headerTitleAlign: "center",
+              headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    RootNavigation.navigate("Home");
+                  }}
+                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
+                >
+                  <Image
+                    source={require("./assets/kpi/chevronLeft.png")}
+                    style={{ height: 21, width: 12 }}
+                  />
+                </TouchableOpacity>
+              ),
+            })}
+        />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

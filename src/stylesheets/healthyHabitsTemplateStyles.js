@@ -42,6 +42,9 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    img: {
+        resizeMode: "contain",
+    },
     itemTitle: {
         fontSize:  20,
         color: "black",

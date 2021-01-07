@@ -14,7 +14,7 @@ function Item(props) {
                     <Text style={styles.itemDescription}>{props.description}</Text>
                 </View>
                 <View style={styles.rightSide}>
-                    <Image source={props.img}/>
+                    <Image style={styles.img} source={props.img}/>
                 </View>
             </View>
         </View>
@@ -25,7 +25,6 @@ export default function App() {
     return (
       <View style={styles.container}>
         <Exit navTo={"Modal"} />
-        <Exit navTo={"Activities"} />
         <View style={styles.topText}>
           <Text style={styles.title}>Healthy Habits</Text>
         </View>
