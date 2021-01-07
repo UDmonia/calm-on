@@ -11,6 +11,7 @@ import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
 import Exit from "../components/Exit";
+import kpiData from "../data/kpiData";
 import { windowHeight, windowWidth } from "../util/windowDimensions";
 
 /**
@@ -36,15 +37,25 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
   const { boxes } = route.params;
   const { actData } = route.params;
   const { counter } = route.params;
-  
+
   var positionList = [];
   async function randomizePosition() {
     var i;
-    for(i = 0; i < actData.next.items.length; i++) {
+    for (i = 0; i < actData.next.items.length; i++) {
       var xpos = {
-        top: parseFloat((Math.random() * ((windowHeight * 0.350) - (windowHeight * 0.005)) + (windowHeight * 0.005)).toFixed(3)),
-        left: parseFloat((Math.random() * ((windowWidth * 0.895) - (windowWidth * 0.005)) + (windowWidth * 0.005)).toFixed(3)),
-      }
+        top: parseFloat(
+          (
+            Math.random() * (windowHeight * 0.35 - windowHeight * 0.005) +
+            windowHeight * 0.005
+          ).toFixed(3)
+        ),
+        left: parseFloat(
+          (
+            Math.random() * (windowWidth * 0.895 - windowWidth * 0.005) +
+            windowWidth * 0.005
+          ).toFixed(3)
+        ),
+      };
       positionList.push(xpos);
     }
   }
@@ -93,25 +104,51 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             <DialogBox
               message={{ style: styles.textBox2, text: actData.dialog[2] }}
             />
-            <View style={styles.buttonView}>
+            {/* <View style={styles.buttonView}>
               <TouchableOpacity
                 style={styles.navButton}
                 onPress={() => navigate("CharacterChat")}
               >
                 <Text style={{ color: "#3B96B2" }}>Home</Text>
-              </TouchableOpacity>
-              {actData.next != null ? (
+              </TouchableOpacity> */}
+            {actData.next != null ? (
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={styles.navButton}
+                  onPress={() => navigate("CharacterChat")}
+                >
+                  <Text style={{ color: "#3B96B2" }}>Home</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.navButton}
                   onPress={() => {
                     setNext(!next),
-                      randomizePosition().then(navigate("Counting", { stuff: actData.next, positionList: positionList }))
+                      randomizePosition().then(
+                        navigate("Counting", {
+                          stuff: actData.next,
+                          positionList: positionList,
+                        })
+                      );
                   }}
                 >
                   <Text style={{ color: "#3B96B2" }}>Next Recipe</Text>
                 </TouchableOpacity>
-              ) : null}
-            </View>
+              </View>
+            ) : (
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={styles.navButton}
+                  onPress={() => navigate("kpi", {
+                    bg: bg,
+                    pMsg: kpiData.counting.primMsg,
+                    sMsg: kpiData.counting.secMsg,
+                    image: kpiData.counting.img,
+                  })}
+                >
+                  <Text style={{ color: "#3B96B2" }}>Next</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         )}
       </ImageBackground>

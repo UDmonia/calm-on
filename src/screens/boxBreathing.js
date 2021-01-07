@@ -83,29 +83,51 @@ const OutroStory = () => {
   const navigation = useNavigation();
   const [page, setPage] = useState(0);
 
+  const handlePress = (answer) => {
+    answer === "Can we walk again now?"
+      ? setPage(3)
+      : answer === "I don't feel different"
+      ? setPage(3)
+      : answer === "I want to try a different activity"
+      ? navigation.navigate("FlatActivities")
+      : answer === "Yea, let's walk again?"
+      ? restartThis()
+      : answer === "Bye Bye!"
+      ? navigation.navigate("kpi", {
+          bg: require("../../assets/boxBreathing/beach.png"),
+          pMsg: kpiData.boxBreathing.primMsg,
+          sMsg: kpiData.boxBreathing.secMsg,
+        })
+      : setPage(page + 1);
+  };
+
   const storyMap1 = [
     //branch1
     {
       question:
         "That was so much fun, and I feel much calmer now. What about you?",
       answers: ["I feel calmer too!", "I don't feel different"],
+      img: require("../../assets/boxBreathing/outro/spirit1.png"),
     },
     {
       question:
         "That's great to hear! I always enjoy going ton walks with you, let's walk again soon!",
       answers: ["I also had fun, bye for now!", "Can we walk again now?"],
+      img: require("../../assets/boxBreathing/outro/spirit2.png"),
     },
     {
       question:
         "Okay, I'm looking forwaard to doing more activities with you! Goodbye!",
       answers: ["Bye Bye!"],
+      img: require("../../assets/boxBreathing/outro/spirit1.png"),
     },
 
     //branch2
     {
       question:
         "Hmm, would you like to go walk some more? Sometimes it takes some time to feel better",
-      answers: ["Yea, let's walk again?", "I don't feel different"],
+      answers: ["Yea, let's walk again?", "I want to try a different activity"],
+      img: require("../../assets/boxBreathing/outro/spirit3.png"),
     },
   ];
 
@@ -120,7 +142,14 @@ const OutroStory = () => {
         style={styles.backgroundImage}
         source={require("../../assets/boxBreathing/beach.png")}
       >
-        <View style={styles.prompt}>
+        <View style={styles.outroImgContainer}>
+          <Image
+            style={styles.outroImg}
+            //resizeMode= "contain"
+            source={storyMap1[page].img}
+          />
+        </View>
+        <View style={styles.outroPromt}>
           <View style={styles.questionBox}>
             <Text style={styles.questionText}>{storyMap1[page].question}</Text>
           </View>
@@ -129,19 +158,7 @@ const OutroStory = () => {
             {storyMap1[page].answers.map((answer, key) => (
               <TouchableOpacity
                 style={styles.answers}
-                onPress={() => {
-                  answer === "Can we walk again now?"
-                    ? setPage(3)
-                    : answer === "Yea, let's walk again?"
-                    ? restartThis()
-                    : answer === "Bye Bye!"
-                    ? navigation.navigate("kpi", {
-                        bg: require("../../assets/boxBreathing/beach.png"),
-                        pMsg: kpiData.boxBreathing.primMsg,
-                        sMsg: kpiData.boxBreathing.secMsg,
-                      })
-                    : setPage(page + 1);
-                }}
+                onPress={() => {handlePress(answer)}}
                 key={key}
               >
                 <Text style={styles.answerText}>{answer}</Text>

@@ -27,7 +27,7 @@ const step = (progress, setProgress, navigate) => {
   return (
     <View style={styles.breatheSteps}>
       <View style={styles.exitContainer}>
-        <Exit navTo={"FlatActivities"} />
+        <Exit navTo={"Modal"} />
       </View>
       <View style={styles.titleContainer}>
         <Text style={styles.slideTitle}>

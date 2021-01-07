@@ -10,6 +10,7 @@ import styles from "../stylesheets/adventureStyles";
 import picnicData from "../data/picnicData";
 import theaterData from "../data/theaterData";
 import amusementData from "../data/amusementData";
+import kpiData from "../data/kpiData";
 import Exit from "../components/Exit";
 
 export default Adventure = ({ navigation: { navigate } }) => {
@@ -38,6 +39,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationBackgroundTint: require("../../assets/adventure/locations/picnic/picnicBackgroundTint.png"),
                   locationData: picnicData,
                   exitAsset: null,
+                  kpiData: kpiData.picnic,
                 })
               }
             >
@@ -54,6 +56,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationBackgroundTint: require("../../assets/adventure/locations/movieTheater/movieTheaterBackgroundTint.png"),
                   locationData: theaterData,
                   exitAsset: require("../../assets/exit/whtExitBtn.png"),
+                  kpiData: kpiData.theater,
                 })
               }
             >
@@ -70,6 +73,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationBackgroundTint: require("../../assets/adventure/locations/amusementPark/amusementParkBackgroundTint.png"),
                   locationData: amusementData,
                   exitAsset: null,
+                  kpiData: kpiData.amusement,
                 })
               }
             >

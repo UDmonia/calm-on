@@ -12,7 +12,7 @@ import styles from "../stylesheets/adventureLocationStyles";
 // import locationData from "./locationData";
 import { navigate } from "../components/RootNavigation";
 // import locationData from "./locationData";
-import kpiData from "../data/kpiData";
+//import kpiData from "../data/kpiData";
 
 /**
  * AdventureLocation is a single screen in the adventures activity.
@@ -27,6 +27,7 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
   const { exitAsset } = route.params;
+  const {kpiData} = route.params;
   // const locationData = locationData;
 
   function handleAlphaButtonPress(item) {
@@ -49,8 +50,8 @@ export default AdventureLocation = ({ route, navigation }) => {
     else if (done && true) {
       navigate("kpi", {
         bg: locationBackgroundTint,
-        pMsg: kpiData.adventure.primMsg,
-        sMsg: kpiData.adventure.secMsg,
+        pMsg: kpiData.primMsg,
+        sMsg: kpiData.secMsg,
       });
     }
   }
