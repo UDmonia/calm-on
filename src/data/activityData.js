@@ -9,6 +9,9 @@
         }
     }
 */
+import { Pages } from "../data/habitData";
+
+
 const SpriteActivityData = [
   {
     id: 1,
@@ -110,9 +113,9 @@ const FlynnAcitivityData = [
   },
   {
     id: 2,
-    title: "Healthy Habits",
+    title: "Do The Five",
     color: "#7CC576",
-    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    img: require("../../assets/HabitCards/doTheFive/thumbnail.png"),
     tag: ["All", "Healthy-Habits"],
     introPageData: {
       navRoute: "HealthyHabitsTemplate",

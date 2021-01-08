@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { windowWidth } from "../util/windowDimensions";
 
 export default StyleSheet.create({
     container: {
@@ -16,7 +17,7 @@ export default StyleSheet.create({
     },
     title: {
         color: "white",
-        fontSize: 25,
+        fontSize: windowWidth * 0.06,
         fontFamily: "FontBold",
     },
     bottomContainer: {
@@ -44,14 +45,15 @@ export default StyleSheet.create({
     },
     img: {
         resizeMode: "contain",
+        width: "100%",
     },
     itemTitle: {
-        fontSize:  20,
+        fontSize:  windowWidth * 0.04,
         color: "black",
         fontFamily: "FontBold",
     },
     itemDescription: {
-        fontSize: 15,
+        fontSize: windowWidth * 0.03,
         color: "black",
         fontFamily: "FontReg",
     },

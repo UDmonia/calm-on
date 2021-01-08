@@ -21,15 +21,23 @@ function Item(props) {
     );
 }
 //Main component
-export default function App() {
+export default function HealthyHabitsTemplate({ route }) {
+
+    // takes the name passed in through the route and converts it into the key name
+    // the key name is just the title without spaces (ex. Healthy Habits -> HealthyHabits)
+    // This currently only works when the page is displayed directly after the activity screen this is because nothing is being passed from intro screen to the acitivites themselves so this is the solution for the meantime.
+
+    var pageName = route.params.name;
+    pageName = pageName.replace(/\s/g, '');
+
     return (
-      <View style={styles.container}>
-        <Exit navTo={"Modal"} />
+      <View style={[styles.container, {backgroundColor: habitData[pageName].color }]}>
+        <Exit img={require("../../assets/exit/whtExitBtn.png")} navTo={"Modal"} />
         <View style={styles.topText}>
-          <Text style={styles.title}>Healthy Habits</Text>
+          <Text style={styles.title}>{route.params.name}</Text>
         </View>
         <View style={styles.bottomContainer}>
-          {habitData.healthyHabits.steps.map((step, index) =>
+          {habitData[pageName].steps.map((step, index) =>
             <Item
                 key={index}
                 index={index + 1}
