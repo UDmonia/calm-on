@@ -4,7 +4,7 @@ import Calendar from "../components/checkInStack";
 import Achievement from "./Achievement";
 import Profile from "./profile";
 import React from "react";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { windowWidth } from "../util/windowDimensions";
 import { screenWidthThreshold } from "../util/thresholds";
@@ -35,7 +35,6 @@ const icons = [
 
 const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
-  // what units are these?
 
   const screens = icons.map((icon, index) => (
     <Tab.Screen
@@ -47,16 +46,11 @@ const HomeStack = (props) => {
           <TouchableOpacity
             style={
               focused
-                ? {
-                    ...buttonStyle,
-                    borderTopColor: "#4E80FF",
-                    borderTopWidth: 5,
-                    alignSelf: "flex-start",
-                  }
-                : { ...buttonStyle }
+                ? [styles.buttonStyle, styles.buttonFocused]
+                : styles.buttonStyle
             }
           >
-            <Image source={icon.icon} />
+            <Image source={icon.icon} style={styles.iconImg} />
           </TouchableOpacity>
         ),
       })}
@@ -64,32 +58,46 @@ const HomeStack = (props) => {
   ));
 
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        labelStyle: { fontSize: 13, color: "black" },
-        style: styles,
-      }}
-      intialRouteName="Home"
-    >
+    <Tab.Navigator tabBarOptions={styles.tabBar} intialRouteName="Home">
       {screens}
     </Tab.Navigator>
   );
 };
 
 const styles = {
-  flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
-  backgroundColor: "#E2E8F8",
-  height: windowWidth > screenWidthThreshold ? "5%" : "10%",
-  paddingTop: "2%",
+  tabContainer: {
+    // height: 100,
+    backgroundColor: "red",
+  },
+  tabBar: {
+    flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
+    // backgroundColor: "#E2E8F8",
+    height: windowWidth > screenWidthThreshold ? "5%" : "10%",
+    alignItems: "space-around",
+    tabBarOptions: {
+      backgroundColor: "yellow",
+      labelStyle: { fontSize: 13, color: "black" },
+    },
+  },
+  buttonStyle: {
+    backgroundColor: "blue",
 
-  alignItems: "flex-start",
-};
+    height: 50,
+    width: 80,
+    marginVertical: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonFocused: {
+    backgroundColor: "pink",
 
-const buttonStyle = {
-  height: 50,
-  width: 80,
-  paddingTop: "7%",
-  paddingLeft: "22.5%",
+    borderTopColor: "#4E80FF",
+    borderTopWidth: 5,
+    alignSelf: "flex-start",
+  },
+  iconImg: {
+    // height: 100,
+  },
 };
 
 export default HomeStack;
