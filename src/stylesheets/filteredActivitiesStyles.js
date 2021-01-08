@@ -18,16 +18,18 @@ export default StyleSheet.create({
     },
     filterBarContainer: {
         borderColor: "black",
-        borderWidth: 2.5,
+        borderWidth: 2,
         borderRadius: 7.5,
     },
     button: {
-        paddingHorizontal: windowWidth * 0.06,
+        paddingHorizontal: windowWidth * 0.065,
+        paddingVertical: 2,
     },
     filled: {
         borderRadius: 2.5,
         color: "white",
-        paddingHorizontal: windowWidth * 0.06,
+        paddingHorizontal: windowWidth * 0.065,
+        paddingVertical: 2,
     },
     filledText: {
         color: "white",
