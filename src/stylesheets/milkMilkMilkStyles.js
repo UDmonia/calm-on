@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     // top: -34,
   },
   box: {
-    backgroundColor: hex.white.white1,
+    backgroundColor: hex.pink.pink2,
     borderRadius: 10,
     minHeight: 100,
     width: 330,

@@ -129,7 +129,7 @@ export default StyleSheet.create({
     height: 51,
     borderRadius: 41,
     margin: "2.5%",
-    backgroundColor: hex.green.green1,
+    backgroundColor: hex.white.white1,
     justifyContent: "center",
     alignItems: "center",
   },

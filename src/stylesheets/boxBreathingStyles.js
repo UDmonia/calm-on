@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   questionBox: {
-    backgroundColor: hex.brown.brown1,
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignContent: "center",
     textAlign: "center",
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     marginTop: "7%",
     borderRadius: 25,
     borderWidth: 3,
-    borderColor: "#DD6755",
+    borderColor: hex.green.green1,
     paddingBottom: 8,
     paddingTop: 10,
     fontWeight: "800",
