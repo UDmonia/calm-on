@@ -22,19 +22,19 @@ export default StyleSheet.create({
         borderRadius: 7.5,
     },
     button: {
-        paddingHorizontal: windowWidth * 0.07,
+        paddingHorizontal: windowWidth * 0.06,
     },
     filled: {
         borderRadius: 2.5,
         color: "white",
-        paddingHorizontal: windowWidth * 0.07,
+        paddingHorizontal: windowWidth * 0.06,
     },
     filledText: {
         color: "white",
-        fontSize: windowWidth * 0.03,
+        fontSize: windowWidth * 0.035,
     },
     regText: {
         color: "grey",
-        fontSize: windowWidth * 0.03,
+        fontSize: windowWidth * 0.035,
     }
 });
