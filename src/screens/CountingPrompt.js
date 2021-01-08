@@ -100,7 +100,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                 style={styles.navButton}
                 onPress={() => navigate("CharacterChat")}
               >
-                <Text style={{ color: hex.white.white1 }}>Home</Text>
+                <Text style={{ color: hex.grey.grey1 }}>Home</Text>
               </TouchableOpacity>
               {actData.next != null ? (
                 <TouchableOpacity
@@ -110,7 +110,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                       randomizePosition().then(navigate("Counting", { stuff: actData.next, positionList: positionList }))
                   }}
                 >
-                  <Text style={{ color: hex.white.white1 }}>Next Recipe</Text>
+                  <Text style={{ color: hex.grey.grey1 }}>Next Recipe</Text>
                 </TouchableOpacity>
               ) : null}
             </View>
