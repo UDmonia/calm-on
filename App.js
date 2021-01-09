@@ -37,6 +37,7 @@ import Modal from "./src/components/Modal";
 import { ModalOptions } from "./src/components/Modal";
 import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
 import FilteredActivities from "./src/screens/FilteredActivities.js";
+import WashHands from "./src/screens/WashHands.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -242,35 +243,43 @@ export default function App() {
             name="AdventureLocationSeeAll"
             component={AdventureLocationSeeAll}
           />
-        <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
+          <Stack.Screen 
+            name="Modal" 
+            component={Modal} 
+            options={ModalOptions} 
+          />
           <Stack.Screen
               name="HealthyHabitsTemplate"
               component={HealthyHabitsTemplate}
           />
-        <Stack.Screen
-            name="FilteredActivities"
-            component={FilteredActivities}
-            options={({ route }) => ({
-              headerShown: true,
-              headerStyle: { backgroundColor: route.params.headerColor },
-              title: "Activities",
-              headerTitleAlign: "center",
-              headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
-              headerLeft: () => (
-                <TouchableOpacity
-                  onPress={() => {
-                    RootNavigation.navigate("Home");
-                  }}
-                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
-                >
-                  <Image
-                    source={require("./assets/kpi/chevronLeft.png")}
-                    style={{ height: 21, width: 12 }}
-                  />
-                </TouchableOpacity>
-              ),
-            })}
-        />
+          <Stack.Screen
+              name="FilteredActivities"
+              component={FilteredActivities}
+              options={({ route }) => ({
+                headerShown: true,
+                headerStyle: { backgroundColor: route.params.headerColor },
+                title: "Activities",
+                headerTitleAlign: "center",
+                headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
+                headerLeft: () => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      RootNavigation.navigate("Home");
+                    }}
+                    style={{ height: 21, width: 12, marginHorizontal: 15 }}
+                  >
+                    <Image
+                      source={require("./assets/kpi/chevronLeft.png")}
+                      style={{ height: 21, width: 12 }}
+                    />
+                  </TouchableOpacity>
+                ),
+              })}
+          />
+          <Stack.Screen
+              name="WashHands"
+              component={WashHands}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

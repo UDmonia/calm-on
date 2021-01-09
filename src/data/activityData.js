@@ -129,13 +129,13 @@ const FlynnAcitivityData = [
   },
   {
     id: 3,
-    title: "Activities",
+    title: "Wash Your Hands Like a Pro!",
     color: "#7CC576",
     img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
     tag: ["All", "Activities"],
     introPageData: {
-      navRoute: "HealthyHabitsTemplate",
-      ActRoute: "HealthyHabitsTemplate",
+      navRoute: "IntroActivity",
+      ActRoute: "WashHands",
       about:
         "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
       helpful: "You have trouble focusing or when you feel scared or worried.",
