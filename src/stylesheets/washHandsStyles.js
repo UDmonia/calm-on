@@ -1,5 +1,5 @@
-import { ImageBackground, StyleSheet } from 'react-native';
-import { windowWidth } from "../util/windowDimensions";
+import { StyleSheet } from 'react-native';
+import { windowWidth, windowHeight } from "../util/windowDimensions";
 
 export default  StyleSheet.create({
     screen: {
@@ -16,13 +16,16 @@ export default  StyleSheet.create({
         marginHorizontal: "7%",
     },
     top: {
-        flex: 1,
+        flex: .25,
     },
     image: {
-        flex: 5,
+        flex: 6,
+        justifyContent: "center",
+        alignItems: "center",
     },
     imageContainer: {
-        flex: 1,
+        height: windowHeight * 0.35,
+        width: windowHeight * 0.35,
         alignItems: "center",
     },
     img: {
@@ -36,11 +39,10 @@ export default  StyleSheet.create({
         justifyContent: "space-between",
     },
     arrow: {
-        flex: 1,
-        resizeMode: "cover",
+        resizeMode: "contain",
     },
     bottom: {
-        flex: 5,
+        flex: 6,
         flexDirection: "row",
         alignItems: "flex-end",
     },
@@ -50,7 +52,7 @@ export default  StyleSheet.create({
         width: "33%",
     },
     flynnImg: {
-        resizeMode: "stretch",
+        resizeMode: "contain",
         height: "80%",
         width: "100%",
         minHeight: 220,
@@ -64,7 +66,15 @@ export default  StyleSheet.create({
         backgroundColor: "#B24A2B",
         borderRadius: 5,
         width: "90%",
-        height: "40%",
-        marginBottom: "5%",
+        height: "35%",
+        marginBottom: "15%",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "10%",
+    },
+    text: {
+        color: "white",
+        fontSize: windowWidth * 0.035,
+        fontFamily: "FontReg"
     }
 });
