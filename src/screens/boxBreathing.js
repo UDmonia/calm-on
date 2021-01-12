@@ -1,11 +1,12 @@
 import {
   Animated,
-  Text,
   View,
   TouchableOpacity,
   Image,
   ImageBackground,
 } from "react-native";
+import Text from "../components/Text";
+import hex from "../stylesheets/hexCodes";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
@@ -431,7 +432,7 @@ const boxBreathing = () => {
     top: bottomPosition,
     width: length1,
     borderWidth: 10,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.blue5,
     zIndex: 3,
   };
 
@@ -443,7 +444,7 @@ const boxBreathing = () => {
     width: 10,
     borderWidth: topRightCorner,
     height: length2,
-    borderColor: "#429BAF",
+    borderColor: hex.blue.blue4,
     zIndex: 2,
   };
 
@@ -454,7 +455,7 @@ const boxBreathing = () => {
     left: horizontalPosition,
     width: length3,
     borderWidth: 10,
-    borderColor: "#429BAF",
+    borderColor: hex.blue.blue4,
   };
 
   //Dark blue moving bar 4
@@ -464,7 +465,7 @@ const boxBreathing = () => {
     left: horizontalPosition,
     borderWidth: leftBar,
     height: length4,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.blue5,
     zIndex: 1,
   };
 

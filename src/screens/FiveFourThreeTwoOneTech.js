@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   Image,
   TouchableOpacity,
   ImageBackground,
   SafeAreaView,
 } from "react-native";
+import Text from "../components/Text";
 import styles from "../stylesheets/fiveFourThreeTwoOneTechStyles";
 import kpiData from "../data/kpiData";
 import Exit from "../components/Exit";

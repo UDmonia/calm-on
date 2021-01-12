@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { Text, View, Image } from "react-native";
+import React from "react";
+import {View, Image } from "react-native";
+import Text from './Text';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/previewEntriesStyles";
+import hex from "../stylesheets/hexCodes";
 
 /**
  * Used in previewEntires.js (Daily Preview) for each check-in
@@ -109,24 +111,24 @@ const previewEntries = ({ journals, date, showJournal }) => {
   const moodMap = {
     happy: {
       path: require("../../assets/preview/happy.png"),
-      color: "#FBC423",
+      color: hex.yellow.yellow2,
     },
     angry: {
       path: require("../../assets/preview/angry.png"),
-      color: "#F09696",
+      color: hex.pink.pink1,
     },
-    sad: { path: require("../../assets/preview/sad.png"), color: "#DF9AFF" },
+    sad: { path: require("../../assets/preview/sad.png"), color: hex.purple.purple1 },
     scared: {
       path: require("../../assets/preview/scared.png"),
-      color: "#A5DFF0",
+      color: hex.blue.blue3,
     },
     excited: {
       path: require("../../assets/preview/excited.png"),
-      color: "#AED4B0",
+      color: hex.green.green2,
     },
     worried: {
       path: require("../../assets/preview/worried.png"),
-      color: "#E8B285",
+      color: hex.brown.brown2,
     },
   };
 

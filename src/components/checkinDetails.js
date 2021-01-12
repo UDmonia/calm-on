@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, Text, View, Image, ScrollView } from "react-native";
+import Text from './Text';
+import { ImageBackground, ScrollView,View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";

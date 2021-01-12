@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 import {
   horizontalLength,
   horizontalPosition,
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
   numText: {
     color: "#064B5B",
     position: "absolute",
+    color: hex.blue.blue5,
     top: bottomPosition - bottomPosition * 0.5,
     //borderWidth:1,
   },
@@ -28,19 +30,19 @@ const styles = StyleSheet.create({
     top: bottomPosition - bottomPosition * 0.45,
   },
   animatedText: {
-    color: "#064B5B",
+    color: hex.blue.blue5,
     fontSize: 120,
     fontFamily: "FontReg",
     textAlign: "center",
   },
   animatedText2: {
-    color: "#064B5B",
+    color: hex.blue.blue5,
     fontSize: 30,
     fontFamily: "FontBold",
     textAlign: "center",
   },
   questionBox: {
-    backgroundColor: "#DD6755",
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignContent: "center",
     textAlign: "center",
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     marginTop: "7%",
     borderRadius: 25,
     borderWidth: 3,
-    borderColor: "#DD6755",
+    borderColor: hex.green.green1,
     paddingBottom: 8,
     paddingTop: 10,
     fontWeight: "800",
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   prompt: {
-    backgroundColor: "#FBBDB4",
+    backgroundColor: hex.white.white1,
     width: "75%",
     marginTop: bottomPosition + bottomPosition * 0.14,
     marginLeft: "12.5%",
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     width: horizontalLength,
     //borderColor:'red',
-    borderColor: "#429BAF",
+    borderColor: hex.blue.blue4,
     zIndex: 0,
   },
 
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     left: horizontalPosition,
     borderWidth: 10,
     height: horizontalLength,
-    borderColor: "#429BAF",
+    borderColor: hex.blue.blue4,
     zIndex: 0,
   },
   barRight: {
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     right: horizontalPosition,
     width: 10,
     borderWidth: 10,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.blue5,
     height: horizontalLength,
   },
   barTop: {
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
     left: horizontalPosition,
     width: horizontalLength,
     borderWidth: 10,
-    borderColor: "#064B5B",
+    borderColor: hex.blue.blue5,
   },
   container: {
     flex: 1,
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
   },
   statType: {
     textAlign: "center",
-    color: "#4F7947",
+    color: hex.green.green1,
     width: 125,
     marginBottom: "5%",
   },
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#2E7D32",
+    backgroundColor: hex.green.green1,
     marginTop: "10%",
     marginLeft: "15%",
   },
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
   },
   descriptions: {
-    color: "#7B7B7B",
+    color: hex.grey.grey1,
     paddingTop: "2%",
   },
   questionText: {
