@@ -210,8 +210,9 @@ const styles = StyleSheet.create({
     width: "40%",
     height: "30%",
     marginTop: "30%",
-    marginLeft: "10%",
-    backgroundColor: "yellow",
+    marginBottom: -10,
+    marginLeft: "15%",
+    //backgroundColor: "yellow",
     justifyContent: "flex-end",
     alignItems: "center",
   },
@@ -219,7 +220,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     resizeMode: "contain",
-    backgroundColor: "green",
+    //backgroundColor: "green",
   },
 });
 

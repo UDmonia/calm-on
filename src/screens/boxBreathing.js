@@ -6,9 +6,10 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
+import boxBreathingData from "../data/boxbreathingData";
 import kpiData from "../data/kpiData";
 import {
   horizontalLength,
@@ -25,15 +26,6 @@ import {
 
 const IntroStory = ({ start }) => {
   const [page, setPage] = useState(0);
-  //Modify this array to add more screens
-  const storyMap = [
-    {
-      question:
-        "While we walk and breathe, follow the instructions on the sand. Click 'Go' when you're ready to start!",
-      answers: ["Go!"],
-      background: "forest",
-    },
-  ];
 
   //Implementing story progression mechanism
   return (
@@ -47,16 +39,16 @@ const IntroStory = ({ start }) => {
               fontFamily: "FontBold",
             }}
           >
-            {storyMap[page].question}
+            {boxBreathingData.storyMap[page].question}
           </Text>
         </View>
 
         <View>
-          {storyMap[page].answers.map((answer, key) => (
+          {boxBreathingData.storyMap[page].answers.map((answer, key) => (
             <TouchableOpacity
               style={styles.answers}
               onPress={
-                page !== storyMap.length - 1
+                page !== boxBreathingData.storyMap.length - 1
                   ? () => setPage(page + 1)
                   : () => start(true)
               }
@@ -101,36 +93,6 @@ const OutroStory = () => {
       : setPage(page + 1);
   };
 
-  const storyMap1 = [
-    //branch1
-    {
-      question:
-        "That was so much fun, and I feel much calmer now. What about you?",
-      answers: ["I feel calmer too!", "I don't feel different"],
-      img: require("../../assets/boxBreathing/outro/spirit1.png"),
-    },
-    {
-      question:
-        "That's great to hear! I always enjoy going ton walks with you, let's walk again soon!",
-      answers: ["I also had fun, bye for now!", "Can we walk again now?"],
-      img: require("../../assets/boxBreathing/outro/spirit2.png"),
-    },
-    {
-      question:
-        "Okay, I'm looking forwaard to doing more activities with you! Goodbye!",
-      answers: ["Bye Bye!"],
-      img: require("../../assets/boxBreathing/outro/spirit1.png"),
-    },
-
-    //branch2
-    {
-      question:
-        "Hmm, would you like to go walk some more? Sometimes it takes some time to feel better",
-      answers: ["Yea, let's walk again?", "I want to try a different activity"],
-      img: require("../../assets/boxBreathing/outro/spirit3.png"),
-    },
-  ];
-
   const restartThis = () => {
     navigation.pop();
     navigation.navigate("boxBreathing");
@@ -145,17 +107,16 @@ const OutroStory = () => {
         <View style={styles.outroImgContainer}>
           <Image
             style={styles.outroImg}
-            //resizeMode= "contain"
-            source={storyMap1[page].img}
+            source={boxBreathingData.storyMap1[page].img}
           />
         </View>
         <View style={styles.outroPromt}>
           <View style={styles.questionBox}>
-            <Text style={styles.questionText}>{storyMap1[page].question}</Text>
+            <Text style={styles.questionText}>{boxBreathingData.storyMap1[page].question}</Text>
           </View>
 
           <View>
-            {storyMap1[page].answers.map((answer, key) => (
+            {boxBreathingData.storyMap1[page].answers.map((answer, key) => (
               <TouchableOpacity
                 style={styles.answers}
                 onPress={() => {handlePress(answer)}}
@@ -174,8 +135,6 @@ const OutroStory = () => {
 const boxBreathing = () => {
   const [start, setStart] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
-  const [text, setText] = useState("");
-  const getReady = 3000;
   const topRightCorner = useRef(new Animated.Value(10)).current;
   const leftBar = useRef(new Animated.Value(0)).current;
   const [outro, showOutro] = useState(false);
@@ -484,9 +443,7 @@ const boxBreathing = () => {
     borderColor: "#064B5B",
     zIndex: 1,
   };
-
-  const navigation = useNavigation();
-
+  
   return (
     <View>
       <ImageBackground
