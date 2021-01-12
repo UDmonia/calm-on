@@ -36,7 +36,7 @@ export default StyleSheet.create({
   topButtonText: {
     fontSize: 25,
     color: "white",
-    fontFamily: "FontReg"
+    fontFamily: "FontReg",
   },
   bottomButton: {
     backgroundColor: "#8AABFF",
@@ -61,7 +61,7 @@ export default StyleSheet.create({
   input: {
     //borderColor: 'grey',
     backgroundColor: "white",
-    height: 40,
+    height: "100%",
     borderRadius: 5,
     fontSize: 18,
     padding: "2%",
@@ -104,7 +104,7 @@ export default StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: "bold",
-    fontFamily: "FontReg"
+    fontFamily: "FontReg",
   },
   userNameBodyText: {
     fontSize: 18,
