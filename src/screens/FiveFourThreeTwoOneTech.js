@@ -27,7 +27,7 @@ const step = (progress, setProgress, navigate) => {
   return (
     <View style={styles.breatheSteps}>
       <View style={styles.exitContainer}>
-        <Exit navTo={"FlatActivities"} />
+        <Exit navTo={"Modal"} />
       </View>
       <View style={styles.titleContainer}>
         <Text style={styles.slideTitle}>
@@ -44,7 +44,9 @@ const step = (progress, setProgress, navigate) => {
             source={require("../../assets/FiveFourThreeTwoOne/leftArrow.png")}
           />
         </TouchableOpacity>
-        <Text style= {styles.dirText}>{stepData[progress.valueOf()].direction}</Text>
+        <Text style={styles.dirText}>
+          {stepData[progress.valueOf()].direction}
+        </Text>
         <TouchableOpacity
           onPress={() => {
             progress.valueOf() < stepData.length - 1
