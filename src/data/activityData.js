@@ -9,7 +9,7 @@
         }
     }
 */
-
+import { Pages } from "../data/habitData";
 import hex from "../stylesheets/hexCodes";
 
 const SpriteActivityData = [
@@ -94,4 +94,71 @@ const SpriteActivityData = [
   },
 ];
 
-export { SpriteActivityData };
+const FlynnAcitivityData = [
+  {
+    id: 1,
+    title: "Healthy Habits",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Healthy-Habits"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 2,
+    title: "Do The Five",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/doTheFive/thumbnail.png"),
+    tag: ["All", "Healthy-Habits"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 3,
+    title: "Wash Your Hands Like a Pro!",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Activities"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "WashHands",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 4,
+    title: "Videos",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Videos"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  }
+];
+
+export { SpriteActivityData, FlynnAcitivityData };
