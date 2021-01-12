@@ -9,10 +9,7 @@ import {
 } from "react-native";
 import Exit from "../components/Exit";
 import styles from "../stylesheets/adventureLocationStyles";
-// import locationData from "./locationData";
 import { navigate } from "../components/RootNavigation";
-// import locationData from "./locationData";
-//import kpiData from "../data/kpiData";
 
 /**
  * AdventureLocation is a single screen in the adventures activity.
@@ -28,8 +25,7 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationData } = route.params;
   const { exitAsset } = route.params;
   const {kpiData} = route.params;
-  // const locationData = locationData;
-
+  
   function handleAlphaButtonPress(item) {
     // Add item to the bottom basket
     // After each press we increment our index through "locationData"
