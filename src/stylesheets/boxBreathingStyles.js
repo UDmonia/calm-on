@@ -81,6 +81,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingBottom: "5%",
   },
+  outroPromt: {
+    backgroundColor: "#FBBDB4",
+    width: "75%",
+    marginLeft: "12.5%",
+    borderRadius: 10,
+    paddingBottom: "5%",
+  },
   bottomFrame: {
     position: "absolute",
     top: bottomPosition,
@@ -200,6 +207,22 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 20,
     zIndex: 12,
+  },
+  outroImgContainer: {
+    width: "40%",
+    height: "30%",
+    marginTop: "30%",
+    marginBottom: -10,
+    marginLeft: "15%",
+    //backgroundColor: "yellow",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  outroImg: {
+    height: '100%',
+    width: '100%',
+    resizeMode: "contain",
+    //backgroundColor: "green",
   },
 });
 

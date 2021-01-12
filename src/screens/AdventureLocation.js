@@ -10,7 +10,6 @@ import {
 import Exit from "../components/Exit";
 import styles from "../stylesheets/adventureLocationStyles";
 import { navigate } from "../components/RootNavigation";
-import kpiData from "../data/kpiData";
 import Button from "../components/Button";
 import {
   horizontalLength,
@@ -32,8 +31,8 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
   const { exitAsset } = route.params;
-  // const locationData = locationData;
-
+  const {kpiData} = route.params;
+  
   function handleAlphaButtonPress(item) {
     // Add item to the bottom basket
     // After each press we increment our index through "locationData"
@@ -86,8 +85,8 @@ export default AdventureLocation = ({ route, navigation }) => {
             onPress={() =>
               navigate("kpi", {
                 bg: locationBackgroundTint,
-                pMsg: kpiData.adventure.primMsg,
-                sMsg: kpiData.adventure.secMsg,
+                pMsg: kpiData.primMsg,
+                sMsg: kpiData.secMsg,
               })
             }
             text={"Done"}

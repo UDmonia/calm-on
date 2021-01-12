@@ -10,6 +10,7 @@ import hex from "../stylesheets/hexCodes";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "../stylesheets/boxBreathingStyles";
 import { useNavigation } from "@react-navigation/native";
+import boxBreathingData from "../data/boxbreathingData";
 import kpiData from "../data/kpiData";
 import {
   horizontalLength,
@@ -26,15 +27,6 @@ import {
 
 const IntroStory = ({ start }) => {
   const [page, setPage] = useState(0);
-  //Modify this array to add more screens
-  const storyMap = [
-    {
-      question:
-        "While we walk and breathe, follow the instructions on the sand. Click 'Go' when you're ready to start!",
-      answers: ["Go!"],
-      background: "forest",
-    },
-  ];
 
   //Implementing story progression mechanism
   return (
@@ -48,16 +40,16 @@ const IntroStory = ({ start }) => {
               fontFamily: "FontBold",
             }}
           >
-            {storyMap[page].question}
+            {boxBreathingData.storyMap[page].question}
           </Text>
         </View>
 
         <View>
-          {storyMap[page].answers.map((answer, key) => (
+          {boxBreathingData.storyMap[page].answers.map((answer, key) => (
             <TouchableOpacity
               style={styles.answers}
               onPress={
-                page !== storyMap.length - 1
+                page !== boxBreathingData.storyMap.length - 1
                   ? () => setPage(page + 1)
                   : () => start(true)
               }
@@ -84,31 +76,23 @@ const OutroStory = () => {
   const navigation = useNavigation();
   const [page, setPage] = useState(0);
 
-  const storyMap1 = [
-    //branch1
-    {
-      question:
-        "That was so much fun, and I feel much calmer now. What about you?",
-      answers: ["I feel calmer too!", "I don't feel different"],
-    },
-    {
-      question:
-        "That's great to hear! I always enjoy going ton walks with you, let's walk again soon!",
-      answers: ["I also had fun, bye for now!", "Can we walk again now?"],
-    },
-    {
-      question:
-        "Okay, I'm looking forwaard to doing more activities with you! Goodbye!",
-      answers: ["Bye Bye!"],
-    },
-
-    //branch2
-    {
-      question:
-        "Hmm, would you like to go walk some more? Sometimes it takes some time to feel better",
-      answers: ["Yea, let's walk again?", "I don't feel different"],
-    },
-  ];
+  const handlePress = (answer) => {
+    answer === "Can we walk again now?"
+      ? setPage(3)
+      : answer === "I don't feel different"
+      ? setPage(3)
+      : answer === "I want to try a different activity"
+      ? navigation.navigate("FlatActivities")
+      : answer === "Yea, let's walk again?"
+      ? restartThis()
+      : answer === "Bye Bye!"
+      ? navigation.navigate("kpi", {
+          bg: require("../../assets/boxBreathing/beach.png"),
+          pMsg: kpiData.boxBreathing.primMsg,
+          sMsg: kpiData.boxBreathing.secMsg,
+        })
+      : setPage(page + 1);
+  };
 
   const restartThis = () => {
     navigation.pop();
@@ -121,28 +105,22 @@ const OutroStory = () => {
         style={styles.backgroundImage}
         source={require("../../assets/boxBreathing/beach.png")}
       >
-        <View style={styles.prompt}>
+        <View style={styles.outroImgContainer}>
+          <Image
+            style={styles.outroImg}
+            source={boxBreathingData.storyMap1[page].img}
+          />
+        </View>
+        <View style={styles.outroPromt}>
           <View style={styles.questionBox}>
-            <Text style={styles.questionText}>{storyMap1[page].question}</Text>
+            <Text style={styles.questionText}>{boxBreathingData.storyMap1[page].question}</Text>
           </View>
 
           <View>
-            {storyMap1[page].answers.map((answer, key) => (
+            {boxBreathingData.storyMap1[page].answers.map((answer, key) => (
               <TouchableOpacity
                 style={styles.answers}
-                onPress={() => {
-                  answer === "Can we walk again now?"
-                    ? setPage(3)
-                    : answer === "Yea, let's walk again?"
-                    ? restartThis()
-                    : answer === "Bye Bye!"
-                    ? navigation.navigate("kpi", {
-                        bg: require("../../assets/boxBreathing/beach.png"),
-                        pMsg: kpiData.boxBreathing.primMsg,
-                        sMsg: kpiData.boxBreathing.secMsg,
-                      })
-                    : setPage(page + 1);
-                }}
+                onPress={() => {handlePress(answer)}}
                 key={key}
               >
                 <Text style={styles.answerText}>{answer}</Text>
@@ -158,8 +136,6 @@ const OutroStory = () => {
 const boxBreathing = () => {
   const [start, setStart] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
-  const [text, setText] = useState("");
-  const getReady = 3000;
   const topRightCorner = useRef(new Animated.Value(10)).current;
   const leftBar = useRef(new Animated.Value(0)).current;
   const [outro, showOutro] = useState(false);
@@ -468,9 +444,7 @@ const boxBreathing = () => {
     borderColor: hex.blue.blue5,
     zIndex: 1,
   };
-
-  const navigation = useNavigation();
-
+  
   return (
     <View>
       <ImageBackground
