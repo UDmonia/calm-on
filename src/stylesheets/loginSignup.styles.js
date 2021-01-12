@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
+import hex from "./hexCodes";
+
 export default StyleSheet.create({
   background: {
     resizeMode: "cover",
@@ -29,7 +31,7 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   topButtons: {
-    borderColor: "#8161B2",
+    borderColor: hex.purple.purple2,
   },
   topButtonText: {
     fontSize: 25,
@@ -128,7 +130,7 @@ export default StyleSheet.create({
   },
   userNameInput: {
     padding: 10,
-    backgroundColor: "#E7E7E7",
+    backgroundColor: hex.grey.grey2,
     borderRadius: 5,
     width: 219,
     textAlign: "center",

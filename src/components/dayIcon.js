@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
-import {Image,View,Text} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import styles from '../stylesheets/dayIconStyles'
+import React, { useEffect } from "react";
+import {Image,View} from "react-native";
+import Text from "./Text";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import styles from "../stylesheets/dayIconStyles"
+import hex from "../stylesheets/hexCodes";
 
 /**
  * Contains all images associated with each emotion
  */
 const moodMap = {
-    happy: {path:require('../../assets/preview/happy.png'), color: '#FBC423'},
-    angry: {path:require('../../assets/preview/angry.png'), color: '#F09696'},
-    sad: {path:require('../../assets/preview/sad.png'), color: '#DF9AFF'},
-    scared: {path:require('../../assets/preview/scared.png'), color: '#E8B285'},
-    excited: {path:require('../../assets/preview/excited.png'), color: '#AED4B0'},
-    worried: {path:require('../../assets/preview/worried.png'), color: '#E8B285'}
+    happy: {path:require("../../assets/preview/happy.png"), color: hex.yellow.yellow2},
+    angry: {path:require("../../assets/preview/angry.png"), color: hex.pink.pink1},
+    sad: {path:require("../../assets/preview/sad.png"), color: hex.purple.purple1},
+    scared: {path:require("../../assets/preview/scared.png"), color: hex.blue.blue3},
+    excited: {path:require("../../assets/preview/excited.png"), color: hex.green.green2},
+    worried: {path:require("../../assets/preview/worried.png"), color: hex.brown.brown2}
 }
 
 /**
@@ -27,7 +29,7 @@ export default DayIcon =({checkIn,showJournal})=>{
         {checkIn.journals?
         <TouchableOpacity onPress = {()=>showJournal()} style = {styles.container}>
            <Text style = {styles.header}>{checkIn.day}{`\n`}
-            <Text >{checkIn.DOW.slice(0,3)}</Text>
+            <Text style = {styles.header} >{checkIn.DOW.slice(0,3)}</Text>
            </Text>
            <View style = {styles.body}>
                {checkIn.journals.map((journal,i)=>(
@@ -38,12 +40,12 @@ export default DayIcon =({checkIn,showJournal})=>{
         :
         <View style = {styles.container}>
              <Text style = {styles.header}>{checkIn.day}{`\n`}
-                <Text>{checkIn.DOW.slice(0,3)}</Text>
+                <Text style = {styles.header} >{checkIn.DOW.slice(0,3)}</Text>
              </Text>
              
 
              <View style = {styles.body}>
-                 <Text style ={{fontSize:18,marginLeft:'5%', color:'rgba(0, 0, 0, 0.4)' }}>No Entries</Text>
+                 <Text style ={{fontSize:18,marginLeft:"5%", color:"rgba(0, 0, 0, 0.4)" }}>No Entries</Text>
              </View>
         </View>
         }

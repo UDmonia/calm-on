@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   View,
-  Text,
   ImageBackground,
   Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import Text from "../components/Text";
+import hex from "../stylesheets/hexCodes";
 import styles from "../stylesheets/countingStyles";
 import bg from "../../assets/counting/backdrop.png";
 import sprit from "../../assets/counting/spirit1.png";
@@ -80,7 +81,7 @@ export default Counting = ({ route, navigation }) => {
         </View>
         <View style={styles.countDis}>
           {count > 0 ? (
-            <Text style={{ color: "#FFFFFF" }}>
+            <Text style={{ color: hex.white.white1 }}>
               {count + " " + stuff.groupName}
             </Text>
           ) : null}

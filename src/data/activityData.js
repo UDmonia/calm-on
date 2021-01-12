@@ -9,11 +9,14 @@
         }
     }
 */
+
+import hex from "../stylesheets/hexCodes";
+
 const SpriteActivityData = [
   {
     id: 1,
     title: "5-4-3-2-1 Techniques",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/54321.png"),
     tag: ["happy", "excited", "sad", "angry"],
     introPageData: {
@@ -29,7 +32,7 @@ const SpriteActivityData = [
   {
     id: 2,
     title: "Calm Counting",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/counting.png"),
     tag: ["angry"],
     introPageData: {
@@ -45,7 +48,7 @@ const SpriteActivityData = [
   {
     id: 3,
     title: "Milk Milk Milk",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     tag: ["worried", "angry", "scared"],
     img: require("../../assets/activities/milk.png"),
     introPageData: {
@@ -60,7 +63,7 @@ const SpriteActivityData = [
   {
     id: 4,
     title: "Box Breathing",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/box.png"),
     tag: ["worried", "angry"],
     introPageData: {
@@ -76,7 +79,7 @@ const SpriteActivityData = [
   {
     id: 5,
     title: "Going on an Adventure",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/adventure.png"),
     tag: ["happy", "excited", "angry"],
     introPageData: {

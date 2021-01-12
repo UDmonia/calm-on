@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Image,
-  Text,
   ImageBackground,
   Animated,
 } from "react-native";
+import Text from "../components/Text";
 import styles from "../stylesheets/milkMilkMilkStyles";
 import kpiData from "../data/kpiData";
 

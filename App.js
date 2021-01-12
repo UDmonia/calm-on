@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
+import hex from './src/stylesheets/hexCodes';
 import { TouchableOpacity, Image } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -70,9 +71,9 @@ export default function App() {
               headerShown: false,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
-              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-              headerTintColor: "#FFFFFF",
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
+              headerStyle: { backgroundColor: hex.green.green1 },
+              headerTintColor: hex.white.white1,
             }}
           />
           {/* screen componet used for activity discription */}
@@ -83,9 +84,9 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: route.params.name, // Header is passed upon navigation through the route
-              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-              headerStyle: { backgroundColor: route.params.headerColor },
-              headerTintColor: "#FFFFFF",
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
+              headerStyle: { backgroundColor: hex.green.green1 },
+              headerTintColor: hex.white.white1,
             })}
           />
           <Stack.Screen
@@ -95,9 +96,9 @@ export default function App() {
               headerShown: false,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
-              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-              headerTintColor: "#FFFFFF",
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
+              headerStyle: { backgroundColor: hex.green.green1 },
+              headerTintColor: hex.white.white1,
             }}
           />
           <Stack.Screen
@@ -107,9 +108,9 @@ export default function App() {
               headerShown: false,
               headerBackTitleVisible: false,
               headerTitle: "Counting",
-              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-              headerTintColor: "#FFFFFF",
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
+              headerStyle: { backgroundColor: hex.green.green1 },
+              headerTintColor: hex.white.white1,
             }}
           />
           <Stack.Screen
@@ -120,9 +121,9 @@ export default function App() {
               headerBackTitleVisible: false,
               headerLeft: null, // removes the back button
               headerTitle: "Daily Check-In",
-              headerTitleStyle: { fontSize: 20, color: "#424242" },
-              headerStyle: { backgroundColor: "#FFC10E" },
-              headerTintColor: "#424242",
+              headerTitleStyle: { fontSize: 20, color: hex.grey.grey1 },
+              headerStyle: { backgroundColor: hex.yellow.yellow1 },
+              headerTintColor: hex.grey.grey1,
             }}
           />
           <Stack.Screen
@@ -132,9 +133,9 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "Daily Check-In",
-              headerTitleStyle: { fontSize: 20, color: "#424242" },
-              headerStyle: { backgroundColor: "#FFC10E" },
-              headerTintColor: "#424242",
+              headerTitleStyle: { fontSize: 20, color: hex.grey.grey1 },
+              headerStyle: { backgroundColor: hex.yellow.yellow1 },
+              headerTintColor: hex.grey.grey1,
             }}
           />
           <Stack.Screen
@@ -144,9 +145,9 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "Daily Check-In",
-              headerTitleStyle: { fontSize: 20, color: "#424242" },
-              headerStyle: { backgroundColor: "#FFC10E" },
-              headerTintColor: "#424242",
+              headerTitleStyle: { fontSize: 20, color: hex.grey.grey1 },
+              headerStyle: { backgroundColor: hex.yellow.yellow1 },
+              headerTintColor: hex.grey.grey1,
             }}
           />
           <Stack.Screen
@@ -157,7 +158,7 @@ export default function App() {
               headerStyle: { backgroundColor: route.params.headerColor },
               title: "Activities",
               headerTitleAlign: "center",
-              headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
+              headerTitleStyle: { color: hex.white.white1, fontFamily: "FontReg" },
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
@@ -193,9 +194,9 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: "Activities",
-              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
-              headerStyle: { backgroundColor: "#2E7D32" },
-              headerTintColor: "#FFFFFF",
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
+              headerStyle: { backgroundColor: hex.green.green1 },
+              headerTintColor: hex.white.white1,
             }}
           />
           <Stack.Screen
@@ -205,7 +206,7 @@ export default function App() {
               headerBackTitleVisible: false,
               headerTitle: "5-4-3-2-1 Technique",
               headerTitleStyle: { fontSize: 24, color: "white" },
-              headerStyle: { backgroundColor: "#2E7D32" },
+              headerStyle: { backgroundColor: hex.green.green1 },
             }}
           />
           <Stack.Screen
@@ -214,9 +215,9 @@ export default function App() {
               headerShown: true,
               headerBackTitleVisible: false,
               headerTitle: route.params.name, // Header is passed upon navigation through the route
-              headerTitleStyle: { fontSize: 20, color: "#FFFFFF" },
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
               headerStyle: { backgroundColor: route.params.headerColor },
-              headerTintColor: "#FFFFFF",
+              headerTintColor: hex.white.white1,
             })}
             component={CharacterChat}
           />
