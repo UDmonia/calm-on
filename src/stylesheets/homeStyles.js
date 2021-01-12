@@ -3,6 +3,8 @@ import { windowWidth } from "../util/windowDimensions";
 import { screenWidthThreshold } from "../util/thresholds";
 const titleText = 0.05 * windowWidth;
 const bodyText = 0.0335 * windowWidth;
+import { Dimensions } from 'react-native';
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,8 +25,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   topBox: {
-    backgroundColor: "#FFFFFF",
-    borderColor: "#89AAFF",
+    backgroundColor: hex.white.white1,
+    borderColor: hex.blue.blue1,
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
@@ -33,14 +35,14 @@ const styles = StyleSheet.create({
     width: "85%",
   },
   topBoxTextName: {
-    color: "#000000",
     fontSize: titleText,
     fontFamily: "FontReg",
     marginTop: "3%",
     marginHorizontal: "5%",
+    color: hex.black.black1,
   },
   topBoxText: {
-    color: "#000000",
+    color: hex.black.black1,
     fontSize: bodyText,
     fontFamily: "FontReg",
     marginHorizontal: "5%",
@@ -67,8 +69,8 @@ const styles = StyleSheet.create({
     height: 40,
   },
   bottomBox: {
-    backgroundColor: "#FFFFFF",
-    borderColor: "#89AAFF",
+    backgroundColor: hex.white.white1,
+    borderColor: hex.blue.blue1,
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
@@ -77,16 +79,16 @@ const styles = StyleSheet.create({
     width: "85%",
   },
   bottomBoxTextName: {
-    color: "#000000",
+    color: hex.black.black1,
     fontSize: titleText,
-    fontFamily: "FontReg",
-    fontWeight: "800",
+    fontFamily: 'FontReg',
+    fontWeight: '800',
     marginTop: 4,
     marginHorizontal: "5%",
     textAlign: "center",
   },
   bottomBoxTextDescription: {
-    color: "#000000",
+    color: hex.black.black1,
     fontSize: bodyText,
     fontFamily: "FontReg",
     marginHorizontal: "3%",
