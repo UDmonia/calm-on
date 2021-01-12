@@ -1,4 +1,5 @@
-import { SpriteActivityData } from "./activityData.js";
+import { SpriteActivityData, FlynnAcitivityData } from "./activityData.js";
+import hex from "../stylesheets/hexCodes";
 /**
  * TODO: add proper activity data for Flynn and Aurora
  */
@@ -6,7 +7,7 @@ import { SpriteActivityData } from "./activityData.js";
 const sprite = {
   img: require("../../assets/images/sprite.gif"),
   name: "Sprite",
-  characterColor: "#2E7D32",
+  characterColor: hex.green.green1,
   description:
     "Hello, I am the great Sprite. I’m the coolest fairy of them all. I have some of the most interesting stories to share! Let’s explore our feelings together!",
   background: require("../../assets/images/characterChat/spriteBackground.png"),
@@ -17,18 +18,18 @@ const sprite = {
 const flynn = {
   img: require("../../assets/images/flynn.gif"),
   name: "Flynn",
-  characterColor: "#B24A2B",
+  characterColor: hex.brown.flynn,
   description:
     "Yo, I’m Flynn! I can teach you how to be strong and healthy like me through exercise and dance!",
   background: require("../../assets/images/characterChat/flynnBackground.png"),
   viewActivities: require("../../assets/images/characterChat/flynnViewActivities.png"),
-  activities: SpriteActivityData,
+  activities: FlynnAcitivityData,
 };
 
 const aurora = {
   img: require("../../assets/images/aurora.gif"),
   name: "Aurora",
-  characterColor: "#8248D7",
+  characterColor: hex.purple.aurora,
   description:
     "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
   background: require("../../assets/images/characterChat/auroraBackground.png"),

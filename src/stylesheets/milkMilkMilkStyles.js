@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+import hex from "./hexCodes";
 
 let screenWidth = Dimensions.get("window").width;
 let screenHeight = Dimensions.get("window").height;
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     bottom: "90.64 %",
   },
   exitBox: {
-    backgroundColor: "#DD6755",
+    backgroundColor: hex.brown.brown1,
     borderRadius: 10,
     position: "absolute",
     width: 337,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   exitText: {
-    color: "#FFFFFF",
+    color: hex.white.white1,
     fontFamily: "FontReg",
     fontSize: 24,
     fontWeight: "800",
@@ -56,15 +57,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: 50,
     width: "100%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: hex.white.white1,
   },
   yesNo: {
     borderBottomLeftRadius: 10,
     height: "100%",
     width: "50%",
     borderWidth: 1,
-    borderColor: "#FFFFFF",
-    borderRightColor: "#DD6755",
+    borderColor: hex.white.white1,
+    borderRightColor: hex.brown.brown1,
   },
   no: {
     height: "100%",
@@ -86,15 +87,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   circle: {
-    // backgroundColor: "#FFFFFF",
-    // borderRadius: 1000,
-    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // position: "relative",
     width: screenWidth,
     height: screenHeight,
-    // top: 146,
   },
   ball: {
     // position: "absolute",
@@ -104,7 +100,7 @@ const styles = StyleSheet.create({
     // top: -34,
   },
   box: {
-    backgroundColor: "#FBBDB4",
+    backgroundColor: hex.pink.pink2,
     borderRadius: 10,
     minHeight: 100,
     width: 330,
@@ -114,7 +110,7 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   top: {
-    backgroundColor: "#DD6755",
+    backgroundColor: hex.brown.brown1,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     minHeight: 50,
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   question: {
-    color: "#FFFFFF",
+    color: hex.white.white1,
     fontFamily: "FontReg",
     fontSize: 14,
     fontWeight: "800",
@@ -138,7 +134,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 14,
   },
   answer1: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: hex.white.white1,
     borderRadius: 10,
     height: 35,
     width: 284,
@@ -146,7 +142,7 @@ const styles = StyleSheet.create({
     marginVertical: "5%",
   },
   answer: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: hex.white.white1,
     borderRadius: 10,
     fontSize: 14,
     height: 35,

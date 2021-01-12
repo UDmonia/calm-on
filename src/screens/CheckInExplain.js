@@ -3,6 +3,8 @@ import { View, TouchableOpacity, Text, Image, ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import styles from "../stylesheets/checkInExplainStyles";
 import { checkin } from "../actions/session_actions";
+import hex from "../stylesheets/hexCodes";
+
 
 /**
  * Data that is used to determine what feeling image to load
@@ -67,7 +69,7 @@ const button = (desc) => {
       // need the style here to use desc.state
       style={[
         {
-          backgroundColor: desc.state ? "#ADD8E5" : "#E5E5E5",
+          backgroundColor: desc.state ? hex.blue.blue3 : hex.grey.grey2,
         },
         styles.toggleButton,
       ]}

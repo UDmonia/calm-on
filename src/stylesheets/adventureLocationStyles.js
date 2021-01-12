@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 import { windowWidth } from "../util/windowDimensions";
 
 export default StyleSheet.create({
@@ -30,7 +31,7 @@ export default StyleSheet.create({
     height: 0.2333 * windowWidth,
     width: "90%",
     borderRadius: 10,
-    backgroundColor: "#027E2A",
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -39,7 +40,7 @@ export default StyleSheet.create({
     width: 0.2333 * windowWidth,
     marginHorizontal: "5%",
     borderRadius: 5,
-    backgroundColor: "#E9E9E9",
+    backgroundColor: hex.white.white1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -68,7 +69,7 @@ export default StyleSheet.create({
     flex: 1.25,
   },
   seeAllContainer: {
-    backgroundColor: "#027E2A",
+    backgroundColor: hex.green.green1,
     width: "100%",
     minHeight: 50,
     flexDirection: "row",

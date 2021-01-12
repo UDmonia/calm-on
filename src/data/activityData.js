@@ -9,11 +9,14 @@
         }
     }
 */
+import { Pages } from "../data/habitData";
+import hex from "../stylesheets/hexCodes";
+
 const SpriteActivityData = [
   {
     id: 1,
     title: "5-4-3-2-1 Techniques",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/54321.png"),
     tag: ["happy", "excited", "sad", "angry"],
     introPageData: {
@@ -29,7 +32,7 @@ const SpriteActivityData = [
   {
     id: 2,
     title: "Calm Counting",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/counting.png"),
     tag: ["angry"],
     introPageData: {
@@ -45,7 +48,7 @@ const SpriteActivityData = [
   {
     id: 3,
     title: "Milk Milk Milk",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     tag: ["worried", "angry", "scared"],
     img: require("../../assets/activities/milk.png"),
     introPageData: {
@@ -60,7 +63,7 @@ const SpriteActivityData = [
   {
     id: 4,
     title: "Box Breathing",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/box.png"),
     tag: ["worried", "angry"],
     introPageData: {
@@ -76,7 +79,7 @@ const SpriteActivityData = [
   {
     id: 5,
     title: "Going on an Adventure",
-    color: "#A7D1A8",
+    color: hex.green.green2,
     img: require("../../assets/activities/adventure.png"),
     tag: ["happy", "excited", "angry"],
     introPageData: {
@@ -91,4 +94,71 @@ const SpriteActivityData = [
   },
 ];
 
-export { SpriteActivityData };
+const FlynnAcitivityData = [
+  {
+    id: 1,
+    title: "Healthy Habits",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Healthy-Habits"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 2,
+    title: "Do The Five",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/doTheFive/thumbnail.png"),
+    tag: ["All", "Healthy-Habits"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 3,
+    title: "Wash Your Hands Like a Pro!",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Activities"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "WashHands",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 4,
+    title: "Videos",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Videos"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  }
+];
+
+export { SpriteActivityData, FlynnAcitivityData };

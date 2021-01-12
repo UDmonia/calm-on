@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, ScrollView, TouchableOpacity } from "react-native";
+import Text from "../components/Text";
 import styles from "../stylesheets/activitiesStyles";
 import feelings from "../../assets/activities/feelings.png";
 import why from "../../assets/activities/why.png";
@@ -10,8 +11,8 @@ import painter from "../../assets/activities/painter.png";
 //Activity data
 const learningFeelings = [
   {
-    id: 1, // Activity key 
-    title: "Calm Counting", // Activity 
+    id: 1, // Activity key
+    title: "Calm Counting", // Activity
     navRoute: "IntroActivity", // route to information screen
     ActRoute: "CountingSelection", // route to actual activity
     imgIntro: require("../../assets/counting/countingTitle.png"), // image for activity discription
@@ -19,7 +20,7 @@ const learningFeelings = [
     about:
       "For concentration and focus. Regulates thinking and attention. Stimulates mind by matching items with theme.",
     helpful: "Anxiety", // discription of what the activity is helpful with
-    img: require("../../assets/activities/counting.png"), // image for activity button 
+    img: require("../../assets/activities/counting.png"), // image for activity button
     tag: "Fear", // Emotion tag for filtering
     level: "Basic Skills", // Level tag for filtering levels.
   },

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
     iconBox:{
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin:'1.2%',
         marginTop:'2%',
-        backgroundColor:'#edf2f4',
+        backgroundColor:hex.grey.grey2,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
