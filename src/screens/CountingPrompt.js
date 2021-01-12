@@ -104,13 +104,6 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             <DialogBox
               message={{ style: styles.textBox2, text: actData.dialog[2] }}
             />
-            {/* <View style={styles.buttonView}>
-              <TouchableOpacity
-                style={styles.navButton}
-                onPress={() => navigate("CharacterChat")}
-              >
-                <Text style={{ color: "#3B96B2" }}>Home</Text>
-              </TouchableOpacity> */}
             {actData.next != null ? (
               <View style={styles.buttonView}>
                 <TouchableOpacity
