@@ -7,22 +7,15 @@ import { Dimensions } from 'react-native';
 import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-  format: {
-    padding: 0,
-  },
   main: {
-    backgroundColor: "rgba(0, 0, 0, 0.45)",
-    display: "flex",
-    height: "100%",
+    flex: 1,
     alignItems: "center",
+  },
+  inner: {
+    height: windowWidth > screenWidthThreshold ? "95%" : "90%",
+  },
+  imageTint: {
+    backgroundColor: "rgba(0, 0, 0, 0.45)",
   },
   topBox: {
     backgroundColor: hex.white.white1,
@@ -30,8 +23,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
-    height: "12.5%",
-    marginTop: windowWidth > screenWidthThreshold ? "15%" : "25%",
+    alignSelf: "center",
+    marginTop: windowWidth > screenWidthThreshold ? "15%" : "20%",
     width: "85%",
   },
   topBoxTextName: {
@@ -46,6 +39,7 @@ const styles = StyleSheet.create({
     fontSize: bodyText,
     fontFamily: "FontReg",
     marginHorizontal: "5%",
+    marginBottom: "2%",
   },
   scroll: {
     display: "flex",
@@ -74,16 +68,16 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
-    height: "14%",
     marginTop: "7%",
     width: "85%",
+    alignSelf: "center", // this is what makes the text box height adjust to the text
   },
   bottomBoxTextName: {
     color: hex.black.black1,
     fontSize: titleText,
-    fontFamily: 'FontReg',
-    fontWeight: '800',
-    marginTop: 4,
+    fontFamily: "FontReg",
+    fontWeight: "800",
+    marginTop: "2%",
     marginHorizontal: "5%",
     textAlign: "center",
   },
@@ -92,6 +86,7 @@ const styles = StyleSheet.create({
     fontSize: bodyText,
     fontFamily: "FontReg",
     marginHorizontal: "3%",
+    marginBottom: "2%",
     textAlign: "center",
   },
   nav: {
@@ -124,7 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#8AABFF",
     height: "5%",
     minHeight: 40,
-    width: "32.5%",
+    minWidth: "32.5%",
+    alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,

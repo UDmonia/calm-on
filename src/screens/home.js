@@ -80,64 +80,53 @@ const Home = ({ props, navigation: { navigate } }) => {
   }
 
   return (
-    <View style={styles.format}>
-      <ImageBackground
-        source={require("../../assets/images/splash_panel.png")}
-        style={styles.image}
-      >
-        <View style={styles.main}>
-          <View style={styles.topBox}>
-            <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
-            <Text
-              numberOfLines={windowWidth > screenWidthThreshold ? 1 : 2}
-              adjustsFontSizeToFit
-              style={styles.topBoxText}
-            >
-              Scroll through your three fairy friends and pick one to learn more
-              about them.
-            </Text>
-          </View>
-          <View style={styles.scroll}>
-            <ScrollView
-              snapToInterval={Dimensions.get("window").width}
-              decelerationRate="fast"
-              horizontal
-              pagingEnabled="true"
-              showsHorizontalScrollIndicator={false}
-              onScroll={(event) => handleScroll(event)}
-              scrollEventThrottle={100}
-            >
-              {spirits.map((spirit) => {
-                return (
-                  <View key={spirit.name} style={styles.spiritView}>
-                    <Image style={styles.spirit} source={spirit.img} />
-                  </View>
-                );
-              })}
-            </ScrollView>
-          </View>
-          <TouchableOpacity
-            onPress={() => handleBtnPress()}
-            style={styles.pickMeButton}
-          >
-            <Text style={styles.pickMeText}>Pick Me!</Text>
-          </TouchableOpacity>
-
-          <View style={styles.bottomBox}>
-            <Text adjustsFontSizeToFit={true} style={styles.bottomBoxTextName}>
-              {currentSpirit.name}
-            </Text>
-            <Text
-              numberOfLines={windowWidth > screenWidthThreshold ? 2 : 3}
-              adjustsFontSizeToFit={true}
-              style={styles.bottomBoxTextDescription}
-            >
-              {currentSpirit.description}
-            </Text>
-          </View>
+    <ImageBackground
+      source={require("../../assets/images/splash_panel.png")}
+      style={styles.main}
+      imageStyle={styles.imageTint}
+    >
+      <View style={styles.inner}>
+        <View style={styles.topBox}>
+          <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
+          <Text style={styles.topBoxText}>
+            Scroll through your three fairy friends and pick one to learn more
+            about them.
+          </Text>
         </View>
-      </ImageBackground>
-    </View>
+        <View style={styles.scroll}>
+          <ScrollView
+            snapToInterval={Dimensions.get("window").width}
+            decelerationRate="fast"
+            horizontal
+            pagingEnabled="true"
+            showsHorizontalScrollIndicator={false}
+            onScroll={(event) => handleScroll(event)}
+            scrollEventThrottle={100}
+          >
+            {spirits.map((spirit) => {
+              return (
+                <View key={spirit.name} style={styles.spiritView}>
+                  <Image style={styles.spirit} source={spirit.img} />
+                </View>
+              );
+            })}
+          </ScrollView>
+        </View>
+        <TouchableOpacity
+          onPress={() => handleBtnPress()}
+          style={styles.pickMeButton}
+        >
+          <Text style={styles.pickMeText}>Pick Me!</Text>
+        </TouchableOpacity>
+
+        <View style={styles.bottomBox}>
+          <Text style={styles.bottomBoxTextName}>{currentSpirit.name}</Text>
+          <Text style={styles.bottomBoxTextDescription}>
+            {currentSpirit.description}
+          </Text>
+        </View>
+      </View>
+    </ImageBackground>
   );
 };
 
