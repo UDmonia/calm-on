@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
-import hex from './src/stylesheets/hexCodes';
+import hex from "./src/stylesheets/hexCodes";
 import { TouchableOpacity, Image } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -39,6 +39,7 @@ import { ModalOptions } from "./src/components/Modal";
 import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
 import FilteredActivities from "./src/screens/FilteredActivities.js";
 import WashHands from "./src/screens/WashHands.js";
+import TrainSuperhero from "./src/screens/TrainSuperhero.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -161,7 +162,10 @@ export default function App() {
               headerStyle: { backgroundColor: route.params.headerColor },
               title: "Activities",
               headerTitleAlign: "center",
-              headerTitleStyle: { color: hex.white.white1, fontFamily: "FontReg" },
+              headerTitleStyle: {
+                color: hex.white.white1,
+                fontFamily: "FontReg",
+              },
               headerLeft: () => (
                 <TouchableOpacity
                   onPress={() => {
@@ -244,43 +248,37 @@ export default function App() {
             name="AdventureLocationSeeAll"
             component={AdventureLocationSeeAll}
           />
-          <Stack.Screen 
-            name="Modal" 
-            component={Modal} 
-            options={ModalOptions} 
+          <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
+          <Stack.Screen
+            name="HealthyHabitsTemplate"
+            component={HealthyHabitsTemplate}
           />
           <Stack.Screen
-              name="HealthyHabitsTemplate"
-              component={HealthyHabitsTemplate}
+            name="FilteredActivities"
+            component={FilteredActivities}
+            options={({ route }) => ({
+              headerShown: true,
+              headerStyle: { backgroundColor: route.params.headerColor },
+              title: "Activities",
+              headerTitleAlign: "center",
+              headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    RootNavigation.navigate("Home");
+                  }}
+                  style={{ height: 21, width: 12, marginHorizontal: 15 }}
+                >
+                  <Image
+                    source={require("./assets/kpi/chevronLeft.png")}
+                    style={{ height: 21, width: 12 }}
+                  />
+                </TouchableOpacity>
+              ),
+            })}
           />
-          <Stack.Screen
-              name="FilteredActivities"
-              component={FilteredActivities}
-              options={({ route }) => ({
-                headerShown: true,
-                headerStyle: { backgroundColor: route.params.headerColor },
-                title: "Activities",
-                headerTitleAlign: "center",
-                headerTitleStyle: { color: "#F2F2F2", fontFamily: "FontReg" },
-                headerLeft: () => (
-                  <TouchableOpacity
-                    onPress={() => {
-                      RootNavigation.navigate("Home");
-                    }}
-                    style={{ height: 21, width: 12, marginHorizontal: 15 }}
-                  >
-                    <Image
-                      source={require("./assets/kpi/chevronLeft.png")}
-                      style={{ height: 21, width: 12 }}
-                    />
-                  </TouchableOpacity>
-                ),
-              })}
-          />
-          <Stack.Screen
-              name="WashHands"
-              component={WashHands}
-          />
+          <Stack.Screen name="WashHands" component={WashHands} />
+          <Stack.Screen name="TrainSuperhero" component={TrainSuperhero} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
