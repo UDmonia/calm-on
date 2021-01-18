@@ -89,6 +89,22 @@ const SpriteActivityData = [
       headerColor: "#2E7D32",
     },
   },
+  {
+    id: 6,
+    title: "Match the color",
+    color: "#A7D1A8",
+    img: require("../../assets/activities/matching.png"),
+    tag: ["happy", "excited", "angry"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "MatchTheColor",
+      about:
+        "Match the color on the card!",
+      helpful: "When you need to foucus.",
+      img: require("../../assets/activities/matchingintro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
 ];
 
 export { SpriteActivityData };

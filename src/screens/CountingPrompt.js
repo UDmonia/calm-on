@@ -104,13 +104,6 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
             <DialogBox
               message={{ style: styles.textBox2, text: actData.dialog[2] }}
             />
-            {/* <View style={styles.buttonView}>
-              <TouchableOpacity
-                style={styles.navButton}
-                onPress={() => navigate("CharacterChat")}
-              >
-                <Text style={{ color: "#3B96B2" }}>Home</Text>
-              </TouchableOpacity> */}
             {actData.next != null ? (
               <View style={styles.buttonView}>
                 <TouchableOpacity
@@ -138,12 +131,14 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               <View style={styles.buttonView}>
                 <TouchableOpacity
                   style={styles.navButton}
-                  onPress={() => navigate("kpi", {
-                    bg: bg,
-                    pMsg: kpiData.counting.primMsg,
-                    sMsg: kpiData.counting.secMsg,
-                    image: kpiData.counting.img,
-                  })}
+                  onPress={() =>
+                    navigate("kpi", {
+                      bg: bg,
+                      pMsg: kpiData.counting.primMsg,
+                      sMsg: kpiData.counting.secMsg,
+                      image: kpiData.counting.img,
+                    })
+                  }
                 >
                   <Text style={{ color: "#3B96B2" }}>Next</Text>
                 </TouchableOpacity>

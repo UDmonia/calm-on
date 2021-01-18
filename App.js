@@ -33,6 +33,7 @@ import AdventureLocation from "./src/screens/AdventureLocation.js";
 import AdventureLocationSeeAll from "./src/screens/AdventureLocationSeeAll.js";
 import FlatActivities from "./src/screens/FlatActivities.js";
 import IntroActivity from "./src/screens/IntroActivity.js";
+import MatchTheColor from "./src/screens/MatchTheColor.js";
 import Modal from "./src/components/Modal";
 import { ModalOptions } from "./src/components/Modal";
 
@@ -240,7 +241,14 @@ export default function App() {
             name="AdventureLocationSeeAll"
             component={AdventureLocationSeeAll}
           />
-        <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
+          <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
+          <Stack.Screen
+            name="MatchTheColor"
+            component={MatchTheColor}
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
