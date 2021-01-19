@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import styles from "../stylesheets/decodingMessagesStyles";
 import Exit from "../components/Exit";
@@ -15,57 +15,72 @@ function convertData(data) {
     message[2] ? message[2].split('') : null;
   // holds gets all the letters from the message and removes spaces
   const letters = message.join("").replace(/\s/g, '').split("");
+  const randomOrderLetters = [...letters].sort(() => Math.random() - 0.5);
   var i;
+  
   for(i = 0; i < letters.length; i++) {
     letters[i] = {
       letter: letters[i],
+      found: false,
+    }
+  }
+
+  for(i = 0; i < randomOrderLetters.length; i++) {
+    randomOrderLetters[i] = {
+      letter: randomOrderLetters[i],
       place: i,
     }
   }
   // give each letter in the lines their respective index number in the string
   // this is one here as the index done with the map function resets on every line
   var ptr = 0;
-  for(i = 0; i < line1.length; i++) {
-    if(line1[i] != " ") {
-      line1[i] = {
-        letter: line1[i],
-        place: letters[ptr].place,
-      }
-      ptr = ptr + 1;
-    } else {
-      line1[i] = {
-        letter: " ",
-        place: null,
-      }
-    }
-  }
-  for(i = 0; i < line2.length; i++) {
-    if(line2[i] != " ") {
-      line2[i] = {
-        letter: line2[i],
-        place: letters[ptr].place,
-      }
-      ptr = ptr + 1;
-    } else {
-      line2[i] = {
-        letter: " ",
-        place: null,
+  if(line1) {
+    for(i = 0; i < line1.length; i++) {
+      if(line1[i] != " ") {
+        line1[i] = {
+          letter: line1[i],
+          place: randomOrderLetters[ptr].place,
+        }
+        ptr = ptr + 1;
+      } else {
+        line1[i] = {
+          letter: " ",
+          place: null,
+        }
       }
     }
   }
-  for(i = 0; i < line3.length; i++) {
-    if(line3[i] != " ") {
-      line3[i] = {
-        letter: line3[i],
-        place: letters[ptr].place,
-      }
-      ptr = ptr + 1;
-    } else {
-      line3[i] = {
-        letter: " ",
-        place: null,
+  if(line2) {
+    for(i = 0; i < line2.length; i++) {
+      if(line2[i] != " ") {
+        line2[i] = {
+          letter: line2[i],
+          place: randomOrderLetters[ptr].place,
+        }
+        ptr = ptr + 1;
+      } else {
+        line2[i] = {
+          letter: " ",
+          place: null,
+        }
       }
     }
+  }
+  if(line3) {
+    for(i = 0; i < line3.length; i++) {
+      if(line3[i] != " ") {
+        line3[i] = {
+          letter: line3[i],
+          place: randomOrderLetters[ptr].place,
+        }
+        ptr = ptr + 1;
+      } else {
+        line3[i] = {
+          letter: " ",
+          place: null,
+        }
+      }
+  }
   }
   // will eventually randomize the contents
   // split the new randomized array into multiple array's of size 5 in order to be displayed to the user to press
@@ -83,13 +98,23 @@ function convertData(data) {
       everyFiveCounter = 0;
     }
     if(i == letters.length - 1) {
-      line.push(letters[i].letter);
+      line.push(
+        {
+          letter: randomOrderLetters[i].letter,
+          display: true,
+          position: randomOrderLetters[i].place,
+        });
       displayLetters[counter] = line;
       counter = counter + 1;
       line = [];
       everyFiveCounter = 0;
     }
-    line.push(letters[i].letter);
+    line.push(
+      {
+        letter: randomOrderLetters[i].letter,
+        display: true,
+        position: randomOrderLetters[i].place,
+      });
     everyFiveCounter = everyFiveCounter + 1;
   }
   return(
@@ -108,11 +133,11 @@ function convertData(data) {
 function SelectLetterBox(props) {
   return(
     <TouchableOpacity 
-      style={styles.test1}
+      style={[(props.letter.display == true) ? styles.selectLetterBoxBorder : styles.selectLetterBoxBorderHidden]}
       onPress={
         () => props.handlePress(props.letter)
       }>
-      <Text style={styles.letter}>{props.letter}</Text>
+      <Text style={styles.letter}>{props.letter.letter}</Text>
     </TouchableOpacity>
   );
 }
@@ -120,13 +145,16 @@ function SelectLetterBox(props) {
 function LetterBox(props) {
   return(
     <View style={styles.letterBoxContainer}>
-        <View style={[(props.index == props.curr) ? styles.letterBoxBorder : styles.letterBox]}>
-          <Text style={styles.letter}>{props.letter}</Text>
+        <View style={[(props.letter.place == props.curr) ? styles.letterBoxBorder : styles.letterBox]}>
+          {
+            props.letter.letter != " " &&
+            <Text style={[(props.letters[props.letter.place].found == false) ? styles.hiddenLetter : styles.letter]}>{props.letter.letter}</Text>
+          }
         </View>
-          { props.letter != " " &&
+          { props.letter.letter != " " &&
             <View style={styles.bar} />}
         <View style={styles.image}>
-          { props.letter != " " &&
+          { props.letter.letter != " " &&
             <Image
               source={require("../../assets/adventure/locations/alphabetItems/fruits.png")}
               style={styles.img}/>}
@@ -138,15 +166,30 @@ function LetterBox(props) {
 export default function App() {
   
   function handleLetterPress(letter) {
-    console.log("letter pressed " + letter)
+    if(letter.letter == data.letters[currLetter].letter) {
+      // if letter matches the current letter we are looking for then advance the place of currLetter
+      if(currLetter == data.letters.length - 1) {
+        // handle condition if the activity is over
+        setCurrLetter(-1);
+        console.log("done!");
+      } else {
+        setCurrLetter(currLetter + 1);
+      }
+      //determine which line that this and update the display letters to remove the correctly guessed letter
+      var updated = displayLetters;
+      updated[Math.floor(letter.position / 5)][letter.position - (Math.floor(letter.position / 5) * 5)].display = false;
+      setDisplayLetters(updated);
+      //set the found attribute for the letter 
+      var foundLetter = letters;
+      foundLetter[currLetter].found = true;
+      setLetters(foundLetter);
+    }
   }
   function handleKeyPress() {
     console.log("key pressed");
-    if(currLetter == data.letters.length - 1) {
-      setCurrLetter(0);
-    } else {
-      setCurrLetter(currLetter + 1);
-    }
+    setDisplayLetters(data.displayLetters);
+    setLetters(data.letters);
+    setCurrLetter(0);
   }
 
   // collect and configure the data when the screen is first rendered
@@ -154,30 +197,32 @@ export default function App() {
   // hooks
   // holds the position of the current letter the user is looking for
   const [currLetter, setCurrLetter] = useState(0);
+  const [letters, setLetters] = useState(data.letters);
+  const [displayLetters, setDisplayLetters] = useState(data.displayLetters);
 
   return (
     <View style={styles.container}>
       <View style={styles.exitContainer}>
-        <Exit/>
+        <Exit navTo={"Modal"}/>
       </View>
       <View style={styles.messageContainer}>
-          <View style={[styles.verticalCenter, {backgroundColor: "lightblue", borderRadius: 12.5}]}>
+          <View style={[styles.verticalCenter, {backgroundColor: "#D4E1F4", borderRadius: 12.5}]}>
             {
               data.line1 && 
               <View style={styles.lineContainer}>
-                {data.line1.map((letter,index) => <LetterBox key={index} index={letter.place} letter={letter.letter} curr={currLetter}/>)}
+                {data.line1.map((letter,index) => <LetterBox key={index} letter={letter} curr={currLetter} letters={letters}/>)}
               </View>
             }
             {
               data.line2 && 
               <View style={styles.lineContainer}>
-                {data.line2.map((letter,index) => <LetterBox key={index} index={letter.place} letter={letter.letter} curr={currLetter}/>)}
+                {data.line2.map((letter,index) => <LetterBox key={index} letter={letter} curr={currLetter} letters={letters}/>)}
               </View>
             }
             {
               data.line3 && 
               <View style={styles.lineContainer}>
-                {data.line3.map((letter,index) => <LetterBox key={index} index={letter.place} letter={letter.letter} curr={currLetter}/>)}
+                {data.line3.map((letter,index) => <LetterBox key={index} letter={letter} curr={currLetter} letters={letters}/>)}
               </View>
             }
           </View>
@@ -185,7 +230,7 @@ export default function App() {
       <View style={styles.lettersContainer}>
           <View style={styles.verticalCenter}>
             {
-              data.displayLetters.map((line, index) => 
+              displayLetters.map((line, index) => 
                 <View key={index} style={styles.lineContainer}>
                   {
                     line.map((letter, index) => 
@@ -204,7 +249,14 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View style={styles.auroraContainer}>
+          <View style={styles.characterContainer}>
+            <Image
+              source={require('../../assets/decodingMessages/Aurora.png')}
+              style={styles.aurora}/>
+          </View>
+          <View style={styles.textBox}>
 
+          </View>
       </View>
     </View>
   );
