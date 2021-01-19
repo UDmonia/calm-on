@@ -7,11 +7,14 @@ export default StyleSheet.create({
       height: "100%",
     },
     exitContainer: {
-      flex: 2.5,
+      flex: 2,
       backgroundColor: "white",
       justifyContent: "center",
       paddingLeft: "5%",
       paddingTop: "5%",
+    },
+    exitButton:{
+      width: 31,
     },
     messageContainer: {
       flex: 9,
@@ -44,21 +47,28 @@ export default StyleSheet.create({
     },
     keyContainer: {
       flex: 2,
-      backgroundColor: "orange",
+      backgroundColor: "white",
       flexDirection: "row",
       justifyContent: "flex-end",
       alignItems: "center",
     },
     keyButton: {
-      marginRight: "7.5%",
+      marginRight: "5%",
       backgroundColor: "#8248D7",
       width: windowWidth * 0.125,
       height: windowWidth * 0.125,
       borderRadius: 7.5,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    keyImage: {
+      height: "70%",
+      width: "70%",
+      resizeMode: "contain",
     },
     auroraContainer: {
       flex: 5,
-      backgroundColor: "lightgreen",
+      backgroundColor: "white",
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
@@ -103,6 +113,7 @@ export default StyleSheet.create({
     },
     img: {
       height: "100%",
+      width: "80%",
       resizeMode: "contain",
     },
     lineContainer: {
@@ -154,14 +165,27 @@ export default StyleSheet.create({
     },
     textBox: {
       minHeight: 80,
-      height: "50%",
-      width: "50%",
-      backgroundColor: "purple",
+      height: "65%",
+      width: "70%",
+      backgroundColor: "#8E72F2",
+      borderRadius: 10,
+      alignItems: "center",
+      justifyContent: "center",
+      paddingHorizontal: "5%",
     },
     aurora: {
       flex: 1,
       width: "100%",
       resizeMode: "contain",
-    }
+    },
+    text: {
+      color: "white",
+      fontFamily: "FontBold",
+      fontSize: windowWidth * 0.035,
+    },
+    modalView: {
+      backgroundColor: "grey",
+      flex: 1,
+    },
   })
   

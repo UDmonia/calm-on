@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, Image, Modal } from 'react-native';
 import styles from "../stylesheets/decodingMessagesStyles";
 import Exit from "../components/Exit";
+import { Messages, Images } from "../data/decodingMessagesData";
 
 // convert message from data to use
 // this is for the top 
@@ -156,14 +157,32 @@ function LetterBox(props) {
         <View style={styles.image}>
           { props.letter.letter != " " &&
             <Image
-              source={require("../../assets/adventure/locations/alphabetItems/fruits.png")}
+              source={props.img[props.letter.letter].img}
               style={styles.img}/>}
         </View>
     </View>
   );
 }
+// see all modal
+function SeeAllModal(props) {
+  return(
+    <View>
+      <Modal
+        transparent={true}
+        visible={props.visible}>
+          <View style={styles.modalView}>
+            <Text>MODAL</Text>
+            <TouchableOpacity
+              onPress={() => props.setVisable(false)}>
+              <Text>EXIT MODAL</Text>
+            </TouchableOpacity>
+          </View>
+      </Modal>
+    </View>
+  )
+}
 
-export default function App() {
+export default function App({navigation: { navigate }}) {
   
   function handleLetterPress(letter) {
     if(letter.letter == data.letters[currLetter].letter) {
@@ -187,42 +206,45 @@ export default function App() {
   }
   function handleKeyPress() {
     console.log("key pressed");
-    setDisplayLetters(data.displayLetters);
-    setLetters(data.letters);
-    setCurrLetter(0);
+    setModalVisable(true);
   }
-
-  // collect and configure the data when the screen is first rendered
-  var data = convertData(["FOCUS", "ON THE", "POSITIVE"]);
-  // hooks
-  // holds the position of the current letter the user is looking for
+  
+  const[messageIndex, setMessageIndex] = useState(Math.floor((Math.random() * Messages.messages.length)));
+  var data = convertData(Messages.messages[messageIndex].message);
   const [currLetter, setCurrLetter] = useState(0);
   const [letters, setLetters] = useState(data.letters);
   const [displayLetters, setDisplayLetters] = useState(data.displayLetters);
+  const [modalVisable, setModalVisable] = useState(false);
 
   return (
     <View style={styles.container}>
+      <SeeAllModal visible={modalVisable} setVisable={setModalVisable}/>
       <View style={styles.exitContainer}>
-        <Exit navTo={"Modal"}/>
+        <View style={styles.exitButton}>
+          <Exit navTo={"Modal"}/>
+        </View>
       </View>
       <View style={styles.messageContainer}>
           <View style={[styles.verticalCenter, {backgroundColor: "#D4E1F4", borderRadius: 12.5}]}>
             {
               data.line1 && 
               <View style={styles.lineContainer}>
-                {data.line1.map((letter,index) => <LetterBox key={index} letter={letter} curr={currLetter} letters={letters}/>)}
+                {data.line1.map((letter,index) => 
+                  <LetterBox key={index} letter={letter} curr={currLetter} letters={letters} img={Images}/>)}
               </View>
             }
             {
               data.line2 && 
               <View style={styles.lineContainer}>
-                {data.line2.map((letter,index) => <LetterBox key={index} letter={letter} curr={currLetter} letters={letters}/>)}
+                {data.line2.map((letter,index) => 
+                  <LetterBox key={index} letter={letter} curr={currLetter} letters={letters} img={Images}/>)}
               </View>
             }
             {
               data.line3 && 
               <View style={styles.lineContainer}>
-                {data.line3.map((letter,index) => <LetterBox key={index} letter={letter} curr={currLetter} letters={letters}/>)}
+                {data.line3.map((letter,index) => 
+                  <LetterBox key={index} letter={letter} curr={currLetter} letters={letters} img={Images}/>)}
               </View>
             }
           </View>
@@ -246,6 +268,9 @@ export default function App() {
           onPress={
             () => handleKeyPress()
           }>
+          <Image 
+            source={require('../../assets/decodingMessages/key.png')}
+            style={styles.keyImage}/>
         </TouchableOpacity>
       </View>
       <View style={styles.auroraContainer}>
@@ -255,7 +280,7 @@ export default function App() {
               style={styles.aurora}/>
           </View>
           <View style={styles.textBox}>
-
+            <Text style={styles.text}>Your goal is to fill in the blanks to uncover a sentence. The black box indicates where you are in the sentence.</Text>
           </View>
       </View>
     </View>
