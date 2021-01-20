@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Image, Modal } from 'react-native';
+import { Text, View, TouchableOpacity, Image, Modal, SafeAreaView } from 'react-native';
 import styles from "../stylesheets/decodingMessagesStyles";
 import Exit from "../components/Exit";
 import { Messages, Images } from "../data/decodingMessagesData";
@@ -171,11 +171,23 @@ function SeeAllModal(props) {
         transparent={true}
         visible={props.visible}>
           <View style={styles.modalView}>
-            <Text>MODAL</Text>
-            <TouchableOpacity
-              onPress={() => props.setVisable(false)}>
-              <Text>EXIT MODAL</Text>
-            </TouchableOpacity>
+            <View style={styles.modalExitButton}>
+              <TouchableOpacity
+                onPress={() => props.setVisable(false)}>
+                <Image source={require('../../assets/exit/blkExitBtn.png')}/>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.modalPictures}>
+              {
+                Object.values(props.images).map((image, index) =>                   
+                  <View key={index} style={styles.modalPictureBox}>
+                    <Image 
+                      source={image.img}
+                      style={styles.modalImage}/>
+                    <Text style={styles.modalText}>{image.word}</Text>
+                  </View>)
+              }
+            </View>
           </View>
       </Modal>
     </View>
@@ -218,7 +230,7 @@ export default function App({navigation: { navigate }}) {
 
   return (
     <View style={styles.container}>
-      <SeeAllModal visible={modalVisable} setVisable={setModalVisable}/>
+      <SeeAllModal visible={modalVisable} setVisable={setModalVisable} images={Images}/>
       <View style={styles.exitContainer}>
         <View style={styles.exitButton}>
           <Exit navTo={"Modal"}/>

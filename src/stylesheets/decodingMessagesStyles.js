@@ -11,7 +11,7 @@ export default StyleSheet.create({
       backgroundColor: "white",
       justifyContent: "center",
       paddingLeft: "5%",
-      paddingTop: "5%",
+      paddingTop: "8%",
     },
     exitButton:{
       width: 31,
@@ -184,8 +184,43 @@ export default StyleSheet.create({
       fontSize: windowWidth * 0.035,
     },
     modalView: {
-      backgroundColor: "grey",
+      backgroundColor: "rgba(255, 255, 255, 0.9)",
       flex: 1,
+      alignItems: "center",
+    },
+    modalExitButton: {
+      alignSelf: "flex-end",
+      marginRight: "5%",
+      marginTop: "7%",
+    },
+    modalPictures: {
+      flex: 1,
+      marginTop: "5%",
+      width: "100%",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center",
+    },
+    modalPictureBox: {
+      backgroundColor: "#E5E5E5",
+      borderRadius: 5,
+      height: "11%",
+      width: "19%",
+      margin: "1%",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingVertical: "2%",
+    },
+    modalImage: {
+      flex: 2,
+      resizeMode: "contain",
+      width: "80%",
+    },
+    modalText: {
+      flex: 1,
+      color: "black",
+      fontSize: windowWidth * 0.03,
+      textAlign:"center",
     },
   })
   
