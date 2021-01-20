@@ -16,7 +16,8 @@ const hexCodes = {
         "blue4" : "#429BAF",
         "blue5" : "#064B5B",
         "blue6" : "#4E80FF",
-        "blue7" : "#E2E8F8"
+        "blue7" : "#E2E8F8",
+        "blue8" : "#D4E1F4",
     },
     "red": {
 
@@ -35,7 +36,8 @@ const hexCodes = {
     "purple": {
         "aurora":"#8248D7",
         "purple1": "#DF9AFF",
-        "purple2" : "#8161B2"
+        "purple2": "#8161B2",
+        "purple3": "#D0B0FF",
         
     },
     "white": {

@@ -54,7 +54,7 @@ export default StyleSheet.create({
     },
     keyButton: {
       marginRight: "5%",
-      backgroundColor: "#8248D7",
+      backgroundColor: hex.purple.aurora,
       width: windowWidth * 0.125,
       height: windowWidth * 0.125,
       borderRadius: 7.5,
@@ -83,7 +83,7 @@ export default StyleSheet.create({
       flex: 8,
       justifyContent: "center",
       alignItems: "center",
-      borderColor: "#D4E1F4",
+      borderColor: hex.blue.blue8,
       borderWidth: 2,
       borderRadius: 5,
       marginBottom: "5%",
@@ -102,8 +102,9 @@ export default StyleSheet.create({
       fontFamily: "FontBold"
     },
     bar: {
-      flex: 1,
-      backgroundColor: "purple",
+      flex: 1.25,
+      backgroundColor: hex.purple.purple2,
+      borderRadius: 10,
     },
     image: {
       flex: 7,
@@ -127,7 +128,7 @@ export default StyleSheet.create({
       flex: 1,
       maxWidth: "12.5%",
       height: "90%",
-      backgroundColor: "#D0B0FF",
+      backgroundColor: hex.purple.purple3,
       marginHorizontal: "3%",
       marginVertical: "2%",
       alignItems: "center",
@@ -167,7 +168,7 @@ export default StyleSheet.create({
       minHeight: 80,
       height: "65%",
       width: "70%",
-      backgroundColor: "#8E72F2",
+      backgroundColor: hex.purple.aurora,
       borderRadius: 10,
       alignItems: "center",
       justifyContent: "center",
@@ -202,7 +203,7 @@ export default StyleSheet.create({
       justifyContent: "center",
     },
     modalPictureBox: {
-      backgroundColor: "#E5E5E5",
+      backgroundColor: hex.grey.grey3,
       borderRadius: 5,
       height: "11%",
       width: "19%",

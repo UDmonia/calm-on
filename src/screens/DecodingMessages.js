@@ -3,6 +3,8 @@ import { Text, View, TouchableOpacity, Image, Modal, SafeAreaView } from 'react-
 import styles from "../stylesheets/decodingMessagesStyles";
 import Exit from "../components/Exit";
 import { Messages, Images } from "../data/decodingMessagesData";
+import kpiData from "../data/kpiData";
+import hex from "../stylesheets/hexCodes";
 
 // convert message from data to use
 // this is for the top 
@@ -169,7 +171,8 @@ function SeeAllModal(props) {
     <View>
       <Modal
         transparent={true}
-        visible={props.visible}>
+        visible={props.visible}
+        animationType={"fade"}>
           <View style={styles.modalView}>
             <View style={styles.modalExitButton}>
               <TouchableOpacity
@@ -203,6 +206,11 @@ export default function App({navigation: { navigate }}) {
         // handle condition if the activity is over
         setCurrLetter(-1);
         console.log("done!");
+        navigate("kpi", {
+          bg: require("../../assets/decodingMessages/transparent_background.png"),
+          pMsg: kpiData.decoding.primMsg,
+          sMsg: kpiData.decoding.secMsg,
+        })
       } else {
         setCurrLetter(currLetter + 1);
       }
@@ -237,7 +245,7 @@ export default function App({navigation: { navigate }}) {
         </View>
       </View>
       <View style={styles.messageContainer}>
-          <View style={[styles.verticalCenter, {backgroundColor: "#D4E1F4", borderRadius: 12.5}]}>
+          <View style={[styles.verticalCenter, {backgroundColor: hex.blue.blue8, borderRadius: 12.5}]}>
             {
               data.line1 && 
               <View style={styles.lineContainer}>
