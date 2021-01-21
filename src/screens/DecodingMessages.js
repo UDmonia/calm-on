@@ -8,6 +8,8 @@ import hex from "../stylesheets/hexCodes";
 
 // convert message from data to use
 // this is for the top 
+// NOTE: the message is going to be displayed at a make of three lines. This is because putting anymore lines will make the image and letter boxes too small
+// if there are more than four elements in the data array this will cause issuses and might result in the component not loading
 function convertData(data) {
   const message = data;
   const line1 =
@@ -20,14 +22,14 @@ function convertData(data) {
   const letters = message.join("").replace(/\s/g, '').split("");
   const randomOrderLetters = [...letters].sort(() => Math.random() - 0.5);
   var i;
-  
+  // create the letter object that says the letter and if the letter has been found
   for(i = 0; i < letters.length; i++) {
     letters[i] = {
       letter: letters[i],
       found: false,
     }
   }
-
+  // this puts the a index number to the array of the letters that have been put in a random order
   for(i = 0; i < randomOrderLetters.length; i++) {
     randomOrderLetters[i] = {
       letter: randomOrderLetters[i],
@@ -83,9 +85,8 @@ function convertData(data) {
           place: null,
         }
       }
+    }
   }
-  }
-  // will eventually randomize the contents
   // split the new randomized array into multiple array's of size 5 in order to be displayed to the user to press
   // find the number of lines needed
   var numOfLines = (letters.length % 5) + 1;
@@ -132,7 +133,7 @@ function convertData(data) {
 }
 
 
-// Letter box for the user to press
+// Letter box for the user to press when trying to guess the letter that is missing from the current spot
 function SelectLetterBox(props) {
   return(
     <TouchableOpacity 
@@ -199,13 +200,15 @@ function SeeAllModal(props) {
 
 export default function App({navigation: { navigate }}) {
   
+  // handle the button press when the user presses the letter SelectLetterBox component
   function handleLetterPress(letter) {
     if(letter.letter == data.letters[currLetter].letter) {
       // if letter matches the current letter we are looking for then advance the place of currLetter
       if(currLetter == data.letters.length - 1) {
         // handle condition if the activity is over
         setCurrLetter(-1);
-        console.log("done!");
+        //console.log("done!");
+        // route to the kpi screen
         navigate("kpi", {
           bg: require("../../assets/decodingMessages/transparent_background.png"),
           pMsg: kpiData.decoding.primMsg,
@@ -224,11 +227,13 @@ export default function App({navigation: { navigate }}) {
       setLetters(foundLetter);
     }
   }
+  // handle the button press when the keyButton component is pressed
   function handleKeyPress() {
-    console.log("key pressed");
+    //console.log("key pressed");
     setModalVisable(true);
   }
   
+  // hooks
   const[messageIndex, setMessageIndex] = useState(Math.floor((Math.random() * Messages.messages.length)));
   var data = convertData(Messages.messages[messageIndex].message);
   const [currLetter, setCurrLetter] = useState(0);
@@ -246,6 +251,7 @@ export default function App({navigation: { navigate }}) {
       </View>
       <View style={styles.messageContainer}>
           <View style={[styles.verticalCenter, {backgroundColor: hex.blue.blue8, borderRadius: 12.5}]}>
+          {/* This is where we map out the message and there is a max of three lines*/}
             {
               data.line1 && 
               <View style={styles.lineContainer}>
