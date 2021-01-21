@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { windowWidth } from "../../util/windowDimensions";
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -23,5 +24,26 @@ export default StyleSheet.create({
     borderColor: "#000",
     borderWidth: 2,
     borderRadius: 5,
+  },
+  flynnImg: {
+    resizeMode: "contain",
+    height: "80%",
+    width: "100%",
+    // minHeight: 220,
+  },
+  textBox: {
+    backgroundColor: "#B24A2B",
+    borderRadius: 5,
+    width: "90%",
+    // height: "35%",
+    // marginBottom: "15%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "4%",
+  },
+  text: {
+    color: "white",
+    // fontSize: windowWidth * 0.035,
+    fontFamily: "FontReg",
   },
 });

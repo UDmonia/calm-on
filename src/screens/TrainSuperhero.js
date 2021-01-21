@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   ImageBackground,
+  Image,
 } from "react-native";
 import styles from "../stylesheets/screens/trainSuperheroStyles";
 
@@ -41,24 +42,19 @@ const exerciseData = [
 
 export default function TrainSuperhero() {
   let animation = useRef(new Animated.Value(0));
-  let [introText, setIntroText] = useState("Ready");
+  // let [introText, setIntroText] = useState("Ready");
   const [intro, setIntro] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [introProgress, setIntroProgress] = useState(3);
+  const [introProgress, setIntroProgress] = useState(200);
   const [cycleCount, setCycleCount] = useState(0);
   const cycleLimit = 3;
   const endTime = 5;
 
   useInterval(() => {
-    if (intro && introProgress >= 0) {
+    if (intro && introProgress > 0) {
       // show the intro timer!
       setIntroProgress(introProgress - 1);
-      if (introProgress === 3) {
-        setIntroText("Set");
-      } else if (introProgress === 0) {
-        setIntroText("Go!");
-      }
-    } else if (intro && introProgress === -1) {
+    } else if (intro && introProgress === 0) {
       setIntro(false);
     } else if (progress < endTime && cycleCount < cycleLimit && !intro) {
       setProgress(progress + 1);
@@ -87,13 +83,31 @@ export default function TrainSuperhero() {
       source={require("../../assets/trainSuperhero/background.png")}
       style={styles.backgroundImage}
     >
-      <SafeAreaView
-        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-      >
+      <SafeAreaView style={{ flex: 1 }}>
         {intro ? (
-          <View>
-            <Text>{introText}</Text>
-            <Text>{introProgress}</Text>
+          <View style={{ flex: 1 }}>
+            <View style={{ backgroundColor: "blue", height: "10%" }}>
+              <Exit />
+            </View>
+            <View style={{ backgroundColor: "yellow", flex: 1 }}>
+              <Text style={{ fontSize: 100 }}>
+                {introProgress > 0 ? introProgress : "Go!"}
+              </Text>
+            </View>
+            <View style={{ backgroundColor: "pink", flex: 1 }}>
+              <Image
+                source={require("../../assets/washHands/flynn.png")}
+                // style={styles.flynnImg}
+              />
+            </View>
+            <View style={{ backgroundColor: "green", flex: 1 }}>
+              <View style={styles.textBox}>
+                <Text style={styles.text}>
+                  We are starting with [exersize name]. Ready?
+                </Text>
+              </View>
+            </View>
+            {/* <View style={{ backgroundColor: "brown", flex: 1 }}></View> */}
           </View>
         ) : (
           // <View
