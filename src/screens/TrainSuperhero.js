@@ -12,8 +12,16 @@ import styles from "../stylesheets/screens/trainSuperheroStyles";
 import kpiData from "../data/kpiData";
 import exerciseData from "../data/trainSuperheroData";
 
-// used this for timer https://blog.logrocket.com/how-to-build-a-progress-bar-with-react-native/
-
+/**
+ * Custom Hook created by Dan Abramov
+ *
+ * useInterval Hook sets up an interval and clears it after unmounting.
+ * It’s a combo of setInterval and clearInterval tied to the component lifecycle.
+ *
+ * Source:
+ * - https://blog.logrocket.com/how-to-build-a-progress-bar-with-react-native/
+ * - https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+ */
 function useInterval(callback, delay) {
   const savedCallback = useRef();
 
@@ -34,6 +42,15 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
+/**
+ * getRandUnique is a helper function to getRandExercises. It returns
+ * a random array of indexes that are also unique. The size of the
+ * array is dictated by "numRetVals" parameter
+ *
+ * @param {Array} arrData : Array we want random and unique indexes from
+ * @param {Number} numRetVals : integer value specifying how many random
+ *  numbers we want returned
+ */
 function getRandUnique(arrData, numRetVals) {
   const nums = new Set();
   while (nums.size !== numRetVals) {
@@ -43,6 +60,14 @@ function getRandUnique(arrData, numRetVals) {
   return nums;
 }
 
+/**
+ * getRandExercises returns a random array of exercises from the imported
+ * array data
+ *
+ * @param {Number} amount : integer value specifying how many random
+ *  numbers we want returned
+ * @param {Array} data : Array we want random and unique indexes from
+ */
 function getRandExercises(amount, data) {
   const randomIndexes = [...getRandUnique(exerciseData, amount)];
   const randExercises = randomIndexes.map((index) => {
@@ -52,12 +77,23 @@ function getRandExercises(amount, data) {
   return randExercises;
 }
 
+/**
+ * Intro component is the first sequnece of this activity. Displaying
+ * a short count down timer for preparation of the exercises
+ *
+ * @param {Number} introProgress : integer used to show
+ * @param {Array} randomExercises : Array containing a random selection of
+ *  exercise objects
+ */
 function Intro(props) {
+  const introProgress = props.introProgress;
+  const randomExercises = props.randomExercises;
+
   return (
     <View style={styles.generalContainer}>
       <View style={styles.introTimerContainer}>
         <Text style={styles.introTimer}>
-          {props.introProgress > 0 ? props.introProgress : "Go!"}
+          {introProgress > 0 ? introProgress : "Go!"}
         </Text>
       </View>
       <View style={styles.introFlynnContainer}>
@@ -69,7 +105,7 @@ function Intro(props) {
       <View style={styles.introTextBoxContainer}>
         <View style={styles.textBox}>
           <Text style={styles.text}>
-            We are starting with {props.randomExercises[0].name}. Ready?
+            We are starting with {randomExercises[0].name}. Ready?
           </Text>
         </View>
       </View>
@@ -77,6 +113,16 @@ function Intro(props) {
   );
 }
 
+/**
+ * The Exercise component handles the second portion of the activity
+ * displaying the random exercise, timer and the progress bar
+ *
+ * @param {String} randomExercises : array with random exercises
+ * @param {Number} cycleCount : integer with the current cycle number used
+ *  display the current exercise
+ * @param {Number} progress : integer with the current progress for the timer
+ * @param {Number} width : integer specifying the width of the progress bar
+ */
 function Exercises(props) {
   const randomExercises = props.randExercises;
   const cycleCount = props.cycleCount;
@@ -116,12 +162,18 @@ function Exercises(props) {
   );
 }
 
+/**
+ * The TrainSuperhero or "Train Like a Superhero" activity is broken up
+ * into two main components "Intro" and "Exercises" based on our timer
+ * we will proceed from the "Intro" component to the "Exercises" component
+ */
 export default function TrainSuperhero({ navigation: { navigate } }) {
   const timer = 30;
+  const introTimer = 3;
   const cycleLimit = 3;
   const [intro, setIntro] = useState(true);
   const [progress, setProgress] = useState(timer);
-  const [introProgress, setIntroProgress] = useState(3);
+  const [introProgress, setIntroProgress] = useState(introTimer);
   const [cycleCount, setCycleCount] = useState(0);
   const [randomExercises, setRandomExercises] = useState(() =>
     getRandExercises(cycleLimit, exerciseData)
@@ -134,7 +186,9 @@ export default function TrainSuperhero({ navigation: { navigate } }) {
    * - decrement the timer for the Intro sequence
    * - once "introProgress" is 0, advance to Exercises sequence
    * - "cycleCount" determines how many times we loop
-   * - ""
+   * - "progress" is the timer for each individual exercise
+   * - once our "cycleCount" is 1 short of cycleLimit we procceed to
+   *  the kpi screen
    */
   useInterval(() => {
     if (intro && introProgress > 0) {
