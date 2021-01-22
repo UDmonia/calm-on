@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hexCodes from "../hexCodes";
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -18,7 +19,8 @@ export default StyleSheet.create({
     flexDirection: "row",
     height: 20,
     width: "85%",
-    backgroundColor: "#FFA47150",
+    // the '50' adds a 50% opacity on to the color
+    backgroundColor: `${hexCodes.orange.orange1}50`,
     borderWidth: 0,
     borderRadius: 20,
   },
@@ -27,7 +29,7 @@ export default StyleSheet.create({
     height: "100%",
   },
   textBox: {
-    backgroundColor: "#B24A2B",
+    backgroundColor: hexCodes.brown.flynn,
     borderRadius: 5,
     width: "75%",
     alignItems: "center",
@@ -48,7 +50,7 @@ export default StyleSheet.create({
   },
   introTimer: {
     fontSize: 100,
-    color: "#FFA471",
+    color: hexCodes.orange.orange1,
     fontFamily: "FontBold",
   },
   introFlynnContainer: {
@@ -67,13 +69,13 @@ export default StyleSheet.create({
   },
   exercisesNameText: {
     fontSize: 40,
-    color: "#FFA471",
+    color: hexCodes.orange.orange1,
     fontFamily: "FontBold",
     marginVertical: "2%",
   },
   exercisesTimer: {
     fontSize: 22.5,
-    color: "#FFA471",
+    color: hexCodes.orange.orange1,
     fontFamily: "FontReg",
     marginVertical: "1%",
   },
