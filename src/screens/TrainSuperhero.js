@@ -52,9 +52,69 @@ function getRandExercises(amount, data) {
   return randExercises;
 }
 
-function Intro(params) {
-  return ()
-};
+function Intro(props) {
+  return (
+    <View style={styles.generalContainer}>
+      <View style={styles.introTimerContainer}>
+        <Text style={styles.introTimer}>
+          {props.introProgress > 0 ? props.introProgress : "Go!"}
+        </Text>
+      </View>
+      <View style={styles.introFlynnContainer}>
+        <Image
+          source={require("../../assets/washHands/flynn.png")}
+          style={styles.flynnImg}
+        />
+      </View>
+      <View style={styles.introTextBoxContainer}>
+        <View style={styles.textBox}>
+          <Text style={styles.text}>
+            We are starting with {props.randomExercises[0].name}. Ready?
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function Exercises(props) {
+  const randomExercises = props.randExercises;
+  const cycleCount = props.cycleCount;
+  const progress = props.progress;
+  const width = props.width;
+
+  return (
+    <View style={styles.generalContainer}>
+      <View style={styles.exercisesTimerContainer}>
+        <Text style={styles.exercisesNameText}>
+          {randomExercises[cycleCount].name}
+        </Text>
+        <Text style={styles.exercisesTimer}>
+          {progress < 10 ? `00:0${progress}` : `00:${progress}`}
+        </Text>
+        <View style={styles.progressBar}>
+          <Animated.View
+            style={
+              ([StyleSheet.absoluteFill],
+              {
+                backgroundColor: "#FFA471",
+                width,
+                borderRadius: 20,
+                opacity: 1,
+              })
+            }
+          />
+        </View>
+      </View>
+      <View style={styles.exercisesImageContainer}>
+        <Image
+          style={styles.exercisesImage}
+          source={randomExercises[cycleCount].img}
+        />
+      </View>
+    </View>
+  );
+}
 
 export default function TrainSuperhero({ navigation: { navigate } }) {
   const timer = 30;
@@ -64,13 +124,20 @@ export default function TrainSuperhero({ navigation: { navigate } }) {
   const [introProgress, setIntroProgress] = useState(3);
   const [cycleCount, setCycleCount] = useState(0);
   const [randomExercises, setRandomExercises] = useState(() =>
-    getRandExercises(3, exerciseData)
+    getRandExercises(cycleLimit, exerciseData)
   );
   let animation = useRef(new Animated.Value(0));
 
+  /**
+   * The useInterval hook is the work horse of this activity
+   * based on it's "1000" millisecond tick it will:
+   * - decrement the timer for the Intro sequence
+   * - once "introProgress" is 0, advance to Exercises sequence
+   * - "cycleCount" determines how many times we loop
+   * - ""
+   */
   useInterval(() => {
     if (intro && introProgress > 0) {
-      // show the intro timer!
       setIntroProgress(introProgress - 1);
     } else if (intro && introProgress === 0) {
       setIntro(false);
@@ -89,6 +156,8 @@ export default function TrainSuperhero({ navigation: { navigate } }) {
   }, 1000);
 
   const width = animation.current.interpolate({
+    // setting the end inputRange to the "timer" value defines the width
+    // of the progress bar animation
     inputRange: [0, timer],
     outputRange: ["0%", "100%"],
     extrapolate: "clamp",
@@ -107,127 +176,24 @@ export default function TrainSuperhero({ navigation: { navigate } }) {
       source={require("../../assets/trainSuperhero/background.png")}
       style={styles.backgroundImage}
     >
-      <SafeAreaView style={{ flex: 1 }}>
-        <View
-          style={{
-            // backgroundColor: "blue",
-            height: "12.5%",
-            marginLeft: "5%",
-            justifyContent: "flex-end",
-          }}
-        >
+      <SafeAreaView style={styles.generalContainer}>
+        <View style={styles.exitContainer}>
           <Exit />
         </View>
         {intro ? (
-          <View style={{ flex: 1 }}>
-            <View
-              style={{
-                // backgroundColor: "yellow",
-                flex: 2.5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 100,
-                  color: "#FFA471",
-                  fontFamily: "FontBold",
-                }}
-              >
-                {introProgress > 0 ? introProgress : "Go!"}
-              </Text>
-            </View>
-            <View
-              style={{
-                // backgroundColor: "pink",
-                flex: 2,
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                source={require("../../assets/washHands/flynn.png")}
-                style={styles.flynnImg}
-              />
-            </View>
-            <View
-              style={{
-                // backgroundColor: "green",
-                flex: 1,
-                alignItems: "center",
-              }}
-            >
-              <View style={styles.textBox}>
-                <Text style={styles.text}>
-                  We are starting with {randomExercises[0].name}. Ready?
-                </Text>
-              </View>
-            </View>
-          </View>
+          <Intro
+            introProgress={introProgress}
+            randomExercises={randomExercises}
+          />
         ) : (
-          <View style={{ flex: 1 }}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 40,
-                  color: "#FFA471",
-                  fontFamily: "FontBold",
-                  marginVertical: "2%",
-                }}
-              >
-                {randomExercises[cycleCount].name}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 22.5,
-                  color: "#FFA471",
-                  fontFamily: "FontReg",
-                  marginVertical: "1%",
-                }}
-              >
-                {progress < 10 ? `00:0${progress}` : `00:${progress}`}
-              </Text>
-              <View style={styles.progressBar}>
-                <Animated.View
-                  style={
-                    ([StyleSheet.absoluteFill],
-                    {
-                      backgroundColor: "#FFA471",
-                      width,
-                      borderRadius: 20,
-                      opacity: 1,
-                    })
-                  }
-                />
-              </View>
-            </View>
-            <View
-              style={{
-                flex: 2,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                style={{ height: "70%", width: "100%", resizeMode: "contain" }}
-                source={randomExercises[cycleCount].img}
-              />
-            </View>
-          </View>
+          <Exercises
+            randExercises={randomExercises}
+            cycleCount={cycleCount}
+            progress={progress}
+            width={width}
+          />
         )}
-        <View
-          style={{
-            // backgroundColor: "brown",
-            height: "5%",
-          }}
-        ></View>
+        <View style={styles.bottomPadding} />
       </SafeAreaView>
     </ImageBackground>
   );
