@@ -2,8 +2,31 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     solutionCard: {
-        display: "flex",
+        //display: "flex",
+        //position: "absolute",
         height: "10%",
+        width: "40%",
+        //marginTop: "60%",
+        backgroundColor: "grey",
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: "black",
+        borderRadius: 4,
+        overflow: "visible",
+        //backgroundColor: "pink",
+    },
+    cardText: {
+        fontFamily: "FontReg",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: 30,
+        //lineHeight: 40,
+        textAlign: "center",
+    },
+    colorButton: {
+        display: "flex",
+        height: "100%",
         width: "40%",
         backgroundColor: "grey",
         justifyContent: "center",
@@ -11,14 +34,13 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: "black",
         borderRadius: 4,
-        //overflow: "visible",
-    },
-    cardText: {
-        //fontFamily: "fontReg",
-        fontStyle: "normal",
-        fontWeight: "normal",
-        fontSize: 16,
-        lineHeight: 15,
-        textAlign: "center",
-    }
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.75,
+        shadowRadius: 4.65,
+        elevation: 6,
+    }, 
 });
