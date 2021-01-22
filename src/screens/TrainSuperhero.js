@@ -232,7 +232,7 @@ export default function TrainSuperhero({ navigation: { navigate } }) {
     >
       <SafeAreaView style={styles.generalContainer}>
         <View style={styles.exitContainer}>
-          <Exit />
+          <Exit navTo={"Modal"} />
         </View>
         {intro ? (
           <Intro
