@@ -39,6 +39,7 @@ import { ModalOptions } from "./src/components/Modal";
 import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
 import FilteredActivities from "./src/screens/FilteredActivities.js";
 import WashHands from "./src/screens/WashHands.js";
+import DecodingMessages from "./src/screens/DecodingMessages.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -280,6 +281,10 @@ export default function App() {
           <Stack.Screen
               name="WashHands"
               component={WashHands}
+          />
+          <Stack.Screen
+              name="DecodingMessages"
+              component={DecodingMessages}
           />
         </Stack.Navigator>
       </Provider>

@@ -1,4 +1,4 @@
-import { SpriteActivityData, FlynnAcitivityData } from "./activityData.js";
+import { SpriteActivityData, FlynnAcitivityData, AuroraAcitivityData } from "./activityData.js";
 import hex from "../stylesheets/hexCodes";
 /**
  * TODO: add proper activity data for Flynn and Aurora
@@ -34,7 +34,7 @@ const aurora = {
     "Hi, I’m Aurora! I have some fun activities that can inspire that awesome mind of yours. I can’t wait to color and journal with you!",
   background: require("../../assets/images/characterChat/auroraBackground.png"),
   viewActivities: require("../../assets/images/characterChat/auroraViewActivities.png"),
-  activities: SpriteActivityData,
+  activities: AuroraAcitivityData,
 };
 
 export { sprite, flynn, aurora };

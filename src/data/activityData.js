@@ -161,4 +161,22 @@ const FlynnAcitivityData = [
   }
 ];
 
-export { SpriteActivityData, FlynnAcitivityData };
+const AuroraAcitivityData = [
+  {
+    id: 1,
+    title: "Decoding Messages",
+    color: "#D0B0FF",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Activities", "Aurora"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "DecodingMessages",
+      about:
+        "Do you love to decode messages? Put your skills to the test. See if you can fill in the blank and discover a secret message!",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#8248D7",
+    },
+  }
+];
+
+export { SpriteActivityData, FlynnAcitivityData, AuroraAcitivityData };
