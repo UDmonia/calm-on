@@ -55,6 +55,14 @@ const kpiData = {
     likeApi: null,
     confusedApi: null,
   },
+  trainSuperhero: {
+    title: "Train Like A Super Hero",
+    primMsg: "Nice!",
+    secMsg: "You did it, champ! I feel stronger already.",
+    img: null,
+    likeApi: null,
+    confusedApi: null,
+  },
 };
 
 export default kpiData;

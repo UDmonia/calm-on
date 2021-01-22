@@ -9,6 +9,8 @@ import {
   Image,
 } from "react-native";
 import styles from "../stylesheets/screens/trainSuperheroStyles";
+import kpiData from "../data/kpiData";
+import exerciseData from "../data/trainSuperheroData";
 
 // used this for timer https://blog.logrocket.com/how-to-build-a-progress-bar-with-react-native/
 
@@ -31,60 +33,40 @@ function useInterval(callback, delay) {
     }
   }, [delay]);
 }
-const exerciseData = [
-  {
-    id: 1,
-    name: "Jumping Jacks",
-    img: require("../../assets/trainSuperhero/jumpingjacks.png"),
-  },
-  {
-    id: 2,
-    name: "Mountain Climbers",
-    img: require("../../assets/trainSuperhero/jumpingjacks.png"),
-  },
-  {
-    id: 3,
-    name: "Squats",
-    img: require("../../assets/trainSuperhero/jumpingjacks.png"),
-  },
-  {
-    id: 4,
-    name: "March",
-    img: require("../../assets/trainSuperhero/jumpingjacks.png"),
-  },
-  {
-    id: 5,
-    name: "Jog in Place",
-    img: require("../../assets/trainSuperhero/jumpingjacks.png"),
-  },
-  {
-    id: 6,
-    name: "Side Reach",
-    img: require("../../assets/trainSuperhero/jumpingjacks.png"),
-  },
-];
 
 function getRandUnique(arrData, numRetVals) {
   const nums = new Set();
-  while (nums.size !== 8) {
-    nums.add(Math.floor(Math.random() * 100) + 1);
+  while (nums.size !== numRetVals) {
+    nums.add(Math.floor(Math.random() * arrData.length));
   }
 
   return nums;
 }
 
-export default function TrainSuperhero() {
-  let animation = useRef(new Animated.Value(0));
-  // let [introText, setIntroText] = useState("Ready");
-  const timer = 15;
+function getRandExercises(amount, data) {
+  const randomIndexes = [...getRandUnique(exerciseData, amount)];
+  const randExercises = randomIndexes.map((index) => {
+    return data[index];
+  });
+
+  return randExercises;
+}
+
+function Intro(params) {
+  return ()
+};
+
+export default function TrainSuperhero({ navigation: { navigate } }) {
+  const timer = 30;
+  const cycleLimit = 3;
   const [intro, setIntro] = useState(true);
   const [progress, setProgress] = useState(timer);
   const [introProgress, setIntroProgress] = useState(3);
   const [cycleCount, setCycleCount] = useState(0);
-  const cycleLimit = 3;
-  const endTime = 15;
-
-  const randomExersizes = getRandUnique(exerciseData, 3);
+  const [randomExercises, setRandomExercises] = useState(() =>
+    getRandExercises(3, exerciseData)
+  );
+  let animation = useRef(new Animated.Value(0));
 
   useInterval(() => {
     if (intro && introProgress > 0) {
@@ -94,6 +76,12 @@ export default function TrainSuperhero() {
       setIntro(false);
     } else if (progress > 0 && cycleCount < cycleLimit && !intro) {
       setProgress(progress - 1);
+    } else if (cycleCount + 1 === cycleLimit && !intro) {
+      navigate("kpi", {
+        bg: require("../../assets/trainSuperhero/background.png"),
+        pMsg: kpiData.trainSuperhero.primMsg,
+        sMsg: kpiData.trainSuperhero.secMsg,
+      });
     } else if (cycleCount < cycleLimit && !intro) {
       setCycleCount(cycleCount + 1);
       setProgress(timer);
@@ -101,7 +89,7 @@ export default function TrainSuperhero() {
   }, 1000);
 
   const width = animation.current.interpolate({
-    inputRange: [0, endTime],
+    inputRange: [0, timer],
     outputRange: ["0%", "100%"],
     extrapolate: "clamp",
   });
@@ -122,7 +110,7 @@ export default function TrainSuperhero() {
       <SafeAreaView style={{ flex: 1 }}>
         <View
           style={{
-            backgroundColor: "blue",
+            // backgroundColor: "blue",
             height: "12.5%",
             marginLeft: "5%",
             justifyContent: "flex-end",
@@ -172,7 +160,7 @@ export default function TrainSuperhero() {
             >
               <View style={styles.textBox}>
                 <Text style={styles.text}>
-                  We are starting with [exersize name]. Ready?
+                  We are starting with {randomExercises[0].name}. Ready?
                 </Text>
               </View>
             </View>
@@ -194,7 +182,7 @@ export default function TrainSuperhero() {
                   marginVertical: "2%",
                 }}
               >
-                {exerciseData[cycleCount].name}
+                {randomExercises[cycleCount].name}
               </Text>
               <Text
                 style={{
@@ -229,12 +217,17 @@ export default function TrainSuperhero() {
             >
               <Image
                 style={{ height: "70%", width: "100%", resizeMode: "contain" }}
-                source={exerciseData[cycleCount].img}
+                source={randomExercises[cycleCount].img}
               />
             </View>
           </View>
         )}
-        <View style={{ backgroundColor: "brown", height: "5%" }}></View>
+        <View
+          style={{
+            // backgroundColor: "brown",
+            height: "5%",
+          }}
+        ></View>
       </SafeAreaView>
     </ImageBackground>
   );
