@@ -63,6 +63,14 @@ const kpiData = {
     likeApi: null,
     confusedApi: null,
   },
+  decoding: {
+    title: "decodingMessages",
+    primMsg: "Nice!",
+    secMsg: "You can check out some of our other activities.",
+    img:  null,
+    likeApi: null,
+    confusedApi: null,
+  }
 };
 
 export default kpiData;
