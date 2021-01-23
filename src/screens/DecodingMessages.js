@@ -240,6 +240,7 @@ export default function App({navigation: { navigate }}) {
   const [letters, setLetters] = useState(data.letters);
   const [displayLetters, setDisplayLetters] = useState(data.displayLetters);
   const [modalVisable, setModalVisable] = useState(false);
+  const [finished, setFinished] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -289,6 +290,7 @@ export default function App({navigation: { navigate }}) {
           </View>
       </View>
       <View style={styles.keyContainer}> 
+        {/* Need to hide this button when the activity is completed and make sure that the button that will eventually be here will pop up. */}
         <TouchableOpacity 
           style={styles.keyButton}
           onPress={
