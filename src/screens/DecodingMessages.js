@@ -208,12 +208,7 @@ export default function App({navigation: { navigate }}) {
         // handle condition if the activity is over
         setCurrLetter(-1);
         //console.log("done!");
-        // route to the kpi screen
-        navigate("kpi", {
-          bg: require("../../assets/decodingMessages/transparent_background.png"),
-          pMsg: kpiData.decoding.primMsg,
-          sMsg: kpiData.decoding.secMsg,
-        })
+        setFinished(true);
       } else {
         setCurrLetter(currLetter + 1);
       }
@@ -232,6 +227,15 @@ export default function App({navigation: { navigate }}) {
     //console.log("key pressed");
     setModalVisable(true);
   }
+  // handle finished button press when the user wants to move to the kpi screen
+  function handleDoneButtonPress() {
+    // route to the kpi screen
+    navigate("kpi", {
+      bg: require("../../assets/decodingMessages/transparent_background.png"),
+      pMsg: kpiData.decoding.primMsg,
+      sMsg: kpiData.decoding.secMsg,
+    })
+  }
   
   // hooks
   const[messageIndex, setMessageIndex] = useState(Math.floor((Math.random() * Messages.messages.length)));
@@ -240,10 +244,22 @@ export default function App({navigation: { navigate }}) {
   const [letters, setLetters] = useState(data.letters);
   const [displayLetters, setDisplayLetters] = useState(data.displayLetters);
   const [modalVisable, setModalVisable] = useState(false);
+  const [finished, setFinished] = useState(false);
 
   return (
     <View style={styles.container}>
       <SeeAllModal visible={modalVisable} setVisable={setModalVisable} images={Images}/>
+      {
+        finished && 
+          <View style={styles.finishedContainer}> 
+            <Text style={styles.finishedText}>
+              Good Job!
+            </Text>
+            <TouchableOpacity style={styles.finishedButton} onPress={() => handleDoneButtonPress()}>
+              <Text style={styles.finishedButtonText}>Done!</Text>
+            </TouchableOpacity>
+          </View>
+      }
       <View style={styles.exitContainer}>
         <View style={styles.exitButton}>
           <Exit navTo={"Modal"}/>
@@ -289,6 +305,7 @@ export default function App({navigation: { navigate }}) {
           </View>
       </View>
       <View style={styles.keyContainer}> 
+        {/* Need to hide this button when the activity is completed and make sure that the button that will eventually be here will pop up. */}
         <TouchableOpacity 
           style={styles.keyButton}
           onPress={
