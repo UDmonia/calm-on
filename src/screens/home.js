@@ -15,7 +15,7 @@ import { sprite, aurora, flynn } from "../data/characterData";
 import { screenWidthThreshold } from "../util/thresholds";
 import {
   addFaveFood,
-} from "../../actions/session_actions";
+} from "../actions/session_actions";
 
 const checkInExists = () => {
   var res = false;
