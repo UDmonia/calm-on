@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import styles from "../stylesheets/homeStyles";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { Dimensions } from "react-native";
 import { windowWidth } from "../util/windowDimensions.js";
 import { sprite, aurora, flynn } from "../data/characterData";
@@ -42,6 +42,7 @@ const Home = ({ props, navigation: { navigate } }) => {
     navigate("DailyCheckIn");
   }
   const userName = "Jack";
+  const dispatch = useDispatch();
   // const userName = useSelector((state) =>
   //   state.session.user.name ? state.session.user.name : "user"
   // );
