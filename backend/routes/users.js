@@ -169,6 +169,42 @@ router.put(
 );
 
 router.put(
+  "/favourite_food",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const currUser = req.user;
+    console.log(currUser);
+    const { favourite_food } = req.body;
+    if (!favourite_food || !favourite_food.trim().length) {
+      res.status(422).json({ favourite_food: "Please enter your favourite food to continue" });
+    }
+    try {
+      currUser.favourite_food = favourite_food;
+      const savedUser = await currUser.save();
+      const user = savedUser.toJSON();
+      delete user.password;
+      const checkins = await CheckIn.find({author:user._id})
+      const checkinGroups = groupCheckinsByDate(checkins);
+      const userCopy = new User(user);
+      const userCopyJson = userCopy.toJSON();
+      userCopyJson.checkIns = checkinGroups;
+      jwt.sign(user, secret, (err, token) => {
+        if (token) {
+          res.status(200).json({
+            token: `Bearer ${token}`,
+            user: userCopyJson
+          });
+        } else {
+          res.status(500).json(err);
+        }
+      });
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+);
+
+router.put(
   "/checkin",
   passport.authenticate('jwt',{session:false}),
   async (req, res) => {

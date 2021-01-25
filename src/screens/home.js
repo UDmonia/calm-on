@@ -122,6 +122,12 @@ const Home = ({ props, navigation: { navigate } }) => {
           >
             <Text style={styles.pickMeText}>Pick Me!</Text>
           </TouchableOpacity>
+          {/* <TouchableOpacity
+            onPress={() => handleBtnPress()}
+            style={styles.pickMeButton}
+          >
+            <Text style={styles.pickMeText}>Click Me!</Text>
+          </TouchableOpacity> */}
 
           <View style={styles.bottomBox}>
             <Text adjustsFontSizeToFit={true} style={styles.bottomBoxTextName}>

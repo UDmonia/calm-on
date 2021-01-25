@@ -20,6 +20,9 @@ const UserSchema = new Schema(
     },
     name: {
       type: String,
+    },
+    favourite_food: {
+      type: String,
     }
   },
   {
