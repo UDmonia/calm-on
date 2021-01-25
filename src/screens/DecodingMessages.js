@@ -208,12 +208,7 @@ export default function App({navigation: { navigate }}) {
         // handle condition if the activity is over
         setCurrLetter(-1);
         //console.log("done!");
-        // route to the kpi screen
-        navigate("kpi", {
-          bg: require("../../assets/decodingMessages/transparent_background.png"),
-          pMsg: kpiData.decoding.primMsg,
-          sMsg: kpiData.decoding.secMsg,
-        })
+        setFinished(true);
       } else {
         setCurrLetter(currLetter + 1);
       }
@@ -232,6 +227,15 @@ export default function App({navigation: { navigate }}) {
     //console.log("key pressed");
     setModalVisable(true);
   }
+  // handle finished button press when the user wants to move to the kpi screen
+  function handleDoneButtonPress() {
+    // route to the kpi screen
+    navigate("kpi", {
+      bg: require("../../assets/decodingMessages/transparent_background.png"),
+      pMsg: kpiData.decoding.primMsg,
+      sMsg: kpiData.decoding.secMsg,
+    })
+  }
   
   // hooks
   const[messageIndex, setMessageIndex] = useState(Math.floor((Math.random() * Messages.messages.length)));
@@ -245,6 +249,17 @@ export default function App({navigation: { navigate }}) {
   return (
     <View style={styles.container}>
       <SeeAllModal visible={modalVisable} setVisable={setModalVisable} images={Images}/>
+      {
+        finished && 
+          <View style={styles.finishedContainer}> 
+            <Text style={styles.finishedText}>
+              Good Job!
+            </Text>
+            <TouchableOpacity style={styles.finishedButton} onPress={() => handleDoneButtonPress()}>
+              <Text style={styles.finishedButtonText}>Done!</Text>
+            </TouchableOpacity>
+          </View>
+      }
       <View style={styles.exitContainer}>
         <View style={styles.exitButton}>
           <Exit navTo={"Modal"}/>

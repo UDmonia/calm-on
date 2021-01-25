@@ -173,7 +173,8 @@ const AuroraAcitivityData = [
       ActRoute: "DecodingMessages",
       about:
         "Do you love to decode messages? Put your skills to the test. See if you can fill in the blank and discover a secret message!",
-      img: require("../../assets/activities/54321Intro.png"),
+      helpful: "You want to challenge your mind with some fun puzzles!",
+      img: require("../../assets/decodingMessages/preview.png"),
       headerColor: "#8248D7",
     },
   }

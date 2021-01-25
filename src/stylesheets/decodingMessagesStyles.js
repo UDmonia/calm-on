@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { windowWidth } from "../util/windowDimensions";
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 import hex from "./hexCodes";
 
 export default StyleSheet.create({
@@ -8,7 +8,7 @@ export default StyleSheet.create({
     },
     exitContainer: {
       flex: 2,
-      backgroundColor: "white",
+      backgroundColor: hex.white.white1,
       justifyContent: "center",
       paddingLeft: "5%",
       paddingTop: "8%",
@@ -20,7 +20,7 @@ export default StyleSheet.create({
       flex: 9,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "white",
+      backgroundColor: hex.white.white1,
     },
     verticalCenter: {
       justifyContent: "center",
@@ -29,12 +29,12 @@ export default StyleSheet.create({
     },
     lettersContainer: {
       flex: 6,
-      backgroundColor: "white",
+      backgroundColor: hex.white.white1,
       alignItems: "center",
       justifyContent: "center",
     },
     lineContainer2: {
-      backgroundColor: "white",
+      backgroundColor: hex.white.white1,
       flexDirection: "row",
       flex: 1,
       maxHeight: "80%",
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     },
     keyContainer: {
       flex: 2,
-      backgroundColor: "white",
+      backgroundColor: hex.white.white1,
       flexDirection: "row",
       justifyContent: "flex-end",
       alignItems: "center",
@@ -68,7 +68,7 @@ export default StyleSheet.create({
     },
     auroraContainer: {
       flex: 5,
-      backgroundColor: "white",
+      backgroundColor: hex.white.white1,
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
@@ -180,7 +180,7 @@ export default StyleSheet.create({
       resizeMode: "contain",
     },
     text: {
-      color: "white",
+      color: hex.white.white1,
       fontFamily: "FontBold",
       fontSize: windowWidth * 0.035,
     },
@@ -223,5 +223,33 @@ export default StyleSheet.create({
       fontSize: windowWidth * 0.03,
       textAlign:"center",
     },
+    finishedContainer: {
+      backgroundColor: hex.white.white1,
+      height: "33%",
+      width: "100%",
+      position: "absolute",
+      top: windowHeight * 0.475,
+      zIndex: 1,
+      alignItems: "center",
+      justifyContent: "space-around",
+    },
+    finishedText: {
+      fontFamily: "FontBold",
+      fontSize: windowWidth * 0.15,
+    },
+    finishedButton: {
+      backgroundColor: hex.purple.aurora,
+      height: "20%",
+      width: "50%",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 25,
+    },
+    finishedButtonText: {
+      color: hex.white.white1,
+      fontFamily: "FontReg",
+      fontSize: windowWidth * 0.05,
+    }
+
   })
   
