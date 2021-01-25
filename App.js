@@ -278,15 +278,8 @@ export default function App() {
               ),
             })}
           />
-          <Stack.Screen
-              name="WashHands"
-              component={WashHands}
-          />
-          <Stack.Screen
-              name="DecodingMessages"
-              component={DecodingMessages}
-          />
           <Stack.Screen name="WashHands" component={WashHands} />
+          <Stack.Screen name="DecodingMessages" component={DecodingMessages} />
           <Stack.Screen name="TrainSuperhero" component={TrainSuperhero} />
         </Stack.Navigator>
       </Provider>

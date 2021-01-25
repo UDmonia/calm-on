@@ -24,9 +24,15 @@ export default StyleSheet.create({
     borderWidth: 0,
     borderRadius: 20,
   },
+  introFlynnContainer: {
+    flex: 2,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
   flynnImg: {
     resizeMode: "contain",
     height: "100%",
+    width: "100%",
   },
   textBox: {
     backgroundColor: hexCodes.brown.flynn,
@@ -52,11 +58,6 @@ export default StyleSheet.create({
     fontSize: 100,
     color: hexCodes.orange.orange1,
     fontFamily: "FontBold",
-  },
-  introFlynnContainer: {
-    flex: 2,
-    justifyContent: "flex-end",
-    alignItems: "center",
   },
   introTextBoxContainer: {
     flex: 1,
