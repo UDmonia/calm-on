@@ -135,6 +135,7 @@ const SessionForm = ({
     });
   };
 
+
   return (
     <View>
       {!showUserDialog && (

@@ -78,10 +78,11 @@ export const addName = (user) => (dispatch) =>
     .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 
-// export const addFavouriteFood = (user) => (dispatch) =>
-//   SessionAPI.addFavouriteFood(user)
-//     .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
-//     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+    // My version
+export const addFavouriteFood = (user) => (dispatch) =>
+  SessionAPI.addFaveFood(user)
+    .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
+    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 
 export const checkin = (checkinDTO) => (dispatch) => 
   SessionAPI.checkin(checkinDTO)

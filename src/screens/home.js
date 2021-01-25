@@ -13,6 +13,9 @@ import { Dimensions } from "react-native";
 import { windowWidth } from "../util/windowDimensions.js";
 import { sprite, aurora, flynn } from "../data/characterData";
 import { screenWidthThreshold } from "../util/thresholds";
+import {
+  addFaveFood,
+} from "../../actions/session_actions";
 
 const checkInExists = () => {
   var res = false;
@@ -79,6 +82,12 @@ const Home = ({ props, navigation: { navigate } }) => {
     });
   }
 
+  // My version
+
+  const handleAddFaveFood = () => {
+    return dispatch(addFaveFood({favourite_food: "pizza"}));
+  };
+
   return (
     <View style={styles.format}>
       <ImageBackground
@@ -122,12 +131,15 @@ const Home = ({ props, navigation: { navigate } }) => {
           >
             <Text style={styles.pickMeText}>Pick Me!</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            onPress={() => handleBtnPress()}
+
+          {/* My version */}
+
+          <TouchableOpacity
+            onPress={() => handleAddFaveFood()}
             style={styles.pickMeButton}
           >
-            <Text style={styles.pickMeText}>Click Me!</Text>
-          </TouchableOpacity> */}
+            <Text style={styles.pickMeText}>Add Fave Food!</Text>
+          </TouchableOpacity>
 
           <View style={styles.bottomBox}>
             <Text adjustsFontSizeToFit={true} style={styles.bottomBoxTextName}>
