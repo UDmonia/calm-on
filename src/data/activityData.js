@@ -108,6 +108,102 @@ const SpriteActivityData = [
       headerColor: "#2E7D32",
     },
   },
+  {
+    id: 7,
+    title: "Healthy Habits",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Healthy-Habits"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 8,
+    title: "Do The Five",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/doTheFive/thumbnail.png"),
+    tag: ["All", "Healthy-Habits"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 9,
+    title: "Wash Your Hands Like a Pro!",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Activities"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "WashHands",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 10,
+    title: "Videos",
+    color: "#7CC576",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Videos"],
+    introPageData: {
+      navRoute: "HealthyHabitsTemplate",
+      ActRoute: "HealthyHabitsTemplate",
+      about:
+        "Use your sense to bring you back to the present moment. This will help you feel more focused and clam",
+      helpful: "You have trouble focusing or when you feel scared or worried.",
+      img: require("../../assets/activities/54321Intro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 11,
+    title: "Decoding Messages",
+    color: "#D0B0FF",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Activities", "Aurora"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "DecodingMessages",
+      about:
+        "Do you love to decode messages? Put your skills to the test. See if you can fill in the blank and discover a secret message!",
+      helpful: "You want to challenge your mind with some fun puzzles!",
+      img: require("../../assets/decodingMessages/preview.png"),
+      headerColor: "#8248D7",
+    },
+  },
+  {
+    id: 11,
+    title: "Coloring",
+    color: "#D0B0FF",
+    img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
+    tag: ["All", "Activities", "Aurora"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "Coloring",
+      about:
+        "Do you love to decode messages? Put your skills to the test. See if you can fill in the blank and discover a secret message!",
+      helpful: "You want to challenge your mind with some fun puzzles!",
+      img: require("../../assets/decodingMessages/preview.png"),
+      headerColor: "#8248D7",
+    },
+  },
 ];
 
 const FlynnAcitivityData = [

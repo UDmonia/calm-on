@@ -41,6 +41,7 @@ import FilteredActivities from "./src/screens/FilteredActivities.js";
 import WashHands from "./src/screens/WashHands.js";
 import TrainSuperhero from "./src/screens/TrainSuperhero.js";
 import DecodingMessages from "./src/screens/DecodingMessages.js";
+import Coloring from "./src/screens/Coloring.js";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -281,6 +282,7 @@ export default function App() {
           <Stack.Screen name="WashHands" component={WashHands} />
           <Stack.Screen name="DecodingMessages" component={DecodingMessages} />
           <Stack.Screen name="TrainSuperhero" component={TrainSuperhero} />
+          <Stack.Screen name="Coloring" component={Coloring} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
