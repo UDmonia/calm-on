@@ -6,9 +6,11 @@ import {
   Image,
   TouchableOpacity,
   Animated,
+  SafeAreaView,
 } from "react-native";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
+import DrawerLayout from "react-native-gesture-handler/DrawerLayout";
 
 const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -16,137 +18,72 @@ const getRandomColor = (colors) => {
 
 const getOther = (card, solution) => {
   if (card === solution) {
-    //console.log(card);
+    console.log("Solution: " + solution);
+    const index = Colors.findIndex((colors) => colors === solution);
+    console.log("index: " +index);
+    const tempArray = Colors.slice();
+    tempArray.forEach(thing => console.log(thing));
     return getRandomColor(Colors);
   }
   return solution;
 };
 
 export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const solutionCard = getRandomColor(Colors);
-  const cards = [solutionCard, getRandomColor(Colors)];
-  const rCardText = getRandomColor(cards);
-  const lCardText = getOther(rCardText, solutionCard);
+  const [solutionCard, setSolution] = useState(getRandomColor(Colors));
+  const [cardText, setCardText] = useState(getRandomColor(Colors));
+  const [cards, setCards] = useState([solutionCard, getRandomColor(Colors)]);
+  const [rCardColor, setRCardColor] = useState(getRandomColor(Colors));
+  const [rCardText, setRCardText] = useState(getRandomColor(cards));
+  const [lCardColor, setLCardColor] = useState(getRandomColor(Colors));
+  const [lCardText,setLCardText] = useState(getOther(rCardText, solutionCard));
   const [check, setCheck] = useState(false);
   const [cross, setCross] = useState(false);
   const [correct, setCorrect] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
-  const checkMark = useRef(new Animated.Value(0)).current;
-  //const crossMark = useRef(new Animated.Value(0)).current;
+  const Mark = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    //console.log("I made it here");
-    //console.log(check);
     Animated.sequence([
-      Animated.timing(checkMark, {
+      Animated.timing(Mark, {
         toValue: 1,
-        duration: 500,
+        duration: 250,
         useNativeDriver: true,
       }),
-      Animated.timing(checkMark, {
+      Animated.timing(Mark, {
         toValue: 0,
-        duration: 500,
+        duration: 250,
         useNativeDriver: true,
       }),
     ]).start(() => {
       setCheck(false);
       setCross(false);
+      //drawCards();
     });
   }, [check, cross]);
 
-  // const right = () => {
-  //   setCheck(true);
-  //   Animated.sequence([
-  //     Animated.timing(checkMark, {
-  //       toValue: 1,
-  //       duration: 2000,
-  //       useNativeDriver: true,
-  //     }),
-  //     Animated.timing(checkMark, {
-  //       toValue: 0,
-  //       duration: 2000,
-  //       useNativeDriver: true,
-  //     }),
-  //   ]).start();
+  // const drawCards = () => {
+  //   setSolution();
+  //   setCardText();
+  //   setCards();
+  //   setLCardColor();
+  //   setLCardText();
+  //   setRCardColor();
+  //   setRCardText();
   // };
-  // const wrong = () => {
-  //   setCross(true)
-  //   Animated.sequence([
-  //     Animated.timing(crossMark, {
-  //       toValue: 1,
-  //       duration: 2000,
-  //       useNativeDriver: true,
-  //     }),
-  //     Animated.timing(crossMark, {
-  //       toValue: 0,
-  //       duration: 2000,
-  //       useNativeDriver: true,
-  //     }),
-  //   ]).start();
-  // }
 
   const handlePress = (card) => {
     card === solutionCard
       ? setCheck(true)
-      : // (console.log("correct"),
-        // right())
-        setCross(true);
-    // (console.log("incorrect"), wrong())
+      : setCross(true);
   };
-
-  //console.log("check: " + check);
-  // console.log("cross: " + cross);
-
-  // function decideAnimation() {
-  //   if (cross) {
-  //     return (
-  //       <Animated.View
-  //         style={{
-  //           opacity: checkMark,
-  //           backgroundColor: "green",
-  //           //marginTop: "60%",
-  //           //position: "absolute",
-  //           zIndex: 2,
-  //         }}
-  //       >
-  //         <Image source={require("../../assets/colorMatching/check.png")} />
-  //       </Animated.View>
-  //     );
-  //   } else if (check) {
-  //     return (
-  //       <Animated.View
-  //         style={{
-  //           opacity: crossMark,
-  //           backgroundColor: "red",
-  //           //marginTop: "60%",
-  //           //position: "absolute",
-  //           zIndex: 1,
-  //         }}
-  //       >
-  //         <Image source={require("../../assets/colorMatching/cross.png")} />
-  //       </Animated.View>
-  //     )
-  //   }
-  // }
 
   return (
     <View
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1,
-        backgroundColor: "grey",
-      }}
+      style={styles.container}
     >
-      <View style={{ height: "30%", backgroundColor: "green" }}>
+      <View style={styles.markView}>
         <Animated.View
-          style={{
-            opacity: checkMark,
-            backgroundColor: "green",
-            //marginTop: "60%",
-            //position: "absolute",
-            zIndex: 2,
-          }}
+          style={{opacity: Mark}}
         >
           {check ? (
             <Image source={require("../../assets/colorMatching/check.png")} />
@@ -154,26 +91,16 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
           {cross ? (
             <Image source={require("../../assets/colorMatching/cross.png")} />
           ) : null}
-          {/* <Image source={require("../../assets/colorMatching/check.png")} /> */}
         </Animated.View>
       </View>
       <View style={styles.solutionCard}>
         <Text style={[styles.cardText, { color: solutionCard }]}>
-          {getRandomColor(Colors)}
+          {cardText}
         </Text>
       </View>
 
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          height: "15%",
-          width: "100%",
-          //marginTop: "100%",
-          padding: "5%",
-          backgroundColor: "blue",
-        }}
+        style={styles.buttonView}
       >
         <TouchableOpacity
           style={styles.colorButton}
@@ -182,7 +109,7 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
             handlePress(rCardText);
           }}
         >
-          <Text style={[styles.cardText, { color: getRandomColor(Colors) }]}>
+          <Text style={[styles.cardText, { color: rCardColor }]}>
             {rCardText}
           </Text>
         </TouchableOpacity>
@@ -193,7 +120,7 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
             handlePress(lCardText);
           }}
         >
-          <Text style={[styles.cardText, { color: getRandomColor(Colors) }]}>
+          <Text style={[styles.cardText, { color: lCardColor }]}>
             {lCardText}
           </Text>
         </TouchableOpacity>
