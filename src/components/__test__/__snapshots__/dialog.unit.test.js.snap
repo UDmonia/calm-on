@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog Test Suite Dialog snapshot matches 1`] = `
+<View
+  style=""
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "black",
+          "fontFamily": null,
+        },
+        Object {
+          "color": "#FFFFFF",
+          "fontFamily": "FontReg",
+        },
+      ]
+    }
+  >
+    Dummy
+  </Text>
+</View>
+`;
