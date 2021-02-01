@@ -29,7 +29,7 @@ const getOther = (card, solution) => {
 };
 
 export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const solutionCard = useRef(getRandomColor(Colors)).current
+  const [solutionCard, setSolution] = useState(getRandomColor(Colors));
   const [cardText, setCardText] = useState(getRandomColor(Colors));
   const [cards, setCards] = useState([solutionCard, getRandomColor(Colors)]);
   const [rCardColor, setRCardColor] = useState(getRandomColor(Colors));
@@ -65,7 +65,7 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   }, [effect]);
 
   const drawCards = () => {
-    //solutionCard.current = useRef(getRandomColor(Colors));
+    setSolution(getRandomColor(Colors));
     //console.log(solutionCard);
     setCardText(getRandomColor(Colors));
     setCards([solutionCard, getRandomColor(Colors)]);
@@ -77,7 +77,6 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   };
 
   const handlePress = (card) => {
-    //use if
     card === solutionCard
       ? (setCheck(true), setEffect(!effect))
       : (setCross(true), setEffect(!effect));
