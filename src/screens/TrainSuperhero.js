@@ -98,7 +98,7 @@ function Intro(props) {
       </View>
       <View style={styles.introFlynnContainer}>
         <Image
-          source={require("../../assets/washHands/flynn.png")}
+          source={require("../../assets/trainSuperhero/basePic.png")}
           style={styles.flynnImg}
         />
       </View>
