@@ -12,24 +12,24 @@ import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
 
 const getRandomColor = (colors) => {
-  console.log(colors);
+  //console.log(colors);
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
 const getOther = (card, solution) => {
   if (card === solution) {
-    console.log("Solution: " + solution);
-    const index = Colors.findIndex((colors) => colors === solution);
-    console.log("index: " + index);
-    const tempArray = Colors.slice();
-    tempArray.forEach((thing) => console.log(thing));
+    // console.log("Solution: " + solution);
+    // const index = Colors.findIndex((colors) => colors === solution);
+    // console.log("index: " + index);
+    // const tempArray = Colors.slice();
+    // tempArray.forEach((thing) => console.log(thing));
     return getRandomColor(Colors);
   }
   return solution;
 };
 
 export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const [solutionCard, setSolution] = useState(getRandomColor(Colors));
+  const solutionCard = useRef(getRandomColor(Colors)).current
   const [cardText, setCardText] = useState(getRandomColor(Colors));
   const [cards, setCards] = useState([solutionCard, getRandomColor(Colors)]);
   const [rCardColor, setRCardColor] = useState(getRandomColor(Colors));
@@ -38,10 +38,11 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   const [lCardText, setLCardText] = useState(getOther(rCardText, solutionCard));
   const [check, setCheck] = useState(false);
   const [cross, setCross] = useState(false);
-  const [correct, setCorrect] = useState(0);
-  const [incorrect, setIncorrect] = useState(0);
+  // const [correct, setCorrect] = useState(0);
+  // const [incorrect, setIncorrect] = useState(0);
   const Mark = useRef(new Animated.Value(0)).current;
   const [dis, setDis] = useState(false);
+  const [effect, setEffect] = useState(false);
 
   useEffect(() => {
     Animated.sequence([
@@ -59,14 +60,16 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
       setCheck(false);
       setCross(false);
       drawCards();
-      setDis(() => false); 
+      setDis(() => false);
     });
-  }, [check, cross]);
+  }, [effect]);
 
   const drawCards = () => {
-    setSolution(getRandomColor(Colors));
+    //solutionCard.current = useRef(getRandomColor(Colors));
+    //console.log(solutionCard);
     setCardText(getRandomColor(Colors));
     setCards([solutionCard, getRandomColor(Colors)]);
+    //console.log(cards);
     setRCardColor(getRandomColor(Colors));
     setRCardText(getRandomColor(cards));
     setLCardColor(getRandomColor(Colors));
@@ -74,7 +77,10 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   };
 
   const handlePress = (card) => {
-    card === solutionCard ? setCheck(true) : setCross(true);
+    //use if
+    card === solutionCard
+      ? (setCheck(true), setEffect(!effect))
+      : (setCross(true), setEffect(!effect));
     setDis(() => true);
   };
 
