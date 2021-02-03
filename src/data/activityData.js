@@ -189,7 +189,7 @@ const SpriteActivityData = [
     },
   },
   {
-    id: 11,
+    id: 12,
     title: "Coloring",
     color: "#D0B0FF",
     img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),

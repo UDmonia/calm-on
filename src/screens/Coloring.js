@@ -39,17 +39,20 @@ const DATA = [
 ]
 
 
-function ImageBox(data) {
-    return(
-        <TouchableOpacity style={styles.imageBoxContainer}>
-            <Image 
-                source={require('../../assets/favicon.png')}
-                style={styles.img}/>
-        </TouchableOpacity>
-    );
-}
+export default function Coloring({navigation: { navigate }}) {
 
-export default function Coloring (){
+    function ImageBox(data) {
+        return(
+            <TouchableOpacity 
+                style={styles.imageBoxContainer}
+                onPress={ () => navigate("ColoringPage")}>
+                <Image 
+                    source={require('../../assets/favicon.png')}
+                    style={styles.img}/>
+            </TouchableOpacity>
+        );
+    }
+
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.exitContainer}>

@@ -42,6 +42,7 @@ import WashHands from "./src/screens/WashHands.js";
 import TrainSuperhero from "./src/screens/TrainSuperhero.js";
 import DecodingMessages from "./src/screens/DecodingMessages.js";
 import Coloring from "./src/screens/Coloring.js";
+import ColoringPage from "./src/screens/ColoringPage";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -283,6 +284,7 @@ export default function App() {
           <Stack.Screen name="DecodingMessages" component={DecodingMessages} />
           <Stack.Screen name="TrainSuperhero" component={TrainSuperhero} />
           <Stack.Screen name="Coloring" component={Coloring} />
+          <Stack.Screen name="ColoringPage" component={ColoringPage} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
