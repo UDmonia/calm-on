@@ -12,30 +12,30 @@ import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
 
 const getRandomColor = (colors) => {
-  //console.log(colors);
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
 const getOther = (card, solution) => {
   if (card === solution) {
-    // console.log("Solution: " + solution);
-    // const index = Colors.findIndex((colors) => colors === solution);
-    // console.log("index: " + index);
-    // const tempArray = Colors.slice();
-    // tempArray.forEach((thing) => console.log(thing));
-    return getRandomColor(Colors);
+    //console.log("Solution: " + solution);
+    const index = Colors.findIndex((colors) => colors === solution);
+    //console.log("index: " + index);
+    const tempArray = Colors.slice();
+    tempArray.splice(index, 1)
+    //tempArray.forEach((thing) => console.log(thing));
+    return getRandomColor(tempArray)
   }
   return solution;
 };
 
 export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const [solutionCard, setSolution] = useState(getRandomColor(Colors));
-  const [cardText, setCardText] = useState(getRandomColor(Colors));
-  const [cards, setCards] = useState([solutionCard, getRandomColor(Colors)]);
-  const [rCardColor, setRCardColor] = useState(getRandomColor(Colors));
-  const [rCardText, setRCardText] = useState(getRandomColor(cards));
-  const [lCardColor, setLCardColor] = useState(getRandomColor(Colors));
-  const [lCardText, setLCardText] = useState(getOther(rCardText, solutionCard));
+  const solutionCard = useRef(getRandomColor(Colors));
+  const cardText = useRef(getRandomColor(Colors));
+  const cards = useRef([solutionCard.current, getRandomColor(Colors)]);
+  const rCardColor = useRef(getRandomColor(Colors));
+  const rCardText = useRef(getRandomColor(cards.current));
+  const lCardColor = useRef(getRandomColor(Colors));
+  const lCardText = useRef(getOther(rCardText.current, solutionCard.current));
   const [check, setCheck] = useState(false);
   const [cross, setCross] = useState(false);
   // const [correct, setCorrect] = useState(0);
@@ -65,19 +65,17 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   }, [effect]);
 
   const drawCards = () => {
-    setSolution(getRandomColor(Colors));
-    //console.log(solutionCard);
-    setCardText(getRandomColor(Colors));
-    setCards([solutionCard, getRandomColor(Colors)]);
-    //console.log(cards);
-    setRCardColor(getRandomColor(Colors));
-    setRCardText(getRandomColor(cards));
-    setLCardColor(getRandomColor(Colors));
-    setLCardText(getOther(rCardText, solutionCard));
+    solutionCard.current = getRandomColor(Colors);
+    cardText.current = (getRandomColor(Colors));
+    cards.current = ([solutionCard.current, getRandomColor(Colors)]);
+    rCardColor.current = (getRandomColor(Colors));
+    rCardText.current = (getRandomColor(cards.current));
+    lCardColor.current = (getRandomColor(Colors));
+    lCardText.current = (getOther(rCardText.current, solutionCard.current));
   };
 
   const handlePress = (card) => {
-    card === solutionCard
+    card === solutionCard.current
       ? (setCheck(true), setEffect(!effect))
       : (setCross(true), setEffect(!effect));
     setDis(() => true);
@@ -97,8 +95,8 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
         </Animated.View>
       </View>
       <View style={styles.solutionCard}>
-        <Text style={[styles.cardText, { color: solutionCard }]}>
-          {cardText}
+        <Text style={[styles.cardText, { color: solutionCard.current }]}>
+          {cardText.current}
         </Text>
       </View>
 
@@ -107,24 +105,24 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
           style={styles.colorButton}
           onPress={() => {
             // console.log("press " + (correct + incorrect));
-            handlePress(rCardText);
+            handlePress(rCardText.current);
           }}
           disabled={dis}
         >
-          <Text style={[styles.cardText, { color: rCardColor }]}>
-            {rCardText}
+          <Text style={[styles.cardText, { color: rCardColor.current }]}>
+            {rCardText.current}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.colorButton}
           onPress={() => {
             //console.log("press " + (correct + incorrect));
-            handlePress(lCardText);
+            handlePress(lCardText.current);
           }}
           disabled={dis}
         >
-          <Text style={[styles.cardText, { color: lCardColor }]}>
-            {lCardText}
+          <Text style={[styles.cardText, { color: lCardColor.current }]}>
+            {lCardText.current}
           </Text>
         </TouchableOpacity>
       </View>
