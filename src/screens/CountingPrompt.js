@@ -12,6 +12,7 @@ import sprit from "../../assets/counting/spirit1.png";
 import bg from "../../assets/counting/backdrop.png";
 import Exit from "../components/Exit";
 import kpiData from "../data/kpiData";
+import hex from "../stylesheets/hexCodes";
 import { windowHeight, windowWidth } from "../util/windowDimensions";
 
 /**
@@ -66,7 +67,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
           <Exit navTo={"Modal"} />
         </View>
         <View style={styles.countDis}>
-          <Text style={{ color: "#FFFFFF" }}>
+          <Text style={{ color: hex.white.white1 }}>
             {counter + " " + actData.groupName}
           </Text>
         </View>
@@ -96,7 +97,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               style={styles.nextButton}
               onPress={() => setNext(!next)}
             >
-              <Text style={{ color: "#3B96B2" }}>Next</Text>
+              <Text style={{ color: hex.white.white1 }}>Next</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -110,7 +111,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                   style={styles.navButton}
                   onPress={() => navigate("CharacterChat")}
                 >
-                  <Text style={{ color: "#3B96B2" }}>Home</Text>
+                  <Text style={{ color: hex.grey.grey1 }}>Home</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.navButton}
@@ -124,7 +125,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                       );
                   }}
                 >
-                  <Text style={{ color: "#3B96B2" }}>Next Recipe</Text>
+                  <Text style={{ color: hex.grey.grey1 }}>Next Recipe</Text>
                 </TouchableOpacity>
               </View>
             ) : (

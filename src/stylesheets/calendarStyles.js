@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
     format:{
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor: '#873E25',
+        backgroundColor: hex.brown.brown3,
         borderTopRightRadius:10,
         borderTopLeftRadius:10
     },

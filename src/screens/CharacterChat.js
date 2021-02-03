@@ -207,11 +207,20 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
       <View style={styles.activityBtnContainer}>
         <TouchableOpacity
           style={styles.activityBtn}
-          onPress={() =>
-            navigate("FlatActivities", {
-              activities: charaterActivities,
-              headerColor: curCharacter.characterColor,
-            })
+          onPress={() =>{
+            if(curCharacter.name === "Flynn") {
+              navigate("FilteredActivities", {
+                activities: charaterActivities,
+                headerColor: curCharacter.characterColor,
+              })
+            }
+            else {
+              navigate("FlatActivities", {
+                activities: charaterActivities,
+                headerColor: curCharacter.characterColor,
+              })
+            }
+            }
           }
         >
           <Image source={activitiesBtnImg} />

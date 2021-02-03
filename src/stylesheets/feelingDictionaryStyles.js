@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   feelingImg: {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   },
   border: {
     borderWidth: 0.5,
-    borderColor: "#E5E5E5",
+    borderColor: hex.grey.grey2,
   },
   feelingName: {
     textAlign: "center",

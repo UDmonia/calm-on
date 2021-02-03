@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 import {windowWidth, windowHeight} from "../util/windowDimensions";
 
 export default StyleSheet.create({
@@ -34,7 +35,7 @@ export default StyleSheet.create({
     height: windowWidth * 0.185,
     width: windowWidth * 0.185,
     margin: 3,
-    backgroundColor: "#E9E9E9",
+    backgroundColor: hex.white.white1,
     alignItems: "center",
     justifyContent: "center",
   },

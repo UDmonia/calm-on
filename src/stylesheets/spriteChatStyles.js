@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Dimensions } from 'react-native';
+import hex from "./hexCodes";
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeight = Dimensions.get('window').height;
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   },
   sendMessage: { 
     height: 55, 
-    backgroundColor: '#C4C4C4', 
+    backgroundColor: hex.grey.grey3, 
     justifyContent: "center", 
     alignItems: 'center', 
     flexDirection: 'row',
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   },
   optionBox: { 
     height: 200, 
-    backgroundColor: '#E5F2D8', 
+    backgroundColor: hex.green.green1, 
   },
   optionBoxItems: { 
     flexDirection: 'row', 

@@ -28,7 +28,39 @@ const getOther = (card, solution) => {
   return solution;
 };
 
+/**
+ * Custom Hook created by Dan Abramov
+ *
+ * useInterval Hook sets up an interval and clears it after unmounting.
+ * It’s a combo of setInterval and clearInterval tied to the component lifecycle.
+ *
+ * Source:
+ * - https://blog.logrocket.com/how-to-build-a-progress-bar-with-react-native/
+ * - https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+ */
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
 export default MatchTheColor = ({ navigation: { navigate } }) => {
+  const timer = 60;
+  const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
   const cards = useRef([solutionCard.current, getRandomColor(Colors)]);
@@ -64,6 +96,22 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
     });
   }, [effect]);
 
+  /**
+   * The useInterval hook is the work horse of this activity
+   * based on it's "1000" millisecond tick it will:
+   * - decrement the timer for the Intro sequence
+   * - once "introProgress" is 0, advance to Exercises sequence
+   * - "cycleCount" determines how many times we loop
+   * - "progress" is the timer for each individual exercise
+   * - once our "cycleCount" is 1 short of cycleLimit we procceed to
+   *  the kpi screen
+   */
+  useInterval(() => {
+    if (progress > 0) {
+      setProgress(progress - 1);
+    }
+  }, 1000);
+
   const drawCards = () => {
     solutionCard.current = getRandomColor(Colors);
     cardText.current = (getRandomColor(Colors));
@@ -81,7 +129,8 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
     setDis(() => true);
   };
 
-  console.log(dis);
+  //console.log(dis);
+  console.log(progress);
   return (
     <View style={styles.container}>
       <View style={styles.markView}>
