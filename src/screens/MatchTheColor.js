@@ -6,10 +6,11 @@ import {
   Image,
   TouchableOpacity,
   Animated,
-  SafeAreaView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
+import kpiData from "../data/kpiData";
 
 const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -21,9 +22,9 @@ const getOther = (card, solution) => {
     const index = Colors.findIndex((colors) => colors === solution);
     //console.log("index: " + index);
     const tempArray = Colors.slice();
-    tempArray.splice(index, 1)
+    tempArray.splice(index, 1);
     //tempArray.forEach((thing) => console.log(thing));
-    return getRandomColor(tempArray)
+    return getRandomColor(tempArray);
   }
   return solution;
 };
@@ -59,7 +60,7 @@ function useInterval(callback, delay) {
 }
 
 export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const timer = 60;
+  const timer = 10;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
@@ -68,32 +69,36 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   const rCardText = useRef(getRandomColor(cards.current));
   const lCardColor = useRef(getRandomColor(Colors));
   const lCardText = useRef(getOther(rCardText.current, solutionCard.current));
-  const [check, setCheck] = useState(false);
-  const [cross, setCross] = useState(false);
-  // const [correct, setCorrect] = useState(0);
+  const check = useRef(false);
+  const cross = useRef(false);
+  const [correct, setCorrect] = useState(0);
   // const [incorrect, setIncorrect] = useState(0);
   const Mark = useRef(new Animated.Value(0)).current;
-  const [dis, setDis] = useState(false);
+  const dis = useRef(false);
+  //const [dis, setDis] = useState(false);
   const [effect, setEffect] = useState(false);
+  const firstRender = useRef(true);
 
   useEffect(() => {
-    Animated.sequence([
-      Animated.timing(Mark, {
-        toValue: 1,
-        duration: 2000,
-        useNativeDriver: true,
-      }),
-      Animated.timing(Mark, {
-        toValue: 0,
-        duration: 2000,
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setCheck(false);
-      setCross(false);
-      drawCards();
-      setDis(() => false);
-    });
+    if (firstRender.current === false) {
+      Animated.sequence([
+        Animated.timing(Mark, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(Mark, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        console.log("what happed");
+        setMarks();
+        drawCards();
+        setCorrect(correct + 1);
+      });
+    }
   }, [effect]);
 
   /**
@@ -110,71 +115,123 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
     if (progress > 0) {
       setProgress(progress - 1);
     }
+    else {
+      navigate("kpi", {
+        bg: require("../../assets/trainSuperhero/background.png"),
+        pMsg: kpiData.trainSuperhero.primMsg,
+        sMsg: kpiData.trainSuperhero.secMsg,
+      });
+    }
   }, 1000);
+
+  const setMarks = () => {
+    check.current = false;
+    cross.current = false;
+    dis.current = false;
+    //setDis(false);
+  };
 
   const drawCards = () => {
     solutionCard.current = getRandomColor(Colors);
-    cardText.current = (getRandomColor(Colors));
-    cards.current = ([solutionCard.current, getRandomColor(Colors)]);
-    rCardColor.current = (getRandomColor(Colors));
-    rCardText.current = (getRandomColor(cards.current));
-    lCardColor.current = (getRandomColor(Colors));
-    lCardText.current = (getOther(rCardText.current, solutionCard.current));
+    cardText.current = getRandomColor(Colors);
+    cards.current = [solutionCard.current, getRandomColor(Colors)];
+    rCardColor.current = getRandomColor(Colors);
+    rCardText.current = getRandomColor(cards.current);
+    lCardColor.current = getRandomColor(Colors);
+    lCardText.current = getOther(rCardText.current, solutionCard.current);
+    //setDis(() => false);
   };
 
   const handlePress = (card) => {
-    card === solutionCard.current
-      ? (setCheck(true), setEffect(!effect))
-      : (setCross(true), setEffect(!effect));
-    setDis(() => true);
+    dis.current = true;
+    firstRender.current = false;
+    if (card === solutionCard.current) {
+      (check.current = true), setEffect(!effect);
+    } else {
+      (cross.current = true), setEffect(!effect);
+    }
+    //setDis(true);
+    //dis.current = true;
   };
 
-  //console.log(dis);
-  console.log(progress);
+  //console.log(dis.current);
+  console.log(firstRender.current);
+  //console.log(progress < 10 ? `00:0${progress}` : `00:${progress}`);
   return (
-    <View style={styles.container}>
-      <View style={styles.markView}>
-        <Animated.View style={{ opacity: Mark }}>
-          {check ? (
-            <Image source={require("../../assets/colorMatching/check.png")} />
-          ) : null}
-          {cross ? (
-            <Image source={require("../../assets/colorMatching/cross.png")} />
-          ) : null}
-        </Animated.View>
-      </View>
-      <View style={styles.solutionCard}>
-        <Text style={[styles.cardText, { color: solutionCard.current }]}>
-          {cardText.current}
+    <SafeAreaView style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "blue",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Image source={require("../../assets/colorMatching/clock.png")} />
+        <Text style={{ fontSize: 20, marginHorizontal: "2%" }}>
+          {progress < 10 ? `00:0${progress}` : `00:${progress}`}
         </Text>
       </View>
-
-      <View style={styles.buttonView}>
-        <TouchableOpacity
-          style={styles.colorButton}
-          onPress={() => {
-            // console.log("press " + (correct + incorrect));
-            handlePress(rCardText.current);
-          }}
-          disabled={dis}
-        >
-          <Text style={[styles.cardText, { color: rCardColor.current }]}>
-            {rCardText.current}
+      <View style={{ flex: 1, backgroundColor: "green", alignItems: "center" }}>
+        <View style={styles.markView}>
+          <Animated.View style={{ opacity: Mark }}>
+            {check.current ? (
+              <Image source={require("../../assets/colorMatching/check.png")} />
+            ) : null}
+            {cross.current ? (
+              <Image source={require("../../assets/colorMatching/cross.png")} />
+            ) : null}
+          </Animated.View>
+        </View>
+        <View style={styles.solutionCard}>
+          <Text style={[styles.cardText, { color: solutionCard.current }]}>
+            {cardText.current}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.colorButton}
-          onPress={() => {
-            //console.log("press " + (correct + incorrect));
-            handlePress(lCardText.current);
-          }}
-          disabled={dis}
-        >
-          <Text style={[styles.cardText, { color: lCardColor.current }]}>
-            {lCardText.current}
-          </Text>
-        </TouchableOpacity>
+        </View>
       </View>
-    </View>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "red",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>Place Holder</Text>
+      </View>
+      <View
+        style={{ flex: 1, backgroundColor: "pink", justifyContent: "center" }}
+      >
+        <View style={styles.buttonView}>
+          <TouchableOpacity
+            style={styles.colorButton}
+            onPress={() => {
+              // console.log("press " + (correct + incorrect));
+              handlePress(rCardText.current);
+            }}
+            disabled={dis.current}
+            // disabled={dis}
+          >
+            <Text style={[styles.cardText, { color: rCardColor.current }]}>
+              {rCardText.current}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.colorButton}
+            onPress={() => {
+              //console.log("press " + (correct + incorrect));
+              handlePress(lCardText.current);
+            }}
+            disabled={dis.current}
+            // disabled={dis}
+          >
+            <Text style={[styles.cardText, { color: lCardColor.current }]}>
+              {lCardText.current}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
