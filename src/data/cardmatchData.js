@@ -5,7 +5,9 @@ const Colors = [
     "red",
     "yellow",
     "green",
-    "pink"
+    "pink",
+    "purple",
+    "orange"
 ]
 
 export default Colors;

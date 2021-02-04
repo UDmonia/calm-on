@@ -60,7 +60,7 @@ function useInterval(callback, delay) {
 }
 
 export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const timer = 10;
+  const timer = 60;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
@@ -114,8 +114,7 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   useInterval(() => {
     if (progress > 0) {
       setProgress(progress - 1);
-    }
-    else {
+    } else {
       navigate("kpi", {
         bg: require("../../assets/trainSuperhero/background.png"),
         pMsg: kpiData.trainSuperhero.primMsg,
@@ -170,10 +169,13 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
       >
         <Image source={require("../../assets/colorMatching/clock.png")} />
         <Text style={{ fontSize: 20, marginHorizontal: "2%" }}>
-          {progress < 10 ? `00:0${progress}` : `00:${progress}`}
+          {progress >= 60 ? (`1:00`)
+          : (progress < 10 ? `0:0${progress}`: `0:${progress}`)}
         </Text>
       </View>
-      <View style={{ flex: 1, backgroundColor: "green", alignItems: "center" }}>
+      <View style={{ flex: 1, 
+        //backgroundColor: "green", 
+        alignItems: "center" }}>
         <View style={styles.markView}>
           <Animated.View style={{ opacity: Mark }}>
             {check.current ? (
@@ -193,12 +195,41 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
       <View
         style={{
           flex: 1,
-          backgroundColor: "red",
+          backgroundColor: "yellow",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Text>Place Holder</Text>
+        <Animated.View style={{ opacity: Mark }}>
+          {check.current ? (
+            <View style={{ alignItems: "center" }}>
+              <Text
+                style={{ color: "green", fontSize: 24, fontFamily: "FontBold" }}
+              >
+                Correct!
+              </Text>
+              <Text
+                style={{ color: "green", fontSize: 24, fontFamily: "FontBold" }}
+              >
+                +1
+              </Text>
+            </View>
+          ) : null}
+          {cross.current ? (
+            <View style={{ alignItems: "center" }}>
+              <Text
+                style={{ color: "red", fontSize: 24, fontFamily: "FontBold" }}
+              >
+                Incorrect!
+              </Text>
+              <Text
+                style={{ color: "red", fontSize: 24, fontFamily: "FontBold" }}
+              >
+                -1
+              </Text>
+            </View>
+          ) : null}
+        </Animated.View>
       </View>
       <View
         style={{ flex: 1, backgroundColor: "pink", justifyContent: "center" }}
