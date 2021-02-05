@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   Animated,
-  SafeAreaView,
   Text,
   View,
   StyleSheet,
@@ -11,6 +10,7 @@ import {
 import styles from "../stylesheets/screens/trainSuperheroStyles";
 import kpiData from "../data/kpiData";
 import exerciseData from "../data/trainSuperheroData";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 /**
  * Custom Hook created by Dan Abramov
