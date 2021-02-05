@@ -2,31 +2,48 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    //justifyContent: "center",
-    //alignItems: "center",
     flex: 1,
-    //backgroundColor: "grey",
+  },
+  clockView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  clock: {
+    fontSize: 20,
+    marginHorizontal: "2%",
+  },
+  solutionView: {
+    flex: 1,
+    alignItems: "center",
+  },
+  textView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  scoreText: {
+    alignItems: "center",
+  },
+  score: {
+    fontSize: 24,
+    fontFamily: "FontBold",
   },
   markView: {
     height: "30%",
-    //justifyContent: "flex-end",
-    //alignItems: "center",
-    //marginTop: "70%",
-    marginBottom: "-3%",
+    marginBottom: "-5%",
     zIndex: 2,
-    // backgroundColor: "grey",
   },
   solutionCard: {
     height: "45%",
     width: "55%",
-    //backgroundColor: "grey",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "black",
     borderRadius: 4,
     overflow: "visible",
-    //backgroundColor: "pink",
   },
   cardText: {
     fontFamily: "FontReg",
@@ -36,20 +53,20 @@ export default StyleSheet.create({
     textAlign: "center",
   },
   buttonView: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  buttons: {
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
     height: "45%",
     width: "100%",
-    //padding: "5%",
-    //marginTop: "50%",
-    backgroundColor: "blue",
   },
   colorButton: {
     display: "flex",
     height: "100%",
     width: "40%",
-    //backgroundColor: "grey",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
