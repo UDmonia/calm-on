@@ -70,7 +70,15 @@ const kpiData = {
     img:  null,
     likeApi: null,
     confusedApi: null,
-  }
+  },
+  matching: {
+    title: "colorMatching",
+    primMsg: "Well Done!",
+    secMsg: "You can try out some of our other activities.",
+    img:  null,
+    likeApi: null,
+    confusedApi: null,
+  },
 };
 
 export default kpiData;

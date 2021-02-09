@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Animated,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
@@ -15,6 +9,11 @@ const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
+/**
+ *
+ * @param {String} card : string value to compare with solution
+ * @param {*} solution
+ */
 const getOther = (card, solution) => {
   if (card === solution) {
     const index = Colors.findIndex((colors) => colors === solution);
@@ -55,8 +54,8 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-export default MatchTheColor = ({ navigation: { navigate } }) => {
-  const timer = 60;
+export default MatchTheColor = ({ navigation }) => {
+  const timer = 10;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
@@ -68,12 +67,13 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
   const check = useRef(false);
   const cross = useRef(false);
   const [reRender, setReRender] = useState(0);
-  // const correct = useRef(0)
-  // const incorrect = useSta(0);
   const Mark = useRef(new Animated.Value(0)).current;
   const disa = useRef(false);
   const [effect, setEffect] = useState(false);
   const firstRender = useRef(true);
+  // NOTE: correct and incrrect are intended to be used later for keeping track of score
+  // const correct = useRef(0)
+  // const incorrect = useSta(0);
 
   useEffect(() => {
     if (firstRender.current === false) {
@@ -110,20 +110,24 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
     if (progress > 0) {
       setProgress(progress - 1);
     } else {
-      navigate("kpi", {
-        bg: require("../../assets/trainSuperhero/background.png"),
-        pMsg: kpiData.trainSuperhero.primMsg,
-        sMsg: kpiData.trainSuperhero.secMsg,
-      });
+      navigation.pop();
+      navigation.navigate("MatchScore");
     }
   }, 1000);
 
+  /**
+   * Reset flags after animation
+   * reenable button pressses
+   */
   const setMarks = () => {
     check.current = false;
     cross.current = false;
     disa.current = false;
   };
 
+  /**
+   * intalize next set of cards
+   */
   const drawCards = () => {
     solutionCard.current = getRandomColor(Colors);
     cardText.current = getRandomColor(Colors);
@@ -134,6 +138,11 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
     lCardText.current = getOther(rCardText.current, solutionCard.current);
   };
 
+  /**
+   * compares the passed card with the solution card and sets the appropiate flag
+   *
+   * @param {String} card : value to compare to the solution
+   */
   const handlePress = (card) => {
     disa.current = true;
     firstRender.current = false;
@@ -144,30 +153,61 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
     }
   };
 
-  //console.log(dis.current);
-  //console.log(firstRender.current);
-  //console.log(progress < 10 ? `00:0${progress}` : `00:${progress}`);
+  /**
+   * formats the timer display
+   */
+  const timerFormat = () => {
+    if (progress >= 60) {
+      return `1:00`;
+    } else if (progress < 10) {
+      return `0:0${progress}`;
+    } else {
+      return `0:${progress}`;
+    }
+  };
+
+  /**
+   * returns the correct mark based on a correct or wrong answer
+   */
+  const dispalyMark = () => {
+    if (check.current) {
+      return <Image source={require("../../assets/colorMatching/check.png")} />;
+    }
+    if (cross.current) {
+      return <Image source={require("../../assets/colorMatching/cross.png")} />;
+    }
+  };
+
+  /**
+   * returns a view for the score text
+   */
+  const displayScore = () => {
+    if (check.current) {
+      return (
+        <View style={styles.scoreText}>
+          <Text style={[{ color: "#FFD00D" }, styles.score]}>+1</Text>
+        </View>
+      );
+    }
+    if (cross.current) {
+      return (
+        <View style={styles.scoreText}>
+          <Text style={[{ color: "#000000" }, styles.score]}>-1</Text>
+        </View>
+      );
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.clockView}>
         <Image source={require("../../assets/colorMatching/clock.png")} />
-        <Text style={styles.clock}>
-          {progress >= 60
-            ? `1:00`
-            : progress < 10
-            ? `0:0${progress}`
-            : `0:${progress}`}
-        </Text>
+        <Text style={styles.clock}>{timerFormat()}</Text>
       </View>
       <View style={styles.solutionView}>
         <View style={styles.markView}>
           <Animated.View style={{ opacity: Mark }}>
-            {check.current ? (
-              <Image source={require("../../assets/colorMatching/check.png")} />
-            ) : null}
-            {cross.current ? (
-              <Image source={require("../../assets/colorMatching/cross.png")} />
-            ) : null}
+            {dispalyMark()}
           </Animated.View>
         </View>
         <View style={styles.solutionCard}>
@@ -178,27 +218,14 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
       </View>
       <View style={styles.textView}>
         <Animated.View style={{ opacity: Mark }}>
-          {check.current ? (
-            <View style={styles.scoreText}>
-              <Text style={[{ color: "green" }, styles.score]}>Correct!</Text>
-              <Text style={[{ color: "green" }, styles.score]}>+1</Text>
-            </View>
-          ) : null}
-          {cross.current ? (
-            <View style={styles.scoreText}>
-              <Text style={[{ color: "red" }, styles.score]}>Incorrect!</Text>
-              <Text style={[{ color: "red" }, styles.score]}>-1</Text>
-            </View>
-          ) : null}
+          {displayScore()}
         </Animated.View>
       </View>
       <View style={styles.buttonView}>
         <View style={styles.buttons}>
           <TouchableOpacity
             style={styles.colorButton}
-            onPress={() => {
-              handlePress(rCardText.current);
-            }}
+            onPress={() => handlePress(rCardText.current)}
             disabled={disa.current}
           >
             <Text style={[styles.cardText, { color: rCardColor.current }]}>
@@ -207,9 +234,7 @@ export default MatchTheColor = ({ navigation: { navigate } }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.colorButton}
-            onPress={() => {
-              handlePress(lCardText.current);
-            }}
+            onPress={() => handlePress(lCardText.current)}
             disabled={disa.current}
           >
             <Text style={[styles.cardText, { color: lCardColor.current }]}>

@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#886AB7",
   },
   clockView: {
     flex: 1,
@@ -12,6 +13,7 @@ export default StyleSheet.create({
   },
   clock: {
     fontSize: 20,
+    color: "#FFFFFF",
     marginHorizontal: "2%",
   },
   solutionView: {
@@ -27,7 +29,7 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   score: {
-    fontSize: 24,
+    fontSize: 64,
     fontFamily: "FontBold",
   },
   markView: {
@@ -44,12 +46,14 @@ export default StyleSheet.create({
     borderColor: "black",
     borderRadius: 4,
     overflow: "visible",
+    backgroundColor: "#FFFFFF"
   },
   cardText: {
     fontFamily: "FontReg",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 30,
+    fontWeight: "600",
+    fontSize: 36,
     textAlign: "center",
   },
   buttonView: {
@@ -71,6 +75,7 @@ export default StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: "black",
+    backgroundColor: "#FFFFFF",
     borderRadius: 4,
     shadowColor: "black",
     shadowOffset: {

@@ -35,6 +35,7 @@ import AdventureLocationSeeAll from "./src/screens/AdventureLocationSeeAll.js";
 import FlatActivities from "./src/screens/FlatActivities.js";
 import IntroActivity from "./src/screens/IntroActivity.js";
 import MatchTheColor from "./src/screens/MatchTheColor.js";
+import MatchScore from "./src/screens/MatchScore.js";
 import Modal from "./src/components/Modal";
 import { ModalOptions } from "./src/components/Modal";
 import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
@@ -253,6 +254,13 @@ export default function App() {
           <Stack.Screen
             name="MatchTheColor"
             component={MatchTheColor}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="MatchScore"
+            component={MatchScore}
             options={{
               headerShown: false,
             }}
