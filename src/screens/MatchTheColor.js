@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
-import kpiData from "../data/kpiData";
+import Exit from "../components/Exit";
 
 const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -11,8 +11,8 @@ const getRandomColor = (colors) => {
 
 /**
  *
- * @param {String} card : string value to compare with solution
- * @param {*} solution
+ * @param {{text: String, color: String}} card : Object value to compare with solution
+ * @param {{text: String, color: String}} solution :  Object solution
  */
 const getOther = (card, solution) => {
   if (card === solution) {
@@ -55,7 +55,7 @@ function useInterval(callback, delay) {
 }
 
 export default MatchTheColor = ({ navigation }) => {
-  const timer = 10;
+  const timer = 60;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
@@ -72,14 +72,14 @@ export default MatchTheColor = ({ navigation }) => {
   const [effect, setEffect] = useState(false);
   const firstRender = useRef(true);
   // NOTE: correct and incrrect are intended to be used later for keeping track of score
-  // const correct = useRef(0)
-  // const incorrect = useSta(0);
+  const correct = useRef(0);
+  const incorrect = useRef(0);
 
   useEffect(() => {
     if (firstRender.current === false) {
       Animated.sequence([
         Animated.timing(Mark, {
-          toValue: 1,
+          toValue: 2,
           duration: 500,
           useNativeDriver: true,
         }),
@@ -110,8 +110,11 @@ export default MatchTheColor = ({ navigation }) => {
     if (progress > 0) {
       setProgress(progress - 1);
     } else {
+      //console.log(correct.current - incorrect.current);
       navigation.pop();
-      navigation.navigate("MatchScore");
+      navigation.navigate("MatchScore", {
+        score: correct.current - incorrect.current,
+      });
     }
   }, 1000);
 
@@ -146,10 +149,12 @@ export default MatchTheColor = ({ navigation }) => {
   const handlePress = (card) => {
     disa.current = true;
     firstRender.current = false;
-    if (card === solutionCard.current) {
+    if (card === solutionCard.current.text) {
       (check.current = true), setEffect(!effect);
+      correct.current = correct.current + 1;
     } else {
       (cross.current = true), setEffect(!effect);
+      incorrect.current = incorrect.current + 1;
     }
   };
 
@@ -201,6 +206,7 @@ export default MatchTheColor = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.clockView}>
+        <Exit navTo={"Modal"} />
         <Image source={require("../../assets/colorMatching/clock.png")} />
         <Text style={styles.clock}>{timerFormat()}</Text>
       </View>
@@ -211,8 +217,10 @@ export default MatchTheColor = ({ navigation }) => {
           </Animated.View>
         </View>
         <View style={styles.solutionCard}>
-          <Text style={[styles.cardText, { color: solutionCard.current }]}>
-            {cardText.current}
+          <Text
+            style={[styles.cardText, { color: solutionCard.current.color }]}
+          >
+            {cardText.current.text}
           </Text>
         </View>
       </View>
@@ -225,20 +233,24 @@ export default MatchTheColor = ({ navigation }) => {
         <View style={styles.buttons}>
           <TouchableOpacity
             style={styles.colorButton}
-            onPress={() => handlePress(rCardText.current)}
+            onPress={() => handlePress(rCardText.current.text)}
             disabled={disa.current}
           >
-            <Text style={[styles.cardText, { color: rCardColor.current }]}>
-              {rCardText.current}
+            <Text
+              style={[styles.cardText, { color: rCardColor.current.color }]}
+            >
+              {rCardText.current.text}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.colorButton}
-            onPress={() => handlePress(lCardText.current)}
+            onPress={() => handlePress(lCardText.current.text)}
             disabled={disa.current}
           >
-            <Text style={[styles.cardText, { color: lCardColor.current }]}>
-              {lCardText.current}
+            <Text
+              style={[styles.cardText, { color: lCardColor.current.color }]}
+            >
+              {lCardText.current.text}
             </Text>
           </TouchableOpacity>
         </View>

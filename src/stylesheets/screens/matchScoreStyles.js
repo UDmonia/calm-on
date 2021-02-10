@@ -5,9 +5,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#886AB7",
   },
-  View1: {
+  topView: {
     flex: 1,
-    backgroundColor: "green",
+    // backgroundColor: "green",
     alignItems: "center",
     justifyContent: "flex-end",
   },
@@ -41,14 +41,14 @@ export default StyleSheet.create({
     color: "#FFFFFF",
     marginTop: "6%",
   },
-  View2: {
+  midView: {
     flex: 1,
-    backgroundColor: "blue",
+    // backgroundColor: "blue",
     alignItems: "center",
   },
-  View3: {
+  bottomView: {
     flex: 1,
-    backgroundColor: "red",
+    // backgroundColor: "red",
     alignItems: "center",
     justifyContent: "space-evenly",
   },
