@@ -206,9 +206,16 @@ export default MatchTheColor = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.clockView}>
-        <Exit navTo={"Modal"} />
-        <Image source={require("../../assets/colorMatching/clock.png")} />
-        <Text style={styles.clock}>{timerFormat()}</Text>
+        <View style={styles.exit}>
+          <Exit
+            navTo={"Modal"}
+            img={require("../../assets/colorMatching/exit.png")}
+          />
+        </View>
+        <View style={styles.timerView}>
+          <Image source={require("../../assets/colorMatching/clock.png")} />
+          <Text style={styles.clock}>{timerFormat()}</Text>
+        </View>
       </View>
       <View style={styles.solutionView}>
         <View style={styles.markView}>
