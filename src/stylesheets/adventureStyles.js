@@ -24,7 +24,15 @@ export default StyleSheet.create({
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: hex.blue.blue3,
+    backgroundColor: hex.grey.grey2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   dialogContainer: {
     height: "30%",

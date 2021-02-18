@@ -6,7 +6,14 @@ export default StyleSheet.create({
         display:"flex",
         backgroundColor: '#1A2B44',
         height: "100%",
-        padding: "7%",
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        alignItems: "center",
+    },
+    exitContainer: {
+        width: "90%"
+    },
+    exitButton: {
+        
     },
     topText: {
         height: "20%",
@@ -17,13 +24,13 @@ export default StyleSheet.create({
     },
     title: {
         color: "white",
-        fontSize: windowWidth * 0.06,
+        fontSize: windowWidth * 0.08,
         fontFamily: "FontBold",
     },
     bottomContainer: {
         flex: 4.5,
         backgroundColor: "white",
-        width: "100%",
+        width: "90%",
         borderRadius: 5,
     },
     itemContainer: {
@@ -48,12 +55,12 @@ export default StyleSheet.create({
         width: "100%",
     },
     itemTitle: {
-        fontSize:  windowWidth * 0.04,
+        fontSize:  windowWidth * 0.055,
         color: "black",
         fontFamily: "FontBold",
     },
     itemDescription: {
-        fontSize: windowWidth * 0.03,
+        fontSize: windowWidth * 0.045,
         color: "black",
         fontFamily: "FontReg",
     },
