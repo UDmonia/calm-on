@@ -4,6 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
 import Exit from "../components/Exit";
+import {connect} from 'react-redux';
+import {addScore, receiveScore} from "../actions/score";
 
 const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -22,6 +24,16 @@ const getOther = (card, solution) => {
     return getRandomColor(tempArray);
   }
   return solution;
+};
+
+const mapStatetoProps = (state) => {
+  return {
+    score: state.score.score
+  };
+};
+
+const mapDispatchtoProps = (state) => {
+
 };
 
 /**
@@ -55,7 +67,7 @@ function useInterval(callback, delay) {
 }
 
 export default MatchTheColor = ({ navigation }) => {
-  const timer = 60;
+  const timer = 20;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
@@ -113,10 +125,20 @@ export default MatchTheColor = ({ navigation }) => {
       //console.log(correct.current - incorrect.current);
       navigation.pop();
       navigation.navigate("MatchScore", {
-        score: correct.current - incorrect.current,
+        //score: correct.current - incorrect.current,
+        score: getScore(),
       });
     }
   }, 1000);
+
+  const getScore = () => {
+    if ((correct.current - incorrect.current) <= 0){
+      return 0;
+    }
+    else {
+      return (correct.current - incorrect.current);
+    }
+  }
 
   /**
    * Reset flags after animation

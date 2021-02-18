@@ -19,7 +19,7 @@ export default MatchScore = ({ route, navigation: { navigate } }) => {
       <View style={styles.midView}>
         <Text style={styles.message}>You Got</Text>
         <Text style={styles.score}>{route.params.score}</Text>
-        <Text style={styles.message}>Correct</Text>
+        <Text style={styles.message}>Points</Text>
         <Text style={styles.bestScore}>
           Best Score : (place holder) correct
         </Text>
