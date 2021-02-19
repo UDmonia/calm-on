@@ -21,45 +21,46 @@ export default Intro = ({ route, navigation }) => {
       </View>
       <View style={styles.lower}>
         {/* <Text style={styles.title}>{route.params.name}</Text> */}
-        <View style={styles.statsRow}>
-          <View style= {styles.statData}>
-            <Text style={styles.stats}>2</Text>
-            <Text style={[styles.statType, { color: headerColor }]}>
-              Time (mins)
-            </Text>
-          </View>
-
-          <View style= {styles.statData}>
-            <View
-              style={styles.border}
-            >
-              <Text style={styles.stats}>1</Text>
+        <View>
+          <View style={styles.statsRow}>
+            <View style= {styles.statData}>
+              <Text style={styles.stats}>2</Text>
               <Text style={[styles.statType, { color: headerColor }]}>
-                Time(s) Completed
+                Time (mins)
+              </Text>
+            </View>
+
+            <View style= {styles.statData}>
+              <View
+                style={styles.border}
+              >
+                <Text style={styles.stats}>1</Text>
+                <Text style={[styles.statType, { color: headerColor }]}>
+                  Time(s) Completed
+                </Text>
+              </View>
+            </View>
+
+            <View style= {styles.statData}>
+              <TouchableOpacity>
+                <Image
+                  style={styles.fav}
+                  source={require("../../assets/images/favorite.png")}
+                />
+              </TouchableOpacity>
+              <Text style={[styles.statType, { color: headerColor }]}>
+                Add to Favorite
               </Text>
             </View>
           </View>
+          <Text style={[styles.sectionTitle, { color: headerColor }]}>About</Text>
+          {/* This could be used if we want to include a duration estimate of activity */}
+          {/* <Text style={styles.descriptions}></Text> */}
+          <Text style={styles.descriptions}>{route.params.about}</Text>
 
-          <View style= {styles.statData}>
-            <TouchableOpacity>
-              <Image
-                style={styles.fav}
-                source={require("../../assets/images/favorite.png")}
-              />
-            </TouchableOpacity>
-            <Text style={[styles.statType, { color: headerColor }]}>
-              Add to Favorite
-            </Text>
-          </View>
+          <Text style={[styles.sectionTitle, { color: headerColor }]}>Helpful when..</Text>
+          <Text style={styles.descriptions}>{route.params.helpful}</Text>
         </View>
-        <Text style={styles.sectionTitle}>About</Text>
-        {/* This could be used if we want to include a duration estimate of activity */}
-        {/* <Text style={styles.descriptions}></Text> */}
-        <Text style={styles.descriptions}>{route.params.about}</Text>
-
-        <Text style={styles.sectionTitle}>Helpful when..</Text>
-        <Text style={styles.descriptions}>{route.params.helpful}</Text>
-
         <TouchableOpacity
           onPress={() => navigation.navigate(route.params.actNav)}
           style={[styles.start, { backgroundColor: headerColor }]}

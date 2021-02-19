@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   View,
-  Text,
   ImageBackground,
   Image,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import Text from "../components/Text";
+import hex from "../stylesheets/hexCodes";
 import styles from "../stylesheets/countingStyles";
 import bg from "../../assets/counting/backdrop.png";
 import sprit from "../../assets/counting/spirit1.png";
@@ -30,11 +31,11 @@ function getBoxes(box) {
   return null;
 }
 
-function fruitObjects(fruit, boxed, setBox, count, setCount, flag) {
+function fruitObjects(fruit, boxed, setBox, count, setCount, flag, positionList) {
   const [canSee, setSee] = useState(true);
   if (canSee) {
     return (
-      <View key={fruit.id} style={[styles.fruit, fruit.xpos]}>
+      <View key={fruit.id} style={[styles.fruit, positionList[fruit.id - 1]]}>
         <TouchableOpacity
           onPress={() => {
             setSee(false);
@@ -49,7 +50,7 @@ function fruitObjects(fruit, boxed, setBox, count, setCount, flag) {
             setCount(count + 1);
           }}
         >
-          <Image source={fruit.img} />
+          <Image source={fruit.img} style={styles.fruitImg}/>
         </TouchableOpacity>
       </View>
     );
@@ -61,6 +62,7 @@ export default Counting = ({ route, navigation }) => {
   const [boxed, setBox] = useState([]);
   const [count, setCount] = useState(0);
   const { stuff } = route.params;
+  const { positionList } = route.params;
   const scrollViewRef = useRef();
 
   function doTheThing() {
@@ -79,7 +81,7 @@ export default Counting = ({ route, navigation }) => {
         </View>
         <View style={styles.countDis}>
           {count > 0 ? (
-            <Text style={{ color: "#FFFFFF" }}>
+            <Text style={{ color: hex.white.white1 }}>
               {count + " " + stuff.groupName}
             </Text>
           ) : null}
@@ -99,7 +101,7 @@ export default Counting = ({ route, navigation }) => {
         </ScrollView>
         <View style={styles.fruitZone}>
           {stuff.items.map((fruit) => {
-            return fruitObjects(fruit, boxed, setBox, count, setCount, "fruit");
+            return fruitObjects(fruit, boxed, setBox, count, setCount, "fruit", positionList);
           })}
         </View>
         <View style={styles.spritBox}>

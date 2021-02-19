@@ -1,3 +1,4 @@
+import hex from "./hexCodes";
 import { StyleSheet } from "react-native";
 import { windowWidth } from "../util/windowDimensions";
 
@@ -23,15 +24,23 @@ export default StyleSheet.create({
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#9AE7FF",
+    backgroundColor: hex.grey.grey2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   dialogContainer: {
     height: "30%",
     width: "90%",
     borderRadius: 10,
-    backgroundColor: "#027E2A",
     justifyContent: "center",
     paddingHorizontal: "5.5%",
+    backgroundColor: hex.brown.brown1,
   },
   locationTxt: {
     marginTop: 5,

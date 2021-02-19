@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   ImageBackground,
   Image,
   TouchableOpacity,
 } from "react-native";
+import Text from "../components/Text";
+import hex from '../stylesheets/hexCodes';
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
 import Recipes from "../data/countingData";
 import Exit from "../components/Exit";
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 
 /**
  * This componet is the starting point for the counting activity
@@ -20,6 +22,17 @@ import Exit from "../components/Exit";
  * @param { object } stuff  - json object containing recipe data
  */
 export default CountingSelection = ({ navigation: { navigate } }) => {
+  var positionList = [];
+  async function randomizePosition() {
+    var i;
+    for(i = 0; i < Recipes.start.items.length; i++) {
+      var xpos = {
+        top: parseFloat((Math.random() * ((windowHeight * 0.350) - (windowHeight * 0.005)) + (windowHeight * 0.005)).toFixed(3)),
+        left: parseFloat((Math.random() * ((windowWidth * 0.895) - (windowWidth * 0.005)) + (windowWidth * 0.005)).toFixed(3)),
+      }
+      positionList.push(xpos);
+    }
+  }
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>
@@ -39,9 +52,11 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
           />
           <TouchableOpacity
             style={styles.nextButton}
-            onPress={() => navigate("Counting", { stuff: Recipes.start })}
+            onPress={() => {
+              randomizePosition().then(navigate("Counting", { stuff: Recipes.start, positionList: positionList }));
+            }}
           >
-            <Text style={{ color: "#3B96B2" }}>Fruits</Text>
+            <Text style={{ color: hex.white.white1 }}>Fruits</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

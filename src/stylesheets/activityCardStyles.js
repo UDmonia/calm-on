@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 export default StyleSheet.create({
     container: {
@@ -22,7 +23,7 @@ export default StyleSheet.create({
         justifyContent: "space-evenly",
         alignItems: "center",
         borderRadius: 10,
-        shadowColor: "#000",
+        shadowColor: hex.black.black1,
         shadowOffset: {
             width: 0,
             height: 4,
@@ -30,6 +31,10 @@ export default StyleSheet.create({
         shadowOpacity: 0.30,
         shadowRadius: 4.65,
         elevation: 6,
+    },
+    textContainer: {
+        height: "60%",
+        width: "40%",
     },
     title: {
         fontFamily: "FontReg",

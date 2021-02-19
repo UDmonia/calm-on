@@ -9,10 +9,14 @@ import {
 } from "react-native";
 import Exit from "../components/Exit";
 import styles from "../stylesheets/adventureLocationStyles";
-// import locationData from "./locationData";
 import { navigate } from "../components/RootNavigation";
-// import locationData from "./locationData";
-import kpiData from "../data/kpiData";
+import Button from "../components/Button";
+import {
+  horizontalLength,
+  horizontalPosition,
+  bottomPosition,
+  topPosition,
+} from "../util/boxBreathingMeasurements";
 
 /**
  * AdventureLocation is a single screen in the adventures activity.
@@ -27,8 +31,8 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
   const { exitAsset } = route.params;
-  // const locationData = locationData;
-
+  const {kpiData} = route.params;
+  
   function handleAlphaButtonPress(item) {
     // Add item to the bottom basket
     // After each press we increment our index through "locationData"
@@ -44,14 +48,6 @@ export default AdventureLocation = ({ route, navigation }) => {
         { id: item.id, name: item.itemName, img: item.image },
       ]);
       setDone(true);
-    }
-    // TODO: when designs are finalized replace "true" with another flag that will end the activity
-    else if (done && true) {
-      navigate("kpi", {
-        bg: locationBackgroundTint,
-        pMsg: kpiData.adventure.primMsg,
-        sMsg: kpiData.adventure.secMsg,
-      });
     }
   }
 
@@ -83,6 +79,19 @@ export default AdventureLocation = ({ route, navigation }) => {
         style={styles.background}
         imageStyle={styles.imgBackground}
       >
+        {done && (
+          <Button
+            styles={styles.doneButton}
+            onPress={() =>
+              navigate("kpi", {
+                bg: locationBackgroundTint,
+                pMsg: kpiData.primMsg,
+                sMsg: kpiData.secMsg,
+              })
+            }
+            text={"Done"}
+          />
+        )}
         <View style={styles.exitPosition}>
           <Exit navTo={"Modal"} img={exitAsset} />
         </View>

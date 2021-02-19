@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import hex from "./hexCodes";
 
 export default StyleSheet.create({
     mainContainer: {
-        backgroundColor: "#019F66",
+        backgroundColor: hex.green.green1,
         height: "100%",
     },
     imgBackground: {
@@ -67,7 +68,7 @@ export default StyleSheet.create({
         marginTop: "15%",
     },
     backButton: {
-        backgroundColor:"#2E7D32",
+        backgroundColor:hex.green.green1,
         minWidth: "100%",
         minHeight: "20%",
         borderRadius: 100,
@@ -87,6 +88,7 @@ export default StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 20,
         padding: "5%",
+        marginTop: "5%",
         alignItems: "center",
         justifyContent: "space-between",
     },
@@ -110,6 +112,8 @@ export default StyleSheet.create({
     textArea: {
         fontFamily: "FontReg",
         justifyContent: "flex-start",
+        flex: 1,
+        textAlignVertical: "top",
     },
     modalText: {
         fontFamily: "FontReg",
@@ -117,7 +121,7 @@ export default StyleSheet.create({
         fontSize: 40,
     },
     ModalBackButton: {
-        backgroundColor:"#2E7D32",
+        backgroundColor:hex.green.green1,
         minWidth: "50%",
         height: "50%",
         borderRadius: 100,

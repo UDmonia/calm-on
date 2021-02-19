@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
+import hex from "./hexCodes";
+
 export default StyleSheet.create({
   background: {
     resizeMode: "cover",
@@ -29,12 +31,12 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   topButtons: {
-    borderColor: "#8161B2",
+    borderColor: hex.purple.purple2,
   },
   topButtonText: {
     fontSize: 25,
     color: "white",
-    fontFamily: "FontReg"
+    fontFamily: "FontReg",
   },
   bottomButton: {
     backgroundColor: "#8AABFF",
@@ -59,7 +61,7 @@ export default StyleSheet.create({
   input: {
     //borderColor: 'grey',
     backgroundColor: "white",
-    height: 40,
+    height: "100%",
     borderRadius: 5,
     fontSize: 18,
     padding: "2%",
@@ -102,7 +104,7 @@ export default StyleSheet.create({
   titleText: {
     fontSize: 18,
     fontWeight: "bold",
-    fontFamily: "FontReg"
+    fontFamily: "FontReg",
   },
   userNameBodyText: {
     fontSize: 18,
@@ -128,7 +130,7 @@ export default StyleSheet.create({
   },
   userNameInput: {
     padding: 10,
-    backgroundColor: "#E7E7E7",
+    backgroundColor: hex.grey.grey2,
     borderRadius: 5,
     width: 219,
     textAlign: "center",

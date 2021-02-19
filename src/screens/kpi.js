@@ -7,6 +7,8 @@ import {
   Modal,
   TextInput,
   ImageBackground,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import styles from "../stylesheets/kpiStyles";
@@ -43,6 +45,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
           visible={modalVisible}
           transparent={true}
         >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <TouchableOpacity
@@ -82,6 +85,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
               </View>
             </View>
           </View>
+          </TouchableWithoutFeedback>
         </Modal>
         {/*Need to add background image here on this container*/}
         <View style={styles.container}>
