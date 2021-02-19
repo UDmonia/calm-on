@@ -1,5 +1,8 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text,
+  View,
+  SafeAreaView,
+  Image } from 'react-native';
 import styles from "../stylesheets/healthyHabitsTemplateStyles";
 import Exit from "../components/Exit.js";
 import habitData from "../data/habitData";
@@ -31,8 +34,10 @@ export default function HealthyHabitsTemplate({ route }) {
     pageName = pageName.replace(/\s/g, '');
 
     return (
-      <View style={[styles.container, {backgroundColor: habitData[pageName].color }]}>
-        <Exit img={require("../../assets/exit/whtExitBtn.png")} navTo={"Modal"} />
+      <SafeAreaView style={[styles.container, {backgroundColor: habitData[pageName].color }]}>
+        <View style={styles.exitContainer}>
+          <Exit style={styles.exitButton} img={require("../../assets/exit/whtExitBtn.png")} navTo={"Modal"} />
+        </View>
         <View style={styles.topText}>
           <Text style={styles.title}>{route.params.name}</Text>
         </View>
@@ -47,6 +52,6 @@ export default function HealthyHabitsTemplate({ route }) {
             />
           )}
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
