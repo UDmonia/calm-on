@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -8,7 +8,9 @@ import {
   Slider,
   SafeAreaView,
   StatusBar,
+  Modal,
 } from "react-native";
+import ViewShot from "react-native-view-shot";
 import styles from "../stylesheets/coloringPageStyles";
 import Exit from "../components/Exit";
 import FreeSample from "../data/ColoringActivityImages/Freesample";
@@ -26,6 +28,7 @@ export default function ColoringPage() {
     setStepsTaken([]);
     setLastFilled(-1);
     setCurrPointer(0);
+    setCurrentColor(oldColor);
   }
   function handleUndo() {
     if (currPointer != 0) {
@@ -56,10 +59,10 @@ export default function ColoringPage() {
       index: i,
       color: currentColor,
     };
-    console.log("----------");
-    console.log(lastFilled);
-    console.log(currStep);
-    console.log(currStep === lastFilled);
+    // console.log("----------");
+    // console.log(lastFilled);
+    // console.log(currStep);
+    // console.log(currStep === lastFilled);
     newFillColors[i] = currentColor;
     setFillColors(newFillColors);
     // set the last filled to what you currently set the color to, this is for checking for double clicks
@@ -82,29 +85,66 @@ export default function ColoringPage() {
     }
   };
   const oldColor = hexCodes.purple.aurora;
+  const viewShotRef = useRef(null);
   const [fillColors, setFillColors] = useState(Array(50).fill("white"));
   const [currentColor, setCurrentColor] = useState(oldColor);
   const [lastFilled, setLastFilled] = useState();
   const [stepsTaken, setStepsTaken] = useState([]);
   const [currPointer, setCurrPointer] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [uri, setUri] = useState("");
 
   return (
     <SafeAreaView style={styles.container}>
+      <Modal
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            {uri ? (
+              <Image
+                style={{
+                  height: 500,
+                  width: 200,
+                  resizeMode: "contain",
+                }}
+                source={{ uri }}
+              ></Image>
+            ) : (
+              <Text>No IMAGE</Text>
+            )}
+            <TouchableOpacity
+              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <View style={styles.exitContainer}>
         <Exit />
       </View>
       <View style={styles.mainImageContainer}>
         <View style={styles.leftSide} />
-        <View style={styles.centerSection}>
-          <FreeSample
-            height={windowHeight * 0.785}
-            width={windowWidth * 0.72}
-            handlePress={handlePress}
-            fillColors={fillColors}
-            onFill={onFillColor}
-            style={styles.img}
-          />
-        </View>
+        <ViewShot ref={viewShotRef} options={{ format: "jpg", quality: 0.9 }}>
+          <View style={styles.centerSection}>
+            <FreeSample
+              height={windowHeight * 0.785}
+              width={windowWidth * 0.72}
+              handlePress={handlePress}
+              fillColors={fillColors}
+              onFill={onFillColor}
+              style={styles.img}
+            />
+          </View>
+        </ViewShot>
         <View style={styles.rightSide}>
           <View style={styles.lineupContainer}>
             <View style={styles.sliderContainer}>
@@ -128,6 +168,16 @@ export default function ColoringPage() {
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress()}>
             <Text>Steps Taken</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.openButton}
+            onPress={async () => {
+              setModalVisible(true);
+              const uri = await viewShotRef.current.capture();
+              setUri(uri);
+            }}
+          >
+            <Text style={styles.textStyle}>Snapshot</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.sliderContainer}></View>

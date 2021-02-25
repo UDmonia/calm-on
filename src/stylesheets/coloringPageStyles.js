@@ -48,7 +48,7 @@ export default StyleSheet.create({
     backgroundColor: hexCodes.purple.aurora,
   },
   buttonsContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
   },
   lineupContainer: {
     // backgroundColor: "white",
@@ -96,5 +96,10 @@ export default StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  centeredView: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
