@@ -5,11 +5,15 @@ import {
   Text,
   Image,
   ImageBackground,
+  Slider,
+  SafeAreaView,
+  StatusBar,
 } from "react-native";
 import styles from "../stylesheets/coloringPageStyles";
 import Exit from "../components/Exit";
 import FreeSample from "../data/ColoringActivityImages/Freesample";
 import { windowWidth, windowHeight } from "../util/windowDimensions";
+import hexCodes from "../stylesheets/hexCodes";
 
 export default function ColoringPage() {
   function handlePress() {
@@ -40,16 +44,7 @@ export default function ColoringPage() {
       setFillColors(replaceFillColors);
     }
   }
-  function changeColor(color) {
-    setCurrentColor(color);
-  }
-  const [fillColors, setFillColors] = useState(Array(50).fill("white"));
-  const [currentColor, setCurrentColor] = useState("blue");
-  const [lastFilled, setLastFilled] = useState(-1);
-  const [stepsTaken, setStepsTaken] = useState([]);
-  const [currPointer, setCurrPointer] = useState(0);
-
-  const onFillColor = (i) => {
+  function onFillColor(i) {
     // console.log(i);
     let newFillColors = fillColors.slice(0);
     //keep track of the old value so we can revert back to this
@@ -57,50 +52,71 @@ export default function ColoringPage() {
       index: i,
       color: newFillColors[i],
     };
+    let currStep = {
+      index: i,
+      color: currentColor,
+    };
+    console.log("----------");
+    console.log(lastFilled);
+    console.log(currStep);
+    console.log(currStep === lastFilled);
     newFillColors[i] = currentColor;
     setFillColors(newFillColors);
-    setLastFilled(i);
+    // set the last filled to what you currently set the color to, this is for checking for double clicks
+    setLastFilled({
+      index: i,
+      color: currentColor,
+    });
     //add step to step taken array
     let steps = stepsTaken.slice(0);
     steps.push(step);
     setStepsTaken(steps);
     setCurrPointer(currPointer + 1);
+  }
+  function handleEraserTool() {
+    setCurrentColor("white");
+  }
+  const changeColor = (color, resType) => {
+    if (resType == "end") {
+      setCurrentColor(tinycolor(color).toHexString());
+    }
   };
+  const oldColor = hexCodes.purple.aurora;
+  const [fillColors, setFillColors] = useState(Array(50).fill("white"));
+  const [currentColor, setCurrentColor] = useState(oldColor);
+  const [lastFilled, setLastFilled] = useState();
+  const [stepsTaken, setStepsTaken] = useState([]);
+  const [currPointer, setCurrPointer] = useState(0);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.exitContainer}>
         <Exit />
       </View>
       <View style={styles.mainImageContainer}>
-        <FreeSample
-          height={windowHeight * 0.8}
-          width={windowWidth}
-          handlePress={handlePress}
-          fillColors={fillColors}
-          onFill={onFillColor}
-        />
-        {/* <SvgComponent
-              height={Dimensions.get("window").height * 0.8}
-              width={Dimensions.get("window").width}
-              handlePress={handlePress}
-              fillColors={fillColors}
-              onFill={onFillColor}
-            /> */}
-        {/* <SvgComponent2
-              height={Dimensions.get("window").height * 0.8}
-              width={Dimensions.get("window").width}
-              handlePress={handlePress}
-              fillColors={fillColors}
-              onFill={onFillColor}
-            /> */}
-        {/* <SvgComponent3
-              height={Dimensions.get("window").height * 0.8}
-              width={Dimensions.get("window").width}
-              handlePress={handlePress}
-              fillColors={fillColors}
-              onFill={onFillColor}
-            /> */}
+        <View style={styles.leftSide} />
+        <View style={styles.centerSection}>
+          <FreeSample
+            height={windowHeight * 0.785}
+            width={windowWidth * 0.72}
+            handlePress={handlePress}
+            fillColors={fillColors}
+            onFill={onFillColor}
+            style={styles.img}
+          />
+        </View>
+        <View style={styles.rightSide}>
+          <View style={styles.lineupContainer}>
+            <View style={styles.sliderContainer}>
+              <Slider />
+            </View>
+          </View>
+          <View style={styles.eraserButtonContainer}>
+            <TouchableOpacity onPress={() => handleEraserTool()}>
+              <Text>E</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
       <View style={styles.colorSelectionContainer}>
         <View style={styles.buttonsContainer}>
@@ -113,15 +129,9 @@ export default function ColoringPage() {
           <TouchableOpacity onPress={() => handlePress()}>
             <Text>Steps Taken</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => changeColor("lightgreen")}>
-            <Text>Green</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => changeColor("blue")}>
-            <Text>Blue</Text>
-          </TouchableOpacity>
         </View>
         <View style={styles.sliderContainer}></View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
