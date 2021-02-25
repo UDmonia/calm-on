@@ -1,16 +1,16 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  ImageBackground,
   SafeAreaView,
 } from "react-native";
 import styles from "../stylesheets/screens/matchScoreStyles";
 import kpiData from "../data/kpiData";
+import {useSelector} from 'react-redux';
 
 export default MatchScore = ({ route, navigation: { navigate } }) => {
+  const bestScore = useSelector((store) => store.score.score);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>
@@ -21,7 +21,7 @@ export default MatchScore = ({ route, navigation: { navigate } }) => {
         <Text style={styles.score}>{route.params.score}</Text>
         <Text style={styles.message}>Points</Text>
         <Text style={styles.bestScore}>
-          Best Score : (place holder) correct
+          Best Score : {bestScore} points
         </Text>
       </View>
       <View style={styles.bottomView}>

@@ -4,8 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
 import Exit from "../components/Exit";
-import {connect} from 'react-redux';
-import {addScore, receiveScore} from "../actions/score";
+import { addScore, receiveScore } from "../actions/score";
+import { useDispatch, useSelector } from "react-redux";
 
 const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -24,16 +24,6 @@ const getOther = (card, solution) => {
     return getRandomColor(tempArray);
   }
   return solution;
-};
-
-const mapStatetoProps = (state) => {
-  return {
-    score: state.score.score
-  };
-};
-
-const mapDispatchtoProps = (state) => {
-
 };
 
 /**
@@ -86,6 +76,8 @@ export default MatchTheColor = ({ navigation }) => {
   // NOTE: correct and incrrect are intended to be used later for keeping track of score
   const correct = useRef(0);
   const incorrect = useRef(0);
+  const bestScore = useSelector((store) => store.score.score);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (firstRender.current === false) {
@@ -123,22 +115,30 @@ export default MatchTheColor = ({ navigation }) => {
       setProgress(progress - 1);
     } else {
       //console.log(correct.current - incorrect.current);
+      //bestScore();
       navigation.pop();
       navigation.navigate("MatchScore", {
         //score: correct.current - incorrect.current,
-        score: getScore(),
+        score: setScore(),
       });
     }
   }, 1000);
 
   const getScore = () => {
-    if ((correct.current - incorrect.current) <= 0){
+    if (correct.current - incorrect.current <= 0) {
       return 0;
+    } else {
+      return correct.current - incorrect.current;
     }
-    else {
-      return (correct.current - incorrect.current);
+  };
+
+  const setScore = () => {
+    const newScore = getScore();
+    if (bestScore < newScore) {
+      dispatch(addScore(newScore));
     }
-  }
+    return newScore;
+  };
 
   /**
    * Reset flags after animation
@@ -225,6 +225,7 @@ export default MatchTheColor = ({ navigation }) => {
     }
   };
 
+  //console.log(bestScore);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.clockView}>
