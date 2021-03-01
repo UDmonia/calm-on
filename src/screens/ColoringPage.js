@@ -5,11 +5,13 @@ import {
   Text,
   Image,
   ImageBackground,
-  Slider,
   SafeAreaView,
   StatusBar,
   Modal,
+  Alert,
 } from "react-native";
+import * as MediaLibrary from "expo-media-library";
+import * as Permissions from "expo-permissions";
 import ViewShot from "react-native-view-shot";
 import styles from "../stylesheets/coloringPageStyles";
 import Exit from "../components/Exit";
@@ -84,6 +86,30 @@ export default function ColoringPage() {
       setCurrentColor(tinycolor(color).toHexString());
     }
   };
+
+  async function getMediaLibraryAsync() {
+    // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
+    const { status } = await Permissions.askAsync(
+      Permissions.CAMERA_ROLL
+    ).catch((e) => console.log(e));
+    if (status === "granted") {
+      if (uri) {
+        MediaLibrary.saveToLibraryAsync(uri).then(console.log("saved!"));
+      } else {
+        console.log("there is no image!");
+      }
+    } else {
+      Alert.alert(
+        "Permissions Denied.",
+        "Please go into your app settings and permissions to enable file and storage permissions to save photo!",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      );
+    }
+  }
+
+  async function handleSavePhoto() {}
+
   const oldColor = hexCodes.purple.aurora;
   const viewShotRef = useRef(null);
   const [fillColors, setFillColors] = useState(Array(50).fill("white"));
@@ -147,9 +173,7 @@ export default function ColoringPage() {
         </ViewShot>
         <View style={styles.rightSide}>
           <View style={styles.lineupContainer}>
-            <View style={styles.sliderContainer}>
-              <Slider />
-            </View>
+            <View style={styles.sliderContainer}></View>
           </View>
           <View style={styles.eraserButtonContainer}>
             <TouchableOpacity onPress={() => handleEraserTool()}>
@@ -179,8 +203,10 @@ export default function ColoringPage() {
           >
             <Text style={styles.textStyle}>Snapshot</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => getMediaLibraryAsync()}>
+            <Text>Save Photo</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.sliderContainer}></View>
       </View>
     </SafeAreaView>
   );
