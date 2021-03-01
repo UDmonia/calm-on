@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
-import {windowHeight, windowWidth} from "../util/windowDimensions";
+import hex from "./hexCodes";
+import { windowWidth } from "../util/windowDimensions";
 
 export default StyleSheet.create({
   screenContainer: {
@@ -20,28 +21,36 @@ export default StyleSheet.create({
   },
   exitPosition: {
     marginTop: "10%",
-    marginLeft :"5%",
+    marginLeft: "5%",
   },
   row: {
     flexDirection: "row",
     marginTop: 30,
   },
   locationContainer: {
-    height: .2333 * windowWidth,
+    height: 0.2333 * windowWidth,
     width: "90%",
     borderRadius: 10,
-    backgroundColor: "#027E2A",
+    backgroundColor: hex.green.green1,
     justifyContent: "center",
     alignItems: "center",
   },
   itemContainer: {
-    height: .2333 * windowWidth,
-    width: .2333 * windowWidth,
+    height: 0.2333 * windowWidth,
+    width: 0.2333 * windowWidth,
     marginHorizontal: "5%",
     borderRadius: 5,
-    backgroundColor: "#E9E9E9",
+    backgroundColor: hex.grey.grey2,
     alignItems: "center",
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 15,
   },
   imgSpirit: {
     height: "100%",
@@ -50,7 +59,6 @@ export default StyleSheet.create({
     height: "50%",
     alignSelf: "flex-start",
     marginLeft: "15%",
-    
   },
   img: {
     height: "50%",
@@ -69,7 +77,7 @@ export default StyleSheet.create({
     flex: 1.25,
   },
   seeAllContainer: {
-    backgroundColor: "#027E2A",
+    backgroundColor: hex.green.green1,
     width: "100%",
     minHeight: 50,
     flexDirection: "row",
@@ -80,12 +88,12 @@ export default StyleSheet.create({
   selectedItemTxt: {
     color: "white",
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.04
+    fontSize: windowWidth * 0.04,
   },
   seeAllTxt: {
     color: "white",
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.04
+    fontSize: windowWidth * 0.04,
   },
   basket: {
     backgroundColor: "white",
@@ -101,13 +109,13 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
-    width: windowWidth * 0.20,
+    width: windowWidth * 0.2,
     margin: 5,
   },
   itemName: {
     textAlign: "center",
     fontFamily: "FontReg",
-    fontSize: windowWidth * 0.030,
+    fontSize: windowWidth * 0.03,
   },
   itemDivider: {
     backgroundColor: "#027E2A",
@@ -124,12 +132,27 @@ export default StyleSheet.create({
     position: "absolute",
     bottom: 0,
     fontFamily: "FontBold",
-    fontSize: windowWidth * 0.030,
+    fontSize: windowWidth * 0.03,
   },
   selectImg: {
     height: "60%",
     width: "70%",
-    resizeMode: "contain"
-
-  }
+    resizeMode: "contain",
+  },
+  doneButton: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    height: 25,
+    marginLeft: -90,
+    width: 180,
+    zIndex: 3,
+    shadowOffset: {
+      width: 3,
+      height: 6,
+    },
+    shadowOpacity: 10,
+    shadowRadius: 15,
+    elevation: 2, // Android
+  },
 });

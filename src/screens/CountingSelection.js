@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   ImageBackground,
   Image,
   TouchableOpacity,
 } from "react-native";
+import Text from "../components/Text";
+import hex from '../stylesheets/hexCodes';
 import styles from "../stylesheets/countingStyles";
 import sprit from "../../assets/counting/spirit2.png";
 import bg from "../../assets/counting/backdrop.png";
@@ -55,7 +56,7 @@ export default CountingSelection = ({ navigation: { navigate } }) => {
               randomizePosition().then(navigate("Counting", { stuff: Recipes.start, positionList: positionList }));
             }}
           >
-            <Text style={{ color: "#3B96B2" }}>Fruits</Text>
+            <Text style={{ color: hex.white.white1 }}>Fruits</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
