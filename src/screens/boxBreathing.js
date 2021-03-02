@@ -35,7 +35,7 @@ const IntroStory = ({ start }) => {
         <View style={styles.questionBox}>
           <Text
             style={{
-              color: "white",
+              color: "#fff",
               textAlign: "center",
               fontFamily: "FontBold",
             }}
@@ -59,7 +59,7 @@ const IntroStory = ({ start }) => {
                 style={{
                   textAlign: "center",
                   fontFamily: "FontReg",
-                  color: "#DD6755",
+                  color: "#2E7D32",
                 }}
               >
                 {answer}
@@ -556,7 +556,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText2}>Breath Out...</Text>
+            <Text style={styles.animatedText2}>Breathe Out...</Text>
           </Animated.View>
 
           <Animated.View

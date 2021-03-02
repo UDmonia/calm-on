@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     paddingBottom: "5%",
   },
   outroPromt: {
-    backgroundColor: "#FBBDB4",
+    backgroundColor: "#FFF",
     width: "75%",
     marginLeft: "12.5%",
     borderRadius: 10,
