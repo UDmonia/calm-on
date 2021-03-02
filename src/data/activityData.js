@@ -70,7 +70,7 @@ const SpriteActivityData = [
       navRoute: "IntroActivity",
       ActRoute: "boxBreathing",
       about:
-        "Take a walk with Sprite while you work on a calming breathing pattern",
+        "Take a walk with Sprite while you work on a calming breathing pattern.",
       helpful: "You are feeling very sad, angry, scared, or worried.",
       img: require("../../assets/boxBreathing/actTitle.png"),
       headerColor: "#2E7D32",

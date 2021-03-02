@@ -25,7 +25,7 @@ const kpiData = {
   },
   boxBreathing: {
     title: "boxBreathing",
-    primMsg: "Nice Work!",
+    primMsg: "Nice!",
     secMsg: "You can check out some of our other story times.",
     img: null,
     likeApi: null,

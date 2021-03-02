@@ -7,6 +7,7 @@ import styles from "../stylesheets/healthyHabitsTemplateStyles";
 import Exit from "../components/Exit.js";
 import habitData from "../data/habitData";
 
+<script src="http://localhost:8097"></script>
 //Item component
 function Item(props) {
     return (

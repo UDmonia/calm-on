@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     paddingBottom: "5%",
   },
   outroPromt: {
-    //backgroundColor: "#FBBDB4",
     backgroundColor: hex.white.white1,
     width: "75%",
     marginLeft: "12.5%",
