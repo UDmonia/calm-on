@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     paddingBottom: "5%",
   },
   outroPromt: {
-    backgroundColor: "#FFF",
+    backgroundColor: hex.white.white1,
     width: "75%",
     marginLeft: "12.5%",
     borderRadius: 10,
@@ -210,9 +210,9 @@ const styles = StyleSheet.create({
   },
   outroImgContainer: {
     width: "40%",
-    height: "30%",
+    height: "20%",
     marginTop: "30%",
-    marginBottom: -10,
+    //marginBottom: -10,
     marginLeft: "15%",
     //backgroundColor: "yellow",
     justifyContent: "flex-end",
