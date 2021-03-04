@@ -1,7 +1,10 @@
 import React from "react";
 import DailyCheckIn from "../DailyCheckIn";
+import Home from "../home";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import fetchMock from "fetch-mock";
-import { render, fireEvent } from "@testing-library/react-native";
+import { render, fireEvent, act } from "@testing-library/react-native";
 import configureMockStore from "redux-mock-store";
 import { useDispatch, useSelector } from "react-redux";
 import { checkin } from "../../actions/session_actions";
@@ -9,6 +12,7 @@ import { checkin } from "../../actions/session_actions";
 const middlewares = [];
 const mockStore = configureMockStore();
 const store = mockStore({ name: "bob" });
+const Stack = createStackNavigator();
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
@@ -47,7 +51,7 @@ describe("DailyCheckIn Screen Tests", () => {
     expect(useDispatch).toHaveBeenCalledTimes(2);
     fireEvent.press(queryByTestId("scared-button"));
     expect(useDispatch).toHaveBeenCalledTimes(3);
-    fireEvent.press(queryByTestId("curFeeling-button"));
+    // fireEvent.press(queryByTestId("curFeeling-button"));
     // expect(useDispatch).toHaveBeenCalledTimes(4);
   });
 
@@ -125,4 +129,21 @@ describe("DailyCheckIn Screen Tests", () => {
   //     expect(checkin).toHaveBeenCalledWith({ journal: "", mood: "Angry" });
   //   });
   // });
+
+  describe("DailyCheckIn can navigate to Home", () => {
+    test("DailyCheckIn Renders", () => {
+      const component = (
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="DailyCheckIn" component={DailyCheckIn} />
+            <Stack.Screen name="Home" component={Home} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      );
+      const { queryByTestId, queryByText } = render(component);
+      expect(queryByText(/How are you feeling/));
+      fireEvent.press(queryByTestId("dailycheckin-navigate-button"));
+      expect(queryByText(/Scroll through your/)).not.toBeNull();
+    });
+  });
 });

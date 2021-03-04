@@ -282,6 +282,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
+          testID="dailycheckin-navigate-button"
           style={[styles.buttons, styles.cancelButton]}
           onPress={() => navigate("Home")}
         >
