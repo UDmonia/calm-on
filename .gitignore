@@ -14,3 +14,6 @@ web-build/
 
 # Ignore test-related files
 /coverage
+*/__snapshots__
+*.snap
+
