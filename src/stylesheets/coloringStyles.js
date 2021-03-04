@@ -5,21 +5,44 @@ import hex from "./hexCodes";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "grey",
+    backgroundColor: hex.white.white1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   exitContainer: {
-    backgroundColor: "brown",
+    // backgroundColor: "brown",
     paddingLeft: "5%",
-    paddingTop: "5%",
+    flex: 0.4,
+    justifyContent: "center",
   },
   main: {
     flex: 3,
-    backgroundColor: "lightblue",
+    // backgroundColor: "lightblue",
   },
   bottom: {
     flex: 1,
-    backgroundColor: "lightgreen",
+    // backgroundColor: "lightgreen",
+    flexDirection: "row",
+    paddingLeft: "5%",
+  },
+  auroraContainer: {
+    height: "100%",
+    width: "20%",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  auroraImg: {
+    height: "100%",
+    maxHeight: 150,
+    width: "100%",
+    resizeMode: "contain",
+  },
+  textContainer: {
+    height: "100%",
+    width: "80%",
+    backgroundColor: hex.purple.aurora,
+    justifyContent: "center",
+    alignItems: "center",
   },
   imageList: {
     flex: 1,
@@ -27,6 +50,8 @@ export default StyleSheet.create({
   imageBoxContainer: {
     flex: 1,
     margin: "5%",
+    // This changes the width of the image
+    // NOTE: can't change past 40% since there must be two column of images and the margin is 5%
     maxWidth: "40%",
     backgroundColor: "white",
     borderWidth: windowWidth * 0.01,
@@ -34,6 +59,7 @@ export default StyleSheet.create({
     borderRadius: windowWidth * 0.01,
   },
   img: {
+    // This changes the height of the image
     height: windowHeight * 0.25,
     width: "100%",
     resizeMode: "contain",

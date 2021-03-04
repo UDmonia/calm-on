@@ -14,8 +14,9 @@ export default StyleSheet.create({
     //paddingTop: StatusBar.currentHeight, // need to rework this height for later uses need to test on IOS devices to see if this still works
   },
   exitContainer: {
-    flex: 1.25,
+    flex: 1.5,
     paddingLeft: "5%",
+    justifyContent: "center",
   },
   mainImageContainer: {
     height: windowHeight * 0.8,
@@ -48,7 +49,7 @@ export default StyleSheet.create({
     backgroundColor: hexCodes.purple.aurora,
   },
   buttonsContainer: {
-    flexDirection: "column",
+    flexDirection: "row",
   },
   lineupContainer: {
     // backgroundColor: "white",
@@ -65,30 +66,6 @@ export default StyleSheet.create({
       { translateY: width - width / 2 },
     ],
     backgroundColor: "white",
-  },
-  phoneTrack: {
-    width: width,
-    height: 15,
-    borderRadius: 7.5,
-  },
-  tabletTrack: {
-    width: width,
-    height: 35,
-    borderRadius: 17.5,
-  },
-  phoneThumb: {
-    height: 25,
-    width: 25,
-    borderRadius: 12.5,
-    borderWidth: 2.5,
-    borderColor: "white",
-  },
-  tabletThumb: {
-    height: 50,
-    width: 50,
-    borderRadius: 25,
-    borderWidth: 5,
-    borderColor: "white",
   },
   eraserButtonContainer: {
     // backgroundColor: "blue",

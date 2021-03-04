@@ -15,11 +15,12 @@ import * as Permissions from "expo-permissions";
 import ViewShot from "react-native-view-shot";
 import styles from "../stylesheets/coloringPageStyles";
 import Exit from "../components/Exit";
-import FreeSample from "../data/ColoringActivityImages/Freesample";
 import { windowWidth, windowHeight } from "../util/windowDimensions";
 import hexCodes from "../stylesheets/hexCodes";
+//Import Picture Components
+import FreeSample from "../data/ColoringActivityImages/Freesample";
 
-export default function ColoringPage() {
+export default function ColoringPage({ route }) {
   function handlePress() {
     console.log(stepsTaken);
     console.log(currPointer);
@@ -81,11 +82,6 @@ export default function ColoringPage() {
   function handleEraserTool() {
     setCurrentColor("white");
   }
-  const changeColor = (color, resType) => {
-    if (resType == "end") {
-      setCurrentColor(tinycolor(color).toHexString());
-    }
-  };
 
   async function getMediaLibraryAsync() {
     // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
@@ -108,7 +104,25 @@ export default function ColoringPage() {
     }
   }
 
-  async function handleSavePhoto() {}
+  // This is where you add the components to me Rendered
+  // Make sure that the props are correctly copied from the Freesample Component
+  function condtionalRenderSwitch(imageName) {
+    switch (imageName) {
+      case "Carrot":
+        return (
+          <FreeSample
+            height={windowHeight * 0.785}
+            width={windowWidth * 0.72}
+            handlePress={handlePress}
+            fillColors={fillColors}
+            onFill={onFillColor}
+            style={styles.img}
+          />
+        );
+      default:
+        return <Text>There is no Image</Text>;
+    }
+  }
 
   const oldColor = hexCodes.purple.aurora;
   const viewShotRef = useRef(null);
@@ -119,6 +133,7 @@ export default function ColoringPage() {
   const [currPointer, setCurrPointer] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [uri, setUri] = useState("");
+  const { name } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -161,14 +176,7 @@ export default function ColoringPage() {
         <View style={styles.leftSide} />
         <ViewShot ref={viewShotRef} options={{ format: "jpg", quality: 0.9 }}>
           <View style={styles.centerSection}>
-            <FreeSample
-              height={windowHeight * 0.785}
-              width={windowWidth * 0.72}
-              handlePress={handlePress}
-              fillColors={fillColors}
-              onFill={onFillColor}
-              style={styles.img}
-            />
+            {condtionalRenderSwitch(name)}
           </View>
         </ViewShot>
         <View style={styles.rightSide}>
