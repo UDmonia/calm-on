@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import styles from "../stylesheets/dailyCheckInStyles";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ const Happy = ({ setFeeling, arrHooks, happy }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="happy-button"
         onPress={() => {
           setFeeling("Happy");
           var i;
@@ -44,6 +45,7 @@ const Excited = ({ setFeeling, arrHooks, excited }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="excited-button"
         onPress={() => {
           setFeeling("Excited");
           var i;
@@ -76,6 +78,7 @@ const Scared = ({ setFeeling, arrHooks, scared }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="scared-button"
         onPress={() => {
           setFeeling("Scared");
           var i;
@@ -108,6 +111,7 @@ const Worried = ({ setFeeling, arrHooks, worried }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="worried-button"
         onPress={() => {
           setFeeling("Worried");
           var i;
@@ -140,6 +144,7 @@ const Sad = ({ setFeeling, arrHooks, sad }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="sad-button"
         onPress={() => {
           setFeeling("Sad");
           var i;
@@ -220,8 +225,9 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
     setSad,
     setAngry,
   ];
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  console.log("hello");
   const handleAddEmotion = (feeling, reasons) => {
     return dispatch(
       checkin({
@@ -230,6 +236,15 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
       })
     );
   };
+
+  // const handleAddEmotion = (feeling, reasons) => {
+  //   return useDispatch(
+  //     checkin({
+  //       mood: feeling,
+  //       journal: reasons,
+  //     })
+  //   );
+  // };
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
@@ -273,6 +288,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          testID="curFeeling-button"
           style={[styles.buttons, styles.continueButton]}
           onPress={() => {
             handleAddEmotion(curFeeling, "");
