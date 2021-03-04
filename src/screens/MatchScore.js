@@ -11,6 +11,7 @@ import {useSelector} from 'react-redux';
 
 export default MatchScore = ({ route, navigation: { navigate } }) => {
   const bestScore = useSelector((store) => store.score.score);
+  console.log(bestScore);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>

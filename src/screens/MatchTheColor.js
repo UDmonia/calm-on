@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../stylesheets/components/colorCardStyles";
 import Colors from "../data/cardmatchData";
 import Exit from "../components/Exit";
-import { addScore, receiveScore } from "../actions/score";
+import { addScore} from "../actions/score";
 import { useDispatch, useSelector } from "react-redux";
 
 const getRandomColor = (colors) => {
@@ -57,7 +57,7 @@ function useInterval(callback, delay) {
 }
 
 export default MatchTheColor = ({ navigation }) => {
-  const timer = 20;
+  const timer = 10;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));
@@ -225,7 +225,7 @@ export default MatchTheColor = ({ navigation }) => {
     }
   };
 
-  //console.log(bestScore);
+  // console.log(bestScore);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.clockView}>
