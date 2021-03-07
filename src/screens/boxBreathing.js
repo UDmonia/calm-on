@@ -136,6 +136,7 @@ const OutroStory = () => {
 const boxBreathing = () => {
   const [start, setStart] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
+  const [count, setCount] =useState(1)
   const topRightCorner = useRef(new Animated.Value(10)).current;
   const leftBar = useRef(new Animated.Value(0)).current;
   const [outro, showOutro] = useState(false);
@@ -399,8 +400,20 @@ const boxBreathing = () => {
           { iterations: 3 }
         ),
       ]).start(() => showOutro(true));
+      roundCounter()
     }
+    
   }, [start, startAnimation]);
+
+  const roundCounter = () => {
+    setTimeout(function () {
+      setCount(2)
+    }, 20500)
+    setTimeout(function () {
+      setCount(3)
+    }, 36500)
+    clearTimeout()
+  }
 
   const animated1 = {
     position: "absolute",
@@ -459,6 +472,7 @@ const boxBreathing = () => {
           {/*<TouchableOpacity style = {{position:'absolute', top:10,left:10}} source = {require("../../assets/exit_storytime.png")}>
                 <Image source = {require("../../assets/exit_storytime.png")}/>
             </TouchableOpacity>*/}
+          <Text style={styles.counter}>Round {count}/3</Text>
 
           <Animated.View
             style={[
@@ -468,7 +482,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText}>1</Text>
+            <Text style={styles.animatedText}>4</Text>
           </Animated.View>
 
           <Animated.View
@@ -479,7 +493,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText}>2</Text>
+            <Text style={styles.animatedText}>3</Text>
           </Animated.View>
 
           <Animated.View
@@ -490,7 +504,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText}>3</Text>
+            <Text style={styles.animatedText}>2</Text>
           </Animated.View>
 
           <Animated.View
@@ -501,7 +515,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText}>4</Text>
+            <Text style={styles.animatedText}>1</Text>
           </Animated.View>
 
           <Animated.View
@@ -545,7 +559,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText2}>Hold In Air...</Text>
+            <Text style={styles.animatedText2}>Hold...</Text>
           </Animated.View>
 
           <Animated.View
@@ -567,7 +581,7 @@ const boxBreathing = () => {
               },
             ]}
           >
-            <Text style={styles.animatedText2}>Hold Air Out...</Text>
+            <Text style={styles.animatedText2}>Hold...</Text>
           </Animated.View>
 
           <Animated.View style={[animated1]}></Animated.View>
