@@ -54,19 +54,14 @@ export default StyleSheet.create({
   lineupContainer: {
     // backgroundColor: "white",
     height: "40%",
-    width: "100%",
-    paddingLeft: "50%",
-    paddingTop: "50%",
+    width: "50%",
+    alignItems: "center",
   },
-  sliderContainer: {
-    width: width,
-    transform: [
-      { rotate: "90deg" },
-      { translateX: width - width / 2 },
-      { translateY: width - width / 2 },
-    ],
-    backgroundColor: "white",
-  },
+  // sliderContainer: {
+  //   width: "50%",
+  //   height: "100%",
+  //   backgroundColor: "grey",
+  // },
   eraserButtonContainer: {
     // backgroundColor: "blue",
     height: "7.5%",
