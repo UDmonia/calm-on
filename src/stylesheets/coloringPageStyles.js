@@ -54,7 +54,7 @@ export default StyleSheet.create({
   lineupContainer: {
     // backgroundColor: "white",
     height: "40%",
-    width: "50%",
+    width: "40%",
     alignItems: "center",
   },
   // sliderContainer: {

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Dimensions, Image, Text } from "react-native";
-import Animated from "react-native-reanimated";
+import Animated, {diffClamp} from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 const { width } = Dimensions.get("window");
 
@@ -16,17 +16,18 @@ const {
   Extrapolate,
 } = Animated;
 
-export default class ColorSlider extends React.Component {
+class ColorSlider extends React.Component {
   constructor(props) {
     super(props);
     this.dragY = new Value(0);
     this.absoluteY = new Value(0);
     this.offsetY = new Value(0);
     this.gestureState = new Value(-1);
-    this.top = 100;
     this.state = {
       height: 50,
       width: 50,
+      x: 0,
+      y: 0,
     };
 
     this.onGestureEvent = event([
@@ -55,19 +56,22 @@ export default class ColorSlider extends React.Component {
     });
   };
 
+  moving = ([y]) => {
+    console.log(y);
+  }
+
   onDrop = ([y]) => {
     console.log(`You dropped at y: ${y}!`);
   };
 
   render() {
-    console.log(this.state.height, this.state.width);
+    console.log(this.state.height, this.state.width, this.state.x, this.state.y);
     return (
       <View onLayout={this.onLayout} style={styles.mainContainer}>
-        <Text style={styles.debugText}>Y</Text>
         <View
           style={[
             styles.imgContainer,
-            { borderWidth: 4, borderRadius: 50, borderColor: "white" },
+            { borderWidth: 2, borderRadius: 50, borderColor: "white" },
           ]}
         >
           <Image
@@ -83,6 +87,15 @@ export default class ColorSlider extends React.Component {
             )
           }
         </Animated.Code>
+        <Animated.Code>
+          {
+            () =>
+              cond(
+                eq(this.gestureState, State.ACTIVE),
+                call([this.transY], this.moving)
+              )
+          }
+        </Animated.Code>
         <PanGestureHandler
           maxPointers={1}
           onGestureEvent={this.onGestureEvent}
@@ -92,17 +105,18 @@ export default class ColorSlider extends React.Component {
             style={[
               styles.box,
               {
-                top: interpolate(this.transY, {
-                  inputRange: [
-                    this.state.height * -0.5,
-                    this.state.height * 0.5,
-                  ],
-                  outputRange: [
-                    this.state.height * -0.5,
-                    this.state.height * 0.5,
-                  ],
-                  extrapolate: Extrapolate.CLAMP,
-                }),
+                top: diffClamp(this.transY, this.state.height * -0.5 + this.state.width / 2, this.state.height * 0.5 - this.state.width / 2),
+                // interpolate(this.transY, {
+                //   inputRange: [
+                //     this.state.height * -0.5 + this.state.width / 2,
+                //     this.state.height * 0.5 - this.state.width / 2,
+                //   ],
+                //   outputRange: [
+                //     this.state.height * -0.5 + this.state.width / 2,
+                //     this.state.height * 0.5 - this.state.width / 2,
+                //   ],
+                //   extrapolate: Extrapolate.CLAMP,
+                // }),
                 height: this.state.width,
                 width: this.state.width,
               },
@@ -146,3 +160,5 @@ const styles = StyleSheet.create({
     left: 100,
   },
 });
+
+export const  MemoizedColorSlider = React.memo(ColorSlider);

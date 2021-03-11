@@ -17,7 +17,7 @@ import styles from "../stylesheets/coloringPageStyles";
 import Exit from "../components/Exit";
 import { windowWidth, windowHeight } from "../util/windowDimensions";
 import hexCodes from "../stylesheets/hexCodes";
-import ColorSlider from "../components/ColorSlider";
+import { MemoizedColorSlider } from "../components/ColorSlider";
 //Import Picture Components
 import FreeSample from "../data/ColoringActivityImages/Freesample";
 
@@ -182,7 +182,7 @@ export default function ColoringPage({ route }) {
         </ViewShot>
         <View style={styles.rightSide}>
           <View style={styles.lineupContainer}>
-            <ColorSlider />
+            <MemoizedColorSlider />
           </View>
           <View style={styles.eraserButtonContainer}>
             <TouchableOpacity onPress={() => handleEraserTool()}>
