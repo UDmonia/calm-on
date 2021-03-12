@@ -226,25 +226,14 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
     setAngry,
   ];
 
-  const dispatch = useDispatch();
-  console.log("hello");
   const handleAddEmotion = (feeling, reasons) => {
-    return dispatch(
+    return useDispatch(
       checkin({
         mood: feeling,
         journal: reasons,
       })
     );
   };
-
-  // const handleAddEmotion = (feeling, reasons) => {
-  //   return useDispatch(
-  //     checkin({
-  //       mood: feeling,
-  //       journal: reasons,
-  //     })
-  //   );
-  // };
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
