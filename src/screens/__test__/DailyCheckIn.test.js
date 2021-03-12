@@ -4,7 +4,7 @@ import Home from "../home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import fetchMock from "fetch-mock";
-import { render, fireEvent, act } from "@testing-library/react-native";
+import { render, fireEvent, cleanup } from "@testing-library/react-native";
 import configureMockStore from "redux-mock-store";
 import { useDispatch, useSelector } from "react-redux";
 import { checkin } from "../../actions/session_actions";
@@ -37,6 +37,7 @@ describe("DailyCheckIn Screen Tests", () => {
     fetchMock.restore();
     useSelector.mockClear();
     useDispatch.mockClear();
+    cleanup();
   });
 
   test("Dispatch and UseSelector are not called", () => {
