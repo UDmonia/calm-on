@@ -115,8 +115,8 @@ const picnicData = [
       },
       {
         id: 2,
-        itemName: "Frog",
-        image: require("../../assets/adventure/locations/alphabetItems/frog.png"),
+        itemName: "Fish",
+        image: require("../../assets/adventure/locations/alphabetItems/fish.png"),
       },
       {
         id: 3,
@@ -288,8 +288,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Nuts",
-        image: require("../../assets/adventure/locations/alphabetItems/nuts.png"),
+        itemName: "Net",
+        image: require("../../assets/adventure/locations/alphabetItems/net.png"),
       },
     ],
   },
@@ -393,8 +393,8 @@ const picnicData = [
       },
       {
         id: 3,
-        itemName: "Sing",
-        image: require("../../assets/adventure/locations/alphabetItems/sing.png"),
+        itemName: "Sun",
+        image: require("../../assets/adventure/locations/alphabetItems/sun.png"),
       },
     ],
   },
