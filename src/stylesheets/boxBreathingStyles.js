@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
     fontFamily: "FontBold",
     textAlign: "center",
   },
+  counter: {
+    color: hex.blue.blue5,
+    paddingTop: 15,
+    fontSize: 20,
+    fontFamily: "FontBold" 
+  },
   questionBox: {
     backgroundColor: hex.green.green1,
     justifyContent: "center",
