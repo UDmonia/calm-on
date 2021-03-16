@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   View,
   TouchableOpacity,
@@ -17,9 +17,13 @@ import styles from "../stylesheets/coloringPageStyles";
 import Exit from "../components/Exit";
 import { windowWidth, windowHeight } from "../util/windowDimensions";
 import hexCodes from "../stylesheets/hexCodes";
-import { MemoizedColorSlider } from "../components/ColorSlider";
+import MemoizedColorSlider from "../components/ColorSlider";
 //Import Picture Components
 import FreeSample from "../data/ColoringActivityImages/Freesample";
+
+const SLIDER_HEIGHT = windowHeight * 0.25;
+const SLIDER_WIDTH = SLIDER_HEIGHT * 0.10;
+const KNOB_RADIUS = SLIDER_WIDTH * 3/2;
 
 export default function ColoringPage({ route }) {
   function handlePress() {
@@ -125,9 +129,15 @@ export default function ColoringPage({ route }) {
     }
   }
 
+  function handleColorChange(newColor) {
+    setValue(newColor);
+  }
+
   const oldColor = hexCodes.purple.aurora;
   const viewShotRef = useRef(null);
   const [fillColors, setFillColors] = useState(Array(50).fill("white"));
+  const [value, setValue] = useState(0);
+  const [color, setColor] = useState('hsl(240, 100%, 50%)');
   const [currentColor, setCurrentColor] = useState(oldColor);
   const [lastFilled, setLastFilled] = useState();
   const [stepsTaken, setStepsTaken] = useState([]);
@@ -135,6 +145,13 @@ export default function ColoringPage({ route }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [uri, setUri] = useState("");
   const { name } = route.params;
+
+  useEffect(() => {
+    let interpolatedValue = value / (SLIDER_HEIGHT - SLIDER_WIDTH/2) * 360;
+    let tempColor = ('hsl(' + interpolatedValue + ', 100%, 50%)');
+    setColor(tempColor);
+    setCurrentColor(tempColor);
+  }, [value])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -181,14 +198,15 @@ export default function ColoringPage({ route }) {
           </View>
         </ViewShot>
         <View style={styles.rightSide}>
-          <View style={styles.lineupContainer}>
-            <MemoizedColorSlider />
+          <View style={[styles.lineupContainer, {height: SLIDER_HEIGHT, width: SLIDER_WIDTH}]}>
+            <MemoizedColorSlider height={SLIDER_HEIGHT} width={SLIDER_WIDTH} knob={KNOB_RADIUS} setValue={setValue}/>
           </View>
           <View style={styles.eraserButtonContainer}>
             <TouchableOpacity onPress={() => handleEraserTool()}>
               <Text>E</Text>
             </TouchableOpacity>
           </View>
+          <View style={{height: 20, width: 20, backgroundColor: color}}/>
         </View>
       </View>
       <View style={styles.colorSelectionContainer}>
@@ -215,6 +233,7 @@ export default function ColoringPage({ route }) {
           <TouchableOpacity onPress={() => getMediaLibraryAsync()}>
             <Text>Save Photo</Text>
           </TouchableOpacity>
+          <Text>{value}</Text>
         </View>
       </View>
     </SafeAreaView>

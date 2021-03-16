@@ -1,73 +1,71 @@
-import React from "react";
+import React, { useState , memo, useCallback} from "react";
 import { StyleSheet, View, Dimensions, Image, Text } from "react-native";
-import Animated, {diffClamp} from "react-native-reanimated";
+import Animated, {block, diffClamp} from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
-const { width } = Dimensions.get("window");
 
 const {
-  cond,
-  eq,
-  add,
-  call,
-  set,
-  Value,
-  event,
-  interpolate,
-  Extrapolate,
-} = Animated;
+    cond,
+    eq,
+    add,
+    call,
+    set,
+    Value,
+    event,
+    interpolate,
+    interpolateColors,
+    Extrapolate,
+    useCode,
+  } = Animated;
 
-class ColorSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.dragY = new Value(0);
-    this.absoluteY = new Value(0);
-    this.offsetY = new Value(0);
-    this.gestureState = new Value(-1);
-    this.state = {
-      height: 50,
-      width: 50,
-      x: 0,
-      y: 0,
-    };
+const MemoizedColorSlider = memo(function (props) {
+    console.log(props);
 
-    this.onGestureEvent = event([
-      {
-        nativeEvent: {
-          translationY: this.dragY,
-          absoluteY: this.absoluteY,
-          state: this.gestureState,
-        },
-      },
-    ]);
-
-    this.addY = add(this.offsetY, this.dragY);
-
-    this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
-      set(this.offsetY, this.addY),
-    ]);
-  }
-
-  onLayout = (e) => {
-    this.setState({
-      width: e.nativeEvent.layout.width + 10,
-      height: e.nativeEvent.layout.height,
-      x: e.nativeEvent.layout.x,
-      y: e.nativeEvent.layout.y,
+    const gestureState = new Value(State.UNDETERMINED);
+    const translationY = new Value(0);
+    const offsetY = new Value(0);
+    const test = 0;
+    const gestureHandler = event([{
+      nativeEvent:{
+        state: gestureState,
+        translationY: translationY,
+      }
+    }]);
+    const y = diffClamp(
+      cond(
+        eq(gestureState, State.END),
+        [set(offsetY, add(offsetY, translationY)), offsetY],
+        add(offsetY, translationY)
+      ),
+    -(props.height * 0.5 - props.width/2), (props.height * 0.5 - props.width/2));
+    const colorValue = interpolate(y, {
+      inputRange: [-(props.height * 0.5 - props.knob), (props.height * 0.5 - props.knob)],
+      outputRange: [0.0001, 1]
     });
-  };
+    // const color = interpolateColors(colorValue, {
+    //   inputRange: [0.0001,1],
+    //   outputColorRange: ['red','blue']
+    // })
 
-  moving = ([y]) => {
-    console.log(y);
-  }
+    // useCode(
+    //     () =>
+    //         block([
+    //             cond(
+    //                 eq(gestureState, State.END),
+    //                 // eslint-disable-next-line no-console
+    //                 call([color], ([v]) => console.log(v))
+    //               ),
+    //               cond(
+    //                 eq(gestureState, State.ACTIVE),
+    //                 // eslint-disable-next-line no-console
+    //                 call([colorValue], ([v]) => console.log(v))
+    //               ),
+    //         ]),
+    //         [gestureState, y]
+    // );
 
-  onDrop = ([y]) => {
-    console.log(`You dropped at y: ${y}!`);
-  };
 
-  render() {
-    console.log(this.state.height, this.state.width, this.state.x, this.state.y);
     return (
-      <View onLayout={this.onLayout} style={styles.mainContainer}>
+        <View style={styles.mainContainer}>
         <View
           style={[
             styles.imgContainer,
@@ -79,86 +77,62 @@ class ColorSlider extends React.Component {
             style={styles.backgroundImage}
           />
         </View>
-        <Animated.Code>
-          {() =>
-            cond(
-              eq(this.gestureState, State.END),
-              call([this.addY], this.onDrop)
-            )
-          }
-        </Animated.Code>
-        <Animated.Code>
-          {
-            () =>
-              cond(
-                eq(this.gestureState, State.ACTIVE),
-                call([this.transY], this.moving)
-              )
-          }
-        </Animated.Code>
         <PanGestureHandler
           maxPointers={1}
-          onGestureEvent={this.onGestureEvent}
-          onHandlerStateChange={this.onGestureEvent}
+          onGestureEvent={gestureHandler}
+          onHandlerStateChange={gestureHandler}
         >
           <Animated.View
+            onLayout={(event) => {props.setValue(event.nativeEvent.layout.y)}}
             style={[
               styles.box,
               {
-                top: diffClamp(this.transY, this.state.height * -0.5 + this.state.width / 2, this.state.height * 0.5 - this.state.width / 2),
-                // interpolate(this.transY, {
-                //   inputRange: [
-                //     this.state.height * -0.5 + this.state.width / 2,
-                //     this.state.height * 0.5 - this.state.width / 2,
-                //   ],
-                //   outputRange: [
-                //     this.state.height * -0.5 + this.state.width / 2,
-                //     this.state.height * 0.5 - this.state.width / 2,
-                //   ],
-                //   extrapolate: Extrapolate.CLAMP,
-                // }),
-                height: this.state.width,
-                width: this.state.width,
+                top: y,
+                height: props.knob,
+                width: props.knob,
+                // backgroundColor: color,
+                borderWidth: 2,
+                borderColor: "white",
+
               },
             ]}
           />
         </PanGestureHandler>
       </View>
-    );
-  }
-}
+    )
+})
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    height: "100%",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  backgroundImage: {
-    height: "100%",
-    width: "100%",
-    resizeMode: "stretch",
-    position: "absolute",
-  },
-  imgContainer: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
-    overflow: "hidden",
-  },
-  animatedView: {
-    backgroundColor: "black",
-  },
-  box: {
-    backgroundColor: "#61dafb",
-    borderRadius: 40,
-  },
-  displayText: {
-    position: "absolute",
-    top: 100,
-    left: 100,
-  },
-});
+    mainContainer: {
+      height: "100%",
+      width: "100%",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    backgroundImage: {
+      height: "100%",
+      width: "100%",
+      resizeMode: "stretch",
+      position: "absolute",
+    },
+    imgContainer: {
+      position: "absolute",
+      height: "100%",
+      width: "100%",
+      overflow: "hidden",
+    },
+    animatedView: {
+      backgroundColor: "black",
+    },
+    box: {
+      backgroundColor: "#61dafb",
+      borderRadius: 40,
+    },
+    displayText: {
+      position: "absolute",
+      top: 100,
+      left: 100,
+    },
+  });
 
-export const  MemoizedColorSlider = React.memo(ColorSlider);
+  export default MemoizedColorSlider;
