@@ -23,7 +23,7 @@ import FreeSample from "../data/ColoringActivityImages/Freesample";
 
 const SLIDER_HEIGHT = windowHeight * 0.25;
 const SLIDER_WIDTH = SLIDER_HEIGHT * 0.10;
-const KNOB_RADIUS = SLIDER_WIDTH * 3/2;
+const KNOB_RADIUS = SLIDER_WIDTH * 3/4;
 
 export default function ColoringPage({ route }) {
   function handlePress() {
@@ -233,7 +233,6 @@ export default function ColoringPage({ route }) {
           <TouchableOpacity onPress={() => getMediaLibraryAsync()}>
             <Text>Save Photo</Text>
           </TouchableOpacity>
-          <Text>{value}</Text>
         </View>
       </View>
     </SafeAreaView>
