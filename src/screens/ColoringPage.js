@@ -21,7 +21,7 @@ import MemoizedColorSlider from "../components/ColorSlider";
 //Import Picture Components
 import FreeSample from "../data/ColoringActivityImages/Freesample";
 
-const SLIDER_HEIGHT = windowHeight * 0.25;
+const SLIDER_HEIGHT = windowHeight * 0.2;
 const SLIDER_WIDTH = SLIDER_HEIGHT * 0.10;
 const KNOB_RADIUS = SLIDER_WIDTH * 3/4;
 
@@ -198,24 +198,26 @@ export default function ColoringPage({ route }) {
           </View>
         </ViewShot>
         <View style={styles.rightSide}>
+        <View style={{height: windowHeight * 0.03, width: windowHeight * 0.03, marginTop: "50%", backgroundColor: color, borderRadius: 4, borderWidth: 2, borderColor: hexCodes.white.white1}}/>
           <View style={[styles.lineupContainer, {height: SLIDER_HEIGHT, width: SLIDER_WIDTH}]}>
             <MemoizedColorSlider height={SLIDER_HEIGHT} width={SLIDER_WIDTH} knob={KNOB_RADIUS} setValue={setValue}/>
           </View>
           <View style={styles.eraserButtonContainer}>
             <TouchableOpacity onPress={() => handleEraserTool()}>
-              <Text>E</Text>
+              <Image source={require('../../assets/coloring/eraser.png')}/>
             </TouchableOpacity>
           </View>
-          <View style={{height: 20, width: 20, backgroundColor: color}}/>
+          <View style={styles.undoButtonContainer}>
+            <TouchableOpacity onPress={() => handleUndo()}>
+              <Image source={require('../../assets/coloring/undo.png')}/>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
       <View style={styles.colorSelectionContainer}>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity onPress={() => handleReset()}>
             <Text>Reset</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleUndo()}>
-            <Text>Undo</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress()}>
             <Text>Steps Taken</Text>
