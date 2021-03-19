@@ -70,9 +70,22 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   centeredView: {
-    flex: 1,
+    height: "100%",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+  modalView: {
+    backgroundColor: hexCodes.white.white1,
+    height: "10%",
+    width: "60%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 25,
+  },
+  modalText: {
+    color: hexCodes.purple.aurora,
+    fontSize: windowWidth * 0.05,
   },
   saveButtonContainer: {
     flex: 1,

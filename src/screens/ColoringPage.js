@@ -96,6 +96,7 @@ export default function ColoringPage({ route }) {
     if (status === "granted") {
       const uri = await viewShotRef.current.capture();
       setUri(uri);
+      setModalVisible(true);
     } else {
       Alert.alert(
         "Permissions Denied.",
@@ -157,28 +158,15 @@ export default function ColoringPage({ route }) {
   return (
     <SafeAreaView style={styles.container}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
+        transparent={true}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            {uri ? (
-              <Image
-                style={{
-                  height: 500,
-                  width: 200,
-                  resizeMode: "contain",
-                }}
-                source={{ uri }}
-              ></Image>
-            ) : (
-              <Text>No IMAGE</Text>
-            )}
+            <Text style={styles.modalText}>Picture saved to gallery!</Text>
             <TouchableOpacity
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+              style={{ ...styles.openButton }}
               onPress={() => {
                 setModalVisible(!modalVisible);
               }}
