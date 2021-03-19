@@ -25,10 +25,7 @@ export default function Coloring({ navigation: { navigate } }) {
           })
         }
       >
-        <Image
-          source={data.item.thumbnail}
-          style={styles.img}
-        />
+        <Image source={data.item.thumbnail} style={styles.img} />
       </TouchableOpacity>
     );
   }
@@ -55,7 +52,9 @@ export default function Coloring({ navigation: { navigate } }) {
           />
         </View>
         <View style={styles.textContainer}>
-          <Text>Pick one of the Images to color!</Text>
+          <Text style={{ color: "white" }}>
+            Pick one of the Images to color!
+          </Text>
         </View>
       </View>
     </SafeAreaView>
