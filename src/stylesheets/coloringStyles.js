@@ -23,6 +23,8 @@ export default StyleSheet.create({
     // backgroundColor: "lightgreen",
     flexDirection: "row",
     paddingLeft: "5%",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   auroraContainer: {
     height: "100%",
@@ -38,11 +40,12 @@ export default StyleSheet.create({
     resizeMode: "contain",
   },
   textContainer: {
-    height: "100%",
-    width: "80%",
+    height: "60%",
+    width: "70%",
     backgroundColor: hex.purple.aurora,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   imageList: {
     flex: 1,
@@ -62,6 +65,6 @@ export default StyleSheet.create({
     // This changes the height of the image
     height: windowHeight * 0.25,
     width: "100%",
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
 });

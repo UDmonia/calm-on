@@ -33,6 +33,7 @@ export default StyleSheet.create({
     backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 5,
   },
   img: {
     zIndex: -1,
@@ -73,4 +74,18 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  saveButtonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  saveButton: {
+    backgroundColor: "white",
+    width: "50%",
+    height: "75%",
+    maxHeight: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+  }
 });

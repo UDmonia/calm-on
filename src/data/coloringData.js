@@ -1,28 +1,15 @@
+import carrot from "../../assets/coloring/Thumbnails/carrot_TN.png"
+
 const coloringPicturesData = {
   pictures: [
     {
       id: 1,
       title: "Carrot",
+      thumbnail: carrot,
     },
     {
       id: 2,
       title: "picture2",
-    },
-    {
-      id: 3,
-      title: "picture3",
-    },
-    {
-      id: 4,
-      title: "picture3",
-    },
-    {
-      id: 5,
-      title: "picture3",
-    },
-    {
-      id: 6,
-      title: "picture3",
     },
   ],
 };

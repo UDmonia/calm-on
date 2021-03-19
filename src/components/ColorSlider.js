@@ -1,6 +1,6 @@
-import React, { useState , memo, useCallback} from "react";
-import { StyleSheet, View, Dimensions, Image, Text } from "react-native";
-import Animated, {block, diffClamp} from "react-native-reanimated";
+import React, { memo } from "react";
+import { StyleSheet, View, Image, Text } from "react-native";
+import Animated, { diffClamp } from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { hsv2color } from "../util/reanimatedColor";
 
@@ -8,24 +8,16 @@ const {
     cond,
     eq,
     add,
-    call,
     set,
     Value,
     event,
     interpolate,
-    interpolateColors,
-    Extrapolate,
-    useCode,
-    color,
   } = Animated;
 
 const MemoizedColorSlider = memo(function (props) {
-    // console.log(props);
-
     const gestureState = new Value(State.UNDETERMINED);
     const translationY = new Value(0);
     const offsetY = new Value(0);
-    const test = 0;
     const gestureHandler = event([{
       nativeEvent:{
         state: gestureState,
@@ -44,26 +36,12 @@ const MemoizedColorSlider = memo(function (props) {
       outputRange: [0.0001, 360]
     });
     // const h = new Value(359);
+    // this code below can used to change the color value at another day
+    // This is currently overkill code for just setting the color of the knob to white
     const h = new Value(0);
     const s = new Value(0);
     const v = new Value(1);
     const rgbcolor = hsv2color(h, s, v);
-    // useCode(() => [set(h, hue)], [h, hue])
-    // const color = interpolateColors(colorValue, {
-    //   inputRange: [0.0001,1],
-    //   outputColorRange: ['red','blue']
-    // })
-    // useCode(
-    //     () =>
-    //         block([
-    //               cond(
-    //                 eq(gestureState, State.ACTIVE),
-    //                 // eslint-disable-next-line no-console
-    //                 call([colorValue], ([v]) => console.log(v))
-    //               ),
-    //         ]),
-    //         [gestureState, y]
-    // );
     return (
         <View style={styles.mainContainer}>
         <View
@@ -91,8 +69,9 @@ const MemoizedColorSlider = memo(function (props) {
                 height: props.knob,
                 width: props.knob,
                 backgroundColor: rgbcolor,
-                borderWidth: 2,
-                borderColor: "white",
+                // white border for if we want to change the color of the knob
+                // borderWidth: 2,
+                // borderColor: "white",
 
               },
             ]}

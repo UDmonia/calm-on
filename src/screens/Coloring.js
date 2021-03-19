@@ -26,7 +26,7 @@ export default function Coloring({ navigation: { navigate } }) {
         }
       >
         <Image
-          source={require("../../assets/favicon.png")}
+          source={data.item.thumbnail}
           style={styles.img}
         />
       </TouchableOpacity>

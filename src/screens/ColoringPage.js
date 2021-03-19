@@ -94,11 +94,8 @@ export default function ColoringPage({ route }) {
       Permissions.CAMERA_ROLL
     ).catch((e) => console.log(e));
     if (status === "granted") {
-      if (uri) {
-        MediaLibrary.saveToLibraryAsync(uri).then(console.log("saved!"));
-      } else {
-        console.log("there is no image!");
-      }
+      const uri = await viewShotRef.current.capture();
+      setUri(uri);
     } else {
       Alert.alert(
         "Permissions Denied.",
@@ -129,10 +126,6 @@ export default function ColoringPage({ route }) {
     }
   }
 
-  function handleColorChange(newColor) {
-    setValue(newColor);
-  }
-
   const oldColor = hexCodes.purple.aurora;
   const viewShotRef = useRef(null);
   const [fillColors, setFillColors] = useState(Array(50).fill("white"));
@@ -152,6 +145,14 @@ export default function ColoringPage({ route }) {
     setColor(tempColor);
     setCurrentColor(tempColor);
   }, [value])
+
+  useEffect(() => {
+    if (uri) {
+      MediaLibrary.saveToLibraryAsync(uri).then(console.log("saved!"));
+    } else {
+      console.log("there is no image!");
+    }
+  }, [uri])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -215,7 +216,7 @@ export default function ColoringPage({ route }) {
         </View>
       </View>
       <View style={styles.colorSelectionContainer}>
-        <View style={styles.buttonsContainer}>
+        {/* <View style={styles.buttonsContainer}>
           <TouchableOpacity onPress={() => handleReset()}>
             <Text>Reset</Text>
           </TouchableOpacity>
@@ -235,6 +236,11 @@ export default function ColoringPage({ route }) {
           <TouchableOpacity onPress={() => getMediaLibraryAsync()}>
             <Text>Save Photo</Text>
           </TouchableOpacity>
+        </View> */}
+        <View style={styles.saveButtonContainer}>
+            <TouchableOpacity style={styles.saveButton} onPress={() => getMediaLibraryAsync()}>
+              <Text style={{color: hexCodes.purple.aurora, fontSize: windowWidth * 0.05}}>Save Image</Text>
+            </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
