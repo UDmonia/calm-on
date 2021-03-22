@@ -57,7 +57,7 @@ function useInterval(callback, delay) {
 }
 
 export default MatchTheColor = ({ navigation }) => {
-  const timer = 10;
+  const timer = 60;
   const [progress, setProgress] = useState(timer);
   const solutionCard = useRef(getRandomColor(Colors));
   const cardText = useRef(getRandomColor(Colors));

@@ -3,6 +3,10 @@ import deviceStorage from "../services/device_storage";
 //import { useDispatch } from "react-redux";
 import { receiveScoreErrors } from "../actions/score";
 
+/*
+*This block of code will be used for local storage of best value
+* This feature is still in development
+*/
 const getFromStorage = () => async (dispatch) => {
   //const dispatch = useDispatch();   
   const promise1 = deviceStorage.get("score");
@@ -16,8 +20,8 @@ const getFromStorage = () => async (dispatch) => {
 };
 
 const initalState = {
-  //score: 0,
-  score: getFromStorage(),
+  score: 0,
+  //score: getFromStorage(),
 };
 const scoreReducer = (state = initalState, action) => {
   switch (action.type) {
