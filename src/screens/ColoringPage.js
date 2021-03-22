@@ -4,9 +4,7 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  ImageBackground,
   SafeAreaView,
-  StatusBar,
   Modal,
   Alert,
 } from "react-native";
@@ -18,19 +16,23 @@ import Exit from "../components/Exit";
 import { windowWidth, windowHeight } from "../util/windowDimensions";
 import hexCodes from "../stylesheets/hexCodes";
 import MemoizedColorSlider from "../components/ColorSlider";
-//Import Picture Components
+// Import Picture Components
 import FreeSample from "../data/ColoringActivityImages/Freesample";
-
+// Slider Component Constants
 const SLIDER_HEIGHT = windowHeight * 0.2;
 const SLIDER_WIDTH = SLIDER_HEIGHT * 0.10;
 const KNOB_RADIUS = SLIDER_WIDTH * 3/4;
+// Image Component Constants
+const IMAGE_HEIGHT = windowHeight * 0.785;
+const IMAGE_WIDTH = windowWidth * 0.72;
 
 export default function ColoringPage({ route }) {
-  function handlePress() {
-    console.log(stepsTaken);
-    console.log(currPointer);
-    console.log("_________________");
-  }
+  // function handlePress() {
+  //   console.log(stepsTaken);
+  //   console.log(currPointer);
+  //   console.log("_________________");
+  // }
+  // Summary: Function that resets values back to default
   function handleReset() {
     setFillColors(Array(50).fill("white"));
     setStepsTaken([]);
@@ -38,14 +40,12 @@ export default function ColoringPage({ route }) {
     setCurrPointer(0);
     setCurrentColor(oldColor);
   }
+  // Summary: Pops the latest entry into the stepsTaken array and updates the fillColors array with the new updated values.
   function handleUndo() {
     if (currPointer != 0) {
-      // console.log("undo!" + lastFilled)
-      // console.log(stepsTaken[currPointer - 1]);
       // get the steps taken and the value we are going to undo
       let newStepsTaken = stepsTaken.slice(0);
       let undoStep = newStepsTaken.pop();
-      // console.log(undoStep);
       // replace color with previous color
       let replaceFillColors = fillColors.slice(0);
       replaceFillColors[undoStep.index] = undoStep.color;
@@ -55,6 +55,8 @@ export default function ColoringPage({ route }) {
       setFillColors(replaceFillColors);
     }
   }
+  // Summary: Function that is going to passed a prop to the svg image component.
+  // Description: Create a step object, which keeps track of what is being filled in and what color that section is being colored. Adds the new color to the fillColors array to update the svg image and addes to the lastFilled array to keep track of the previous moves so the user can undo the moves
   function onFillColor(i) {
     // console.log(i);
     let newFillColors = fillColors.slice(0);
@@ -63,14 +65,11 @@ export default function ColoringPage({ route }) {
       index: i,
       color: newFillColors[i],
     };
-    let currStep = {
-      index: i,
-      color: currentColor,
-    };
-    // console.log("----------");
-    // console.log(lastFilled);
-    // console.log(currStep);
-    // console.log(currStep === lastFilled);
+    // this will track the current step, could be used later on to make sure the user is not double clicking
+    // let currStep = {
+    //   index: i,
+    //   color: currentColor,
+    // };
     newFillColors[i] = currentColor;
     setFillColors(newFillColors);
     // set the last filled to what you currently set the color to, this is for checking for double clicks
@@ -84,10 +83,12 @@ export default function ColoringPage({ route }) {
     setStepsTaken(steps);
     setCurrPointer(currPointer + 1);
   }
+  // Summary: Set the current color to white so the user can use it as an eraser brush
   function handleEraserTool() {
     setCurrentColor("white");
   }
-
+  // Summary: Function that is called when user presses the "Save Image Button".
+  // Description: After getting the viewshot screenshot, the function will then ask for permission from the user. If the user already has access to the photo permissions then the app will show the modal that the image has been saved and after 3 seconds it will fade out.
   async function getMediaLibraryAsync() {
     // permissions returns only for location permissions on iOS and under certain conditions, see Permissions.LOCATION
     const { status } = await Permissions.askAsync(
@@ -97,6 +98,9 @@ export default function ColoringPage({ route }) {
       const uri = await viewShotRef.current.capture();
       setUri(uri);
       setModalVisible(true);
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 3000);
     } else {
       Alert.alert(
         "Permissions Denied.",
@@ -114,9 +118,9 @@ export default function ColoringPage({ route }) {
       case "Carrot":
         return (
           <FreeSample
-            height={windowHeight * 0.785}
-            width={windowWidth * 0.72}
-            handlePress={handlePress}
+            height={IMAGE_HEIGHT}
+            width={IMAGE_WIDTH}
+            // handlePress={handlePress}
             fillColors={fillColors}
             onFill={onFillColor}
             style={styles.img}
@@ -165,14 +169,6 @@ export default function ColoringPage({ route }) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Picture saved to gallery!</Text>
-            <TouchableOpacity
-              style={{ ...styles.openButton }}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -204,25 +200,14 @@ export default function ColoringPage({ route }) {
         </View>
       </View>
       <View style={styles.colorSelectionContainer}>
-        {/* <View style={styles.buttonsContainer}>
+        {/* 
+        Here are some Debug buttons (mostly for reseting the image and tracking the steps taken)
+        <View style={styles.buttonsContainer}>
           <TouchableOpacity onPress={() => handleReset()}>
             <Text>Reset</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress()}>
             <Text>Steps Taken</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.openButton}
-            onPress={async () => {
-              setModalVisible(true);
-              const uri = await viewShotRef.current.capture();
-              setUri(uri);
-            }}
-          >
-            <Text style={styles.textStyle}>Snapshot</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => getMediaLibraryAsync()}>
-            <Text>Save Photo</Text>
           </TouchableOpacity>
         </View> */}
         <View style={styles.saveButtonContainer}>

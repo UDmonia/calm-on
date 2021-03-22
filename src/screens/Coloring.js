@@ -14,8 +14,6 @@ import { coloringPicturesData } from "../data/coloringData.js";
 
 export default function Coloring({ navigation: { navigate } }) {
   function ImageBox(data) {
-    console.log("____________________");
-    console.log(data.item);
     return (
       <TouchableOpacity
         style={styles.imageBoxContainer}
