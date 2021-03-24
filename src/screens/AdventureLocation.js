@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import Exit from "../components/Exit";
+import AdventureMadLib from "../components/AdventureMadLib";
 import styles from "../stylesheets/adventureLocationStyles";
 import { navigate } from "../components/RootNavigation";
 import Button from "../components/Button";
@@ -26,13 +27,14 @@ export default AdventureLocation = ({ route, navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
+  const [madLibModal, setMadLibModal] = useState(false);
   const scrollViewRef = useRef();
   const { locationBackground } = route.params;
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
   const { exitAsset } = route.params;
-  const {kpiData} = route.params;
-  
+  const { kpiData } = route.params;
+
   function handleAlphaButtonPress(item) {
     // Add item to the bottom basket
     // After each press we increment our index through "locationData"
@@ -48,6 +50,12 @@ export default AdventureLocation = ({ route, navigation }) => {
         { id: item.id, name: item.itemName, img: item.image },
       ]);
       setDone(true);
+      navigate("AdventureLocationListAll", {
+        bg: locationBackgroundTint,
+        arr: selected,
+        pMsg: kpiData.primMsg,
+        sMsg: kpiData.secMsg,
+      });
     }
   }
 
@@ -79,7 +87,7 @@ export default AdventureLocation = ({ route, navigation }) => {
         style={styles.background}
         imageStyle={styles.imgBackground}
       >
-        {done && (
+        {/* {done && (
           <Button
             styles={styles.doneButton}
             onPress={() =>
@@ -91,7 +99,11 @@ export default AdventureLocation = ({ route, navigation }) => {
             }
             text={"Done"}
           />
-        )}
+        )} */}
+        <AdventureMadLib
+          modalVisible={madLibModal}
+          setModalVisible={setMadLibModal}
+        />
         <View style={styles.exitPosition}>
           <Exit navTo={"Modal"} img={exitAsset} />
         </View>

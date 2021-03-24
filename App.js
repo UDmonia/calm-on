@@ -45,6 +45,8 @@ import TrainSuperhero from "./src/screens/TrainSuperhero.js";
 import DecodingMessages from "./src/screens/DecodingMessages.js";
 import Coloring from "./src/screens/Coloring.js";
 import ColoringPage from "./src/screens/ColoringPage";
+import AdventureLocationListAll from "./src/screens/AdventureLocationListAll";
+import AdventureLocationMadLib from "./src/screens/AdventureLocationMadLib";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -252,6 +254,14 @@ export default function App() {
           <Stack.Screen
             name="AdventureLocationSeeAll"
             component={AdventureLocationSeeAll}
+          />
+          <Stack.Screen
+            name="AdventureLocationListAll"
+            component={AdventureLocationListAll}
+          />
+          <Stack.Screen
+            name="AdventureLocationMadLib"
+            component={AdventureLocationMadLib}
           />
           <Stack.Screen
             name="MatchTheColor"
