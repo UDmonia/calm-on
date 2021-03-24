@@ -43,7 +43,6 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
           animationType="fade"
           transparent={true}
           visible={modalVisible}
-          transparent={true}
         >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.centeredView}>
