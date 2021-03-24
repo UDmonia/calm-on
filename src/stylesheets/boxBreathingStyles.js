@@ -41,6 +41,12 @@ const styles = StyleSheet.create({
     fontFamily: "FontBold",
     textAlign: "center",
   },
+  counter: {
+    color: hex.blue.blue5,
+    paddingTop: 15,
+    fontSize: 20,
+    fontFamily: "FontBold" 
+  },
   questionBox: {
     backgroundColor: hex.green.green1,
     justifyContent: "center",
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
     paddingBottom: "5%",
   },
   outroPromt: {
-    backgroundColor: "#FBBDB4",
+    backgroundColor: hex.white.white1,
     width: "75%",
     marginLeft: "12.5%",
     borderRadius: 10,
@@ -210,9 +216,9 @@ const styles = StyleSheet.create({
   },
   outroImgContainer: {
     width: "40%",
-    height: "30%",
+    height: "20%",
     marginTop: "30%",
-    marginBottom: -10,
+    //marginBottom: -10,
     marginLeft: "15%",
     //backgroundColor: "yellow",
     justifyContent: "flex-end",

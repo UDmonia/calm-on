@@ -6,6 +6,8 @@ import deviceStorage from "../services/device_storage";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const ADD_SCORE = "ADD_SCORE";
+export const RECEIVE_SCORE_ERRORS = "RECEIVE_SCORE";
 
 const receiveUser = (user) => ({
   type: RECEIVE_USER,
@@ -20,6 +22,7 @@ const receiveSessionErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
   errors,
 });
+
 
 const getUser = (token, user) => {
   console.log("token:  " + token)

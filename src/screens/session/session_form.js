@@ -22,6 +22,7 @@ import loginBtn from "../../../assets/images/logIn.png";
 import pwConfirm from "../../../assets/images/passwordConfirmed.png";
 import date from "../../../assets/images/date.png";
 import registerBtn from "../../../assets/images/createAcc.png";
+import deviceStorage from "../../services/device_storage";
 
 const initialLogin = {
   email: "",
@@ -113,6 +114,7 @@ const SessionForm = ({
           )
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
+          deviceStorage.save("score", 0);
           !login ? setShowUserDialog(true) : navigate("Home");
         } else {
           setError(true);

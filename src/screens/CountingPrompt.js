@@ -111,7 +111,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
                   style={styles.navButton}
                   onPress={() => navigate("CharacterChat")}
                 >
-                  <Text style={{ color: hex.grey.grey1 }}>Home</Text>
+                  <Text style={{ color: hex.grey.grey1 }}>Not Now</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.navButton}

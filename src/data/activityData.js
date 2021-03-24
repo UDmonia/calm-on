@@ -70,7 +70,7 @@ const SpriteActivityData = [
       navRoute: "IntroActivity",
       ActRoute: "boxBreathing",
       about:
-        "Take a walk with Sprite while you work on a calming breathing pattern",
+        "Take a walk with Sprite while you work on a calming breathing pattern.",
       helpful: "You are feeling very sad, angry, scared, or worried.",
       img: require("../../assets/boxBreathing/actTitle.png"),
       headerColor: "#2E7D32",
@@ -110,6 +110,22 @@ const SpriteActivityData = [
   },
   {
     id: 7,
+    title: "Match the color",
+    color: "#A7D1A8",
+    img: require("../../assets/activities/matching.png"),
+    tag: ["happy", "excited", "angry"],
+    introPageData: {
+      navRoute: "IntroActivity",
+      ActRoute: "MatchTheColor",
+      about:
+        "Match the color on the card!",
+      helpful: "When you need to foucus.",
+      img: require("../../assets/activities/matchingintro.png"),
+      headerColor: "#2E7D32",
+    },
+  },
+  {
+    id: 8,
     title: "Healthy Habits",
     color: "#7CC576",
     img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
@@ -125,7 +141,7 @@ const SpriteActivityData = [
     },
   },
   {
-    id: 8,
+    id: 9,
     title: "Do The Five",
     color: "#7CC576",
     img: require("../../assets/HabitCards/doTheFive/thumbnail.png"),
@@ -141,7 +157,7 @@ const SpriteActivityData = [
     },
   },
   {
-    id: 9,
+    id: 10,
     title: "Wash Your Hands Like a Pro!",
     color: "#7CC576",
     img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
@@ -157,7 +173,7 @@ const SpriteActivityData = [
     },
   },
   {
-    id: 10,
+    id: 11,
     title: "Decoding Messages",
     color: "#D0B0FF",
     img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
@@ -173,7 +189,7 @@ const SpriteActivityData = [
     },
   },
   {
-    id: 11,
+    id: 12,
     title: "Coloring",
     color: "#D0B0FF",
     img: require("../../assets/HabitCards/healthyHabits/thumbnail.png"),
