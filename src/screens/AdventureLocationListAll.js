@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from "react-native";
 import { navigate } from "../components/RootNavigation";
 import styles from "../stylesheets/adventureLocationListAllStyles";
+import Exit from "../components/Exit";
 const AdventureLocationListAll = ({ route }) => {
   const { pMsg, sMsg, arr, bg } = route.params;
 
@@ -16,7 +17,8 @@ const AdventureLocationListAll = ({ route }) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <SafeAreaView style={styles.mainContainer}>
+      <Exit navTo={"Modal"}/>
       <ScrollView contentContainerStyle={styles.listContainer}>
         {arr.map((item) => {
           return (
@@ -27,10 +29,10 @@ const AdventureLocationListAll = ({ route }) => {
           );
         })}
       </ScrollView>
-      <TouchableOpacity onPress={() => handlePress()}>
+      <TouchableOpacity style={{alignSelf: "center"}} onPress={() => handlePress()}>
         <Text>Next</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

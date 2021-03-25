@@ -7,8 +7,8 @@ export default StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === "android" ? 25 : 0,
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
   },
   listContainer: {
     width: windowWidth,
@@ -17,5 +17,11 @@ export default StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    height: windowHeight * 0.075,
   },
+  imgContainer: {
+    width: "20%",
+    height: "100%",
+    resizeMode: "contain",
+  }
 });
