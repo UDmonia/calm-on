@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from "react-native";
 import { navigate } from "../components/RootNavigation";
 import styles from "../stylesheets/adventureLocationListAllStyles";
 import Exit from "../components/Exit";
 const AdventureLocationListAll = ({ route }) => {
-  const { pMsg, sMsg, arr, bg } = route.params;
-
+  const { pMsg, sMsg, arr, bg, bgTint, } = route.params;
+  const randomStory = Math.floor(Math.random() * 3)
+  const [randomWords, setRandomWords] = useState([]);
+  console.log(randomStory);
   console.log(arr);
+
+  useEffect(() => {
+    let i;
+    let tempArray = [];
+    while(tempArray.length < 9) {
+      let r = Math.floor(Math.random() * 26);
+      if(tempArray.indexOf(r) === -1) {
+        tempArray.push(r);
+      }
+    }
+    // console.log(tempArray);
+    for(i = 0; i < 9; i++){
+      tempArray[i] = arr[tempArray[i]];
+    }
+    // console.log(tempArray);
+    setRandomWords(tempArray);
+  }, [])
 
   const handlePress = () => {
     navigate("AdventureLocationMadLib", {
       bg: bg,
+      bgTint: bgTint,
       pMsg: pMsg,
       sMsg: sMsg,
+      randomWords: randomWords,
+      randomStory: randomStory,
     });
   };
 

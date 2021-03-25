@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   TouchableOpacity,
@@ -41,21 +41,15 @@ export default AdventureLocation = ({ route, navigation }) => {
     if (letter < locationData.length - 1) {
       setSelected([
         ...selected,
-        { id: item.id, name: item.itemName, img: item.image },
+        { id: locationData[letter].id, name: item.itemName, img: item.image },
       ]);
       setLetter(letter + 1);
     } else if (letter === locationData.length - 1 && !done) {
       setSelected([
         ...selected,
-        { id: item.id, name: item.itemName, img: item.image },
+        { id: locationData[letter].id, name: item.itemName, img: item.image },
       ]);
       setDone(true);
-      navigate("AdventureLocationListAll", {
-        bg: locationBackgroundTint,
-        arr: selected,
-        pMsg: kpiData.primMsg,
-        sMsg: kpiData.secMsg,
-      });
     }
   }
 
@@ -79,6 +73,23 @@ export default AdventureLocation = ({ route, navigation }) => {
       </TouchableOpacity>
     );
   };
+
+  useEffect(() => {
+    if(selected[selected.length - 1] != null) {
+      // console.log(letter);
+      // console.log(selected[selected.length - 1]);
+      // If final item has been chosen we can now proceed
+      if(selected[selected.length - 1].id === locationData.length) {
+        navigate("AdventureLocationListAll", {
+          arr: selected,
+          bg:locationBackground,
+          bgTint: locationBackgroundTint,
+          pMsg: kpiData.primMsg,
+          sMsg: kpiData.secMsg,
+        });
+      }
+    }
+  }, [selected])
 
   return (
     <View style={styles.screenContainer}>
