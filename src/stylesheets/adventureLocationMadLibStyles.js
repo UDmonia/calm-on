@@ -3,8 +3,8 @@ import hex from "./hexCodes";
 import { windowWidth, windowHeight } from "../util/windowDimensions";
 import hexCodes from "./hexCodes";
 
-const INLINE_TEXT_SIZE = windowWidth * 0.05
-const INLINE_IMAGE_SIZE = INLINE_TEXT_SIZE * 0.25
+const INLINE_TEXT_SIZE = windowWidth * 0.05;
+const INLINE_IMAGE_SIZE = INLINE_TEXT_SIZE * 1.75;
 
 export default StyleSheet.create({
   mainContainer: {
@@ -17,7 +17,7 @@ export default StyleSheet.create({
   exitContainer: {
     width: windowWidth * 0.9,
     height: windowHeight * 0.1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   storyContainer: {
     backgroundColor: hexCodes.green.green1,
@@ -26,12 +26,11 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   inlineImage: {
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'contain'
+    height: INLINE_IMAGE_SIZE,
+    width: INLINE_IMAGE_SIZE,
+    resizeMode: "contain",
   },
   storyText: {
     fontSize: INLINE_TEXT_SIZE,
-  }
+  },
 });
