@@ -8,7 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 import Exit from "../components/Exit";
-import AdventureMadLib from "../components/AdventureMadLib";
 import styles from "../stylesheets/adventureLocationStyles";
 import { navigate } from "../components/RootNavigation";
 import Button from "../components/Button";
@@ -98,23 +97,6 @@ export default AdventureLocation = ({ route, navigation }) => {
         style={styles.background}
         imageStyle={styles.imgBackground}
       >
-        {/* {done && (
-          <Button
-            styles={styles.doneButton}
-            onPress={() =>
-              navigate("kpi", {
-                bg: locationBackgroundTint,
-                pMsg: kpiData.primMsg,
-                sMsg: kpiData.secMsg,
-              })
-            }
-            text={"Done"}
-          />
-        )} */}
-        <AdventureMadLib
-          modalVisible={madLibModal}
-          setModalVisible={setMadLibModal}
-        />
         <View style={styles.exitPosition}>
           <Exit navTo={"Modal"} img={exitAsset} />
         </View>

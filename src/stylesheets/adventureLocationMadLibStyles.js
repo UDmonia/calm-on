@@ -22,15 +22,17 @@ export default StyleSheet.create({
   storyContainer: {
     backgroundColor: hexCodes.green.green1,
     alignItems: "center",
-    justifyContent: "center",
     borderRadius: 10,
+    flex: 8,
+    width: windowWidth * 0.9,
   },
   inlineImage: {
-    height: INLINE_IMAGE_SIZE,
-    width: INLINE_IMAGE_SIZE,
+    height: windowHeight * 0.075,
     resizeMode: "contain",
   },
   storyText: {
     fontSize: INLINE_TEXT_SIZE,
+    color: hexCodes.white.white1,
+    lineHeight: windowHeight * 0.075,
   },
 });
