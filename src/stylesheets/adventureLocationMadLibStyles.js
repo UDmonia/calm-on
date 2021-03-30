@@ -25,6 +25,8 @@ export default StyleSheet.create({
     borderRadius: 10,
     flex: 8,
     width: windowWidth * 0.9,
+    paddingTop: "5%",
+    paddingHorizontal: "5%",
   },
   inlineImage: {
     height: windowHeight * 0.075,

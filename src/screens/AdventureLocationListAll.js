@@ -4,7 +4,7 @@ import { navigate } from "../components/RootNavigation";
 import styles from "../stylesheets/adventureLocationListAllStyles";
 import Exit from "../components/Exit";
 const AdventureLocationListAll = ({ route }) => {
-  const { pMsg, sMsg, arr, bg, bgTint, } = route.params;
+  const { pMsg, sMsg, arr, bg, bgTint, location } = route.params;
   const randomStory = Math.floor(Math.random() * 3)
   const [randomWords, setRandomWords] = useState([]);
   console.log(randomStory);
@@ -35,6 +35,7 @@ const AdventureLocationListAll = ({ route }) => {
       sMsg: sMsg,
       randomWords: randomWords,
       randomStory: randomStory,
+      location: location,
     });
   };
 

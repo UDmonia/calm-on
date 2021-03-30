@@ -40,6 +40,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationData: picnicData,
                   exitAsset: null,
                   kpiData: kpiData.picnic,
+                  location: 0,
                 })
               }
             >
@@ -57,6 +58,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationData: theaterData,
                   exitAsset: require("../../assets/exit/whtExitBtn.png"),
                   kpiData: kpiData.theater,
+                  location: 1,
                 })
               }
             >
@@ -74,6 +76,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationData: amusementData,
                   exitAsset: null,
                   kpiData: kpiData.amusement,
+                  location: 2,
                 })
               }
             >

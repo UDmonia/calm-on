@@ -33,7 +33,7 @@ export default AdventureLocation = ({ route, navigation }) => {
   const { locationData } = route.params;
   const { exitAsset } = route.params;
   const { kpiData } = route.params;
-
+  const { location } = route.params;
   function handleAlphaButtonPress(item) {
     // Add item to the bottom basket
     // After each press we increment our index through "locationData"
@@ -85,6 +85,7 @@ export default AdventureLocation = ({ route, navigation }) => {
           bgTint: locationBackgroundTint,
           pMsg: kpiData.primMsg,
           sMsg: kpiData.secMsg,
+          location: location,
         });
       }
     }
