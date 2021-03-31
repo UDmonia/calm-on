@@ -40,7 +40,7 @@ export default StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     paddingHorizontal: "5.5%",
-    backgroundColor: hex.brown.brown1,
+    backgroundColor: hex.green.green1,
   },
   locationTxt: {
     marginTop: 5,
