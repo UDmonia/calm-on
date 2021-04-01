@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import hex from "./hexCodes";
-import {windowWidth, windowHeight} from "../util/windowDimensions";
+import { windowWidth, windowHeight } from "../util/windowDimensions";
 
 export default StyleSheet.create({
   background: {

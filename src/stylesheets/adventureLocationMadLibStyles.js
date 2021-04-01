@@ -9,7 +9,7 @@ const INLINE_IMAGE_SIZE = INLINE_TEXT_SIZE * 1.75;
 export default StyleSheet.create({
   mainContainer: {
     flex: 1,
-    paddingTop: StatusBar.height,
+    paddingTop: Platform.OS === "android" ? 25 : 0,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -35,7 +35,7 @@ export default StyleSheet.create({
   storyText: {
     fontSize: INLINE_TEXT_SIZE,
     color: hexCodes.white.white1,
-    lineHeight: windowHeight * 0.075,
+    lineHeight: windowHeight * 0.082,
   },
   nextButton: {
     height: "70%",
@@ -45,5 +45,5 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 50,
-  }
+  },
 });
