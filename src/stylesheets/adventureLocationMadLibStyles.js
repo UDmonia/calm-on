@@ -29,7 +29,7 @@ export default StyleSheet.create({
     paddingHorizontal: "5%",
   },
   inlineImage: {
-    height: windowHeight * 0.075,
+    // height: windowHeight * 0.075,
     resizeMode: "contain",
   },
   storyText: {
@@ -37,4 +37,13 @@ export default StyleSheet.create({
     color: hexCodes.white.white1,
     lineHeight: windowHeight * 0.075,
   },
+  nextButton: {
+    height: "70%",
+    width: "50%",
+    backgroundColor: hexCodes.green.green1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
+  }
 });
