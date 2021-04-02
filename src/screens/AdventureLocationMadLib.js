@@ -67,7 +67,7 @@ const AdventureLocationMadLib = ({ route }) => {
               })
             }
           >
-            <Text style={styles.storyText}>Next</Text>
+            <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

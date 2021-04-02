@@ -27,7 +27,7 @@ export default StyleSheet.create({
     color: "white",
     fontSize: windowWidth * 0.05,
     fontFamily: "FontReg",
-    paddingBottom: "5%",
+    marginBottom: "5%",
   },
   grid: {
     display: "flex",
@@ -58,10 +58,15 @@ export default StyleSheet.create({
     backgroundColor: hexCodes.green.green1,
     marginTop: "5%",
     marginBottom: "5%",
-    height: windowHeight * 0.075,
+    height: windowHeight * 0.065,
     width: windowWidth * 0.4,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
+  },
+  nextButtonTxt: {
+    color: "white",
+    fontSize: windowWidth * 0.05,
+    fontFamily: "FontReg",
   },
 });

@@ -72,7 +72,7 @@ const AdventureLocationListAll = ({ route }) => {
             style={styles.nextButton}
             onPress={() => handlePress()}
           >
-            <Text style={styles.selectedItemsTxt}>Next</Text>
+            <Text style={styles.nextButtonTxt}>Next</Text>
           </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>

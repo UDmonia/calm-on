@@ -46,4 +46,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     borderRadius: 50,
   },
+  nextButtonText: {
+    fontSize: INLINE_TEXT_SIZE,
+    color: hexCodes.white.white1,
+  }
 });
