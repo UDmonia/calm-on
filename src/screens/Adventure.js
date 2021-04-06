@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
+import { useSelector } from "react-redux";
 import styles from "../stylesheets/adventureStyles";
 import picnicData from "../data/picnicData";
 import theaterData from "../data/theaterData";
@@ -14,6 +15,8 @@ import kpiData from "../data/kpiData";
 import Exit from "../components/Exit";
 
 export default Adventure = ({ navigation: { navigate } }) => {
+  const name = useSelector((state) => state.session.user.name);
+  console.log(name);
   return (
     <View style={styles.screenContainer}>
       <ImageBackground
@@ -26,7 +29,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
         <View style={styles.center}>
           <View style={styles.dialogContainer}>
             <Text style={styles.greetingTxt}>
-              Hey [user]! Great to see you! I’m so glad you want to go on an
+              Hey {name}! Great to see you! I’m so glad you want to go on an
               adventure with me. Where do you want to go?
             </Text>
           </View>
@@ -40,6 +43,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationData: picnicData,
                   exitAsset: null,
                   kpiData: kpiData.picnic,
+                  location: 0,
                 })
               }
             >
@@ -57,6 +61,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationData: theaterData,
                   exitAsset: require("../../assets/exit/whtExitBtn.png"),
                   kpiData: kpiData.theater,
+                  location: 1,
                 })
               }
             >
@@ -74,6 +79,7 @@ export default Adventure = ({ navigation: { navigate } }) => {
                   locationData: amusementData,
                   exitAsset: null,
                   kpiData: kpiData.amusement,
+                  location: 2,
                 })
               }
             >

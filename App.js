@@ -34,6 +34,8 @@ import AdventureLocation from "./src/screens/AdventureLocation.js";
 import AdventureLocationSeeAll from "./src/screens/AdventureLocationSeeAll.js";
 import FlatActivities from "./src/screens/FlatActivities.js";
 import IntroActivity from "./src/screens/IntroActivity.js";
+import MatchTheColor from "./src/screens/MatchTheColor.js";
+import MatchScore from "./src/screens/MatchScore.js";
 import Modal from "./src/components/Modal";
 import { ModalOptions } from "./src/components/Modal";
 import HealthyHabitsTemplate from "./src/screens/HealthyHabitsTemplate";
@@ -41,6 +43,10 @@ import FilteredActivities from "./src/screens/FilteredActivities.js";
 import WashHands from "./src/screens/WashHands.js";
 import TrainSuperhero from "./src/screens/TrainSuperhero.js";
 import DecodingMessages from "./src/screens/DecodingMessages.js";
+import Coloring from "./src/screens/Coloring.js";
+import ColoringPage from "./src/screens/ColoringPage";
+import AdventureLocationListAll from "./src/screens/AdventureLocationListAll";
+import AdventureLocationMadLib from "./src/screens/AdventureLocationMadLib";
 
 const Stack = createStackNavigator();
 const store = configureStore();
@@ -249,6 +255,28 @@ export default function App() {
             name="AdventureLocationSeeAll"
             component={AdventureLocationSeeAll}
           />
+          <Stack.Screen
+            name="AdventureLocationListAll"
+            component={AdventureLocationListAll}
+          />
+          <Stack.Screen
+            name="AdventureLocationMadLib"
+            component={AdventureLocationMadLib}
+          />
+          <Stack.Screen
+            name="MatchTheColor"
+            component={MatchTheColor}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="MatchScore"
+            component={MatchScore}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen name="Modal" component={Modal} options={ModalOptions} />
           <Stack.Screen
             name="HealthyHabitsTemplate"
@@ -281,6 +309,8 @@ export default function App() {
           <Stack.Screen name="WashHands" component={WashHands} />
           <Stack.Screen name="DecodingMessages" component={DecodingMessages} />
           <Stack.Screen name="TrainSuperhero" component={TrainSuperhero} />
+          <Stack.Screen name="Coloring" component={Coloring} />
+          <Stack.Screen name="ColoringPage" component={ColoringPage} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

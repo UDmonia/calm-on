@@ -38,12 +38,11 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
   return (
     <View style={styles.mainContainer}>
       {/* Replace the source url with the image parameter when needed later on, currently constant is added for testing purposes. */}
-      <ImageBackground source={route.params.bg} style={styles.imgBackground}>
+      <ImageBackground source={route.params.bg} style={styles.imgBackground} >
         <Modal
           animationType="fade"
           transparent={true}
           visible={modalVisible}
-          transparent={true}
         >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={styles.centeredView}>

@@ -25,7 +25,7 @@ const kpiData = {
   },
   boxBreathing: {
     title: "boxBreathing",
-    primMsg: "Nice Work!",
+    primMsg: "Nice!",
     secMsg: "You can check out some of our other story times.",
     img: null,
     likeApi: null,
@@ -70,7 +70,15 @@ const kpiData = {
     img:  null,
     likeApi: null,
     confusedApi: null,
-  }
+  },
+  matching: {
+    title: "colorMatching",
+    primMsg: "Well Done!",
+    secMsg: "You can try out some of our other activities.",
+    img:  null,
+    likeApi: null,
+    confusedApi: null,
+  },
 };
 
 export default kpiData;

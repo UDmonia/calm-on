@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   TouchableOpacity,
@@ -26,26 +26,27 @@ export default AdventureLocation = ({ route, navigation }) => {
   const [letter, setLetter] = useState(0);
   const [selected, setSelected] = useState([]);
   const [done, setDone] = useState(false);
+  const [madLibModal, setMadLibModal] = useState(false);
   const scrollViewRef = useRef();
   const { locationBackground } = route.params;
   const { locationBackgroundTint } = route.params;
   const { locationData } = route.params;
   const { exitAsset } = route.params;
-  const {kpiData} = route.params;
-  
+  const { kpiData } = route.params;
+  const { location } = route.params;
   function handleAlphaButtonPress(item) {
     // Add item to the bottom basket
     // After each press we increment our index through "locationData"
     if (letter < locationData.length - 1) {
       setSelected([
         ...selected,
-        { id: item.id, name: item.itemName, img: item.image },
+        { id: locationData[letter].id, name: item.itemName, img: item.image },
       ]);
       setLetter(letter + 1);
     } else if (letter === locationData.length - 1 && !done) {
       setSelected([
         ...selected,
-        { id: item.id, name: item.itemName, img: item.image },
+        { id: locationData[letter].id, name: item.itemName, img: item.image },
       ]);
       setDone(true);
     }
@@ -72,6 +73,24 @@ export default AdventureLocation = ({ route, navigation }) => {
     );
   };
 
+  useEffect(() => {
+    if(selected[selected.length - 1] != null) {
+      // console.log(letter);
+      // console.log(selected[selected.length - 1]);
+      // If final item has been chosen we can now proceed
+      if(selected[selected.length - 1].id === locationData.length) {
+        navigate("AdventureLocationListAll", {
+          arr: selected,
+          bg:locationBackground,
+          bgTint: locationBackgroundTint,
+          pMsg: kpiData.primMsg,
+          sMsg: kpiData.secMsg,
+          location: location,
+        });
+      }
+    }
+  }, [selected])
+
   return (
     <View style={styles.screenContainer}>
       <ImageBackground
@@ -79,19 +98,6 @@ export default AdventureLocation = ({ route, navigation }) => {
         style={styles.background}
         imageStyle={styles.imgBackground}
       >
-        {done && (
-          <Button
-            styles={styles.doneButton}
-            onPress={() =>
-              navigate("kpi", {
-                bg: locationBackgroundTint,
-                pMsg: kpiData.primMsg,
-                sMsg: kpiData.secMsg,
-              })
-            }
-            text={"Done"}
-          />
-        )}
         <View style={styles.exitPosition}>
           <Exit navTo={"Modal"} img={exitAsset} />
         </View>
