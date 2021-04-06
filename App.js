@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
 import hex from "./src/stylesheets/hexCodes";
-import { TouchableOpacity, Image } from "react-native";
+import { TouchableOpacity, Image, LogBox } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -52,7 +52,8 @@ const Stack = createStackNavigator();
 const store = configureStore();
 
 export default function App() {
-  console.disableYellowBox = true;
+  // console.disableYellowBox = true;
+  LogBox.ignoreAllLogs(true);
   // Importing the font here
   // NunitoReg is the Regular font
   // NunitoBold is used for Bold font
