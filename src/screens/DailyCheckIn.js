@@ -225,9 +225,10 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
     setSad,
     setAngry,
   ];
+  const dispatch = useDispatch();
 
   const handleAddEmotion = (feeling, reasons) => {
-    return useDispatch(
+    return dispatch(
       checkin({
         mood: feeling,
         journal: reasons,
