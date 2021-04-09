@@ -12,6 +12,7 @@ const Happy = ({ setFeeling, arrHooks, happy }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="happy-button"
         onPress={() => {
           setFeeling("Happy");
           var i;
@@ -44,6 +45,7 @@ const Excited = ({ setFeeling, arrHooks, excited }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="excited-button"
         onPress={() => {
           setFeeling("Excited");
           var i;
@@ -76,6 +78,7 @@ const Scared = ({ setFeeling, arrHooks, scared }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="scared-button"
         onPress={() => {
           setFeeling("Scared");
           var i;
@@ -108,6 +111,7 @@ const Worried = ({ setFeeling, arrHooks, worried }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="worried-button"
         onPress={() => {
           setFeeling("Worried");
           var i;
@@ -140,6 +144,7 @@ const Sad = ({ setFeeling, arrHooks, sad }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="sad-button"
         onPress={() => {
           setFeeling("Sad");
           var i;
@@ -172,6 +177,7 @@ const Angry = ({ setFeeling, arrHooks, angry }) => {
   return (
     <View style={styles.feelingContainer}>
       <TouchableOpacity
+        testID="angry-button"
         onPress={() => {
           setFeeling("Angry");
           var i;
@@ -221,8 +227,6 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
   ];
   const dispatch = useDispatch();
 
-
-
   const handleAddEmotion = (feeling, reasons) => {
     return dispatch(
       checkin({
@@ -234,55 +238,57 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
-        <Text style={styles.txtQuestion}>
-          How are you feeling today,{"\n"}
-          {userName}?
-        </Text>
-        <View style={styles.txtInfo}>
-          <Image source={require("../../assets/images/info.png")} />
-          <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
-            <Text style={styles.txtInfo}>Learn more about feelings</Text>
-          </TouchableOpacity>
+      <Text style={styles.txtQuestion}>
+        How are you feeling today,{"\n"}
+        {userName}?
+      </Text>
+      <View style={styles.txtInfo}>
+        <Image source={require("../../assets/images/info.png")} />
+        <TouchableOpacity onPress={() => navigate("FeelingDictionary")}>
+          <Text style={styles.txtInfo}>Learn more about feelings</Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <View style={styles.row}>
+          <Happy setFeeling={setFeeling} arrHooks={arrHooks} happy={happy} />
+          <Excited
+            setFeeling={setFeeling}
+            arrHooks={arrHooks}
+            excited={exited}
+          />
         </View>
-        <View>
-          <View style={styles.row}>
-            <Happy setFeeling={setFeeling} arrHooks={arrHooks} happy={happy} />
-            <Excited
-              setFeeling={setFeeling}
-              arrHooks={arrHooks}
-              excited={exited}
-            />
-          </View>
-          <View style={styles.row}>
-            <Scared setFeeling={setFeeling} arrHooks={arrHooks} scared={scared} />
-            <Worried
-              setFeeling={setFeeling}
-              arrHooks={arrHooks}
-              worried={worried}
-            />
-          </View>
-          <View style={styles.row}>
-            <Sad setFeeling={setFeeling} arrHooks={arrHooks} sad={sad} />
-            <Angry setFeeling={setFeeling} arrHooks={arrHooks} angry={angry} />
-          </View>
+        <View style={styles.row}>
+          <Scared setFeeling={setFeeling} arrHooks={arrHooks} scared={scared} />
+          <Worried
+            setFeeling={setFeeling}
+            arrHooks={arrHooks}
+            worried={worried}
+          />
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={[styles.buttons, styles.cancelButton]}
-            onPress={() => navigate("Home")}
-          >
-            <Text style={styles.cancelButtonText}>Cancel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.buttons, styles.continueButton]}
-            onPress={() => {
-              handleAddEmotion(curFeeling, "");
-              navigate("Home");
-            }}
-          >
-            <Text style={styles.continueButtonText}>Submit</Text>
-          </TouchableOpacity>
+        <View style={styles.row}>
+          <Sad setFeeling={setFeeling} arrHooks={arrHooks} sad={sad} />
+          <Angry setFeeling={setFeeling} arrHooks={arrHooks} angry={angry} />
         </View>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          testID="dailycheckin-navigate-button"
+          style={[styles.buttons, styles.cancelButton]}
+          onPress={() => navigate("Home")}
+        >
+          <Text style={styles.cancelButtonText}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID="curFeeling-button"
+          style={[styles.buttons, styles.continueButton]}
+          onPress={() => {
+            handleAddEmotion(curFeeling, "");
+            navigate("Home");
+          }}
+        >
+          <Text style={styles.continueButtonText}>Submit</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
