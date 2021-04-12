@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import hex from "./hexCodes";
+import { windowHeight, windowWidth } from '../util/windowDimensions';
 
 export default StyleSheet.create({
   background: {
@@ -145,4 +146,18 @@ export default StyleSheet.create({
   test: {
     paddingBottom: "20%",
   },
+  fairyMainContainer: {
+    position: "absolute",
+    height: windowHeight,
+    width: windowWidth,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  fairyLRButtonConatiner: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  }
 });

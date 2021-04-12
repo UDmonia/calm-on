@@ -59,6 +59,10 @@ const SessionForm = ({
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
   const [showNameError, setNameError] = useState(false);
+  const [pickFariyIntro, setPickFairyIntro] = useState(true);
+  const [pickFairyCarousel, setPickFairyCarousel] = useState(false);
+  const fairies = ['Sprite', 'Flynn' , 'Aurora'];
+  const [fairy, setFairy] = useState(0);
   const toggleShow = () => setShow(!show);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
@@ -114,7 +118,7 @@ const SessionForm = ({
           )
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          deviceStorage.save("score", 0);
+          //deviceStorage.save("score", 0);
           !login ? setShowUserDialog(true) : navigate("Home");
         } else {
           setError(true);
@@ -270,37 +274,105 @@ const SessionForm = ({
           >
             <Text style={styles.bottomButtonText}>Create Account</Text>
           </TouchableOpacity>
+
+          {/* Tester button */}
+          <TouchableOpacity
+            style={{ ...styles.bottomButton, width: 215 }}
+            onPress={() => setShowUserDialog(true)}
+          >
+            <Text style={styles.bottomButtonText}>Choose a Friend</Text>
+          </TouchableOpacity>
         </View>
       )}
 
       {showUserDialog && (
-        <View style={styles.userNameDialog}>
-          <View style={styles.userNameCard}>
-            <Text style={styles.titleText}>Welcome!</Text>
-            <Text style={styles.userNameBodyText}>
-              It’s so nice to finally meet you!{"\n"} What should we call you?
-            </Text>
-            {showNameError && (
-              <Text style={styles.error}>username is required</Text>
-            )}
-            <TextInput
-              style={styles.userNameInput}
-              placeholder={""}
-              onChangeText={handleChange("name")}
-              clearButtonMode="while-editing"
-              value={name}
-            />
-          </View>
-          <View style={{ paddingTop: "10%" }}>
+        pickFariyIntro ?
+          pickFairyCarousel ? 
+          // Pick your Fairy Buddy component
+          <View style={styles.fairyMainContainer}>
+            <Text>Pick a Fairy</Text>
+            <View style={styles.fairyLRButtonConatiner}>
+              <TouchableOpacity
+                style={{ ...styles.bottomButton, width: 115 }}
+                onPress={() => {
+                  if(fairy === 0) {
+                    setFairy(0);
+                  } else {
+                    setFairy(fairy - 1);
+                  }
+                }}
+                >
+                <Text style={styles.bottomButtonText}>{'<'}</Text>
+              </TouchableOpacity>
+              <Text>{fairies[fairy]}</Text>
+              <TouchableOpacity
+                style={{ ...styles.bottomButton, width: 115 }}
+                onPress={() => {
+                  if(fairy === 2) {
+                    setFairy(2);
+                  } else {
+                    setFairy(fairy + 1);
+                  }
+                }}
+                >
+                <Text style={styles.bottomButtonText}>{'>'}</Text>
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
-              onPress={() => handleAddName()}
-              style={styles.bottomButton}
-            >
+              style={{ ...styles.bottomButton, width: 215 }}
+              onPress={() => setPickFairyIntro(!pickFariyIntro)}
+              >
+              <Text style={styles.bottomButtonText}>Pick {fairies[fairy]}</Text>
+            </TouchableOpacity>
+          </View> : 
+          // Intro Page for the Pick your Fairy Buddy Component
+          <View style={styles.fairyMainContainer}>
+            <Text>Welcome to Calm On! We’re so glad you’re here! Before we get started with our games, can you pick a fairy buddy to hang out with during your time here?</Text>
+            <TouchableOpacity
+              style={{ ...styles.bottomButton, width: 215 }}
+              onPress={() => setPickFairyCarousel(!pickFairyCarousel)}
+              >
               <Text style={styles.bottomButtonText}>Next</Text>
             </TouchableOpacity>
+          </View> :
+          // Enter your name component
+          <View style={styles.fairyMainContainer}>
+            <View>
+              <TouchableOpacity
+                onPress={() => setPickFairyIntro(!pickFariyIntro)}>
+                <Text>Back</Text>
+              </TouchableOpacity>
+            </View>
+            <Text>{fairies[fairy]}</Text>
+            <View style={styles.userNameDialog}>
+              <View style={styles.userNameCard}>
+                <Text style={styles.titleText}>Welcome!</Text>
+                <Text style={styles.userNameBodyText}>
+                  It’s so nice to finally meet you!{"\n"} What should we call you?
+                </Text>
+                {showNameError && (
+                  <Text style={styles.error}>username is required</Text>
+                )}
+                <TextInput
+                  style={styles.userNameInput}
+                  placeholder={""}
+                  onChangeText={handleChange("name")}
+                  clearButtonMode="while-editing"
+                  value={name}
+                />
+              </View>
+              <View style={{ paddingTop: "10%" }}>
+                <TouchableOpacity
+                  onPress={() => handleAddName()}
+                  style={styles.bottomButton}
+                >
+                  <Text style={styles.bottomButtonText}>Next</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-        </View>
       )}
+      
     </View>
   );
 };
