@@ -169,6 +169,44 @@ router.put(
 );
 
 router.put(
+  "/fairy",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const currUser = req.user;
+    console.log(currUser);
+    const { fairy } = req.body;
+
+    if (!fairy || !fairy.trim().length) {
+      res.status(422).json({ name: "Please enter your name to continue" });
+    }
+
+    try {
+      currUser.fairy = fairy;
+      const savedUser = await currUser.save();
+      const user = savedUser.toJSON();
+      delete user.password;
+      const checkins = await CheckIn.find({author:user._id})
+      const checkinGroups = groupCheckinsByDate(checkins);
+      const userCopy = new User(user);
+      const userCopyJson = userCopy.toJSON();
+      userCopyJson.checkIns = checkinGroups;
+      jwt.sign(user, secret, (err, token) => {
+        if (token) {
+          res.status(200).json({
+            token: `Bearer ${token}`,
+            user: userCopyJson
+          });
+        } else {
+          res.status(500).json(err);
+        }
+      });
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+);
+
+router.put(
   "/checkin",
   passport.authenticate('jwt',{session:false}),
   async (req, res) => {

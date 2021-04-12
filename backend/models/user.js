@@ -20,6 +20,9 @@ const UserSchema = new Schema(
     },
     name: {
       type: String,
+    },
+    fairy: {
+      type: String,
     }
   },
   {

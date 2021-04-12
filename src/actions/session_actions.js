@@ -81,6 +81,12 @@ export const addName = (user) => (dispatch) =>
     .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 
+// Adding the user's perfered fairy
+export const addFairy = (user) => (dispatch) =>
+  SessionAPI.addFairy(user)
+  .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
+  .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+
 export const checkin = (checkinDTO) => (dispatch) => 
   SessionAPI.checkin(checkinDTO)
   .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))

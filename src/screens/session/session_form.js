@@ -15,6 +15,7 @@ import {
   register,
   RECEIVE_USER,
   addName,
+  addFairy
 } from "../../actions/session_actions";
 import mail from "../../../assets/images/mail.png";
 import lock from "../../../assets/images/password.png";
@@ -163,6 +164,10 @@ const SessionForm = ({
     });
   };
 
+  const handleAddFairy = () => {
+    return dispatch(addFairy({fairy: fairies[fairy]}));
+  }
+
   return (
     <View>
       {!showUserDialog && (
@@ -278,7 +283,7 @@ const SessionForm = ({
           {/* Tester button */}
           <TouchableOpacity
             style={{ ...styles.bottomButton, width: 215 }}
-            onPress={() => setShowUserDialog(true)}
+            onPress={handleSubmit}
           >
             <Text style={styles.bottomButtonText}>Choose a Friend</Text>
           </TouchableOpacity>
@@ -320,7 +325,10 @@ const SessionForm = ({
             </View>
             <TouchableOpacity
               style={{ ...styles.bottomButton, width: 215 }}
-              onPress={() => setPickFairyIntro(!pickFariyIntro)}
+              onPress={() => {
+                setPickFairyIntro(!pickFariyIntro)
+                handleAddFairy()
+              }}
               >
               <Text style={styles.bottomButtonText}>Pick {fairies[fairy]}</Text>
             </TouchableOpacity>
