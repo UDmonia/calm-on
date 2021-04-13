@@ -15,7 +15,7 @@ import {
   register,
   RECEIVE_USER,
   addName,
-  addFairy
+  addFairy,
 } from "../../actions/session_actions";
 import mail from "../../../assets/images/mail.png";
 import lock from "../../../assets/images/password.png";
@@ -62,7 +62,7 @@ const SessionForm = ({
   const [showNameError, setNameError] = useState(false);
   const [pickFariyIntro, setPickFairyIntro] = useState(true);
   const [pickFairyCarousel, setPickFairyCarousel] = useState(false);
-  const fairies = ['Sprite', 'Flynn' , 'Aurora'];
+  const fairies = ["Sprite", "Flynn", "Aurora"];
   const [fairy, setFairy] = useState(0);
   const toggleShow = () => setShow(!show);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
@@ -165,8 +165,8 @@ const SessionForm = ({
   };
 
   const handleAddFairy = () => {
-    return dispatch(addFairy({fairy: fairies[fairy]}));
-  }
+    return dispatch(addFairy({ fairy: fairies[fairy] }));
+  };
 
   return (
     <View>
@@ -290,64 +290,74 @@ const SessionForm = ({
         </View>
       )}
 
-      {showUserDialog && (
-        pickFariyIntro ?
-          pickFairyCarousel ? 
-          // Pick your Fairy Buddy component
-          <View style={styles.fairyMainContainer}>
-            <Text>Pick a Fairy</Text>
-            <View style={styles.fairyLRButtonConatiner}>
-              <TouchableOpacity
-                style={{ ...styles.bottomButton, width: 115 }}
-                onPress={() => {
-                  if(fairy === 0) {
-                    setFairy(0);
-                  } else {
-                    setFairy(fairy - 1);
-                  }
-                }}
+      {showUserDialog &&
+        (pickFariyIntro ? (
+          pickFairyCarousel ? (
+            // Pick your Fairy Buddy component
+            <View style={styles.fairyMainContainer}>
+              <Text>Pick a Fairy</Text>
+              <View style={styles.fairyLRButtonConatiner}>
+                <TouchableOpacity
+                  style={{ ...styles.bottomButton, width: 115 }}
+                  onPress={() => {
+                    if (fairy === 0) {
+                      setFairy(0);
+                    } else {
+                      setFairy(fairy - 1);
+                    }
+                  }}
                 >
-                <Text style={styles.bottomButtonText}>{'<'}</Text>
-              </TouchableOpacity>
-              <Text>{fairies[fairy]}</Text>
-              <TouchableOpacity
-                style={{ ...styles.bottomButton, width: 115 }}
-                onPress={() => {
-                  if(fairy === 2) {
-                    setFairy(2);
-                  } else {
-                    setFairy(fairy + 1);
-                  }
-                }}
+                  <Text style={styles.bottomButtonText}>{"<"}</Text>
+                </TouchableOpacity>
+                <Text>{fairies[fairy]}</Text>
+                <TouchableOpacity
+                  style={{ ...styles.bottomButton, width: 115 }}
+                  onPress={() => {
+                    if (fairy === 2) {
+                      setFairy(2);
+                    } else {
+                      setFairy(fairy + 1);
+                    }
+                  }}
                 >
-                <Text style={styles.bottomButtonText}>{'>'}</Text>
+                  <Text style={styles.bottomButtonText}>{">"}</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
+                style={{ ...styles.bottomButton, width: 215 }}
+                onPress={() => {
+                  setPickFairyIntro(!pickFariyIntro);
+                  handleAddFairy();
+                }}
+              >
+                <Text style={styles.bottomButtonText}>
+                  Pick {fairies[fairy]}
+                </Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              style={{ ...styles.bottomButton, width: 215 }}
-              onPress={() => {
-                setPickFairyIntro(!pickFariyIntro)
-                handleAddFairy()
-              }}
+          ) : (
+            // Intro Page for the Pick your Fairy Buddy Component
+            <View style={styles.fairyMainContainer}>
+              <Text>
+                Welcome to Calm On! We’re so glad you’re here! Before we get
+                started with our games, can you pick a fairy buddy to hang out
+                with during your time here?
+              </Text>
+              <TouchableOpacity
+                style={{ ...styles.bottomButton, width: 215 }}
+                onPress={() => setPickFairyCarousel(!pickFairyCarousel)}
               >
-              <Text style={styles.bottomButtonText}>Pick {fairies[fairy]}</Text>
-            </TouchableOpacity>
-          </View> : 
-          // Intro Page for the Pick your Fairy Buddy Component
-          <View style={styles.fairyMainContainer}>
-            <Text>Welcome to Calm On! We’re so glad you’re here! Before we get started with our games, can you pick a fairy buddy to hang out with during your time here?</Text>
-            <TouchableOpacity
-              style={{ ...styles.bottomButton, width: 215 }}
-              onPress={() => setPickFairyCarousel(!pickFairyCarousel)}
-              >
-              <Text style={styles.bottomButtonText}>Next</Text>
-            </TouchableOpacity>
-          </View> :
+                <Text style={styles.bottomButtonText}>Next</Text>
+              </TouchableOpacity>
+            </View>
+          )
+        ) : (
           // Enter your name component
           <View style={styles.fairyMainContainer}>
             <View>
               <TouchableOpacity
-                onPress={() => setPickFairyIntro(!pickFariyIntro)}>
+                onPress={() => setPickFairyIntro(!pickFariyIntro)}
+              >
                 <Text>Back</Text>
               </TouchableOpacity>
             </View>
@@ -356,7 +366,8 @@ const SessionForm = ({
               <View style={styles.userNameCard}>
                 <Text style={styles.titleText}>Welcome!</Text>
                 <Text style={styles.userNameBodyText}>
-                  It’s so nice to finally meet you!{"\n"} What should we call you?
+                  It’s so nice to finally meet you!{"\n"} What should we call
+                  you?
                 </Text>
                 {showNameError && (
                   <Text style={styles.error}>username is required</Text>
@@ -379,8 +390,7 @@ const SessionForm = ({
               </View>
             </View>
           </View>
-      )}
-      
+        ))}
     </View>
   );
 };
