@@ -6,6 +6,7 @@ import Colors from "../data/cardmatchData";
 import Exit from "../components/Exit";
 import { addScore} from "../actions/score";
 import { useDispatch, useSelector } from "react-redux";
+import deviceStorage from '../services/device_storage.js';
 
 const getRandomColor = (colors) => {
   return colors[Math.floor(Math.random() * colors.length)];
@@ -74,12 +75,43 @@ export default MatchTheColor = ({ navigation }) => {
   const [effect, setEffect] = useState(false);
   const firstRender = useRef(true);
   // NOTE: correct and incrrect are intended to be used later for keeping track of score
+  // const [bestScore,newBestScore] = useState(null);
+  const [getScoreOnce, setRan] = useState(false);
+
   const correct = useRef(0);
   const incorrect = useRef(0);
   const bestScore = useSelector((store) => store.score.score);
   const dispatch = useDispatch();
 
+  // get score from device storage
+  const getFromStorage = () => {
+    deviceStorage.get('score')
+    .then(score=>{
+      // save thru redux
+      dispatch({type: 'ADD_SCORE', data: score});
+    })
+    .catch(err=>{throw err});
+  }
+
+  // save the score to device storage then get the score from device storage then dispatch that
+  // score to redux store
+  const saveThenGetFromStorage = (score) => {
+    // save to device storage
+    deviceStorage.save('score',score.toString())
+      .then(success=>{
+        //then retrieve from device storage
+        getFromStorage();
+      })
+      .catch(err=>{throw err});
+  }
+
   useEffect(() => {
+
+    // get intial best score from device storage
+    if (!getScoreOnce) {
+      getFromStorage()
+    }
+
     if (firstRender.current === false) {
       Animated.sequence([
         Animated.timing(Mark, {
@@ -120,6 +152,7 @@ export default MatchTheColor = ({ navigation }) => {
       navigation.navigate("MatchScore", {
         //score: correct.current - incorrect.current,
         score: setScore(),
+        bestScore: bestScore
       });
     }
   }, 1000);
@@ -135,8 +168,11 @@ export default MatchTheColor = ({ navigation }) => {
   const setScore = () => {
     const newScore = getScore();
     if (bestScore < newScore) {
-      dispatch(addScore(newScore));
+      // deviceStorage.save('score',newScore.toString());
+      // dispatch(addScore(newScore));
+      saveThenGetFromStorage(newScore);
     }
+    console.log('new score')
     return newScore;
   };
 
