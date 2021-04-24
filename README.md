@@ -51,6 +51,7 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 - Gabriel Marquez - front end
 - Jerry Zhu - front end
 - Joshua Ong - back end
+- Michael Elliot
 
 ### Past Members
 
