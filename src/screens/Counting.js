@@ -73,6 +73,7 @@ export default Counting = ({ route, navigation }) => {
       counter: count,
     });
   }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>

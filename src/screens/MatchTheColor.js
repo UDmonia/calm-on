@@ -110,6 +110,8 @@ export default MatchTheColor = ({ navigation }) => {
     // get intial best score from device storage
     if (!getScoreOnce) {
       getFromStorage()
+      setRan(true);
+      console.log('ran once')
     }
 
     if (firstRender.current === false) {
@@ -172,7 +174,6 @@ export default MatchTheColor = ({ navigation }) => {
       // dispatch(addScore(newScore));
       saveThenGetFromStorage(newScore);
     }
-    console.log('new score')
     return newScore;
   };
 
