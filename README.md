@@ -47,14 +47,15 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 ### Current Team
 
 - Jack Zhen - front end
-- Luis Trujillo - front end
 - Gabriel Marquez - front end
 - Jerry Zhu - front end
 - Joshua Ong - back end
-- Michael Elliot
+- Michael Elliot - back end 
+- Christian Chan - front end
 
 ### Past Members
 
+- Luis Trujillo - front end
 - Tiffany Chin - front end
 - Clifford Yan - back end
 - Akif Saifi - back end
