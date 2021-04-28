@@ -75,7 +75,6 @@ export default MatchTheColor = ({ navigation }) => {
   const [effect, setEffect] = useState(false);
   const firstRender = useRef(true);
   // NOTE: correct and incrrect are intended to be used later for keeping track of score
-  // const [bestScore,newBestScore] = useState(null);
   const [getScoreOnce, setRan] = useState(false);
 
   const correct = useRef(0);
@@ -83,7 +82,7 @@ export default MatchTheColor = ({ navigation }) => {
   const bestScore = useSelector((store) => store.score.score);
   const dispatch = useDispatch();
 
-  // get score from device storage
+  // get score from device storage and dispatch the score to redux
   const getFromStorage = () => {
     deviceStorage.get('score')
     .then(score=>{
@@ -99,7 +98,7 @@ export default MatchTheColor = ({ navigation }) => {
     // save to device storage
     deviceStorage.save('score',score.toString())
       .then(success=>{
-        //then retrieve from device storage
+        //then retrieve the saved score from device storage
         getFromStorage();
       })
       .catch(err=>{throw err});
@@ -107,7 +106,8 @@ export default MatchTheColor = ({ navigation }) => {
 
   useEffect(() => {
 
-    // get intial best score from device storage
+    // get intial best score from device storage.
+    // this will run once every time the activity starts
     if (!getScoreOnce) {
       getFromStorage()
       setRan(true);
@@ -170,8 +170,6 @@ export default MatchTheColor = ({ navigation }) => {
   const setScore = () => {
     const newScore = getScore();
     if (bestScore < newScore) {
-      // deviceStorage.save('score',newScore.toString());
-      // dispatch(addScore(newScore));
       saveThenGetFromStorage(newScore);
     }
     return newScore;

@@ -30,7 +30,6 @@ function getBoxes(box) {
   }
   return null;
 }
-console.log('counting')
 function fruitObjects(fruit, boxed, setBox, count, setCount, flag, positionList) {
   const [canSee, setSee] = useState(true);
   if (canSee) {
