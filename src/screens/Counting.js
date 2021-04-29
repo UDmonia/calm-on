@@ -30,7 +30,6 @@ function getBoxes(box) {
   }
   return null;
 }
-
 function fruitObjects(fruit, boxed, setBox, count, setCount, flag, positionList) {
   const [canSee, setSee] = useState(true);
   if (canSee) {
@@ -73,6 +72,7 @@ export default Counting = ({ route, navigation }) => {
       counter: count,
     });
   }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={bg} style={styles.backImage}>

@@ -7,22 +7,14 @@ import { receiveScoreErrors } from "../actions/score";
 *This block of code will be used for local storage of best value
 * This feature is still in development
 */
-const getFromStorage = () => async (dispatch) => {
-  //const dispatch = useDispatch();   
-  const promise1 = deviceStorage.get("score");
-  var score;
-  try {score = await Promise.resolve(promise1)} 
-  catch (error) {
-      dispatch(receiveScoreErrors(error))   
-  }
-  console.log(score);
-  return score;
-};
+
 
 const initalState = {
   score: 0,
-  //score: getFromStorage(),
 };
+
+
+
 const scoreReducer = (state = initalState, action) => {
   switch (action.type) {
     case ADD_SCORE:
@@ -31,5 +23,6 @@ const scoreReducer = (state = initalState, action) => {
       return state;
   }
 };
+
 
 export default scoreReducer;
