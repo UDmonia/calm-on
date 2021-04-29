@@ -1,7 +1,8 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, HeaderbackButton} from '@react-navigation/stack';
 import React from 'react'
 // import hex from '../stylesheets/hexCodes';
 import Profile from './profile.js';
+import Setting from './setting.js';
 
 const Stack = createStackNavigator()
 
@@ -13,7 +14,10 @@ export default profileStack =()=>{
         // headerStyle: {backgroundColor: hex.yellow.yellow1}
     }
 
+
     const allScreens = {
+        headerTintColor: 'white',
+        headerBackTitleVisible: false,
         headerShown: true,
         headerStyle: {backgroundColor: '#4E80FF',},
         headerTitleStyle: {
@@ -26,7 +30,7 @@ export default profileStack =()=>{
     return(
         <Stack.Navigator screenOptions={allScreens} initialRouteName='Profile' >
             <Stack.Screen options = {profileMain} name = 'Profile' component = {Profile} />
-            {/* <Stack.Screen options = {headerOption2} name = 'CheckinDetail' component = {DetailedView}/> */}
+            <Stack.Screen  option = {({route})=>({title:route.params.title})} name = 'Setting' component = {Setting}/>
         </Stack.Navigator>
     )
 };

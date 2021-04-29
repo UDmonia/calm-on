@@ -10,7 +10,7 @@ const coaches = [
   {name: 'Flynn',img: 'auora.png'},
   {name: 'Sprite', img: 'auora.png'}];
 
-const Profile = ({ navigation: { navigate } }) => {
+const Profile = ({ navigation: { navigate} }) => {
 
 
   const email = useSelector(state=>state.session.user.email);
@@ -19,7 +19,7 @@ const Profile = ({ navigation: { navigate } }) => {
 
   const settings = [
     {field: 'Email', data: email},
-    {field: 'Password', data: '1234'},
+    {field: 'Password', data: '1234', description: 'Enter your old password'},
     {field: 'Name', data: name},
     {field: 'Coach Selection', data: coaches[coachIndex].name}
   ];
@@ -31,27 +31,30 @@ const Profile = ({ navigation: { navigate } }) => {
     navigate("Splash");
   };
 
-  return (
-    <View style={styles.main}>
-      {/* <TouchableOpacity style={styles.field}>
-        <View >
-          <Text style={styles.header} >Email</Text>
-          <Text style={styles.text}>{email}</Text>
-        </View>
-        <Image style = {styles.chevron} source={require('../../assets/profile/chevronLeft.png')}/>
-        </TouchableOpacity> */}
-        {settings.map((setting,k)=>(
-          <TouchableOpacity style={styles.field} key={k}>
-          <View >
-            <Text style={styles.header} >{setting.field}</Text>
-            <Text style={styles.text}>{setting.data}</Text>
-          </View>
-          <Image style = {styles.chevron} source={require('../../assets/profile/chevronLeft.png')}/>
-          </TouchableOpacity>
-        ))}
+  const selectSetting =(setting)=> {
+      navigate('Setting', {
+        header: setting.field,
+        description: setting.description? setting.description: null,
+        data: setting.data
+      })
+  }
 
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.button} onPress={logoutUser}><Text style={styles.buttonText}>Log Out</Text></TouchableOpacity>
+  return (
+    <View style={styles.container}>
+      <View style={styles.main}>
+          {settings.map((setting,k)=>(
+            <TouchableOpacity onPress={()=>selectSetting(setting)} style={styles.field} key={k}>
+            <View >
+              <Text style={styles.header} >{setting.field}</Text>
+              <Text style={styles.text}>{setting.data}</Text>
+            </View>
+            <Image style = {styles.chevron} source={require('../../assets/profile/chevronLeft.png')}/>
+            </TouchableOpacity>
+          ))}
+
+        <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={logoutUser}><Text style={styles.buttonText}>Log Out</Text></TouchableOpacity>
+        </View>
       </View>
     </View>
   );

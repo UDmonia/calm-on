@@ -2,11 +2,16 @@ import { StyleSheet } from 'react-native';
 import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
+
+  container :{
+    height: '100%',
+    backgroundColor:'white'
+  },
+
   main: {
     display: 'flex',
     flexDirection: 'column',
     margin: '5%',
-
   },
 
   field : {
@@ -42,8 +47,9 @@ const styles = StyleSheet.create({
 
   button: {
     height: 51,
-    width: 150,
     borderWidth: 3,
+    paddingLeft: '10%',
+    paddingRight: '10%',
     display: 'flex',
     alignItems: 'center',
     justifyContent:'center',
@@ -55,6 +61,18 @@ const styles = StyleSheet.create({
     color: '#8AABFF',
     fontSize: 20,
     fontWeight: 'bold',
+  },
+
+  input: {
+    marginTop: '3%',
+    marginBottom: '10%',
+    width: '95%',
+    backgroundColor: '#F1F6FA',
+    height: 50,
+    fontSize: 16,
+    color : '#425054',
+    paddingLeft: '5%',
+    borderRadius: 5,
   }
 
 });
