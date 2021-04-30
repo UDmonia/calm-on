@@ -41,20 +41,29 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
 
   var positionList = [];
   async function randomizePosition() {
+    console.log('height: ' + windowHeight, 'width: ' + windowWidth)
     var i;
+    let topPosArr = [];
+    let leftPosArr = [];
     for (i = 0; i < actData.next.items.length; i++) {
+      let topPos = (Math.random() * (windowHeight * 0.35 - windowHeight * 0.005) + windowHeight * 0.005).toFixed(3);
+      let leftPos = ( Math.random() * (windowWidth * 0.895 - windowWidth * 0.005) + windowWidth * 0.005).toFixed(3);
+
+      // grid method
+      // leftPos start: windowWidth*0.005, end : windowWidth*0.895
+      // fruit area width = (0.895 - 0.005)*414  = 0.89*414 = 368
+      // topPos start: windowWidth*0.005, end: windowWidth*0.35
+      // fruit area height = (0.35-0.005)*896 = 0.345*896 = 317
+      // total possible positions = fruit area/ (icon height * icon width)
+      // topPos from 0 to 317 in 55 pixels increments
+      // leftPos from 0 to 368 in 55 pixels increments
+
       var xpos = {
         top: parseFloat(
-          (
-            Math.random() * (windowHeight * 0.35 - windowHeight * 0.005) +
-            windowHeight * 0.005
-          ).toFixed(3)
+          topPos
         ),
         left: parseFloat(
-          (
-            Math.random() * (windowWidth * 0.895 - windowWidth * 0.005) +
-            windowWidth * 0.005
-          ).toFixed(3)
+          leftPos
         ),
       };
       positionList.push(xpos);

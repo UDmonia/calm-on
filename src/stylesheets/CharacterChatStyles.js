@@ -19,6 +19,7 @@ export default StyleSheet.create({
   activityBtnContainer: {
     width: "90%",
     minWidth: "90%",
+
   },
   chatContainer: {
     justifyContent: "center",
@@ -31,8 +32,9 @@ export default StyleSheet.create({
   top: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    minHeight: 50,
+    minHeight: 10,
     width: "100%",
+    
   },
   question: {
     color: "#FFFFFF",
@@ -46,9 +48,10 @@ export default StyleSheet.create({
   box: {
     backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    width: "80%",
-    marginHorizontal: (screenWidth - 330) / 2,
-    alignSelf: "baseline",
+    width: "90%",
+    marginHorizontal: (screenWidth - 340) / 2,
+    alignSelf: "center",
+    marginBottom: 10,
   },
   bottom: {
     marginTop: 10,
@@ -56,6 +59,7 @@ export default StyleSheet.create({
     display: "flex",
     alignItems: "center",
     alignSelf: "center",
+  
   },
   a: {
     fontFamily: "FontReg",
@@ -71,6 +75,6 @@ export default StyleSheet.create({
     height: 35,
     width: 284,
     textAlign: "center",
-    marginBottom: "5%",
+    marginBottom: "2%",
   },
 });
