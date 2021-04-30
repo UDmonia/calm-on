@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent:'center',
-
   },
 
   button: {
@@ -73,6 +72,22 @@ const styles = StyleSheet.create({
     color : '#425054',
     paddingLeft: '5%',
     borderRadius: 5,
+  },
+
+  coachContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    alignItems: 'center',
+    height: 200
+  },
+
+  coachContainerProfile: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 300,
+    paddingLeft: '25%'
   }
 
 });
