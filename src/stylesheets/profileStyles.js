@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     margin: '5%',
   },
 
+  fieldContainer: {
+    width: '100%',
+  },
+
   field : {
     width: '100%',
     marginTop: '2%',
@@ -21,13 +25,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection:'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   header : {
     fontSize: 20,
     fontWeight: '900',
     color : '#425054',
+    width: '95%',
   },
 
   text: {
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'space-between',
     alignItems: 'center',
-    height: 200
+    height: 200,
   },
 
   coachContainerProfile: {
@@ -87,9 +92,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 300,
-    paddingLeft: '25%'
+    width: '100%'
+  },
+
+  authError: {
+    color: 'red'
   }
 
 });
+
 
 export default styles;

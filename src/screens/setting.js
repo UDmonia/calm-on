@@ -12,7 +12,7 @@ const coaches = [
 ];
 
 const Setting = ({ route, navigation: { navigate, setOptions } }) => {
-  const {description, header, data} = route.params;
+  const {description, header, data, email} = route.params;
   const [coachIndex, setIndex] = useState(0);
 
   useLayoutEffect(()=>{
@@ -21,15 +21,28 @@ const Setting = ({ route, navigation: { navigate, setOptions } }) => {
     })
   }, [header]);
 
-  const handleUpdate =(next)=>{
-    // do some async update things
-
+  const cycleCoach =(next)=>{
     if (next) {
       setIndex(coachIndex=>coachIndex+1);
     } else {
       setIndex(coachIndex=>coachIndex-1);
     }
   };
+
+  const handleUpdate =(header)=>{
+    // email
+    // password
+    if (header === 'Password') {
+      // api call
+        // successful return: navigate to verification page
+        navigate('Verification', {email: email})
+    }
+    // name
+    // coach
+
+    // some kind of successful message
+    // some kind of error message
+  }
 
   useEffect(()=>{
     if (coachIndex > coaches.length-1) {
@@ -38,23 +51,27 @@ const Setting = ({ route, navigation: { navigate, setOptions } }) => {
     if (coachIndex < 0) {
       setIndex(coaches.length-1);
     }
-  },[coachIndex])
+  },[coachIndex]);
+
+
 
   return (
     <View style={styles.container}>
       <View style={[styles.main,{marginTop: '20%'}]}>
         {header !== 'Coach'?
+        // display any other settings but Coach
         <View>
           <Text style={styles.header}>{description? description: header}</Text>
           <TextInput secureTextEntry= {header==='Password'} style={styles.input} defaultValue={data} clearButtonMode='while-editing'/>
         </View>
           :
+          // display current coach and can cycle through all coaches
         <View style={styles.coachContainer}>
-          <TouchableOpacity onPress={()=>handleUpdate(false)}>
+          <TouchableOpacity onPress={()=>cycleCoach(false)}>
             <Image style = {styles.chevron} source={require('../../assets/profile/chevronLeft_Med.png')}/>
           </TouchableOpacity>
           <Image style = {styles.chevron} source={coaches[coachIndex] && coaches[coachIndex].img}/>
-          <TouchableOpacity onPress={()=>handleUpdate(true)}>
+          <TouchableOpacity onPress={()=>cycleCoach(true)}>
             <Image style = {styles.chevron} source={require('../../assets/profile/chevronRight_Med.png')}/>
           </TouchableOpacity>
         </View>
@@ -62,7 +79,7 @@ const Setting = ({ route, navigation: { navigate, setOptions } }) => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button,{backgroundColor:'#8AABFF'}]}><Text style={[styles.buttonText,{color:'white'}]}>Update {header}</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>handleUpdate(header)} style={[styles.button,{backgroundColor:'#8AABFF'}]}><Text style={[styles.buttonText,{color:'white'}]}>Update {header}</Text></TouchableOpacity>
       </View>
     </View>
   );

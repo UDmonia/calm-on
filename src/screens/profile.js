@@ -36,7 +36,8 @@ const Profile = ({ navigation: { navigate, setOptions } }) => {
       navigate('Setting', {
         header: setting.field,
         description: setting.description? setting.description: null,
-        data: setting.data
+        data: setting.data,
+        email
       })
   }
 
@@ -45,7 +46,7 @@ const Profile = ({ navigation: { navigate, setOptions } }) => {
       <View style={styles.main}>
           {settings.map((setting,k)=>(
             <TouchableOpacity onPress={()=>selectSetting(setting)} style={styles.field} key={k}>
-            <View >
+            <View style={styles.fieldContainer}>
               <Text style={styles.header} >{setting.field}</Text>
               {setting.field !== 'Coach'?
               <Text style={styles.text}>{setting.data}</Text>
