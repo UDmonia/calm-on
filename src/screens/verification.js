@@ -9,6 +9,7 @@ const Verification = ({ route, navigation: { navigate } }) => {
   const [password, setPassword] = useState({a:'',b:''});
   const [verified, setVerified] = useState(false);
   const [passwordsValid, checkPassword] = useState(false);
+  const [erroMessage, setErroMessage] = useState('');
   const {email} = route.params;
 
   // handle changes in New Password field
@@ -43,9 +44,15 @@ const Verification = ({ route, navigation: { navigate } }) => {
   };
 
   useEffect(()=>{
-    if (password.a === password.b) {
+    if (password.a === password.b && (password.a.length >= 8 && password.b.length >= 8)) {
       checkPassword(true);
     } else {
+      if (password.a.length < 8 || password.b.length < 8) {
+        setErroMessage('Password must be at least 8 characters long');
+      }
+      if (password.a !== password.b) {
+        setErroMessage("Passwords don't match");
+      }
       checkPassword(false);
     }
   }, [password]);
@@ -68,7 +75,7 @@ const Verification = ({ route, navigation: { navigate } }) => {
             <Text style={styles.header}>Re-enter Password</Text>
             <TextInput clearButtonMode='while-editing' value={password.b} onChangeText={text=>handlePasswordB(text)} style={[styles.input,{marginBottom:'0%'}]} />
             {password.b.length !== 0 && !passwordsValid?
-              <Text style={styles.authError}>Passwords don't match</Text>
+              <Text style={styles.authError}>{erroMessage}</Text>
             :
               null
             }
