@@ -12,6 +12,7 @@ const coaches = [
 ];
 
 const Profile = ({ navigation: { navigate, setOptions } }) => {
+  const dispatch = useDispatch();
 
   // pull coach from redux when ready
   const email = useSelector(state=>state.session.user.email);
