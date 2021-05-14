@@ -10,7 +10,7 @@ import LoginSignup from "./src/screens/session/loginSignup.js";
 import IntroVideo from "./src/screens/video.js";
 import Storytime from "./src/screens/storytime.js";
 import MilkMilkMilk from "./src/screens/milkMilkMilk";
-import Profile from "./src/screens/profile.js";
+import Profile from "./src/screens/profileStack.js";
 import Mindfulness from "./src/screens/mindfulnessStack";
 import Counting from "./src/screens/Counting";
 import { Provider } from "react-redux";
@@ -199,7 +199,14 @@ export default function App() {
             component={kpi}
             screenOptions={{ headerShown: false }}
           />
-          <Stack.Screen name="Profile" component={Profile} />
+          {/* <Stack.Screen name="Profile" component={Profile}
+            options={{
+              headerTitle: 'Profile',
+              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
+              headerStyle: { backgroundColor: hex.green.green1 },
+              headerTintColor: hex.white.white1,
+            }}
+          /> */}
           <Stack.Screen name="Mindfulness" component={Mindfulness} />
           <Stack.Screen
             name="Activities"
