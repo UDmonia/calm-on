@@ -27,12 +27,13 @@ import deviceStorage from "../../services/device_storage";
 const initialLogin = {
   email: "",
   password: "",
+  confirmPassword: ""
 };
 
 const initialSignUp = {
-  email: "",
-  password: "",
-  confirmPassword: "",
+  email: "kllmmc23@gmail.com",
+  password: "Password1",
+  confirmPassword: "Password1",
   birthday: "",
 };
 
@@ -107,7 +108,8 @@ const SessionForm = ({
   const handleSubmit = () => {
     setLocalErrors([]);
     if (isValid()) {
-      return (login
+      console.log('login', login)
+      return (false
         ? dispatch(loginUser(user))
         : dispatch(
             register({ ...user, birthday: new Date("0000", "00", "00") })

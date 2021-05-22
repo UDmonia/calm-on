@@ -24,20 +24,31 @@ const receiveSessionErrors = (errors) => ({
 });
 
 
-const getUser = (token, user) => {
+const getUser = (token, user) => async {
   console.log("token:  " + token)
   const userJson = JSON.stringify(user)
   console.log("user1:  " + userJson)
   SessionAPI.setAuthToken(token);
-  deviceStorage.save("jwt", token);
-  deviceStorage.save("user",userJson)
+
+  await Promise.all([
+    deviceStorage.save("jwt", token),
+    deviceStorage.save("user",userJson)
+  ]);
+  
   return user;
 };
 
-export const register = (user) => (dispatch) =>
-  SessionAPI.register(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))
-    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+export const register = (user) => (dispatch) => async {
+  try {
+    const res = await SessionAPI.register(user)
+    await getUser(res.data.token,res.data.user)
+    await dispatch(receiveUser(res.data.user))
+  } catch (err) {
+    console.log('Error register:', err)
+    dispatch(receiveSessionErrors(e.response.data))
+  }
+}
+
 
 export const login = (user) => (dispatch) => {
   return SessionAPI.login(user)
@@ -63,9 +74,10 @@ export const getUserFromJWT = () => async (dispatch) => {
   console.log("token: " + token)
   console.log("userJson: " + userJson)
 
-  const user = JSON.parse(userJson)
-  if (user) return dispatch(receiveUser(getUser(token, user)))
-  
+  try {
+    const user = JSON.parse(userJson)
+    if (user) return dispatch(receiveUser(getUser(token, user)))
+  } catch (err) { }
 }
   // deviceStorage
   //   .get("user")
