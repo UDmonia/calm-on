@@ -156,7 +156,8 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
   const bg = curCharacter.background;
   const activitiesBtnImg = curCharacter.viewActivities;
   const charaterActivities = curCharacter.activities;
-  const checkinObject = useSelector((state) => state.session.user.checkIns);
+  // if checkinObject is undefined, then there's no checkins
+  const checkinObject = useSelector((state) => state.session.user.checkIns) || [];
   const chatEmotion = getEmotion(checkinObject);
   const chatDialogue = getDialogue(chatEmotion, curCharacter.name);
   const [question, setQuestion] = useState(chatDialogue.question);
@@ -229,7 +230,7 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
       <View style={styles.box}>
         <View
           style={[styles.top, { backgroundColor: curCharacter.characterColor }]}
-        > 
+        >
           {!key && <Text style={styles.question}>{"Hey "+ name + ". " + question}</Text>}
           {key && <Text style={styles.question}>{question}</Text>}
         </View>

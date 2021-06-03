@@ -96,7 +96,7 @@ export default MatchTheColor = ({ navigation }) => {
   // score to redux store
   const saveThenGetFromStorage = (score) => {
     // save to device storage
-    deviceStorage.save('score',score.toString())
+    deviceStorage.save('score',JSON.stringify(score))
       .then(success=>{
         //then retrieve the saved score from device storage
         getFromStorage();

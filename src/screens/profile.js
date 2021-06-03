@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { View, Button, Image, TouchableOpacity, Text } from "react-native";
 import { logout } from "../actions/session_actions.js";
 import { useDispatch } from "react-redux";
@@ -15,9 +15,22 @@ const Profile = ({ navigation: { navigate, setOptions } }) => {
   const dispatch = useDispatch();
 
   // pull coach from redux when ready
+  const initialCoach = useSelector(state=>state.session.user.coach);
   const email = useSelector(state=>state.session.user.email);
   const name = useSelector(state=>state.session.user.name);
   const [coachIndex, setIndex] = useState(0);
+
+  useEffect(()=>{
+    // if coach coming from redux changed, re-render
+    if (initialCoach === 'Flynn') {
+      setIndex(1);
+    } else if (initialCoach === 'Auora') {
+      setIndex(0);
+    } else {
+      setIndex(2);
+    }
+  }, [initialCoach])
+
 
   const settings = [
     {field: 'Email', data: email},
@@ -38,7 +51,8 @@ const Profile = ({ navigation: { navigate, setOptions } }) => {
         header: setting.field,
         description: setting.description? setting.description: null,
         data: setting.data,
-        email
+        email,
+        currentCoachIndex: coachIndex
       })
   }
 

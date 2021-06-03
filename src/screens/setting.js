@@ -4,6 +4,7 @@ import { logout } from "../actions/session_actions.js";
 import { useDispatch } from "react-redux";
 import styles from '../stylesheets/profileStyles.js';
 import { useSelector } from "react-redux";
+import { editProfile } from '../actions/session_actions.js';
 
 const coaches = [
   {name: 'Auora',img: require('../../assets/profile/auora.png')},
@@ -12,14 +13,27 @@ const coaches = [
 ];
 
 const Setting = ({ route, navigation: { navigate, setOptions } }) => {
-  const {description, header, data, email} = route.params;
-  const [coachIndex, setIndex] = useState(0);
+  const {description, header, data, email, currentCoachIndex} = route.params;
+  const [coachIndex, setIndex] = useState(currentCoachIndex);
+  const [message, setMessage] = useState('');
+  const [value,setValue] = useState('');
+  const dispatch = useDispatch();
 
   useLayoutEffect(()=>{
     setOptions({
       title: header
     })
   }, [header]);
+
+  useEffect(()=>{
+    // count down 2 seconds and message disappears
+    if (message.length !== 0) {
+      setTimeout(()=>{
+        setMessage('');
+      }, 2000);
+    }
+  },[message])
+
 
   const cycleCoach =(next)=>{
     if (next) {
@@ -29,16 +43,46 @@ const Setting = ({ route, navigation: { navigate, setOptions } }) => {
     }
   };
 
+  const validateEmail = (email) =>
+  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
   const handleUpdate =(header)=>{
+    const successMessage = info => `${info} changed sucessfully!`;
+    const errMessage = info => `Could not update ${info}!`;
+
+    // message depends on if dispatched action returns a resolved promise or rejected promise
+
+    if (header === 'Email') {
+      if (validateEmail(value)) {
+        dispatch(editProfile({email:value}))
+          .then(()=>
+            setMessage(successMessage('Email'))
+          )
+          // error message might change
+          .catch(()=>setMessage(errMessage('Email')))
+      } else {
+        // front end email format validation
+        setMessage('Email format must be: "example@email.com"');
+      }
+    }
     // email
+    if (header === 'Name') {
+      dispatch(editProfile({name: value}))
+        .then(()=>setMessage(successMessage('Name')))
+        .catch(()=>setMessage(errMessage('Name')))
+    }
+    // coach
+    if (header === 'Coach') {
+      dispatch(editProfile({coach: coaches[coachIndex].name}))
+        .then(()=>setMessage(successMessage('Coach')))
+        .catch(()=>setMessage(errMessage('Coach')))
+    }
     // password
     if (header === 'Password') {
       // api call
         // successful return: navigate to verification page
         navigate('Verification', {email: email})
     }
-    // name
-    // coach
 
     // some kind of successful message
     // some kind of error message
@@ -62,7 +106,7 @@ const Setting = ({ route, navigation: { navigate, setOptions } }) => {
         // display any other settings but Coach
         <View>
           <Text style={styles.header}>{description? description: header}</Text>
-          <TextInput secureTextEntry= {header==='Password'} style={styles.input} defaultValue={data} clearButtonMode='while-editing'/>
+          <TextInput onChangeText={value=>setValue(value)} secureTextEntry= {header==='Password'} style={styles.input} defaultValue={data} clearButtonMode='while-editing'/>
         </View>
           :
           // display current coach and can cycle through all coaches
@@ -80,6 +124,9 @@ const Setting = ({ route, navigation: { navigate, setOptions } }) => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={()=>handleUpdate(header)} style={[styles.button,{backgroundColor:'#8AABFF'}]}><Text style={[styles.buttonText,{color:'white'}]}>Update {header}</Text></TouchableOpacity>
+      </View>
+      <View style={styles.messageContainer}>
+        <Text style={styles.message}>{message}</Text>
       </View>
     </View>
   );

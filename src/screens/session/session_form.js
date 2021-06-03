@@ -114,7 +114,7 @@ const SessionForm = ({
           )
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          deviceStorage.save("score", 0);
+          deviceStorage.save("score", '0');
           !login ? setShowUserDialog(true) : navigate("Home");
         } else {
           setError(true);
@@ -221,6 +221,7 @@ const SessionForm = ({
                   value={confirmPassword}
                 />
               </View>
+
 
               {/* <View style={styles.label}>
                 <Text style={styles.description}>Birthday</Text>
