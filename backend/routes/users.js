@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
       const userCopy = new User(user);
       const userCopyJson = userCopy.toJSON();
       userCopyJson.checkIns = checkinGroups;
-      
+
       jwt.sign(user, secret, (err, token) => {
         if (token) {
           res.status(201).json({

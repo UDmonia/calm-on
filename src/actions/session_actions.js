@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode";
+import axios from 'axios';
 
 import SessionAPI from "../util/session_util";
 import deviceStorage from "../services/device_storage";
@@ -23,26 +24,69 @@ const receiveSessionErrors = (errors) => ({
   errors,
 });
 
-
 const getUser = (token, user) => {
-  console.log("token:  " + token)
+  // console.log(user)
+  // console.log("token:  " + token)
   const userJson = JSON.stringify(user)
   console.log("user1:  " + userJson)
   SessionAPI.setAuthToken(token);
-  deviceStorage.save("jwt", token);
-  deviceStorage.save("user",userJson)
+  deviceStorage.save("jwt", token)
+  deviceStorage.save("user",userJson);
+  console.log('got user')
   return user;
 };
 
-export const register = (user) => (dispatch) =>
-  SessionAPI.register(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))
+export const register = (user) => (dispatch) => {
+  // not sure if front end has password confirmation
+  // !! mike is changing the data shape here so this part will change !!
+  delete user.confirmPassword;
+  user['birthDate'] = user.birthday;
+  delete user.birthday
+  user.credential = {
+    username: user.email,
+    password: user.password
+  };
+  delete user.password
+
+  return SessionAPI.register(user)
+    .then((res) => {
+      return dispatch(receiveUser(getUser(res.data.data.token,res.data.data.user)))
+    }
+      )
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+}
 
 export const login = (user) => (dispatch) => {
+  user.username = user.email;
+  delete user.email;
+
   return SessionAPI.login(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
-    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+    .then((res) => {
+      // !!mike is changing the data shape!!
+      // instead of returning Object data {data: {...stuff we need...}}
+      // just return Object data {...stuff we need...}
+      return dispatch(receiveUser(getUser(res.data.data.token, res.data.data.user)))
+    })
+    .catch((e) => {
+      dispatch(receiveSessionErrors(e.response.data))
+    });
+};
+
+// Retrieves token locally and returns the promise
+const retrieveToken = () => {
+  return deviceStorage.get('jwt');
+};
+
+// Calls /profile endpoint to change user info in the Profile tab
+export const editProfile = (fields) => (dispatch) => {
+  return retrieveToken()
+    .then(token=>{
+      return SessionAPI.editProfile(fields)
+        .then(res=>{
+          return dispatch(receiveUser(getUser(token,res.data.data.user)))
+        })
+        .catch((e) => dispatch(receiveSessionErrors(e.response.data)))
+    })
 };
 
 export const logout = () => (dispatch) => {
@@ -50,7 +94,8 @@ export const logout = () => (dispatch) => {
   SessionAPI.setAuthToken(false);
   return dispatch(logoutUser());
 };
-//actually getUserFromDeviceStorage
+
+// actually getUserFromDeviceStorage
 export const getUserFromJWT = () => async (dispatch) => {
   const promise1 = deviceStorage.get("jwt")
   const promise2 = deviceStorage.get("user")
@@ -60,12 +105,12 @@ export const getUserFromJWT = () => async (dispatch) => {
   catch (err) {
     dispatch(RECEIVE_SESSION_ERRORS(e))
   }
-  console.log("token: " + token)
-  console.log("userJson: " + userJson)
+  // console.log("token: " + token)
+  // console.log("userJson: " + userJson)
 
   const user = JSON.parse(userJson)
   if (user) return dispatch(receiveUser(getUser(token, user)))
-  
+
 }
   // deviceStorage
   //   .get("user")
@@ -76,12 +121,21 @@ export const getUserFromJWT = () => async (dispatch) => {
   //   })
   //   .catch((e) => console.log(e));
 
-export const addName = (user) => (dispatch) =>
-  SessionAPI.addName(user)
-    .then((res) => dispatch(receiveUser(getUser(res.data.token, res.data.user))))
+// Calls /profile endpoint to add name during registration
+export const addName = (user) => (dispatch) =>{
+  return retrieveToken()
+  .then(token=>{
+    return SessionAPI.addName(user)
+    .then((res) => dispatch(receiveUser(getUser(token, res.data.data.user))))
     .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+  })
+}
 
-export const checkin = (checkinDTO) => (dispatch) => 
+// Mike is still working on this route
+// Bascially pulls all current stored check-ins
+export const checkin = (checkinDTO) => (dispatch) =>
   SessionAPI.checkin(checkinDTO)
   .then((res) => dispatch(receiveUser(getUser(res.data.token,res.data.user))))
   .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+
+// Still need the change password route, Mike is on it

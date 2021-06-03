@@ -97,6 +97,18 @@ const styles = StyleSheet.create({
 
   authError: {
     color: 'red'
+  },
+
+  messageContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  message: {
+    fontSize: 18,
+    padding: 30,
   }
 
 });
