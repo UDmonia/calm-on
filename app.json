@@ -25,6 +25,9 @@
     "android": {
       "permissions": ["WRITE_EXTERNAL_STORAGE"]
     },
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     }

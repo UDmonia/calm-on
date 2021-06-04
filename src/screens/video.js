@@ -61,7 +61,7 @@ class IntroVideo extends React.Component {
     const screenHeight = Dimensions.get("window").height;
     const screenWidth = Dimensions.get("window").width;
 
-    const videoHeight = screenHeight;
+    const videoHeight = screenHeight + 20; // added '+20' to fix android bug.
     const videoWidth = (1080 * videoHeight) / 1920;
 
     return (
@@ -75,7 +75,7 @@ class IntroVideo extends React.Component {
           rate={1.0}
           volume={1.0}
           isMuted={false}
-          resizeMode="stretch"
+          resizeMode="contain"
           shouldPlay={this.state.play}
           // UnCommment here if you want to access the console.log for the playback status
           //onPlaybackStatusUpdate={(playBackstatus) => this._onPlaybackStatusUpdate(playBackstatus)}
