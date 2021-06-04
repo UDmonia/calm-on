@@ -52,6 +52,7 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 - Joshua Ong - back end
 - Michael Elliott - back end / DevOps
 - Christian Chan - front end
+- Glenmore Vinoya - front end
 
 ### Past Members
 
