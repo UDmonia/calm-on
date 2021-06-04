@@ -40,7 +40,7 @@ const Home = ({ props, navigation: { navigate } }) => {
   }
   //const userName = "Jack";
   const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
+    state.session.user.name
   );
   if (userName === "user") {
     console.log("Home -> loginSignup: userPrompt=true userlogin=false");
@@ -87,7 +87,7 @@ const Home = ({ props, navigation: { navigate } }) => {
     >
       <View style={styles.inner}>
         <View style={styles.topBox}>
-          <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
+          <Text style={styles.topBoxTextName}>Hi {userName? userName: 'user'}!</Text>
           <Text style={styles.topBoxText}>
             Scroll through your three fairy friends and pick one to learn more
             about them.
