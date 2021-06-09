@@ -28,7 +28,7 @@ const hexCodes = {
   },
   green: {
     green1: "#2E7D32",
-    green2: "#AED4B0",
+    green2: "#A7D1A8",
   },
   orange: {
     orange1: "#FFA471",
@@ -74,6 +74,9 @@ const hexCodes = {
     pink2: "#FBBDB4",
     pink3: "#DA71C4",
   },
+  orange:{
+    orange1:"#E29454",
+  }
 };
 
 export default hexCodes;
