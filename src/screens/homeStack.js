@@ -79,16 +79,16 @@ const HomeStack = (props) => {
 const styles = {
   flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
   backgroundColor: "#E2E8F8",
-  height: windowWidth > screenWidthThreshold ? "5%" : "10%",
-  paddingTop: "2%",
+  height: windowWidth > screenWidthThreshold ? "5%" : "11%",
+  paddingTop: "1.75%",
 
   alignItems: "flex-start",
 };
 
 const buttonStyle = {
-  height: 50,
+  height: 42,
   width: 80,
-  paddingTop: "7%",
+  paddingTop: "4%",
   paddingLeft: "22.5%",
 };
 
