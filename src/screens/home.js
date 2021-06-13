@@ -87,7 +87,7 @@ const Home = ({ props, navigation: { navigate } }) => {
     >
       <View style={styles.inner}>
         <View style={styles.topBox}>
-          <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
+          <Text style={styles.topBoxTextName}>Hi {userName? userName: 'username'}!</Text>
           <Text style={styles.topBoxText}>
             Scroll through your three fairy friends and pick one to learn more
             about them.
