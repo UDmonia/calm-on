@@ -115,8 +115,8 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
                 style={styles.buttons}
                 onPress={() => handleLikePress()}
               >
-                <Image source={require("../../assets/kpi/like.png")} />
-                {/* <Text style={styles.text}>Like</Text> */}
+                <Image source={require("../../assets/kpi/thumbUp.png")} />
+                <Text style={styles.text}>Like</Text>
               </TouchableOpacity>
             )}
             {like === true && (
@@ -124,8 +124,8 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
                 style={styles.buttons}
                 onPress={() => handleLikePress()}
               >
-                <Image source={require("../../assets/kpi/dislike.png")} />
-                {/* <Text style={styles.text}>hi</Text> */}
+                <Image source={require("../../assets/kpi/thumbUpLit.png")} />
+                <Text style={styles.text}>hi</Text>
               </TouchableOpacity>
             )}
             {/*Confused Button*/}
@@ -147,7 +147,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
                 style={styles.buttons}
                 onPress={() => handleDislikePress()}
               >
-                <Image source={require("../../assets/kpi/dislike.png")} />
+                <Image source={require("../../assets/kpi/thumbDownLit.png")} />
                 <Text style={styles.text}>Dislike</Text>
               </TouchableOpacity>
             )}

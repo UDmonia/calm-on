@@ -35,7 +35,7 @@ const defaultDialogue = {
       answers: [],
       animation: null,
       renderAnim: "",
-      navInfo: "FlatActivities",
+      navInfo: "FilteredActivities",
       nxtNode: [],
     },
   ],
@@ -175,8 +175,8 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
     setKey(() => defaultDialogue.key);
 
     // FlatActivities is the default navigation
-    if (navInfo === "FilteredActivties") {
-      navigate("FilteredActivties", {
+    if (navInfo === "FilteredActivities") {
+      navigate("FilteredActivities", {
         activities: charaterActivities,
         headerColor: curCharacter.characterColor,
       });
@@ -216,7 +216,7 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
               })
             }
             else {
-              navigate("FilteredActivties", {
+              navigate("FilteredActivities", {
                 activities: charaterActivities,
                 headerColor: curCharacter.characterColor,
               })

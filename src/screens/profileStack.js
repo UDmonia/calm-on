@@ -20,7 +20,7 @@ export default profileStack =()=>{
         headerTintColor: 'white',
         headerBackTitleVisible: false,
         headerShown: true,
-        headerStyle: {backgroundColor: '#4E80FF',},
+        headerStyle: {backgroundColor: '#4E80FF'},
         headerTitleStyle: {
             fontSize: 20,
             color: 'white'
