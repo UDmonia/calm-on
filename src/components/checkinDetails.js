@@ -21,7 +21,7 @@ const moodMap = {
 
 /**
  * Detailed check-in page containing all check-ins for the selected date
- * @param route For navigation from daily preview or monthly review
+ * @param route For navigation from 'daily 'preview or monthly review
  */
 const checkinDetails = ({ route }) => {
   const navigation = useNavigation();
