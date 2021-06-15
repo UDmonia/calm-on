@@ -14,7 +14,7 @@ const SessionAPI = {
   login: (user) => axios.post(`${config.API_ACCOUNTS_URL}/api/accounts/signin`, user),
   addName: (user) => axios.put(`${config.API_ACCOUNTS_URL}/api/accounts/profile`, user),
   checkin: (user) => axios.put(`http://localhost:3001/api/users/checkin`, user),
-  editProfile: (user) => axios.put(`http://localhost:3001/api/accounts/profile', user`),
+  editProfile: (user) => axios.put(`${config.API_ACCOUNTS_URL}/api/accounts/profile', user`),
 };
 
 export default SessionAPI;
