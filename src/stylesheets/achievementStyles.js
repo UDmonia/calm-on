@@ -43,10 +43,65 @@ const styles = StyleSheet.create({
    scroll: {
     display: "flex",
     alignItems: "center",
-    width: windowWidth,
     marginTop: "2.5%",
     height: "40%",
   },
+
+  tabContainer: {
+    display: "flex",
+    flexDirection: "row",
+    height: 100,
+    width: "40%",
+    backgroundColor: "#BBBBBB",
+    marginTop: 10,
+    marginBottom: 10,
+    //paddingRight: 30,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    borderRadius: 10,
+    shadowColor: hex.black.black1,
+    shadowOffset: {
+        width: 0,
+        height: 4,
+    },
+    shadowOpacity: 0.30,
+    shadowRadius: 4.65,
+    elevation: 6,
+    marginLeft:10,
+},
+
+cashContainer: {
+  display: "flex",
+  flexDirection: "row",
+  height: 100,
+  width: "95%",
+  backgroundColor: "#FFC10E",
+  marginTop: 10,
+  marginBottom: 10,
+  //paddingRight: 30,
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  borderRadius: 10,
+  shadowColor: hex.black.black1,
+  shadowOffset: {
+      width: 0,
+      height: 4,
+  },
+  shadowOpacity: 0.30,
+  shadowRadius: 4.65,
+  elevation: 6,
+  marginLeft:10,
+},
+
+btnContainer:{
+  marginTop: 30,
+  // marginLeft: 16,
+  width: '140%',
+  maxHeight: 120,
+  backgroundColor: 'white',
+  flexDirection: "row",
+},
+  
 
   
 });

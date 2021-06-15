@@ -125,7 +125,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
                 onPress={() => handleLikePress()}
               >
                 <Image source={require("../../assets/kpi/thumbUpLit.png")} />
-                <Text style={styles.text}>hi</Text>
+                <Text style={styles.text}>Like</Text>
               </TouchableOpacity>
             )}
             {/*Confused Button*/}
