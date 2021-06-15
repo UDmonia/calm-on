@@ -35,7 +35,7 @@ const defaultDialogue = {
       answers: [],
       animation: null,
       renderAnim: "",
-      navInfo: "FlatActivities",
+      navInfo: "FilteredActivities",
       nxtNode: [],
     },
   ],
@@ -175,8 +175,8 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
     setKey(() => defaultDialogue.key);
 
     // FlatActivities is the default navigation
-    if (navInfo === "FlatActivities") {
-      navigate("FlatActivities", {
+    if (navInfo === "FilteredActivities") {
+      navigate("FilteredActivities", {
         activities: charaterActivities,
         headerColor: curCharacter.characterColor,
       });
@@ -209,14 +209,14 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.activityBtn}
           onPress={() =>{
-            if(curCharacter.name === "Flynn") {
+            if(curCharacter.name === "Flynn","Sprite","Aurora") {
               navigate("FilteredActivities", {
                 activities: charaterActivities,
                 headerColor: curCharacter.characterColor,
               })
             }
             else {
-              navigate("FlatActivities", {
+              navigate("FilteredActivities", {
                 activities: charaterActivities,
                 headerColor: curCharacter.characterColor,
               })

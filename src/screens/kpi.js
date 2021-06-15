@@ -124,7 +124,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
                 style={styles.buttons}
                 onPress={() => handleLikePress()}
               >
-                <Image source={require("../../assets/kpi/like.png")} />
+                <Image source={require("../../assets/kpi/thumbUpLit.png")} />
                 <Text style={styles.text}>Like</Text>
               </TouchableOpacity>
             )}
@@ -147,7 +147,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
                 style={styles.buttons}
                 onPress={() => handleDislikePress()}
               >
-                <Image source={require("../../assets/kpi/dislike.png")} />
+                <Image source={require("../../assets/kpi/thumbDownLit.png")} />
                 <Text style={styles.text}>Dislike</Text>
               </TouchableOpacity>
             )}

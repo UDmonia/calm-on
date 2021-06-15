@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "calm_on",
-    "slug": "calm_on",
+    "name": "calm-on",
+    "slug": "calm-on",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,12 +18,14 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "org.calmon",
       "infoPlist": {
         "NSPhotoLibraryAddUsageDescription": "This app saves user colored photos to the device"
       }
     },
     "android": {
-      "permissions": ["WRITE_EXTERNAL_STORAGE"]
+      "permissions": ["WRITE_EXTERNAL_STORAGE"],
+      "package": "org.calm_on" 
     },
     "androidNavigationBar": {
       "visible": "sticky-immersive"
