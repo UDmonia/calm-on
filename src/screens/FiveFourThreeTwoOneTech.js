@@ -55,6 +55,7 @@ const step = (progress, setProgress, navigate) => {
                   bg: require("../../assets/FiveFourThreeTwoOne/background.png"),
                   pMsg: kpiData.Five4321Tech.primMsg,
                   sMsg: kpiData.Five4321Tech.secMsg,
+                  activity: "54321"
                 });
           }}
         >

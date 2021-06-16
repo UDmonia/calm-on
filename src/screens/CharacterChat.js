@@ -5,7 +5,7 @@ import {
   ImageBackground,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../stylesheets/CharacterChatStyles";
 import { useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -157,7 +157,7 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
   const activitiesBtnImg = curCharacter.viewActivities;
   const charaterActivities = curCharacter.activities;
   // if checkinObject is undefined, then there's no checkins
-  const checkinObject = useSelector((state) => state.session.user.checkIns) || [];
+  const checkinObject = useSelector((state) => state.session.user && state.session.checkins) || [];
   const chatEmotion = getEmotion(checkinObject);
   const chatDialogue = getDialogue(chatEmotion, curCharacter.name);
   const [question, setQuestion] = useState(chatDialogue.question);
@@ -165,7 +165,16 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
   const [nxtNode, setNxtNode] = useState(chatDialogue.nxtNode);
   const [navInfo, setNavInfo] = useState(chatDialogue.navInfo);
   const [key, setKey] = useState(chatDialogue.key);
-  const name = useSelector((state) => state.session.user.name);
+
+  const [name, setName] = useState('loading..');
+  const getUsername = useSelector((state) => state.session.user && state.session.user.name);
+
+  // set username when getUsername is no longer null
+  useEffect(()=>{
+    if (getUsername) {
+      setName(getUsername)
+    }
+  }, [getUsername])
 
   if (nxtNode.length === 0) {
     setNavInfo(() => defaultDialogue.navInfo);

@@ -13,12 +13,19 @@ import {
 import { StackActions } from "@react-navigation/native";
 import styles from "../stylesheets/kpiStyles";
 import kpiData from "../data/kpiData";
+import { useDispatch } from "react-redux";
+
+import { postLikeOrDislike, getLikeOrDislike, postFeedbackMessage } from "../actions/session_actions.js";
+
 
 export default Kpi = ({ route, navigation: { navigate } }) => {
+  const dispatch = useDispatch();
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [confusedMessage, onChangeConfusedMessage] = useState("");
+
+  const {activity} = route.params
 
   //Handles the event where both the like and dislike button would be activited
   const handleLikePress = () => {
@@ -27,12 +34,27 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
       setDislike(!dislike);
     }
     setLike(!like);
+
+    // api call
+    dispatch(postLikeOrDislike({activity, like: true}));
   };
+
+  const sendConfusedMessage = () => {
+    // api call
+      // upon successful call, close the modal
+    dispatch(postFeedbackMessage({message: confusedMessage, activity}))
+    setModalVisible(!modalVisible);
+
+  };
+
   const handleDislikePress = () => {
     if (like === true) {
       setLike(!like);
     }
     setDislike(!dislike);
+
+    // api call
+    dispatch(postLikeOrDislike({activity, like: true}));
   };
 
   return (
@@ -73,10 +95,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
               </View>
               <View style={styles.modalSubmitButton}>
                 <TouchableOpacity
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                    console.log(confusedMessage);
-                  }}
+                  onPress={sendConfusedMessage}
                   style={styles.ModalBackButton}
                 >
                   <Text style={[styles.text, styles.backButtonText]}>Send</Text>

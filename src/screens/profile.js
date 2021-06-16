@@ -13,14 +13,22 @@ const coaches = [
 
 const Profile = ({ navigation: { navigate, setOptions } }) => {
   const dispatch = useDispatch();
+  const [email,setEmail] = useState('loading..');
+  const [name,setName] = useState('loading..');
 
   // pull coach from redux when ready
-  const initialCoach = useSelector(state=>state.session.user.coach);
-  const email = useSelector(state=>state.session.user.email);
-  const name = useSelector(state=>state.session.user.name);
+  const initialCoach = useSelector(state=>state.session.user && state.session.user.coach);
+  const sessionEmail = useSelector(state=>state.session.user && state.session.user.email);
+  const sessionName = useSelector(state=>state.session.user && state.session.user.name);
   const [coachIndex, setIndex] = useState(0);
 
   useEffect(()=>{
+    if (sessionEmail) {
+      setEmail(sessionEmail)
+    }
+    if (sessionName) {
+      setName(sessionName)
+    }
     // if coach coming from redux changed, re-render
     if (initialCoach === 'Flynn') {
       setIndex(1);
@@ -29,7 +37,7 @@ const Profile = ({ navigation: { navigate, setOptions } }) => {
     } else {
       setIndex(2);
     }
-  }, [initialCoach])
+  }, [initialCoach,email,name])
 
 
   const settings = [

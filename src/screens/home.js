@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -38,9 +38,11 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
+
+  const [userName, setUsername] =  useState('Loading..');
   //const userName = "Jack";
-  const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
+  const sessionUser = useSelector((state) =>
+    state.session.user && state.session.user.name
   );
   if (userName === "user") {
     console.log("Home -> loginSignup: userPrompt=true userlogin=false");
@@ -79,6 +81,12 @@ const Home = ({ props, navigation: { navigate } }) => {
     });
   }
 
+  useEffect(()=>{
+    if (sessionUser) {
+      setUsername(sessionUser);
+    }
+  }, [sessionUser])
+
   return (
     <ImageBackground
       source={require("../../assets/images/splash_panel.png")}
@@ -87,7 +95,7 @@ const Home = ({ props, navigation: { navigate } }) => {
     >
       <View style={styles.inner}>
         <View style={styles.topBox}>
-          <Text style={styles.topBoxTextName}>Hi {userName? userName: 'username'}!</Text>
+          <Text style={styles.topBoxTextName}>Hi {userName}!</Text>
           <Text style={styles.topBoxText}>
             Scroll through your three fairy friends and pick one to learn more
             about them.

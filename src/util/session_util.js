@@ -14,6 +14,9 @@ const SessionAPI = {
   addName: (user) => axios.put(`http://dev-1020237653.us-west-1.elb.amazonaws.com/api/accounts/profile`, user),
   checkin: (user) => axios.put(`http://localhost:3001/api/users/checkin`, user),
   editProfile: (user) => axios.put('http://dev-1020237653.us-west-1.elb.amazonaws.com/api/accounts/profile', user),
+  getLikes: (user) => axios.get("http://dev-1020237653.us-west-1.elb.amazonaws.com/api/activities/likes" ,user),
+  postLikes: (user) => axios.post("http://dev-1020237653.us-west-1.elb.amazonaws.com/api/activities/likes" ,user),
+  postMessage: (user) => axios.post("http://dev-1020237653.us-west-1.elb.amazonaws.com/api/activities/likes" ,user),
 };
 
 export default SessionAPI;

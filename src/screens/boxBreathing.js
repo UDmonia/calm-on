@@ -90,6 +90,7 @@ const OutroStory = () => {
           bg: require("../../assets/boxBreathing/beach.png"),
           pMsg: kpiData.boxBreathing.primMsg,
           sMsg: kpiData.boxBreathing.secMsg,
+          activity: "boxBreathing"
         })
       : setPage(page + 1);
   };
@@ -402,7 +403,7 @@ const boxBreathing = () => {
       ]).start(() => showOutro(true));
       roundCounter()
     }
-    
+
   }, [start, startAnimation]);
 
   const roundCounter = () => {
@@ -457,7 +458,7 @@ const boxBreathing = () => {
     borderColor: hex.blue.blue5,
     zIndex: 1,
   };
-  
+
   return (
     <View>
       <ImageBackground

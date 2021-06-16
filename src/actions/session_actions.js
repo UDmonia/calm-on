@@ -141,16 +141,25 @@ export const checkin = (checkinDTO) => (dispatch) =>
 // Still need the change password route, Mike is on it
 
 // action for posting like or dislike
-export const postLikeOrDislike = (req) => (dispatch) => {
+export const postLikeOrDislike = (feedback) => (dispatch) => {
+  console.log(feedback)
 
+  // the kpi page needs to know what activity it belongs to
+
+  // ** ask mike to change the route (change array to object)
+
+  // 1. either know the index of the activity in advance
+  // 2. iterate the array to find the correct index (bad)
+}
+
+// action for posting user feedback on activity
+export const postFeedbackMessage = (feedback) => (dispatch) => {
+  // this needs to be an array of feedbacks in the backend
+  console.log(feedback)
 }
 
 // action for getting like or dislike
 export const getLikeOrDislike = () => (dispatch) => {
-
-}
-
-// action for posting a comment about an activity
-export const postComment = (comment) => (dispatch) => {
-
+  // ask mike to change the return signature to an object of liked or disliked activities
+    // i.e data {activityName: likeOrDisliked....}
 }
