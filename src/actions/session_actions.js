@@ -144,7 +144,7 @@ export const checkin = (checkinDTO) => (dispatch) =>
 export const postLikeOrDislike = (feedback) => (dispatch) => {
   console.log(feedback)
 
-  // the kpi page needs to know what activity it belongs to
+  // the kpi page needs to know what activity it belongs to (need to modify a lot of files)
 
   // ** ask mike to change the route (change array to object)
 
@@ -163,3 +163,5 @@ export const getLikeOrDislike = () => (dispatch) => {
   // ask mike to change the return signature to an object of liked or disliked activities
     // i.e data {activityName: likeOrDisliked....}
 }
+
+
