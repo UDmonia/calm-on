@@ -3,8 +3,8 @@ import { View,Text} from 'react-native';
 import styles from '../stylesheets/achievementStyles.js'
 import {createStackNavigator} from '@react-navigation/stack';
 import { StackActions } from '@react-navigation/routers';
-import Profile from './profile.js';
-import AchievementPage from './AchievementPage.js'
+import AchievementPage from './AchievementPage.js';
+import CashShop from './CashShop.js';
 
 const Stack = createStackNavigator()
 
@@ -31,7 +31,7 @@ export default Achievement =()=>{
     return (
         <Stack.Navigator screenOptions = {allScreens} initialRoute = 'Achievements'>
             <Stack.Screen options = {profileMain} name = 'Achievements' component = {AchievementPage} />
-            
+            <Stack.Screen name = 'Shop' component = {CashShop}/>
         </Stack.Navigator>
     )
 }

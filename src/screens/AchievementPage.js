@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
     View,
     Text,
     ScrollView,
@@ -21,54 +21,52 @@ const weeklyMission = [
 ];
 
 
-
-
-export default AchievementPage =()=>{
+export default AchievementPage =({navigation : {navigate}})=>{
     return(
     <View style ={styles.container}>
-        
+
         <Text style={styles.header}> Weekly Missions</Text>
-       
+
         <ScrollView
           style={styles.btnContainer}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
-          
+
           <TouchableOpacity style ={styles.tabContainer}>
-            
+
             <Image source={require("../../assets/achievement/checkIn.png")}/>
-            
+
             <Text>Daily</Text>
             <Text>Check-In</Text>
             <Text>0/5</Text>
-         
+
          </TouchableOpacity>
-         
+
 
           <TouchableOpacity style ={styles.tabContainer}>
-              
+
               <Image source={require("../../assets/achievement/checkIn.png")}/>
-              
+
               <Text>TRI-</Text>
               <Text>umphant!</Text>
               <Text>0/3</Text>
-          
+
           </TouchableOpacity>
 
           <TouchableOpacity style ={styles.tabContainer}>
-              
+
               <Image source={require("../../assets/achievement/stopAndThink.png")}/>
               <Text>Stop! and</Text>
               <Text>Think!</Text>
               <Text>0/5</Text>
-          
+
           </TouchableOpacity>
-          
-        
+
+
         </ScrollView>
 
-        <TouchableOpacity style={styles.cashContainer}>
+        <TouchableOpacity onPress={()=>{navigate('Shop')}} style={styles.cashContainer}>
           <Image source={require("../../assets/achievement/cashShop.png")}/>
           <Text>Cash Shop</Text>
           <Text>Check out the new outfits!</Text>
@@ -79,7 +77,7 @@ export default AchievementPage =()=>{
           <Text>Achievements</Text>
           <Text>Coming Soon!</Text>
         </TouchableOpacity>
-        
+
 
 
     </View>
