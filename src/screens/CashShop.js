@@ -83,6 +83,8 @@ const CashShop =()=>{
         changeView(bool);
     };
 
+    console.log(checkout)
+
     return(
         <View style={styles.main}>
             <Toggler text1='By Outfit' text2='By Accessory' callback={handleToggle}/>
@@ -96,7 +98,7 @@ const CashShop =()=>{
 
             {/* checkout page */}
             {checkout &&
-                <CheckoutModal isCheckout={isCheckout}/>
+                <CheckoutModal checkout={checkout} isCheckout={isCheckout}/>
             }
         </View>
     )
