@@ -98,7 +98,7 @@ const CashShop =()=>{
 
             {/* checkout page */}
             {checkout &&
-                <CheckoutModal checkout={checkout} isCheckout={isCheckout}/>
+                <CheckoutModal byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>
             }
         </View>
     )

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {FlatList, Modal,View, Text, TouchableOpacity} from 'react-native';
 import { useSelector } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
+import RemoveButton from '../components/removeButton.js';
 
 
 const dummy = [
@@ -50,25 +51,7 @@ const dummy = [
 
 ]
 
-const ItemList = ({itemList, byOutfit}) => {
-
-
-  return (
-    <View>
-    itemList.map(())
-    <TouchableOpacity style={[styles.gridItem, activeStyle]}>
-      <View style={styles.gridItemTop}>
-      </View>
-      <View style={styles.gridItemBottom}>
-        <Text style={styles.text}>
-          {item.cost}
-        </Text>
-      </View>
-    </TouchableOpacity>
-    </View>
-  )
-};
-
+// itemList should be a unique id for the particular piece of clothing
 const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   const activeStyle = {
     borderColor: '#678D98',
@@ -78,7 +61,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   };
 
   const [currentIndex, setIndex] = useState(0);
-
+  const [items, setItems] = useState(dummy);
   // useEffect(()=>{
   //   if (currentIndex < 0) {
   //     setIndex(0)
@@ -88,7 +71,18 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   //   }
   // }, [currentIndex]);
 
-  console.log(currentIndex)
+  const handleRemove = (id) => {
+    // remove item at id
+    const newItems = [...items];
+    newItems.splice(id,1);
+    setItems(newItems);
+  };
+
+  const handleBuy = () => {
+    // submit the list of items through Redux action
+      // once the promise returns back sucessfully
+      // display a success message
+  };
 
     return(
         <Modal animationType='fade' transparent visible={checkout}>
@@ -106,11 +100,17 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
             <TouchableOpacity onPress={()=>currentIndex > 0 && setIndex(currentIndex=>currentIndex-1)}>
               <Text>PREV</Text>
             </TouchableOpacity>
-
+              <View >
               {
-                dummy.slice(currentIndex, currentIndex+4).map((item,k)=>{
+                items.slice(currentIndex, currentIndex+4).map((item,k)=>{
                   return (
+                    // items for check out, deletable if its picked from accessory view, and not deletable if byOutfit is true
                     <TouchableOpacity key={k} style={[styles.gridItem, activeStyle]}>
+                      {byOutfit &&
+                      <View style={styles.delete}>
+                        <RemoveButton remove={()=>handleRemove(k)}/>
+                      </View>
+                      }
                     <View style={styles.gridItemTop}>
                       <Text>
                         {item.name}
@@ -125,7 +125,8 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
                   )
                 })
               }
-                <TouchableOpacity onPress={()=>currentIndex+4 <= dummy.length-1 && setIndex(currentIndex=> currentIndex+1)}>
+              </View>
+                <TouchableOpacity onPress={()=>currentIndex+4 <= items.length-1 && setIndex(currentIndex=> currentIndex+1)}>
               <Text>NEXT</Text>
             </TouchableOpacity>
 

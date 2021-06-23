@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   itemList: {
     flex: 2,
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   text: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     width: 78,
     borderWidth: 1,
     borderRadius: 10,
-    margin: '2%'
+    marginTop: '3%'
   },
 
   gridItemTop: {
@@ -79,6 +79,12 @@ const styles = StyleSheet.create({
     paddingRight: 50,
     borderWidth: 1,
     borderRadius: 20
+  },
+
+  removeButton: {
+    position: 'absolute',
+    top: -12,
+    right: -13
   }
 
 
