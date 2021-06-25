@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
   closeButton: {
     position:'absolute',
-    top: 30,
+    top: 10,
     left: 10,
     zIndex: 2
   },
@@ -43,6 +43,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: '#C0C7D2'
   },
 
   text: {
@@ -77,14 +80,18 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingLeft: 50,
     paddingRight: 50,
-    borderWidth: 1,
-    borderRadius: 20
+    borderRadius: 20,
+    backgroundColor: '#FFC10E'
   },
 
   removeButton: {
     position: 'absolute',
     top: -12,
     right: -13
+  },
+
+  buttons: {
+    padding: 5
   }
 
 

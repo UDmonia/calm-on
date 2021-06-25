@@ -1,48 +1,63 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, View, Text, TouchableOpacity} from 'react-native';
+import {FlatList, View, Text, TouchableOpacity, Image} from 'react-native';
 import { useSelector } from "react-redux";
 import styles from '../stylesheets/AccessoryViewStyles.js';
 import Toggler from './Toggler.js';
+import CheckoutModal from './CheckoutModal.js';
+
+// get equiped list of items
 
 const categoryList = ['All','Face','Top','Bottom','Shoes','Extra'];
 
+// current buyable items
 const dummy = [
   {
     id: 'h1',
     name: 'hat',
     cost: 10,
-    imageSrc: '...'
+    category: 'Extra',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
   },
   {
     id: 's1',
     name: 'shirt',
     cost: 10,
-    imageSrc: '...'
-  },
+    category: 'Top',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
     id: 'p1',
     name: 'pants',
     cost: 10,
-    imageSrc: '...'
-  },
+    category: 'Bottom',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
     id: 'j1',
     name: 'jacket',
     cost: 10,
-    imageSrc: '...'
-  },
+    category: 'Top',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
     id: 'sh1',
     name: 'shorts',
     cost: 10,
-    imageSrc: '...'
-  },
+    category: 'Bottom',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
     id: 'g1',
     name: 'glasses',
     cost: 10,
-    imageSrc: '...'
-  },
+    category: 'Extra',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
+
+];
+
+const dummyBought = [
   {
     id: 'sk1',
     name: 'skirts',
@@ -55,26 +70,38 @@ const dummy = [
     cost: 10,
     imageSrc: '...'
   },
-
-
 ];
 
-const Grid = ({shopView, currentItems, selectOrDeselect}) => {
-
+const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
+  console.log(currentItems)
   const activeStyle = {
     borderColor: '#678D98',
     borderWidth: 4,
     borderRadius: 10
   };
 
+  // in shop view
+  const handleEquip = () => {
+    // equip the item by submitting all current items as a snapshot
+    // send the items through Redux action
+    // if promise comes back successful, re-render the avatar
+    // if not successful, means there's no internet, store the snapshot locally
+
+  };
+
   const renderItems = ({item}) => {
     return (
-      <TouchableOpacity onPress={()=>selectOrDeselect(item.id)} style={[styles.gridItem, currentItems[item.id] && activeStyle]}>
+      <TouchableOpacity onPress={()=>selectOrDeselect(item.id)} style={[styles.gridItem, cart[item.id] && activeStyle]}>
         <View style={styles.gridItemTop}>
+        <Image source={item.icon}/>
         </View>
         <View style={styles.gridItemBottom}>
           <Text style={styles.text}>
-            {item.cost}
+            {shopView?
+              item.cost
+              :
+              cart[item.id] ? 'EQUIPED' : 'EQUIP'
+            }
           </Text>
         </View>
       </TouchableOpacity>
@@ -82,8 +109,8 @@ const Grid = ({shopView, currentItems, selectOrDeselect}) => {
   };
 
   return (
-    <View>
-      <FlatList horizontal={false} numColumns={4} renderItem={renderItems} data={dummy}/>
+    <View style={styles.gridContainer}>
+      <FlatList horizontal={false} numColumns={4} renderItem={renderItems} data={shopView ?currentItems: dummyBought}/>
     </View>
   )
 };
@@ -111,23 +138,30 @@ const Categories = ({current, setCurrent}) => {
 
 const AccessoryView =()=>{
   const [shopView, isShopView] = useState(true);
+  // the current selected category
   const [currentCategoryIndex, setIndex] = useState(0);
+  // all items currently rendering
   const [currentItems, setCurrentItems] = useState({});
+  // all items currently in cart
+  const [cart, addToCart] = useState({});
+  // trigger for checkout modal
+  const [checkout, isCheckout] = useState(false);
+  const [currentFilter, changeFilter] = useState(categoryList[currentCategoryIndex]);
 
-
-  // if selected is in set, delete it,
-  // if not in set, add it to set
-    // when in set, change the style
-
+  /*
+    Input: itemId String
+    Takes id of an item and adds it to cart if doesnt already exist,
+    if it does, then remove it from cart
+  */
   const selectOrDeselect = (itemId) => {
-    if (currentItems[itemId]) {
-      const newObj = {...currentItems};
+    if (cart[itemId]) {
+      const newObj = {...cart};
       delete newObj[itemId];
-      setCurrentItems(newObj);
+      addToCart(newObj);
     } else {
-      const newObj = {...currentItems};
+      const newObj = {...cart};
       newObj[itemId] = true;
-      setCurrentItems(newObj);
+      addToCart(newObj);
     }
   };
 
@@ -135,11 +169,51 @@ const AccessoryView =()=>{
     isShopView(bool)
   };
 
-    return(
+  useEffect(()=>{
+    console.log(categoryList[currentCategoryIndex])
+
+    // if the currentCategoryIndex changes, then filter the Flatlist accordingly
+      const newItems = dummy.filter(item=>{
+        if (categoryList[currentCategoryIndex] === 'All') {
+          return item.category !== categoryList[currentCategoryIndex]
+        } else {
+          return item.category === categoryList[currentCategoryIndex]
+        }
+      });
+      setCurrentItems(newItems);
+  }, [currentCategoryIndex]);
+
+  // convert cart in from object to list of objects
+  const convertCartToList = () => {
+    let cartList = [];
+    for (let i = 0; i < dummy.length; i++) {
+      if (cart[dummy[i].id]) {
+        cartList.push(dummy[i]);
+      }
+    }
+    return cartList;
+  };
+
+    return (
         <View style={styles.main}>
           <View style={styles.previewContainer}>
-            <Text>preview</Text>
+            <View style={styles.previewLeft}>
+              <Text>avatar</Text>
+            </View>
+            <View style={styles.previewRight}>
+              <Text>coins</Text>
+              {
+                (Object.keys(currentItems).length > 0 && shopView) &&
+                  <TouchableOpacity onPress={()=>isCheckout(true)}>
+                    <Text>
+                      Buy
+                    </Text>
+                  </TouchableOpacity>
+              }
+            </View>
           </View>
+
+          {checkout && <CheckoutModal itemList={convertCartToList()} byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>}
 
           <View style={styles.toggle}>
             <Toggler callback={handleToggle} text1='Shop' text2='Wardrobe'/>
@@ -150,7 +224,7 @@ const AccessoryView =()=>{
           </View>
 
           <View style={styles.grid}>
-            <Grid selectOrDeselect={selectOrDeselect} currentItems={currentItems} shopView={shopView}/>
+            <Grid cart={cart} filter={currentFilter} selectOrDeselect={selectOrDeselect} currentItems={currentItems} shopView={shopView}/>
           </View>
         </View>
     )

@@ -15,7 +15,16 @@ const styles = StyleSheet.create({
     flex: 4,
     display: 'flex',
     width: '100%',
-    borderWidth: 1
+    borderWidth: 1,
+    flexDirection: 'row'
+  },
+
+  previewLeft: {
+    flex:1
+  },
+
+  previewRight: {
+    flex:1
   },
 
   toggle: {
@@ -76,6 +85,11 @@ const styles = StyleSheet.create({
     height: '30%',
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10
+  },
+
+  gridContainer: {
+    alignSelf: 'flex-start',
+    marginLeft: 10
   }
 
 

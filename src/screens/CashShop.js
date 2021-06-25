@@ -7,9 +7,79 @@ import AccessoryView from './AccessoryView.js';
 import Toggler from './Toggler.js';
 // get current coach from redux
 
-const GridItem = ({name,cost,imageSrc, coach, isCheckout}) => {
+const dummy = [
+    {
+        name: 'Painting',
+        cost: 10,
+        imageSrc: 'source...',
+        items: [
+            {
+                id: 'h1',
+                name: 'hat1',
+                cost: 5,
+                image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+                icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
+            },
+            {
+                id: 's1',
+                name: 'shirt1',
+                cost: 5,
+                imageSrc: '...'
+            },
+            {
+                id: 's1',
+                name: 'shirt1',
+                cost: 5,
+                imageSrc: '...'
+            },
+
+        ]
+    },
+    {
+        name: 'Painting',
+        cost: 10,
+        imageSrc: 'source...',
+        items: [
+            {
+                id: 'h1',
+                name: 'hat2',
+                cost: 4,
+                imageSrc: '...'
+              },
+            {
+                id: 's1',
+                name: 'shirt1',
+                cost: 6,
+                imageSrc: '...'
+            },
+        ]
+
+    },
+    {
+        name: 'Dancing',
+        cost: 10,
+        imageSrc: 'source...',
+        items: [
+            {
+                id: 'h1',
+                name: 'hat1',
+                cost: 5,
+                imageSrc: '...'
+              },
+            {
+                id: 's1',
+                name: 'shirt1',
+                cost: 5,
+                imageSrc: '...'
+            },
+        ]
+
+    },
+];
+
+const GridItem = ({handleCheckout, index, name, cost, imageSrc, coach, isCheckout}) => {
     return (
-        <TouchableOpacity onPress={()=>isCheckout(true)} style={styles.gridItem}>
+        <TouchableOpacity onPress={()=>handleCheckout(index)} style={styles.gridItem}>
             <View style={styles.image}>
                 <Text style={styles.text}>Image here</Text>
             </View>
@@ -30,41 +100,17 @@ const GridItem = ({name,cost,imageSrc, coach, isCheckout}) => {
     )
 };
 
-const dummy = [
-    {
-        name: 'Painting',
-        cost: 10,
-        imageSrc: 'source...'
-    },
-    {
-        name: 'Painting',
-        cost: 10,
-        imageSrc: 'source...'
-    },
-    {
-        name: 'Dancing',
-        cost: 10,
-        imageSrc: 'source...'
-    },
-    {
-        name: 'Running',
-        cost: 10,
-        imageSrc: 'source...'
-    },
-
-
-];
-
 const CashShop =()=>{
     const getCoach = useSelector(state=>state.session.user && state.session.user.coach);
 
     const [coach,setCoach] = useState(null);
     const [outfitView, changeView] = useState(true);
     const [checkout, isCheckout] = useState(false);
+    const [currentOutFit, setCurrentOutfit] = useState(null);
 
-    const renderItems = ({item}) => {
+    const renderItems = ({item, index}) => {
         return (
-            <GridItem isCheckout={isCheckout} coach = {coach} name={item.name} cost={item.cost} imageSrc={item.imageSrc}/>
+            <GridItem handleCheckout={handleCheckout} index={index} isCheckout={isCheckout} coach = {coach} name={item.name} cost={item.cost} imageSrc={item.imageSrc}/>
         )
     };
 
@@ -83,7 +129,12 @@ const CashShop =()=>{
         changeView(bool);
     };
 
-    console.log(checkout)
+    console.log(checkout);
+
+    const handleCheckout = (index) => {
+        setCurrentOutfit(dummy[index]);
+        isCheckout(true);
+    };
 
     return(
         <View style={styles.main}>
@@ -98,7 +149,7 @@ const CashShop =()=>{
 
             {/* checkout page */}
             {checkout &&
-                <CheckoutModal byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>
+                <CheckoutModal itemList={currentOutFit.items} byOutfit={true} checkout={checkout} isCheckout={isCheckout} />
             }
         </View>
     )

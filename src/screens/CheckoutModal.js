@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, Modal,View, Text, TouchableOpacity} from 'react-native';
+import {FlatList, Modal,View, Text, TouchableOpacity, Image} from 'react-native';
 import { useSelector } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
 import RemoveButton from '../components/removeButton.js';
-
 
 const dummy = [
   {
@@ -61,7 +60,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   };
 
   const [currentIndex, setIndex] = useState(0);
-  const [items, setItems] = useState(dummy);
+  const [items, setItems] = useState(itemList);
   // useEffect(()=>{
   //   if (currentIndex < 0) {
   //     setIndex(0)
@@ -88,7 +87,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
         <Modal animationType='fade' transparent visible={checkout}>
           <View style={styles.main}>
           <TouchableOpacity style={styles.closeButton} onPress={()=>isCheckout(false)}>
-            <Text>Close</Text>
+          <Image source={require('../../assets/cashShop/exit.png')}/>
           </TouchableOpacity>
           <View style={styles.avatarContainer}>
             <View style={styles.avatar}>
@@ -97,24 +96,22 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
               </Text>
             </View>
             <View style={styles.itemList}>
-            <TouchableOpacity onPress={()=>currentIndex > 0 && setIndex(currentIndex=>currentIndex-1)}>
-              <Text>PREV</Text>
+            <TouchableOpacity style={styles.buttons} onPress={()=>currentIndex > 0 && setIndex(currentIndex=>currentIndex-1)}>
+              <Image source={require('../../assets/cashShop/prev.png')}/>
             </TouchableOpacity>
-              <View >
+              <View>
               {
                 items.slice(currentIndex, currentIndex+4).map((item,k)=>{
                   return (
                     // items for check out, deletable if its picked from accessory view, and not deletable if byOutfit is true
                     <TouchableOpacity key={k} style={[styles.gridItem, activeStyle]}>
-                      {byOutfit &&
+                      {!byOutfit &&
                       <View style={styles.delete}>
                         <RemoveButton remove={()=>handleRemove(k)}/>
                       </View>
                       }
                     <View style={styles.gridItemTop}>
-                      <Text>
-                        {item.name}
-                      </Text>
+                      <Image source={item.icon}/>
                     </View>
                     <View style={styles.gridItemBottom}>
                       <Text style={styles.text}>
@@ -126,8 +123,8 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
                 })
               }
               </View>
-                <TouchableOpacity onPress={()=>currentIndex+4 <= items.length-1 && setIndex(currentIndex=> currentIndex+1)}>
-              <Text>NEXT</Text>
+                <TouchableOpacity style={styles.buttons} onPress={()=>currentIndex+4 <= items.length-1 && setIndex(currentIndex=> currentIndex+1)}>
+                <Image source={require('../../assets/cashShop/next.png')}/>
             </TouchableOpacity>
 
             </View>
