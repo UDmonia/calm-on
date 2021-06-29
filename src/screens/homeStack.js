@@ -37,12 +37,27 @@ const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
   // what units are these?
 
+  const getTabBarVisibility = (route) => {
+    const routeName = route.state
+      ? route.state.routes[route.state.index].name
+      : '';
+
+    console.log(routeName)
+
+    if (routeName === 'Shop') {
+      return false;
+    }
+
+    return true;
+  }
+
   const screens = icons.map((icon, index) => (
     <Tab.Screen
       key={index}
       name={icon.name}
       component={icon.comp}
-      options={() => ({
+      options={({route}) => ({
+        tabBarVisible: getTabBarVisibility(route),
         tabBarIcon: ({ focused }) => (
           <TouchableOpacity
             style={

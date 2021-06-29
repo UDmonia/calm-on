@@ -92,6 +92,11 @@ const styles = StyleSheet.create({
 
   buttons: {
     padding: 5
+  },
+
+  icon: {
+    marginTop: '15%',
+    marginLeft: '5%'
   }
 
 

@@ -1,11 +1,13 @@
 import {createStackNavigator, HeaderbackButton} from '@react-navigation/stack';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+
 import React from 'react'
 // import hex from '../stylesheets/hexCodes';
 import CashShop from './CashShop.js';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
-const CashShopStack =()=>{
+const CashShopStack =({navigation, route})=>{
 
     const profileMain= {
         headerLeft:null,
@@ -28,7 +30,7 @@ const CashShopStack =()=>{
 
     return(
         <Stack.Navigator screenOptions={allScreens} initialRouteName='CashShop' >
-          <Stack.Screen options={{tabBarVisible: false}} name='CashShop' component={CashShop}/>
+          <Stack.Screen name='CashShop' component={CashShop}/>
         </Stack.Navigator>
     )
 };

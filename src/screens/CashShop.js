@@ -10,7 +10,7 @@ import Toggler from './Toggler.js';
 const dummy = [
     {
         name: 'Painting',
-        cost: 10,
+        cost: 15,
         imageSrc: 'source...',
         items: [
             {
@@ -129,8 +129,6 @@ const CashShop =()=>{
         changeView(bool);
     };
 
-    console.log(checkout);
-
     const handleCheckout = (index) => {
         setCurrentOutfit(dummy[index]);
         isCheckout(true);
@@ -149,7 +147,7 @@ const CashShop =()=>{
 
             {/* checkout page */}
             {checkout &&
-                <CheckoutModal itemList={currentOutFit.items} byOutfit={true} checkout={checkout} isCheckout={isCheckout} />
+                <CheckoutModal cost={currentOutFit.cost} itemList={currentOutFit.items} byOutfit={true} checkout={checkout} isCheckout={isCheckout} />
             }
         </View>
     )

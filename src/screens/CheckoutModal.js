@@ -61,6 +61,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
 
   const [currentIndex, setIndex] = useState(0);
   const [items, setItems] = useState(itemList);
+  const [currentCost, setCost] = useState(cost);
   // useEffect(()=>{
   //   if (currentIndex < 0) {
   //     setIndex(0)
@@ -82,6 +83,15 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
       // once the promise returns back sucessfully
       // display a success message
   };
+
+  useEffect(()=>{
+    // re-calculate total cost if items change
+    let totalCost = 0;
+    for (let i = 0; i < items.length; i++) {
+      totalCost += items[i].cost;
+    }
+    setCost(totalCost);
+  }, [items])
 
     return(
         <Modal animationType='fade' transparent visible={checkout}>
@@ -111,7 +121,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
                       </View>
                       }
                     <View style={styles.gridItemTop}>
-                      <Image source={item.icon}/>
+                      <Image style={styles.icon} source={item.icon}/>
                     </View>
                     <View style={styles.gridItemBottom}>
                       <Text style={styles.text}>
@@ -132,7 +142,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
           </View>
           <View style={styles.message}>
             <Text style={styles.text}>
-              Are you want to buy for {cost} coins?
+              Are you want to buy for {currentCost} coins?
             </Text>
           </View>
 

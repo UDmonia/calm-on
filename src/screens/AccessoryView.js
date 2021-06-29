@@ -1,59 +1,80 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, View, Text, TouchableOpacity, Image} from 'react-native';
+import {FlatList, View, Text, TouchableOpacity, Image,  ImageBackground} from 'react-native';
 import { useSelector } from "react-redux";
 import styles from '../stylesheets/AccessoryViewStyles.js';
 import Toggler from './Toggler.js';
 import CheckoutModal from './CheckoutModal.js';
 
+// get the coach from redux and map the outfits accordingly
+
 // get equiped list of items
 
-const categoryList = ['All','Face','Top','Bottom','Shoes','Extra'];
+const categoryList = ['All','Face','Top','Bottom','Shoes','Gloves','Extra', 'Set',];
 
 // current buyable items
 const dummy = [
   {
-    id: 'h1',
+    id: 'Extra-h1',
     name: 'hat',
     cost: 10,
     category: 'Extra',
+    sub: 'Extra',
     image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
     icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
   },
   {
-    id: 's1',
+    id: 'Top-s1',
     name: 'shirt',
     cost: 10,
     category: 'Top',
+    sub: 'Top',
     image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
     icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
-    id: 'p1',
+    id: 'Bottom-p1',
     name: 'pants',
     cost: 10,
     category: 'Bottom',
+    sub: 'Bottom',
     image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
     icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
-    id: 'j1',
+    id: 'Top-j1',
     name: 'jacket',
     cost: 10,
     category: 'Top',
+    sub: 'Top',
     image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
     icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
-    id: 'sh1',
+    id: 'Bottom-sh1',
     name: 'shorts',
     cost: 10,
     category: 'Bottom',
+    sub: 'Bottom',
     image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
+  },
+
   {
-    id: 'g1',
+    id: 'Glasses-g1',
     name: 'glasses',
     cost: 10,
-    category: 'Extra',
+    category: 'Face',
+    sub: 'Glasses',
     image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
+    icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
+  },
+
+  {
+    id: 'Glasses-g2',
+    name: 'glasses',
+    cost: 10,
+    category: 'Face',
+    sub: 'Glasses',
+    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
+  },
 
 ];
 
@@ -73,7 +94,7 @@ const dummyBought = [
 ];
 
 const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
-  console.log(currentItems)
+  console.log(cart)
   const activeStyle = {
     borderColor: '#678D98',
     borderWidth: 4,
@@ -91,9 +112,9 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
 
   const renderItems = ({item}) => {
     return (
-      <TouchableOpacity onPress={()=>selectOrDeselect(item.id)} style={[styles.gridItem, cart[item.id] && activeStyle]}>
+      <TouchableOpacity onPress={()=>selectOrDeselect(item)} style={[styles.gridItem, cart[item.sub].id === item.id && activeStyle]}>
         <View style={styles.gridItemTop}>
-        <Image source={item.icon}/>
+        <Image style={styles.icon} source={item.icon}/>
         </View>
         <View style={styles.gridItemBottom}>
           <Text style={styles.text}>
@@ -142,27 +163,38 @@ const AccessoryView =()=>{
   const [currentCategoryIndex, setIndex] = useState(0);
   // all items currently rendering
   const [currentItems, setCurrentItems] = useState({});
-  // all items currently in cart
-  const [cart, addToCart] = useState({});
   // trigger for checkout modal
   const [checkout, isCheckout] = useState(false);
   const [currentFilter, changeFilter] = useState(categoryList[currentCategoryIndex]);
+  // current total cost
+  const [totalCost, changeCost] = useState(0);
+  // only one item of each type can be selected at once
+  const [selected, setSelected] = useState({
+    Hat: false, Glasses: false, Earrings: false, Mask: false,
+    Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false
+  })
 
   /*
     Input: itemId String
     Takes id of an item and adds it to cart if doesnt already exist,
     if it does, then remove it from cart
   */
-  const selectOrDeselect = (itemId) => {
-    if (cart[itemId]) {
-      const newObj = {...cart};
-      delete newObj[itemId];
-      addToCart(newObj);
+  const selectOrDeselect = (item) => {
+    const {id, sub, cost} = item;
+    const newObj = {...selected};
+    // if already exist then just set it to false
+    if (selected[sub].id === item.id) {
+      newObj[sub] = false
     } else {
-      const newObj = {...cart};
-      newObj[itemId] = true;
-      addToCart(newObj);
+    //   // get the sub-category and assign the entire obj to that sub-category
+      newObj[sub] = item;
     }
+    setSelected(newObj);
+
+    //   // const newObj = {...cart};
+    //   // newObj[id] = cost;
+    //   // addToCart(newObj);
+    // }
   };
 
   const handleToggle = (bool) => {
@@ -170,7 +202,6 @@ const AccessoryView =()=>{
   };
 
   useEffect(()=>{
-    console.log(categoryList[currentCategoryIndex])
 
     // if the currentCategoryIndex changes, then filter the Flatlist accordingly
       const newItems = dummy.filter(item=>{
@@ -181,39 +212,63 @@ const AccessoryView =()=>{
         }
       });
       setCurrentItems(newItems);
+
+    // if cart changes, then re-calculate total coins
   }, [currentCategoryIndex]);
 
+  useEffect(()=>{
+    console.log(totalCost)
+    // iterate cart and calculate the total cost
+    let newCost = 0;
+    for (const key in selected) {
+      if (selected[key]) {
+        newCost += selected[key].cost;
+      }
+    }
+    changeCost(newCost);
+  }, [selected]);
+
   // convert cart in from object to list of objects
-  const convertCartToList = () => {
+  const convertCartToList = (selected) => {
     let cartList = [];
-    for (let i = 0; i < dummy.length; i++) {
-      if (cart[dummy[i].id]) {
-        cartList.push(dummy[i]);
+    for (const key in selected) {
+      if (selected[key]) {
+        cartList.push(selected[key]);
       }
     }
     return cartList;
   };
 
+
     return (
         <View style={styles.main}>
           <View style={styles.previewContainer}>
+            <ImageBackground style={{flex:1}} source={require('../../assets/cashShop/background.png')}>
+            <View style={styles.previewInnerContainer}>
             <View style={styles.previewLeft}>
-              <Text>avatar</Text>
+              <Image resizeMode='contain' style={styles.avatar} source={require('../../assets/cashShop/auora/auora_base.png')}/>
+              <Image resizeMode='contain' style={styles.avatar} source={require('../../assets/cashShop/auora/auora_PlumeHat.png')}/>
             </View>
             <View style={styles.previewRight}>
-              <Text>coins</Text>
+            {(totalCost > 0 && shopView) &&
+              <View style={styles.coinContainer}>
+                <Text style={styles.previewText}>{totalCost} Coins</Text>
+              </View>
+            }
               {
-                (Object.keys(currentItems).length > 0 && shopView) &&
-                  <TouchableOpacity onPress={()=>isCheckout(true)}>
-                    <Text>
+                (totalCost > 0 && shopView) &&
+                  <TouchableOpacity style={styles.buyButton} onPress={()=>isCheckout(true)}>
+                    <Text style={styles.previewText}>
                       Buy
                     </Text>
                   </TouchableOpacity>
               }
             </View>
+            </View>
+            </ImageBackground>
           </View>
 
-          {checkout && <CheckoutModal itemList={convertCartToList()} byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>}
+          {checkout && <CheckoutModal cost={totalCost} itemList={convertCartToList(selected)} byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>}
 
           <View style={styles.toggle}>
             <Toggler callback={handleToggle} text1='Shop' text2='Wardrobe'/>
@@ -224,7 +279,7 @@ const AccessoryView =()=>{
           </View>
 
           <View style={styles.grid}>
-            <Grid cart={cart} filter={currentFilter} selectOrDeselect={selectOrDeselect} currentItems={currentItems} shopView={shopView}/>
+            <Grid cart={selected} filter={currentFilter} selectOrDeselect={selectOrDeselect} currentItems={currentItems} shopView={shopView}/>
           </View>
         </View>
     )
