@@ -36,7 +36,7 @@ const dummy = [
     cost: 10,
     category: 'Bottom',
     sub: 'Bottom',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+    image: require('../../assets/cashShop/auora/auora_OGpants.png'),
     icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
   {
     id: 'Top-j1',
@@ -82,19 +82,22 @@ const dummyBought = [
   {
     id: 'sk1',
     name: 'skirts',
-    cost: 10,
+    category: 'Bottom',
+    sub: 'Bottom',
+    cost: null,
     imageSrc: '...'
   },
   {
     id: 'sh2',
     name: 'shorts',
-    cost: 10,
+    category: 'Bottom',
+    sub: 'Bottom',
+    cost: null,
     imageSrc: '...'
   },
 ];
 
 const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
-  console.log(cart)
   const activeStyle = {
     borderColor: '#678D98',
     borderWidth: 4,
@@ -121,7 +124,7 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
             {shopView?
               item.cost
               :
-              cart[item.id] ? 'EQUIPED' : 'EQUIP'
+              cart[item.sub].id === item.id ? 'EQUIPED' : 'EQUIP'
             }
           </Text>
         </View>
@@ -201,6 +204,18 @@ const AccessoryView =()=>{
     isShopView(bool)
   };
 
+  const putOnClothes = (selected) => {
+    let outfitList = [];
+    for (const key in selected) {
+      if (selected[key]) {
+        outfitList.push(
+          <Image resizeMode='contain' style={styles.avatar} source={selected[key].image}/>
+          );
+      }
+    }
+    return outfitList;
+  }
+
   useEffect(()=>{
 
     // if the currentCategoryIndex changes, then filter the Flatlist accordingly
@@ -247,7 +262,7 @@ const AccessoryView =()=>{
             <View style={styles.previewInnerContainer}>
             <View style={styles.previewLeft}>
               <Image resizeMode='contain' style={styles.avatar} source={require('../../assets/cashShop/auora/auora_base.png')}/>
-              <Image resizeMode='contain' style={styles.avatar} source={require('../../assets/cashShop/auora/auora_PlumeHat.png')}/>
+              {putOnClothes(selected)}
             </View>
             <View style={styles.previewRight}>
             {(totalCost > 0 && shopView) &&
