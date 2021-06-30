@@ -21,17 +21,27 @@ const styles = StyleSheet.create({
     zIndex: 2
   },
 
-  avatarContainer: {
+  middle: {
+    position: 'relative',
     marginTop: '20%',
     flex: 10,
     display: 'flex',
     flexDirection: 'row'
   },
 
-  avatar: {
+  avatarContainer: {
     flex: 5,
-    borderWidth: 1
+    width: '100%',
+    height: '100%',
+    position: 'relative'
   },
+
+  avatar: {
+    width: 250,
+    height: '100%',
+    position: 'absolute'
+  },
+
 
   message: {
     flex: 2,
@@ -45,7 +55,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderRadius: 10,
-    borderColor: '#C0C7D2'
+    borderColor: '#C0C7D2',
+    marginRight: '2%'
   },
 
   text: {
@@ -97,7 +108,9 @@ const styles = StyleSheet.create({
   icon: {
     marginTop: '15%',
     marginLeft: '5%'
-  }
+  },
+
+
 
 
 })

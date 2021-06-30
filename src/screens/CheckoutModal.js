@@ -52,6 +52,7 @@ const dummy = [
 
 // itemList should be a unique id for the particular piece of clothing
 const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
+  console.log(itemList)
   const activeStyle = {
     borderColor: '#678D98',
     borderWidth: 4,
@@ -91,7 +92,17 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
       totalCost += items[i].cost;
     }
     setCost(totalCost);
-  }, [items])
+  }, [items]);
+
+  const putOnClothes = (itemList) => {
+    let outfitList = [];
+    for (let i = 0; i < itemList.length; i++) {
+        outfitList.push(
+          <Image key={i} resizeMode='contain' style={styles.avatar} source={itemList[i].image}/>
+          );
+    }
+    return outfitList;
+  }
 
     return(
         <Modal animationType='fade' transparent visible={checkout}>
@@ -99,11 +110,11 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
           <TouchableOpacity style={styles.closeButton} onPress={()=>isCheckout(false)}>
           <Image source={require('../../assets/cashShop/exit.png')}/>
           </TouchableOpacity>
-          <View style={styles.avatarContainer}>
-            <View style={styles.avatar}>
-              <Text>
-                Avatar here
-              </Text>
+          <View style={styles.middle}>
+
+            <View style={styles.avatarContainer}>
+              <Image resizeMode='contain' style={styles.avatar} source={require('../../assets/cashShop/auora/auora_base.png')}/>
+              {putOnClothes(items)}
             </View>
             <View style={styles.itemList}>
             <TouchableOpacity style={styles.buttons} onPress={()=>currentIndex > 0 && setIndex(currentIndex=>currentIndex-1)}>
