@@ -4,52 +4,6 @@ import { useSelector } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
 import RemoveButton from '../components/removeButton.js';
 
-const dummy = [
-  {
-    id: 'h1',
-    name: 'hat1',
-    cost: 10,
-    imageSrc: '...'
-  },
-  {
-    id: 's1',
-    name: 'shirt1',
-    cost: 10,
-    imageSrc: '...'
-  },
-  {
-    id: 'p1',
-    name: 'pants1',
-    cost: 10,
-    imageSrc: '...'
-  },
-  {
-    id: 'h1',
-    name: 'hat2',
-    cost: 10,
-    imageSrc: '...'
-  },
-  {
-    id: 's2',
-    name: 'shirt2',
-    cost: 10,
-    imageSrc: '...'
-  },
-  // {
-  //   id: 'p2',
-  //   name: 'pants2',
-  //   cost: 10,
-  //   imageSrc: '...'
-  // },
-  // {
-  //   id: 'p3',
-  //   name: 'pants3',
-  //   cost: 10,
-  //   imageSrc: '...'
-  // },
-
-]
-
 // itemList should be a unique id for the particular piece of clothing
 const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   console.log(itemList)

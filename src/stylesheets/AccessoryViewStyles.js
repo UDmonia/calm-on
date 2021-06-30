@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     flex:1,
     position: 'relative',
     height: 280,
-    borderWidth: 1,
     marginTop: '5%'
   },
 
