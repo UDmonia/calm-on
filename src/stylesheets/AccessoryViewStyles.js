@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     height: '100%',
     width: '100%',
+    backgroundColor: 'white'
   },
 
   previewContainer: {
@@ -79,9 +80,17 @@ const styles = StyleSheet.create({
   gridItem: {
     height: 97,
     width: 78,
-    borderWidth: 1,
     borderRadius: 10,
-    margin: '2%'
+    margin: '2%',
+    backgroundColor: '#F5F8FA',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7
   },
 
   gridItemTop: {
@@ -92,7 +101,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#A5DFF0',
     height: '30%',
     borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10
+    borderBottomRightRadius: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  coin: {
+    marginRight: '10%'
   },
 
   gridContainer: {

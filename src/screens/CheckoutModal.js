@@ -79,7 +79,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
                 items.slice(currentIndex, currentIndex+4).map((item,k)=>{
                   return (
                     // items for check out, deletable if its picked from accessory view, and not deletable if byOutfit is true
-                    <TouchableOpacity key={k} style={[styles.gridItem, activeStyle]}>
+                    <TouchableOpacity key={k} style={styles.gridItem}>
                       {!byOutfit &&
                       <View style={styles.delete}>
                         <RemoveButton remove={()=>handleRemove(k)}/>
@@ -89,6 +89,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
                       <Image style={styles.icon} source={item.icon}/>
                     </View>
                     <View style={styles.gridItemBottom}>
+                      <Image style={styles.coin} source={require('../../assets/cashShop/coin.png')}/>
                       <Text style={styles.text}>
                         {item.cost}
                       </Text>
@@ -107,7 +108,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
           </View>
           <View style={styles.message}>
             <Text style={styles.text}>
-              Are you want to buy for {currentCost} coins?
+              Are you want to buy for <Text style={{fontWeight: 'bold'}}>{currentCost} coins</Text>?
             </Text>
           </View>
 

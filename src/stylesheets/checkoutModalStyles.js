@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
 
   message: {
     flex: 2,
-    width: '55%'
+    width: '55%',
+    paddingTop: '5%'
   },
 
   itemList: {
@@ -67,9 +68,17 @@ const styles = StyleSheet.create({
   gridItem: {
     height: 97,
     width: 78,
-    borderWidth: 1,
     borderRadius: 10,
-    marginTop: '3%'
+    marginTop: '20%',
+    backgroundColor: '#F5F8FA',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7
   },
 
   gridItemTop: {
@@ -80,7 +89,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#A5DFF0',
     height: '30%',
     borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10
+    borderBottomRightRadius: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  coin: {
+    marginRight: '10%'
   },
 
   bottom: {

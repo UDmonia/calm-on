@@ -37,11 +37,20 @@ const styles = StyleSheet.create({
   },
 
   gridItem: {
-    borderWidth: 1,
-    margin: '4%',
-    width: 160,
+    margin: '3%',
+    width: 165,
     height: 250,
-    borderRadius: 20
+    borderRadius: 20,
+    backgroundColor: '#F5F8FA',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7
+
   },
 
   image: {
@@ -55,11 +64,11 @@ const styles = StyleSheet.create({
   },
 
   nameContainer: {
-    width: '70%'
+    flex: 1.5,
+    marginTop: '5%'
   },
 
   score: {
-    width: '30%',
     paddingTop: '5%',
     textAlign: 'center',
     fontSize: 18
@@ -67,13 +76,21 @@ const styles = StyleSheet.create({
 
   bottom: {
     height: '25%',
-    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     backgroundColor: '#A5DFF0',
     paddingTop:'2%'
+  },
+
+  costContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+
   }
 })
 

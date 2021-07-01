@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, View, Text, TouchableOpacity} from 'react-native';
+import {FlatList, View, Text, TouchableOpacity, Image} from 'react-native';
 import { useSelector } from "react-redux";
 import styles from '../stylesheets/cashShopStyles.js';
 import CheckoutModal from './CheckoutModal.js';
@@ -81,7 +81,7 @@ const GridItem = ({handleCheckout, index, name, cost, imageSrc, coach, isCheckou
     return (
         <TouchableOpacity onPress={()=>handleCheckout(index)} style={styles.gridItem}>
             <View style={styles.image}>
-                <Text style={styles.text}>Image here</Text>
+                <Image style={{marginLeft: '15%', marginTop: '10%'}} source={require('../../assets/cashShop/auora/icons/auora_set1.png')}/>
             </View>
             <View style={styles.bottom}>
                 <View style={styles.nameContainer}>
@@ -92,9 +92,12 @@ const GridItem = ({handleCheckout, index, name, cost, imageSrc, coach, isCheckou
                     {coach}
                 </Text>
                 </View>
+                <View style={styles.costContainer}>
+                <Image source={require('../../assets/cashShop/coin_big.png')}/>
                 <Text style={[styles.text, styles.score]}>
                     {cost}
                 </Text>
+                </View>
             </View>
         </TouchableOpacity>
     )

@@ -5,6 +5,9 @@ import styles from '../stylesheets/AccessoryViewStyles.js';
 import Toggler from './Toggler.js';
 import CheckoutModal from './CheckoutModal.js';
 
+const initialCartState = {Hat: false, Glasses: false, Earrings: false, Mask: false,
+Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false};
+
 // get the coach from redux and map the outfits accordingly
 
 // get equiped list of items
@@ -37,7 +40,8 @@ const dummy = [
     category: 'Bottom',
     sub: 'Bottom',
     image: require('../../assets/cashShop/auora/auora_OGpants.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
+  },
   {
     id: 'Top-j1',
     name: 'jacket',
@@ -80,20 +84,22 @@ const dummy = [
 
 const dummyBought = [
   {
-    id: 'sk1',
-    name: 'skirts',
-    category: 'Bottom',
-    sub: 'Bottom',
-    cost: null,
-    imageSrc: '...'
+  id: 'Extra-h1',
+  name: 'hat',
+  cost: 10,
+  category: 'Extra',
+  sub: 'Extra',
+  image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
+  icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
   },
   {
-    id: 'sh2',
-    name: 'shorts',
+    id: 'Bottom-p1',
+    name: 'pants',
+    cost: 10,
     category: 'Bottom',
     sub: 'Bottom',
-    cost: null,
-    imageSrc: '...'
+    image: require('../../assets/cashShop/auora/auora_OGpants.png'),
+    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
   },
 ];
 
@@ -120,13 +126,18 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
         <Image style={styles.icon} source={item.icon}/>
         </View>
         <View style={styles.gridItemBottom}>
-          <Text style={styles.text}>
-            {shopView?
-              item.cost
-              :
-              cart[item.sub].id === item.id ? 'EQUIPED' : 'EQUIP'
-            }
-          </Text>
+          {shopView ?
+            <>
+            <Image style={styles.coin} source={require('../../assets/cashShop/coin.png')}/>
+            <Text style={[styles.text, styles.price]}>
+              {item.cost}
+            </Text>
+            </>
+            :
+            <Text>
+            {cart[item.sub].id === item.id ? 'EQUIPED' : 'EQUIP'}
+            </Text>
+          }
         </View>
       </TouchableOpacity>
     )
@@ -134,7 +145,7 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
 
   return (
     <View style={styles.gridContainer}>
-      <FlatList horizontal={false} numColumns={4} renderItem={renderItems} data={shopView ?currentItems: dummyBought}/>
+      <FlatList horizontal={false} numColumns={4} renderItem={renderItems} data={currentItems}/>
     </View>
   )
 };
@@ -209,17 +220,26 @@ const AccessoryView =()=>{
     for (const key in selected) {
       if (selected[key]) {
         outfitList.push(
-          <Image resizeMode='contain' style={styles.avatar} source={selected[key].image}/>
+          <Image key={selected[key].id} resizeMode='contain' style={styles.avatar} source={selected[key].image}/>
           );
       }
     }
     return outfitList;
   }
 
+  // when switching views, empty out the current selected items from the current view
+  // also reset the filter
+  useEffect(()=>{
+    setSelected(initialCartState);
+    setIndex(0);
+  }, [shopView])
+
   useEffect(()=>{
 
     // if the currentCategoryIndex changes, then filter the Flatlist accordingly
-      const newItems = dummy.filter(item=>{
+    const data = shopView ? dummy : dummyBought;
+    console.log(data)
+      const newItems = data.filter(item=>{
         if (categoryList[currentCategoryIndex] === 'All') {
           return item.category !== categoryList[currentCategoryIndex]
         } else {
@@ -229,7 +249,7 @@ const AccessoryView =()=>{
       setCurrentItems(newItems);
 
     // if cart changes, then re-calculate total coins
-  }, [currentCategoryIndex]);
+  }, [currentCategoryIndex, shopView]);
 
   useEffect(()=>{
     console.log(totalCost)
