@@ -67,9 +67,6 @@ const styles = StyleSheet.create({
   grid: {
     width: '100%',
     flex: 5.5,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
 
   text: {
@@ -114,7 +111,8 @@ const styles = StyleSheet.create({
 
   gridContainer: {
     alignSelf: 'flex-start',
-    marginLeft: 10
+    marginLeft: 10,
+    paddingBottom: '25%'
   },
 
   icon: {

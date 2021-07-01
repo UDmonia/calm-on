@@ -5,6 +5,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { StackActions } from '@react-navigation/routers';
 import AchievementPage from './AchievementPage.js';
 import CashShop from './CashShop.js';
+import {Image} from 'react-native';
+
+// get coins from redux
 
 const Stack = createStackNavigator();
 
@@ -41,12 +44,22 @@ export default Achievement =()=>{
         // headerStyle: {backgroundColor: hex.yellow.yellow1}
     }
 
+    const cashShop = {
+        headerRight: ()=>(
+            <View style={{display:'flex', flexDirection: 'row', width: 80,justifyContent: 'space-evenly'}}>
+                <Image source={require('../../assets/cashShop/coin_big.png')}/>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>10</Text>
+            </View>
+        ),
+        headerShown: true
+    }
+
 
 
     return (
         <Stack.Navigator screenOptions = {allScreens} initialRoute = 'Achievements'>
             <Stack.Screen options = {profileMain} name = 'Achievements' component = {AchievementPage} />
-            <Stack.Screen options={{tabBarVisible: false}} name = 'Shop' component = {CashShop}/>
+            <Stack.Screen options={cashShop} name = 'Shop' component = {CashShop}/>
         </Stack.Navigator>
     )
 }

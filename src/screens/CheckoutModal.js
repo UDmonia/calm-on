@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, Modal,View, Text, TouchableOpacity, Image} from 'react-native';
+import {FlatList, Modal,View, Text, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import { useSelector } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
 import RemoveButton from '../components/removeButton.js';
@@ -57,6 +57,16 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
     }
     return outfitList;
   }
+
+  const blur =
+  {
+    container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'red',
+    }
+  };
 
     return(
         <Modal animationType='fade' transparent visible={checkout}>

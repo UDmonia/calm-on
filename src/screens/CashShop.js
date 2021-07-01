@@ -5,7 +5,10 @@ import styles from '../stylesheets/cashShopStyles.js';
 import CheckoutModal from './CheckoutModal.js';
 import AccessoryView from './AccessoryView.js';
 import Toggler from './Toggler.js';
+
+
 // get current coach from redux
+
 
 const dummy = [
     {

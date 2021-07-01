@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import styles from '../stylesheets/AccessoryViewStyles.js';
 import Toggler from './Toggler.js';
 import CheckoutModal from './CheckoutModal.js';
+import {storeData} from '../data/cashShopData.js';
 
 const initialCartState = {Hat: false, Glasses: false, Earrings: false, Mask: false,
 Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false};
@@ -237,7 +238,7 @@ const AccessoryView =()=>{
   useEffect(()=>{
 
     // if the currentCategoryIndex changes, then filter the Flatlist accordingly
-    const data = shopView ? dummy : dummyBought;
+    const data = shopView ? storeData.auora.currentStorePieces : dummyBought;
     console.log(data)
       const newItems = data.filter(item=>{
         if (categoryList[currentCategoryIndex] === 'All') {
