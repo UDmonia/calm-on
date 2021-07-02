@@ -142,7 +142,6 @@ export const checkin = (checkinDTO) => (dispatch) =>
 
 // action for posting like or dislike
 export const postLikeOrDislike = (req) => (dispatch) => {
-
 }
 
 // action for getting like or dislike

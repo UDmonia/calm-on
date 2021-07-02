@@ -81,6 +81,7 @@ const dummy = [
 ];
 
 const GridItem = ({handleCheckout, index, name, cost, imageSrc, coach, isCheckout}) => {
+
     return (
         <TouchableOpacity onPress={()=>handleCheckout(index)} style={styles.gridItem}>
             <View style={styles.image}>

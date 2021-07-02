@@ -1,19 +1,29 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { View,Text} from 'react-native';
 import styles from '../stylesheets/achievementStyles.js'
 import {createStackNavigator} from '@react-navigation/stack';
 import { StackActions } from '@react-navigation/routers';
 import AchievementPage from './AchievementPage.js';
 import CashShop from './CashShop.js';
+import { useDispatch } from "react-redux";
+import { getCoins } from '../actions/cashShop_actions.js';
 import {Image} from 'react-native';
-
-// get coins from redux
 
 const Stack = createStackNavigator();
 
 const routesWithNoTabNavigator = ['CashShop'];
 
 export default Achievement =()=>{
+    const dispatch = useDispatch();
+    const [coins, setCoins] = useState(0);
+
+    useEffect(()=>{
+        // uncomment this when the backend routes are established
+
+        // dispatch(getCoins())
+        //     .then(coins=>setCoins(coins))
+        //     .catch(err=>{throw err})
+    }, [])
 
     Stack.navigationOptions = ({ navigation }) => {
         let tabBarVisible = true;
@@ -48,7 +58,7 @@ export default Achievement =()=>{
         headerRight: ()=>(
             <View style={{display:'flex', flexDirection: 'row', width: 80,justifyContent: 'space-evenly'}}>
                 <Image source={require('../../assets/cashShop/coin_big.png')}/>
-                <Text style={{fontWeight: 'bold', fontSize: 20}}>10</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>{coins}</Text>
             </View>
         ),
         headerShown: true

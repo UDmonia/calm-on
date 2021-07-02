@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, Modal,View, Text, TouchableOpacity, Image, ImageBackground} from 'react-native';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
 import RemoveButton from '../components/removeButton.js';
+import { buy } from '../actions/cashShop_actions.js';
 
 // itemList should be a unique id for the particular piece of clothing
 const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
-  console.log(itemList)
+  const dispatch = useDispatch();
   const activeStyle = {
     borderColor: '#678D98',
     borderWidth: 4,
@@ -34,6 +35,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   };
 
   const handleBuy = () => {
+    dispatch(buy({outfitList: items, total: currentCost}));
     // submit the list of items through Redux action
       // once the promise returns back sucessfully
       // display a success message
@@ -123,7 +125,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
           </View>
 
           <View style={styles.bottom}>
-          <TouchableOpacity style={styles.buyButton}>
+          <TouchableOpacity onPress={handleBuy} style={styles.buyButton}>
             <Text style={styles.text}>
               Buy
             </Text>

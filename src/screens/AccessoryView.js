@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, View, Text, TouchableOpacity, Image,  ImageBackground} from 'react-native';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from '../stylesheets/AccessoryViewStyles.js';
 import Toggler from './Toggler.js';
 import CheckoutModal from './CheckoutModal.js';
 import {storeData} from '../data/cashShopData.js';
+import { equippedSnapshot } from '../actions/cashShop_actions.js';
 
 const initialCartState = {Hat: false, Glasses: false, Earrings: false, Mask: false,
 Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false};
@@ -14,75 +15,6 @@ Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: f
 // get equiped list of items
 
 const categoryList = ['All','Face','Top','Bottom','Shoes','Gloves','Extra', 'Set',];
-
-// current buyable items
-const dummy = [
-  {
-    id: 'Extra-h1',
-    name: 'hat',
-    cost: 10,
-    category: 'Extra',
-    sub: 'Extra',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
-  },
-  {
-    id: 'Top-s1',
-    name: 'shirt',
-    cost: 10,
-    category: 'Top',
-    sub: 'Top',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
-  {
-    id: 'Bottom-p1',
-    name: 'pants',
-    cost: 10,
-    category: 'Bottom',
-    sub: 'Bottom',
-    image: require('../../assets/cashShop/auora/auora_OGpants.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
-  },
-  {
-    id: 'Top-j1',
-    name: 'jacket',
-    cost: 10,
-    category: 'Top',
-    sub: 'Top',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
-  {
-    id: 'Bottom-sh1',
-    name: 'shorts',
-    cost: 10,
-    category: 'Bottom',
-    sub: 'Bottom',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
-  },
-
-  {
-    id: 'Glasses-g1',
-    name: 'glasses',
-    cost: 10,
-    category: 'Face',
-    sub: 'Glasses',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
-  },
-
-  {
-    id: 'Glasses-g2',
-    name: 'glasses',
-    cost: 10,
-    category: 'Face',
-    sub: 'Glasses',
-    image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
-  },
-
-];
-
 const dummyBought = [
   {
   id: 'Extra-h1',
@@ -109,15 +41,6 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
     borderColor: '#678D98',
     borderWidth: 4,
     borderRadius: 10
-  };
-
-  // in shop view
-  const handleEquip = () => {
-    // equip the item by submitting all current items as a snapshot
-    // send the items through Redux action
-    // if promise comes back successful, re-render the avatar
-    // if not successful, means there's no internet, store the snapshot locally
-
   };
 
   const renderItems = ({item}) => {
@@ -173,6 +96,8 @@ const Categories = ({current, setCurrent}) => {
 };
 
 const AccessoryView =()=>{
+  const dispatch = useDispatch();
+
   const [shopView, isShopView] = useState(true);
   // the current selected category
   const [currentCategoryIndex, setIndex] = useState(0);
@@ -204,13 +129,33 @@ const AccessoryView =()=>{
     //   // get the sub-category and assign the entire obj to that sub-category
       newObj[sub] = item;
     }
-    setSelected(newObj);
+    if (shopView) {
+      setSelected(newObj);
+    } else {
+      /*
+      - when the backend routes are established, the following code should look like:
 
-    //   // const newObj = {...cart};
-    //   // newObj[id] = cost;
-    //   // addToCart(newObj);
-    // }
+      handleEquip(newObj)
+        .then(sucess=>{
+          setSelected(newObj)
+        })
+
+      - for now it's fine
+    */
+      handleEquip(newObj)
+      setSelected(newObj);
+    }
   };
+
+    const handleEquip = (selected) => {
+      // equip the item by submitting all current items as a snapshot
+      // return the promise to handle this in selectOrDeselect
+      dispatch(equippedSnapshot({outfitList:selected}));
+      // send the items through Redux action
+      // if promise comes back successful, re-render the avatar
+      // if not successful, means there's no internet, store the snapshot locally
+
+    };
 
   const handleToggle = (bool) => {
     isShopView(bool)
