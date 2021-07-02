@@ -18,6 +18,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   const [currentIndex, setIndex] = useState(0);
   const [items, setItems] = useState(itemList);
   const [currentCost, setCost] = useState(cost);
+  const [currentCoins, setCoins] = useState(null);
   // useEffect(()=>{
   //   if (currentIndex < 0) {
   //     setIndex(0)
@@ -35,7 +36,10 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   };
 
   const handleBuy = () => {
-    dispatch(buy({outfitList: items, total: currentCost}));
+    // also has to check if the user has enough money before checking out
+    if (currentCost > 0) {
+      dispatch(buy({outfitList: items, total: currentCost}));
+    }
     // submit the list of items through Redux action
       // once the promise returns back sucessfully
       // display a success message
@@ -49,6 +53,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
     }
     setCost(totalCost);
   }, [items]);
+
 
   const putOnClothes = (itemList) => {
     let outfitList = [];
