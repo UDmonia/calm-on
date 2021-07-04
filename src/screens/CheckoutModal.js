@@ -8,25 +8,11 @@ import { buy } from '../actions/cashShop_actions.js';
 // itemList should be a unique id for the particular piece of clothing
 const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   const dispatch = useDispatch();
-  const activeStyle = {
-    borderColor: '#678D98',
-    borderWidth: 4,
-    borderRadius: 10,
-    marginTop: '10%'
-  };
 
   const [currentIndex, setIndex] = useState(0);
   const [items, setItems] = useState(itemList);
   const [currentCost, setCost] = useState(cost);
   const [currentCoins, setCoins] = useState(null);
-  // useEffect(()=>{
-  //   if (currentIndex < 0) {
-  //     setIndex(0)
-  //   }
-  //   if (currentIndex > dummy.length-1) {
-  //     setIndex(dummy.length-1);
-  //   }
-  // }, [currentIndex]);
 
   const handleRemove = (id) => {
     // remove item at id
@@ -64,16 +50,6 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
     }
     return outfitList;
   }
-
-  const blur =
-  {
-    container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red',
-    }
-  };
 
     return(
         <Modal animationType='fade' transparent visible={checkout}>

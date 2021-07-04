@@ -15,6 +15,8 @@ Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: f
 // get equiped list of items
 
 const categoryList = ['All','Face','Top','Bottom','Shoes','Gloves','Extra', 'Set',];
+
+// this list should be replaced by the list of bought items returned from redux
 const dummyBought = [
   {
   id: 'Extra-h1',
@@ -115,7 +117,6 @@ const AccessoryView =()=>{
   })
 
   /*
-    Input: itemId String
     Takes id of an item and adds it to cart if doesnt already exist,
     if it does, then remove it from cart
   */
@@ -126,7 +127,7 @@ const AccessoryView =()=>{
     if (selected[sub].id === item.id) {
       newObj[sub] = false
     } else {
-    //   // get the sub-category and assign the entire obj to that sub-category
+    // get the sub-category and assign the entire obj to that sub-category
       newObj[sub] = item;
     }
     if (shopView) {
@@ -140,7 +141,7 @@ const AccessoryView =()=>{
           setSelected(newObj)
         })
 
-      - for now it's fine
+      - for now, the following is fine
     */
       handleEquip(newObj)
       setSelected(newObj);
@@ -161,6 +162,7 @@ const AccessoryView =()=>{
     isShopView(bool)
   };
 
+  // store the corresponding outfit images with the selected items
   const putOnClothes = (selected) => {
     let outfitList = [];
     for (const key in selected) {
@@ -181,14 +183,16 @@ const AccessoryView =()=>{
   }, [shopView])
 
   useEffect(()=>{
-
     // if the currentCategoryIndex changes, then filter the Flatlist accordingly
+
+    // coach data needs to be added to the storeData.js the code below can map out the corresponding shop outfits for a given coach.
     const data = shopView ? storeData.auora.currentStorePieces : dummyBought;
-    console.log(data)
       const newItems = data.filter(item=>{
+        // if either the current filter changes to 'All' render all items that don't have the category property set to 'All', which means this will render all items
         if (categoryList[currentCategoryIndex] === 'All') {
           return item.category !== categoryList[currentCategoryIndex]
         } else {
+          // if the current filter changes to anything other than 'All', then only render the ones that have the matching category property
           return item.category === categoryList[currentCategoryIndex]
         }
       });

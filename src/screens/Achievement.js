@@ -17,6 +17,7 @@ export default Achievement =()=>{
     const dispatch = useDispatch();
     const [coins, setCoins] = useState(0);
 
+    // pull from redux the amount of coins the user has
     useEffect(()=>{
         // uncomment this when the backend routes are established
 
