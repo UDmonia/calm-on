@@ -42,7 +42,7 @@ export const storeData = {
         cost: 10,
         category: 'Face',
         sub: 'Glasses',
-        image: require('../../assets/cashShop/auora/auora_butterflyShades.png'),
+        image: require('../../assets/cashShop/auora/auora_ButterflyShades.png'),
         icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
       },
 
