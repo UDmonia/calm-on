@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -39,9 +39,12 @@ const Home = ({ props, navigation: { navigate } }) => {
     navigate("DailyCheckIn");
   }
   //const userName = "Jack";
-  const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
+  const getUser = useSelector((state) =>
+    state.session.user && state.session.user.name
   );
+
+  const [userName, setUsername] = useState(null);
+
   if (userName === "user") {
     console.log("Home -> loginSignup: userPrompt=true userlogin=false");
     navigate("loginSignup", { userPrompt: true, userLogin: false });
@@ -78,6 +81,12 @@ const Home = ({ props, navigation: { navigate } }) => {
       headerColor: currentSpirit.characterColor,
     });
   }
+
+  useEffect(()=>{
+    if (getUser) {
+      setUsername(getUser);
+    }
+  },[getUser])
 
   return (
     <ImageBackground
