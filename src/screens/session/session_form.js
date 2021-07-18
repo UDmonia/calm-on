@@ -24,6 +24,9 @@ import pwConfirm from "../../../assets/images/passwordConfirmed.png";
 import date from "../../../assets/images/date.png";
 import registerBtn from "../../../assets/images/createAcc.png";
 import deviceStorage from "../../services/device_storage";
+import sprite from "../../../assets/images/sprite.gif";
+import flynn from "../../../assets/images/flynn.gif";
+import aurora from "../../../assets/images/aurora.gif";
 
 const initialLogin = {
   email: "",
@@ -63,6 +66,14 @@ const SessionForm = ({
   const [pickFariyIntro, setPickFairyIntro] = useState(true);
   const [pickFairyCarousel, setPickFairyCarousel] = useState(false);
   const fairies = ["Sprite", "Flynn", "Aurora"];
+  const fairyimages = [sprite, flynn, aurora];
+  const spriteDesc =
+    "Hiya, my name is Sprite! I love reading stories, playing games, and going on adventures with my friends! My favorite color is green!";
+  const flynnDesc =
+    "Hey there, my name is Flynn! I love eating good food, working out to get big muscles, and playing outside! My favorite color is orange!";
+  const auroraDesc =
+    "Hello, my name is Aurora! I enjoy working on puzzles, coloring with my friends, and learning! My favorite color is purple!";
+  const fairyChat = [spriteDesc, flynnDesc, auroraDesc];
   const [fairy, setFairy] = useState(0);
   const toggleShow = () => setShow(!show);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
@@ -112,11 +123,12 @@ const SessionForm = ({
   const handleSubmit = () => {
     setLocalErrors([]);
     if (isValid()) {
-      return (login
-        ? dispatch(loginUser(user))
-        : dispatch(
-            register({ ...user, birthday: new Date("0000", "00", "00") })
-          )
+      return (
+        login
+          ? dispatch(loginUser(user))
+          : dispatch(
+              register({ ...user, birthday: new Date("0000", "00", "00") })
+            )
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
           //deviceStorage.save("score", 0);
@@ -295,7 +307,8 @@ const SessionForm = ({
           pickFairyCarousel ? (
             // Pick your Fairy Buddy component
             <View style={styles.fairyMainContainer}>
-              <Text>Pick a Fairy</Text>
+              <Text style={styles.fairyTitle}>Pick a fairy buddy!</Text>
+              <Image style={styles.fairyImages} source={fairyimages[fairy]} />
               <View style={styles.fairyLRButtonConatiner}>
                 <TouchableOpacity
                   style={{ ...styles.bottomButton, width: 115 }}
@@ -309,7 +322,7 @@ const SessionForm = ({
                 >
                   <Text style={styles.bottomButtonText}>{"<"}</Text>
                 </TouchableOpacity>
-                <Text>{fairies[fairy]}</Text>
+                <Text style={styles.fairyname}>{fairies[fairy]}</Text>
                 <TouchableOpacity
                   style={{ ...styles.bottomButton, width: 115 }}
                   onPress={() => {
@@ -323,6 +336,7 @@ const SessionForm = ({
                   <Text style={styles.bottomButtonText}>{">"}</Text>
                 </TouchableOpacity>
               </View>
+              <Text style={styles.fairychat}>{fairyChat[fairy]}</Text>
               <TouchableOpacity
                 style={{ ...styles.bottomButton, width: 215 }}
                 onPress={() => {

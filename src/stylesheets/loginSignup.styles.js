@@ -160,4 +160,31 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
   },
+  fairyImages: {
+    width: "45%",
+    height: "45%",
+  },
+  fairyname: {
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 28,
+  },
+  fairyTitle: {
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 36,
+  },
+  fairychat: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 10,
+    // borderWidth:
+    overflow: "hidden",
+    marginTop: 20,
+    marginBottom: 15,
+    padding: 7,
+
+    width: "92%",
+  },
 });
