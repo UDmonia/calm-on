@@ -139,3 +139,17 @@ export const checkin = (checkinDTO) => (dispatch) =>
   .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 
 // Still need the change password route, Mike is on it
+
+// action for posting like or dislike
+export const postLikeOrDislike = (req) => (dispatch) => {
+}
+
+// action for getting like or dislike
+export const getLikeOrDislike = () => (dispatch) => {
+
+}
+
+// action for posting a comment about an activity
+export const postComment = (comment) => (dispatch) => {
+
+}

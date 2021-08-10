@@ -3,7 +3,7 @@ import { Text, View, Image, SafeAreaView, ScrollView, TouchableOpacity } from 'r
 import styles from "../stylesheets/filteredActivitiesStyles";
 import ActivityCard from "../components/ActivityCard";
 
-const filters = ["All","Healthy-Habits","Videos","Activities"];
+const filters = ["All","Games","Informational","Videos"];
 
 //Button component for the filter bar
 function Button(props) {
@@ -42,7 +42,7 @@ function FilterBar(props) {
 }
 
 
-export default function FilteredActivties({ route }) {
+export default function FilteredActivties({ route, navigation: { navigate }}) {
 
     //route variables
     const { activities } = route.params;
