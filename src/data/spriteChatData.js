@@ -130,8 +130,8 @@ const spriteSad = {
                   question: "",
                   answers: [],
                   animation: null,
-                  renderAnim: SpriteActivityData[0],
-                  navInfo: null,
+                  renderAnim: "",
+                  navInfo: SpriteActivityData[4],
                   nxtNode: [],
                 },
               ],
@@ -145,7 +145,7 @@ const spriteSad = {
           answers: ["Yes!", "No"],
           animation: null,
           renderAnim: "",
-          navInfo: null,
+          navInfo: "FlatActivities",
           nxtNode: [],
         },
       ],
@@ -166,31 +166,31 @@ const spriteAngry = {
       key: "Sure",
       question:
         "I like to do fun activities such as flying around the playground, eating at the cafeteria, and playing games.",
-      answers: ["..."],
+      answers: ["Cool"],
       animation: null,
       renderAnim: "",
       navInfo: null,
       nxtNode: [
         {
-          key: "...",
+          key: "Cool",
           question:
             "I wanted to play tag with my friends, but they wanted to play something else.",
-          answers: ["..."],
+          answers: ["That's okay"],
           animation: null,
           renderAnim: "",
           navInfo: null,
           nxtNode: [
             {
-              key: "...",
+              key: "That's okay",
               question:
                 "I felt upset. My hands curled into a fist and my body felt tight.",
-              answers: ["..."],
+              answers: ["Don't be angry"],
               animation: null,
               renderAnim: "",
               navInfo: null,
               nxtNode: [
                 {
-                  key: "...",
+                  key: "Don't be angry",
                   question:
                     "Have you ever been in a situation when somebody didn’t want to do the same thing as you?",
                   answers: ["Yes, that happened to me before!"],
@@ -202,13 +202,13 @@ const spriteAngry = {
                       key: "Yes, that happened to me before!",
                       question:
                         "It is normal to feel angry.  Being aware of your anger is important; so you don't harm yourself or others.",
-                      answers: ["..."],
+                      answers: ["That makes sense"],
                       animation: null,
                       renderAnim: "",
                       navInfo: null,
                       nxtNode: [
                         {
-                          key: "...",
+                          key: "That makes sense",
                           question:
                             "When I get angry, I usually take a walk or take deep breaths. Do you want to try it with me?",
                           answers: ["Ok", "No, not right now."],
@@ -296,13 +296,13 @@ const spriteScared = {
       key: "Ok",
       question:
         "Last night, I had a dream that a big fairy eating beast swept down and ate me. I got scared and woke up.",
-      answers: ["..."],
+      answers: ["That's sounds scary"],
       animation: null,
       renderAnim: "",
       navInfo: null,
       nxtNode: [
         {
-          key: "...",
+          key: "That's sounds scary",
           question: "Did you ever wake up because of a bad dream?",
           answers: ["Yea!", "Nope!"],
           animation: null,
@@ -313,22 +313,22 @@ const spriteScared = {
               key: "Yea!",
               question:
                 "I could not go back to sleep so I called Aurora and she reminded me it was just a dream!",
-              answers: ["..."],
+              answers: ["That's good advice"],
               animation: null,
               renderAnim: "",
               navInfo: null,
               nxtNode: [
                 {
-                  key: "...",
+                  key: "That's good advice",
                   question:
                     "If you feel scared, talk to someone about it. It is easier to face your fears with someone by your side.",
-                  answers: ["..."],
+                  answers: ["Thanks Sprite!"],
                   animation: null,
                   renderAnim: "",
                   navInfo: null,
                   nxtNode: [
                     {
-                      key: "...",
+                      key: "Thanks Sprite!",
                       question: "Now, let’s go do some fun activities!",
                       answers: ["Ok!"],
                       animation: null,
@@ -354,22 +354,22 @@ const spriteScared = {
               key: "Nope!",
               question:
                 "Well, it is terrible! I could not go back to sleep so I called Aurora and she reminded me it was just a dream!",
-              answers: ["..."],
+              answers: ["That's good advice"],
               animation: null,
               renderAnim: "",
               navInfo: null,
               nxtNode: [
                 {
-                  key: "...",
+                  key: "That's good advice",
                   question:
                     "If you feel scared, talk to someone about it. It is easier to face your fears with someone by your side.",
-                  answers: ["..."],
+                  answers: ["Thanks Sprite!"],
                   animation: null,
                   renderAnim: "",
                   navInfo: null,
                   nxtNode: [
                     {
-                      key: "...",
+                      key: "Thanks Sprite!",
                       question: "Now, let’s go do some fun activities!",
                       answers: ["Ok!"],
                       animation: null,
@@ -411,13 +411,13 @@ const spriteWorried = {
       key: "Ok",
       question:
         "One night, I had a Pixie History test coming up and I totally forgot! I could barely study, I was so stressed.",
-      answers: ["..."],
+      answers: ["Don't stress out"],
       animation: null,
       renderAnim: "",
       navInfo: null,
       nxtNode: [
         {
-          key: "...",
+          key: "Don't stress out",
           question: "Have you ever felt worried about something too?",
           answers: ["Yes"],
           animation: null,
@@ -428,22 +428,22 @@ const spriteWorried = {
               key: "Yes",
               question:
                 "It's ok to be worried. But worrying can make it tough to think properly, so try to work through that feeling first.",
-              answers: ["..."],
+              answers: ["Okay"],
               animation: null,
               renderAnim: "",
               navInfo: null,
               nxtNode: [
                 {
-                  key: "...",
+                  key: "Okay",
                   question:
                     "I know what can help! Do you want to try some of these activities with me?",
-                  answers: ["Ok", "No, not right now."],
+                  answers: ["Okay", "No, not right now."],
                   animation: null,
                   renderAnim: "",
                   navInfo: null,
                   nxtNode: [
                     {
-                      key: "Ok",
+                      key: "Okay",
                       question: "Awesome!",
                       answers: [
                         "Box Breathing",
