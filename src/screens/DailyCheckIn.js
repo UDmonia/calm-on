@@ -282,8 +282,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
           testID="curFeeling-button"
           style={[styles.buttons, styles.continueButton]}
           onPress={() => {
-            //ToDo: fix checkIn API call
-            //handleAddEmotion(curFeeling, "");
+            handleAddEmotion(curFeeling, "");
             navigate("Home");
           }}
         >
