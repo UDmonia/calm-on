@@ -1,4 +1,6 @@
 import React, { useState, useNativeDriver } from "react";
+import { connect } from "react-redux";
+import { getUserFromJWT } from '../actions/session_actions.js';
 
 import {
   View,
@@ -33,7 +35,7 @@ class milkMilkMilk extends React.Component {
     this.fadeValueCrystalBall = new Animated.Value(0);
 
     this.questions = [
-      "Hey Joe, would you like to hear something really cool?",
+      `Hey ${this.props.user.session.user.name}, would you like to hear something really cool?`,
       'Great! You will love it! Could you say the word "milk" once?',
       "Alright, what came to mind when you said it? You can choose one of the options above:",
       "Do any of these pop up in your mind when we say milk? You can choose one of the options above:",
@@ -50,7 +52,7 @@ class milkMilkMilk extends React.Component {
       'Because the word "milk", when you say or think negative things, those words are also words. Thoughts do not make things real. There is nothing real about them! Did that help?',
       "You can check out some of our other story times.",
     ];
-
+    
     this.answers = [
       [
         { option: "Yes, please!", func: () => this._fade() },
@@ -700,4 +702,8 @@ class milkMilkMilk extends React.Component {
   }
 }
 
-export default milkMilkMilk;
+
+const mapStateToProps = (state) => {
+  return { user: state }
+}
+export default connect(mapStateToProps)(milkMilkMilk);
