@@ -1,6 +1,5 @@
 import React, { useState, useNativeDriver } from "react";
 import { connect } from "react-redux";
-import { getUserFromJWT } from '../actions/session_actions.js';
 
 import {
   View,
