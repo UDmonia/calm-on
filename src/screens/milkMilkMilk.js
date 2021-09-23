@@ -132,7 +132,7 @@ class milkMilkMilk extends React.Component {
   }
 
   exitOut() {
-    this.props.navigation.navigate("FlatActivities");
+    this.props.navigation.navigate("FilteredActivities");
   }
   finishAct() {
     this.props.navigation.navigate("kpi", {
