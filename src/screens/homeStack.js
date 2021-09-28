@@ -36,7 +36,6 @@ const icons = [
 const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
   // what units are these?
-
   const getTabBarVisibility = (route) => {
     const routeName = route.state
       ? route.state.routes[route.state.index].name
@@ -66,7 +65,6 @@ const HomeStack = (props) => {
                     ...buttonStyle,
                     borderTopColor: "#4E80FF",
                     borderTopWidth: 5,
-                    alignSelf: "flex-start",
                   }
                 : { ...buttonStyle }
             }
@@ -94,17 +92,16 @@ const HomeStack = (props) => {
 const styles = {
   flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
   backgroundColor: "#E2E8F8",
-  height: windowWidth > screenWidthThreshold ? "5%" : "11%",
-  paddingTop: "1.75%",
-
-  alignItems: "flex-start",
+  height: windowWidth > screenWidthThreshold ? "5%" : "10%",
+  paddingBottom: "2%",
 };
 
 const buttonStyle = {
-  height: 42,
+  height: 51,
   width: 80,
-  paddingTop: "4%",
-  paddingLeft: "22.5%",
+  paddingTop: "8%",
+  paddingLeft: "25%",
+
 };
 
 export default HomeStack;
