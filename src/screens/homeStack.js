@@ -17,9 +17,9 @@ const icons = [
     icon: require("../../assets/images/home.png"),
   },
   {
-    name: "Achievements",
+    name: "Treasury",
     comp: Achievement,
-    icon: require("../../assets/images/achievement.png"),
+    icon: require("../../assets/images/treasury.png"),
   },
   {
     name: "Check-in",
