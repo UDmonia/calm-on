@@ -24,12 +24,15 @@ const styles = StyleSheet.create({
 
     body: {
         alignItems:'center',
-        justifyContent:'center',
+        justifyContent:'flex-start',
         backgroundColor:'white',
         marginLeft: '3%',
         flexDirection:'row',
         width:'80%',
-        justifyContent:'space-around'
+        // justifyContent:'space-around'
+    },
+    image: {
+        marginRight: 25, 
     },
 })
 

@@ -4,6 +4,7 @@ import Text from "./Text";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styles from "../stylesheets/dayIconStyles"
 import hex from "../stylesheets/hexCodes";
+import moment from 'moment'
 
 /**
  * Contains all images associated with each emotion
@@ -22,32 +23,65 @@ const moodMap = {
  * @param checkIn A single checkIn of the day
  * @param showJournal function used to open up the detailed view of the check-in
  */
-export default DayIcon =({checkIn,showJournal})=>{
+export default DayIcon =({checkIn,showJournal,journals,extraData})=>{
     
+    // let newnew = [];
+    // console.log('JOURNALS%%%%%%%%%%%%%%%%%%%%%%1231321 DAYICON', moment(journals[0].timestamp).format('D'))
+    // console.log('JOURNALS%%%%%%%%%%%%%%%%%%%%%%1231321 DAYICON', extraData)
+    let newArr;
+    // for( let i = 0; i <= journals.length; i++){
+        
+        if(journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())){
+         newArr = journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())
+        //  console.log("GROUPEDJ", newArr)
+        }
+        
     return(
         <View>
-        {checkIn.journals?
-        <TouchableOpacity onPress = {()=>showJournal()} style = {styles.container}>
+            
+        {newArr.length > 1?
+        <View>
+
+            <TouchableOpacity onPress = {()=>showJournal()} style = {styles.container}>
+            <Text style = {styles.header}>{checkIn.day}{`\n`}
+            <Text style = {styles.header} >{checkIn.DOW.slice(0,3)}</Text>
+            </Text>
+            <View style = {styles.body}>
+            <>
+        {newArr.map((journal) =>(
+            <Image style = {styles.image} key = {journal._id} source = {moodMap[journal['mood']].path}/>
+            ))}
+            </>
+            </View>
+            </TouchableOpacity>
+            </View>
+        :
+        (checkIn.journals?
+            <TouchableOpacity onPress = {()=>showJournal()} style = {styles.container}>
            <Text style = {styles.header}>{checkIn.day}{`\n`}
             <Text style = {styles.header} >{checkIn.DOW.slice(0,3)}</Text>
            </Text>
            <View style = {styles.body}>
-               {checkIn.journals.map((journal,i)=>(
-                   <Image key = {i} source = {moodMap[journal.mood].path}/>
-               ))}
+                   <>
+                   {
+
+                       <Image style = {styles.image} key = {checkIn.key} source = {moodMap[checkIn.journals['mood']].path}/>
+                    }
+                   </>
             </View>
         </TouchableOpacity>
-        :
+        : 
         <View style = {styles.container}>
-             <Text style = {styles.header}>{checkIn.day}{`\n`}
-                <Text style = {styles.header} >{checkIn.DOW.slice(0,3)}</Text>
-             </Text>
-             
+        <Text style = {styles.header}>{checkIn.day}{`\n`}
+           <Text style = {styles.header} >{checkIn.DOW.slice(0,3)}</Text>
+        </Text>
+        
 
-             <View style = {styles.body}>
-                 <Text style ={{fontSize:18,marginLeft:"5%", color:"rgba(0, 0, 0, 0.4)" }}>No Entries</Text>
-             </View>
+        <View style = {styles.body}>
+            <Text style ={{fontSize:18,marginLeft:"5%", color:"rgba(0, 0, 0, 0.4)" }}>No Entries</Text>
         </View>
+   </View>
+        )
         }
         </View>
     )

@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
 import ActivityCard from "./ActivityCard";
+import singleData from '../util/dummyData'
 
 /**
  * Contains all images associated with each emotion
@@ -33,7 +34,7 @@ const checkinDetails = ({ route }) => {
    * @param spriteActivityData all the activity data for the sprite character
    */
   const { entry, allEntries, time, spriteActivityData } = route.params;
-
+  console.log("TIME", time)
   // Navigating from daily preview: set initial index to specfic time pressed
   const specificTime = entry.journals.find(
     (journal) => journal.createdAt == time

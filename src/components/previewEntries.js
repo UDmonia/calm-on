@@ -26,32 +26,39 @@ export const Box = ({
   color,
   empty,
 }) => {
+  // console.log('BOXXXXXXXXXXXXXXXX', journal)
+  // console.log('JOURNALS PREVIEW ENTRIESJS #####', typeof(mood))
   const navigation = useNavigation();
-  const lastCommaIndex = journal.lastIndexOf(",");
-  const journalLength = journal.split(",").length;
-
+  // const lastCommaIndex = journal.lastIndexOf(",");
+  const journalLength = 1
   //If journal is one word, output journal,
   //if two words, then add "and" in between,
   //if three words, then add "and" after the last comma
-  let parsedJournal = null;
-  if (journalLength === 1) {
-    parsedJournal = <Text style={styles.category}>{journal}</Text>;
-  } else if (journalLength === 2) {
-    parsedJournal = (
-      <Text style={styles.category}>
-        {journal.split(",")[0]}
-        <Text style={{ fontWeight: "400" }}> and </Text>
-        {journal.split(",")[1]}
-      </Text>
-    );
-  } else {
-    parsedJournal = (
-      <Text style={styles.category}>
-        {journal.substring(0, lastCommaIndex + 1)}{" "}
-        <Text style={{ fontWeight: "400" }}>and</Text>{" "}
-        {journal.substring(lastCommaIndex + 1)}
-      </Text>
-    );
+  // let parsedJournal = null;
+  // if (journalLength === 1) {
+  //   parsedJournal = <Text style={styles.category}>{mood}</Text>;
+  // } else if (journalLength === 2) {
+  //   parsedJournal = (
+  //     <Text style={styles.category}>
+  //       {journal.split(",")[0]}
+  //       <Text style={{ fontWeight: "400" }}> and </Text>
+  //       {journal.split(",")[1]}
+  //     </Text>
+  //   );
+  // } else {
+  //   parsedJournal = (
+  //     <Text style={styles.category}>
+  //       {journal.substring(0, lastCommaIndex + 1)}{" "}
+  //       <Text style={{ fontWeight: "400" }}>and</Text>{" "}
+  //       {journal.substring(lastCommaIndex + 1)}
+  //     </Text>
+  //   );
+  // }
+
+  // capitalize function for mood as mood comes back as lowercase from Database
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
   }
 
   return (
@@ -82,14 +89,15 @@ export const Box = ({
               <Image source={image} />
             </View>
             <View style={styles.textContainer}>
-              <Text style={styles.journalTitle}>
+              {/* <Text style={styles.journalTitle}>
                 {mood.charAt(0).toUpperCase() + mood.slice(1)}
-              </Text>
-              {/*
+                hello
+              </Text> */}
+              
               <Text style={styles.journal}>
-                I'm {mood} about {parsedJournal}
+                {capitalize(mood)}
               </Text>
-              */}
+             
             </View>
           </TouchableOpacity>
         </View>
@@ -108,6 +116,7 @@ const previewEntries = ({ journals, date, showJournal }) => {
   /**
    * Contains all images associated with each emotion
    */
+ 
   const moodMap = {
     happy: {
       path: require("../../assets/preview/happy.png"),
@@ -117,7 +126,10 @@ const previewEntries = ({ journals, date, showJournal }) => {
       path: require("../../assets/preview/angry.png"),
       color: hex.pink.pink1,
     },
-    sad: { path: require("../../assets/preview/sad.png"), color: hex.purple.purple1 },
+    sad: { 
+      path: require("../../assets/preview/sad.png"), 
+      color: hex.purple.purple1 
+    },
     scared: {
       path: require("../../assets/preview/scared.png"),
       color: hex.blue.blue3,
@@ -132,25 +144,37 @@ const previewEntries = ({ journals, date, showJournal }) => {
     },
   };
 
+  
+  
+
   /**
    * Map out each check-ins of the day and display them through Box.js from latest to oldest
    */
-  const journalList = journals.map((journal, i) => (
-    <Box
-      color={moodMap[journal.mood].color}
-      image={moodMap[journal.mood].path}
-      key={i}
-      showJournal={showJournal}
-      journal={journal.journal}
-      mood={journal.mood}
-      time={journal.createdAt}
-    />
-  ));
-
+  // const journalList = journals.map((journal, i) => (
+  //   <Box
+  //     color={moodMap[journal.mood].color}
+  //     image={moodMap[journal.mood].path}
+  //     key={i}
+  //     showJournal={showJournal}
+  //     journal={journal.journal}
+  //     mood={journal.mood}
+  //     time={journal.createdAt}
+  //   />
+  // ));
+// console.log('JOURNALS @ preview entriess', journals)
   return (
     <View>
       <Text style={styles.date}>{date}</Text>
-      {journalList}
+      {/* {journalList} */}
+      <Box
+      color={moodMap[journals.mood].color}
+      image={moodMap[journals.mood].path}
+      key={journals._id}
+      showJournal={showJournal}
+      journal={journals}
+      mood={journals.mood}
+      time={journals.timestamp}
+    />
     </View>
   );
 };
