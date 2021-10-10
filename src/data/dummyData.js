@@ -51,7 +51,7 @@ const monthlyData = {
                 "_id": "615c77fa92d49ec796dd83060",
                 "eventType": "CheckIn",
                 "userId": "614bce3c24d7c09e66070cac",
-                "timestamp": "2021-10-05T16:06:17.627Z",
+                "timestamp": "2021-10-05T16:06:18.627Z",
                 "mood": "worried",
                 "__v": 0
             }

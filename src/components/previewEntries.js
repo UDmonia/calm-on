@@ -155,7 +155,7 @@ const previewEntries = ({ journals, date, showJournal }) => {
   for(entry1 in filteredDays){
     if(filteredDays[entry1] === journals){
       entryIndex = entry1
-      console.log('it worked', entry1,entryIndex )
+      // console.log('it worked', entry1,entryIndex )
     }
 }
   
@@ -174,7 +174,7 @@ const previewEntries = ({ journals, date, showJournal }) => {
   //     time={journal.createdAt} 
   //   />
   // ));
-console.log('JOURNALS @ preview entriess', filteredDays)
+// console.log('JOURNALS @ preview entriess', filteredDays)
   return (
     <View>
       {filteredDays[0] === journals ?

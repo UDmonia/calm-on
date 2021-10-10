@@ -38,7 +38,11 @@ const MonthlyPreview =()=>{
     const renderItem = (({item})=>{
         //find each check-in by '_id'
         const findJournal = journals.find(journal=>journal['_id'] === item.id)
-        // console.log('ITEM IDddddddddddd', findJournal)
+        // console.log('ITEM IDddddddddddd', item)
+        let newTime
+        if(item.journals){
+            newTime = item.journals.timestamp
+        }
         return (
         //Return the icons that corresponds to the date and the moods
         <View>
@@ -52,6 +56,7 @@ const MonthlyPreview =()=>{
         })}
         checkIn= {item}
         journals={journals}
+        time={newTime}
         />
         </View>
         )

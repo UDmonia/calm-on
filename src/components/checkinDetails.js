@@ -55,11 +55,6 @@ const checkinDetails = ({ route }) => {
 
   //Go to specific check-in time of the day by index
   // const [journal, setJournal] = useState(entry.journals[specificIndex]);
-  const [journal, setJournal] = useState(entry);
-
-  const [isActive, setActive] = useState(entry);
-
-  //Use currentEntryIndex to navigate through the check-in array
   const [currentEntryIndex, setEntryIndex] = useState(entryIndex);
   let entryIndex;
   let entry1;
@@ -69,6 +64,11 @@ const checkinDetails = ({ route }) => {
         // console.log('it worked', entry1,entryIndex, entry )
       }
   }
+  const [journal, setJournal] = useState(entry);
+
+  const [isActive, setActive] = useState(moment(entry.timestamp).format('h:mm:ss'));
+
+  //Use currentEntryIndex to navigate through the check-in array
 
   // const lastCommaIndex = journal.journal.lastIndexOf(",");
  
@@ -78,13 +78,14 @@ const checkinDetails = ({ route }) => {
      */
   const buttons = allEntries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(entry.timestamp).format('D')).map(
     (journal, i) => (
-    <TouchableOpacity
+      console.log("sada", isActive, i),
+      <TouchableOpacity
       key={i}
       onPress={() => {
         setJournal(journal);
-        setActive(i);
+        setActive(moment(journal.timestamp).format('h:mm:ss'));
       }}
-      style={isActive == i ? styles.timeActive : styles.times}
+      style={isActive == moment(journal.timestamp).format('h:mm:ss') ? styles.timeActive : styles.times}
     >
       <Text
         style={
