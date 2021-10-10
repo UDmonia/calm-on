@@ -9,7 +9,7 @@ import {Box} from './previewEntries'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from '../stylesheets/calendarStyles';
 import { SpriteActivityData } from "../data/activityData";
-import { monthlyData } from "../util/dummyData"
+import { monthlyData } from "../data/dummyData"
 var today = Date.now()
 
 /**
@@ -64,12 +64,12 @@ const Calendar =({navigation: { navigate } })=>{
         // console.log("ENTRY***********", entry)
         return(
         <PreviewDaily
-        // showJournal = {
-        //     (time)=>{navigate('CheckinDetail', 
-        //     {entry: journals[key], allEntries: journals,time: time, spriteActivityData: SpriteActivityData})
-        // }
-            
-        // } 
+        showJournal = {
+            (time)=>{navigate('CheckinDetail', 
+            {entry: journals[key], allEntries: journals, time: time, spriteActivityData: SpriteActivityData})
+        }
+    } 
+        
           key = {key} journals = {entry}  date = {moment(entry.timestamp).format('dddd, LL')}
         />
     

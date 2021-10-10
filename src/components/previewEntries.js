@@ -6,6 +6,7 @@ import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/previewEntriesStyles";
 import hex from "../stylesheets/hexCodes";
+import { monthlyData } from "../data/dummyData";
 
 /**
  * Used in previewEntires.js (Daily Preview) for each check-in
@@ -54,7 +55,8 @@ export const Box = ({
   //     </Text>
   //   );
   // }
-
+ 
+  // console.log('FILTEREDDAYS################', filteredDays[filteredDays.length-1])
   // capitalize function for mood as mood comes back as lowercase from Database
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -116,7 +118,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
   /**
    * Contains all images associated with each emotion
    */
- 
   const moodMap = {
     happy: {
       path: require("../../assets/preview/happy.png"),
@@ -144,7 +145,19 @@ const previewEntries = ({ journals, date, showJournal }) => {
     },
   };
 
-  
+  let entryIndex
+  let entry1
+  let entries = []  
+  for (const prop in monthlyData['data']) {
+    entries.push(...monthlyData['data'][prop])
+  }
+  let filteredDays = entries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(journals.timestamp).format('D'))
+  for(entry1 in filteredDays){
+    if(filteredDays[entry1] === journals){
+      entryIndex = entry1
+      console.log('it worked', entry1,entryIndex )
+    }
+}
   
 
   /**
@@ -158,13 +171,18 @@ const previewEntries = ({ journals, date, showJournal }) => {
   //     showJournal={showJournal}
   //     journal={journal.journal}
   //     mood={journal.mood}
-  //     time={journal.createdAt}
+  //     time={journal.createdAt} 
   //   />
   // ));
-// console.log('JOURNALS @ preview entriess', journals)
+console.log('JOURNALS @ preview entriess', filteredDays)
   return (
     <View>
+      {filteredDays[0] === journals ?
       <Text style={styles.date}>{date}</Text>
+      :
+      <>
+      </>
+      }
       {/* {journalList} */}
       <Box
       color={moodMap[journals.mood].color}

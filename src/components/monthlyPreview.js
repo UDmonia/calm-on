@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 import styles from '../stylesheets/monthlyPreviewStyles';
 import { SpriteActivityData } from "../data/activityData";
-import { monthlyData } from "../util/dummyData"
+import { monthlyData } from "../data/dummyData"
 
 
 
@@ -62,7 +62,7 @@ const MonthlyPreview =()=>{
     const [month,setMonth] = useState(currentMonth)
     //Retrieve the starting month from the first item of the journals array, if no check-ins yet then just display the current month
     const startMonth = (journals.length > 0) ? new Date(journals[0].timestamp).getMonth():currentMonth
-    console.log("MONTHLY PREVIEW", journals)
+    // console.log("MONTHLY PREVIEW", journals)
     
     const numDays = new Date(year,month+1,0).getDate()
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December']

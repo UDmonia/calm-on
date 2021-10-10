@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, setState } from "react";
 import Text from './Text';
 import { ImageBackground, ScrollView,View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
 import ActivityCard from "./ActivityCard";
-import singleData from '../util/dummyData'
+import singleData from '../data/dummyData'
 
 /**
  * Contains all images associated with each emotion
@@ -34,12 +34,19 @@ const checkinDetails = ({ route }) => {
    * @param spriteActivityData all the activity data for the sprite character
    */
   const { entry, allEntries, time, spriteActivityData } = route.params;
-  console.log("TIME", time)
+  // console.log("TIME", time)
+  // console.log("allentries%%%%%%%%%%%%%%%%%%%%%%%%%%%%", allEntries)
+  // console.log("entry###########################", entry)
+  // console.log("sprite@@@@@@@@@@@@@@@@@@@@@@@@@", spriteActivityData)
   // Navigating from daily preview: set initial index to specfic time pressed
-  const specificTime = entry.journals.find(
-    (journal) => journal.createdAt == time
-  );
-  let specificIndex = entry.journals.indexOf(specificTime);
+  // const specificTime = entry.journals.find(
+  //   (journal) => journal.createdAt == time
+  // );
+  // let test = allEntries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(entry.timestamp).format('D'))
+  // console.log("TESTTSTSTTSTS", test)
+  const specificTime = entry.timestamp
+  // let specificIndex = entry.journals.indexOf(specificTime);
+  let specificIndex;
 
   //Navigating from monthly preview: set initial index to zero
   if (!time) {
@@ -47,21 +54,30 @@ const checkinDetails = ({ route }) => {
   }
 
   //Go to specific check-in time of the day by index
-  const [journal, setJournal] = useState(entry.journals[specificIndex]);
+  // const [journal, setJournal] = useState(entry.journals[specificIndex]);
+  const [journal, setJournal] = useState(entry);
 
-  const [isActive, setActive] = useState(specificIndex);
+  const [isActive, setActive] = useState(entry);
 
   //Use currentEntryIndex to navigate through the check-in array
-  const [currentEntryIndex, setEntryIndex] = useState(
-    allEntries.indexOf(entry)
-  );
+  const [currentEntryIndex, setEntryIndex] = useState(entryIndex);
+  let entryIndex;
+  let entry1;
+  for(entry1 in allEntries){
+      if(allEntries[entry1] === entry){
+        entryIndex = entry1
+        // console.log('it worked', entry1,entryIndex, entry )
+      }
+  }
 
-  const lastCommaIndex = journal.journal.lastIndexOf(",");
-
+  // const lastCommaIndex = journal.journal.lastIndexOf(",");
+ 
   /**
    * Map out all check-ins in a single day
-   */
-  const buttons = allEntries[currentEntryIndex].journals.map((journal, i) => (
+   const buttons = allEntries[currentEntryIndex].journals.map((journal, i) => (
+     */
+  const buttons = allEntries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(entry.timestamp).format('D')).map(
+    (journal, i) => (
     <TouchableOpacity
       key={i}
       onPress={() => {
@@ -77,7 +93,7 @@ const checkinDetails = ({ route }) => {
             : styles.timesText
         }
       >
-        {moment(journal.createdAt).format("LT")}
+        {moment(journal.timestamp).format("LT")}
       </Text>
     </TouchableOpacity>
   ));
@@ -86,7 +102,7 @@ const checkinDetails = ({ route }) => {
   const activityList = [];
   var i;
   for (i = 0; i < spriteActivityData.length; i++) {
-    //console.log(spriteActivityData[i].tag);
+    // console.log("SPRITE", spriteActivityData[i].tag);
     if(spriteActivityData[i].tag.includes(journal.mood)) {
         activityList.push(spriteActivityData[i]);
     }
@@ -111,7 +127,7 @@ const checkinDetails = ({ route }) => {
               />
 
               <Text style={styles.text}>
-                {moment(journal.createdAt).format("dddd, LL")}
+                {moment(journal.timestamp).format("dddd, LL")}
               </Text>
             </View>
             <ScrollView contentContainerStyle={styles.container}>
@@ -123,7 +139,7 @@ const checkinDetails = ({ route }) => {
                       onPress={() => {
                         setEntryIndex(currentEntryIndex + 1);
                         setJournal(
-                          allEntries[currentEntryIndex + 1].journals[0]
+                          allEntries[currentEntryIndex + 1][0]
                         );
                         setActive(0);
                       }}
@@ -135,7 +151,7 @@ const checkinDetails = ({ route }) => {
                   )}
 
                   <Text style={styles.date}>
-                    {moment(journal.createdAt).format("LL")}
+                    {moment(journal.timestamp).format("LL")}
                   </Text>
                   {currentEntryIndex > 0 ? (
                     <TouchableOpacity
