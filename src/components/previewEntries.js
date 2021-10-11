@@ -31,7 +31,6 @@ export const Box = ({
   // console.log('JOURNALS PREVIEW ENTRIESJS #####', typeof(mood))
   const navigation = useNavigation();
   // const lastCommaIndex = journal.lastIndexOf(",");
-  const journalLength = 1
   //If journal is one word, output journal,
   //if two words, then add "and" in between,
   //if three words, then add "and" after the last comma
@@ -191,7 +190,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
       showJournal={showJournal}
       journal={journals}
       mood={journals.mood}
-      time={journals.timestamp}
     />
     </View>
   );

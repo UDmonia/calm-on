@@ -38,11 +38,11 @@ const MonthlyPreview =()=>{
     const renderItem = (({item})=>{
         //find each check-in by '_id'
         const findJournal = journals.find(journal=>journal['_id'] === item.id)
-        // console.log('ITEM IDddddddddddd', item)
-        let newTime
+        let newTime = null
         if(item.journals){
             newTime = item.journals.timestamp
         }
+        // console.log('ITEM IDddddddddddd', journals)
         return (
         //Return the icons that corresponds to the date and the moods
         <View>
@@ -51,8 +51,8 @@ const MonthlyPreview =()=>{
         //entry: locates the exact check-in and renders it in the 'CheckinDetail' page
         //allEntries: helps 'CheckinDetail' to locate the index of the exact check-in in the journals array so user can change dates in 'CheckinDetail'
         //item: this a special thing for Flatlist
-        showJournal = {()=>navigation.navigate('CheckinDetail',{
-            entry:findJournal, allEntries: journals, spriteActivityData: SpriteActivityData
+        showJournal = {(time)=>navigation.navigate('CheckinDetail',{
+            entry:findJournal, allEntries: journals, time: time, spriteActivityData: SpriteActivityData
         })}
         checkIn= {item}
         journals={journals}
