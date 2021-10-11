@@ -6,7 +6,7 @@ import Profile from "./profileStack.js";
 import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { windowWidth } from "../util/windowDimensions";
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 import { screenWidthThreshold } from "../util/thresholds";
 
 const icons = [
@@ -65,6 +65,7 @@ const HomeStack = (props) => {
                     ...buttonStyle,
                     borderTopColor: "#4E80FF",
                     borderTopWidth: 5,
+                    paddingTop: "10%",
                   }
                 : { ...buttonStyle }
             }
@@ -88,18 +89,19 @@ const HomeStack = (props) => {
     </Tab.Navigator>
   );
 };
-
+console.log(windowHeight)
 const styles = {
   flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
   backgroundColor: "#E2E8F8",
   height: windowWidth > screenWidthThreshold ? "5%" : "10%",
-  paddingBottom: "2%",
+  paddingBottom: windowHeight > 700 ? "3%" : "1%",
 };
 
 const buttonStyle = {
-  height: 51,
-  width: 80,
-  paddingTop: "8%",
+  // height: 0.32*windowHeight,
+  width: 0.20*windowWidth,
+  flex: 1,
+  paddingTop: "12%",
   paddingLeft: "25%",
 
 };

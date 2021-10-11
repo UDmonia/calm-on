@@ -1,15 +1,16 @@
 import { StyleSheet } from "react-native";
-import { windowWidth } from "../util/windowDimensions";
 import { screenWidthThreshold } from "../util/thresholds";
 const titleText = 0.05 * windowWidth;
 const bodyText = 0.0335 * windowWidth;
 import { Dimensions } from 'react-native';
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 import hex from "./hexCodes";
 
 const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: "center",
+    height: 0.98*windowHeight
   },
   inner: {
     height: windowWidth > screenWidthThreshold ? "95%" : "90%",
@@ -91,10 +92,10 @@ const styles = StyleSheet.create({
   },
   nav: {
     backgroundColor: "#8AABFF",
-    height: 77,
+    height: 84,
     width: "100%",
     position: "absolute",
-    bottom: 0,
+    // bottom: 0,
   },
   navIcons: {
     display: "flex",
