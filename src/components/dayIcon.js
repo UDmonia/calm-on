@@ -6,6 +6,7 @@ import styles from "../stylesheets/dayIconStyles"
 import hex from "../stylesheets/hexCodes";
 import moment from 'moment'
 
+
 /**
  * Contains all images associated with each emotion
  */
@@ -23,15 +24,16 @@ const moodMap = {
  * @param checkIn A single checkIn of the day
  * @param showJournal function used to open up the detailed view of the check-in
  */
-export default DayIcon =({checkIn,showJournal,journals,time})=>{
+export default DayIcon =({checkIn,showJournal,journals, index})=>{
     
     // let newnew = [];
-    // console.log('JOURNALS%%%%%%%%%%%%%%%%%%%%%%1231321 DAYICON', time)
+    // console.log('JOURNALS%%%%%%%%%%%%%%%%%%%%%%1231321 DAYICON', index)
     let newArr;
         if(journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())){
          newArr = journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())
         //  console.log("GROUPEDJ", newArr)
         }
+       
         
     return(
         <View>
@@ -46,9 +48,11 @@ export default DayIcon =({checkIn,showJournal,journals,time})=>{
             <View style = {styles.body}>
             <>
         {newArr.map((journal, i) =>(
-            <TouchableOpacity onPress = {()=>showJournal()} >
-            <Image style = {styles.image} key = {journal._id} source = {moodMap[journal['mood']].path}/>
+            <>
+            <TouchableOpacity onPress = {()=>showJournal(journal.timestamp)} >
+            <Image  index = {index} style = {styles.image} key = {journal._id} source = {moodMap[journal['mood']].path}/>
             </TouchableOpacity>
+            </>
             ))}
             </>
             </View>

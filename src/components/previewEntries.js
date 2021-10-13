@@ -27,7 +27,7 @@ export const Box = ({
   color,
   empty,
 }) => {
-  // console.log('BOXXXXXXXXXXXXXXXX', journal)
+  // console.log('BOXXXXXXXXXXXXXXXX', time)
   // console.log('JOURNALS PREVIEW ENTRIESJS #####', typeof(mood))
   const navigation = useNavigation();
   // const lastCommaIndex = journal.lastIndexOf(",");
@@ -174,6 +174,7 @@ const previewEntries = ({ journals, date, showJournal }) => {
   //   />
   // ));
 // console.log('JOURNALS @ preview entriess', filteredDays)
+// console.log('JOURNAL', journals)
   return (
     <View>
       {filteredDays[0] === journals ?

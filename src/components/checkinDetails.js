@@ -26,7 +26,6 @@ const moodMap = {
  */
 const checkinDetails = ({ route }) => {
   const navigation = useNavigation();
-
   /**
    * Passing data from Calendar.js
    * @param entry The specific check-in from the check-in array
@@ -38,86 +37,72 @@ const checkinDetails = ({ route }) => {
   // console.log("allentries%%%%%%%%%%%%%%%%%%%%%%%%%%%%", allEntries)
   // console.log("entry###########################", entry)
   // console.log("sprite@@@@@@@@@@@@@@@@@@@@@@@@@", spriteActivityData)
-  // Navigating from daily preview: set initial index to specfic time pressed
-  // const specificTime = entry.journals.find(
-  //   (journal) => journal.createdAt == time
-  // );
-  // let test = allEntries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(entry.timestamp).format('D'))
-  // console.log("TESTTSTSTTSTS", test)
-  const specificTime = entry.timestamp
-  // let specificIndex = entry.journals.indexOf(specificTime);
-  let specificIndex;
-
-
-  //Navigating from monthly preview: set initial index to zero
-  if (!time) {
-    specificIndex = 0;
-  }
-  let allDates = []
+  
+  // Handler for decreasing day and making sure the correct button is highlighted
   const decreaseDayButton = (cur, index) => {
     let newest = allEntries.findIndex(current => current.timestamp === cur.timestamp)
-    console.log('CURRRRRRRRRR', newest)
-    setEntryIndex(newest-1)
-    let newerest = allEntries[newest-1]
-    setActive(moment(newerest.timestamp).format('h:mm:ss'))
-    // for(let i = 0; i < allEntries.length; i++){
-    //   if( allEntries[i] === cur) {
-    //     console.log("YUSSSSSSSSSSSS", i)
-    //   } else {
-    //     console.log('NHOOOOOOOOOOO', i)
-    //   }
-    // }
+    if(newest !== 0){
+      setEntryIndex(newest-1)
+      let newerest = allEntries[newest-1]
+      setActive(newerest.timestamp)
+      setJournal(newerest)
+    }else{
+      setEntryIndex(newest)
+    }
+    
   }
-  let new1 = Number(moment(allEntries[0].timestamp).format('D'))
-  let new2 = Number(moment(allEntries[4].timestamp).format('D'))
-  if(new1 < new2){
-    console.log("TIMEMTIEMTIEMTIMEITMEIMTIEMIE", new1, new2)
-  } else {
-    console.log('dumbass', new1, new2)
-  }
-  //Go to specific check-in time of the day by index
-  // const [journal, setJournal] = useState(entry.journals[specificIndex]);
-  let entryIndex;
-  let entry1;
-  for(entry1 in allEntries){
-    if(allEntries[entry1] === entry){
-      entryIndex = entry1
-      // console.log('it worked',entryIndex, entry )
+  
+  // Handler for increasing day and making sure the correct button is highlighted
+  const increaseDayButton = (cur, index) => {
+    let newest = allEntries.findIndex(current => current.timestamp === cur.timestamp)
+    if(newest !== allEntries.length){
+      setEntryIndex(newest+1)
+      let newerest = allEntries[newest+1]
+      setActive(newerest.timestamp)
+      setJournal(newerest)
+    }else{
+      setEntryIndex(newest)
     }
   }
-  const [currentEntryIndex, setEntryIndex] = useState(entryIndex);
+    
+  // get initial entry index for highlighting correct button
+  // console.log("ALLL ENTRIES", allEntries)  
+  let findEntryIndex = allEntries.findIndex(entri => entri.timestamp === entry.timestamp)
+  const [currentEntryIndex, setEntryIndex] = useState(findEntryIndex);
+  
   const [journal, setJournal] = useState(entry);
 
-  const [isActive, setActive] = useState(moment(entry.timestamp).format('h:mm:ss'));
+  const [isActive, setActive] = useState(allEntries.find(entri => entri.timestamp === entry.timestamp).timestamp)
 
   //Use currentEntryIndex to navigate through the check-in array
-  console.log('CURRENT', currentEntryIndex)
+  // console.log('CURRENT', currentEntryIndex)
   // const lastCommaIndex = journal.journal.lastIndexOf(",");
  
   /**
    * Map out all check-ins in a single day
    const buttons = allEntries[currentEntryIndex].journals.map((journal, i) => (
      */
-  const buttons = allEntries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(entry.timestamp).format('D')).map(
-    (journal, i) => (
+    // console.log('ISACTIVE', journal)
+  const buttons = allEntries.filter(entri => moment(entri.timestamp).format('D') == moment(journal.timestamp).format('D')).map(
+    (entry, i) => (
       // console.log("sada", allEntries),
       <TouchableOpacity
       key={i}
       onPress={() => {
-        setJournal(journal);
-        setEntryIndex(i)
-        setActive(moment(journal.timestamp).format('h:mm:ss'));
+        setJournal(entry);
+        setEntryIndex(allEntries.findIndex(journ => journ.timestamp === entry.timestamp))
+        setActive(entry.timestamp);
       }}
-      style={isActive == moment(journal.timestamp).format('h:mm:ss') ? styles.timeActive : styles.times}
+      style={isActive == entry.timestamp ? styles.timeActive : styles.times}
     >
       <Text
         style={
-          isActive == i
+          isActive == entry.timestamp
             ? { ...styles.timesText, color: "black" }
             : styles.timesText
         }
       >
-        {moment(journal.timestamp).format("LT")}
+       {moment(entry.timestamp).format("LT")}
       </Text>
     </TouchableOpacity>
   ));
@@ -132,6 +117,8 @@ const checkinDetails = ({ route }) => {
     }
   }
 
+  
+  // console.log("FIND CURR INDEX", currentEntryIndex)
   return (
     <View style={styles.format}>
       <ImageBackground
@@ -158,15 +145,15 @@ const checkinDetails = ({ route }) => {
               <View style={styles.upper}>
                 {/*Date increase/decrease*/}
                 <View style={styles.header}>
-                  {currentEntryIndex < allEntries.length ? (
+                  {currentEntryIndex != 0 ? (
                     <TouchableOpacity
                       onPress={() => {
                         // setEntryIndex(currentEntryIndex - 1);
-                        setJournal(
-                          allEntries[currentEntryIndex - 1]
-                        );
+                        // setJournal(
+                        //   allEntries[currentEntryIndex - 1]
+                        // );
                         decreaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)
-                        setActive(moment(allEntries[currentEntryIndex - 1].timestamp).format('h:mm:ss'));
+                        // setActive(moment(allEntries[currentEntryIndex - 1].timestamp).format('h:mm:ss'));
                       }}
                     >
                       <Image source={require("../../assets/images/prevMonth.png")} />
@@ -176,16 +163,17 @@ const checkinDetails = ({ route }) => {
                   )}
 
                   <Text style={styles.date}>
-                    {moment(journal.timestamp).format("LL")}
+                  {moment(journal.timestamp).format("LL")}
                   </Text>
-                  {currentEntryIndex > 0 ? (
+                  {currentEntryIndex < allEntries.length-1? (
                     <TouchableOpacity
                       onPress={() => {
                         // setEntryIndex(currentEntryIndex + 1);
-                        setJournal(
-                          allEntries[currentEntryIndex + 1]
-                        );
-                        setActive(moment(allEntries[currentEntryIndex + 1].timestamp).format('h:mm:ss'));
+                        // setJournal(
+                        //   allEntries[currentEntryIndex + 1]
+                        // );
+                        increaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)
+                        // setActive(moment(allEntries[currentEntryIndex + 1].timestamp).format('h:mm:ss'));
                       }}
                     >
                       <Image source={require("../../assets/images/nextMonth.png")} />

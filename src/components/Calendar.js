@@ -61,7 +61,7 @@ const Calendar =({navigation: { navigate } })=>{
      * Render check-ins for the daily view by mapping out each check-in into Preview component
      */
     const previewDaily = journals.map((entry,key)=>{
-        console.log("ENTRY***********", key)
+        // console.log("ENTRY***********", key)
         return(
         <PreviewDaily
         showJournal = {

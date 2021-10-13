@@ -35,13 +35,10 @@ const MonthlyPreview =()=>{
 
     
     //Render the data for Flatlist
-    const renderItem = (({item})=>{
+    const renderItem = (({item, index})=>{
         //find each check-in by '_id'
+        // console.log('ITEMMMMM', item)
         const findJournal = journals.find(journal=>journal['_id'] === item.id)
-        let newTime = null
-        if(item.journals){
-            newTime = item.journals.timestamp
-        }
         // console.log('ITEM IDddddddddddd', journals)
         return (
         //Return the icons that corresponds to the date and the moods
@@ -56,7 +53,7 @@ const MonthlyPreview =()=>{
         })}
         checkIn= {item}
         journals={journals}
-        time={newTime}
+        index={index}
         />
         </View>
         )
@@ -88,19 +85,23 @@ const MonthlyPreview =()=>{
             //Finds a check-in in the journals array where the day and the month is the same as the index and the current month
             // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', journals[i-1])
             const pushToCalendar = journals.find(journal => moment(journal.timestamp).format('D') == i.toString())
+            const pushToCalendar2 = journals.filter(journal => moment(journal.timestamp).format('D') == i.toString())
             
-            // console.log("PUSHHHHHHHHHHHHHHHH", journals)
+            // console.log("PUSHHHHHHHHHHHHHHHH", pushToCalendar2)
             if(pushToCalendar){
             //if pushToCalendar array is not empty, add the re-format object into the days array
-            // if the day in createdAt is the same as i push to days
-            days.push({DOW:moment(new Date(pushToCalendar.timestamp)).format('dddd'),month:month+1 , key:i , day:i , id:pushToCalendar._id, journals:pushToCalendar})
+            // if the day in createdAt is the same as i push to days\
+           
             // console.log('#################################DIDpushtocalendar JOURNALS')
             // days.push(pushToCalendar)
-            }
+            
             
             //if pushtoCalendar array is empty, meaning no check-ins, then add just the empty day without any check-ins into the days array
-            else{
+            
                 // console.log("DIDNT PUSH TO CALENDAR")
+                days.push({DOW:moment(new Date(pushToCalendar.timestamp)).format('dddd'),month:month+1 , key:i , day:i , id:pushToCalendar._id, journals:pushToCalendar})
+            }
+            else {
                 days.push({DOW:moment(new Date(year,month,i)).format('dddd'),id:null,month:month+1 ,key:i ,day:i })
             }
         }
