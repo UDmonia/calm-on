@@ -2,10 +2,23 @@ import CashShopAPI from "../util/cashShop_util";
 
 export const EQUIP = 'EQUIP';
 
+export const CASHSHOP_USER = "CASHSHOP_USER";
+
+const receiveShopUser = (user) => ({
+  type: CASHSHOP_USER,
+  user,
+});
+
 // Retrieves token locally and returns the promise
 const retrieveToken = () => {
   return deviceStorage.get('jwt');
 };
+
+export const addShopUser = (user) => dispatch => {
+  return CashShopAPI.addShopUser(user).then((res) => {
+    return dispatch(receiveShopUser(res.data))
+  })
+}
 
 // checkout the current selections
 export const buy = ({outfitList, total}) => dispatch => {

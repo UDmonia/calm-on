@@ -36,6 +36,15 @@ const initialSignUp = {
   birthday: "",
 };
 
+const TEST_DATA = {
+  _id: "",
+  "coins": 100,
+  "equipped": ["shirtid1", "pantsid1", "shoesid1"],
+  "inventory": ["shirtid1", "pantsid1", "shoesid1"] 
+}
+
+
+
 const validateEmail = (email) =>
   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
@@ -61,6 +70,7 @@ const SessionForm = ({
   const [showNameError, setNameError] = useState(false);
   const toggleShow = () => setShow(!show);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
+  const [test_data, setTestData] = useState(TEST_DATA);
 
   useEffect(() => {
     toggleInfo(login);
@@ -107,14 +117,26 @@ const SessionForm = ({
   const handleSubmit = () => {
     setLocalErrors([]);
     if (isValid()) {
-      return (login
-        ? dispatch(loginUser(user))
-        : dispatch(
-            register({ ...user, birthday: new Date("0000", "00", "00") })
-          )
+      return (
+        login
+          ? dispatch(loginUser(user))
+          : dispatch(
+              register({ ...user, birthday: new Date("0000", "00", "00") })
+            )
       ).then((action) => {
         if (action.type === RECEIVE_USER) {
-          deviceStorage.save("score", '0');
+          console.log(action.user._id);
+          dispatch(addShopUser({ ...test_data, _id: action.user._id })).then(
+            (action) => {
+              if (action.type === CASHSHOP_USER) {
+                console.log(action.user);
+              } else {
+                console.log("Somthing went wrong !!!!!!!!!");
+                setError(true);
+              }
+            }
+          ).catch((e) => console.log("somthing went wrong"));
+          deviceStorage.save("score", "0");
           !login ? setShowUserDialog(true) : navigate("Home");
         } else {
           setError(true);
@@ -221,7 +243,6 @@ const SessionForm = ({
                   value={confirmPassword}
                 />
               </View>
-
 
               {/* <View style={styles.label}>
                 <Text style={styles.description}>Birthday</Text>
