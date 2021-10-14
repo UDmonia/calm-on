@@ -57,8 +57,24 @@ const Home = ({ props, navigation: { navigate } }) => {
 
   function handleScroll(e) {
     xOffset = e.nativeEvent.contentOffset.x;
+    console.log("XOFFFESSSSSEEEETTTT", )
     updateSpirit(xOffset);
   }
+  function handleBack(e) {
+    let newFairy = spirits.findIndex(fairy => fairy == currentSpirit)
+    // setCurrentSpirit(spirits[newFairy-1])
+    console.log('SPIRITS', spirits[0].name)
+    if(newFairy == 0){
+      setCurrentSpirit(spirits[newFairy])
+      updateSpirit(newFairy+1)
+    } else {
+      setCurrentSpirit(spirits[newFairy-1])
+      updateSpirit(newFairy-1)
+
+    }
+    console.log('NEWFAIRY', newFairy)
+  }
+  // console.log('CURRR##################################', currentSpirit.name)
 
   function updateSpirit(x = 0) {
     if (x < screenWidth / 2) {
@@ -121,13 +137,20 @@ const Home = ({ props, navigation: { navigate } }) => {
             })}
           </ScrollView>
         </View>
+
+        <View style={styles.pickButtonContainer}>
+        <TouchableOpacity onPress={() => handleBack()}>
+          <Image  source={require('../../assets/images/backButton.png')} />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleBtnPress()}
           style={styles.pickMeButton}
-        >
+          >
           <Text style={styles.pickMeText}>Pick Me!</Text>
         </TouchableOpacity>
 
+          <Image source={require('../../assets/images/forwardButton.png')} />
+          </View>
         <View style={styles.bottomBox}>
           <Text style={styles.bottomBoxTextName}>{currentSpirit.name}</Text>
           <Text style={styles.bottomBoxTextDescription}>

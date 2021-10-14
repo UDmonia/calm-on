@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
-    marginTop: "7%",
+    marginTop: "3%",
     width: "85%",
     alignSelf: "center", // this is what makes the text box height adjust to the text
   },
@@ -114,6 +114,12 @@ const styles = StyleSheet.create({
   profileIcon: {
     height: 40,
     width: 40,
+  },
+  pickButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+    
+    // flex: 1,
   },
   pickMeButton: {
     backgroundColor: "#8AABFF",
