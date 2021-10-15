@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Text,
   View,
@@ -54,10 +54,31 @@ const Home = ({ props, navigation: { navigate } }) => {
   let [currentSpirit, setCurrentSpirit] = useState(spirit);
   let xOffset;
   let screenWidth = Dimensions.get("window").width;
+  const scrollViewRef = useRef(null);
 
   function handleScroll(e) {
     xOffset = e.nativeEvent.contentOffset.x;
     updateSpirit(xOffset);
+  }
+  
+  const handleBack = () => {
+    let newFairy = spirits.findIndex(fairy => fairy == currentSpirit)
+    if (scrollViewRef.current !== null) {
+      scrollViewRef.current.scrollTo({
+          x: screenWidth * (newFairy - 1),
+          animated: true,
+      });
+    }
+  }
+
+  const handleForward = () => {
+    let newFairy = spirits.findIndex(fairy => fairy == currentSpirit)
+    if (scrollViewRef.current !== null) {
+      scrollViewRef.current.scrollTo({
+          x: screenWidth * (newFairy + 1),
+          animated: true,
+      });
+    }
   }
 
   function updateSpirit(x = 0) {
@@ -111,6 +132,7 @@ const Home = ({ props, navigation: { navigate } }) => {
             showsHorizontalScrollIndicator={false}
             onScroll={(event) => handleScroll(event)}
             scrollEventThrottle={100}
+            ref={scrollViewRef}
           >
             {spirits.map((spirit) => {
               return (
@@ -121,19 +143,28 @@ const Home = ({ props, navigation: { navigate } }) => {
             })}
           </ScrollView>
         </View>
-        <TouchableOpacity
-          onPress={() => handleBtnPress()}
-          style={styles.pickMeButton}
-        >
-          <Text style={styles.pickMeText}>Pick Me!</Text>
-        </TouchableOpacity>
 
+        <View style={styles.pickButtonContainer}>
+          <TouchableOpacity onPress={() => handleBack()}>
+            <Image  source={require('../../assets/images/backButton.png')} />
+          </TouchableOpacity>
+          <Text style={styles.currentSpiritText}>{currentSpirit.name}</Text>
+          <TouchableOpacity onPress={() => handleForward()}>
+            <Image source={require('../../assets/images/forwardButton.png')} />
+          </TouchableOpacity>
+          </View>
         <View style={styles.bottomBox}>
           <Text style={styles.bottomBoxTextName}>{currentSpirit.name}</Text>
           <Text style={styles.bottomBoxTextDescription}>
             {currentSpirit.description}
           </Text>
         </View>
+          <TouchableOpacity
+          onPress={() => handleBtnPress()}
+          style={styles.pickMeButton}
+          >
+          <Text style={styles.pickMeText}>Pick Me!</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );

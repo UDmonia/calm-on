@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
-    marginTop: "7%",
+    marginTop: "3%",
     width: "85%",
     alignSelf: "center", // this is what makes the text box height adjust to the text
   },
@@ -115,6 +115,20 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  currentSpiritText: {
+    color: "#FFFFFF",
+    fontSize: 28,
+    fontFamily: "FontBold",
+  },
+  pickButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginStart: 30,
+    marginEnd: 30,
+
+    
+    // flex: 1,
+  },
   pickMeButton: {
     backgroundColor: "#8AABFF",
     height: "5%",
@@ -124,6 +138,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
+    marginTop: 20,
   },
   pickMeText: {
     color: "white",
