@@ -147,7 +147,7 @@ const Home = ({ props, navigation: { navigate } }) => {
         <View style={styles.pickButtonContainer}>
           <TouchableOpacity onPress={() => handleBack()}>
             <Image  source={require('../../assets/images/backButton.png')} />
-          </TouchableOpacity>
+          </TouchableOpacity> 
           <Text style={styles.currentSpiritText}>{currentSpirit.name}</Text>
           <TouchableOpacity onPress={() => handleForward()}>
             <Image source={require('../../assets/images/forwardButton.png')} />

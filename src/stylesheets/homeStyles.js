@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginStart: 30,
-    marginEnd: 30,
+    marginEnd: 30, 
 
     
     // flex: 1,
