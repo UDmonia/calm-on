@@ -115,9 +115,17 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  currentSpiritText: {
+    color: "#FFFFFF",
+    fontSize: 28,
+    fontFamily: "FontBold",
+  },
   pickButtonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    marginStart: 30,
+    marginEnd: 30,
+
     
     // flex: 1,
   },
@@ -130,6 +138,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
+    marginTop: 20,
   },
   pickMeText: {
     color: "white",
