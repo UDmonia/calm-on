@@ -147,15 +147,7 @@ const checkinDetails = ({ route }) => {
                 <View style={styles.header}>
                   {currentEntryIndex != 0 ? (
                     <TouchableOpacity
-                      onPress={() => {
-                        // setEntryIndex(currentEntryIndex - 1);
-                        // setJournal(
-                        //   allEntries[currentEntryIndex - 1]
-                        // );
-                        decreaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)
-                        // setActive(moment(allEntries[currentEntryIndex - 1].timestamp).format('h:mm:ss'));
-                      }}
-                    >
+                      onPress={() => {decreaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)}}>
                       <Image source={require("../../assets/images/prevMonth.png")} />
                     </TouchableOpacity>
                   ) : (
@@ -167,15 +159,7 @@ const checkinDetails = ({ route }) => {
                   </Text>
                   {currentEntryIndex < allEntries.length-1? (
                     <TouchableOpacity
-                      onPress={() => {
-                        // setEntryIndex(currentEntryIndex + 1);
-                        // setJournal(
-                        //   allEntries[currentEntryIndex + 1]
-                        // );
-                        increaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)
-                        // setActive(moment(allEntries[currentEntryIndex + 1].timestamp).format('h:mm:ss'));
-                      }}
-                    >
+                      onPress={() => {increaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)}}>
                       <Image source={require("../../assets/images/nextMonth.png")} />
                     </TouchableOpacity>
                   ) : (

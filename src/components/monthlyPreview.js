@@ -30,16 +30,13 @@ const MonthlyPreview =()=>{
         // Format checkin {day1:{checkin1:[]}, day2:{checkin2:[]}} ===> checkin [{date:day1,checkins1:[]},{date:day2,checkins2:[]}]
     //For previewing check-ins
     // journals.reverse()
-    // console.log("monthly Preview State: @@@@@@@@@@@@@@@@@@", journals)
 
 
     
     //Render the data for Flatlist
     const renderItem = (({item, index})=>{
         //find each check-in by '_id'
-        // console.log('ITEMMMMM', item)
         const findJournal = journals.find(journal=>journal['_id'] === item.id)
-        // console.log('ITEM IDddddddddddd', journals)
         return (
         //Return the icons that corresponds to the date and the moods
         <View>
@@ -64,7 +61,7 @@ const MonthlyPreview =()=>{
     const [month,setMonth] = useState(currentMonth)
     //Retrieve the starting month from the first item of the journals array, if no check-ins yet then just display the current month
     const startMonth = (journals.length > 0) ? new Date(journals[0].timestamp).getMonth():currentMonth
-    // console.log("MONTHLY PREVIEW", journals)
+
     
     const numDays = new Date(year,month+1,0).getDate()
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -82,26 +79,16 @@ const MonthlyPreview =()=>{
         //Loop through the number of days of the current month starting at day 1
         for (let i = 1; i <= numDays; i++){
             
-            //Finds a check-in in the journals array where the day and the month is the same as the index and the current month
-            // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', journals[i-1])
+            //Finds a check-in in the journals array where the day is the same as the index and the current month
             const pushToCalendar = journals.find(journal => moment(journal.timestamp).format('D') == i.toString())
-            const pushToCalendar2 = journals.filter(journal => moment(journal.timestamp).format('D') == i.toString())
+            // const pushToCalendar2 = journals.filter(journal => moment(journal.timestamp).format('D') == i.toString())
             
-            // console.log("PUSHHHHHHHHHHHHHHHH", pushToCalendar2)
             if(pushToCalendar){
             //if pushToCalendar array is not empty, add the re-format object into the days array
-            // if the day in createdAt is the same as i push to days\
-           
-            // console.log('#################################DIDpushtocalendar JOURNALS')
-            // days.push(pushToCalendar)
-            
-            
+            days.push({DOW:moment(new Date(pushToCalendar.timestamp)).format('dddd'),month:month+1 , key:i , day:i , id:pushToCalendar._id, journals:pushToCalendar})
+        }
+        else {
             //if pushtoCalendar array is empty, meaning no check-ins, then add just the empty day without any check-ins into the days array
-            
-                // console.log("DIDNT PUSH TO CALENDAR")
-                days.push({DOW:moment(new Date(pushToCalendar.timestamp)).format('dddd'),month:month+1 , key:i , day:i , id:pushToCalendar._id, journals:pushToCalendar})
-            }
-            else {
                 days.push({DOW:moment(new Date(year,month,i)).format('dddd'),id:null,month:month+1 ,key:i ,day:i })
             }
         }
@@ -111,7 +98,6 @@ const MonthlyPreview =()=>{
 
         //call the makeData array
         const data = makeData()
-        // console.log('DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAA####sasda######', data)
     return(
         <View style = {styles.container}>
 

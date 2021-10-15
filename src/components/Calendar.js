@@ -19,12 +19,12 @@ var today = Date.now()
 const Calendar =({navigation: { navigate } })=>{
     // UNCOMMENT WHEN REDUX HAS CHECKINS
     // const checkinObject = useSelector(state=>state.session.user.checkIns)​
+    // ingest dummy data
     const checkinObject = monthlyData;
     const journals = []
     for (const prop in checkinObject['data']) {
         journals.push(...checkinObject['data'][prop])
     }
-    // console.log("CHECKINOBJECT(*@#*@(#@*(@#*(@((", checkinObject)
     
     //Reverse journals array so the first element check-in item is the latest instead of the oldest
     // journals.reverse()
@@ -34,13 +34,8 @@ const Calendar =({navigation: { navigate } })=>{
      */
     const todayJournal = []
     // const todayJournal = journals.find(journal => moment(journal.journals.timestamp).format('L') === moment(today).format('L'))
-    // console.log('TODAYJOURNAL', (journals['data'].find(journal => moment(journal.date).format('L'))));
-    // console.log('TODAYJOURNAL', moment(today).format('L').slice(3,5));
     const todaysDate =  moment(today).format('D');
-    // const todaysDate = '02';
-    // console.log('NUMMMMMM', todaysDate)
-    // if(todaysDate.charAt(0) === '0'){
-    //     let newNum = todaysDate.slice(1)
+   
     // iterate over the checkinObject to find if the current day is in the data and if it is push it to todayJournal
         for (const prop in checkinObject['data']){    
             if (prop.charAt(0) == todaysDate){
@@ -61,7 +56,6 @@ const Calendar =({navigation: { navigate } })=>{
      * Render check-ins for the daily view by mapping out each check-in into Preview component
      */
     const previewDaily = journals.map((entry,key)=>{
-        // console.log("ENTRY***********", key)
         return(
         <PreviewDaily
         showJournal = {

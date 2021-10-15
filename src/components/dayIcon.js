@@ -26,12 +26,11 @@ const moodMap = {
  */
 export default DayIcon =({checkIn,showJournal,journals, index})=>{
     
-    // let newnew = [];
-    // console.log('JOURNALS%%%%%%%%%%%%%%%%%%%%%%1231321 DAYICON', index)
+
     let newArr;
+    // using filter to group all entries for given day so we can display them correctly
         if(journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())){
          newArr = journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())
-        //  console.log("GROUPEDJ", newArr)
         }
        
         

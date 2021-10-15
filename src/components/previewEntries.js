@@ -27,8 +27,6 @@ export const Box = ({
   color,
   empty,
 }) => {
-  // console.log('BOXXXXXXXXXXXXXXXX', time)
-  // console.log('JOURNALS PREVIEW ENTRIESJS #####', typeof(mood))
   const navigation = useNavigation();
   // const lastCommaIndex = journal.lastIndexOf(",");
   //If journal is one word, output journal,
@@ -173,8 +171,7 @@ const previewEntries = ({ journals, date, showJournal }) => {
   //     time={journal.createdAt} 
   //   />
   // ));
-// console.log('JOURNALS @ preview entriess', filteredDays)
-// console.log('JOURNAL', journals)
+
   return (
     <View>
       {filteredDays[0] === journals ?
