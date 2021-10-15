@@ -81,7 +81,7 @@ export const Box = ({
         </TouchableOpacity>
       ) : (
         <View>
-          <Text style={styles.time}>{moment(time).format("LT")}</Text>
+          <Text style={styles.time}>{moment(journal.timestamp).format("LT")}</Text>
           <TouchableOpacity
             onPress={() => showJournal(time)}
             style={{ ...styles.box, backgroundColor: color }}
