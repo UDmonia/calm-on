@@ -89,7 +89,7 @@ const HomeStack = (props) => {
     </Tab.Navigator>
   );
 };
-console.log(windowHeight)
+
 const styles = {
   flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
   backgroundColor: "#E2E8F8",
