@@ -53,7 +53,6 @@ export const Box = ({
   //   );
   // }
  
-  // console.log('FILTEREDDAYS################', filteredDays[filteredDays.length-1])
   // capitalize function for mood as mood comes back as lowercase from Database
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''

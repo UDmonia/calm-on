@@ -48,7 +48,7 @@ export default DayIcon =({checkIn,showJournal,journals, index})=>{
             <>
         {newArr.map((journal, i) =>(
             <TouchableOpacity onPress = {()=>showJournal(journal.timestamp)} >
-            <Image  index = {index} style = {styles.image} key = {journal._id} source = {moodMap[journal['mood']].path}/>
+            <Image  index = {index} style = {styles.image} key = {i} source = {moodMap[journal['mood']].path}/>
             </TouchableOpacity>
             ))}
             </>

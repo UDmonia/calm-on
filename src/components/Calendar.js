@@ -38,12 +38,10 @@ const Calendar =({navigation: { navigate } })=>{
    
     // iterate over the checkinObject to find if the current day is in the data and if it is push it to todayJournal
         for (const prop in checkinObject['data']){    
-            if (prop.charAt(0) == todaysDate){
-                if(checkinObject['data'][prop].length > 1){
+            if (prop.charAt(0) == todaysDate && checkinObject['data'][prop].length > 1){
                     for (let i = 0; i <= checkinObject['data'][prop].length; i++){
                         todayJournal.push(checkinObject['data'][prop][i])
                     }
-                }
             }
         }
     

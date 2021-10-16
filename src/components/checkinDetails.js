@@ -1,4 +1,4 @@
-import React, { useEffect, useState, setState } from "react";
+import React, { useEffect, useState } from "react";
 import Text from './Text';
 import { ImageBackground, ScrollView,View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -33,10 +33,6 @@ const checkinDetails = ({ route }) => {
    * @param spriteActivityData all the activity data for the sprite character
    */
   const { entry, allEntries, time, spriteActivityData } = route.params;
-  // console.log("TIME", time)
-  // console.log("allentries%%%%%%%%%%%%%%%%%%%%%%%%%%%%", allEntries)
-  // console.log("entry###########################", entry)
-  // console.log("sprite@@@@@@@@@@@@@@@@@@@@@@@@@", spriteActivityData)
   
   // Handler for decreasing day and making sure the correct button is highlighted
   const decreaseDayButton = (cur, index) => {
@@ -75,14 +71,11 @@ const checkinDetails = ({ route }) => {
   const [isActive, setActive] = useState(allEntries.find(entri => entri.timestamp === entry.timestamp).timestamp)
 
   //Use currentEntryIndex to navigate through the check-in array
-  // console.log('CURRENT', currentEntryIndex)
   // const lastCommaIndex = journal.journal.lastIndexOf(",");
  
   /**
    * Map out all check-ins in a single day
-   const buttons = allEntries[currentEntryIndex].journals.map((journal, i) => (
      */
-    // console.log('ISACTIVE', journal)
   const buttons = allEntries.filter(entri => moment(entri.timestamp).format('D') == moment(journal.timestamp).format('D')).map(
     (entry, i) => (
       // console.log("sada", allEntries),
