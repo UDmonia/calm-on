@@ -6,7 +6,7 @@ import Profile from "./profileStack.js";
 import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { windowWidth } from "../util/windowDimensions";
+import { windowHeight, windowWidth } from "../util/windowDimensions";
 import { screenWidthThreshold } from "../util/thresholds";
 
 const icons = [
@@ -17,9 +17,9 @@ const icons = [
     icon: require("../../assets/images/home.png"),
   },
   {
-    name: "Achievements",
+    name: "Treasury",
     comp: Achievement,
-    icon: require("../../assets/images/achievement.png"),
+    icon: require("../../assets/images/treasury.png"),
   },
   {
     name: "Check-in",
@@ -36,7 +36,6 @@ const icons = [
 const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
   // what units are these?
-
   const getTabBarVisibility = (route) => {
     const routeName = route.state
       ? route.state.routes[route.state.index].name
@@ -66,7 +65,7 @@ const HomeStack = (props) => {
                     ...buttonStyle,
                     borderTopColor: "#4E80FF",
                     borderTopWidth: 5,
-                    alignSelf: "flex-start",
+                    paddingTop: "10%",
                   }
                 : { ...buttonStyle }
             }
@@ -94,17 +93,17 @@ const HomeStack = (props) => {
 const styles = {
   flexDirection: windowWidth > screenWidthThreshold ? "row" : "column",
   backgroundColor: "#E2E8F8",
-  height: windowWidth > screenWidthThreshold ? "5%" : "11%",
-  paddingTop: "1.75%",
-
-  alignItems: "flex-start",
+  height: windowWidth > screenWidthThreshold ? "5%" : "10%",
+  paddingBottom: windowHeight > 700 ? "3%" : "1%",
 };
 
 const buttonStyle = {
-  height: 42,
-  width: 80,
-  paddingTop: "4%",
-  paddingLeft: "22.5%",
+  // height: 0.32*windowHeight,
+  width: 0.20*windowWidth,
+  flex: 1,
+  paddingTop: "12%",
+  paddingLeft: "25%",
+
 };
 
 export default HomeStack;
