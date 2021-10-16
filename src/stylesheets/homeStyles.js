@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
   pickButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginStart: 30,
-    marginEnd: 30,
+    marginStart: "8%",
+    marginEnd: "8%",
 
     
     // flex: 1,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 25,
-    marginTop: 20,
+    marginTop: "5%",
   },
   pickMeText: {
     color: "white",

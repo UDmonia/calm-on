@@ -61,25 +61,23 @@ const Home = ({ props, navigation: { navigate } }) => {
     updateSpirit(xOffset);
   }
   
-  const handleBack = () => {
+  const handleChange = (direction) => {
+    console.log("DIRECTION", direction)
     let newFairy = spirits.findIndex(fairy => fairy == currentSpirit)
+    let changeFairy;
+    if(direction == 'back') {
+      changeFairy = newFairy - 1
+    } else {
+      changeFairy = newFairy + 1
+    }
     if (scrollViewRef.current !== null) {
       scrollViewRef.current.scrollTo({
-          x: screenWidth * (newFairy - 1),
+           x: screenWidth * (changeFairy),
           animated: true,
       });
     }
   }
 
-  const handleForward = () => {
-    let newFairy = spirits.findIndex(fairy => fairy == currentSpirit)
-    if (scrollViewRef.current !== null) {
-      scrollViewRef.current.scrollTo({
-          x: screenWidth * (newFairy + 1),
-          animated: true,
-      });
-    }
-  }
 
   function updateSpirit(x = 0) {
     if (x < screenWidth / 2) {
@@ -145,11 +143,11 @@ const Home = ({ props, navigation: { navigate } }) => {
         </View>
 
         <View style={styles.pickButtonContainer}>
-          <TouchableOpacity onPress={() => handleBack()}>
+          <TouchableOpacity onPress={() => handleChange('back')}>
             <Image  source={require('../../assets/images/backButton.png')} />
           </TouchableOpacity>
           <Text style={styles.currentSpiritText}>{currentSpirit.name}</Text>
-          <TouchableOpacity onPress={() => handleForward()}>
+          <TouchableOpacity onPress={() => handleChange('forward')}>
             <Image source={require('../../assets/images/forwardButton.png')} />
           </TouchableOpacity>
           </View>
