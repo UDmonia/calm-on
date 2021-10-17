@@ -29,29 +29,6 @@ export const Box = ({
 }) => {
   const navigation = useNavigation();
   // const lastCommaIndex = journal.lastIndexOf(",");
-  //If journal is one word, output journal,
-  //if two words, then add "and" in between,
-  //if three words, then add "and" after the last comma
-  // let parsedJournal = null;
-  // if (journalLength === 1) {
-  //   parsedJournal = <Text style={styles.category}>{mood}</Text>;
-  // } else if (journalLength === 2) {
-  //   parsedJournal = (
-  //     <Text style={styles.category}>
-  //       {journal.split(",")[0]}
-  //       <Text style={{ fontWeight: "400" }}> and </Text>
-  //       {journal.split(",")[1]}
-  //     </Text>
-  //   );
-  // } else {
-  //   parsedJournal = (
-  //     <Text style={styles.category}>
-  //       {journal.substring(0, lastCommaIndex + 1)}{" "}
-  //       <Text style={{ fontWeight: "400" }}>and</Text>{" "}
-  //       {journal.substring(lastCommaIndex + 1)}
-  //     </Text>
-  //   );
-  // }
  
   // capitalize function for mood as mood comes back as lowercase from Database
   const capitalize = (s) => {
