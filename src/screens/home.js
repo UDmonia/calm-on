@@ -62,7 +62,6 @@ const Home = ({ props, navigation: { navigate } }) => {
   }
   
   const handleChange = (direction) => {
-    console.log("DIRECTION", direction)
     let newFairy = spirits.findIndex(fairy => fairy == currentSpirit)
     let changeFairy;
     if(direction == 'back') {
