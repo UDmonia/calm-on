@@ -23,6 +23,7 @@ const MonthlyPreview =()=>{
     // const checkinObject= useSelector(state=>state)
     //Initialize empty check-ins array
     const journals = []
+    // flattens the data structure to make it easier to work with
     for (const prop in checkinObject['data']) {
         journals.push(...checkinObject['data'][prop])
     }
@@ -70,7 +71,6 @@ const MonthlyPreview =()=>{
     // const mapJournals = journals.map((journal,index)=>(
     //     {id:journal["_id"], month: `${new Date(journal.date).getMonth()+1}`, date:`${new Date(journal.date).getDate()}`, journals:journal.journals}
     //     ))
-        // console.log('mapjournals', mapJournals)
 
     //Map each check-in ONE MONTH at a time from journals array, this is used by Flatlist as a data source
     const makeData =()=>{
@@ -81,7 +81,6 @@ const MonthlyPreview =()=>{
             
             //Finds a check-in in the journals array where the day is the same as the index and the current month
             const pushToCalendar = journals.find(journal => moment(journal.timestamp).format('D') == i.toString())
-            // const pushToCalendar2 = journals.filter(journal => moment(journal.timestamp).format('D') == i.toString())
             
             if(pushToCalendar){
             //if pushToCalendar array is not empty, add the re-format object into the days array

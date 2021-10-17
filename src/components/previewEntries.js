@@ -121,6 +121,7 @@ const previewEntries = ({ journals, date, showJournal }) => {
   let entryIndex
   let entry1
   let entries = []  
+  // flattens the data structure so it is easier to work with
   for (const prop in monthlyData['data']) {
     entries.push(...monthlyData['data'][prop])
   }
@@ -128,7 +129,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
   for(entry1 in filteredDays){
     if(filteredDays[entry1] === journals){
       entryIndex = entry1
-      // console.log('it worked', entry1,entryIndex )
     }
 }
   

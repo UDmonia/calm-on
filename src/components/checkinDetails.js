@@ -61,8 +61,7 @@ const checkinDetails = ({ route }) => {
     }
   }
     
-  // get initial entry index for highlighting correct button
-  // console.log("ALLL ENTRIES", allEntries)  
+  // get initial entry index for highlighting correct button 
   let findEntryIndex = allEntries.findIndex(entri => entri.timestamp === entry.timestamp)
   const [currentEntryIndex, setEntryIndex] = useState(findEntryIndex);
   
@@ -78,7 +77,6 @@ const checkinDetails = ({ route }) => {
      */
   const buttons = allEntries.filter(entri => moment(entri.timestamp).format('D') == moment(journal.timestamp).format('D')).map(
     (entry, i) => (
-      // console.log("sada", allEntries),
       <TouchableOpacity
       key={i}
       onPress={() => {
@@ -102,16 +100,13 @@ const checkinDetails = ({ route }) => {
   
   // Filter all the activities if they fit the tag
   const activityList = [];
-  
   for (let i = 0; i < spriteActivityData.length; i++) {
-    // console.log("SPRITE", spriteActivityData[i].tag);
     if(spriteActivityData[i].tag.includes(journal.mood)) {
         activityList.push(spriteActivityData[i]);
     }
   }
 
   
-  // console.log("FIND CURR INDEX", currentEntryIndex)
   return (
     <View style={styles.format}>
       <ImageBackground
