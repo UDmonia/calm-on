@@ -22,6 +22,7 @@ const Calendar =({navigation: { navigate } })=>{
     // ingest dummy data
     const checkinObject = monthlyData;
     const journals = []
+    // flattens data structure so it is easier to work with
     for (const prop in checkinObject['data']) {
         journals.push(...checkinObject['data'][prop])
     }

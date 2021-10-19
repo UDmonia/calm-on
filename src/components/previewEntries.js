@@ -118,19 +118,22 @@ const previewEntries = ({ journals, date, showJournal }) => {
     },
   };
 
-  let entryIndex
-  let entry1
+  // let entryIndex
+  // let entry1
   let entries = []  
   // flattens the data structure so it is easier to work with
   for (const prop in monthlyData['data']) {
     entries.push(...monthlyData['data'][prop])
   }
+
+  // filter days so we can display date the correct amount of times
+  //(ie not rendering the date 3 times if there are 3 checkins in one day)
   let filteredDays = entries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(journals.timestamp).format('D'))
-  for(entry1 in filteredDays){
-    if(filteredDays[entry1] === journals){
-      entryIndex = entry1
-    }
-}
+//   for(entry1 in filteredDays){
+//     if(filteredDays[entry1] === journals){
+//       entryIndex = entry1
+//     }
+// }
   
 
   /**

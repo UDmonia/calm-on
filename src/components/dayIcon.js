@@ -28,7 +28,7 @@ export default DayIcon =({checkIn,showJournal,journals, index})=>{
     
 
     let newArr;
-    // using filter to group all entries for given day so we can display them correctly
+    // using filter to group all checkins for given day so we can display them correctly
         if(journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())){
          newArr = journals.filter(journal => moment(journal.timestamp).format('D') == checkIn.day.toString())
         }
@@ -46,6 +46,7 @@ export default DayIcon =({checkIn,showJournal,journals, index})=>{
             </Text>
             <View style = {styles.body}>
             <>
+            {/* map emotions for days with more than one checkin */}
         {newArr.map((journal, i) =>(
             <TouchableOpacity key = {i+1} onPress = {()=>showJournal(journal.timestamp)} >
             <Image  index = {index} style = {styles.image} key = {i} source = {moodMap[journal['mood']].path}/>

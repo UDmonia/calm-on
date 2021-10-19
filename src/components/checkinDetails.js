@@ -36,28 +36,28 @@ const checkinDetails = ({ route }) => {
   
   // Handler for decreasing day and making sure the correct button is highlighted
   const decreaseDayButton = (cur, index) => {
-    let newest = allEntries.findIndex(current => current.timestamp === cur.timestamp)
-    if(newest !== 0){
-      setEntryIndex(newest-1)
-      let newerest = allEntries[newest-1]
-      setActive(newerest.timestamp)
-      setJournal(newerest)
+    let newDay = allEntries.findIndex(current => current.timestamp === cur.timestamp)
+    if(newDay !== 0){
+      setEntryIndex(newDay-1)
+      let changedDay = allEntries[newDay-1]
+      setActive(changedDay.timestamp)
+      setJournal(changedDay)
     }else{
-      setEntryIndex(newest)
+      setEntryIndex(newDay)
     }
     
   }
   
   // Handler for increasing day and making sure the correct button is highlighted
   const increaseDayButton = (cur, index) => {
-    let newest = allEntries.findIndex(current => current.timestamp === cur.timestamp)
-    if(newest !== allEntries.length){
-      setEntryIndex(newest+1)
-      let newerest = allEntries[newest+1]
-      setActive(newerest.timestamp)
-      setJournal(newerest)
+    let newDay = allEntries.findIndex(current => current.timestamp === cur.timestamp)
+    if(newDay !== allEntries.length){
+      setEntryIndex(newDay+1)
+      let changedDay = allEntries[newDay+1]
+      setActive(changedDay.timestamp)
+      setJournal(changedDay)
     }else{
-      setEntryIndex(newest)
+      setEntryIndex(newDay)
     }
   }
     
@@ -73,7 +73,7 @@ const checkinDetails = ({ route }) => {
   // const lastCommaIndex = journal.journal.lastIndexOf(",");
  
   /**
-   * Map out all check-ins in a single day
+   * Filter by day and then Map out all check-ins
      */
   const buttons = allEntries.filter(entri => moment(entri.timestamp).format('D') == moment(journal.timestamp).format('D')).map(
     (entry, i) => (
