@@ -145,7 +145,7 @@ const Home = ({ props, navigation: { navigate } }) => {
           <TouchableOpacity onPress={() => handleChange('back')}>
             <Image  source={require('../../assets/images/backButton.png')} />
           </TouchableOpacity>
-          <Text style={styles.currentSpiritText}>{currentSpirit.name}</Text>
+          {/* <Text style={styles.currentSpiritText}>{currentSpirit.name}</Text> */}
           <TouchableOpacity onPress={() => handleChange('forward')}>
             <Image source={require('../../assets/images/forwardButton.png')} />
           </TouchableOpacity>
