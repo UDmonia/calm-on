@@ -11,13 +11,15 @@ const CashShopAPI = {
   // checkout route
   checkout: (outfitList,total) => axios.post('...',{outfitList,total}),
   // get coins route
-  getCoins: ()=> axios.get('...'),
+  fetchCoins: ()=> axios.get(''),
   // get equipped route
   getEquipped: ()=> axios.get('...'),
   // equip or unequip route
   equippedSnapshot: (outfitList)=> axios.put('...', outfitList),
   // get bought items route
-  getBought: ()=> axios.get('....')
+  getBought: ()=> axios.get('....'),
+  // setup user upon registering
+  setupUser: (userId) => axios.post('http://localhost:4000/api/cashshop/setupUser', {userId})
 };
 
 export default CashShopAPI;

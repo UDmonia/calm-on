@@ -2,6 +2,8 @@ import jwtDecode from "jwt-decode";
 import axios from 'axios';
 
 import SessionAPI from "../util/session_util";
+import CashShopAPI from "../util/cashShop_util"
+import {setCoins, setEquipped} from "./cashShop_actions"
 import deviceStorage from "../services/device_storage";
 
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -50,10 +52,22 @@ export const register = (user) => (dispatch) => {
 
   return SessionAPI.register(user)
     .then((res) => {
+      const {user} = res.data.data
+
+      CashShopAPI.setupUser(user['_id'])
+        .then(resp=>{
+          const { coins } = resp.data
+          // save this info in redux
+          console.log('coins', coins)
+          dispatch(setCoins(coins))
+          // dispatch to save coins
+          // dispatch to save outfits
+        })
+
       return dispatch(receiveUser(getUser(res.data.data.token,res.data.data.user)))
-    }
+        }
       )
-    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+      .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
 }
 
 export const login = (user) => (dispatch) => {
@@ -65,6 +79,7 @@ export const login = (user) => (dispatch) => {
       // !!mike is changing the data shape!!
       // instead of returning Object data {data: {...stuff we need...}}
       // just return Object data {...stuff we need...}
+      CashShopAPI.fetchCoins()
       return dispatch(receiveUser(getUser(res.data.data.token, res.data.data.user)))
     })
     .catch((e) => {
