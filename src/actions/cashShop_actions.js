@@ -1,6 +1,20 @@
 import CashShopAPI from "../util/cashShop_util";
+import deviceStorage from "../services/device_storage";
 
-export const EQUIP = 'EQUIP';
+export const EQUIPPED = 'EQUIP';
+export const COINS = 'COINS';
+
+export const setCoins = (coins) => (
+  {
+    type: COINS,
+    coins
+  }
+)
+
+export const setEquipped = (outfitList) => ({
+    type: EQUIPPED,
+    outfitList
+})
 
 // Retrieves token locally and returns the promise
 const retrieveToken = () => {
@@ -16,12 +30,6 @@ export const buy = ({outfitList, total}) => dispatch => {
   }
   // call checkout() in CashShopAPI
     // upon successful response, change the state in the cashshop "by accessory" view
-};
-
-// get current coins
-export const getCoins = () => dispatch => {
-  // call getCoins() in CashShopAPI
-    // upon successful response, change the state in the nav header
 };
 
 // get currently equiped

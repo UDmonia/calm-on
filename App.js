@@ -53,7 +53,6 @@ const Stack = createStackNavigator();
 const store = configureStore();
 
 export default function App() {
-  console.disableYellowBox = true;
   // Importing the font here
   // NunitoReg is the Regular font
   // NunitoBold is used for Bold font

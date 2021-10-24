@@ -1,5 +1,4 @@
 import {createStackNavigator, HeaderbackButton} from '@react-navigation/stack';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 import React from 'react'
 // import hex from '../stylesheets/hexCodes';
