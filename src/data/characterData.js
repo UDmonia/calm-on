@@ -5,7 +5,7 @@ import hex from "../stylesheets/hexCodes";
  */
 
 const sprite = {
-  img: require("../../assets/images/sprite.gif"),
+  img: require("../../assets/images/Sprite_Default.png"),
   name: "Sprite",
   characterColor: hex.green.green1,
   description:
@@ -16,7 +16,7 @@ const sprite = {
 };
 
 const flynn = {
-  img: require("../../assets/images/flynn.gif"),
+  img: require("../../assets/images/Flynn_Default.png"),
   name: "Flynn",
   characterColor: hex.brown.flynn,
   description:
@@ -27,7 +27,7 @@ const flynn = {
 };
 
 const aurora = {
-  img: require("../../assets/images/aurora.gif"),
+  img: require("../../assets/images/Aurora_Default.png"),
   name: "Aurora",
   characterColor: hex.purple.aurora,
   description:
