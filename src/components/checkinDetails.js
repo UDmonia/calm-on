@@ -167,25 +167,6 @@ const checkinDetails = ({ route }) => {
                 <Text style={styles.journalTitle}>
                   {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
                 </Text>
-                {/*
-                <Text style={styles.journal}>
-                  I'm {journal.mood} about{" "}
-                  <Text style={styles.bolded}>
-                    {journal.journal.split(",").length === 1
-                      ? journal.journal
-                      : journal.journal
-                          .toLowerCase()
-                          .substring(0, lastCommaIndex + 1)}
-                  </Text>
-                  and
-                  <Text style={styles.bolded}>
-                    {" "}
-                    {journal.journal
-                      .toLowerCase()
-                      .substring(lastCommaIndex + 1)}
-                  </Text>
-                </Text>
-                */}
               </View>
 
               <View style={styles.lower}>
