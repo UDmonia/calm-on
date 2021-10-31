@@ -28,7 +28,6 @@ export const Box = ({
   empty,
 }) => {
   const navigation = useNavigation();
-  // const lastCommaIndex = journal.lastIndexOf(",");
  
   // capitalize function for mood as mood comes back as lowercase from Database
   const capitalize = (s) => {
@@ -64,10 +63,6 @@ export const Box = ({
               <Image source={image} />
             </View>
             <View style={styles.textContainer}>
-              {/* <Text style={styles.journalTitle}>
-                {mood.charAt(0).toUpperCase() + mood.slice(1)}
-                hello
-              </Text> */}
               
               <Text style={styles.journal}>
                 {capitalize(mood)}
@@ -118,8 +113,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
     },
   };
 
-  // let entryIndex
-  // let entry1
   let entries = []  
   // flattens the data structure so it is easier to work with
   for (const prop in monthlyData['data']) {
@@ -129,27 +122,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
   // filter days so we can display date the correct amount of times
   //(ie not rendering the date 3 times if there are 3 checkins in one day)
   let filteredDays = entries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(journals.timestamp).format('D'))
-//   for(entry1 in filteredDays){
-//     if(filteredDays[entry1] === journals){
-//       entryIndex = entry1
-//     }
-// }
-  
-
-  /**
-   * Map out each check-ins of the day and display them through Box.js from latest to oldest
-   */
-  // const journalList = journals.map((journal, i) => (
-  //   <Box
-  //     color={moodMap[journal.mood].color}
-  //     image={moodMap[journal.mood].path}
-  //     key={i}
-  //     showJournal={showJournal}
-  //     journal={journal.journal}
-  //     mood={journal.mood}
-  //     time={journal.createdAt} 
-  //   />
-  // ));
 
   return (
     <View>
@@ -159,7 +131,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
       <>
       </>
       }
-      {/* {journalList} */}
       <Box
       color={moodMap[journals.mood].color}
       image={moodMap[journals.mood].path}
