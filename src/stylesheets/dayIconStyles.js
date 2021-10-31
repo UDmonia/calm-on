@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
         marginLeft: '3%',
         flexDirection:'row',
         width:'80%',
-        // justifyContent:'space-around'
     },
     image: {
         marginRight: 25, 

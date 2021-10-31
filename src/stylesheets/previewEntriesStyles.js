@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        //borderWidth:1,
 
     },
     category:{
@@ -54,7 +53,6 @@ const styles = StyleSheet.create({
         width: 215,
         justifyContent: 'center',
         textAlign:'center',
-        // marginLeft:'8%'
     },
     icon:{
         margin:'3%',
