@@ -9,31 +9,47 @@ import {Box} from './previewEntries'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from '../stylesheets/calendarStyles';
 import { SpriteActivityData } from "../data/activityData";
+import { monthlyData } from "../data/dummyData"
 var today = Date.now()
 
 /**
  * Calendar contains two different views of the check-in data.
  * User can either choose monthly view or daily view.
  */
-const Calendar =({navigation: { navigate} })=>{
-    const checkinObject = useSelector(state=>state.session.user.checkIns)
+const Calendar =({navigation: { navigate } })=>{
+    // UNCOMMENT WHEN REDUX HAS CHECKINS
+    // const checkinObject = useSelector(state=>state.session.user.checkIns)​
+    // ingest dummy data
+    const checkinObject = monthlyData;
     const journals = []
-    for (const prop in checkinObject) {
-        journals.push({journals:checkinObject[prop], _id:prop, date:prop})
+    // flattens data structure so it is easier to work with
+    for (const prop in checkinObject['data']) {
+        journals.push(...checkinObject['data'][prop])
     }
-
+    
     //Reverse journals array so the first element check-in item is the latest instead of the oldest
-    journals.reverse()
-
+    // journals.reverse()
+    
     /**
-    *Try to find today's checkIn in the checkin array by using of 'L' format dates ('L' means 'local time')
-    */
-    const todayJournal = journals.find(journal => moment(journal.journals[0].createdAt).format('L') === moment(today).format('L'))
-
+     *Try to find today's checkIn in the checkin array by using of 'L' format dates ('L' means 'local time')
+     */
+    const todayJournal = []
+    // const todayJournal = journals.find(journal => moment(journal.journals.timestamp).format('L') === moment(today).format('L'))
+    const todaysDate =  moment(today).format('D');
+   
+    // iterate over the checkinObject to find if the current day is in the data and if it is push it to todayJournal
+        for (const prop in checkinObject['data']){    
+            if (prop.charAt(0) == todaysDate && checkinObject['data'][prop].length > 1){
+                    for (let i = 0; i <= checkinObject['data'][prop].length; i++){
+                        todayJournal.push(checkinObject['data'][prop][i])
+                    }
+            }
+        }
+    
     /**
-    *check if todayJournal exist or if the user checked in more than 4 times today
-    */
-    const checkInEnabled = !todayJournal || todayJournal.journals.length < 4
+     *check if todayJournal exist or if the user checked in more than 4 times today
+     */
+    const checkInEnabled = !todayJournal || todayJournal.length < 4
 
     /**
      * Render check-ins for the daily view by mapping out each check-in into Preview component
@@ -43,12 +59,14 @@ const Calendar =({navigation: { navigate} })=>{
         <PreviewDaily
         showJournal = {
             (time)=>{navigate('CheckinDetail', 
-            {entry: journals[key], allEntries: journals,time: time, spriteActivityData: SpriteActivityData})
+            {entry: journals[key], allEntries: journals, time: time, spriteActivityData: SpriteActivityData})
         }
-            
-        } 
-          key = {key} journals = {entry.journals}  date = {moment(entry.journals[0].createdAt).format('dddd, LL')}/>
-        )
+    } 
+        
+          key = {key} journals = {entry}  date = {moment(entry.timestamp).format('dddd, LL')}
+        />
+    
+          )
     })
 
     const [viewByDay,changeView] = useState(true)
@@ -90,7 +108,7 @@ const Calendar =({navigation: { navigate} })=>{
 
                         {viewByDay?
                         <ScrollView contentContainerStyle = {styles.dates}>
-                                {checkInEnabled &&
+                                {checkInEnabled && 
                                     <View style={styles.feelingContainer}>
                                         <TouchableOpacity 
                                             style={styles.addFeelings}
@@ -100,12 +118,11 @@ const Calendar =({navigation: { navigate} })=>{
                                             <Text style={styles.feelingText}>Tell me how you're feeling</Text>
                                         </TouchableOpacity>
                                     </View>
-                                }
+                                 }
                             {previewDaily}
                         </ScrollView>
-                        
                         :
-                            <PreviewMonth/>
+                        <PreviewMonth/>
                         }
 
                     </View>

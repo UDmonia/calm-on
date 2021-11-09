@@ -6,6 +6,7 @@ import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/previewEntriesStyles";
 import hex from "../stylesheets/hexCodes";
+import { monthlyData } from "../data/dummyData";
 
 /**
  * Used in previewEntires.js (Daily Preview) for each check-in
@@ -27,31 +28,11 @@ export const Box = ({
   empty,
 }) => {
   const navigation = useNavigation();
-  const lastCommaIndex = journal.lastIndexOf(",");
-  const journalLength = journal.split(",").length;
-
-  //If journal is one word, output journal,
-  //if two words, then add "and" in between,
-  //if three words, then add "and" after the last comma
-  let parsedJournal = null;
-  if (journalLength === 1) {
-    parsedJournal = <Text style={styles.category}>{journal}</Text>;
-  } else if (journalLength === 2) {
-    parsedJournal = (
-      <Text style={styles.category}>
-        {journal.split(",")[0]}
-        <Text style={{ fontWeight: "400" }}> and </Text>
-        {journal.split(",")[1]}
-      </Text>
-    );
-  } else {
-    parsedJournal = (
-      <Text style={styles.category}>
-        {journal.substring(0, lastCommaIndex + 1)}{" "}
-        <Text style={{ fontWeight: "400" }}>and</Text>{" "}
-        {journal.substring(lastCommaIndex + 1)}
-      </Text>
-    );
+ 
+  // capitalize function for mood as mood comes back as lowercase from Database
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
   }
 
   return (
@@ -73,7 +54,7 @@ export const Box = ({
         </TouchableOpacity>
       ) : (
         <View>
-          <Text style={styles.time}>{moment(time).format("LT")}</Text>
+          <Text style={styles.time}>{moment(journal.timestamp).format("LT")}</Text>
           <TouchableOpacity
             onPress={() => showJournal(time)}
             style={{ ...styles.box, backgroundColor: color }}
@@ -82,14 +63,11 @@ export const Box = ({
               <Image source={image} />
             </View>
             <View style={styles.textContainer}>
-              <Text style={styles.journalTitle}>
-                {mood.charAt(0).toUpperCase() + mood.slice(1)}
-              </Text>
-              {/*
+              
               <Text style={styles.journal}>
-                I'm {mood} about {parsedJournal}
+                {capitalize(mood)}
               </Text>
-              */}
+             
             </View>
           </TouchableOpacity>
         </View>
@@ -117,7 +95,10 @@ const previewEntries = ({ journals, date, showJournal }) => {
       path: require("../../assets/preview/angry.png"),
       color: hex.pink.pink1,
     },
-    sad: { path: require("../../assets/preview/sad.png"), color: hex.purple.purple1 },
+    sad: { 
+      path: require("../../assets/preview/sad.png"), 
+      color: hex.purple.purple1 
+    },
     scared: {
       path: require("../../assets/preview/scared.png"),
       color: hex.blue.blue3,
@@ -132,25 +113,32 @@ const previewEntries = ({ journals, date, showJournal }) => {
     },
   };
 
-  /**
-   * Map out each check-ins of the day and display them through Box.js from latest to oldest
-   */
-  const journalList = journals.map((journal, i) => (
-    <Box
-      color={moodMap[journal.mood].color}
-      image={moodMap[journal.mood].path}
-      key={i}
-      showJournal={showJournal}
-      journal={journal.journal}
-      mood={journal.mood}
-      time={journal.createdAt}
-    />
-  ));
+  let entries = []  
+  // flattens the data structure so it is easier to work with
+  for (const prop in monthlyData['data']) {
+    entries.push(...monthlyData['data'][prop])
+  }
+
+  // filter days so we can display date the correct amount of times
+  //(ie not rendering the date 3 times if there are 3 checkins in one day)
+  let filteredDays = entries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(journals.timestamp).format('D'))
 
   return (
     <View>
+      {filteredDays[0] === journals ?
       <Text style={styles.date}>{date}</Text>
-      {journalList}
+      :
+      <>
+      </>
+      }
+      <Box
+      color={moodMap[journals.mood].color}
+      image={moodMap[journals.mood].path}
+      key={journals._id}
+      showJournal={showJournal}
+      journal={journals}
+      mood={journals.mood}
+    />
     </View>
   );
 };

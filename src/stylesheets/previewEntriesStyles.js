@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        //borderWidth:1,
 
     },
     category:{
@@ -50,11 +49,10 @@ const styles = StyleSheet.create({
         marginTop:'1.5%'
     },
     journal:{
-        fontSize: 14,
+        fontSize: 20,
         width: 215,
-        paddingBottom:'5%',
-        textAlign:'left',
-        marginLeft:'8%'
+        justifyContent: 'center',
+        textAlign:'center',
     },
     icon:{
         margin:'3%',
@@ -75,8 +73,8 @@ const styles = StyleSheet.create({
         fontFamily: "FontReg",
     },
     textContainer: {
-        paddingLeft: "10%",
-        alignItems :"center",
+        paddingLeft: "5%",
+        alignItems :"flex-start",
         justifyContent: "center",
     }
 })

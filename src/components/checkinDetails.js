@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../stylesheets/checkinDetailsStyles";
 import moment from "moment";
 import ActivityCard from "./ActivityCard";
+import singleData from '../data/dummyData'
 
 /**
  * Contains all images associated with each emotion
@@ -25,7 +26,6 @@ const moodMap = {
  */
 const checkinDetails = ({ route }) => {
   const navigation = useNavigation();
-
   /**
    * Passing data from Calendar.js
    * @param entry The specific check-in from the check-in array
@@ -33,64 +33,80 @@ const checkinDetails = ({ route }) => {
    * @param spriteActivityData all the activity data for the sprite character
    */
   const { entry, allEntries, time, spriteActivityData } = route.params;
-
-  // Navigating from daily preview: set initial index to specfic time pressed
-  const specificTime = entry.journals.find(
-    (journal) => journal.createdAt == time
-  );
-  let specificIndex = entry.journals.indexOf(specificTime);
-
-  //Navigating from monthly preview: set initial index to zero
-  if (!time) {
-    specificIndex = 0;
+  
+  // Handler for decreasing day and making sure the correct button is highlighted
+  const decreaseDayButton = (cur, index) => {
+    let newDay = allEntries.findIndex(current => current.timestamp === cur.timestamp)
+    if(newDay !== 0){
+      setEntryIndex(newDay-1)
+      let changedDay = allEntries[newDay-1]
+      setActive(changedDay.timestamp)
+      setJournal(changedDay)
+    }else{
+      setEntryIndex(newDay)
+    }
+    
   }
+  
+  // Handler for increasing day and making sure the correct button is highlighted
+  const increaseDayButton = (cur, index) => {
+    let newDay = allEntries.findIndex(current => current.timestamp === cur.timestamp)
+    if(newDay !== allEntries.length){
+      setEntryIndex(newDay+1)
+      let changedDay = allEntries[newDay+1]
+      setActive(changedDay.timestamp)
+      setJournal(changedDay)
+    }else{
+      setEntryIndex(newDay)
+    }
+  }
+    
+  // get initial entry index for highlighting correct button 
+  let findEntryIndex = allEntries.findIndex(entri => entri.timestamp === entry.timestamp)
+  const [currentEntryIndex, setEntryIndex] = useState(findEntryIndex);
+  
+  const [journal, setJournal] = useState(entry);
 
-  //Go to specific check-in time of the day by index
-  const [journal, setJournal] = useState(entry.journals[specificIndex]);
-
-  const [isActive, setActive] = useState(specificIndex);
+  const [isActive, setActive] = useState(allEntries.find(entri => entri.timestamp === entry.timestamp).timestamp)
 
   //Use currentEntryIndex to navigate through the check-in array
-  const [currentEntryIndex, setEntryIndex] = useState(
-    allEntries.indexOf(entry)
-  );
-
-  const lastCommaIndex = journal.journal.lastIndexOf(",");
-
+  // const lastCommaIndex = journal.journal.lastIndexOf(",");
+ 
   /**
-   * Map out all check-ins in a single day
-   */
-  const buttons = allEntries[currentEntryIndex].journals.map((journal, i) => (
-    <TouchableOpacity
+   * Filter by day and then Map out all check-ins
+     */
+  const buttons = allEntries.filter(entri => moment(entri.timestamp).format('D') == moment(journal.timestamp).format('D')).map(
+    (entry, i) => (
+      <TouchableOpacity
       key={i}
       onPress={() => {
-        setJournal(journal);
-        setActive(i);
+        setJournal(entry);
+        setEntryIndex(allEntries.findIndex(journ => journ.timestamp === entry.timestamp))
+        setActive(entry.timestamp);
       }}
-      style={isActive == i ? styles.timeActive : styles.times}
+      style={isActive == entry.timestamp ? styles.timeActive : styles.times}
     >
       <Text
         style={
-          isActive == i
+          isActive == entry.timestamp
             ? { ...styles.timesText, color: "black" }
             : styles.timesText
         }
       >
-        {moment(journal.createdAt).format("LT")}
+       {moment(entry.timestamp).format("LT")}
       </Text>
     </TouchableOpacity>
   ));
   
   // Filter all the activities if they fit the tag
   const activityList = [];
-  var i;
-  for (i = 0; i < spriteActivityData.length; i++) {
-    //console.log(spriteActivityData[i].tag);
+  for (let i = 0; i < spriteActivityData.length; i++) {
     if(spriteActivityData[i].tag.includes(journal.mood)) {
         activityList.push(spriteActivityData[i]);
     }
   }
 
+  
   return (
     <View style={styles.format}>
       <ImageBackground
@@ -110,23 +126,16 @@ const checkinDetails = ({ route }) => {
               />
 
               <Text style={styles.text}>
-                {moment(journal.createdAt).format("dddd, LL")}
+                {moment(journal.timestamp).format("dddd, LL")}
               </Text>
             </View>
             <ScrollView contentContainerStyle={styles.container}>
               <View style={styles.upper}>
                 {/*Date increase/decrease*/}
                 <View style={styles.header}>
-                  {currentEntryIndex < allEntries.length - 1 ? (
+                  {currentEntryIndex != 0 ? (
                     <TouchableOpacity
-                      onPress={() => {
-                        setEntryIndex(currentEntryIndex + 1);
-                        setJournal(
-                          allEntries[currentEntryIndex + 1].journals[0]
-                        );
-                        setActive(0);
-                      }}
-                    >
+                      onPress={() => {decreaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)}}>
                       <Image source={require("../../assets/images/prevMonth.png")} />
                     </TouchableOpacity>
                   ) : (
@@ -134,19 +143,11 @@ const checkinDetails = ({ route }) => {
                   )}
 
                   <Text style={styles.date}>
-                    {moment(journal.createdAt).format("LL")}
+                  {moment(journal.timestamp).format("LL")}
                   </Text>
-                  {currentEntryIndex > 0 ? (
+                  {currentEntryIndex < allEntries.length-1? (
                     <TouchableOpacity
-                      TouchableOpacity
-                      onPress={() => {
-                        setEntryIndex(currentEntryIndex - 1);
-                        setJournal(
-                          allEntries[currentEntryIndex - 1].journals[0]
-                        );
-                        setActive(0);
-                      }}
-                    >
+                      onPress={() => {increaseDayButton(allEntries[currentEntryIndex], currentEntryIndex)}}>
                       <Image source={require("../../assets/images/nextMonth.png")} />
                     </TouchableOpacity>
                   ) : (
@@ -166,25 +167,6 @@ const checkinDetails = ({ route }) => {
                 <Text style={styles.journalTitle}>
                   {journal.mood.charAt(0).toUpperCase() + journal.mood.slice(1)}
                 </Text>
-                {/*
-                <Text style={styles.journal}>
-                  I'm {journal.mood} about{" "}
-                  <Text style={styles.bolded}>
-                    {journal.journal.split(",").length === 1
-                      ? journal.journal
-                      : journal.journal
-                          .toLowerCase()
-                          .substring(0, lastCommaIndex + 1)}
-                  </Text>
-                  and
-                  <Text style={styles.bolded}>
-                    {" "}
-                    {journal.journal
-                      .toLowerCase()
-                      .substring(lastCommaIndex + 1)}
-                  </Text>
-                </Text>
-                */}
               </View>
 
               <View style={styles.lower}>
