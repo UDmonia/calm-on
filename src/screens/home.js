@@ -35,6 +35,10 @@ const checkInExists = () => {
 };
 
 const Home = ({ props, navigation: { navigate } }) => {
+  const stuff = useSelector((state) => state.activities.checkIn);
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  console.log(stuff);
+
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
