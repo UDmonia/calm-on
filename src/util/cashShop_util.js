@@ -9,17 +9,17 @@ const CashShopAPI = {
     }
   },
   // checkout route
-  checkout: (outfitList,total) => axios.post('...',{outfitList,total}),
+  checkout: async (outfitList,total) => await axios.post('...',{outfitList,total}),
   // get coins route
-  fetchCoins: ()=> axios.get(''),
+  fetchUser: async (userId)=> await axios.get('http://localhost:4000/api/cashshop/fetchUser', {params:{userId}}),
   // get equipped route
-  getEquipped: ()=> axios.get('...'),
+  getEquipped: async ()=> await axios.get('...'),
   // equip or unequip route
-  equippedSnapshot: (outfitList)=> axios.put('...', outfitList),
+  equippedSnapshot: async (outfitList)=> await axios.put('...', outfitList),
   // get bought items route
-  getBought: ()=> axios.get('....'),
+  getBought: async ()=> await axios.get('....'),
   // setup user upon registering
-  setupUser: (userId) => axios.post('http://localhost:4000/api/cashshop/setupUser', {userId})
+  setupUser: async (userId) => await axios.post('http://localhost:4000/api/cashshop/setupUser', {userId})
 };
 
 export default CashShopAPI;

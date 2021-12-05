@@ -232,33 +232,6 @@ const SessionForm = ({
                   value={confirmPassword}
                 />
               </View>
-
-
-              {/* <View style={styles.label}>
-                <Text style={styles.description}>Birthday</Text>
-                {birthdayError && (
-                  <Text style={styles.error}>{birthdayError}</Text>
-                )}
-              </View>
-              <View style={styles.inputAndIcon}>
-                <Image styles={styles.icon} source={date} />
-
-                <TextInput
-                  value={birthday}
-                  placeholder="Select Date..."
-                  style={styles.input}
-                  onFocus={showOnlyDatePicker}
-                />
-
-                <DateTimePickerModal
-                  date={new Date()}
-                  isVisible={show}
-                  mode="date"
-                  display="calendar"
-                  onCancel={toggleShow}
-                  onConfirm={handleConfirm}
-                />
-              </View> */}
             </View>
           )}
         </View>

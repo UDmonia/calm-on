@@ -13,12 +13,12 @@ const SessionAPI = {
       delete axios.defaults.headers.common.Authorization;
     }
   },
-  register: (user) =>
-    axios.post(DEV_REGISTER_USER, user),
-  login: (user) => axios.post(DEV_LOGIN_USER, user),
-  addName: (user) => axios.put(DEV_ADD_NAME, user),
-  checkin: (user) => axios.put(DEV_CHECKIN, user),
-  editProfile: (user) => axios.put(DEV_EDIT_PROFILE, user),
+  register: async (user) =>
+    await axios.post(`http://dev-1020237653.us-west-1.elb.amazonaws.com/api/accounts/signup`, user),
+  login: async (user) => await axios.post(`http://dev-1020237653.us-west-1.elb.amazonaws.com/api/accounts/signin`, user),
+  addName: (user) => axios.put(`http://dev-1020237653.us-west-1.elb.amazonaws.com/api/accounts/profile`, user),
+  checkin: (user) => axios.put(`http://localhost:3001/api/users/checkin`, user),
+  editProfile: (user) => axios.put('http://dev-1020237653.us-west-1.elb.amazonaws.com/api/accounts/profile', user),
 };
 
 export default SessionAPI;

@@ -2,8 +2,6 @@ import jwtDecode from "jwt-decode";
 import axios from 'axios';
 
 import SessionAPI from "../util/session_util";
-import CashShopAPI from "../util/cashShop_util"
-import {setCoins, setEquipped} from "./cashShop_actions"
 import deviceStorage from "../services/device_storage";
 
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -27,64 +25,50 @@ const receiveSessionErrors = (errors) => ({
 });
 
 const getUser = (token, user) => {
-  // console.log(user)
-  // console.log("token:  " + token)
   const userJson = JSON.stringify(user)
-  console.log("user1:  " + userJson)
-  SessionAPI.setAuthToken(token);
-  deviceStorage.save("jwt", token)
-  deviceStorage.save("user",userJson);
-  console.log('got user')
+
+  try {
+    SessionAPI.setAuthToken(token);
+    deviceStorage.save("jwt", token)
+    deviceStorage.save("user",userJson);
+  } catch (e) {
+    // we'll just console log any errors here until we have a better way
+    console.log('could not save user locally',e)
+  }
   return user;
 };
 
-export const register = (user) => (dispatch) => {
+export const register = (userLogin) => async (dispatch) => {
   // not sure if front end has password confirmation
   // !! mike is changing the data shape here so this part will change !!
-  delete user.confirmPassword;
-  user['birthDate'] = user.birthday;
-  delete user.birthday
-  user.credential = {
-    username: user.email,
-    password: user.password
+  delete userLogin.confirmPassword;
+  userLogin['birthDate'] = userLogin.birthday;
+  delete userLogin.birthday
+  userLogin.credential = {
+    username: userLogin.email,
+    password: userLogin.password
   };
-  delete user.password
+  delete userLogin.password
 
-  return SessionAPI.register(user)
-    .then((res) => {
-      const {user} = res.data.data
-
-      CashShopAPI.setupUser(user['_id'])
-        .then(resp=>{
-          const { coins } = resp.data
-          // save this info in redux
-          console.log('coins', coins)
-          dispatch(setCoins(coins))
-          // dispatch to save coins
-          // dispatch to save outfits
-        })
-
-      return dispatch(receiveUser(getUser(res.data.data.token,res.data.data.user)))
-        }
-      )
-      .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
+  try {
+    const {data} = await SessionAPI.register(userLogin)
+    return dispatch(receiveUser(getUser(data.data.token,data.data.user)))
+  } catch (e) {
+    dispatch(receiveSessionErrors(e.response.data))
+  }
 }
 
-export const login = (user) => (dispatch) => {
+export const login = (user) => async (dispatch) => {
   user.username = user.email;
   delete user.email;
 
-  return SessionAPI.login(user)
-    .then((res) => {
-      // !!mike is changing the data shape!!
-      // instead of returning Object data {data: {...stuff we need...}}
-      // just return Object data {...stuff we need...}
-      CashShopAPI.fetchCoins()
-      return dispatch(receiveUser(getUser(res.data.data.token, res.data.data.user)))
-    })
-    .catch((e) => {
-      dispatch(receiveSessionErrors(e.response.data))
-    });
+  try {
+    const { data } = await SessionAPI.login(user)
+    return dispatch(receiveUser(getUser(data.data.token, data.data.user)))
+  } catch (e) {
+    dispatch(receiveSessionErrors(e.response.data))
+  }
+
 };
 
 // Retrieves token locally and returns the promise
@@ -98,7 +82,7 @@ export const editProfile = (fields) => (dispatch) => {
     .then(token=>{
       return SessionAPI.editProfile(fields)
         .then(res=>{
-          return dispatch(receiveUser(getUser(token,res.data.data.user)))
+          return dispatch(receiveUser(getUser(token,res.data.data._id)))
         })
         .catch((e) => dispatch(receiveSessionErrors(e.response.data)))
     })
@@ -127,14 +111,6 @@ export const getUserFromJWT = () => async (dispatch) => {
   if (user) return dispatch(receiveUser(getUser(token, user)))
 
 }
-  // deviceStorage
-  //   .get("user")
-  //   .then((userJson) => {
-  //     //const decodedJwt = jwtDecode(token);
-  //     const user = JSON.parse(userJson)
-  //     if (user) return dispatch(receiveUser(user));
-  //   })
-  //   .catch((e) => console.log(e));
 
 // Calls /profile endpoint to add name during registration
 export const addName = (user) => (dispatch) =>{
