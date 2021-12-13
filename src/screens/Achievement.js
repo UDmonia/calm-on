@@ -5,19 +5,15 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { StackActions } from '@react-navigation/routers';
 import AchievementPage from './AchievementPage.js';
 import CashShop from './CashShop.js';
-import { useSelector } from "react-redux";
-import { getCoins } from '../actions/cashShop_actions.js';
 import {Image} from 'react-native';
+import {useSelector} from 'react-redux'
 
 const Stack = createStackNavigator();
 
 const routesWithNoTabNavigator = ['CashShop'];
 
 export default Achievement =()=>{
-    const [coins, setCoins] = useState(useSelector((state)=>state.cashShop.coins)
-    );
-
-    console.log('coins', coins)
+    const coins = useSelector(state=>state.cashShop.coins)
 
     Stack.navigationOptions = ({ navigation }) => {
         let tabBarVisible = true;

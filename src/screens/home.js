@@ -17,9 +17,7 @@ import { screenWidthThreshold } from "../util/thresholds";
 const checkInExists = () => {
   var res = false;
   const checkIns = [];
-  //useSelector((state) =>
-  //  state.session.user.checkIns ? state.session.user.checkIns : []
-  //);
+
   for (var i = 0; i < checkIns.length; i++) {
     const curDate = new Date(checkIns[i].date);
     const todaysDate = new Date();
@@ -38,17 +36,11 @@ const Home = ({ props, navigation: { navigate } }) => {
   if (checkInExists()) {
     navigate("DailyCheckIn");
   }
-  //const userName = "Jack";
-  const getUser = useSelector((state) =>
+
+  const userName = useSelector((state) =>
     state.session.user && state.session.user.name
   );
 
-  const [userName, setUsername] = useState(null);
-
-  if (userName === "user") {
-    console.log("Home -> loginSignup: userPrompt=true userlogin=false");
-    navigate("loginSignup", { userPrompt: true, userLogin: false });
-  }
   let [spirits, setSpirits] = useState([sprite, flynn, aurora]);
   let spirit = spirit || sprite;
   let [currentSpirit, setCurrentSpirit] = useState(spirit);
@@ -99,12 +91,6 @@ const Home = ({ props, navigation: { navigate } }) => {
       headerColor: currentSpirit.characterColor,
     });
   }
-
-  useEffect(()=>{
-    if (getUser) {
-      setUsername(getUser);
-    }
-  },[getUser])
 
   return (
     <ImageBackground

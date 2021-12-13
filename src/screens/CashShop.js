@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, View, Text, TouchableOpacity, Image} from 'react-native';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from '../stylesheets/cashShopStyles.js';
 import CheckoutModal from './CheckoutModal.js';
 import AccessoryView from './AccessoryView.js';
 import Toggler from './Toggler.js';
+import { fetchUser } from '../actions/cashShop_actions.js';
 
 
 // get current coach from redux
@@ -109,6 +110,8 @@ const GridItem = ({handleCheckout, index, name, cost, imageSrc, coach, isCheckou
 
 const CashShop =()=>{
     const getCoach = useSelector(state=>state.session.user && state.session.user.coach);
+    const userId = useSelector(state=>state.session.user._id)
+    const dispatch = useDispatch();
 
     const [coach,setCoach] = useState(null);
     const [outfitView, changeView] = useState(true);
@@ -120,6 +123,12 @@ const CashShop =()=>{
             <GridItem handleCheckout={handleCheckout} index={index} isCheckout={isCheckout} coach = {coach} name={item.name} cost={item.cost} imageSrc={item.imageSrc}/>
         )
     };
+
+    useEffect(()=>{
+        if (userId != null) {
+            dispatch(fetchUser(userId))
+        }
+    }, [userId])
 
     useEffect(()=>{
         if (getCoach) {

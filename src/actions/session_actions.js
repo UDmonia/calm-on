@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import SessionAPI from "../util/session_util";
 import deviceStorage from "../services/device_storage";
+import { setupUser } from './cashShop_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
@@ -31,16 +32,14 @@ const getUser = (token, user) => {
     SessionAPI.setAuthToken(token);
     deviceStorage.save("jwt", token)
     deviceStorage.save("user",userJson);
+    return user;
   } catch (e) {
-    // we'll just console log any errors here until we have a better way
-    console.log('could not save user locally',e)
+    throw new Error('could not save user or token in async storage')
   }
-  return user;
 };
 
 export const register = (userLogin) => async (dispatch) => {
-  // not sure if front end has password confirmation
-  // !! mike is changing the data shape here so this part will change !!
+  // Todo (jack): we can clean this junk by making the login form better
   delete userLogin.confirmPassword;
   userLogin['birthDate'] = userLogin.birthday;
   delete userLogin.birthday
@@ -52,6 +51,7 @@ export const register = (userLogin) => async (dispatch) => {
 
   try {
     const {data} = await SessionAPI.register(userLogin)
+    await setupUser(data.data.user._id)
     return dispatch(receiveUser(getUser(data.data.token,data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))
@@ -63,8 +63,8 @@ export const login = (user) => async (dispatch) => {
   delete user.email;
 
   try {
-    const { data } = await SessionAPI.login(user)
-    return dispatch(receiveUser(getUser(data.data.token, data.data.user)))
+    const userResp = await SessionAPI.login(user)
+    return dispatch(receiveUser(getUser(userResp.data.data.token, userResp.data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))
   }
@@ -72,20 +72,18 @@ export const login = (user) => async (dispatch) => {
 };
 
 // Retrieves token locally and returns the promise
-const retrieveToken = () => {
-  return deviceStorage.get('jwt');
-};
+const retrieveToken = () => deviceStorage.get('jwt');
+
 
 // Calls /profile endpoint to change user info in the Profile tab
-export const editProfile = (fields) => (dispatch) => {
-  return retrieveToken()
-    .then(token=>{
-      return SessionAPI.editProfile(fields)
-        .then(res=>{
-          return dispatch(receiveUser(getUser(token,res.data.data._id)))
-        })
-        .catch((e) => dispatch(receiveSessionErrors(e.response.data)))
-    })
+export const editProfile = (fields) => async (dispatch) => {
+  try {
+    const token = await retrieveToken()
+    const {data} = await SessionAPI.editProfile(fields)
+    return dispatch(receiveUser(getUser(token, data.data.user)))
+  } catch (e) {
+    dispatch(receiveSessionErrors(e.response.data))
+  }
 };
 
 export const logout = () => (dispatch) => {
@@ -104,8 +102,6 @@ export const getUserFromJWT = () => async (dispatch) => {
   catch (err) {
     dispatch(RECEIVE_SESSION_ERRORS(e))
   }
-  // console.log("token: " + token)
-  // console.log("userJson: " + userJson)
 
   const user = JSON.parse(userJson)
   if (user) return dispatch(receiveUser(getUser(token, user)))
@@ -113,13 +109,14 @@ export const getUserFromJWT = () => async (dispatch) => {
 }
 
 // Calls /profile endpoint to add name during registration
-export const addName = (user) => (dispatch) =>{
-  return retrieveToken()
-  .then(token=>{
-    return SessionAPI.addName(user)
-    .then((res) => dispatch(receiveUser(getUser(token, res.data.data.user))))
-    .catch((e) => dispatch(receiveSessionErrors(e.response.data)));
-  })
+export const addName = (user) => async (dispatch) =>{
+  try {
+    const token = await retrieveToken();
+    const {data} = await SessionAPI.addName(user);
+    return dispatch(receiveUser(getUser(token, data.data.user)))
+  } catch (e) {
+    dispatch(receiveSessionErrors(e.response.data))
+  }
 }
 
 // Mike is still working on this route
