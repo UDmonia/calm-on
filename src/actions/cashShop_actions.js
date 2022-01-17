@@ -15,8 +15,11 @@ export const fetchUser = (id) => async (dispatch) => {
   dispatch(setOutfitList(equipped));
 }
 
-export const setupUser = async (id) =>
-  await CashShopAPI.setupUser(id)
+export const setupUser = (id) =>{
+  CashShopAPI.setupUser(id)
+    .then(success=>console.log('setup user!', success.data))
+    .catch(err=>console.log('failed to register user in cashshop!', id))
+}
 
 // Retrieves token locally and returns the promise
 const retrieveToken = () => {

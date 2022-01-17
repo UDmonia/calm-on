@@ -12,17 +12,17 @@ const CashShopAPI = {
     }
   },
   // checkout route
-  checkout: async (outfitList,total) => await axios.post('...',{outfitList,total}),
+  checkout: (outfitList,total) => axios.post('...',{outfitList,total}),
   // get back a registered user
-  fetchUser: async (userId)=> await axios.get(getUrl('fetchUser'), {params:{userId}}),
+  fetchUser: (userId)=> axios.get(getUrl('fetchUser'), {params:{userId}}),
   // get equipped route
-  getEquipped: async ()=> await axios.get('...'),
+  getEquipped: ()=> axios.get('...'),
   // equip or unequip route
-  equippedSnapshot: async (outfitList)=> await axios.put('...', outfitList),
+  equippedSnapshot: (outfitList)=> axios.put('...', outfitList),
   // get bought items route
-  getBought: async ()=> await axios.get('....'),
+  getBought: ()=> axios.get('....'),
   // setup user in cashshop api
-  setupUser: async (userId) => await axios.post(getUrl('setupUser'), {userId})
+  setupUser: (userId) => axios.post(getUrl('setupUser'), {userId})
 };
 
 export default CashShopAPI;

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import SessionAPI from "../util/session_util";
 import deviceStorage from "../services/device_storage";
-import { setupUser } from './cashShop_actions';
+import { setupUser, fetchUser } from './cashShop_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
@@ -38,7 +38,7 @@ const getUser = (token, user) => {
   }
 };
 
-export const register = (userLogin) => async (dispatch) => {
+export const register = (userLogin) =>  async (dispatch) => {
   // Todo (jack): we can clean this junk by making the login form better
   delete userLogin.confirmPassword;
   userLogin['birthDate'] = userLogin.birthday;
@@ -51,7 +51,7 @@ export const register = (userLogin) => async (dispatch) => {
 
   try {
     const {data} = await SessionAPI.register(userLogin)
-    await setupUser(data.data.user._id)
+    setupUser(data.data.user._id)
     return dispatch(receiveUser(getUser(data.data.token,data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))
@@ -64,6 +64,7 @@ export const login = (user) => async (dispatch) => {
 
   try {
     const userResp = await SessionAPI.login(user)
+    fetchUser(userResp.data.data._id)
     return dispatch(receiveUser(getUser(userResp.data.data.token, userResp.data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))
