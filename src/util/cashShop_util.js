@@ -1,7 +1,8 @@
 import axios from "axios";
+import { CASHSHOP_URL } from "@env";
 
 // Todo(jack): we should be storing Urls in like a React .env or something like that
-const getUrl = (action) => `http://ec2-34-215-150-120.us-west-2.compute.amazonaws.com/api/cashshop/${action}`
+const getUrl = (action) => `${CASHSHOP_URL}/${action}`
 
 const CashShopAPI = {
   setAuthToken: (token) => {
