@@ -1,10 +1,8 @@
 import React, {useState, useLayoutEffect, useEffect} from "react";
 import { View, Button, Image, TouchableOpacity, TextInput,Text } from "react-native";
-import { logout } from "../actions/session_actions.js";
+import { logout, editProfile } from "../actions/session_actions.js";
 import { useDispatch } from "react-redux";
 import styles from '../stylesheets/profileStyles.js';
-import { useSelector } from "react-redux";
-import { editProfile } from '../actions/session_actions.js';
 
 const coaches = [
   {name: 'Auora',img: require('../../assets/profile/auora.png')},

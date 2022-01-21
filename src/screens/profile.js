@@ -15,9 +15,9 @@ const Profile = ({ navigation: { navigate, setOptions } }) => {
   const dispatch = useDispatch();
 
   // pull coach from redux when ready
-  const initialCoach = useSelector(state=>state.session.user.coach);
-  const email = useSelector(state=>state.session.user.email);
-  const name = useSelector(state=>state.session.user.name);
+  const initialCoach = useSelector(state=>state.session.user && state.session.user.coach);
+  const email = useSelector(state=>state.session.user && state.session.user.email);
+  const name = useSelector(state=>state.session.user && state.session.user.name);
   const [coachIndex, setIndex] = useState(0);
 
   useEffect(()=>{

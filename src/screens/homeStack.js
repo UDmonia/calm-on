@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import Home from "./home";
 import Calendar from "../components/checkInStack";
 import Achievement from "./Achievement";
@@ -37,11 +38,7 @@ const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
   // what units are these?
   const getTabBarVisibility = (route) => {
-    const routeName = route.state
-      ? route.state.routes[route.state.index].name
-      : '';
-
-    console.log(routeName)
+    const routeName = getFocusedRouteNameFromRoute(route) ?? ''
 
     if (routeName === 'Shop') {
       return false;

@@ -16,6 +16,9 @@ import {
   RECEIVE_USER,
   addName,
 } from "../../actions/session_actions";
+import {
+  setupUser as setupUserInCashShop
+} from "../../actions/cashShop_actions"
 import mail from "../../../assets/images/mail.png";
 import lock from "../../../assets/images/password.png";
 import loginBtn from "../../../assets/images/logIn.png";
@@ -58,7 +61,9 @@ const SessionForm = ({
   const [localErrors, setLocalErrors] = useState([]);
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
-  const [showNameError, setNameError] = useState(false);
+  const [showNameError, setNameError] = useState(false)
+  ;
+  const [userId, setUserId] = useState(null)
   const toggleShow = () => setShow(!show);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
@@ -103,23 +108,29 @@ const SessionForm = ({
     return !TEST_ONLY.length;
   };
 
-  // : dispatch(register({ ...user, birthday: new Date(user.birthday) })) TESTING ONLY
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setLocalErrors([]);
     if (isValid()) {
-      return (login
-        ? dispatch(loginUser(user))
-        : dispatch(
-            register({ ...user, birthday: new Date("0000", "00", "00") })
-          )
-      ).then((action) => {
-        if (action.type === RECEIVE_USER) {
-          deviceStorage.save("score", '0');
-          !login ? setShowUserDialog(true) : navigate("Home");
+      let action = null
+      if (login) {
+        action = await dispatch(loginUser(user))
+      } else {
+        action = await dispatch(
+          register({ ...user, birthday: new Date("0000", "00", "00") })
+        )
+      }
+
+      if (action.type === RECEIVE_USER) {
+        deviceStorage.save("score", '0');
+        if (!login) {
+          setShowUserDialog(true)
         } else {
-          setError(true);
+          navigate('Home')
         }
-      });
+      } else {
+        setError(true);
+      }
+
     }
   };
 
@@ -221,33 +232,6 @@ const SessionForm = ({
                   value={confirmPassword}
                 />
               </View>
-
-
-              {/* <View style={styles.label}>
-                <Text style={styles.description}>Birthday</Text>
-                {birthdayError && (
-                  <Text style={styles.error}>{birthdayError}</Text>
-                )}
-              </View>
-              <View style={styles.inputAndIcon}>
-                <Image styles={styles.icon} source={date} />
-
-                <TextInput
-                  value={birthday}
-                  placeholder="Select Date..."
-                  style={styles.input}
-                  onFocus={showOnlyDatePicker}
-                />
-
-                <DateTimePickerModal
-                  date={new Date()}
-                  isVisible={show}
-                  mode="date"
-                  display="calendar"
-                  onCancel={toggleShow}
-                  onConfirm={handleConfirm}
-                />
-              </View> */}
             </View>
           )}
         </View>

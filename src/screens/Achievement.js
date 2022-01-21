@@ -5,31 +5,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { StackActions } from '@react-navigation/routers';
 import AchievementPage from './AchievementPage.js';
 import CashShop from './CashShop.js';
-import { useDispatch } from "react-redux";
-import { getCoins } from '../actions/cashShop_actions.js';
 import {Image} from 'react-native';
+import {useSelector} from 'react-redux'
 
 const Stack = createStackNavigator();
 
 const routesWithNoTabNavigator = ['CashShop'];
 
 export default Achievement =()=>{
-    const dispatch = useDispatch();
-    const [coins, setCoins] = useState(0);
-
-    // pull from redux the amount of coins the user has
-    useEffect(()=>{
-        // uncomment this when the backend routes are established
-
-        // dispatch(getCoins())
-        //     .then(coins=>setCoins(coins))
-        //     .catch(err=>{throw err})
-    }, [])
+    const coins = useSelector(state=>state.cashShop.coins)
 
     Stack.navigationOptions = ({ navigation }) => {
         let tabBarVisible = true;
         const currentRoute = navigation.state.routes[navigation.state.routes.length -1].routeName;
-        console.log('current route',currentRoute)
         if(routesWithNoTabNavigator.includes(currentRoute)) {
             tabBarVisible = false;
         }
@@ -51,8 +39,6 @@ export default Achievement =()=>{
 
     const profileMain= {
         headerLeft:null,
-        // headerTitleStyle: {fontSize: 20,color:hex.grey.grey1},
-        // headerStyle: {backgroundColor: hex.yellow.yellow1}
     }
 
     const cashShop = {
