@@ -1,11 +1,19 @@
-import { EQUIPPED, COINS } from "../actions/cashShop_actions";
+import { EQUIPPED, PURCHASED, COINS } from "../actions/cashShop_actions";
 
-const cashShopReducer = (state = { equipped: [], coins: 0 }, action) => {
+const cashShopReducer = (state = { equipped: [], purchased: [], coins: 0 }, action) => {
   switch (action.type) {
     case EQUIPPED:
-      return { ...state, equipped: action.outfitList };
+      if (action.equipped) {
+        return { ...state, equipped: action.equipped};
+      }
+    case PURCHASED:
+      if (action.purchased) {
+        return {...state, purchased: action.purchased};
+      }
     case COINS:
-      return {...state, coins: action.coins};
+      if (action.coins) {
+        return {...state, coins: action.coins};
+      }
     default:
       return state;
   }
