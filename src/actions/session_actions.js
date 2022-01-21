@@ -51,7 +51,7 @@ export const register = (userLogin) =>  async (dispatch) => {
 
   try {
     const {data} = await SessionAPI.register(userLogin)
-    setupUser(data.data.user._id)
+    setupUser()
     return dispatch(receiveUser(getUser(data.data.token,data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))
@@ -64,7 +64,7 @@ export const login = (user) => async (dispatch) => {
 
   try {
     const userResp = await SessionAPI.login(user)
-    fetchUser(userResp.data.data._id)
+    fetchUser()
     return dispatch(receiveUser(getUser(userResp.data.data.token, userResp.data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))

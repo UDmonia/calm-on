@@ -15,7 +15,7 @@ const CashShopAPI = {
   // checkout route
   checkout: (purchased,cost) => axios.put(getUrl('checkout'),{purchased,cost}),
   // get back a registered user
-  fetchUser: (userId)=> axios.get(getUrl('fetchUser'), {params:{userId}}),
+  fetchUser: ()=> axios.get(getUrl('fetchUser')),
   // get equipped route
   getEquipped: ()=> axios.get('...'),
   // equip or unequip route
@@ -23,7 +23,7 @@ const CashShopAPI = {
   // get bought items route
   getBought: ()=> axios.get('....'),
   // setup user in cashshop api
-  setupUser: (userId) => axios.post(getUrl('setupUser'), {userId})
+  setupUser: () => axios.post(getUrl('setupUser'))
 };
 
 export default CashShopAPI;
