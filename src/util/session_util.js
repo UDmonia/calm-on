@@ -1,7 +1,7 @@
 import axios from "axios";
-import { SESSION_URL } from "@env";
+import { ACCOUNTS_URL } from "@env";
 
-const getUrl = (action) => `${SESSION_URL}/${action}`;
+const getUrl = (action) => `${ACCOUNTS_URL}/${action}`;
 
 const SessionAPI = {
   setAuthToken: (token) => {
