@@ -3,7 +3,7 @@ import {FlatList, Modal,View, Text, TouchableOpacity, Image, ImageBackground} fr
 import { useSelector, useDispatch } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
 import RemoveButton from '../components/removeButton.js';
-import { buy } from '../actions/cashShop_actions.js';
+import { checkoutCart } from '../actions/cashShop_actions.js';
 
 // itemList should be a unique id for the particular piece of clothing
 const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
@@ -24,7 +24,7 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   const handleBuy = () => {
     // also has to check if the user has enough money before checking out
     if (currentCost > 0) {
-      dispatch(buy({outfitList: items, total: currentCost}));
+      dispatch(checkoutCart({outfitList: items, total: currentCost}));
     }
     // submit the list of items through Redux action
       // once the promise returns back sucessfully

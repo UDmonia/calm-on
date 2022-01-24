@@ -124,6 +124,7 @@ const CashShop =()=>{
         )
     };
 
+    // fetch cashshop data from the given user id
     useEffect(()=>{
         if (userId != null) {
             dispatch(fetchUser(userId))

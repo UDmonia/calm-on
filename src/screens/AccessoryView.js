@@ -19,7 +19,7 @@ const categoryList = ['All','Face','Top','Bottom','Shoes','Gloves','Extra', 'Set
 // this list should be replaced by the list of bought items returned from redux
 const dummyBought = [
   {
-  id: 'Extra-h1',
+  id: 's1',
   name: 'hat',
   cost: 10,
   category: 'Extra',
@@ -28,7 +28,7 @@ const dummyBought = [
   icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
   },
   {
-    id: 'Bottom-p1',
+    id: 'h1',
     name: 'pants',
     cost: 10,
     category: 'Bottom',
