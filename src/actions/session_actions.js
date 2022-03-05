@@ -51,7 +51,7 @@ export const register = (userLogin) =>  async (dispatch) => {
 
   try {
     const {data} = await SessionAPI.register(userLogin)
-    setupUser()
+    setupUser(data.data.user._id)
     return dispatch(receiveUser(getUser(data.data.token,data.data.user)))
   } catch (e) {
     dispatch(receiveSessionErrors(e.response.data))

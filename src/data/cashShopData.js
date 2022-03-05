@@ -3,7 +3,7 @@ export const storeData = {
     base: 'base image',
     currentStorePieces: [
       {
-        id: 'Extra-sword1',
+        id: '1',
         name: 'artistSword',
         cost: 10,
         category: 'Extra',
@@ -12,7 +12,7 @@ export const storeData = {
         icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
       },
       {
-        id: 'Top-shirt1',
+        id: '2',
         name: 'originalTop',
         cost: 10,
         category: 'Top',
@@ -20,7 +20,7 @@ export const storeData = {
         image: require('../../assets/cashShop/auora/auora_originalTop.png'),
         icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
       {
-        id: 'Bottom-pants1',
+        id: '3',
         name: 'OGpants',
         cost: 10,
         category: 'Bottom',
@@ -29,7 +29,7 @@ export const storeData = {
         icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
       },
       {
-        id: 'Bottom-pants2',
+        id: '4',
         name: 'momJeans',
         cost: 10,
         category: 'Bottom',
@@ -37,7 +37,7 @@ export const storeData = {
         image: require('../../assets/cashShop/auora/auora_momJeans.png'),
         icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')  },
       {
-        id: 'Glasses-gl1',
+        id: '5',
         name: 'butterflyShades',
         cost: 10,
         category: 'Face',
@@ -47,7 +47,7 @@ export const storeData = {
       },
 
       {
-        id: 'Mask-m2',
+        id: '6',
         name: 'maskOwlTheme',
         cost: 10,
         category: 'Face',
@@ -57,7 +57,7 @@ export const storeData = {
       },
 
       {
-        id: 'Shoes-b1',
+        id: '7',
         name: 'originalBoots',
         cost: 10,
         category: 'Shoes',
@@ -66,7 +66,7 @@ export const storeData = {
         icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
       },
       {
-        id: 'Top-apron1',
+        id: '8',
         name: 'painterApron',
         cost: 10,
         category: 'Top',
@@ -75,7 +75,7 @@ export const storeData = {
         icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
       },
       {
-        id: 'Hat-h1',
+        id: '9',
         name: 'sunhat',
         cost: 10,
         category: 'Face',
@@ -84,7 +84,7 @@ export const storeData = {
         icon: require('../../assets/cashShop/auora/icons/icon_ButterflyShade.png')
       },
       {
-        id: 'Wing-w1',
+        id: '10',
         name: 'wings',
         cost: 10,
         category: 'Extra',
@@ -98,6 +98,7 @@ export const storeData = {
 
     currentStoreSets: [
       {
+        id: 's1',
         name: 'Painting',
         cost: 15,
         imageSrc: 'source...',
@@ -125,6 +126,7 @@ export const storeData = {
         ]
     },
     {
+        id: 's2',
         name: 'Painting',
         cost: 10,
         imageSrc: 'source...',
@@ -145,6 +147,7 @@ export const storeData = {
 
     },
     {
+        id: 's3',
         name: 'Dancing',
         cost: 10,
         imageSrc: 'source...',

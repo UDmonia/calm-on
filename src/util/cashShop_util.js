@@ -1,8 +1,8 @@
 import axios from "axios";
 import { CASHSHOP_URL } from "@env";
+console.log("Reading CASHOP_URL", CASHSHOP_URL);
 
-// Todo(jack): we should be storing Urls in like a React .env or something like that
-const getUrl = (action) => `${CASHSHOP_URL}/${action}`
+const getUrl = (action) => `${CASHSHOP_URL}/${action}`;
 
 const CashShopAPI = {
   setAuthToken: (token) => {
@@ -13,17 +13,15 @@ const CashShopAPI = {
     }
   },
   // checkout route
-  checkout: (purchased,cost) => axios.put(getUrl('checkout'),{purchased,cost}),
+  checkout: (purchased, cost) =>
+    axios.put(getUrl("checkout"), { purchased, cost }),
   // get back a registered user
-  fetchUser: ()=> axios.get(getUrl('fetchUser')),
-  // get equipped route
-  getEquipped: ()=> axios.get('...'),
+  fetchUser: () => axios.get(getUrl("fetchUser")),
   // equip or unequip route
-  equippedSnapshot: (equipped)=> axios.put(getUrl('equipOrUnequip'), {equipped}),
-  // get bought items route
-  getBought: ()=> axios.get('....'),
+  equippedSnapshot: (equipped) =>
+    axios.put(getUrl("equipOrUnequip"), { equipped }),
   // setup user in cashshop api
-  setupUser: () => axios.post(getUrl('setupUser'))
+  setupUser: (userId) => axios.post(getUrl("setupUser"), { userId }),
 };
 
 export default CashShopAPI;

@@ -14,18 +14,14 @@ export const fetchUser = () => async (dispatch) => {
   const { data } = await CashShopAPI.fetchUser()
   dispatch(setCoins(data.coins));
   dispatch(setEquipped(data.equipped));
+  dispatch(setPurchased(data.purchased))
 }
 
-export const setupUser = () =>{
-  CashShopAPI.setupUser()
+export const setupUser = (id) =>{
+  CashShopAPI.setupUser(id)
     .then(success=>console.log('Done setting up user in cashshop!', success.data))
-    .catch(err=>console.log('failed to register user in cashshop!', id))
+    .catch(err=>console.log('failed to register user in cashshop!'))
 }
-
-// Retrieves token locally and returns the promise
-const retrieveToken = () => {
-  return deviceStorage.get('jwt');
-};
 
 // checkout the current selections
 export const checkoutCart = ({outfitList, total}) => dispatch => {
@@ -34,10 +30,11 @@ export const checkoutCart = ({outfitList, total}) => dispatch => {
   for (let i = 0; i < outfitList.length; i++) {
     ids.push(outfitList[i].id);
   }
-  CashShopAPI.checkout(ids, total)
+  return CashShopAPI.checkout(ids, total)
     .then(resp=>{
       dispatch(setCoins(resp.data.coins))
       dispatch(setPurchased(resp.data.purchased))
+      return 'success'
     })
     .catch(err=>console.log('error with checking out', err))
 };
