@@ -62,3 +62,11 @@ Calm On! is created with React Native, Expo, MongoDB, and iOS Simulator.
 - Akif Saifi - back end
 - Joseph Zhao - back end
 - Brandon Yu - back end
+
+## Setting up Dev Environment
+
+### Environment Variables
+#### `.env` format
+`ACCOUNTS_URL=<route for accounts api>`\
+`CASHSHOP_URL=<route for cashshop api>`\
+`ACTIVITIES_URL=<route for activities api>`
