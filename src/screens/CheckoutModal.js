@@ -3,10 +3,14 @@ import {FlatList, Modal,View, Text, TouchableOpacity, Image, ImageBackground} fr
 import { useSelector, useDispatch } from "react-redux";
 import styles from '../stylesheets/checkoutModalStyles.js';
 import RemoveButton from '../components/removeButton.js';
-import { buy } from '../actions/cashShop_actions.js';
+import { checkoutCart } from '../actions/cashShop_actions.js';
+
+const initialCartState = {Hat: false, Glasses: false, Earrings: false, Mask: false,
+  Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false};
+  
 
 // itemList should be a unique id for the particular piece of clothing
-const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
+const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit, emptyCart})=>{
   const dispatch = useDispatch();
 
   const [currentIndex, setIndex] = useState(0);
@@ -24,11 +28,16 @@ const CheckoutModal=({checkout,isCheckout, itemList, cost, byOutfit})=>{
   const handleBuy = () => {
     // also has to check if the user has enough money before checking out
     if (currentCost > 0) {
-      dispatch(buy({outfitList: items, total: currentCost}));
+      dispatch(checkoutCart({outfitList: items, total: currentCost}))
+        .then((status)=>{
+          if (status === 'success') {
+            // empty out cart
+            emptyCart(initialCartState)
+            // leave modal
+            isCheckout(false)
+          }
+        })
     }
-    // submit the list of items through Redux action
-      // once the promise returns back sucessfully
-      // display a success message
   };
 
   useEffect(()=>{

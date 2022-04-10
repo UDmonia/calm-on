@@ -27,7 +27,7 @@ const flynn = {
 };
 
 const aurora = {
-  img: require("../../assets/images/Aurora_Default.png"),
+  img: require("../../assets/images/auora_base.png"),
   name: "Aurora",
   characterColor: hex.purple.aurora,
   description:

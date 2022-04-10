@@ -4,39 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from '../stylesheets/AccessoryViewStyles.js';
 import Toggler from './Toggler.js';
 import CheckoutModal from './CheckoutModal.js';
-import {storeData} from '../data/cashShopData.js';
+import { storeData } from '../data/cashShopData.js';
 import { equippedSnapshot } from '../actions/cashShop_actions.js';
 
 const initialCartState = {Hat: false, Glasses: false, Earrings: false, Mask: false,
 Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false};
 
-// get the coach from redux and map the outfits accordingly
-
-// get equiped list of items
-
 const categoryList = ['All','Face','Top','Bottom','Shoes','Gloves','Extra', 'Set',];
-
-// this list should be replaced by the list of bought items returned from redux
-const dummyBought = [
-  {
-  id: 'Extra-h1',
-  name: 'hat',
-  cost: 10,
-  category: 'Extra',
-  sub: 'Extra',
-  image: require('../../assets/cashShop/auora/auora_PlumeHat.png'),
-  icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
-  },
-  {
-    id: 'Bottom-p1',
-    name: 'pants',
-    cost: 10,
-    category: 'Bottom',
-    sub: 'Bottom',
-    image: require('../../assets/cashShop/auora/auora_OGpants.png'),
-    icon: require('../../assets/cashShop/auora/icons/icon_PlumeHat.png')
-  },
-];
 
 const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
   const activeStyle = {
@@ -45,7 +19,24 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
     borderRadius: 10
   };
 
+
+
   const renderItems = ({item}) => {
+    const isItemAlreadyPurchased = shopView === true && item.purchased === true;
+  
+    if (isItemAlreadyPurchased) {
+      return (
+        <View style={[styles.gridItem]}>
+          <View style={styles.gridItemTop}>
+            <Image style={styles.icon} source={item.icon}/>
+          </View>
+          <View style={styles.gridItemBottom}>
+            <Text>Bought</Text>
+          </View>
+        </View>
+      )
+    }
+
     return (
       <TouchableOpacity onPress={()=>selectOrDeselect(item)} style={[styles.gridItem, cart[item.sub].id === item.id && activeStyle]}>
         <View style={styles.gridItemTop}>
@@ -61,11 +52,12 @@ const Grid = ({filter, shopView, currentItems, selectOrDeselect, cart}) => {
             </>
             :
             <Text>
-            {cart[item.sub].id === item.id ? 'EQUIPED' : 'EQUIP'}
+            {cart[item.sub].id === item.id ? 'EQUIPPED' : 'EQUIP'}
             </Text>
           }
         </View>
       </TouchableOpacity>
+
     )
   };
 
@@ -99,6 +91,10 @@ const Categories = ({current, setCurrent}) => {
 
 const AccessoryView =()=>{
   const dispatch = useDispatch();
+  const purchasedItems = useSelector(state=>state.cashShop.purchased);
+  const equippedItems = useSelector(state=>state.cashShop.equipped)
+
+  const [purchasedItemsHash, setItemsHash] = useState(null);
 
   const [shopView, isShopView] = useState(true);
   // the current selected category
@@ -111,10 +107,32 @@ const AccessoryView =()=>{
   // current total cost
   const [totalCost, changeCost] = useState(0);
   // only one item of each type can be selected at once
-  const [selected, setSelected] = useState({
-    Hat: false, Glasses: false, Earrings: false, Mask: false,
-    Top: false, Bottom: false, Shoes: false, Extra: false, Set: false, Background: false, Pet: false
-  })
+  const [selected, setSelected] = useState(initialCartState)
+
+  // convert the currently equipped array to object containing equipped item for each
+  // body part
+  const converEquippedArrayToObj = (equippedItemsArray) => {
+    if (equippedItemsArray.length === 0) {
+      return {}
+    }
+
+    const equippedSet = new Set(equippedItemsArray)
+    const newObj = {...initialCartState}
+    const equippedPieces = []
+
+    storeData.auora.currentStorePieces.forEach(piece=>{
+      if (equippedSet.has(piece.id)) {
+        equippedPieces.push(piece)
+      }
+    })
+
+    // convert the equpiped pieces to the obj mapping each item to body parts
+    equippedPieces.forEach(piece=>{
+      newObj[piece.sub] = piece
+    })
+
+    setSelected(newObj)
+  }
 
   /*
     Takes id of an item and adds it to cart if doesnt already exist,
@@ -133,16 +151,6 @@ const AccessoryView =()=>{
     if (shopView) {
       setSelected(newObj);
     } else {
-      /*
-      - when the backend routes are established, the following code should look like:
-
-      handleEquip(newObj)
-        .then(sucess=>{
-          setSelected(newObj)
-        })
-
-      - for now, the following is fine
-    */
       handleEquip(newObj)
       setSelected(newObj);
     }
@@ -166,50 +174,65 @@ const AccessoryView =()=>{
   const putOnClothes = (selected) => {
     let outfitList = [];
     for (const key in selected) {
-      if (selected[key]) {
         outfitList.push(
           <Image key={selected[key].id} resizeMode='contain' style={styles.avatar} source={selected[key].image}/>
           );
-      }
     }
     return outfitList;
   }
 
+  useEffect(()=>{
+    if (purchasedItems) {
+      setItemsHash(new Set(purchasedItems))
+    }
+  }, [purchasedItems])
+
+  useEffect(()=>{
+    if (equippedItems) {
+      // set currently selected to equippedItems
+      converEquippedArrayToObj(equippedItems)
+    }
+  }, [equippedItems])
+
   // when switching views, empty out the current selected items from the current view
   // also reset the filter
   useEffect(()=>{
-    setSelected(initialCartState);
     setIndex(0);
   }, [shopView])
 
   useEffect(()=>{
     // if the currentCategoryIndex changes, then filter the Flatlist accordingly
-
-    // coach data needs to be added to the storeData.js the code below can map out the corresponding shop outfits for a given coach.
-    const data = shopView ? storeData.auora.currentStorePieces : dummyBought;
-      const newItems = data.filter(item=>{
+      const newItems = storeData.auora.currentStorePieces.filter(item=>{
+        // if item id is in the purchased item hash, then we want to assign it with status of "bought"
+        if (shopView) {
+          item['purchased'] = purchasedItemsHash != null && purchasedItemsHash.has(item.id) === true
+        } else {
+          if (purchasedItemsHash != null && purchasedItemsHash.has(item.id) === false) {
+            return 
+          }
+        }
         // if either the current filter changes to 'All' render all items that don't have the category property set to 'All', which means this will render all items
         if (categoryList[currentCategoryIndex] === 'All') {
           return item.category !== categoryList[currentCategoryIndex]
-        } else {
+        }
           // if the current filter changes to anything other than 'All', then only render the ones that have the matching category property
           return item.category === categoryList[currentCategoryIndex]
-        }
       });
       setCurrentItems(newItems);
 
     // if cart changes, then re-calculate total coins
-  }, [currentCategoryIndex, shopView]);
+  }, [currentCategoryIndex, shopView, purchasedItemsHash]);
 
   useEffect(()=>{
     console.log(totalCost)
     // iterate cart and calculate the total cost
     let newCost = 0;
     for (const key in selected) {
-      if (selected[key]) {
+      if (selected[key] && !purchasedItemsHash.has(selected[key].id)) {
         newCost += selected[key].cost;
       }
     }
+
     changeCost(newCost);
   }, [selected]);
 
@@ -217,7 +240,7 @@ const AccessoryView =()=>{
   const convertCartToList = (selected) => {
     let cartList = [];
     for (const key in selected) {
-      if (selected[key]) {
+      if (selected[key] && !purchasedItemsHash.has(selected[key].id)) {
         cartList.push(selected[key]);
       }
     }
@@ -253,7 +276,7 @@ const AccessoryView =()=>{
             </ImageBackground>
           </View>
 
-          {checkout && <CheckoutModal cost={totalCost} itemList={convertCartToList(selected)} byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>}
+          {checkout && <CheckoutModal emptyCart={setSelected} cost={totalCost} itemList={convertCartToList(selected)} byOutfit={false} checkout={checkout} isCheckout={isCheckout}/>}
 
           <View style={styles.toggle}>
             <Toggler callback={handleToggle} text1='Shop' text2='Wardrobe'/>
