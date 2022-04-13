@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,9 +10,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { StackActions } from "@react-navigation/native";
 import styles from "../stylesheets/kpiStyles";
-import kpiData from "../data/kpiData";
 
 export default Kpi = ({ route, navigation: { navigate } }) => {
   const [like, setLike] = useState(false);
@@ -38,52 +36,53 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
   return (
     <View style={styles.mainContainer}>
       {/* Replace the source url with the image parameter when needed later on, currently constant is added for testing purposes. */}
-      <ImageBackground source={route.params.bg} style={styles.imgBackground} >
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-        >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <TouchableOpacity
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-                style={styles.modalExitButton}
-              >
-                <Image source={require("../../assets/exit/blkExitBtn.png")} />
-              </TouchableOpacity>
-              <View>
-                <Text style={styles.modalText}>Confused?</Text>
-                <Text styles={styles.modalSubText}>
-                  Your Feedback will help us improve.
-                </Text>
-              </View>
-              <View style={styles.textAreaContainer}>
-                <TextInput
-                  style={styles.textArea}
-                  placeholder="Write Something... (optional)"
-                  onChangeText={(text) => onChangeConfusedMessage(text)}
-                  multiline={true}
-                  maxLength={250}
-                  scrollEnabled={false}
-                />
-              </View>
-              <View style={styles.modalSubmitButton}>
+      <ImageBackground source={route.params.bg} style={styles.imgBackground}>
+        <Modal animationType="fade" transparent={true} visible={modalVisible}>
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
                 <TouchableOpacity
                   onPress={() => {
                     setModalVisible(!modalVisible);
-                    console.log(confusedMessage);
                   }}
-                  style={styles.ModalBackButton}
+                  style={styles.modalExitButton}
                 >
-                  <Text style={[styles.text, styles.backButtonText]}>Send</Text>
+                  <Image source={require("../../assets/exit/blkExitBtn.png")} />
                 </TouchableOpacity>
+                <View>
+                  <Text style={styles.modalText}>Confused?</Text>
+                  <Text styles={styles.modalSubText}>
+                    Your Feedback will help us improve.
+                  </Text>
+                </View>
+                <View style={styles.textAreaContainer}>
+                  <TextInput
+                    style={styles.textArea}
+                    placeholder="Write Something... (optional)"
+                    onChangeText={(text) => onChangeConfusedMessage(text)}
+                    multiline={true}
+                    maxLength={250}
+                    scrollEnabled={false}
+                  />
+                </View>
+                <View style={styles.modalSubmitButton}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                      console.log(confusedMessage);
+                    }}
+                    style={styles.ModalBackButton}
+                  >
+                    <Text style={[styles.text, styles.backButtonText]}>
+                      Send
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
-          </View>
           </TouchableWithoutFeedback>
         </Modal>
         {/*Need to add background image here on this container*/}
@@ -96,7 +95,7 @@ export default Kpi = ({ route, navigation: { navigate } }) => {
             <View style={styles.backButtonContainer}>
               <TouchableOpacity
                 onPress={() => {
-                  navigate("CharacterChat");
+                  navigate("Home");
                 }}
                 style={styles.backButton}
               >

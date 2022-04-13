@@ -6,6 +6,7 @@ import bg from "../../../assets/images/backgroundImage.png";
 import logo from "../../../assets/images/logo.png";
 import SessionForm from "../../screens/session/session_form";
 import LoginToggle from "../../screens/session/login_toggle";
+import FairyPicker from "./FairyPicker";
 
 const LoginSignup = ({ route, navigation: { navigate } }) => {
   // state for switching between login and signup page
@@ -13,6 +14,7 @@ const LoginSignup = ({ route, navigation: { navigate } }) => {
   const { userLogin } = route.params;
   const [login, isLogin] = useState(() => userLogin);
   const [showUserDialog, setShowUserDialog] = useState(() => userPrompt);
+  const [showFairyPicker, setShowFairyPicker] = useState(false);
   const setLogin = (bool) => () => isLogin(bool);
 
   return (
@@ -21,26 +23,36 @@ const LoginSignup = ({ route, navigation: { navigate } }) => {
       {/* background image */}
       <ImageBackground style={styles.background} source={bg}>
         {/* inner container for adjusting the background image rgb */}
-        <ScrollView style={styles.innerContainer}>
-          {/* logo */}
-          <View style={styles.topContainer}>
-            <View style={styles.logo}>
-              <Image style={styles.image} source={logo} resizeMode="contain" />
+        {showFairyPicker ? (
+          <View style={styles.innerContainer}>
+            <FairyPicker navigate={navigate} />
+          </View>
+        ) : (
+          <ScrollView style={styles.innerContainer}>
+            <View style={styles.topContainer}>
+              <View style={styles.logo}>
+                <Image
+                  style={styles.image}
+                  source={logo}
+                  resizeMode="contain"
+                />
+              </View>
+              <LoginToggle
+                login={login}
+                setLogin={setLogin}
+                showUserDialog={showUserDialog}
+                setShowUserDialog={setShowUserDialog}
+              />
             </View>
-            <LoginToggle
+            <SessionForm
               login={login}
-              setLogin={setLogin}
+              navigate={navigate}
               showUserDialog={showUserDialog}
               setShowUserDialog={setShowUserDialog}
+              setShowFairyPicker={setShowFairyPicker}
             />
-          </View>
-          <SessionForm
-            login={login}
-            navigate={navigate}
-            showUserDialog={showUserDialog}
-            setShowUserDialog={setShowUserDialog}
-          />
-        </ScrollView>
+          </ScrollView>
+        )}
       </ImageBackground>
     </View>
   );

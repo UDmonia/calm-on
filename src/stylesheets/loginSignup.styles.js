@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import hex from "./hexCodes";
 
 export default StyleSheet.create({
@@ -14,6 +14,7 @@ export default StyleSheet.create({
     display: "flex",
     backgroundColor: "rgba(0,0,0,0.60)",
     minHeight: 0,
+    height: "100%",
   },
   logo: {
     marginTop: "5%",

@@ -1,53 +1,35 @@
 import { StyleSheet } from "react-native";
-import { screenWidthThreshold } from "../util/thresholds";
+import { screenWidthThreshold } from "../../util/thresholds";
 const titleText = 0.05 * windowWidth;
-const bodyText = 0.0335 * windowWidth;
-import { Dimensions } from 'react-native';
-import { windowHeight, windowWidth } from "../util/windowDimensions";
-import hex from "./hexCodes";
+const bodyText = 0.038 * windowWidth;
+import { windowWidth } from "../../util/windowDimensions";
+import hex from "../../stylesheets/hexCodes";
 
 const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    alignItems: "center",
-    height: 0.98*windowHeight
-  },
   inner: {
+    paddingTop: "10%",
     height: windowWidth > screenWidthThreshold ? "95%" : "90%",
   },
   imageTint: {
     backgroundColor: "rgba(0, 0, 0, 0.45)",
   },
-  topBox: {
-    backgroundColor: hex.white.white1,
-    borderColor: hex.blue.blue1,
-    borderRadius: 6,
-    borderStyle: "solid",
-    borderWidth: 2,
-    alignSelf: "center",
-    marginTop: windowWidth > screenWidthThreshold ? "15%" : "20%",
-    width: "85%",
+  viewTitleContainer: {
+    marginTop: "2%",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
   },
-  topBoxTextName: {
-    fontSize: titleText,
-    fontFamily: "FontReg",
-    marginTop: "3%",
-    marginHorizontal: "5%",
-    color: hex.black.black1,
-  },
-  topBoxText: {
-    color: hex.black.black1,
-    fontSize: bodyText,
-    fontFamily: "FontReg",
-    marginHorizontal: "5%",
-    marginBottom: "2%",
+  viewTitle: {
+    color: "#FFFFFF",
+    fontSize: 28,
+    fontFamily: "FontBold",
   },
   scroll: {
     display: "flex",
     alignItems: "center",
     width: windowWidth,
     marginTop: "2.5%",
-    height: "40%",
+    height: "50%",
   },
   spiritView: {
     alignItems: "center",
@@ -70,24 +52,23 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 2,
     marginTop: "3%",
-    width: "85%",
-    alignSelf: "center", // this is what makes the text box height adjust to the text
+    width: "88%",
+    alignSelf: "center",
+    padding: "3%",
+    paddingLeft: "1%",
+    paddingRight: "1%",
   },
   bottomBoxTextName: {
     color: hex.black.black1,
     fontSize: titleText,
     fontFamily: "FontReg",
     fontWeight: "800",
-    marginTop: "2%",
-    marginHorizontal: "5%",
     textAlign: "center",
   },
   bottomBoxTextDescription: {
     color: hex.black.black1,
     fontSize: bodyText,
     fontFamily: "FontReg",
-    marginHorizontal: "3%",
-    marginBottom: "2%",
     textAlign: "center",
   },
   nav: {
@@ -95,7 +76,6 @@ const styles = StyleSheet.create({
     height: 84,
     width: "100%",
     position: "absolute",
-    // bottom: 0,
   },
   navIcons: {
     display: "flex",
@@ -120,21 +100,21 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 28,
     fontFamily: "FontBold",
+    textAlign: "center",
   },
   pickButtonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginStart: "8%",
     marginEnd: "8%",
-
-    
-    // flex: 1,
+    marginTop: "10%",
+    marginBottom: "5%",
   },
   pickMeButton: {
     backgroundColor: "#8AABFF",
-    height: "5%",
+    height: "7%",
     minHeight: 40,
-    minWidth: "32.5%",
+    minWidth: "40.5%",
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",

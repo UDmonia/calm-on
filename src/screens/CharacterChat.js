@@ -8,7 +8,6 @@ import {
 import React, { useState } from "react";
 import styles from "../stylesheets/CharacterChatStyles";
 import { useSelector } from "react-redux";
-import { SafeAreaView } from "react-native-safe-area-context";
 import {
   spriteHappy,
   spriteSad,
@@ -16,6 +15,9 @@ import {
   spriteScared,
   spriteWorried,
 } from "../data/spriteChatData";
+import { sprite, flynn, aurora } from "../data/characterData";
+
+const charactersMap = { Flynn: flynn, Sprite: sprite, Aurora: aurora };
 
 /**
  * The default dialogue, if no dialoge has ever been chosen or when the user goes back to the
@@ -151,13 +153,17 @@ function getDialogue(emotion, character) {
 }
 
 const CharacterChat = ({ route, navigation: { navigate } }) => {
-  const { curCharacter } = route.params;
+  // default to sprite if no coach found
+  const getCoach = useSelector((state) => state.session.user.coach) || "Sprite";
+
+  const curCharacter = charactersMap[getCoach];
   const img = curCharacter.img;
   const bg = curCharacter.background;
   const activitiesBtnImg = curCharacter.viewActivities;
   const charaterActivities = curCharacter.activities;
   // if checkinObject is undefined, then there's no checkins
-  const checkinObject = useSelector((state) => state.session.user.checkIns) || [];
+  const checkinObject =
+    useSelector((state) => state.session.user.checkIns) || [];
   const chatEmotion = getEmotion(checkinObject);
   const chatDialogue = getDialogue(chatEmotion, curCharacter.name);
   const [question, setQuestion] = useState(chatDialogue.question);
@@ -208,21 +214,19 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
       <View style={styles.activityBtnContainer}>
         <TouchableOpacity
           style={styles.activityBtn}
-          onPress={() =>{
-            if(curCharacter.name === "Flynn","Sprite","Aurora") {
+          onPress={() => {
+            if ((curCharacter.name === "Flynn", "Sprite", "Aurora")) {
               navigate("FilteredActivities", {
                 activities: charaterActivities,
                 headerColor: curCharacter.characterColor,
-              })
-            }
-            else {
+              });
+            } else {
               navigate("FilteredActivities", {
                 activities: charaterActivities,
                 headerColor: curCharacter.characterColor,
-              })
+              });
             }
-            }
-          }
+          }}
         >
           <Image source={activitiesBtnImg} />
         </TouchableOpacity>
@@ -231,7 +235,11 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
         <View
           style={[styles.top, { backgroundColor: curCharacter.characterColor }]}
         >
-          {!key && <Text style={styles.question}>{"Hey "+ name + ". " + question}</Text>}
+          {!key && (
+            <Text style={styles.question}>
+              {"Hey " + name + ". " + question}
+            </Text>
+          )}
           {key && <Text style={styles.question}>{question}</Text>}
         </View>
         <View style={styles.bottom}>
