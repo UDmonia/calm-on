@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import Home from "./home";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import CharacterChat from "./CharacterChat";
 import Calendar from "../components/checkInStack";
 import Achievement from "./Achievement";
 import Profile from "./profileStack.js";
@@ -14,7 +14,7 @@ const icons = [
   {
     name: "Home",
     active: false,
-    comp: Home,
+    comp: CharacterChat,
     icon: require("../../assets/images/home.png"),
   },
   {
@@ -38,21 +38,21 @@ const HomeStack = (props) => {
   const Tab = createBottomTabNavigator();
   // what units are these?
   const getTabBarVisibility = (route) => {
-    const routeName = getFocusedRouteNameFromRoute(route) ?? ''
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "";
 
-    if (routeName === 'Shop') {
+    if (routeName === "Shop") {
       return false;
     }
 
     return true;
-  }
+  };
 
   const screens = icons.map((icon, index) => (
     <Tab.Screen
       key={index}
       name={icon.name}
       component={icon.comp}
-      options={({route}) => ({
+      options={({ route }) => ({
         tabBarVisible: getTabBarVisibility(route),
         tabBarIcon: ({ focused }) => (
           <TouchableOpacity
@@ -96,11 +96,10 @@ const styles = {
 
 const buttonStyle = {
   // height: 0.32*windowHeight,
-  width: 0.20*windowWidth,
+  width: 0.2 * windowWidth,
   flex: 1,
   paddingTop: "12%",
   paddingLeft: "25%",
-
 };
 
 export default HomeStack;

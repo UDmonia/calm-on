@@ -9,7 +9,7 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   chosenCharacter: {
-    height: "40%",
+    height: "50%",
     resizeMode: "contain",
     marginTop: "25%",
   },
@@ -19,7 +19,6 @@ export default StyleSheet.create({
   activityBtnContainer: {
     width: "90%",
     minWidth: "90%",
-
   },
   chatContainer: {
     justifyContent: "center",
@@ -34,7 +33,6 @@ export default StyleSheet.create({
     borderTopRightRadius: 10,
     minHeight: 10,
     width: "100%",
-    
   },
   question: {
     color: "#FFFFFF",
@@ -59,7 +57,6 @@ export default StyleSheet.create({
     display: "flex",
     alignItems: "center",
     alignSelf: "center",
-  
   },
   a: {
     fontFamily: "FontReg",

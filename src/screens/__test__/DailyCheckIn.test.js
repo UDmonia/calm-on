@@ -1,10 +1,9 @@
 import React from "react";
 import DailyCheckIn from "../DailyCheckIn";
-import Home from "../home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { render, fireEvent, cleanup } from "@testing-library/react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { checkin } from "../../actions/session_actions";
 
 const Stack = createStackNavigator();

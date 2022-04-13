@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -41,13 +41,19 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
 
   var positionList = [];
   async function randomizePosition() {
-    console.log('height: ' + windowHeight, 'width: ' + windowWidth)
+    console.log("height: " + windowHeight, "width: " + windowWidth);
     var i;
     let topPosArr = [];
     let leftPosArr = [];
     for (i = 0; i < actData.next.items.length; i++) {
-      let topPos = (Math.random() * (windowHeight * 0.35 - windowHeight * 0.005) + windowHeight * 0.005).toFixed(3);
-      let leftPos = ( Math.random() * (windowWidth * 0.895 - windowWidth * 0.005) + windowWidth * 0.005).toFixed(3);
+      let topPos = (
+        Math.random() * (windowHeight * 0.35 - windowHeight * 0.005) +
+        windowHeight * 0.005
+      ).toFixed(3);
+      let leftPos = (
+        Math.random() * (windowWidth * 0.895 - windowWidth * 0.005) +
+        windowWidth * 0.005
+      ).toFixed(3);
 
       // grid method
       // leftPos start: windowWidth*0.005, end : windowWidth*0.895
@@ -59,12 +65,8 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
       // leftPos from 0 to 368 in 55 pixels increments
 
       var xpos = {
-        top: parseFloat(
-          topPos
-        ),
-        left: parseFloat(
-          leftPos
-        ),
+        top: parseFloat(topPos),
+        left: parseFloat(leftPos),
       };
       positionList.push(xpos);
     }
@@ -118,7 +120,7 @@ export default CountingPrompt = ({ route, navigation: { navigate } }) => {
               <View style={styles.buttonView}>
                 <TouchableOpacity
                   style={styles.navButton}
-                  onPress={() => navigate("CharacterChat")}
+                  onPress={() => navigate("Home")}
                 >
                   <Text style={{ color: hex.grey.grey1 }}>Not Now</Text>
                 </TouchableOpacity>

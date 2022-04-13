@@ -21,7 +21,6 @@ import DailyCheckIn from "./src/screens/DailyCheckIn";
 import CheckInExplain from "./src/screens/CheckInExplain";
 import Activities from "./src/screens/Activities";
 import BoxBreathing from "./src/screens/boxBreathing";
-import CharacterChat from "./src/screens/CharacterChat";
 import FeelingDictionary from "./src/screens/FeelingDictionary";
 import kpi from "./src/screens/kpi";
 import { navigationRef } from "./src/components/RootNavigation";
@@ -229,18 +228,6 @@ export default function App() {
               headerTitleStyle: { fontSize: 24, color: "white" },
               headerStyle: { backgroundColor: hex.green.green1 },
             }}
-          />
-          <Stack.Screen
-            name="CharacterChat"
-            options={({ route }) => ({
-              headerShown: true,
-              headerBackTitleVisible: false,
-              headerTitle: route.params.name, // Header is passed upon navigation through the route
-              headerTitleStyle: { fontSize: 20, color: hex.white.white1 },
-              headerStyle: { backgroundColor: route.params.headerColor },
-              headerTintColor: hex.white.white1,
-            })}
-            component={CharacterChat}
           />
           <Stack.Screen
             name="boxBreathing"

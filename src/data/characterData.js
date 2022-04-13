@@ -1,4 +1,8 @@
-import { SpriteActivityData, FlynnAcitivityData, AuroraAcitivityData } from "./activityData.js";
+import {
+  SpriteActivityData,
+  FlynnAcitivityData,
+  AuroraAcitivityData,
+} from "./activityData.js";
 import hex from "../stylesheets/hexCodes";
 /**
  * TODO: add proper activity data for Flynn and Aurora
@@ -27,7 +31,7 @@ const flynn = {
 };
 
 const aurora = {
-  img: require("../../assets/images/auora_base.png"),
+  img: require("../../assets/images/Aurora_Default.png"),
   name: "Aurora",
   characterColor: hex.purple.aurora,
   description:

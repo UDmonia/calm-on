@@ -6,9 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "backend-install": "npm install --prefix backend",
-    "server": "npm start --prefix backend",
-    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "dev": "npm start",
     "test": "jest",
     "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html"
   },

@@ -8,7 +8,6 @@ import {
   Keyboard,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 import styles from "../../stylesheets/loginSignup.styles";
 import {
   login as loginUser,
@@ -16,15 +15,9 @@ import {
   RECEIVE_USER,
   addName,
 } from "../../actions/session_actions";
-import {
-  setupUser as setupUserInCashShop
-} from "../../actions/cashShop_actions"
 import mail from "../../../assets/images/mail.png";
 import lock from "../../../assets/images/password.png";
-import loginBtn from "../../../assets/images/logIn.png";
 import pwConfirm from "../../../assets/images/passwordConfirmed.png";
-import date from "../../../assets/images/date.png";
-import registerBtn from "../../../assets/images/createAcc.png";
 import deviceStorage from "../../services/device_storage";
 
 const initialLogin = {
@@ -53,6 +46,7 @@ const SessionForm = ({
   navigate,
   showUserDialog,
   setShowUserDialog,
+  setShowFairyPicker,
 }) => {
   const dispatch = useDispatch();
   const dbErrors = useSelector((store) => store.errors.session);
@@ -61,10 +55,7 @@ const SessionForm = ({
   const [localErrors, setLocalErrors] = useState([]);
   const [showError, setError] = useState(false);
   const [show, setShow] = useState(false);
-  const [showNameError, setNameError] = useState(false)
-  ;
-  const [userId, setUserId] = useState(null)
-  const toggleShow = () => setShow(!show);
+  const [showNameError, setNameError] = useState(false);
   const toggleInfo = (l) => setUser(l ? initialLogin : initialSignUp);
 
   useEffect(() => {
@@ -111,26 +102,25 @@ const SessionForm = ({
   const handleSubmit = async () => {
     setLocalErrors([]);
     if (isValid()) {
-      let action = null
+      let action = null;
       if (login) {
-        action = await dispatch(loginUser(user))
+        action = await dispatch(loginUser(user));
       } else {
         action = await dispatch(
           register({ ...user, birthday: new Date("0000", "00", "00") })
-        )
+        );
       }
 
       if (action.type === RECEIVE_USER) {
-        deviceStorage.save("score", '0');
+        deviceStorage.save("score", "0");
         if (!login) {
-          setShowUserDialog(true)
+          setShowUserDialog(true);
         } else {
-          navigate('Home')
+          navigate("Home");
         }
       } else {
         setError(true);
       }
-
     }
   };
 
@@ -165,7 +155,8 @@ const SessionForm = ({
       })
     ).then((action) => {
       if (user.name && !filter.isProfane(user.name)) {
-        navigate("DailyCheckIn");
+        // navigate("DailyCheckIn");
+        setShowFairyPicker(true);
       }
     });
   };
@@ -278,7 +269,7 @@ const SessionForm = ({
           </View>
           <View style={{ paddingTop: "10%" }}>
             <TouchableOpacity
-              onPress={() => handleAddName()}
+              onPress={handleAddName}
               style={styles.bottomButton}
             >
               <Text style={styles.bottomButtonText}>Next</Text>

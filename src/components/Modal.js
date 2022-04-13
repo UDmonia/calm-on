@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Button, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
 let screenWidth = Dimensions.get("window").width;
@@ -44,7 +44,7 @@ export default ({ navigation }) => (
           style={styles.yesNo}
           onPress={() => {
             navigation.pop();
-            navigation.navigate("CharacterChat", { IsModal: true });
+            navigation.navigate("Home", { IsModal: true });
           }}
         >
           <Text style={styles.exitYNText}>Yes</Text>
