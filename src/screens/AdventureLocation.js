@@ -10,13 +10,6 @@ import {
 import Exit from "../components/Exit";
 import styles from "../stylesheets/adventureLocationStyles";
 import { navigate } from "../components/RootNavigation";
-import Button from "../components/Button";
-import {
-  horizontalLength,
-  horizontalPosition,
-  bottomPosition,
-  topPosition,
-} from "../util/boxBreathingMeasurements";
 
 /**
  * AdventureLocation is a single screen in the adventures activity.
@@ -74,14 +67,12 @@ export default AdventureLocation = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    if(selected[selected.length - 1] != null) {
-      // console.log(letter);
-      // console.log(selected[selected.length - 1]);
+    if (selected[selected.length - 1] != null) {
       // If final item has been chosen we can now proceed
-      if(selected[selected.length - 1].id === locationData.length) {
+      if (selected[selected.length - 1].id === locationData.length) {
         navigate("AdventureLocationListAll", {
           arr: selected,
-          bg:locationBackground,
+          bg: locationBackground,
           bgTint: locationBackgroundTint,
           pMsg: kpiData.primMsg,
           sMsg: kpiData.secMsg,
@@ -89,7 +80,7 @@ export default AdventureLocation = ({ route, navigation }) => {
         });
       }
     }
-  }, [selected])
+  }, [selected]);
 
   return (
     <View style={styles.screenContainer}>

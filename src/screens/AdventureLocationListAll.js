@@ -7,7 +7,6 @@ import {
   Image,
   SafeAreaView,
   ImageBackground,
-  Modal,
 } from "react-native";
 import { navigate } from "../components/RootNavigation";
 import styles from "../stylesheets/adventureLocationListAllStyles";
@@ -25,11 +24,9 @@ const AdventureLocationListAll = ({ route }) => {
         tempArray.push(r);
       }
     }
-    // console.log(tempArray);
     for (i = 0; i < 9; i++) {
       tempArray[i] = arr[tempArray[i]];
     }
-    // console.log(tempArray);
     setRandomWords(tempArray);
   }, []);
 

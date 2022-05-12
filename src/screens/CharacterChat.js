@@ -70,19 +70,14 @@ function findNode(answer, nxtNode) {
  * @param {Object} checkinObject: checkinObject will contain
  *  all of the user checkins and returns a string value of the last emotion
  */
-function getEmotion(checkinObject) {
-  const journals = [];
-
-  if (!isEmpty(checkinObject)) {
-    for (const prop in checkinObject) {
-      journals.push({ journals: checkinObject[prop], _id: prop, date: prop });
-    }
+function getEmotion(checkIns) {
+  if (!isEmpty(checkIns)) {
     //Reverse journals array so the first element check-in item is the latest set instead of the oldest
-    journals.reverse();
+    checkIns.reverse();
     // last element in this array is the latest emotion input
-    const len = journals[0].journals.length;
+    const len = checkIns.length;
 
-    return journals[0].journals[len - 1].mood;
+    return checkIns[len - 1].mood;
   } else {
     return null;
   }
@@ -154,7 +149,10 @@ function getDialogue(emotion, character) {
 
 const CharacterChat = ({ route, navigation: { navigate } }) => {
   // default to sprite if no coach found
-  const getCoach = useSelector((state) => state.session.user.coach) || "Sprite";
+  const getCoach =
+    useSelector(
+      (state) => state.session.user != null && state.session.user.coach
+    ) || "Sprite";
 
   const curCharacter = charactersMap[getCoach];
   const img = curCharacter.img;
@@ -162,8 +160,7 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
   const activitiesBtnImg = curCharacter.viewActivities;
   const charaterActivities = curCharacter.activities;
   // if checkinObject is undefined, then there's no checkins
-  const checkinObject =
-    useSelector((state) => state.session.user.checkIns) || [];
+  const checkinObject = useSelector((state) => state.session.checkIns) || [];
   const chatEmotion = getEmotion(checkinObject);
   const chatDialogue = getDialogue(chatEmotion, curCharacter.name);
   const [question, setQuestion] = useState(chatDialogue.question);
@@ -171,7 +168,9 @@ const CharacterChat = ({ route, navigation: { navigate } }) => {
   const [nxtNode, setNxtNode] = useState(chatDialogue.nxtNode);
   const [navInfo, setNavInfo] = useState(chatDialogue.navInfo);
   const [key, setKey] = useState(chatDialogue.key);
-  const name = useSelector((state) => state.session.user.name);
+  const name = useSelector(
+    (state) => state.session.user && state.session.user.name
+  );
 
   if (nxtNode.length === 0) {
     setNavInfo(() => defaultDialogue.navInfo);
