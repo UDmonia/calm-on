@@ -1,22 +1,10 @@
 import React from "react";
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Text, Image } from "react-native";
 import { navigate } from "../components/RootNavigation";
-import { windowHeight, windowWidth } from "../util/windowDimensions";
 import styles from "../stylesheets/adventureLocationMadLibStyles";
 import { ScrollView } from "react-native-gesture-handler";
 
 function AdventureMadLib(props) {
-  console.log(props);
-
   function conditionalMadLibRender() {
     switch (props.location) {
       // Picnic
@@ -363,9 +351,8 @@ function AdventureMadLib(props) {
               case 0:
                 return (
                   <Text style={styles.storyText}>
-                    Dear Diary,{"\n"}
-                    I went to the movies today with Sprite! I was so excited, I
-                    brought my{" "}
+                    Dear Diary,{"\n"}I went to the movies today with Sprite! I
+                    was so excited, I brought my{" "}
                     <Image
                       style={styles.inlineImage}
                       source={props.randomWords[0].img}

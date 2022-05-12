@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import styles from "../stylesheets/dailyCheckInStyles";
 import { useSelector, useDispatch } from "react-redux";
-import { checkin } from "../actions/session_actions";
+// import { checkin } from "../actions/checkin_actions";
+import { submitCheckin } from "../actions/session_actions";
 
 /** TODO:
  * - make feelingContainers a single component and pass in props
@@ -14,7 +15,7 @@ const Happy = ({ setFeeling, arrHooks, happy }) => {
       <TouchableOpacity
         testID="happy-button"
         onPress={() => {
-          setFeeling("Happy");
+          setFeeling("happy");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 0) {
@@ -47,7 +48,7 @@ const Excited = ({ setFeeling, arrHooks, excited }) => {
       <TouchableOpacity
         testID="excited-button"
         onPress={() => {
-          setFeeling("Excited");
+          setFeeling("excited");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 1) {
@@ -80,7 +81,7 @@ const Scared = ({ setFeeling, arrHooks, scared }) => {
       <TouchableOpacity
         testID="scared-button"
         onPress={() => {
-          setFeeling("Scared");
+          setFeeling("scared");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 2) {
@@ -113,7 +114,7 @@ const Worried = ({ setFeeling, arrHooks, worried }) => {
       <TouchableOpacity
         testID="worried-button"
         onPress={() => {
-          setFeeling("Worried");
+          setFeeling("worried");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 3) {
@@ -146,7 +147,7 @@ const Sad = ({ setFeeling, arrHooks, sad }) => {
       <TouchableOpacity
         testID="sad-button"
         onPress={() => {
-          setFeeling("Sad");
+          setFeeling("sad");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 4) {
@@ -179,7 +180,7 @@ const Angry = ({ setFeeling, arrHooks, angry }) => {
       <TouchableOpacity
         testID="angry-button"
         onPress={() => {
-          setFeeling("Angry");
+          setFeeling("angry");
           var i;
           for (i = 0; i < 6; i++) {
             if (i !== 5) {
@@ -207,8 +208,12 @@ const Angry = ({ setFeeling, arrHooks, angry }) => {
 };
 
 const DailyCheckIn = ({ navigation: { navigate } }) => {
-  const userName = useSelector((state) =>
-    state.session.user.name ? state.session.user.name : "user"
+  const userName = useSelector(
+    (state) => state.session.user != null && state.session.user.name
+  );
+
+  const userId = useSelector(
+    (state) => state.session.user != null && state.session.user._id
   );
   const [curFeeling, setFeeling] = useState("");
   const [happy, setHappy] = useState(false);
@@ -227,13 +232,8 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
   ];
   const dispatch = useDispatch();
 
-  const handleAddEmotion = (feeling, reasons) => {
-    return dispatch(
-      checkin({
-        mood: feeling,
-        journal: reasons,
-      })
-    );
+  const handleAddEmotion = (mood) => {
+    dispatch(submitCheckin(userId, mood));
   };
 
   return (
@@ -282,7 +282,7 @@ const DailyCheckIn = ({ navigation: { navigate } }) => {
           testID="curFeeling-button"
           style={[styles.buttons, styles.continueButton]}
           onPress={() => {
-            handleAddEmotion(curFeeling, "");
+            handleAddEmotion(curFeeling);
             navigate("Home");
           }}
         >

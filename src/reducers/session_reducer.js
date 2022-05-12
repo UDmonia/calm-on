@@ -1,11 +1,17 @@
-import { RECEIVE_USER, LOGOUT_USER } from "../actions/session_actions";
+import {
+  RECEIVE_USER,
+  LOGOUT_USER,
+  USER_CHECKINS,
+} from "../actions/session_actions";
 
-const sessionReducer = (state = { user: null }, action) => {
+const sessionReducer = (state = { user: null, checkIns: [] }, action) => {
   switch (action.type) {
     case RECEIVE_USER:
-      return { user: action.user };
+      return { ...state, user: action.user };
     case LOGOUT_USER:
       return { user: null };
+    case USER_CHECKINS:
+      return { ...state, checkIns: action.checkIns };
     default:
       return state;
   }

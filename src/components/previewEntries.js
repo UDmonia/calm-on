@@ -1,6 +1,6 @@
 import React from "react";
-import {View, Image } from "react-native";
-import Text from './Text';
+import { View, Image } from "react-native";
+import Text from "./Text";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
@@ -28,12 +28,12 @@ export const Box = ({
   empty,
 }) => {
   const navigation = useNavigation();
- 
+
   // capitalize function for mood as mood comes back as lowercase from Database
   const capitalize = (s) => {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-  }
+    if (typeof s !== "string") return "";
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
 
   return (
     <View style={styles.container}>
@@ -54,7 +54,9 @@ export const Box = ({
         </TouchableOpacity>
       ) : (
         <View>
-          <Text style={styles.time}>{moment(journal.timestamp).format("LT")}</Text>
+          <Text style={styles.time}>
+            {moment(journal.timestamp).format("LT")}
+          </Text>
           <TouchableOpacity
             onPress={() => showJournal(time)}
             style={{ ...styles.box, backgroundColor: color }}
@@ -63,11 +65,7 @@ export const Box = ({
               <Image source={image} />
             </View>
             <View style={styles.textContainer}>
-              
-              <Text style={styles.journal}>
-                {capitalize(mood)}
-              </Text>
-             
+              <Text style={styles.journal}>{capitalize(mood)}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -95,9 +93,9 @@ const previewEntries = ({ journals, date, showJournal }) => {
       path: require("../../assets/preview/angry.png"),
       color: hex.pink.pink1,
     },
-    sad: { 
-      path: require("../../assets/preview/sad.png"), 
-      color: hex.purple.purple1 
+    sad: {
+      path: require("../../assets/preview/sad.png"),
+      color: hex.purple.purple1,
     },
     scared: {
       path: require("../../assets/preview/scared.png"),
@@ -113,25 +111,8 @@ const previewEntries = ({ journals, date, showJournal }) => {
     },
   };
 
-  let entries = []  
-  // flattens the data structure so it is easier to work with
-  for (const prop in monthlyData['data']) {
-    entries.push(...monthlyData['data'][prop])
-  }
-
-  // filter days so we can display date the correct amount of times
-  //(ie not rendering the date 3 times if there are 3 checkins in one day)
-  let filteredDays = entries.filter(entry1 => moment(entry1.timestamp).format('D') == moment(journals.timestamp).format('D'))
-
   return (
-    <View>
-      {filteredDays[0] === journals ?
-      <Text style={styles.date}>{date}</Text>
-      :
-      <>
-      </>
-      }
-      <Box
+    <Box
       color={moodMap[journals.mood].color}
       image={moodMap[journals.mood].path}
       key={journals._id}
@@ -139,7 +120,6 @@ const previewEntries = ({ journals, date, showJournal }) => {
       journal={journals}
       mood={journals.mood}
     />
-    </View>
   );
 };
 

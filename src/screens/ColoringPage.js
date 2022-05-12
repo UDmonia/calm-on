@@ -20,18 +20,13 @@ import MemoizedColorSlider from "../components/ColorSlider";
 import FreeSample from "../data/ColoringActivityImages/Freesample";
 // Slider Component Constants
 const SLIDER_HEIGHT = windowHeight * 0.2;
-const SLIDER_WIDTH = SLIDER_HEIGHT * 0.10;
-const KNOB_RADIUS = SLIDER_WIDTH * 3/4;
+const SLIDER_WIDTH = SLIDER_HEIGHT * 0.1;
+const KNOB_RADIUS = (SLIDER_WIDTH * 3) / 4;
 // Image Component Constants
 const IMAGE_HEIGHT = windowHeight * 0.785;
 const IMAGE_WIDTH = windowWidth * 0.72;
 
 export default function ColoringPage({ route }) {
-  // function handlePress() {
-  //   console.log(stepsTaken);
-  //   console.log(currPointer);
-  //   console.log("_________________");
-  // }
   // Summary: Function that resets values back to default
   function handleReset() {
     setFillColors(Array(50).fill("white"));
@@ -135,7 +130,7 @@ export default function ColoringPage({ route }) {
   const viewShotRef = useRef(null);
   const [fillColors, setFillColors] = useState(Array(50).fill("white"));
   const [value, setValue] = useState(0);
-  const [color, setColor] = useState('hsl(240, 100%, 50%)');
+  const [color, setColor] = useState("hsl(240, 100%, 50%)");
   const [currentColor, setCurrentColor] = useState(oldColor);
   const [lastFilled, setLastFilled] = useState();
   const [stepsTaken, setStepsTaken] = useState([]);
@@ -145,11 +140,11 @@ export default function ColoringPage({ route }) {
   const { name } = route.params;
 
   useEffect(() => {
-    let interpolatedValue = value / (SLIDER_HEIGHT - SLIDER_WIDTH/2) * 360;
-    let tempColor = ('hsl(' + interpolatedValue + ', 100%, 50%)');
+    let interpolatedValue = (value / (SLIDER_HEIGHT - SLIDER_WIDTH / 2)) * 360;
+    let tempColor = "hsl(" + interpolatedValue + ", 100%, 50%)";
     setColor(tempColor);
     setCurrentColor(tempColor);
-  }, [value])
+  }, [value]);
 
   useEffect(() => {
     if (uri) {
@@ -157,15 +152,11 @@ export default function ColoringPage({ route }) {
     } else {
       console.log("there is no image!");
     }
-  }, [uri])
+  }, [uri]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Modal
-        animationType="fade"
-        visible={modalVisible}
-        transparent={true}
-      >
+      <Modal animationType="fade" visible={modalVisible} transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Picture saved to gallery!</Text>
@@ -183,18 +174,38 @@ export default function ColoringPage({ route }) {
           </View>
         </ViewShot>
         <View style={styles.rightSide}>
-        <View style={{height: windowHeight * 0.03, width: windowHeight * 0.03, marginTop: "50%", backgroundColor: color, borderRadius: 4, borderWidth: 2, borderColor: hexCodes.white.white1}}/>
-          <View style={[styles.lineupContainer, {height: SLIDER_HEIGHT, width: SLIDER_WIDTH}]}>
-            <MemoizedColorSlider height={SLIDER_HEIGHT} width={SLIDER_WIDTH} knob={KNOB_RADIUS} setValue={setValue}/>
+          <View
+            style={{
+              height: windowHeight * 0.03,
+              width: windowHeight * 0.03,
+              marginTop: "50%",
+              backgroundColor: color,
+              borderRadius: 4,
+              borderWidth: 2,
+              borderColor: hexCodes.white.white1,
+            }}
+          />
+          <View
+            style={[
+              styles.lineupContainer,
+              { height: SLIDER_HEIGHT, width: SLIDER_WIDTH },
+            ]}
+          >
+            <MemoizedColorSlider
+              height={SLIDER_HEIGHT}
+              width={SLIDER_WIDTH}
+              knob={KNOB_RADIUS}
+              setValue={setValue}
+            />
           </View>
           <View style={styles.eraserButtonContainer}>
             <TouchableOpacity onPress={() => handleEraserTool()}>
-              <Image source={require('../../assets/coloring/eraser.png')}/>
+              <Image source={require("../../assets/coloring/eraser.png")} />
             </TouchableOpacity>
           </View>
           <View style={styles.undoButtonContainer}>
             <TouchableOpacity onPress={() => handleUndo()}>
-              <Image source={require('../../assets/coloring/undo.png')}/>
+              <Image source={require("../../assets/coloring/undo.png")} />
             </TouchableOpacity>
           </View>
         </View>
@@ -211,9 +222,19 @@ export default function ColoringPage({ route }) {
           </TouchableOpacity>
         </View> */}
         <View style={styles.saveButtonContainer}>
-            <TouchableOpacity style={styles.saveButton} onPress={() => getMediaLibraryAsync()}>
-              <Text style={{color: hexCodes.purple.aurora, fontSize: windowWidth * 0.05}}>Save Image</Text>
-            </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.saveButton}
+            onPress={() => getMediaLibraryAsync()}
+          >
+            <Text
+              style={{
+                color: hexCodes.purple.aurora,
+                fontSize: windowWidth * 0.05,
+              }}
+            >
+              Save Image
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

@@ -1,11 +1,16 @@
 import styles from "../stylesheets/splashStyles";
 import React, { useEffect } from "react";
-import { View, ImageBackground, TouchableOpacity, Text, BackHandler } from "react-native";
+import {
+  View,
+  ImageBackground,
+  TouchableOpacity,
+  Text,
+  BackHandler,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFromJWT, RECEIVE_USER } from "../actions/session_actions";
 import bg from "../../assets/images/image73.png";
-import startBtn from "../../assets/images/start_btn.png";
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from "@react-navigation/native";
 
 const Splash = ({ navigation: { navigate } }) => {
   const dispatch = useDispatch();
@@ -39,16 +44,13 @@ const Splash = ({ navigation: { navigate } }) => {
         {!loggedIn && (
           <View style={styles.btnContainer}>
             <TouchableOpacity
-                onPress={() => {
-                  // console.log(
-                  //   "Splash -> loginSignup: userPrompt=false userlogin=true"
-                  // );
-                  navigate("loginSignup", { userPrompt: false, userLogin: true });
-                }}
-                style={styles.btn}
-              >
-                <Text style={styles.text}>Start</Text>
-              </TouchableOpacity>
+              onPress={() => {
+                navigate("loginSignup", { userPrompt: false, userLogin: true });
+              }}
+              style={styles.btn}
+            >
+              <Text style={styles.text}>Start</Text>
+            </TouchableOpacity>
           </View>
         )}
       </ImageBackground>
