@@ -26,7 +26,7 @@
     "expo-permissions": "~13.0.3",
     "expo-status-bar": "~1.1.0",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "react": "17.0.1",
     "react-native": "0.64.3",
     "react-native-dotenv": "^2.5.5",
