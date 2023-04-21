@@ -28,7 +28,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.27.0",
     "react": "17.0.1",
-    "react-native": "0.64.3",
+    "react-native": "0.71.7",
     "react-native-dotenv": "^2.5.5",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-modal-datetime-picker": "^8.7.1",
